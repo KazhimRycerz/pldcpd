@@ -1,22 +1,5 @@
 @charset "UTF-8";
-#header_myaccount img {
-  width: 30%;
-  height: 30%;
-  float: left;
-  margin-left: 20px;
-  margin-right: 50px;
-  margin-top: -25px;
-}
 
-#header_myaccount p a {
-  text-decoration: none;
-  color: black;
-}
-
-#header_myaccount p a:hover {
-  text-decoration: none;
-  color: #c80000;
-}
 
 /*Ende Styles zum Header Account-Seite*/
 /*Beginn Css für den Main*/
