@@ -48,5 +48,9 @@
   font-family: "Rampart";
   src: url("../../fonts/Rampart_One/RampartOne-Regular.ttf") format("ttf");
 }
+@font-face {
+  font-family: "Thunderlord";
+  src: url("../../fonts/thunder_lord/Thunder Lord.woff2") format("woff2"), url("../../fonts/thunder_lord/Thunder Lord.ttf") format("ttf");
+}
 
 /*# sourceMappingURL=typography.css.map */
