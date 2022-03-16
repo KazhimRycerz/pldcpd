@@ -1,28 +1,51 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
 
-
 @font-face {
-    font-family: "BillboardShadow";
-    src: url("../fonts/Billboard-Shadow.otf") format("otf");
-    font-family: "NeonGlow-Hollow";
-    src: url("../fonts/neon_glow/NEON_GLOW-Hollow.woff2") format("woff2");
-    font-family: "ChalkLine";
-    src: url("../fonts/chalk_line_outline/ChalkLine-Outline.woff2") format("woff2");
-    font-family: "Calligraphr";
-    src: url("../fonts/VIA-Verlag.woff2") format("woff2");
-    font-family: "Carbono";
-    src: url("../fonts/carbono/carbono.ttf") format("ttf");
-    font-family: "FallingSkyCondOu";
-    src: url("../fonts/Falling-Sky-Condensed-Outline/FallingSkyCondOu.otf") format("otf");
-    font-family: "CorporateReg";
-    src: url("../fonts/CorporateSTOT-Reg.otf") format("otf");
-    font-family: "CorporateDemi";
-    src: url("../fonts/CorporateSTOT-Dem.otf") format("otf");
+  font-family: "Calligraphr";
+  src: url("../../fonts/VIA-Verlag.woff2") format("woff2"), url("../../fonts/VIA-Verlag.otf") format("otf");
+}
+@font-face {
+  font-family: "BillboardShadow";
+  src: url("../fonts/Billboard-Shadow.otf") format("otf");
+}
+  @font-face {
     font-family: "FoundSanExpNorm";
-    src: url("../fonts/FOUSANNO.woff2") format("woff2");
+    src: url("../../fonts/FOUSANNO.woff2") format("woff2"), url("../fonts/FOUSANNO.otf") format("otf");
+  }
+  @font-face {
     font-family: "FoundSanExpMed";
-    src: url("../fonts/FOUSANMD.woff2") format("woff2");
+    src: url("../../fonts/FOUSANMD.woff2") format("woff2"), url("../fonts/FOUSANMD.otf") format("otf");
+  }
+  @font-face {
+    font-family: "Calligraphr";
+    src: url("../../fonts/VIA-Verlag.woff2") format("woff2"), url("../fonts/VIA-Verlag.otf") format("otf");
+  }
+  @font-face {
+    font-family: "Carbono";
+    src: url("../../fonts/carbono/carbono.ttf") format("ttf");
+  }
+  @font-face {
+    font-family: "Vacaciones";
+    src: url("../../fonts/vacaciones-outline/Vacaciones-font-ffp-defharo.otf") format("otf"), url("../../fonts/vacaciones-outline/Vacaciones-font-ffp-defharo.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "CorporateDemi";
+    src: url("../../fonts/CorporateSTOT-Dem.otf") format("otf");
+  }
+  @font-face {
+     font-family: "CorporateReg";
+    src: url("../../fonts/CorporateSTOT-Reg.otf") format("otf");
+  }
+  @font-face {
+    font-family: "FallingSkyCondOu";
+    src: url("../../fonts/Falling-Sky-Condensed-Outline/FallingSkyCondOu.otf") format("otf");
+  }
+  @font-face {
+    font-family: "ChalkLine";
+    src: url("../../fonts/chalk_line_outline/ChalkLine-Outline.woff2") format("woff2");
+  }
+  @font-face {
     font-family: "Rampart";
-    src: url("../fonts/Rampart_One/RampartOne-Regular.ttf") format("ttf");
+    src: url("../../fonts/Rampart_One/RampartOne-Regular.ttf") format("ttf")
   }
