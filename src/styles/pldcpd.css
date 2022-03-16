@@ -56,6 +56,10 @@
   font-family: "Rampart";
   src: url("../../fonts/Rampart_One/RampartOne-Regular.ttf") format("ttf");
 }
+@font-face {
+  font-family: "Thunderlord";
+  src: url("../../fonts/thunder_lord/Thunder Lord.woff2") format("woff2"), url("../../fonts/thunder_lord/Thunder Lord.ttf") format("ttf");
+}
 /* textsizes*/
 /*$medium: 4rem;
 $large: 10rem;
@@ -147,7 +151,7 @@ body {
 
 /*Alles zum Header*/
 header {
-  font-family: "FoundSanExpMed", sans-serif;
+  font-family: "FoundSanExpNorm", sans-serif;
   position: fixed;
   top: 0px;
   left: 0px;
@@ -176,7 +180,7 @@ header {
   display: block;
 }
 .navheader #dropdown #dropbtn {
-  font-family: "FoundSanExpMed", sans-serif;
+  font-family: "FoundSanExpNorm", sans-serif;
   width: 140px;
   text-align: left;
   position: relative;
@@ -426,7 +430,7 @@ aside img {
 
 #aside_guthaben span:first-child {
   font-size: 2em;
-  font-family: "Carbono";
+  font-family: "Thunderlord";
   font-weight: bold;
   background-color: none;
 }
@@ -452,7 +456,7 @@ aside img {
 
 #Gruß h1 {
   display: inline-block;
-  font-family: "FoundSanExpMed", sans-serif;
+  font-family: "FoundSanExpNorm", sans-serif;
   font-size: 2vw;
   width: 10vw;
   min-width: 25%;
@@ -557,9 +561,9 @@ aside img {
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: top;
-  width: 100%;
+  width: 80%;
   margin: 20px auto;
-  gap: 50px;
+  gap: 20px;
 }
 
 #lb_1_angebote {
@@ -719,7 +723,7 @@ tr:hover {
   border-bottom: 3px dotted Black;
   border-radius: 20px;
   padding: 20px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 #infobox_2 > h2, #infobox_2 > p {
@@ -740,7 +744,7 @@ tr:hover {
 }
 
 #ib_2_angebote p {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
 }
 
 #box1 {
@@ -797,18 +801,8 @@ tr:hover {
   padding-bottom: 30px;
 }
 
-#learningbox_5 > div:first-child {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: top;
-  width: 80%;
-  margin: 20px auto;
-  gap: 50px;
-}
-
 #learningbox_5 > div p {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 #learningbox_5 > a > img {
@@ -951,7 +945,7 @@ footer ion-icon {
   font-size: 20px;
 }
 
-#asidenav {
+#navaside {
   position: fixed;
   left: 11%;
   top: 180px;
@@ -959,15 +953,14 @@ footer ion-icon {
   width: auto;
   height: 280px;
   background-color: azure;
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: space-between;
   z-index: 5;
   border: 3px dotted black;
   border-radius: 20px;
 }
-
-#asidenav a {
+#navaside a {
   font-family: sans-serif;
   margin: 0px;
   text-align: center;
@@ -985,7 +978,7 @@ footer ion-icon {
   text-decoration: none;
 }
 
-#asidenav a:hover {
+#navaside a:hover {
   background: #fafafa;
   background: radial-gradient(circle, #cd5a00 0%, #cd5a00 100%);
   box-shadow: 0 0 10px 5px lemonchiffon, 0 0 10px 5px lemonchiffon inset;
