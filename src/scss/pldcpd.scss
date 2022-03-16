@@ -1,52 +1,11 @@
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
-@import url('https://fonts.googleapis.com/css2?family=Acme&family=Akronim&family=Codystar&family=Fredericka+the+Great&family=Jacques+Francois+Shadow&family=Londrina+Outline&family=Londrina+Shadow&family=Londrina+Sketch&family=Miltonian&family=Miltonian+Tattoo&family=Noto+Nastaliq+Urdu&family=Noto+Sans+Egyptian+Hieroglyphs&family=Noto+Sans+Symbols+2&family=Open+Sans:wght@800&family=Rampart+One&family=Vast+Shadow&family=Zilla+Slab+Highlight:wght@700&display=swap');
-
+@import "reset/reset.scss";
+@import "typography/typography.scss";
 @import "variables/variables.scss";
 
-@font-face {
-  font-family: "BillboardShadow";
-  src: url("../fonts/Billboard-Shadow.otf") format("otf");
-  font-family: "NeonGlow-Hollow";
-  src: url("../fonts/neon_glow/NEON_GLOW-Hollow.woff2") format("woff2");
-  font-family: "ChalkLine";
-  src: url("../fonts/chalk_line_outline/ChalkLine-Outline.woff2") format("woff2");
-  font-family: "Calligraphr";
-  src: url("../fonts/VIA-Verlag.woff2") format("woff2");
-  font-family: "Carbono";
-  src: url("../fonts/carbono/carbono.ttf") format("ttf");
-  font-family: "FallingSkyCondOu";
-  src: url("../fonts/Falling-Sky-Condensed-Outline/FallingSkyCondOu.otf") format("otf");
-  font-family: "CorporateReg";
-  src: url("../fonts/CorporateSTOT-Reg.otf") format("otf");
-  font-family: "CorporateDemi";
-  src: url("../fonts/CorporateSTOT-Dem.otf") format("otf");
-  font-family: "FoundSanExpNorm";
-  src: url("../fonts/FOUSANNO.woff2") format("woff2");
-  font-family: "FoundSanExpMed";
-  src: url("../fonts/FOUSANMD.woff2") format("woff2");
-  font-family: "Rampart";
-  src: url("../fonts/Rampart_One/RampartOne-Regular.ttf") format("ttf");
-}
-
-:root {
- --bgc:azure;
- --bgcs:lemonchiffon;
- --font_s: FoundSanExpMed;
- --shadow_b: 0.5rem 0.5rem 2rem;
- --shadow_g: 0px 0px 10px 1px grey inset, -2px -2px 5px 3px grey,  -5px -5px 5px white inset; 
- --shadow_r: 3px 3px black, -3px -3px black, 3px -3px black, -3px 3px black;
-}
-
-* {
-  padding: 0;margin: 0;box-sizing: border-box; font-family: FoundSanExpMed;
-}
 
  body {
-  font-family: var(--font_s);
   line-height: 1.2;
   letter-spacing: 0px;
-  /*background-color:azure;*/
   background-image: url(../images/Wallpaper_07.JPG);
   background-size: 100vw;
   background-repeat:repeat-y;
@@ -57,25 +16,10 @@
 
 /* Basics for the total website*/
 
-.CPDrot{
-  color: rgb(125, 0, 0);
-}
-
-.shadow {
-  box-shadow: $boxshadow; 
-}
 
 .grad {
   background-image: linear-gradient(rgb(190, 190, 220), rgb(226, 171, 171));
   background-attachment:fixed;
-}
-
-.logosize_10{
-  width: 10px;
-  }
-
-.logosize_20{
-  width: 20px;
 }
 
 .logo_cpd {
@@ -87,28 +31,29 @@
 }
 
 .LC {
-  font-family: calligraphr;
+  font-family: $calli;
   font-weight: bold;
   letter-spacing: -5px;
   line-height: normal;
   font-style: normal;
-  Color: rgb(125, 0, 0);
+  color: $cpdred;
   font-size: 3rem;
-  /*position:relative;*/
-  /*bottom: -0.14em;*/
+  position: relative;
+  bottom: -0.15rem;
 }
 
 .C {
-  font-family: calligraphr;
-  Color: rgb(125, 0, 0);
+  font-family: $calli;
+  color: $cpdred;
   font-size: 1.3em;
   position:relative;
-  bottom: -0.14em;
+  top: 3px;
+  /* bottom: -0.14em; */
   text-decoration:none;
 }
 
 .Calli {
-  font-family: calligraphr;
+  font-family: $calli;
   line-height: normal;
   font-style: normal;
   font-size: 1.1em;
@@ -118,7 +63,7 @@
   }
 
 .LitCoin {
-  font-family: Calligraphr;
+  font-family: $calli;
   font-style: normal; 
   line-height: normal;
   color:rgb(125, 0, 0); 
@@ -143,98 +88,108 @@
 
 /*Alles zum Header*/
 header {
-  font-family: var(--font_s);
+  font-family: $primary-font;
   position: fixed;
   top: 0px;
   left: 0px;
   margin-bottom: 30px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   flex-wrap: nowrap;
   width: 100vw;
   height: 100px;
-  background-color: var(--bgc);
-  z-index: 3;
+  background-color: $first-color;
+  box-shadow: $boxshadow;
+  z-index: 99;
  }
 
 /* Neue Navigation*/
 
-nav {
-  font-family: var(--font_s);
+.navheader {
   width:30%;
-  height: 30%;
   position:relative;
   left: 10.5%;
+  #dropdown {
+    position: relative;
+    left:0;
+    width: 100%;
+    display: block;
+    #dropbtn {
+      font-family: $primary-font;
+      width: 140px;
+      text-align: left;
+      position: relative;
+      background-color: transparent;
+      color: black;
+      font-size: $small;
+      border: none;
+    }
+    ul {
+      color: black;
+      font-size: $small;
+      display: none;
+      flex-direction: row;
+      justify-content: space-evenly;
+      position: absolute;
+      bottom: -6px;
+      left: -20px;
+      height: auto;
+      width: auto;
+      /* box-shadow: $boxshadow; */
+      z-index: 1;
+      text-decoration: none;
+      
+      li {        
+        padding: 0 20px;
+        display: flex;
+        font-size: $small;
+        background-color: none;
+        box-shadow: $boxshadow;
+        text-decoration: none;
+        * {
+          text-decoration: none;
+        }
+        a {
+          color: black;
+        }
+      }
+    }
   }
-
-nav img {
-  width: 10px;
-  margin-left:5px;
-  margin-right:5px;
 }
+      
 
-#dropdown {
-  position: relative;
-  left:0;
-  bottom: 50%;
-  display: inline-block;
-}
+      #dropdown-content>li>*:hover {
+        color: $cpdred;
+      }
 
-#dropbtn {
-  font-family: var(--font_s);
-  width: 140px;
-  text-align: left;
-  position: absolute;
-  left: 1rem;
-  background-color: var(--bgc);
-  color: black;
-  padding: 10px;
-  font-size: 1rem;
-  border: none;
-}
+      #dropdown:hover #dropdown-content {
+        display: flex;
+        flex-direction: row;
+        width: auto;
+        background-color: none;
+        li * {
+          text-decoration: none;
+        }
+      }
 
-#dropdown-content {
-  font-size: 1rem;
-  display: none;
-  position: absolute;
-  left: 1rem;
-  background-color: var(--bgc);
-  width: 140px;
-  box-shadow: $boxshadow;
-  z-index: 1;
-}
-
-#dropdown-content a {
-  color: black;
-  padding: 5px 10px;
-  text-decoration: none;
-  display: block;
-  font-size: 1rem;
-}
-
-#dropdown-content a:hover {
-  color: rgb(100, 0, 0);
-}
-
-#dropdown:hover #dropdown-content {
-  display: block;
-  background-color: var(--bgc);
-  font-size: 1rem;
-}
+      #dropdown:hover #dropbtn {
+        display: none;
+      }
+      
 
 .image_header {
     height:30px;
  }
 
-#text_header {
+.text_header {
   display: flex;
   align-items: center;
   gap: 10px;
   flex-wrap: nowrap;
   margin-top: 0px;
   margin-left: -15%;
-  font-size: 1rem;
+  font-size: $small;
   text-decoration: none;
   vertical-align: top;
   line-height: 1.2;
@@ -242,34 +197,32 @@ nav img {
 
 #header_myaccount {
   /*border: 1px solid black;*/
-  background-color: var(--bgc);
+  background-color: $first-color;
   width: 15vw;
   height: 60px;
   margin-right: 30px;
-  font-size: 1rem;
-}
-
-#header_myaccount p {
-  padding-right:10px;
-  padding-top: 5px;
-  text-decoration: none;
-  text-align: right;
-  margin: 0 auto;
-  line-height: 1.5rem;
-}
-
-#header_myaccount:hover {
-  box-shadow: $boxshadow;
-}
-
-#header_myaccount p a{
-  text-decoration:none;
-  color: black;
+  font-size: $small;
+    p {
+    padding-right:10px;
+    padding-top: 5px;
+    text-decoration: none;
+    text-align: right;
+    margin: 0 auto;
+    line-height: 1.5rem;
+    a {
+      text-decoration:none;
+      color: black;
+    }
+    }
+    :hover {
+      box-shadow: $boxshadow;
+    }
+    
 }
 
 #header_myaccount p a:hover{
   text-decoration:none;
-  color: rgb(100, 0, 0);
+  color: $cpdred;
 }
 
 /*Ende Styles zum Header*/
@@ -281,7 +234,6 @@ nav img {
 
 main{
   display:inline;
-  justify-content:space-evenly;
   align-content:stretch;
   margin-left: 10%;
   margin-right: 10%;
@@ -297,7 +249,8 @@ main{
 
 aside {
   display: inline-block;
-  background-color: var(--bgc);
+  background-color: $first-color;
+  box-shadow: $boxshadow;
   width: 15vw;
   height: auto;
   padding: 10px;
@@ -307,9 +260,13 @@ aside {
   right: 0;
   text-align: left;
   vertical-align: top;
-  font-size: 1rem;
+  font-size: $small;
   z-index: 5;
-  box-sizing: border-box;
+  >p {
+    margin-top: 10px;
+  }
+
+
 }
 
 #aside_h_Btn {
@@ -323,7 +280,7 @@ aside {
   border-radius: 20%;
   text-align:center;
   z-index: 2;
-  box-shadow: var(--shadow_g);
+  box-shadow: $btnshadow;
  }
 
 #aside_h_Btn:active {
@@ -342,31 +299,23 @@ aside {
   border-radius: 20%;
   text-align:center;
   z-index: 1;
-  box-shadow: var(--shadow_g);
+  box-shadow: $btnshadow;
 }
 
 aside span {
   font-weight: bold;
   font-style: normal;
-  font-size: 2.5em;
+  font-size: 2.5rem;
   }
 
 aside img {
   width:30%;
   float: right;
-  margin-left: 5px;
+  margin-left: 0px;
   margin-top: 15px;
 }
 
-aside>div>div{
-  font-size: 0.8em;
-}
 
-aside div>p{
-  margin-top: 2px; 
-  margin-bottom:2px;
-  font-weight:bold;
-}
 
 #home_data{
   border: 2px dotted black;
@@ -374,18 +323,23 @@ aside div>p{
   border-radius: 5px;
   padding: 5px;
   margin: 0 auto;
+    p{
+      margin-top: 2px; 
+      margin-bottom:2px;
+      font-weight:bold;
+    }
+    div {
+      font-size: $xsmall;
+      display: flex;
+      flex-direction: row; 
+      flex-wrap: nowrap;
+      justify-content: space-around;
+      width: 100%;
+      padding-bottom: 5px;
+      
+    }
 }
  
-#home_data>div {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-content: space-between;
-  flex-wrap: nowrap;
-  width: 100%;
-  padding-bottom: 5px;
-}
-
 #home_data>div:first-of-type {
   border-bottom: 2px dotted black;
 }
@@ -393,21 +347,21 @@ aside div>p{
 #home_data>div>div {
   display: block;
   box-shadow: none; 
-  text-align:left;
-  border: none;
-  font-size: 0.75vw; 
+  text-align:center;
+  font-size: 0.71vw; 
 }
-#home_data>div>div>output{
+#home_data output{
   display: flex;
   background-color: rgb(180, 200, 230);
   border: 2px solid rgb(240, 255, 255);
   text-align:center;
-  justify-content:space-between;
+  justify-content:center;
   padding: 3px;
-  width: 2.5vw;
+  margin: 0 auto;
+  width: 90%;
   border: none;
   border-radius: 3px;
-  font-size: 0.85vw;
+  font-size: $normal;
   font-weight:bold;
   color: black;
 }
@@ -416,58 +370,41 @@ aside div>p{
   margin-top: 5px;
 }
 
-#aside_Guthaben {
+#aside_guthaben {
   display:flex;
-  font-size: 2.2em;
-  margin: 0 auto; 
+  justify-content: center;
+  align-items:center;
+  margin: 10px auto; 
   width: 50%;
   border: 2px dotted black;
   border-radius: 10px;
-  text-align: center;
   background-color:rgb(221, 155, 55, 0.2);
-  justify-content: space-evenly;
-  }
-
-  #aside_Guthaben span:first-child{
-  font-size: 1.0em;
-  font-family: "NeonGlow-Hollow";
-  /* text-shadow: var(--shadow_r); */
-  font-weight: bold;
-  background-color: none;
-  letter-spacing: 5px;
+  
 }
 
-#aside_Guthaben span:last-child{
-  padding-top: 3px; 
-  }
+  #aside_guthaben span:first-child{
+  font-size: 2.2em;
+  font-family: "Carbono";
+  font-weight: bold;
+  background-color: none;
+}
 
 /*Content*/
 
 #Gruß {
   background-color: rgb(77, 46, 38);
   background-image: url(../images/Sonnenuntergang.jpg);
-  background-size:100vw;
+  background-size:cover;
   background-repeat: no-repeat;
-  background-position-y: -35vh;
-  background-position-x: 0vw;
-  background-attachment:fixed;
-  height: 30vh;
+  background-position: center 60% ;
+  background-attachment: local;
+  height: 400px;
   width: 100%;
-  color:var(--bgcs);
+  color:$secondary-color;
   position:relative;
   top: 10px;
-}
 
-@media (max-width: 780px){
-#Gruß {
-  background-position-y: 0vh;
 }
-#Gruß p {
-  font-size: 0.75rem;
-  line-height: 1rem;
-}
-}
-
 
 
 #Gruß:hover {
@@ -476,21 +413,21 @@ aside div>p{
 
  #Gruß h1 {
   display:inline-block;
-  font-family: var(--font_s),sans-serif;
+  font-family: $primary-font;
   font-size: 2vw;
   width: 10vw;
   min-width: 25%; 
   text-align: left; 
   position: absolute;
-  left: 5vw;
+  left: 2vw;
   top: 20px;
   margin: 0;
 }
 
 #Gruß p {
   display:inline-block;
-  font-size: 1.1vw;
-  line-height: 2.0rem; 
+  font-size: 1.5rem;
+  line-height: 2.2rem; 
   width: 20vw; 
   min-width: 15vw;
   text-align: left; 
@@ -502,7 +439,7 @@ aside div>p{
 }
 
 #Gruß a {
-  color: var(--bgcs);
+  color: $secondary-color;
 }
 
 /*h1 {
@@ -516,18 +453,19 @@ aside div>p{
   font-size: 2rem;
 }
 
+
+
 #C1{
   display: inline-flex;
   margin-top: 80px;
   margin-bottom: 50px;
-  font-size: 1.2rem;
+  font-size: $normal;
   width: 100%;
 }
 
 #C1A1, #C1A4 {
   width: 30%;
-  margin-left:70px;
-  margin-right: 30px;
+  margin: 0 30px 0 30px;
   border-left: 3px dotted Black;
   /*border-right: 3px dotted Black;*/
   border-radius: 20px;
@@ -543,6 +481,9 @@ aside div>p{
   display: block;
   position: relative;
   left: -20%;
+  p {
+    width: 100%;
+  }
 }
 
 #C1A3 {
@@ -551,10 +492,11 @@ aside div>p{
 }
 
  #C1 article>img {
-  width: fit-content;
+  object-fit:cover ;
   margin-bottom:10px;
   margin-top:10px;
   display: block;
+  width: 100%;
  }
  
 #C1 img[src$="c.png"] {
@@ -566,64 +508,58 @@ aside div>p{
 }
 
 
-
-
-  
-  
+ 
 #learningbox_1 {
   border-top: 3px dotted Black;
   border-bottom: 3px dotted Black;
   padding-bottom: 20px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 20px;
   border-radius: 20px;
-  font-size: 1.2rem;
+  font-size: $normal;
 }
 
-#learningbox_1>h2, #learningbox_1>p {
-  display: inline-block;
+.infobox_intro {
+  display: flex;
+  flex-direction: row;
   flex-wrap: nowrap;
-  margin-right: 20px;
-} 
-
-#learningbox_1>a>img {
-  width: 2.5rem;
+  align-items: top;
+  width: 100%;
+  margin: 20px auto;
+  gap: 50px;
 }
 
 #lb_1_angebote {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  grid-template-columns: 1/5 1/5 1/5 1/5 1/5;
   justify-content:space-between;
   align-content:stretch;
   grid-gap: 10px;
   width: 1/5;
-  margin-top: 0px;
-  padding: 0px;
+  margin-top: 20px;
+  
+
+  
 }
 
 #lb_1_angebote>div {
   box-shadow: $boxshadow; 
-  background-color: rgb(175, 197, 198);
+  background-color: $third-color;
   /*border: 2px solid rgb(114, 4, 4);*/
   padding: 10px;
   width: 20%;
   margin: 0px;
-  border-radius: 20px;
+  border-radius: 10px;
+  p {
+   font-size: $small; 
+  }
+  
 }
 
 #lb_1_angebote img{
   object-fit: cover;
   width: 100%;
 }  
-
-#lb_1_angebote>div {
-  order: 5;
-  flex-grow: 0;
-  flex-shrink: 5;
-  flex-basis:auto;
-}
 
 #Promoter_1 {
   width: 100vw;
@@ -635,11 +571,11 @@ aside div>p{
   background-attachment: fixed;
   position: relative;
   left: -29%;
-  z-index: 6;
+  z-index: 100;
   box-sizing: border-box;
 } 
 #Promoter_1 div {
-  border: 20px ridge var(--bgcs);
+  border: 20px ridge $secondary-color;
   display: Block;
   position:relative;
   bottom: -10% ;
@@ -651,10 +587,11 @@ aside div>p{
 #Promoter_1 p {
   display: block;
   width: min-width;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: sans-serif;
   font-size: 5vw;
   font-weight: 900;
-  color: var(--bgcs);
+  color: $secondary-color;
+  box-shadow: 0px 0px 10px 5px $secondary-color;
   position: absolute;
   top: 60%;
   left: 10%;
@@ -675,7 +612,7 @@ aside div>p{
   justify-content:space-between;
   grid-gap: 20px;
   /*width: auto;*/
-  font-size: 1.2rem;
+  font-size: $normal;
   margin-top: 20px;
   padding: 10px 20px 20px 10px;
   border-top: 3px dotted Black;
@@ -695,7 +632,7 @@ aside div>p{
   grid-row: 1/2;
   /*background: rgb(218, 164, 157);*/ 
   padding: 10px;
-  font-size: 1.2rem;
+  font-size: $normal;
 }
 
 #infobox_1 div img {
@@ -707,7 +644,7 @@ aside div>p{
   
 
 table {
-  font-size: 1rem;
+  font-size: $small;
   float: left;
   margin: 0px;
   padding: 0px 0px;
@@ -752,8 +689,7 @@ tr:hover {
   border-top: 3px dotted Black;
   border-bottom: 3px dotted Black;
   border-radius: 20px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 20px;
   font-size: 1.2rem;
 }
 
@@ -828,16 +764,17 @@ tr:hover {
   border-top: 3px dotted Black;
   border-bottom: 3px dotted Black;
   border-radius: 20px;
+  padding-bottom: 30px;
 }
 
 #learningbox_5 > div:first-child {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  align-items: center;
+  align-items: top;
   width: 80%;
   margin: 20px auto;
-  gap: 10px;
+  gap: 50px;
 }
 
 #learningbox_5>div p {
@@ -870,7 +807,7 @@ tr:hover {
 }
    
 #Karrierebox>div>img{
-object-fit: cover;
+  object-fit: cover;
   width: 100%;
 }
 
@@ -924,7 +861,7 @@ object-fit: cover;
 }
 
 .floating-stack dd:hover{
-  background-color:var(--bgc);
+  background-color:$first-color;
   color: black;
 }
   
@@ -968,7 +905,7 @@ object-fit: cover;
 
 footer {
   position: static;
-  background-color:var(--bgc);
+  background-color:$first-color;
   padding:5px;
   width:80%;
   height:fit-content;
@@ -978,7 +915,7 @@ footer {
 }
 footer p {
   text-align: center;
-  font-size: 1rem;
+  font-size: $small;
 }
 
 footer ion-icon {
@@ -1014,7 +951,7 @@ footer ion-icon {
   aspect-ratio: 1;
   border-radius: 50%;
   background: rgb(250,250,250);
-  background: radial-gradient(circle, var(--bgcs) 0%, rgba(240,210,8,0.8) 100%);
+  background: radial-gradient(circle, $secondary-color 0%, rgba(240,210,8,0.8) 100%);
   box-shadow: 0 0 20px 5px rgb(205, 90, 0), 0 0 10px 5px rgb(205, 90, 0) inset;
   text-decoration:none;
  }
@@ -1022,8 +959,8 @@ footer ion-icon {
  #asidenav a:hover {
   background: rgb(250,250,250);
   background: radial-gradient(circle, rgb(205, 90, 0) 0%, rgb(205, 90, 0) 100%);
-  box-shadow: 0 0 10px 5px var(--bgcs), 0 0 10px 5px var(--bgcs) inset;
-  color: var(--bgcs);  
+  box-shadow: 0 0 10px 5px $secondary-color, 0 0 10px 5px $secondary-color inset;
+  color: $secondary-color;  
  }
 
  #A:focus::after {
@@ -1037,3 +974,30 @@ footer ion-icon {
  }
   
    
+ @media (max-width: 2048px){
+  #Gruß p {
+    font-size: 1.2rem;
+    line-height: 2.0rem;
+  }
+  #home_data output {
+    font-size: 0.9rem;
+  }
+  #aside_guthaben {
+    width: 100%;
+  }
+  #C1A2, #C1A3 {
+    width: 75%;
+  }
+  }
+  
+  @media (max-width: 1024px){
+    #home_data output {
+      font-size: 0.75rem;
+    }
+  #Gruß p {
+    font-size: 0.75rem;
+  }
+  #C1A2, #C1A3 {
+    width: 100%;
+  }
+  }

@@ -1,23 +1,32 @@
 //colors
-/* $primary-color: #0e749e;
-$secondary-color: #e0ddb2;
-$tertiary-color: #fff;
+$first-color: azure;
+$secondary-color: lemonchiffon;
+$third-color: rgb(175, 200, 200);
+$cpdred: rgb(125, 0, 0);
 
-// fonts
-$primary-font: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-
-// sizes
-$tiny: 1rem;
-$small: 2rem;
-$medium: 4rem;
+/* textsizes*/
+$normal: 1.1rem;
+$small: 0.9rem;
+$xsmall: 0.75rem;
+/*$medium: 4rem;
 $large: 10rem;
 $huge: 20rem;
 
-$border-size: 2px;
+$border-size: 2px; */
 
-// breakpoints
+/*Mediasetting*/
 $tablet: 768px;
-$desktop: 1025px; */
+$desktop: 1024px; 
+$widedesktop: 2048px;
 
-// Shadows
 $boxshadow: 0.5rem 0.5rem 2rem;
+$btnshadow: 0px 0px 10px 1px grey inset, -2px -2px 5px 3px grey,  -5px -5px 5px white inset; 
+$rshadow: 3px 3px black, -3px -3px black, 3px -3px black, -3px 3px black;
+
+/* Fonts */
+$primary-font: "FoundSanExpMed", sans-serif;
+$calli: "Calligraphr";
+
+/* logos */
+$logosize10: 10px;
+$logosize20: 20px;

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang:en>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PLDCPD_Register</title>
+  <link rel="stylesheet" href="pldcpd.css">
+  <link rel="stylesheet" href="pldcpd_register.css">
+  <link rel="stylesheet" href="animate.css">
+  <!--<link rel="stylesheet" href="poparticles.css">-->
+  <script src="pldcpd.js"></script>
+</head>
+
+<body>
+  <header class="shadow">
+      <div id="register_text_header">
+        <a href="index.html"><img class="image_header" src="../Bilder/pldcpd.png" ></a>
+      <p>
+      Plattform for <br>
+      Continuing <br>
+      Professional <br>
+      Development
+      </p>
+    </div>
+  </header>
+
+  <div class="Background" id="register_body">
+    <main id="register_main">
+      <form action="https://sciencebear.info/empfang" method="get" target="_blank">
+        <h1> Ihre Registrierung zum Erfolg</h1>
+        <label for="Vorname">Vorname:</label> <input type="text" name="Vorname" placeholder="Vorname" required> <br>
+        <label>Nachname:</label> <input type="text" name="Nachname" placeholder="Nachname" required> <br>
+        <fieldset>
+          <legend>Adresse</legend>
+          <label>Strasse:</label> <input type="text" name="Strasse" placeholder="Strasse" required> <br>
+          <label Style="width:150px">PLZ/Wohnort:</label> <input type="text" name="PLZ" placeholder="PLZ" required style="width:36px">  <input type="text" name="Wohnort" placeholder="Wohnort" required> <br>
+          <label>Land:</label> <input type="text" name="Land" placeholder="Land" required> <br><br>
+        </fieldset>
+
+        <label for="Hinweise"> Hinweise:</label>
+        <textarea name="Hinweise"></textarea><br><br>
+    
+        <div id="Geschlecht">
+          <label for="gender_list">Geschlecht</label>
+          <div id="gender_list"> 
+            <label>männlich</label><input type="radio" name="gender" value="male"><br>
+            
+            <label>weiblich</label><input type="radio" name="gender" value="female"><br>
+            
+            <label>trans</label><input type="radio" name="gender" value="trans" checked>
+            
+          </div>
+        </div>
+
+        <br>
+        <label for="birthday">geboren am:</label>
+        <input type="date" id="birthday" name="birthday"><br><br>
+
+        <div id="Newsletter">
+          <label for="Auswahl_newsletter">Newsletter</label>
+          <div id="newsletter_list"> 
+            <label for="Newsletter ja"> Newsletter ja</label><input type="checkbox" id="ja" name="ja" value="ja" checked>
+            <br>
+            <label for="Newsletter nein"> Newsletter nein</label><input type="checkbox" id="nein" name="nein" value="nein">
+            <br>
+            <label for="jein"> Newsletter in einer Woche</label><input type="checkbox" id="jein" name="jein" value="nächste woche">
+            
+            </div>
+        </div>
+  
+        <label for="Monat">erstmaligen Monat auswählen:</label>
+        <select name="Monat" id="Monat"> 
+          <option value="Januar">Januar</option>
+          <option value="Februar">Februar</option>
+          <option value="März">März</option>
+          <option value="April">April</option>
+          <option value="April">Mai</option>
+          <option value="April">Juni</option>
+          <option value="April">Juli</option>
+          <option value="April">August</option>
+          <option value="April">September</option>
+          <option value="April">Oktober</option>
+          <option value="April">November</option>
+          <option value="April">Dezember</option>
+        </select> <br><br>
+
+    
+        <label for="favcolor">Select your favorite color:</label>
+        <input type="color" id="favcolor" name="favcolor">
+
+        <br><br>
+
+        <p style="display: inline-block; ">
+        <label for="myfile">Bitte die Datei hochladen!</label>
+        <input type="file" id="myfile" name="myfile"></p>
+  
+        <div id="Regis">
+        </div>
+        <p>Konto eröffnen:</p>
+  
+
+        <label for="email">Email</label>
+        <input type="text" placeholder="Enter Email" name="email" id="email" required><br>
+        <label for="psw">Password</label>
+        <input type="password" placeholder="Enter Password" name="psw" id="psw" required><br>
+        <label for="psw-repeat">Repeat Password</label>
+        <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+  
+        <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+        <label for="Register"></label>
+        <button type="submit" class="registerbtn">Register</button>
+    
+
+        <div class="container signin">
+        <p>Sie sind bereits registriert? <a href="#">Anmelden</a>.</p>
+        </div>
+      
+
+    
+        <p>&#128512; Vielen Dank für die Registrierung</p>
+
+      </form>
+    </main>
+  </div>
+
+  <footer id="register_footer">
+    <p>
+    Joachim Ritter<br>
+    Marienfelder Str. 18<br>
+    33330 Gütersloh<br>
+    <ion-icon name="logo-facebook"></ion-icon>
+    <a href="https://www.linkedin.com/in/joachimr/" target="_blank"> <ion-icon name="logo-linkedin"></ion-icon> </a>
+    </p>
+    </p>
+  </footer>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/      ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+  </body>
+
+</html>

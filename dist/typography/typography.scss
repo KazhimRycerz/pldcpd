@@ -1,0 +1,18 @@
+h1, article {
+  font-size: $small;
+}
+
+p {
+    font-size: $tiny;
+}
+
+a {
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.card-text,
+a,
+h1, aside, article {
+  font-family: $primary-font;
+}

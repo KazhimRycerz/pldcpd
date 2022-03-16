@@ -1,39 +1,21 @@
 {
   "name": "pldcpd",
   "version": "1.0.0",
-  "description": "",
+  "description": "PLDCPDhome",
   "main": "src/index.html",
-  "dependencies": {
-    "anymatch": "^3.1.2",
-    "binary-extensions": "^2.2.0",
-    "braces": "^3.0.2",
-    "chokidar": "^3.5.3",
-    "fill-range": "^7.0.1",
-    "fsevents": "^2.3.2",
-    "glob-parent": "^5.1.2",
-    "immutable": "^4.0.0",
-    "is-binary-path": "^2.1.0",
-    "is-extglob": "^2.1.1",
-    "is-glob": "^4.0.3",
-    "is-number": "^7.0.0",
-    "normalize-path": "^3.0.0",
-    "picomatch": "^2.3.1",
-    "readdirp": "^3.6.0",
-    "source-map-js": "^1.0.2",
-    "to-regex-range": "^5.0.1"
-  },
   "devDependencies": {
-    "sass": "^1.49.9",
     "@compodoc/live-server": "^1.2.2",
     "gh-pages": "^3.2.3",
-    "npm-run-all": "^4.1.5"
+    "npm-run-all": "^4.1.5",
+    "sass": "^1.49.9"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "run-p sass-watch watch",
+    "start": "run-p sass-watch server",
     "sass-watch": "sass src/scss:src/styles --watch",
     "sass-build": "sass src/scss:src/styles",
-    "watch": "live-server src/",
+    "server": "light-server -c light-server.json",
+    "open-browser": "open -a 'Google Chrome' http://127.0.0.1:8080",
     "clean": "rm -rf dist src/styles",
     "copy": "mkdir dist && rsync ./src/ ./dist/ -avr --exclude=/scss",
     "build": "run-s clean sass-build copy",
@@ -50,5 +32,8 @@
   "bugs": {
     "url": "https://github.com/KazhimRycerz/pldcpd/issues"
   },
-  "homepage": "https://github.com/KazhimRycerz/pldcpd#readme"
+  "homepage": "https://github.com/KazhimRycerz/pldcpd#readme",
+  "dependencies": {
+    "light-server": "^2.9.1"
+  }
 }

@@ -1,26 +1,13 @@
 @charset "UTF-8";
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css");
-@import url("https://fonts.googleapis.com/css2?family=Acme&family=Akronim&family=Codystar&family=Fredericka+the+Great&family=Jacques+Francois+Shadow&family=Londrina+Outline&family=Londrina+Shadow&family=Londrina+Sketch&family=Miltonian&family=Miltonian+Tattoo&family=Noto+Nastaliq+Urdu&family=Noto+Sans+Egyptian+Hieroglyphs&family=Noto+Sans+Symbols+2&family=Open+Sans:wght@800&family=Rampart+One&family=Vast+Shadow&family=Zilla+Slab+Highlight:wght@700&display=swap");
-/* $primary-color: #0e749e;
-$secondary-color: #e0ddb2;
-$tertiary-color: #fff;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: FoundSanExpMed;
+}
 
-// fonts
-$primary-font: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-
-// sizes
-$tiny: 1rem;
-$small: 2rem;
-$medium: 4rem;
-$large: 10rem;
-$huge: 20rem;
-
-$border-size: 2px;
-
-// breakpoints
-$tablet: 768px;
-$desktop: 1025px; */
 @font-face {
   font-family: "BillboardShadow";
   src: url("../fonts/Billboard-Shadow.otf") format("otf");
@@ -45,27 +32,18 @@ $desktop: 1025px; */
   font-family: "Rampart";
   src: url("../fonts/Rampart_One/RampartOne-Regular.ttf") format("ttf");
 }
-:root {
-  --bgc:azure;
-  --bgcs:lemonchiffon;
-  --font_s: FoundSanExpMed;
-  --shadow_b: 0.5rem 0.5rem 2rem;
-  --shadow_g: 0px 0px 10px 1px grey inset, -2px -2px 5px 3px grey, -5px -5px 5px white inset;
-  --shadow_r: 3px 3px black, -3px -3px black, 3px -3px black, -3px 3px black;
-}
+/* textsizes*/
+/*$medium: 4rem;
+$large: 10rem;
+$huge: 20rem;
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: FoundSanExpMed;
-}
-
+$border-size: 2px; */
+/*Mediasetting*/
+/* Fonts */
+/* logos */
 body {
-  font-family: var(--font_s);
   line-height: 1.2;
   letter-spacing: 0px;
-  /*background-color:azure;*/
   background-image: url(../images/Wallpaper_07.JPG);
   background-size: 100vw;
   background-repeat: repeat-y;
@@ -74,35 +52,9 @@ body {
 }
 
 /* Basics for the total website*/
-.CPDrot {
-  color: #7d0000;
-}
-
-/*.rund1 {
-  width: auto;
-	height: 200px;
-	object-fit:cover;
-	border-radius: 0px 300px 300px 150px/ 0px 300px 300px 150px;
-}
-.rund2 {
-  object-fit:cover;
-	border-radius: 0px 150px 150px 150px/ 0px 150px 150px 100px;
-}*/
-.shadow {
-  box-shadow: 0.5rem 0.5rem 2rem;
-}
-
 .grad {
   background-image: linear-gradient(#bebedc, #e2abab);
   background-attachment: fixed;
-}
-
-.logosize_10 {
-  width: 10px;
-}
-
-.logosize_20 {
-  width: 20px;
 }
 
 .logo_cpd {
@@ -114,28 +66,29 @@ body {
 }
 
 .LC {
-  font-family: calligraphr;
+  font-family: "Calligraphr";
   font-weight: bold;
   letter-spacing: -5px;
   line-height: normal;
   font-style: normal;
-  Color: #7d0000;
+  color: #7d0000;
   font-size: 3rem;
-  /*position:relative;*/
-  /*bottom: -0.14em;*/
+  position: relative;
+  bottom: -0.15rem;
 }
 
 .C {
-  font-family: calligraphr;
-  Color: #7d0000;
+  font-family: "Calligraphr";
+  color: #7d0000;
   font-size: 1.3em;
   position: relative;
-  bottom: -0.14em;
+  top: 3px;
+  /* bottom: -0.14em; */
   text-decoration: none;
 }
 
 .Calli {
-  font-family: calligraphr;
+  font-family: "Calligraphr";
   line-height: normal;
   font-style: normal;
   font-size: 1.1em;
@@ -145,7 +98,7 @@ body {
 }
 
 .LitCoin {
-  font-family: Calligraphr;
+  font-family: "Calligraphr";
   font-style: normal;
   line-height: normal;
   color: #7d0000;
@@ -170,97 +123,104 @@ body {
 
 /*Alles zum Header*/
 header {
-  font-family: var(--font_s);
+  font-family: "FoundSanExpMed", sans-serif;
   position: fixed;
   top: 0px;
   left: 0px;
   margin-bottom: 30px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   flex-wrap: nowrap;
   width: 100vw;
   height: 100px;
-  background-color: var(--bgc);
-  z-index: 3;
+  background-color: azure;
+  box-shadow: 0.5rem 0.5rem 2rem;
+  z-index: 99;
 }
 
 /* Neue Navigation*/
-nav {
-  font-family: var(--font_s);
+.navheader {
   width: 30%;
-  height: 30%;
   position: relative;
   left: 10.5%;
 }
-
-nav img {
-  width: 10px;
-  margin-left: 5px;
-  margin-right: 5px;
-}
-
-#dropdown {
+.navheader #dropdown {
   position: relative;
   left: 0;
-  bottom: 50%;
-  display: inline-block;
+  width: 100%;
+  display: block;
 }
-
-#dropbtn {
-  font-family: var(--font_s);
+.navheader #dropdown #dropbtn {
+  font-family: "FoundSanExpMed", sans-serif;
   width: 140px;
   text-align: left;
-  position: absolute;
-  left: 1rem;
-  background-color: var(--bgc);
+  position: relative;
+  background-color: transparent;
   color: black;
-  padding: 10px;
-  font-size: 1rem;
+  font-size: 0.9rem;
   border: none;
 }
-
-#dropdown-content {
-  font-size: 1rem;
-  display: none;
-  position: absolute;
-  left: 1rem;
-  background-color: var(--bgc);
-  width: 140px;
-  box-shadow: 0.5rem 0.5rem 2rem;
-  z-index: 1;
-}
-
-#dropdown-content a {
+.navheader #dropdown ul {
   color: black;
-  padding: 5px 10px;
+  font-size: 0.9rem;
+  display: none;
+  flex-direction: row;
+  justify-content: space-evenly;
+  position: absolute;
+  bottom: -6px;
+  left: -20px;
+  height: auto;
+  width: auto;
+  /* box-shadow: $boxshadow; */
+  z-index: 1;
   text-decoration: none;
-  display: block;
-  font-size: 1rem;
+}
+.navheader #dropdown ul li {
+  padding: 0 20px;
+  display: flex;
+  font-size: 0.9rem;
+  background-color: none;
+  box-shadow: 0.5rem 0.5rem 2rem;
+  text-decoration: none;
+}
+.navheader #dropdown ul li * {
+  text-decoration: none;
+}
+.navheader #dropdown ul li a {
+  color: black;
 }
 
-#dropdown-content a:hover {
-  color: #640000;
+#dropdown-content > li > *:hover {
+  color: #7d0000;
 }
 
 #dropdown:hover #dropdown-content {
-  display: block;
-  background-color: var(--bgc);
-  font-size: 1rem;
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  background-color: none;
+}
+#dropdown:hover #dropdown-content li * {
+  text-decoration: none;
+}
+
+#dropdown:hover #dropbtn {
+  display: none;
 }
 
 .image_header {
   height: 30px;
 }
 
-#text_header {
+.text_header {
   display: flex;
   align-items: center;
   gap: 10px;
   flex-wrap: nowrap;
   margin-top: 0px;
   margin-left: -15%;
-  font-size: 1rem;
+  font-size: 0.9rem;
   text-decoration: none;
   vertical-align: top;
   line-height: 1.2;
@@ -268,13 +228,12 @@ nav img {
 
 #header_myaccount {
   /*border: 1px solid black;*/
-  background-color: var(--bgc);
+  background-color: azure;
   width: 15vw;
   height: 60px;
   margin-right: 30px;
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
-
 #header_myaccount p {
   padding-right: 10px;
   padding-top: 5px;
@@ -283,26 +242,23 @@ nav img {
   margin: 0 auto;
   line-height: 1.5rem;
 }
-
-#header_myaccount:hover {
-  box-shadow: 0.5rem 0.5rem 2rem;
-}
-
 #header_myaccount p a {
   text-decoration: none;
   color: black;
 }
+#header_myaccount :hover {
+  box-shadow: 0.5rem 0.5rem 2rem;
+}
 
 #header_myaccount p a:hover {
   text-decoration: none;
-  color: #640000;
+  color: #7d0000;
 }
 
 /*Ende Styles zum Header*/
 /*Beginn Css für den Main*/
 main {
   display: inline;
-  justify-content: space-evenly;
   align-content: stretch;
   margin-left: 10%;
   margin-right: 10%;
@@ -318,7 +274,8 @@ main {
 
 aside {
   display: inline-block;
-  background-color: var(--bgc);
+  background-color: azure;
+  box-shadow: 0.5rem 0.5rem 2rem;
   width: 15vw;
   height: auto;
   padding: 10px;
@@ -328,9 +285,11 @@ aside {
   right: 0;
   text-align: left;
   vertical-align: top;
-  font-size: 1rem;
+  font-size: 0.9rem;
   z-index: 5;
-  box-sizing: border-box;
+}
+aside > p {
+  margin-top: 10px;
 }
 
 #aside_h_Btn {
@@ -344,7 +303,7 @@ aside {
   border-radius: 20%;
   text-align: center;
   z-index: 2;
-  box-shadow: var(--shadow_g);
+  box-shadow: 0px 0px 10px 1px grey inset, -2px -2px 5px 3px grey, -5px -5px 5px white inset;
 }
 
 #aside_h_Btn:active {
@@ -363,30 +322,20 @@ aside {
   border-radius: 20%;
   text-align: center;
   z-index: 1;
-  box-shadow: var(--shadow_g);
+  box-shadow: 0px 0px 10px 1px grey inset, -2px -2px 5px 3px grey, -5px -5px 5px white inset;
 }
 
 aside span {
   font-weight: bold;
   font-style: normal;
-  font-size: 2.5em;
+  font-size: 2.5rem;
 }
 
 aside img {
   width: 30%;
   float: right;
-  margin-left: 5px;
+  margin-left: 0px;
   margin-top: 15px;
-}
-
-aside > div > div {
-  font-size: 0.8em;
-}
-
-aside div > p {
-  margin-top: 2px;
-  margin-bottom: 2px;
-  font-weight: bold;
 }
 
 #home_data {
@@ -396,13 +345,17 @@ aside div > p {
   padding: 5px;
   margin: 0 auto;
 }
-
-#home_data > div {
+#home_data p {
+  margin-top: 2px;
+  margin-bottom: 2px;
+  font-weight: bold;
+}
+#home_data div {
+  font-size: 0.75rem;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  align-content: space-between;
   flex-wrap: nowrap;
+  justify-content: space-around;
   width: 100%;
   padding-bottom: 5px;
 }
@@ -414,22 +367,22 @@ aside div > p {
 #home_data > div > div {
   display: block;
   box-shadow: none;
-  text-align: left;
-  border: none;
-  font-size: 0.75vw;
+  text-align: center;
+  font-size: 0.71vw;
 }
 
-#home_data > div > div > output {
+#home_data output {
   display: flex;
   background-color: #b4c8e6;
   border: 2px solid azure;
   text-align: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 3px;
-  width: 2.5vw;
+  margin: 0 auto;
+  width: 90%;
   border: none;
   border-radius: 3px;
-  font-size: 0.85vw;
+  font-size: 1.1rem;
   font-weight: bold;
   color: black;
 }
@@ -438,78 +391,60 @@ aside div > p {
   margin-top: 5px;
 }
 
-#aside_Guthaben {
+#aside_guthaben {
   display: flex;
-  font-size: 2.2em;
-  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto;
   width: 50%;
   border: 2px dotted black;
   border-radius: 10px;
-  text-align: center;
   background-color: rgba(221, 155, 55, 0.2);
-  justify-content: space-evenly;
 }
 
-#aside_Guthaben span:first-child {
-  font-size: 1em;
-  font-family: "NeonGlow-Hollow";
-  /* text-shadow: var(--shadow_r); */
+#aside_guthaben span:first-child {
+  font-size: 2.2em;
+  font-family: "Carbono";
   font-weight: bold;
   background-color: none;
-  letter-spacing: 5px;
-}
-
-#aside_Guthaben span:last-child {
-  padding-top: 3px;
 }
 
 /*Content*/
 #Gruß {
   background-color: #4d2e26;
   background-image: url(../images/Sonnenuntergang.jpg);
-  background-size: 100vw;
+  background-size: cover;
   background-repeat: no-repeat;
-  background-position-y: -35vh;
-  background-position-x: 0vw;
-  background-attachment: fixed;
-  height: 30vh;
+  background-position: center 60%;
+  background-attachment: local;
+  height: 400px;
   width: 100%;
-  color: var(--bgcs);
+  color: lemonchiffon;
   position: relative;
   top: 10px;
 }
 
-@media (max-width: 780px) {
-  #Gruß {
-    background-position-y: 0vh;
-  }
-
-  #Gruß p {
-    font-size: 0.75rem;
-    line-height: 1rem;
-  }
-}
 #Gruß:hover {
   background-image: url(../images/Sonnenuntergang_dark.jpg);
 }
 
 #Gruß h1 {
   display: inline-block;
-  font-family: var(--font_s), sans-serif;
+  font-family: "FoundSanExpMed", sans-serif;
   font-size: 2vw;
   width: 10vw;
   min-width: 25%;
   text-align: left;
   position: absolute;
-  left: 5vw;
+  left: 2vw;
   top: 20px;
   margin: 0;
 }
 
 #Gruß p {
   display: inline-block;
-  font-size: 1.1vw;
-  line-height: 2rem;
+  font-size: 1.5rem;
+  line-height: 2.2rem;
   width: 20vw;
   min-width: 15vw;
   text-align: left;
@@ -521,7 +456,7 @@ aside div > p {
 }
 
 #Gruß a {
-  color: var(--bgcs);
+  color: lemonchiffon;
 }
 
 /*h1 {
@@ -538,14 +473,13 @@ aside div > p {
   display: inline-flex;
   margin-top: 80px;
   margin-bottom: 50px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   width: 100%;
 }
 
 #C1A1, #C1A4 {
   width: 30%;
-  margin-left: 70px;
-  margin-right: 30px;
+  margin: 0 30px 0 30px;
   border-left: 3px dotted Black;
   /*border-right: 3px dotted Black;*/
   border-radius: 20px;
@@ -562,6 +496,9 @@ aside div > p {
   position: relative;
   left: -20%;
 }
+#C1A2 p, #C1A3 p {
+  width: 100%;
+}
 
 #C1A3 {
   position: relative;
@@ -569,10 +506,11 @@ aside div > p {
 }
 
 #C1 article > img {
-  width: fit-content;
+  object-fit: cover;
   margin-bottom: 10px;
   margin-top: 10px;
   display: block;
+  width: 100%;
 }
 
 #C1 img[src$="c.png"] {
@@ -587,55 +525,48 @@ aside div > p {
   border-top: 3px dotted Black;
   border-bottom: 3px dotted Black;
   padding-bottom: 20px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 20px;
   border-radius: 20px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
-#learningbox_1 > h2, #learningbox_1 > p {
-  display: inline-block;
+.infobox_intro {
+  display: flex;
+  flex-direction: row;
   flex-wrap: nowrap;
-  margin-right: 20px;
-}
-
-#learningbox_1 > a > img {
-  width: 2.5rem;
+  align-items: top;
+  width: 100%;
+  margin: 20px auto;
+  gap: 50px;
 }
 
 #lb_1_angebote {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  grid-template-columns: 1/5 1/5 1/5 1/5 1/5;
   justify-content: space-between;
   align-content: stretch;
   grid-gap: 10px;
   width: 1/5;
-  margin-top: 0px;
-  padding: 0px;
+  margin-top: 20px;
 }
 
 #lb_1_angebote > div {
   box-shadow: 0.5rem 0.5rem 2rem;
-  background-color: #afc5c6;
+  background-color: #afc8c8;
   /*border: 2px solid rgb(114, 4, 4);*/
   padding: 10px;
   width: 20%;
   margin: 0px;
-  border-radius: 20px;
+  border-radius: 10px;
+}
+#lb_1_angebote > div p {
+  font-size: 0.9rem;
 }
 
 #lb_1_angebote img {
   object-fit: cover;
   width: 100%;
-}
-
-#lb_1_angebote > div {
-  order: 5;
-  flex-grow: 0;
-  flex-shrink: 5;
-  flex-basis: auto;
 }
 
 #Promoter_1 {
@@ -648,12 +579,12 @@ aside div > p {
   background-attachment: fixed;
   position: relative;
   left: -29%;
-  z-index: 6;
+  z-index: 100;
   box-sizing: border-box;
 }
 
 #Promoter_1 div {
-  border: 20px ridge var(--bgcs);
+  border: 20px ridge lemonchiffon;
   display: Block;
   position: relative;
   bottom: -10%;
@@ -665,10 +596,11 @@ aside div > p {
 #Promoter_1 p {
   display: block;
   width: min-width;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: sans-serif;
   font-size: 5vw;
   font-weight: 900;
-  color: var(--bgcs);
+  color: lemonchiffon;
+  box-shadow: 0px 0px 10px 5px lemonchiffon;
   position: absolute;
   top: 60%;
   left: 10%;
@@ -688,7 +620,7 @@ aside div > p {
   justify-content: space-between;
   grid-gap: 20px;
   /*width: auto;*/
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin-top: 20px;
   padding: 10px 20px 20px 10px;
   border-top: 3px dotted Black;
@@ -708,7 +640,7 @@ aside div > p {
   grid-row: 1/2;
   /*background: rgb(218, 164, 157);*/
   padding: 10px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 #infobox_1 div img {
@@ -719,7 +651,7 @@ aside div > p {
 }
 
 table {
-  font-size: 1rem;
+  font-size: 0.9rem;
   float: left;
   margin: 0px;
   padding: 0px 0px;
@@ -764,8 +696,7 @@ tr:hover {
   border-top: 3px dotted Black;
   border-bottom: 3px dotted Black;
   border-radius: 20px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 20px;
   font-size: 1.2rem;
 }
 
@@ -841,16 +772,17 @@ tr:hover {
   border-top: 3px dotted Black;
   border-bottom: 3px dotted Black;
   border-radius: 20px;
+  padding-bottom: 30px;
 }
 
 #learningbox_5 > div:first-child {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  align-items: center;
+  align-items: top;
   width: 80%;
   margin: 20px auto;
-  gap: 10px;
+  gap: 50px;
 }
 
 #learningbox_5 > div p {
@@ -937,7 +869,7 @@ tr:hover {
 }
 
 .floating-stack dd:hover {
-  background-color: var(--bgc);
+  background-color: azure;
   color: black;
 }
 
@@ -979,7 +911,7 @@ tr:hover {
 /*Ende Css für den Main*/
 footer {
   position: static;
-  background-color: var(--bgc);
+  background-color: azure;
   padding: 5px;
   width: 80%;
   height: fit-content;
@@ -990,7 +922,7 @@ footer {
 
 footer p {
   text-align: center;
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 footer ion-icon {
@@ -1026,7 +958,7 @@ footer ion-icon {
   aspect-ratio: 1;
   border-radius: 50%;
   background: #fafafa;
-  background: radial-gradient(circle, var(--bgcs) 0%, rgba(240, 210, 8, 0.8) 100%);
+  background: radial-gradient(circle, lemonchiffon 0%, rgba(240, 210, 8, 0.8) 100%);
   box-shadow: 0 0 20px 5px #cd5a00, 0 0 10px 5px #cd5a00 inset;
   text-decoration: none;
 }
@@ -1034,8 +966,8 @@ footer ion-icon {
 #asidenav a:hover {
   background: #fafafa;
   background: radial-gradient(circle, #cd5a00 0%, #cd5a00 100%);
-  box-shadow: 0 0 10px 5px var(--bgcs), 0 0 10px 5px var(--bgcs) inset;
-  color: var(--bgcs);
+  box-shadow: 0 0 10px 5px lemonchiffon, 0 0 10px 5px lemonchiffon inset;
+  color: lemonchiffon;
 }
 
 #A:focus::after {
@@ -1046,6 +978,38 @@ footer ion-icon {
 #A:focus {
   color: black;
   overflow: visible;
+}
+
+@media (max-width: 2048px) {
+  #Gruß p {
+    font-size: 1.2rem;
+    line-height: 2rem;
+  }
+
+  #home_data output {
+    font-size: 0.9rem;
+  }
+
+  #aside_guthaben {
+    width: 100%;
+  }
+
+  #C1A2, #C1A3 {
+    width: 75%;
+  }
+}
+@media (max-width: 1024px) {
+  #home_data output {
+    font-size: 0.75rem;
+  }
+
+  #Gruß p {
+    font-size: 0.75rem;
+  }
+
+  #C1A2, #C1A3 {
+    width: 100%;
+  }
 }
 
 /*# sourceMappingURL=pldcpd.css.map */

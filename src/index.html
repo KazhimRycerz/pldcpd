@@ -14,21 +14,22 @@
 
 <body>
 
-  <header class="shadow">
+  <header>
 
-    <nav>
+    <nav class="navheader">
       <div id="dropdown">
-        <button id="dropbtn"><spin class="C">C</spin> about</button>
-        <div id="dropdown-content">
-          <a href="#"><spin class="C">C</spin> about</a>
-          <a href="About_profession.html"><spin class="C">C</spin> my Profession</a>
-          <a href="About_PLDCPD.html"><spin class="C">C</spin> PLDCPD </a>
-          <a href="About_RYCERZ.html"><spin class="C">C</spin> RYCERZ </a>
-        </div>
+        <button id="dropbtn"><p><span class="C">C</span> about</p></button>
+        <ul id="dropdown-content">
+          <li><a href="#"><span class="C">C</span> about</a></li>
+          <li><a href="About_profession.html"><span class="C">C</span> my Profession</a></li>
+          <li><a href="About_PLDCPD.html"><span class="C">C</span> PLDCPD </a></li>
+          <li><a href="About_RYCERZ.html"><span class="C">C</span> RYCERZ </a></l>
+        </ul>
+      </div>
     </nav>
 
-    <div id="text_header">
-      <a href="index.html"><img class="image_header" src="../src/images/pldcpd.png"></a>
+    <div class="text_header">
+      <a href="index.html"><img class="image_header" src="./images/pldcpd.png"></a>
       <p>
         Plattform for <br>
         Continuing <br>
@@ -38,8 +39,8 @@
 
     <div id="header_myaccount">
       <p>
-        <a href="pldcpd_register.html"> register me <spin class="C">C</spin></a><br>
-        <a href="pldcpd_login.html"> log me in <spin class="C">C</spin></a>
+        <a href="pldcpd_register.html"> register me <span class="C">C</span></a><br>
+        <a href="pldcpd_login.html"> log me in <span class="C">C</span></a>
       </p>
     </div>
 
@@ -49,13 +50,13 @@
   <div class="Background">
     <main>
       
-      <aside class="shadow">
+      <aside>
         <button type="button" id="aside_h_Btn" onclick="hide_account()">hide<br>account
         </button>
         <button type="button" id="aside_s_Btn" onclick="show_account()">show<br>account
         </button>
 
-        <img src="../src/images/Joachim privat.JPG">
+        <img src="./images/Joachim privat.JPG">
         <p><strong>Hallo, Joachim Ritter </strong><br>
           Journalist <br>Karrierelevel --- <span>IV</span>---<br>Project Lighting Designer</p> <br>
 
@@ -79,11 +80,11 @@
         <p>Die Werte vergleichen Ihren Stand des Wissens mit dem Durchschnitt aller teilnehmenden Lichtdesigner. Derzeit
           liegt Ihr Wissen über dem Marktdurchschnitt.</p>
 
-        <p>Ihr aktuelles <span class="LitCoin">L</span><span class="Calli">it</span><span em class="LitCoin">C</span><span
+        <p>Ihr aktuelles <span class="LitCoin">L</span><span class="Calli">it</span><span class="LitCoin">C</span><span
             class="Calli">oin</span> Guthaben:</p>
-        <p id="aside_Guthaben">
+        <p id="aside_guthaben">
           <span> 250 </span>
-          <span class="LC">LC</span>
+          <span class="LC"> LC</span>
         </p>
 
         <p>Ihre gesamte Übesicht Ihres Kontos können Sie <a href="pldcpd_account.html">hier</a> aufrufen. <a class="C"
@@ -113,75 +114,76 @@
 
         <section id="C1">
 
-          <article id="C1A1"> <img src="../src/images/Level_4_SLD.jpg"> Sie wollen ein anerkannter Lichtdesigner werden? Dann sind Sie hier genau richtig. Wir unterstützen Sie bei Ihrer Karriereplanung, geben Ihnen Hinweise zu Ihrer beruflichen Entwicklung und empfehlen Ihrer Weiterbildungsangebote und Fachartikel. Steigen Sie ein in Ihre Karriere als Lighting Designer... <a href="Karriereplanung"> More <br><br><img src="../src/images/c.png"></a>
+          <article id="C1A1"> <img src="./images/Level_4_SLD.jpg"> <p>Sie wollen ein anerkannter Lichtdesigner werden? Dann sind Sie hier genau richtig. Wir unterstützen Sie bei Ihrer Karriereplanung, geben Ihnen Hinweise zu Ihrer beruflichen Entwicklung und empfehlen Ihrer Weiterbildungsangebote und Fachartikel. Steigen Sie ein in Ihre Karriere als Lighting Designer... </p><a href="Karriereplanung"> More <img src="./images/c.png"></a>
           </article>
 
-        <wrapper>
+        <div>
           <article id="C1A2">
-            Brauchen sie Hinweise auf neue Themen und Lernmittel? Empfehlungen finden Sie <br><a href="About_profession.html">hier<img src="../src/images/c.png"></a>
+            <p>Brauchen sie Hinweise auf neue Themen und Lernmittel? Empfehlungen finden Sie</p> <a href="About_profession.html">hier<img src="./images/c.png"></a>
           </article>
 
           <article id="C1A3">
-            Wollen sie ein Teil der Community sein? Kennen Sie schon das neue Netzwerk für Lichtdesigner? Dann sollten Sie rasch hier schauen <br><a href="About_profession.html">hier<img src="../src/images/c.png"></a>
+            <p>Wollen sie ein Teil der Community sein? Kennen Sie schon das neue Netzwerk für Lichtdesigner? Dann sollten Sie rasch hier schauen</p> <a href="About_profession.html">hier<img src="./images/c.png"></a>
           </article>
-        </wrapper>
+        </div>
           
-          <article id="C1A4"> Hier können Sie Ihre Karriere planen und kontinuierlich prüfen, welchen Status Sie erreicht haben. Auch geben wir Ihnen Hinweise auf neue Themen und Learnmöglichkeiten. Hier können Sie Ihre Karriere planen und kontinuierlich prüfen, welchen Status Sie erreicht haben. Auch geben wir Ihnen Hinweise auf neue Themen und Learnmöglichkeiten.
+          <article id="C1A4"> <p>Hier können Sie Ihre Karriere planen und kontinuierlich prüfen, welchen Status Sie erreicht haben. Auch geben wir Ihnen Hinweise auf neue Themen und Learnmöglichkeiten. Hier können Sie Ihre Karriere planen und kontinuierlich prüfen, welchen Status Sie erreicht haben. Auch geben wir Ihnen Hinweise auf neue Themen und Learnmöglichkeiten.</>
             <a href="About_profession.html"> More </a><br>
-            <img src="../src/images/Level_4_SLD.jpg">
-            <a href="Karriereplanung.html"><img src="../src/images/c.png"></a>
+            <img src="images/level_5_senior.jpg">
+            <a href="Karriereplanung.html"><img src="./images/c.png"></a>
           </article>
-
         </section>
 
         <section id="learningbox_1">
-          <h2> Neue Lernangebote </h2>
-          <p>Hier können sie über die neusten Angebote <br>zur Weiterbildung erfahren. Klicken Sie <a href="#">hier</a> und schauen Sie im Detail,<br> was zur weiterbildung angeboten wird.
-          </p>
-          <a href="#"><img src="../src/images/c.png" class="logo_cpd"></a>
+          <div class="infobox_intro">
+            <h2> Aktuelle Lernangebote </h2>
+            <p>Hier können sie über die neusten Angebote zur Weiterbildung erfahren. Klicken Sie <a href="#">hier</a> und schauen Sie im Detail, was zur weiterbildung angeboten wird.
+            </p>
+            <a href="#"><img src="images/c.png" class="logo_cpd"></a>
+          </div>
 
           <div id="lb_1_angebote">
             <div>
               <p> Themenbereich<br><strong>Lichtdesign</strong><br><br>folge hier <a class="C"
                 href="pldcpd_account.html">C</a>
               </p>
-              <img src="../src/images/Vulkan.GIF">
+              <img src="./images/Vulkan.GIF">
             </div>
 
             <div>
-              <p> Themenbereich <br>Lichttechnik<br><br>folge hier <a class="C"
+              <p> Themenbereich <br><strong>Lichttechnik</strong><br><br>folge hier <a class="C"
                 href="pldcpd_account.html">C</a></p>
-              <img src="../src/images/Egon Zitter 7.jpg">
+              <img src="./images/Egon Zitter 7.jpg">
             </div>
 
             <div>
-              <p> Themenbereich <br>Berufspraxis<br><br>folge hier <a class="C"
+              <p> Themenbereich <br><strong>Berufspraxis</strong><br><br>folge hier <a class="C"
                 href="pldcpd_account.html">C</a></p>
-              <img src="../src/images/Egon Zitter 8 Libellen.JPG">
+              <img src="./images/Egon Zitter 8 Libellen.JPG">
             </div>
 
             <div>
-              <p>Themenbereich <br>Tageslicht<br><br>folge hier <a class="C"
+              <p>Themenbereich <br><strong>Tageslicht</strong><br><br>folge hier <a class="C"
                 href="pldcpd_account.html">C</a></p>
-              <img src="../src/images/Sonnenuntergang.jpg">
+              <img src="./images/Sonnenuntergang.jpg">
             </div>
 
             <div>
-              <p>Themenbereich <br>Meinung<br><br>folge hier <a class="C"
+              <p>Themenbereich <br><strong>Meinung</strong><br><br>folge hier <a class="C"
                 href="pldcpd_account.html">C</a></p>
-              <img src="../src/images/unsplash.jpg">
+              <img src="./images/unsplash.jpg">
             </div>
           </div>
         </section>
 
         <a href="index.html">
-          <img class="Trenner" src="../src/images/c.png"></a>
+          <img class="Trenner" src="./images/c.png"></a>
         
         <div id="Promoter_1">
-          <div><p >Lichtdesign at it's best!</p></div>
+          <div><p >Lightingdesign at it's best!</p></div>
         </div>
 
-        <a href="index.html"><img class="Trenner" src="../src/images/c.png"></a>
+        <a href="index.html"><img class="Trenner" src="./images/c.png"></a>
 
         <section id="infobox_1">
           <div id="info_1_1" class="grad">
@@ -224,7 +226,7 @@
                   <td>Design</td>
                   <td>4-5</td>
                   <td>Artikel</td>
-                  <td><img src="../src/images/c.png"><a href="https://pld-m.com" target="_blank"></a></td>
+                  <td><img src="./images/c.png"><a href="https://pld-m.com" target="_blank"></a></td>
                 </tr>
                 <tr>
                   <td>20.10.2021</td>
@@ -233,7 +235,7 @@
                   <td>Design</td>
                   <td>2-5</td>
                   <td>Onlineseminar</td>
-                  <td><img src="../src/images/c.png"><a href="https://pld-m.com" target="_blank"></a></td>
+                  <td><img src="./images/c.png"><a href="https://pld-m.com" target="_blank"></a></td>
                 </tr>
                 <tr>
                   <td>20.10.2021</td>
@@ -242,7 +244,7 @@
                   <td>Berufspraxis</td>
                   <td>6</td>
                   <td>Life-Seminar</td>
-                  <td><img src="../src/images/c.png"><a href="https://pld-m.com" target="_blank"></a></td>
+                  <td><img src="./images/c.png"><a href="https://pld-m.com" target="_blank"></a></td>
                 </tr>
                 <tr>
                   <td>20.10.2021</td>
@@ -251,7 +253,7 @@
                   <td>Design</td>
                   <td>4-5</td>
                   <td>Artikel</td>
-                  <td><img src="../src/images/c.png"><a href="https://pld-m.com" target="_blank"></a></td>
+                  <td><img src="./images/c.png"><a href="https://pld-m.com" target="_blank"></a></td>
                 </tr>
                 <tr>
                   <td>20.10.2021</td>
@@ -260,7 +262,7 @@
                   <td>Design</td>
                   <td>4-5</td>
                   <td>Artikel</td>
-                  <td><img src="../src/images/c.png"><a href="https://pld-m.com" target="_blank"></a></td>
+                  <td><img src="./images/c.png"><a href="https://pld-m.com" target="_blank"></a></td>
                 </tr>
                 <tr>
                   <td>20.10.2021</td>
@@ -269,7 +271,7 @@
                   <td>Design</td>
                   <td>4-5</td>
                   <td>Artikel</td>
-                  <td><img src="../src/images/c.png"><a href="https://pld-m.com" target="_blank"></a></td>
+                  <td><img src="./images/c.png"><a href="https://pld-m.com" target="_blank"></a></td>
                 </tr>
                 <tr>
                   <td>20.10.2021</td>
@@ -278,7 +280,7 @@
                   <td>Beruf</td>
                   <td>4-5</td>
                   <td>Artikel</td>
-                  <td><img src="../src/images/c.png"><a href="https://pld-m.com" target="_blank"></a></td>
+                  <td><img src="./images/c.png"><a href="https://pld-m.com" target="_blank"></a></td>
                 </tr>
                 <tr>
                   <td>20.10.2021</td>
@@ -287,7 +289,7 @@
                   <td>Design</td>
                   <td>4-5</td>
                   <td>Artikel</td>
-                  <td><img src="../src/images/c.png"><a href="index.html" target="_blank"></a></td>
+                  <td><img src="./images/c.png"><a href="index.html" target="_blank"></a></td>
                 </tr>
               </tbody>
               <tfoot>
@@ -298,13 +300,13 @@
           </div>
 
           <div id="info_1_2" class="grad">
-            <p> <img src="../src/images/Egon Zitter 7.jpg"> <h2>Special II</h2>
+            <p> <img src="./images/Egon Zitter 7.jpg"> <h2>Special II</h2>
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. In officiis alias impedit, incidunt recusandae fugiat, eos quia atque voluptatem, veritatis. Magni ab architecto blanditiis aperiam ullam illum rerum accusamus maxime, aliquid, vel laudantium dignissimos, cupiditate ratione sapiente amet labore dolores! Saepe officiis magni similique non corporis accusamus ex reprehenderit, expedita aliquid vero? Rem, rerum culpa? Nostrum, libero cum excepturi quis ab voluptatem sunt dolores non ratione maxime.<br><br></p>
           </div>
         </section>
 
         <a href="index.html">
-          <img class="Trenner" src="../src/images/c.png"> </a>
+          <img class="Trenner" src="./images/c.png"> </a>
 
         <!-- <section id="learningbox_2">
         <h2> Hier folgt die Learningbox_2</h2>
@@ -315,14 +317,14 @@
           <h2> Aktuelle Lernangebote </h2> 
           <p>Hier können sie die neusten Angebote <br>zur Weiterbildung sehen. Klicken Sie
           und schauen Sie im Detail, was angeboten wird.</p>
-          <a href="#"><img src="../src/images/c.png" class="logo_cpd"></a>
+          <a href="#"><img src="./images/c.png" class="logo_cpd"></a>
 
           <div id="ib_2_angebote">
             <div id="box1" class="grad">
               <h3>Box 1</h3>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita nostrum voluptatibus,
-                reiciendis! <img src="../src/images/Vulkan.GIF"
+                reiciendis! <img src="./images/Vulkan.GIF"
                   style="float:left; margin-top:10px;margin-bottom:10px; margin-right:10px; width: 60%"> Dolorum nisi
                 aspernatur unde est, magnam excepturi possimus.pariatur molestias accusamus recusandae minima cum, animi,
                 sapiente rem iste earum ipsum aut ratione. Ad maiores corrupti magnam deleniti molestias aperiam quas
@@ -390,70 +392,70 @@
 
         <br><br>
 
-        <img class="Trenner" src="../src/images/c.png"> <a href="index.html"></a><br><br>
+        <img class="Trenner" src="./images/c.png"> <a href="index.html"></a><br><br>
 
 
         <br>
 
         <section id="learningbox_5">
-          <div>
+          <div class="intro">
             <h2> Lernen nach Karrierelevel - Angebote und Themen nach Ihrer Berufserfahrung</h2>
             <p>Hier erhalten Sie Vorschläge zur Weiterbildung in Ihrem Karrierelevel. Klicken Sie und schauen Sie im Detail, was angeboten wird.</p>
-            <a href="#"><img src="../src/images/c.png" class="logo_cpd"></a>
+            <a href="#"><img src="./images/c.png" class="logo_cpd"></a>
           </div> 
 
           <div id="Karrierebox">
             <div id="learning_5_1">
               <p> <strong>Professional <br> Level I</strong> <br> Student<br></p>
-              <img src="../src/images/Level_1_SLD.jpg">
+              <img src="./images/Level_1_SLD.jpg">
             </div>
 
             <div id="learning_5_2">
               <p> <strong>Professional <br> Level II</strong> <br>
                 Newly qualified<br></p>
-              <img src="../src/images/Level_2_NQLD.jpg">
+              <img src="./images/Level_2_NQLD.webp">
             </div>
 
             <div id="learning_5_3">
               <p> <strong>Professional <br> Level III</strong> <br>
                 Junior Designer<br></p>
-              <img src="../src/images/Level_3_JLD.jpg">
+              <img src="./images/level_3_JLD.jpg">
             </div>
 
             <div id="learning_5_4">
               <p> <strong>Professional <br> Level IV</strong> <br>
                 Project Designer<br></p>
-              <img src="../src/images/Level_4_SLD.jpg">
+              <img src="./images/level_4_SLD.jpg">
             </div>
 
             <div id="learning_5_5">
               <p> <strong>Professional <br> Level V</strong> <br>
                 Senior Designer<br></p>
-              <img src="../src/images/unsplash.jpg">
+              <img src="./images/level_5_senior.jpg">
             </div>
 
             <div id="learning_5_6">
               <p> <strong>Professional <br> Level VI</strong> <br>
                 Associate Designer<br></p>
-              <img src="../src/images/unsplash.jpg">
+              <img src="./images/level_6_associate.jpg">
             </div>
 
             <div id="learning_5_7">
               <p> <strong>Professional <br> Level VII</strong> <br>
                 Principal Designer<br></p>
-              <img src="../src/images/unsplash.jpg">
+              <img src="./images/level_7_principal.jpg">
             </div>
 
             <div id="learning_5_8">
               <p> <strong>Professional <br> Level VIII</strong> <br>
                 Master Designer<br></p>
-              <img src="../src/images/unsplash.jpg">
+              <img src="./images/level_8_master.jpg">
             </div>
 
             <div id="learning_5_9">
               <p> <strong>Professional <br> Level IX</strong> <br>
                 Authorized Expert<br></p>
-              <img src="../src/images/unsplash.jpg">
+              <img src="./images/level_9_authorised_expert.jpg">
             </div>
 
           </div>
@@ -501,15 +503,15 @@
         
           <!-- <div id="slides">
             <figure class="slide showing">
-              <img src="../src/images/Egon Zitter 2.jpg">
+              <img src="./images/Egon Zitter 2.jpg">
               <figcaption>Javascript Slideshow ohne jQuery</figcaption> 
             </figure>
             <figure class="slide">
-              <img src="../src/images/Egon Zitter 7.jpg">
+              <img src="./images/Egon Zitter 7.jpg">
               <figcaption>HTML ohne zusätzliches Markup</figcaption> 
             </figure>
             <figure class="slide">
-              <img src="../src/images/Johannes Mikkelsen 4.jpg">
+              <img src="./images/Johannes Mikkelsen 4.jpg">
               <figcaption>Nur ein paar Zeilen Javasctipt</figcaption> 
             </figure>
           </div> -->
@@ -521,7 +523,7 @@
 
   <footer>
     <p>
-      Rycerz GmbH<br>
+      Rycerz Media GmbH<br>
       Marienfelder Str. 18<br>
       33330 Gütersloh<br>
       <a href="https://twitter.com/RitterJoachim/" target="_blank"><ion-icon name="logo-twitter"></ion-icon></a>
@@ -536,7 +538,7 @@
 
 
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script src="../src/scripts/pldcpd.js"></script>
+  <script src="./scripts/pldcpd.js"></script>
 
 </body>
 
