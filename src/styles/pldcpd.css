@@ -196,7 +196,7 @@ header {
   flex-direction: row;
   justify-content: space-evenly;
   position: absolute;
-  bottom: -10px;
+  bottom: 0px;
   left: -20px;
   height: auto;
   width: auto;
@@ -208,7 +208,7 @@ header {
   padding: 0 20px;
   display: flex;
   font-size: 0.9rem;
-  background-color: transparent;
+  background-color: none;
   /* box-shadow: $boxshadow; */
   text-decoration: none;
   color: black;
@@ -220,19 +220,53 @@ header {
   color: black;
 }
 
+@keyframes navpresenter {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/* @function fadeaout($display)
+{@if $display == none{
+
+} @else {
+
+}
+} */
 #dropdown:hover #dropdown-content {
   display: flex;
+  opacity: 1;
   flex-direction: row;
   width: auto;
+}
+#dropdown:hover #dropdown-content li:nth-child(2) {
+  opacity: 0;
+  animation: navpresenter 1s forwards;
+  animation-fill-mode: both;
+}
+#dropdown:hover #dropdown-content li:nth-child(3) {
+  opacity: 0;
+  animation: navpresenter 1s 0.5s forwards;
+}
+#dropdown:hover #dropdown-content li:nth-child(4) {
+  opacity: 0;
+  animation: navpresenter 1s 1s forwards;
 }
 #dropdown:hover #dropdown-content li a:hover {
   color: #7d0000;
 }
 
-#dropdown:hover #dropbtn {
-  display: none;
+#dropbtn p::after {
+  content: " >>";
+  width: 10px;
+  height: 10px;
 }
 
+/* #dropdown:hover #dropbtn {
+  display: none;
+} */
 .image_header {
   height: 30px;
 }

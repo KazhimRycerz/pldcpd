@@ -204,7 +204,7 @@ header {
   z-index: 1;
   text-decoration: none;
 }
-.navheader #dropdown ul a {
+.navheader #dropdown ul li {
   padding: 0 20px;
   display: flex;
   font-size: 0.9rem;
@@ -213,22 +213,20 @@ header {
   text-decoration: none;
   color: black;
 }
-.navheader #dropdown ul a * {
+.navheader #dropdown ul li * {
   text-decoration: none;
 }
-.navheader #dropdown ul a a {
+.navheader #dropdown ul li a {
   color: black;
-}
-
-#dropdown-content > li > a :hover {
-  color: yellow;
 }
 
 #dropdown:hover #dropdown-content {
   display: flex;
   flex-direction: row;
   width: auto;
-  color: yellow;
+}
+#dropdown:hover #dropdown-content li a:hover {
+  color: #7d0000;
 }
 
 #dropdown:hover #dropbtn {
