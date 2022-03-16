@@ -140,7 +140,7 @@ header {
       z-index: 1;
       text-decoration: none;
       
-      a {        
+      li {        
         padding: 0 20px;
         display: flex;
         font-size: $small;
@@ -158,17 +158,14 @@ header {
     }
   }
 }
-      
 
-#dropdown-content>li>a :hover {
-  color: yellow;
-}
 
 #dropdown:hover #dropdown-content {
   display: flex;
   flex-direction: row;
   width: auto;
-  color: yellow;
+  li a:hover {
+    color: $cpdred;}
 }
 
 #dropdown:hover #dropbtn {
