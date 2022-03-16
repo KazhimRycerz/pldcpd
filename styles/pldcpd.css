@@ -5,7 +5,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: FoundSanExpMed;
+  font-family: FoundSanExpNorm;
 }
 
 @font-face {
@@ -23,10 +23,6 @@
 @font-face {
   font-family: "FoundSanExpMed";
   src: url("../../fonts/FOUSANMD.woff2") format("woff2"), url("../fonts/FOUSANMD.otf") format("otf");
-}
-@font-face {
-  font-family: "Calligraphr";
-  src: url("../../fonts/VIA-Verlag.woff2") format("woff2"), url("../fonts/VIA-Verlag.otf") format("otf");
 }
 @font-face {
   font-family: "Carbono";
@@ -192,11 +188,12 @@ header {
 .navheader #dropdown ul {
   color: black;
   font-size: 0.9rem;
-  display: none;
+  display: flex;
+  opacity: 0;
   flex-direction: row;
   justify-content: space-evenly;
   position: absolute;
-  bottom: -10px;
+  bottom: -11px;
   left: -20px;
   height: auto;
   width: auto;
@@ -208,10 +205,8 @@ header {
   padding: 0 20px;
   display: flex;
   font-size: 0.9rem;
-  background-color: transparent;
+  background-color: none;
   /* box-shadow: $boxshadow; */
-  text-decoration: none;
-  color: black;
 }
 .navheader #dropdown ul li * {
   text-decoration: none;
@@ -220,13 +215,46 @@ header {
   color: black;
 }
 
+@keyframes navpresenter {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/* @function fadeaout($display)
+{@if $display == none{
+
+} @else {
+
+}
+} */
 #dropdown:hover #dropdown-content {
-  display: flex;
-  flex-direction: row;
+  opacity: 1;
   width: auto;
+}
+#dropdown:hover #dropdown-content li:nth-child(2) {
+  opacity: 0;
+  animation: navpresenter 1s forwards;
+  animation-fill-mode: both;
+}
+#dropdown:hover #dropdown-content li:nth-child(3) {
+  opacity: 0;
+  animation: navpresenter 2s forwards;
+}
+#dropdown:hover #dropdown-content li:nth-child(4) {
+  opacity: 0;
+  animation: navpresenter 3s forwards;
 }
 #dropdown:hover #dropdown-content li a:hover {
   color: #7d0000;
+}
+
+#dropbtn p::after {
+  content: "";
+  width: 10px;
+  height: 10px;
 }
 
 #dropdown:hover #dropbtn {
@@ -301,6 +329,7 @@ aside {
   background-color: azure;
   box-shadow: 0.5rem 0.5rem 2rem;
   width: 15vw;
+  min-width: 200px;
   height: auto;
   padding: 10px;
   margin-right: 20px;
@@ -431,6 +460,7 @@ aside img {
   font-family: "Thunderlord";
   font-weight: bold;
   background-color: none;
+  margin-right: 5px;
 }
 
 /*Content*/
@@ -494,55 +524,65 @@ aside img {
 }
 
 #C1 {
-  display: inline-flex;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  position: relative;
   margin-top: 80px;
   margin-bottom: 50px;
   font-size: 1.1rem;
   width: 100%;
 }
-
-#C1A1, #C1A4 {
-  width: 30%;
-  margin: 0 30px 0 30px;
+#C1 #C1A1, #C1 #C1A4 {
+  margin: 0 10px 0 20px;
   border-left: 3px dotted Black;
   /*border-right: 3px dotted Black;*/
   border-radius: 20px;
   padding: 20px;
 }
-
-#C1A2, #C1A3 {
-  width: 50%;
-  margin: 30px auto;
+#C1 #C1A1 {
+  position: relative;
+  left: -120px;
+  margin-left: 20px;
+  margin-right: 0;
+}
+#C1 div {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 2rem;
+  align-items: center;
+  position: relative;
+  left: -20px;
+}
+#C1 div #C1A2, #C1 div #C1A3 {
+  width: 250px;
+  margin: 0px auto;
   border-top: 3px dotted Black;
   border-radius: 20px;
-  padding: 20px;
-  display: block;
+  padding: 10px;
   position: relative;
   left: -20%;
+  top: 10%;
 }
-#C1A2 p, #C1A3 p {
+#C1 div #C1A2 p, #C1 div #C1A3 p {
   width: 100%;
 }
-
-#C1A3 {
+#C1 div #C1A3 {
   position: relative;
-  left: 20%;
+  left: 10%;
 }
 
 #C1 article > img {
   object-fit: cover;
   margin-bottom: 10px;
-  margin-top: 10px;
-  display: block;
   width: 100%;
 }
 
 #C1 img[src$="c.png"] {
   display: block;
-  width: 2.5rem;
-  margin: auto;
-  right: 10px;
-  align-items: center;
+  width: 2rem;
+  margin: 0 auto;
 }
 
 #learningbox_1 {
@@ -591,6 +631,7 @@ aside img {
 #lb_1_angebote img {
   object-fit: cover;
   width: 100%;
+  margin-top: 10px;
 }
 
 #Promoter_1 {
@@ -643,7 +684,6 @@ aside img {
   grid-template-columns: 2/3 1/3;
   justify-content: space-between;
   grid-gap: 20px;
-  /*width: auto;*/
   font-size: 1.1rem;
   margin-top: 20px;
   padding: 10px 20px 20px 10px;
@@ -656,7 +696,13 @@ aside img {
   grid-column: 1/3;
   grid-row: 1/2;
   /*background: rgb(218, 164, 157);*/
-  padding: 10px;
+  padding: 0px;
+}
+#info_1_1 > div {
+  display: flex;
+  gap: 20px;
+  align-items: baseline;
+  padding: 20px;
 }
 
 #info_1_2 {
@@ -664,6 +710,8 @@ aside img {
   grid-row: 1/2;
   /*background: rgb(218, 164, 157);*/
   padding: 10px;
+}
+#info_1_2 p {
   font-size: 1.1rem;
 }
 
@@ -686,7 +734,7 @@ table {
 }
 
 tr {
-  padding: 2px;
+  padding: 3px;
 }
 
 th {
