@@ -272,11 +272,8 @@ $border-size: 2px; */
   justify-content: space-between;
   margin-top: 20px;
 }
-#account_2_data div {
+#account_2_data .account_2 {
   width: 20%;
-}
-
-.account_2 {
   display: flex;
   justify-content: space-between;
   margin: 10px;
@@ -288,16 +285,17 @@ $border-size: 2px; */
   height: 80px;
   position: relative;
 }
-.account_2 div:first-child {
-  position: absolute;
-  bottom: 25px;
+#account_2_data .account_2 div:first-child {
+  position: relative;
+  top: -25px;
 }
-.account_2 div:last-child {
-  position: absolute;
-  right: 50px;
+#account_2_data .account_2 > div:last-child {
+  position: relative;
+  right: 0px;
+  width: 50%;
 }
 
-.account_2_H {
+.account_2 > div > h2 {
   padding: 5px;
   font-family: "VIA-Verlag";
   font-weight: bold;
@@ -307,13 +305,13 @@ $border-size: 2px; */
   color: white;
   width: 60px;
   height: 80px;
-  Line-height: 90%;
+  Line-height: 100%;
   border-radius: 10px;
 }
 
-#account_2_data p {
-  padding-left: 5px;
-  margin-top: -80px;
+.account_2 > div > p {
+  padding-left: 4px;
+  margin-top: -40px;
   font-family: "FoundSanExpNorm", sans-serif;
   font-size: 12px;
   color: white;
@@ -398,8 +396,7 @@ $border-size: 2px; */
   border-bottom: 2px dotted black;*/
   background-color: azure;
   border-radius: 20px;
-  box-shadow: 10px 10px 50px grey;
-  font-family: FoundSanExpMed;
+  box-shadow: 0.5rem 0.5rem 2rem;
 }
 
 .account_3_Box {
@@ -477,26 +474,5 @@ $border-size: 2px; */
 }
 
 /*Ende Css für den Main*/
-footer {
-  position: relative;
-  background-color: azure;
-  padding: 5px;
-  width: 80%;
-  height: fit-content;
-  font-size: 12px;
-  bottom: 0px;
-  left: 0;
-  right: 0;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  margin-left: 150px;
-  margin-right: 150px;
-  border-radius: 20px;
-}
-
-footer p {
-  position: center;
-  text-align: center;
-}
 
 /*# sourceMappingURL=pldcpd_account.css.map */
