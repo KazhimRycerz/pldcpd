@@ -9,16 +9,12 @@
 }
 
 @font-face {
-  font-family: "VIA";
+  font-family: "VIA-Verlag";
   src: url("../../fonts/VIA-Verlag.woff2") format("woff2"), url("../../fonts/VIA-Verlag.otf") format("otf");
 }
 @font-face {
   font-family: "BillboardShadow";
   src: url("../fonts/Billboard-Shadow.otf") format("otf");
-}
-@font-face {
-  font-family: "FoundSanExpNorm";
-  src: url("../../fonts/FOUSANNO.woff2") format("woff2"), url("../fonts/FOUSANNO.otf") format("otf");
 }
 @font-face {
   font-family: "FoundSanExpMed";
@@ -56,6 +52,14 @@
   font-family: "Thunderlord";
   src: url("../../fonts/thunder_lord/Thunder Lord.woff2") format("woff2"), url("../../fonts/thunder_lord/Thunder Lord.ttf") format("ttf");
 }
+@font-face {
+  font-family: "FoundSanExpNorm";
+  src: url("../../fonts/FOUSANNO.woff2") format("woff2"), url("../fonts/FOUSANNO.otf") format("otf");
+}
+@font-face {
+  font-family: "FoundSanBd";
+  src: url("../../fonts/FOUSANBD.woff2") format("woff2"), url("../fonts/FOUSANBD.otf") format("otf");
+}
 /* textsizes*/
 /*$medium: 4rem;
 $large: 10rem;
@@ -90,7 +94,7 @@ body {
 }
 
 .LC {
-  font-family: "VIA";
+  font-family: "VIA-Verlag";
   font-weight: bold;
   letter-spacing: -5px;
   line-height: normal;
@@ -102,7 +106,7 @@ body {
 }
 
 .C {
-  font-family: "VIA";
+  font-family: "VIA-Verlag";
   color: #7d0000;
   font-size: 1.3em;
   position: relative;
@@ -112,7 +116,7 @@ body {
 }
 
 .Calli {
-  font-family: "VIA";
+  font-family: "VIA-Verlag";
   line-height: normal;
   font-style: normal;
   font-size: 1.1rem;
@@ -122,7 +126,7 @@ body {
 }
 
 .LitCoin {
-  font-family: "VIA";
+  font-family: "VIA-Verlag";
   font-style: normal;
   line-height: normal;
   color: #7d0000;
@@ -427,7 +431,7 @@ aside img {
 
 #home_data output {
   display: flex;
-  background-color: #b4c8e6;
+  background-color: #afc8c8;
   border: 2px solid azure;
   text-align: center;
   justify-content: center;
@@ -466,7 +470,7 @@ aside img {
 
 /*Content*/
 #Gruß {
-  background-color: #4d2e26;
+  background-color: #7d0000;
   background-image: url(../images/Sonnenuntergang.jpg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -638,7 +642,7 @@ aside img {
 #Promoter_1 {
   width: 100vw;
   height: 110vh;
-  background-image: url(../images/Johannes\ Mikkelsen\ 4.jpg);
+  background-image: url(../images/JohannesMikkelsen4.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position-y: 0px;
@@ -841,6 +845,7 @@ tr:hover {
   padding: 0px;
 }
 
+/* Learning nach Karrierelevel Start */
 #learningbox_5 {
   border-top: 3px dotted Black;
   border-bottom: 3px dotted Black;
@@ -882,12 +887,13 @@ tr:hover {
   width: 100%;
 }
 
+/*Learning nach Karrierelevel Ende*/
 /*Section stickyDefList*/
-.sDL_container {
+/* .sDL_container {
   display: grid;
   place-items: center;
   min-height: 100px;
-  margin: 100px;
+  margin:100px;
 }
 
 .floating-stack {
@@ -931,18 +937,17 @@ tr:hover {
   padding: 0.2rem;
 }
 
-.floating-stack dd:hover {
-  background-color: azure;
+.floating-stack dd:hover{
+  background-color:$first-color;
   color: black;
 }
 
 .floating-stack > dl:first-of-type > dd:first-of-type {
   margin-top: 0.25rem;
-}
-
+} */
 /* Slides*/
-#slides {
-  position: relative;
+/* #slides {
+	position: relative;
   border: 2px solid red;
   border-top: 3px dotted Black;
   border-bottom: 3px dotted Black;
@@ -950,27 +955,26 @@ tr:hover {
 }
 
 .slide {
-  position: relative;
-  left: 0;
-  top: 0;
-  width: 90%;
+	position: relative;
+	left: 0; top: 0;
+	width: 90%; 
   height: 90%;
   margin: auto;
   padding: 20px;
   opacity: 0;
-  z-index: 1;
-  transition: opacity 1s;
+	z-index: 1;
+	transition: opacity 1s;
 }
 
 .showing {
-  opacity: 1;
-  z-index: 2;
+	opacity: 1;
+	z-index: 2;
 }
 
 #slides img {
   width: 100%;
 }
-
+ */
 /*Ende Css für den Main*/
 footer {
   position: static;
@@ -993,6 +997,9 @@ footer ion-icon {
 }
 
 #navaside {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
   position: fixed;
   left: 11%;
   top: 180px;
@@ -1000,15 +1007,12 @@ footer ion-icon {
   width: auto;
   height: 280px;
   background-color: azure;
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
   z-index: 5;
   border: 3px dotted black;
   border-radius: 20px;
 }
 #navaside a {
-  font-family: sans-serif;
+  font-family: "FoundSanExpNorm", sans-serif;
   margin: 0px;
   text-align: center;
   vertical-align: auto;
@@ -1020,7 +1024,7 @@ footer ion-icon {
   aspect-ratio: 1;
   border-radius: 50%;
   background: #fafafa;
-  background: radial-gradient(circle, lemonchiffon 0%, rgba(240, 210, 8, 0.8) 100%);
+  background: radial-gradient(circle, lemonchiffon, rgba(240, 210, 10, 0.8) 100%);
   box-shadow: 0 0 20px 5px #cd5a00, 0 0 10px 5px #cd5a00 inset;
   text-decoration: none;
 }

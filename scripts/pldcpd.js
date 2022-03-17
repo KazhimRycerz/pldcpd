@@ -62,6 +62,13 @@ function nextSlide() {
 }
 
 function hide_account() {
-  var x = document.onclick("aside_h_Btn");
-  x.hidden = true;
+  const aside = document.getElementById('aside_account');
+  const hide_account = ()=> {
+  aside.style.display = 'none';
+}
+}
+  
+function show_account() {
+const show_account = ()=> {
+  aside.style.display = 'block';
 }
