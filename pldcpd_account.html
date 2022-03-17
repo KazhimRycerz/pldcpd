@@ -46,7 +46,7 @@
   <div class="Background">
     <main id="account_main">
     
-      <aside class="Shadow"> 
+      <aside id="aside_account"> 
         
         <div class="account_container">
           <div class="floating-stack">
@@ -89,34 +89,35 @@
           <h3> Ihre Karrieredaten</h3> 
           <div id="account_1_data">
 
-            <div class="account_1">
-              <p><b>Joachim Ritter</b><br>
-                Lighting Designer <br>VIA-Design
+            <div>
+              <p>Joachim Ritter<br>
+                Lighting Designer <br>
+                VIA-Design
               </p> 
             </div>
 
-            <div class="account_1">
-              <p><b>Ihr <br>Karrierelevel</b></p>
-              <span class="account_Box" id="myCL"> IVTest 
-              </span><br><br>
-              <p id="account_1_p"><br><b>Project Lighting Designer</b></p>
+            <div>
+              <p>Ihr <br>Karrierelevel</p><br>
+              <output class="account_Box" id="myCL"> IV 
+              </output>
+              <p id="account_1_p">Project Lighting Designer</p>
             </div>
 
-            <div class="account_1">
-              <div>
-                <p><b>CPD-aktiv <br>seit <br> </b></p>
-                <div class="account_Box_Date"> 01.11.20 
-                </div><br><br>
-                <p><b>beruflich aktiv <br>seit </b></p>
-                <div class="account_Box_Date"> 01.06.11 
-                </div>
-              </div>
+            <div>
+              <!-- <div> -->
+                <p>CPD-aktiv <br>seit <br> </p>
+                <output class="account_Box_Date" id="my_start"> 01.11.20 
+                </output>
+                <p>beruflich aktiv <br>seit </p>
+                <output class="account_Box_Date" id="my_active"> 01.06.11 
+                </output>
+              <!-- </div> -->
             </div>
 
-            <div class="account_1">
-              <p><b>Ihr  <br>Guthaben</b></p>
-              <span class="account_Box" id="myLCoins" > myLC <em class="LC"> LC</em> 
-              </span>
+            <div>
+              <p>Ihr  <br>Guthaben</p>
+              <output class="account_Box" id="myLCoins" > myLC <strong class="LC"> LC</strong> 
+              </output>
             </div>
 
           </div>
@@ -128,16 +129,16 @@
           <h3> Ihre persönlichen Werte Ihres Fachwissens</h3>
           <p> Die unteren Zahlen zeigen Ihnen die Durchschnittswerte im internationalen Lichtdesignermarkt aller Teilnehmer an.</p>
 
-          <div id="account_2_data" >
+          <div id="account_2_data">
         
             <div class="account_2">
               <div>
-                <h1 class="account_2_H">KF</h1>
+                <h1 class="account_2_H">KF</h1><br><br>
                 <p>Knowledge<br>Factor</p>
               </div>
               <div class="account_data_box"> 
-                <output class="account_pers_data" id="myKF">myKF</output>
-                <output class="account_market_data" id="maKF">maKF</output>
+                <output class="account_pers_data" class="myKF">myKF</output>
+                <output class="account_market_data" class="maKF">maKF</output>
               </div>  
             </div>
 
@@ -147,8 +148,8 @@
                 <p>Learning<br>Factor</p>
               </div>
               <div class="account_data_box"> 
-                <output class="account_pers_data" id="myLF">myLF</output>
-                <output class="account_market_data" id="maLF">maLF</output>
+                <output class="account_pers_data" class="myLF">myLF</output>
+                <output class="account_market_data" class="maLF">maLF</output>
               </div>  
             </div>
       
@@ -158,8 +159,8 @@
                 <p>Professional<br>Experience</p>
               </div>
               <div class="account_data_box">
-                <output class="account_pers_data" id="myPEX">myPEX</output>
-                <output class="account_market_data" id="maPEX">maPEX</output>
+                <output class="account_pers_data" class="myPEX">myPEX</output>
+                <output class="account_market_data" class="maPEX">maPEX</output>
               </div>  
             </div>
 
@@ -169,8 +170,8 @@
                 <p>Professional<br>Education</p>
               </div>
               <div class="account_data_box">
-                <output class="account_pers_data" id="myPED">myPED</output>
-                <output class="account_market_data" id="maPED">maPED</output>
+                <output class="account_pers_data" class="myPED">myPED</output>
+                <output class="account_market_data" class="maPED">maPED</output>
               </div>  
             </div>
 
@@ -180,8 +181,8 @@
                 <p>Learning<br>Points</p>
               </div>
               <div class="account_data_box">
-                <output class="account_pers_data" id="myLP">myLP</output>
-                <output class="account_market_data" id="maLP">maLP</output>
+                <output class="account_pers_data" class="myLP">myLP</output>
+                <output class="account_market_data" class="maLP">maLP</output>
               </div>  
             </div>
           </div>

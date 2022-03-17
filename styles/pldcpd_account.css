@@ -90,11 +90,12 @@ $border-size: 2px; */
 
 /*Ende Styles zum Header Account-Seite*/
 /*Beginn Css für den Main*/
-aside {
+#aside_account {
   display: inline-block;
   /*overflow: scroll;
   scrollbar-width: 10px;*/
   background-color: azure;
+  box-shadow: 0.5rem 0.5rem 2rem;
   width: 15vw;
   height: 400px;
   padding: 0px;
@@ -107,12 +108,12 @@ aside {
   font-size: 14px;
   /*z-index: 1;*/
 }
-aside .account_container {
+#aside_account .account_container {
   display: grid;
   place-items: center;
   margin-bottom: 0px;
 }
-aside .account_container .floating-stack {
+#aside_account .account_container .floating-stack {
   background: azure;
   height: 400px;
   width: 240px;
@@ -120,15 +121,13 @@ aside .account_container .floating-stack {
   font-size: 14px;
   padding-bottom: 10px;
 }
-
-.floating-stack > dl {
+#aside_account .account_container .floating-stack dl {
   margin: 0 0 0rem;
   display: grid;
   grid-template-columns: 2.5rem 1fr;
   align-items: baseline;
 }
-
-.floating-stack dt {
+#aside_account .account_container .floating-stack dl dt {
   text-align: center;
   font-family: "Thunderlord";
   position: sticky;
@@ -143,26 +142,22 @@ aside .account_container .floating-stack {
   line-height: 35px;
   grid-column: 1;
 }
-
-.floating-stack dd {
+#aside_account .account_container .floating-stack dl dd {
   grid-column: 2;
   margin: 0px;
   padding: 10px;
   padding-top: 10px;
 }
-
-.floating-stack dd:hover {
+#aside_account .account_container .floating-stack dl dd h3 {
+  font-weight: 900;
+  font-family: "FoundSanBd";
+}
+#aside_account .account_container .floating-stack dl dd:hover {
   background-color: #b4c8e6;
   color: black;
 }
-
-.floating-stack > dl:first-of-type > dd:first-of-type {
+#aside_account .account_container .floating-stack > dl:first-of-type > dd:first-of-type {
   margin-top: 0.25rem;
-}
-
-.floating-stack h3 {
-  font-weight: 900;
-  font-family: "FoundSanBd";
 }
 
 #LC_only {
@@ -191,7 +186,7 @@ aside .account_container .floating-stack {
 }
 
 #account_1 {
-  display: box;
+  display: block;
   margin-top: 20px;
   border-right: 3px dotted Black;
   border-left: 3px dotted Black;
@@ -199,37 +194,33 @@ aside .account_container .floating-stack {
   /*background-color: RGB(221, 155, 55, 0.2);*/
 }
 
-#account_1 p {
-  padding: 0px;
-  font-size: 14px;
-}
-
 #account_1_data {
   display: flex;
   margin-top: 0px;
   width: 100%;
 }
-
-.account_1 {
+#account_1_data > div {
   margin: 10px;
   margin-top: 0px;
   padding: 10px;
-  padding-top: 0px;
-  width: 30%;
+  width: 25%;
   height: 80px;
   background-color: azure;
   border-radius: 20px;
-  box-shadow: 10px 10px 50px grey;
-  font-family: "FoundSanExpNorm", sans-serif;
+  box-shadow: 0.5rem 0.5rem 2rem;
+  position: relative;
+}
+#account_1_data > div p {
+  line-height: 1rem;
 }
 
 .account_Box {
   display: block;
-  font-family: "FoundSanExpNorm", sans-serif;
+  position: absolute;
+  top: 10px;
+  right: 10px;
   font-weight: bold;
   font-size: 26px;
-  margin: -50px 100px;
-  margin-right: 0px;
   width: 120px;
   height: 35px;
   /*border: 2px dotted black;*/
@@ -240,7 +231,7 @@ aside .account_container .floating-stack {
 
 .account_Box_Date {
   display: block;
-  font-family: "FoundSanExpNorm", sans-serif;
+  position: absolute;
   font-weight: bold;
   font-size: 26px;
   letter-spacing: -2px;
@@ -255,6 +246,17 @@ aside .account_container .floating-stack {
   background-color: rgba(221, 155, 55, 0.2);
 }
 
+#my_start {
+  top: 60px;
+  right: 10px;
+}
+
+#my_active {
+  top: 90px;
+  right: 10px;
+}
+
+/* zweite Datenreihe*/
 #account_2 {
   display: block;
   margin-top: 20px;
@@ -267,25 +269,36 @@ aside .account_container .floating-stack {
 
 #account_2_data {
   display: flex;
-  margin-top: 0px;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+#account_2_data div {
+  width: 20%;
 }
 
 .account_2 {
-  display: inline-flex;
+  display: flex;
+  justify-content: space-between;
   margin: 10px;
   padding: 10px;
-  width: 30%;
   /*border: 2px dotted black;*/
   background-color: azure;
   border-radius: 20px;
-  box-shadow: 10px 10px 50px grey;
-  height: 60px;
+  box-shadow: 0.5rem 0.5rem 2rem;
+  height: 80px;
+  position: relative;
+}
+.account_2 div:first-child {
+  position: absolute;
+  bottom: 25px;
+}
+.account_2 div:last-child {
+  position: absolute;
+  right: 50px;
 }
 
 .account_2_H {
   padding: 5px;
-  margin-top: -30px;
-  margin-right: 5px;
   font-family: "VIA-Verlag";
   font-weight: bold;
   background-color: #113b0d;
@@ -295,7 +308,7 @@ aside .account_container .floating-stack {
   width: 60px;
   height: 80px;
   Line-height: 90%;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 #account_2_data p {
@@ -379,7 +392,7 @@ aside .account_container .floating-stack {
   margin-top: 0px;
   padding: 10px;
   padding-top: 0px;
-  width: 40%;
+  width: 33%;
   height: 80px;
   /*border-top: 2px dotted black;
   border-bottom: 2px dotted black;*/
@@ -433,7 +446,7 @@ aside .account_container .floating-stack {
   margin-top: 0px;
   padding: 10px;
   padding-top: 0px;
-  width: 40%;
+  width: 33%;
   height: 80px;
   /*border-top: 2px dotted black;
   border-bottom: 2px dotted black;*/
