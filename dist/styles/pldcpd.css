@@ -5,11 +5,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: FoundSanExpMed;
+  font-family: FoundSanExpNorm;
 }
 
 @font-face {
-  font-family: "Calligraphr";
+  font-family: "VIA-Verlag";
   src: url("../../fonts/VIA-Verlag.woff2") format("woff2"), url("../../fonts/VIA-Verlag.otf") format("otf");
 }
 @font-face {
@@ -17,16 +17,8 @@
   src: url("../fonts/Billboard-Shadow.otf") format("otf");
 }
 @font-face {
-  font-family: "FoundSanExpNorm";
-  src: url("../../fonts/FOUSANNO.woff2") format("woff2"), url("../fonts/FOUSANNO.otf") format("otf");
-}
-@font-face {
   font-family: "FoundSanExpMed";
   src: url("../../fonts/FOUSANMD.woff2") format("woff2"), url("../fonts/FOUSANMD.otf") format("otf");
-}
-@font-face {
-  font-family: "Calligraphr";
-  src: url("../../fonts/VIA-Verlag.woff2") format("woff2"), url("../fonts/VIA-Verlag.otf") format("otf");
 }
 @font-face {
   font-family: "Carbono";
@@ -59,6 +51,14 @@
 @font-face {
   font-family: "Thunderlord";
   src: url("../../fonts/thunder_lord/Thunder Lord.woff2") format("woff2"), url("../../fonts/thunder_lord/Thunder Lord.ttf") format("ttf");
+}
+@font-face {
+  font-family: "FoundSanExpNorm";
+  src: url("../../fonts/FOUSANNO.woff2") format("woff2"), url("../fonts/FOUSANNO.otf") format("otf");
+}
+@font-face {
+  font-family: "FoundSanBd";
+  src: url("../../fonts/FOUSANBD.woff2") format("woff2"), url("../fonts/FOUSANBD.otf") format("otf");
 }
 /* textsizes*/
 /*$medium: 4rem;
@@ -94,7 +94,7 @@ body {
 }
 
 .LC {
-  font-family: "Calligraphr";
+  font-family: "VIA-Verlag";
   font-weight: bold;
   letter-spacing: -5px;
   line-height: normal;
@@ -106,7 +106,7 @@ body {
 }
 
 .C {
-  font-family: "Calligraphr";
+  font-family: "VIA-Verlag";
   color: #7d0000;
   font-size: 1.3em;
   position: relative;
@@ -116,7 +116,7 @@ body {
 }
 
 .Calli {
-  font-family: "Calligraphr";
+  font-family: "VIA-Verlag";
   line-height: normal;
   font-style: normal;
   font-size: 1.1rem;
@@ -126,7 +126,7 @@ body {
 }
 
 .LitCoin {
-  font-family: "Calligraphr";
+  font-family: "VIA-Verlag";
   font-style: normal;
   line-height: normal;
   color: #7d0000;
@@ -192,11 +192,12 @@ header {
 .navheader #dropdown ul {
   color: black;
   font-size: 0.9rem;
-  display: none;
+  display: flex;
+  opacity: 0;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: left;
   position: absolute;
-  bottom: -10px;
+  bottom: -11px;
   left: -20px;
   height: auto;
   width: auto;
@@ -208,10 +209,8 @@ header {
   padding: 0 20px;
   display: flex;
   font-size: 0.9rem;
-  background-color: transparent;
+  background-color: none;
   /* box-shadow: $boxshadow; */
-  text-decoration: none;
-  color: black;
 }
 .navheader #dropdown ul li * {
   text-decoration: none;
@@ -220,17 +219,51 @@ header {
   color: black;
 }
 
+@keyframes navpresenter {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/* @function fadeaout($display)
+{@if $display == none{
+
+} @else {
+
+}
+} */
 #dropdown:hover #dropdown-content {
-  display: flex;
-  flex-direction: row;
+  opacity: 1;
   width: auto;
+}
+#dropdown:hover #dropdown-content li:nth-child(2) {
+  opacity: 0;
+  animation: navpresenter 1s forwards;
+  animation-fill-mode: both;
+}
+#dropdown:hover #dropdown-content li:nth-child(3) {
+  opacity: 0;
+  animation: navpresenter 2s forwards;
+}
+#dropdown:hover #dropdown-content li:nth-child(4) {
+  opacity: 0;
+  animation: navpresenter 3s forwards;
 }
 #dropdown:hover #dropdown-content li a:hover {
   color: #7d0000;
 }
 
+#dropbtn p::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+}
+
 #dropdown:hover #dropbtn {
   display: none;
+  opacity: 0;
 }
 
 .image_header {
@@ -252,6 +285,10 @@ header {
 
 #header_myaccount {
   /*border: 1px solid black;*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
   background-color: azure;
   width: 15vw;
   height: 60px;
@@ -261,22 +298,16 @@ header {
     box-shadow: $boxshadow;
   } */
 }
-#header_myaccount p {
-  padding-right: 10px;
-  padding-top: 5px;
-  text-decoration: none;
-  text-align: right;
-  margin: 0 auto;
-  line-height: 1.5rem;
-}
-#header_myaccount p a {
+#header_myaccount a {
   text-decoration: none;
   color: black;
 }
-
-#header_myaccount p a:hover {
+#header_myaccount a:hover {
   text-decoration: none;
   color: #7d0000;
+}
+#header_myaccount button {
+  display: none;
 }
 
 /*Ende Styles zum Header*/
@@ -296,11 +327,12 @@ main {
   margin: 0 auto;
 }
 
-aside {
-  display: inline-block;
+#aside_account {
+  display: block;
   background-color: azure;
   box-shadow: 0.5rem 0.5rem 2rem;
   width: 15vw;
+  min-width: 200px;
   height: auto;
   padding: 10px;
   margin-right: 20px;
@@ -308,45 +340,42 @@ aside {
   top: 180px;
   right: 0;
   text-align: left;
-  vertical-align: top;
   font-size: 0.9rem;
   z-index: 5;
 }
-aside > p {
+#aside_account > p {
   margin-top: 10px;
 }
 
 #aside_h_Btn {
-  background-color: rgba(168, 168, 168, 0.811);
-  width: 25%;
+  display: block;
+  /* color: $cpdred; */
+  background-color: rgba(170, 170, 170, 0.75);
+  box-shadow: 0px 0px 10px 1px grey inset, -2px -2px 5px 3px grey, -5px -5px 5px white inset;
+  width: 65px;
   height: 40px;
-  position: absolute;
-  top: -25px;
-  right: 10px;
+  position: fixed;
+  top: 150px;
+  right: 30px;
   border: none;
   border-radius: 20%;
   text-align: center;
-  z-index: 2;
-  box-shadow: 0px 0px 10px 1px grey inset, -2px -2px 5px 3px grey, -5px -5px 5px white inset;
-}
-
-#aside_h_Btn:active {
-  visibility: hidden;
-  transition: visibility 0 3s 0 0;
+  z-index: 100;
 }
 
 #aside_s_Btn {
-  background-color: rgba(168, 168, 168, 0.811);
-  width: 25%;
+  display: none;
+  background-color: rgba(170, 170, 170, 0.75);
+  box-shadow: 0px 0px 10px 1px grey inset, -2px -2px 5px 3px grey, -5px -5px 5px white inset;
+  width: 65px;
   height: 40px;
-  position: absolute;
-  top: -25px;
-  right: 120px;
+  position: fixed;
+  top: 150px;
+  right: 30px;
   border: none;
   border-radius: 20%;
   text-align: center;
-  z-index: 1;
-  box-shadow: 0px 0px 10px 1px grey inset, -2px -2px 5px 3px grey, -5px -5px 5px white inset;
+  z-index: 100;
 }
 
 aside span {
@@ -397,7 +426,7 @@ aside img {
 
 #home_data output {
   display: flex;
-  background-color: #b4c8e6;
+  background-color: #afc8c8;
   border: 2px solid azure;
   text-align: center;
   justify-content: center;
@@ -415,18 +444,19 @@ aside img {
   margin-top: 5px;
 }
 
-#aside_guthaben {
+#aside_gutbox {
   display: flex;
   justify-content: center;
+  gap: 5px;
   align-items: center;
   margin: 10px auto;
-  width: 50%;
+  width: 60%;
   border: 2px dotted black;
   border-radius: 10px;
   background-color: rgba(221, 155, 55, 0.2);
 }
 
-#aside_guthaben span:first-child {
+#aside_gutbox output {
   font-size: 2em;
   font-family: "Thunderlord";
   font-weight: bold;
@@ -434,8 +464,8 @@ aside img {
 }
 
 /*Content*/
-#Gruß {
-  background-color: #4d2e26;
+#Gruß_main {
+  background-color: #7d0000;
   background-image: url(../images/Sonnenuntergang.jpg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -445,14 +475,14 @@ aside img {
   width: 100%;
   color: lemonchiffon;
   position: relative;
-  top: 10px;
+  top: 0px;
 }
 
-#Gruß:hover {
+#Gruß_main:hover {
   background-image: url(../images/Sonnenuntergang_dark.jpg);
 }
 
-#Gruß h1 {
+#Gruß_main h1 {
   display: inline-block;
   font-family: "FoundSanExpNorm", sans-serif;
   font-size: 2vw;
@@ -465,9 +495,9 @@ aside img {
   margin: 0;
 }
 
-#Gruß p {
+#Gruß_main p {
   display: inline-block;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   line-height: 2.2rem;
   width: 20vw;
   min-width: 15vw;
@@ -475,11 +505,9 @@ aside img {
   position: absolute;
   right: 2vw;
   top: 20px;
-  margin: 0;
-  /*background-color:rgb(250, 250, 250, 0.4); */
 }
 
-#Gruß a {
+#Gruß_main a {
   color: lemonchiffon;
 }
 
@@ -489,60 +517,70 @@ aside img {
   -webkit-text-fill-color: transparent;
 }
 */
-#Gruß i {
+#Gruß_main i {
   font-size: 2rem;
 }
 
 #C1 {
-  display: inline-flex;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  position: relative;
   margin-top: 80px;
   margin-bottom: 50px;
   font-size: 1.1rem;
   width: 100%;
 }
-
-#C1A1, #C1A4 {
-  width: 30%;
-  margin: 0 30px 0 30px;
+#C1 #C1A1, #C1 #C1A4 {
+  margin: 0 10px 0 20px;
   border-left: 3px dotted Black;
   /*border-right: 3px dotted Black;*/
   border-radius: 20px;
   padding: 20px;
 }
-
-#C1A2, #C1A3 {
-  width: 50%;
-  margin: 30px auto;
+#C1 #C1A1 {
+  position: relative;
+  left: -120px;
+  margin-left: 20px;
+  margin-right: 0;
+}
+#C1 div {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 2rem;
+  align-items: center;
+  position: relative;
+  left: -20px;
+}
+#C1 div #C1A2, #C1 div #C1A3 {
+  width: 250px;
+  margin: 0px auto;
   border-top: 3px dotted Black;
   border-radius: 20px;
-  padding: 20px;
-  display: block;
+  padding: 10px;
   position: relative;
   left: -20%;
+  top: 10%;
 }
-#C1A2 p, #C1A3 p {
+#C1 div #C1A2 p, #C1 div #C1A3 p {
   width: 100%;
 }
-
-#C1A3 {
+#C1 div #C1A3 {
   position: relative;
-  left: 20%;
+  left: 10%;
 }
 
 #C1 article > img {
   object-fit: cover;
   margin-bottom: 10px;
-  margin-top: 10px;
-  display: block;
   width: 100%;
 }
 
 #C1 img[src$="c.png"] {
   display: block;
-  width: 2.5rem;
-  margin: auto;
-  right: 10px;
-  align-items: center;
+  width: 2rem;
+  margin: 0 auto;
 }
 
 #learningbox_1 {
@@ -591,12 +629,13 @@ aside img {
 #lb_1_angebote img {
   object-fit: cover;
   width: 100%;
+  margin-top: 10px;
 }
 
 #Promoter_1 {
   width: 100vw;
   height: 110vh;
-  background-image: url(../images/Johannes\ Mikkelsen\ 4.jpg);
+  background-image: url(../images/JohannesMikkelsen4.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position-y: 0px;
@@ -643,7 +682,6 @@ aside img {
   grid-template-columns: 2/3 1/3;
   justify-content: space-between;
   grid-gap: 20px;
-  /*width: auto;*/
   font-size: 1.1rem;
   margin-top: 20px;
   padding: 10px 20px 20px 10px;
@@ -656,7 +694,13 @@ aside img {
   grid-column: 1/3;
   grid-row: 1/2;
   /*background: rgb(218, 164, 157);*/
-  padding: 10px;
+  padding: 0px;
+}
+#info_1_1 > div {
+  display: flex;
+  gap: 20px;
+  align-items: baseline;
+  padding: 20px;
 }
 
 #info_1_2 {
@@ -664,6 +708,8 @@ aside img {
   grid-row: 1/2;
   /*background: rgb(218, 164, 157);*/
   padding: 10px;
+}
+#info_1_2 p {
   font-size: 1.1rem;
 }
 
@@ -686,7 +732,7 @@ table {
 }
 
 tr {
-  padding: 2px;
+  padding: 3px;
 }
 
 th {
@@ -792,6 +838,7 @@ tr:hover {
   padding: 0px;
 }
 
+/* Learning nach Karrierelevel Start */
 #learningbox_5 {
   border-top: 3px dotted Black;
   border-bottom: 3px dotted Black;
@@ -833,12 +880,13 @@ tr:hover {
   width: 100%;
 }
 
+/*Learning nach Karrierelevel Ende*/
 /*Section stickyDefList*/
-.sDL_container {
+/* .sDL_container {
   display: grid;
   place-items: center;
   min-height: 100px;
-  margin: 100px;
+  margin:100px;
 }
 
 .floating-stack {
@@ -882,18 +930,17 @@ tr:hover {
   padding: 0.2rem;
 }
 
-.floating-stack dd:hover {
-  background-color: azure;
+.floating-stack dd:hover{
+  background-color:$first-color;
   color: black;
 }
 
 .floating-stack > dl:first-of-type > dd:first-of-type {
   margin-top: 0.25rem;
-}
-
+} */
 /* Slides*/
-#slides {
-  position: relative;
+/* #slides {
+	position: relative;
   border: 2px solid red;
   border-top: 3px dotted Black;
   border-bottom: 3px dotted Black;
@@ -901,27 +948,26 @@ tr:hover {
 }
 
 .slide {
-  position: relative;
-  left: 0;
-  top: 0;
-  width: 90%;
+	position: relative;
+	left: 0; top: 0;
+	width: 90%; 
   height: 90%;
   margin: auto;
   padding: 20px;
   opacity: 0;
-  z-index: 1;
-  transition: opacity 1s;
+	z-index: 1;
+	transition: opacity 1s;
 }
 
 .showing {
-  opacity: 1;
-  z-index: 2;
+	opacity: 1;
+	z-index: 2;
 }
 
 #slides img {
   width: 100%;
 }
-
+ */
 /*Ende Css für den Main*/
 footer {
   position: static;
@@ -944,6 +990,9 @@ footer ion-icon {
 }
 
 #navaside {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
   position: fixed;
   left: 11%;
   top: 180px;
@@ -951,15 +1000,12 @@ footer ion-icon {
   width: auto;
   height: 280px;
   background-color: azure;
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
   z-index: 5;
   border: 3px dotted black;
   border-radius: 20px;
 }
 #navaside a {
-  font-family: sans-serif;
+  font-family: "FoundSanExpNorm", sans-serif;
   margin: 0px;
   text-align: center;
   vertical-align: auto;
@@ -971,7 +1017,7 @@ footer ion-icon {
   aspect-ratio: 1;
   border-radius: 50%;
   background: #fafafa;
-  background: radial-gradient(circle, lemonchiffon 0%, rgba(240, 210, 8, 0.8) 100%);
+  background: radial-gradient(circle, lemonchiffon, rgba(240, 210, 10, 0.8) 100%);
   box-shadow: 0 0 20px 5px #cd5a00, 0 0 10px 5px #cd5a00 inset;
   text-decoration: none;
 }

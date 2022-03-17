@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="styles/pldcpd.css">
   
   
+  
 </head>
 
 <body>
@@ -38,10 +39,10 @@
     </div>
 
     <div id="header_myaccount">
-      <p>
-        <a href="pldcpd_register.html"> register me <span class="C">C</span></a><br>
+        <a href="pldcpd_register.html"> register me <span class="C">C</span></a>
         <a href="pldcpd_login.html"> log me in <span class="C">C</span></a>
-      </p>
+        <button> show account <span class="C">C</span></button>
+        <button> hide account <span class="C">C</span></button>
     </div>
 
   </header>
@@ -49,13 +50,12 @@
 
   <div class="Background">
     <main>
+      <button type="button" id="aside_h_Btn" >hide<br>account
+      </button>
+      <button type="button" id="aside_s_Btn" >show<br>account
+      </button>
       
-      <aside>
-        <button type="button" id="aside_h_Btn" onclick="hide_account()">hide<br>account
-        </button>
-        <button type="button" id="aside_s_Btn" onclick="show_account()">show<br>account
-        </button>
-
+      <aside id="aside_account">
         <img src="./images/Joachim privat.JPG">
         <p><strong>Hallo, Joachim Ritter </strong><br>
           Journalist <br>Karrierelevel <br>--- <span> IV </span> ---<br>Project Lighting Designer</p> <br>
@@ -82,10 +82,10 @@
 
         <p>Ihr aktuelles <span class="LitCoin">L</span><span class="Calli">it</span><span class="LitCoin">C</span><span
             class="Calli">oin</span> Guthaben:</p>
-        <p id="aside_guthaben">
-          <span> 2500 </span> 
+        <div id="aside_gutbox">
+          <output id="aside_guthaben"> 2500 </output> 
           <span class="LC"> LC</span>
-        </p>
+        </div>
 
         <p>Ihre gesamte Übesicht Ihres Kontos können Sie <a href="pldcpd_account.html">hier</a> aufrufen. <a class="C"
             href="pldcpd_account.html">C</a></p>
@@ -105,7 +105,7 @@
 
       <div id="Content">
         
-        <section id="Gruß">
+        <section id="Gruß_main">
           <h1> Ihre persönliche Berufsplanung im Lichtdesign</h1>
           <p> Willkommen auf der Weiterbildungplattform für professionelle Lichtdesigner. Hier können Sie Ihre Karriere
             planen und kontinuierlich prüfen, welchen Status Sie erreicht haben. Auch geben wir Ihnen Hinwiese auf neue
@@ -127,7 +127,7 @@
           </article>
         </div>
           
-          <article id="C1A4"> <p>Hier können Sie Ihre Karriere planen und kontinuierlich prüfen, welchen Status Sie erreicht haben. Auch geben wir Ihnen Hinweise auf neue Themen und Learnmöglichkeiten. Hier können Sie Ihre Karriere planen und kontinuierlich prüfen, welchen Status Sie erreicht haben. Auch geben wir Ihnen Hinweise auf neue Themen und Learnmöglichkeiten.</>
+          <article id="C1A4"> <p>Hier können Sie Ihre Karriere planen und kontinuierlich prüfen, welchen Status Sie erreicht haben. Auch geben wir Ihnen Hinweise auf neue Themen und Learnmöglichkeiten. Hier können Sie Ihre Karriere planen und kontinuierlich prüfen, welchen Status Sie erreicht haben. Auch geben wir Ihnen Hinweise auf neue Themen und Learnmöglichkeiten.</p>
             <a href="About_profession.html"> More </a><br>
             <img src="images/level_5_senior.jpg">
             <a href="Karriereplanung.html"><img src="./images/c.png"></a>
@@ -186,16 +186,19 @@
         <a href="index.html"><img class="Trenner" src="./images/c.png"></a>
 
         <section id="infobox_1">
-          <div id="info_1_1" class="grad">
-            <h2>Lernangebote</h2>
-            <p><label for="Filter">Sortiert nach</label>
-              <select name="Filter" id="Filter">
-                <option value="Themenfeld">Themenfeld</option>
-                <option value="Art">Art</option>
-                <option value="Datum">Datum</option>
-                <option value="Level">Level</option>
-              </select><br>
-            </p>
+
+           <div id="info_1_1" class="grad">
+            <div>
+              <h2>Lernangebote</h2>
+              <label for="Filter">Sortiert nach</label>
+                <select name="Filter" id="Filter">
+                  <option value="Themenfeld">Themenfeld</option>
+                  <option value="Art">Art</option>
+                  <option value="Datum">Datum</option>
+                  <option value="Level">Level</option>
+                </select><br>
+            </div>
+            
             <table>
               <thead>
                 <colgroup>
@@ -240,7 +243,7 @@
                 <tr>
                   <td>20.10.2021</td>
                   <td>Wie ein Büro aufgebaut wird</td>
-                  <td>Kazhim Rycerz / Kazhal Akbari</ td>
+                  <td>Kazhim Rycerz / Kazhal Akbari</td>
                   <td>Berufspraxis</td>
                   <td>6</td>
                   <td>Life-Seminar</td>

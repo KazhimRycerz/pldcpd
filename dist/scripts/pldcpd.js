@@ -20,48 +20,46 @@
   
 // Ende Datenerfassung
 
-function accountData(){
+/* function accountData() {
   document.getElementById("myKF").innerHTML = myKF;
   document.getElementById("myLF").innerHTML = myLF;
-  document.getElementById("myPEX").innerHTML = myPEX;
-  document.getElementById("myPED").innerHTML = myPED;
+  document.getElementById("myPED").innerHTML = myPEX;
+  document.getElementById("myPEX").innerHTML = myPED;
   document.getElementById("maKF").innerHTML = maKF;
   document.getElementById("maLF").innerHTML = maLF;
-  document.getElementById("maPEX").innerHTML = maPEX;
-  document.getElementById("maPED").innerHTML = maPED;
+  document.getElementById("maPED").innerHTML = maPEX;
+  document.getElementById("maPEX").innerHTML = maPED;
   document.getElementById("myLP").innerHTML = myLP;
   document.getElementById("maLP").innerHTML = maLP;
-  document.getElementById("aside_Guthaben_p").innerHTML = myLCoins;
- 
+  document.getElementById("aside_Guthaben").innerHTML = myLCoins;
+}
+accountData(); */
+
+
+
+
+
+
+
+  
+
+const aside = document.getElementById('aside_account');
+
+const hide_btn =document.getElementById('aside_h_Btn');
+const show_btn =document.getElementById('aside_s_Btn');
+
+const hide_account = () => {  
+  aside.style.display = 'none'; 
+  hide_btn.style.display = 'none';
+  show_btn.style.display = 'block'; 
+}
+
+const show_account = () => {
+  aside.style.display = 'block';
+  hide_btn.style.display = 'block';
+  show_btn.style.display = 'none';
   
 }
 
-accountData();
-
-document.getElementById("myCL").innerHTML = myCL;
-document.getElementById("myLCoins").innerHTML = myLCoins;
-
-
-function reusableFunction() {
-  console.log("Hi World");
-  reusableFunction();
-  }
-
-
-  // querySelectorAll sammelt alle Elemente mit der Klasse .slide
-const slides = document.querySelectorAll('#slides .slide');
-let currentSlide = 0;
-
-// setInterval() steuert eine Javascript-Animation
-const slideInterval = setInterval(nextSlide,2000);
-
-function nextSlide() {
-	slides[currentSlide].className = 'slide';
-	currentSlide = (currentSlide+1) % slides.length;
-	slides[currentSlide].className = 'slide showing';
-}
-
-function hide_account() {
-  var x = document.onclick("aside_h_Btn");
-  x.hidden = true;
-}
+hide_btn.addEventListener('click', hide_account);
+show_btn.addEventListener('click', show_account);

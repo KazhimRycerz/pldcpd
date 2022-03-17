@@ -2,17 +2,14 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
 
 @font-face {
-  font-family: "Calligraphr";
+  font-family: "VIA-Verlag";
   src: url("../../fonts/VIA-Verlag.woff2") format("woff2"), url("../../fonts/VIA-Verlag.otf") format("otf");
 }
 @font-face {
   font-family: "BillboardShadow";
   src: url("../fonts/Billboard-Shadow.otf") format("otf");
 }
-  @font-face {
-    font-family: "FoundSanExpNorm";
-    src: url("../../fonts/FOUSANNO.woff2") format("woff2"), url("../fonts/FOUSANNO.otf") format("otf");
-  }
+  
   @font-face {
     font-family: "FoundSanExpMed";
     src: url("../../fonts/FOUSANMD.woff2") format("woff2"), url("../fonts/FOUSANMD.otf") format("otf");
@@ -48,4 +45,12 @@
   @font-face {
     font-family: "Thunderlord";
     src: url("../../fonts/thunder_lord/Thunder\ Lord.woff2") format("woff2"), url("../../fonts/thunder_lord/Thunder\ Lord.ttf") format("ttf");
+  }
+  @font-face {
+    font-family: "FoundSanExpNorm";
+    src: url("../../fonts/FOUSANNO.woff2") format("woff2"), url("../fonts/FOUSANNO.otf") format("otf");
+  }
+  @font-face {
+    font-family: "FoundSanBd";
+    src: url("../../fonts/FOUSANBD.woff2") format("woff2"), url("../fonts/FOUSANBD.otf") format("otf");
   }

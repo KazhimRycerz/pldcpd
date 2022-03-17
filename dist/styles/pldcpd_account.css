@@ -1,4 +1,74 @@
 @charset "UTF-8";
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: FoundSanExpNorm;
+}
+
+@font-face {
+  font-family: "VIA-Verlag";
+  src: url("../../fonts/VIA-Verlag.woff2") format("woff2"), url("../../fonts/VIA-Verlag.otf") format("otf");
+}
+@font-face {
+  font-family: "BillboardShadow";
+  src: url("../fonts/Billboard-Shadow.otf") format("otf");
+}
+@font-face {
+  font-family: "FoundSanExpMed";
+  src: url("../../fonts/FOUSANMD.woff2") format("woff2"), url("../fonts/FOUSANMD.otf") format("otf");
+}
+@font-face {
+  font-family: "Carbono";
+  src: url("../../fonts/carbono/carbono.ttf") format("ttf");
+}
+@font-face {
+  font-family: "Vacaciones";
+  src: url("../../fonts/vacaciones-outline/Vacaciones-font-ffp-defharo.otf") format("otf"), url("../../fonts/vacaciones-outline/Vacaciones-font-ffp-defharo.woff2") format("woff2");
+}
+@font-face {
+  font-family: "CorporateDemi";
+  src: url("../../fonts/CorporateSTOT-Dem.otf") format("otf");
+}
+@font-face {
+  font-family: "CorporateReg";
+  src: url("../../fonts/CorporateSTOT-Reg.otf") format("otf");
+}
+@font-face {
+  font-family: "FallingSkyCondOu";
+  src: url("../../fonts/Falling-Sky-Condensed-Outline/FallingSkyCondOu.otf") format("otf");
+}
+@font-face {
+  font-family: "ChalkLine";
+  src: url("../../fonts/chalk_line_outline/ChalkLine-Outline.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Rampart";
+  src: url("../../fonts/Rampart_One/RampartOne-Regular.ttf") format("ttf");
+}
+@font-face {
+  font-family: "Thunderlord";
+  src: url("../../fonts/thunder_lord/Thunder Lord.woff2") format("woff2"), url("../../fonts/thunder_lord/Thunder Lord.ttf") format("ttf");
+}
+@font-face {
+  font-family: "FoundSanExpNorm";
+  src: url("../../fonts/FOUSANNO.woff2") format("woff2"), url("../fonts/FOUSANNO.otf") format("otf");
+}
+@font-face {
+  font-family: "FoundSanBd";
+  src: url("../../fonts/FOUSANBD.woff2") format("woff2"), url("../fonts/FOUSANBD.otf") format("otf");
+}
+/* textsizes*/
+/*$medium: 4rem;
+$large: 10rem;
+$huge: 20rem;
+
+$border-size: 2px; */
+/*Mediasetting*/
+/* Fonts */
+/* logos */
 #header_myaccount img {
   width: 30%;
   height: 30%;
@@ -20,58 +90,46 @@
 
 /*Ende Styles zum Header Account-Seite*/
 /*Beginn Css für den Main*/
-aside {
+#aside_account {
   display: inline-block;
   /*overflow: scroll;
   scrollbar-width: 10px;*/
   background-color: azure;
-  width: 240px;
+  box-shadow: 0.5rem 0.5rem 2rem;
+  width: 15vw;
   height: 400px;
   padding: 0px;
-  margin: 10px;
+  margin-right: 20px;
   position: fixed;
-  bottom: 100;
+  top: 180px;
   right: 0;
   text-align: left;
   vertical-align: top;
   font-size: 14px;
   /*z-index: 1;*/
 }
-
-/*aside::-webkit-scrollbar{
-  width: 1em;
-}
-aside::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-}
-aside::-webkit-scrollbar-thumb {
-  background-color: rgb(255, 255, 255);
-  outline: 1px solid slategrey;
-}*/
-.account_container {
+#aside_account .account_container {
   display: grid;
   place-items: center;
-  margin: 0px;
+  margin-bottom: 0px;
 }
-
-.floating-stack {
+#aside_account .account_container .floating-stack {
   background: azure;
-  color: black;
   height: 400px;
   width: 240px;
   overflow-y: auto;
   font-size: 14px;
+  padding-bottom: 10px;
 }
-
-.floating-stack > dl {
-  margin: 0px 0 1rem;
+#aside_account .account_container .floating-stack dl {
+  margin: 0 0 0rem;
   display: grid;
-  grid-template-columns: 2.5rem fr;
+  grid-template-columns: 2.5rem 1fr;
   align-items: baseline;
 }
-
-.floating-stack dt {
-  font-family: Carbono;
+#aside_account .account_container .floating-stack dl dt {
+  text-align: center;
+  font-family: "Thunderlord";
   position: sticky;
   top: 0.5rem;
   left: 0.5rem;
@@ -80,40 +138,30 @@ aside::-webkit-scrollbar-thumb {
   color: azure;
   height: 35px;
   width: 35px;
-  /*border-style: solid;
-  border-color: rgb(2, 117, 21);
-  border-width: 3px;*/
   border-radius: 50%;
-  padding: 0.25rem 1rem;
+  line-height: 35px;
   grid-column: 1;
-  display: inline-flex;
-  justify-content: center;
-  vertical-align: top;
-  box-sizing: border-box;
 }
-
-.floating-stack dd {
+#aside_account .account_container .floating-stack dl dd {
   grid-column: 2;
   margin: 0px;
   padding: 10px;
   padding-top: 10px;
 }
-
-.floating-stack dd:hover {
+#aside_account .account_container .floating-stack dl dd h3 {
+  font-weight: 900;
+  font-family: "FoundSanBd";
+}
+#aside_account .account_container .floating-stack dl dd:hover {
   background-color: #b4c8e6;
   color: black;
 }
-
-.floating-stack > dl:first-of-type > dd:first-of-type {
+#aside_account .account_container .floating-stack > dl:first-of-type > dd:first-of-type {
   margin-top: 0.25rem;
 }
 
-.floating-stack h3 {
-  margin: 0px;
-}
-
 #LC_only {
-  font-family: calligraphr;
+  font-family: "VIA-Verlag";
   Color: #7d0000;
   letter-spacing: -3px;
   text-align: center;
@@ -138,7 +186,7 @@ aside::-webkit-scrollbar-thumb {
 }
 
 #account_1 {
-  display: box;
+  display: block;
   margin-top: 20px;
   border-right: 3px dotted Black;
   border-left: 3px dotted Black;
@@ -146,39 +194,33 @@ aside::-webkit-scrollbar-thumb {
   /*background-color: RGB(221, 155, 55, 0.2);*/
 }
 
-#account_1 p {
-  padding: 0px;
-  font-size: 14px;
-}
-
 #account_1_data {
   display: flex;
   margin-top: 0px;
   width: 100%;
 }
-
-.account_1 {
+#account_1_data > div {
   margin: 10px;
   margin-top: 0px;
   padding: 10px;
-  padding-top: 0px;
-  width: 30%;
+  width: 25%;
   height: 80px;
-  /*border-top: 2px dotted black;
-  border-bottom: 2px dotted black;*/
   background-color: azure;
   border-radius: 20px;
-  box-shadow: 10px 10px 50px grey;
-  font-family: FoundSanExpMed;
+  box-shadow: 0.5rem 0.5rem 2rem;
+  position: relative;
+}
+#account_1_data > div p {
+  line-height: 1rem;
 }
 
 .account_Box {
   display: block;
-  font-family: FoundSanExpMed;
+  position: absolute;
+  top: 10px;
+  right: 10px;
   font-weight: bold;
   font-size: 26px;
-  margin: -50px 100px;
-  margin-right: 0px;
   width: 120px;
   height: 35px;
   /*border: 2px dotted black;*/
@@ -189,7 +231,7 @@ aside::-webkit-scrollbar-thumb {
 
 .account_Box_Date {
   display: block;
-  font-family: FoundSanExpMed;
+  position: absolute;
   font-weight: bold;
   font-size: 26px;
   letter-spacing: -2px;
@@ -204,11 +246,22 @@ aside::-webkit-scrollbar-thumb {
   background-color: rgba(221, 155, 55, 0.2);
 }
 
+#my_start {
+  top: 60px;
+  right: 10px;
+}
+
+#my_active {
+  top: 90px;
+  right: 10px;
+}
+
+/* zweite Datenreihe*/
 #account_2 {
-  display: box;
+  display: block;
   margin-top: 20px;
-  border-left: 3px dotted Black;
-  border-right: 3px dotted Black;
+  border-left: 3px dotted black;
+  border-right: 3px dotted black;
   border-radius: 20px;
   /*background-color: RGB(221, 155, 55, 0.2);*/
   height: auto;
@@ -216,26 +269,37 @@ aside::-webkit-scrollbar-thumb {
 
 #account_2_data {
   display: flex;
-  margin-top: 0px;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+#account_2_data div {
+  width: 20%;
 }
 
 .account_2 {
-  display: inline-flex;
+  display: flex;
+  justify-content: space-between;
   margin: 10px;
   padding: 10px;
-  width: 30%;
   /*border: 2px dotted black;*/
   background-color: azure;
   border-radius: 20px;
-  box-shadow: 10px 10px 50px grey;
-  height: 60px;
+  box-shadow: 0.5rem 0.5rem 2rem;
+  height: 80px;
+  position: relative;
+}
+.account_2 div:first-child {
+  position: absolute;
+  bottom: 25px;
+}
+.account_2 div:last-child {
+  position: absolute;
+  right: 50px;
 }
 
 .account_2_H {
   padding: 5px;
-  margin-top: -30px;
-  margin-right: 5px;
-  font-family: Carbono;
+  font-family: "VIA-Verlag";
   font-weight: bold;
   background-color: #113b0d;
   font-size: 30px;
@@ -244,13 +308,13 @@ aside::-webkit-scrollbar-thumb {
   width: 60px;
   height: 80px;
   Line-height: 90%;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 #account_2_data p {
   padding-left: 5px;
   margin-top: -80px;
-  font-family: FoundSanExpMed;
+  font-family: "FoundSanExpNorm", sans-serif;
   font-size: 12px;
   color: white;
 }
@@ -263,7 +327,7 @@ aside::-webkit-scrollbar-thumb {
 .account_pers_data {
   display: block;
   background-color: #b4c8e6;
-  font-family: FoundSanExpMed;
+  font-family: "FoundSanExpNorm", sans-serif;
   font-weight: bold;
   box-shadow: none;
   text-align: center;
@@ -305,10 +369,10 @@ aside::-webkit-scrollbar-thumb {
 }
 
 #account_3 {
-  display: box;
+  display: block;
   margin-top: 20px;
-  border-right: 3px dotted Black;
-  border-left: 3px dotted Black;
+  border-right: 3px dotted black;
+  border-left: 3px dotted black;
   border-radius: 20px;
   /*background-color: RGB(221, 155, 55, 0.2);*/
 }
@@ -328,7 +392,7 @@ aside::-webkit-scrollbar-thumb {
   margin-top: 0px;
   padding: 10px;
   padding-top: 0px;
-  width: 40%;
+  width: 33%;
   height: 80px;
   /*border-top: 2px dotted black;
   border-bottom: 2px dotted black;*/
@@ -382,7 +446,7 @@ aside::-webkit-scrollbar-thumb {
   margin-top: 0px;
   padding: 10px;
   padding-top: 0px;
-  width: 40%;
+  width: 33%;
   height: 80px;
   /*border-top: 2px dotted black;
   border-bottom: 2px dotted black;*/

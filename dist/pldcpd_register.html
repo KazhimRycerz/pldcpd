@@ -4,24 +4,42 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PLDCPD_Register</title>
-  <link rel="stylesheet" href="pldcpd.css">
-  <link rel="stylesheet" href="pldcpd_register.css">
-  <link rel="stylesheet" href="animate.css">
-  <!--<link rel="stylesheet" href="poparticles.css">-->
-  <script src="pldcpd.js"></script>
+  <link rel="stylesheet" href="styles/pldcpd.css">
+  <link rel="stylesheet" href="styles/pldcpd_register.css">
+  
 </head>
 
 <body>
-  <header class="shadow">
-      <div id="register_text_header">
-        <a href="index.html"><img class="image_header" src="../Bilder/pldcpd.png" ></a>
+  <header>
+
+    <nav class="navheader">
+      <div id="dropdown">
+        <button id="dropbtn"><p><span class="C">C</span> about</p></button>
+        <ul id="dropdown-content">
+          <li><a href="index.html"><span class="C">C</span> about</a></li>
+          <li><a href="About_profession.html"><span class="C">C</span> my Profession</a></li>
+          <li><a href="About_PLDCPD.html"><span class="C">C</span> PLDCPD </a></li>
+          <li><a href="About_RYCERZ.html"><span class="C">C</span> RYCERZ </a></l>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="text_header">
+      <a href="index.html"><img class="image_header" src="./images/pldcpd.png"></a>
       <p>
-      Plattform for <br>
-      Continuing <br>
-      Professional <br>
-      Development
-      </p>
+        Plattform for <br>
+        Continuing <br>
+        Professional <br>
+        Development</p>
     </div>
+
+    <div id="header_myaccount">
+        <a href="pldcpd_register.html"> register me <span class="C">C</span></a>
+        <a href="pldcpd_login.html"> log me in <span class="C">C</span></a>
+        <button> show account <span class="C">C</span></button>
+        <button> hide account <span class="C">C</span></button>
+    </div>
+
   </header>
 
   <div class="Background" id="register_body">
@@ -123,20 +141,25 @@
     </main>
   </div>
 
-  <footer id="register_footer">
+  <footer>
     <p>
-    Joachim Ritter<br>
-    Marienfelder Str. 18<br>
-    33330 Gütersloh<br>
-    <ion-icon name="logo-facebook"></ion-icon>
-    <a href="https://www.linkedin.com/in/joachimr/" target="_blank"> <ion-icon name="logo-linkedin"></ion-icon> </a>
-    </p>
+      Rycerz Media GmbH<br>
+      Marienfelder Str. 18<br>
+      33330 Gütersloh<br>
+      <a href="https://twitter.com/RitterJoachim/" target="_blank"><ion-icon name="logo-twitter"></ion-icon></a>
+      <a href="https://www.facebook.com/joachim.ritter.31/" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a>
+      <a href="https://www.linkedin.com/in/joachimr/" target="_blank"><ion-icon name="logo-linkedin"></ion-icon></a>
+      <a href="https://www.instagram.com/ritter_joachim/" target="_blank"><ion-icon name="logo-instagram"></ion-icon></a>
+      <a href="https://github.com/KazhimRycerz/" target="_blank"><ion-icon name="logo-github"></ion-icon></a>
+      <a href="skype:jritter_43/"><ion-icon name="logo-skype"></ion-icon></a>
+      <a href="slack:Joachim Ritter"><ion-icon name="logo-slack"></ion-icon></a>
     </p>
   </footer>
 
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/      ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script src="./scripts/pldcpd.js"></script>
+  
   </body>
 
 </html>

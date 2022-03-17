@@ -3,7 +3,13 @@ $first-color: azure;
 $secondary-color: lemonchiffon;
 $third-color: rgb(175, 200, 200);
 $fourth-color: rgba(221, 155, 55, 0.2);
+$button-color: rgba(170, 170, 170, 0.75);
 $cpdred: rgb(125, 0, 0);
+
+//shadows
+$boxshadow: 0.5rem 0.5rem 2rem;
+$btnshadow: 0px 0px 10px 1px grey inset, -2px -2px 5px 3px grey,  -5px -5px 5px white inset; 
+$rshadow: 3px 3px black, -3px -3px black, 3px -3px black, -3px 3px black;
 
 /* textsizes*/
 $xlarge: 1.5rem;
@@ -18,17 +24,15 @@ $huge: 20rem;
 $border-size: 2px; */
 
 /*Mediasetting*/
+$phone: 578px;
 $tablet: 768px;
 $desktop: 1024px; 
 $widedesktop: 2048px;
 
-$boxshadow: 0.5rem 0.5rem 2rem;
-$btnshadow: 0px 0px 10px 1px grey inset, -2px -2px 5px 3px grey,  -5px -5px 5px white inset; 
-$rshadow: 3px 3px black, -3px -3px black, 3px -3px black, -3px 3px black;
-
 /* Fonts */
 $primary-font: "FoundSanExpNorm", sans-serif;
-$calli: "Calligraphr";
+$primary-font-bold: "FoundSanBd";
+$calli: "VIA-Verlag";
 $guthaben: "Thunderlord";
 
 /* logos */
