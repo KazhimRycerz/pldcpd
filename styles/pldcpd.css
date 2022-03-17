@@ -9,7 +9,7 @@
 }
 
 @font-face {
-  font-family: "Calligraphr";
+  font-family: "VIA";
   src: url("../../fonts/VIA-Verlag.woff2") format("woff2"), url("../../fonts/VIA-Verlag.otf") format("otf");
 }
 @font-face {
@@ -90,7 +90,7 @@ body {
 }
 
 .LC {
-  font-family: "Calligraphr";
+  font-family: "VIA";
   font-weight: bold;
   letter-spacing: -5px;
   line-height: normal;
@@ -102,7 +102,7 @@ body {
 }
 
 .C {
-  font-family: "Calligraphr";
+  font-family: "VIA";
   color: #7d0000;
   font-size: 1.3em;
   position: relative;
@@ -112,7 +112,7 @@ body {
 }
 
 .Calli {
-  font-family: "Calligraphr";
+  font-family: "VIA";
   line-height: normal;
   font-style: normal;
   font-size: 1.1rem;
@@ -122,7 +122,7 @@ body {
 }
 
 .LitCoin {
-  font-family: "Calligraphr";
+  font-family: "VIA";
   font-style: normal;
   line-height: normal;
   color: #7d0000;
@@ -191,7 +191,7 @@ header {
   display: flex;
   opacity: 0;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: left;
   position: absolute;
   bottom: -11px;
   left: -20px;
@@ -259,6 +259,7 @@ header {
 
 #dropdown:hover #dropbtn {
   display: none;
+  opacity: 0;
 }
 
 .image_header {
@@ -346,7 +347,8 @@ aside > p {
 }
 
 #aside_h_Btn {
-  background-color: rgba(168, 168, 168, 0.811);
+  background-color: rgba(170, 170, 170, 0.75);
+  box-shadow: 0px 0px 10px 1px grey inset, -2px -2px 5px 3px grey, -5px -5px 5px white inset;
   width: 25%;
   height: 40px;
   position: absolute;
@@ -356,7 +358,6 @@ aside > p {
   border-radius: 20%;
   text-align: center;
   z-index: 2;
-  box-shadow: 0px 0px 10px 1px grey inset, -2px -2px 5px 3px grey, -5px -5px 5px white inset;
 }
 
 #aside_h_Btn:active {
