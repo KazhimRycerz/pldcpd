@@ -37,8 +37,8 @@
   src: url("../../fonts/CorporateSTOT-Reg.otf") format("otf");
 }
 @font-face {
-  font-family: "FallingSkyCondOu";
-  src: url("../../fonts/Falling-Sky-Condensed-Outline/FallingSkyCondOu.otf") format("otf");
+  font-family: "FallingSkyOu";
+  src: url("../../fonts/Falling-Sky-Condensed-Outline/FallingSkyOu.woff2") format("woff2"), url("../../fonts/Falling-Sky-Condensed-Outline/FallingSkyOu.otf") format("otf");
 }
 @font-face {
   font-family: "ChalkLine";
@@ -69,6 +69,75 @@ $border-size: 2px; */
 /*Mediasetting*/
 /* Fonts */
 /* logos */
+.logo_cpd {
+  width: 8%;
+  margin-left: 0px;
+  margin-right: 10px;
+  right: 10px;
+  align-items: right;
+}
+
+.LC {
+  font-family: "VIA-Verlag";
+  font-weight: bold;
+  letter-spacing: -5px;
+  line-height: normal;
+  font-style: normal;
+  color: #7d0000;
+  font-size: 2.5rem;
+  position: relative;
+  bottom: -0.15rem;
+}
+
+.C {
+  font-family: "VIA-Verlag";
+  color: #7d0000;
+  font-size: 1.3em;
+  position: relative;
+  top: 3px;
+  /* bottom: -0.14em; */
+  text-decoration: none;
+}
+
+.Calli {
+  font-family: "VIA-Verlag";
+  line-height: normal;
+  font-style: normal;
+  font-size: 1.1rem;
+  position: relative;
+  bottom: -0.14em;
+  text-decoration: none;
+}
+
+.LitCoin {
+  font-family: "VIA-Verlag";
+  font-style: normal;
+  line-height: normal;
+  color: #7d0000;
+  font-size: 1.5em;
+  position: relative;
+  bottom: -0.14em;
+}
+
+.grad {
+  background-image: linear-gradient(#adadd5, #e49696);
+  background-attachment: fixed;
+}
+
+.Background {
+  background-color: azure;
+  margin: auto;
+  width: 80%;
+  top: 100px;
+  border-radius: 20px;
+}
+
+.Trenner {
+  margin: 100px auto;
+  width: 5%;
+  display: block;
+}
+
 #header_myaccount img {
   width: 30%;
   height: 30%;
@@ -106,20 +175,21 @@ $border-size: 2px; */
   text-align: left;
   vertical-align: top;
   font-size: 14px;
+  border-radius: 10px;
   /*z-index: 1;*/
 }
 #aside_account .account_container {
   display: grid;
   place-items: center;
-  margin-bottom: 0px;
+  margin: 10px 0 10px 0;
 }
 #aside_account .account_container .floating-stack {
   background: azure;
-  height: 400px;
+  height: 380px;
   width: 240px;
-  overflow-y: auto;
+  overflow-y: scroll;
   font-size: 14px;
-  padding-bottom: 10px;
+  padding-bottom: 200px;
 }
 #aside_account .account_container .floating-stack dl {
   margin: 0 0 0rem;
@@ -129,7 +199,7 @@ $border-size: 2px; */
 }
 #aside_account .account_container .floating-stack dl dt {
   text-align: center;
-  font-family: "Thunderlord";
+  font-family: "FallingSkyOu";
   position: sticky;
   top: 0.5rem;
   left: 0.5rem;
@@ -170,7 +240,7 @@ $border-size: 2px; */
   border-style: solid;
   border-color: #dfa811;
   border-width: 2px;
-  background: #c07007;
+  background-color: #c07007;
   background-image: linear-gradient(to top left, #a05800, #e1dc64);
 }
 
@@ -238,7 +308,6 @@ $border-size: 2px; */
   margin: -50px 100px;
   margin-right: 0px;
   width: 120px;
-  height: 35px;
   /*border: 2px dotted black;*/
   border-bottom: 3px solid azure;
   border-radius: 10px;
@@ -249,11 +318,13 @@ $border-size: 2px; */
 #my_start {
   top: 60px;
   right: 10px;
+  height: 31px;
 }
 
 #my_active {
   top: 90px;
   right: 10px;
+  height: 31px;
 }
 
 /* zweite Datenreihe*/
@@ -265,6 +336,9 @@ $border-size: 2px; */
   border-radius: 20px;
   /*background-color: RGB(221, 155, 55, 0.2);*/
   height: auto;
+}
+#account_2 > p {
+  margin-left: 10px;
 }
 
 #account_2_data {
@@ -285,9 +359,12 @@ $border-size: 2px; */
   height: 80px;
   position: relative;
 }
+#account_2_data .account_2 div > h2 {
+  font-family: "FallingSkyOu";
+}
 #account_2_data .account_2 div:first-child {
   position: relative;
-  top: -25px;
+  top: -20px;
 }
 #account_2_data .account_2 > div:last-child {
   position: relative;
@@ -313,12 +390,16 @@ $border-size: 2px; */
   padding-left: 4px;
   margin-top: -40px;
   font-family: "FoundSanExpNorm", sans-serif;
-  font-size: 12px;
+  font-size: 10px;
+  text-align: center;
   color: white;
 }
 
 .account_data_box {
-  display: block;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  gap: 0px;
   /*position: relative;*/
 }
 
@@ -329,17 +410,15 @@ $border-size: 2px; */
   font-weight: bold;
   box-shadow: none;
   text-align: center;
+  line-height: 25px;
   width: 70px;
   height: 30px;
   border: none;
   border-radius: 5px;
-  font-size: 26px;
+  font-size: 24px;
   color: black;
   padding: 2px;
-  justify-content: center;
   margin-left: 10px;
-  margin-top: 0px;
-  margin-bottom: 5px;
 }
 
 .account_market_data {
@@ -359,13 +438,6 @@ $border-size: 2px; */
   margin-left: 10px;
 }
 
-#account_2 > p {
-  margin-left: 10px;
-  margin-top: -10px;
-  padding-bottom: 0px;
-  font-size: 14px;
-}
-
 #account_3 {
   display: block;
   margin-top: 20px;
@@ -373,11 +445,6 @@ $border-size: 2px; */
   border-left: 3px dotted black;
   border-radius: 20px;
   /*background-color: RGB(221, 155, 55, 0.2);*/
-}
-
-#account_3 p {
-  padding: 0px;
-  font-size: 14px;
 }
 
 #account_3_data {
@@ -398,11 +465,14 @@ $border-size: 2px; */
   border-radius: 20px;
   box-shadow: 0.5rem 0.5rem 2rem;
 }
+.account_3 p {
+  padding: 0px;
+  font-size: 0.9rem;
+}
 
 .account_3_Box {
   display: block;
-  font-family: FoundSanExpMed;
-  font-weight: bold;
+  font-family: "FoundSanBd";
   font-size: 30px;
   margin: -50px 100px;
   margin-right: 20px;
@@ -450,12 +520,10 @@ $border-size: 2px; */
   background-color: azure;
   border-radius: 20px;
   box-shadow: 10px 10px 50px grey;
-  font-family: FoundSanExpMed;
 }
 
 .account_4_Box {
   display: block;
-  font-family: FoundSanExpMed;
   font-weight: bold;
   font-size: 30px;
   margin: -50px 100px;

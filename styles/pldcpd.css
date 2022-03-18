@@ -37,8 +37,8 @@
   src: url("../../fonts/CorporateSTOT-Reg.otf") format("otf");
 }
 @font-face {
-  font-family: "FallingSkyCondOu";
-  src: url("../../fonts/Falling-Sky-Condensed-Outline/FallingSkyCondOu.otf") format("otf");
+  font-family: "FallingSkyOu";
+  src: url("../../fonts/Falling-Sky-Condensed-Outline/FallingSkyOu.woff2") format("woff2"), url("../../fonts/Falling-Sky-Condensed-Outline/FallingSkyOu.otf") format("otf");
 }
 @font-face {
   font-family: "ChalkLine";
@@ -69,22 +69,6 @@ $border-size: 2px; */
 /*Mediasetting*/
 /* Fonts */
 /* logos */
-body {
-  line-height: 1.2;
-  letter-spacing: 0px;
-  background-image: url(../images/Wallpaper_07.JPG);
-  background-size: 100vw;
-  background-repeat: repeat-y;
-  background-attachment: fixed;
-  margin-top: 150px;
-}
-
-/* Basics for the total website*/
-.grad {
-  background-image: linear-gradient(#bebedc, #e2abab);
-  background-attachment: fixed;
-}
-
 .logo_cpd {
   width: 8%;
   margin-left: 0px;
@@ -135,6 +119,11 @@ body {
   bottom: -0.14em;
 }
 
+.grad {
+  background-image: linear-gradient(#adadd5, #e49696);
+  background-attachment: fixed;
+}
+
 .Background {
   background-color: azure;
   margin: auto;
@@ -147,6 +136,16 @@ body {
   margin: 100px auto;
   width: 5%;
   display: block;
+}
+
+body {
+  line-height: 1.2;
+  letter-spacing: 0px;
+  background-image: url(../images/Wallpaper_07.JPG);
+  background-size: 100vw;
+  background-repeat: repeat-y;
+  background-attachment: fixed;
+  margin-top: 150px;
 }
 
 /*Alles zum Header*/
@@ -346,11 +345,19 @@ main {
   margin-top: 10px;
 }
 
+@keyframes aside {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 #aside_h_Btn {
   display: block;
   /* color: $cpdred; */
   background-color: rgba(170, 170, 170, 0.75);
-  box-shadow: 0px 0px 10px 1px grey inset, -2px -2px 5px 3px grey, -5px -5px 5px white inset;
+  box-shadow: 0px 0px 10px 1px lemonchiffon inset, -2px -2px 5px 3px grey, -5px -5px 5px white inset;
   width: 65px;
   height: 40px;
   position: fixed;
@@ -365,7 +372,7 @@ main {
 #aside_s_Btn {
   display: none;
   background-color: rgba(170, 170, 170, 0.75);
-  box-shadow: 0px 0px 10px 1px grey inset, -2px -2px 5px 3px grey, -5px -5px 5px white inset;
+  box-shadow: 0px 0px 10px 1px lemonchiffon inset, -2px -2px 5px 3px grey, -5px -5px 5px white inset;
   width: 65px;
   height: 40px;
   position: fixed;
@@ -425,8 +432,7 @@ main {
 
 #home_data output {
   display: flex;
-  background-color: #afc8c8;
-  border: 2px solid azure;
+  background-color: #b4c8e6;
   text-align: center;
   justify-content: center;
   padding: 3px;
@@ -449,15 +455,17 @@ main {
   gap: 5px;
   align-items: center;
   margin: 10px auto;
-  padding: 0 20px 0 20px;
-  width: 60%;
+  padding: 0 10px 0 10px;
+  width: 75%;
   border: 2px dotted black;
   border-radius: 10px;
   background-color: rgba(221, 155, 55, 0.2);
 }
 #aside_gutbox output {
+  display: inline;
+  text-align: end;
   font-size: 2rem;
-  font-family: "Thunderlord";
+  font-family: "FallingSkyOu";
   font-weight: bold;
   background-color: none;
 }
@@ -612,7 +620,7 @@ main {
 
 #lb_1_angebote > div {
   box-shadow: 0.5rem 0.5rem 2rem;
-  background-color: #afc8c8;
+  background-color: #b4c8e6;
   /*border: 2px solid rgb(114, 4, 4);*/
   padding: 10px;
   width: 20%;
@@ -837,8 +845,8 @@ tr:hover {
 
 /* Learning nach Karrierelevel Start */
 #learningbox_5 {
-  border-top: 3px dotted Black;
-  border-bottom: 3px dotted Black;
+  border-top: 3px dotted black;
+  border-bottom: 3px dotted black;
   border-radius: 20px;
   padding-bottom: 30px;
 }
@@ -968,22 +976,32 @@ tr:hover {
 /*Ende Css für den Main*/
 footer {
   position: static;
+  bottom: 0;
   background-color: azure;
-  padding: 5px;
-  width: 80%;
+  padding: 10px;
+  width: 100%;
+  height: 120px;
   height: fit-content;
   font-size: 12px;
-  margin: 50px auto;
-  border-radius: 20px;
+  margin-top: 50px;
 }
 
 footer p {
   text-align: center;
   font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+ul {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  gap: 10px;
+  list-style-type: none;
 }
 
 footer ion-icon {
-  font-size: 20px;
+  font-size: 30px;
 }
 
 #navaside {

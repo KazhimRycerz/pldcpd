@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>PLDCPD_register</title>
-  <link rel="stylesheet" href="pldcpd.css">
-  <script src="pldcpd.js"></script>
+  <link rel="stylesheet" href="./styles/pldcpd.css">
+  
    <style>
     body {
-      background-image: url(../Bilder/Baum_3.JPG);
+      background-image: url(./images/Baum_3.JPG);
       background-size: contain, 50%;
       background-repeat: no-repeat;
       background-position: right top;
@@ -18,54 +18,64 @@
 </head>
 
 <body>
-  <header class="shadow">
+  <header>
 
-    <nav class="shadow">
-      <div class="dropdown">
-        <button class="dropbtn"><img src="../Bilder/c.png">about</button>
-        <div class="dropdown-content">
-        <a href="About_profession.html">my Profession</a>
-        <a href="About_PLDCPD.html"> PLDCPD </a>
-        <a href="About_RYCERZ.html"> RYCERZ </a>
-        <a href="index.html"> home</a>
-        </div>
+    <nav class="navheader">
+      <div id="dropdown">
+        <button id="dropbtn"><p><span class="C">C</span> about</p></button>
+        <ul id="dropdown-content">
+          <li><a href="#"><span class="C">C</span> about</a></li>
+          <li><a href="About_profession.html"><span class="C">C</span> my Profession</a></li>
+          <li><a href="About_PLDCPD.html"><span class="C">C</span> PLDCPD </a></li>
+          <li><a href="About_RYCERZ.html"><span class="C">C</span> RYCERZ </a></l>
+        </ul>
+      </div>
     </nav>
-  
-    <div id="text_header">
-      <img src="../Bilder/pldcpd.png" class="image_header"> <a href="index.html"></a>
+
+    <div class="text_header">
+      <a href="index.html"><img class="image_header" src="./images/pldcpd.png"></a>
       <p>
-      Plattform for <br>
-      Continuing <br>
-      Professional <br>
-      Development</p>
+        Plattform for <br>
+        Continuing <br>
+        Professional <br>
+        Development</p>
     </div>
 
-    <div id="header_myaccount" class="Shadow">
-      <p class="header_buttons">
-        <a href="pldcpd_register.html"> register me </a><br>
-        <a href="pldcpd_login.html"> log me in </a>
-      </p>
+    <div id="header_myaccount">
+        <a href="pldcpd_register.html"> register me <span class="C">C</span></a>
+        <a href="pldcpd_login.html"> log me in <span class="C">C</span></a>
+        <button> show account <span class="C">C</span></button>
+        <button> hide account <span class="C">C</span></button>
     </div>
 
   </header>
 
 <main>
-  
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 </main>
 
 <footer>
   <p>
-    Joachim Ritter<br>
+    Rycerz Media GmbH<br>
     Marienfelder Str. 18<br>
-    33330 Gütersloh<br>
-    <ion-icon name="logo-facebook"></ion-icon>
-    <a href="https://www.linkedin.com/in/joachimr/" target="_blank"> <ion-icon name="logo-linkedin"></ion-icon> </a>
-  </p>
-    </p>
+    33330 Gütersloh</p>
+
+    <ul>
+      <li><a href="https://twitter.com/RitterJoachim/" target="_blank"><ion-icon name="logo-twitter"></ion-icon></a></li>
+      <li><a href="https://www.facebook.com/joachim.ritter.31/" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a></li>
+      <li><a href="https://www.linkedin.com/in/joachimr/" target="_blank"><ion-icon name="logo-linkedin"></ion-icon></a></li>
+      <li><a href="https://www.instagram.com/ritter_joachim/" target="_blank"><ion-icon name="logo-instagram"></ion-icon></a></li>
+      <li><a href="https://github.com/KazhimRycerz/" target="_blank"><ion-icon name="logo-github"></ion-icon></a></li>
+      <li><a href="skype:jritter_43/"><ion-icon name="logo-skype"></ion-icon></a></li>
+      <li><a href="slack:Joachim Ritter"><ion-icon name="logo-slack"></ion-icon></a></li>
+    </ul>
+  
 </footer>
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script src="./scripts/pldcpd.js"></script>
 </body>
 
 </html>

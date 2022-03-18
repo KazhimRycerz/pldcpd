@@ -29,8 +29,8 @@
   src: url("../../fonts/CorporateSTOT-Reg.otf") format("otf");
 }
 @font-face {
-  font-family: "FallingSkyCondOu";
-  src: url("../../fonts/Falling-Sky-Condensed-Outline/FallingSkyCondOu.otf") format("otf");
+  font-family: "FallingSkyOu";
+  src: url("../../fonts/Falling-Sky-Condensed-Outline/FallingSkyOu.woff2") format("woff2"), url("../../fonts/Falling-Sky-Condensed-Outline/FallingSkyOu.otf") format("otf");
 }
 @font-face {
   font-family: "ChalkLine";
