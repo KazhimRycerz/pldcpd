@@ -180,21 +180,23 @@ $border-size: 2px; */
 }
 #aside_account .account_container {
   display: grid;
+  width: 100%;
   place-items: center;
   margin: 10px 0 10px 0;
 }
 #aside_account .account_container .floating-stack {
   background: azure;
   height: 380px;
-  width: 240px;
+  width: 100%;
   overflow-y: scroll;
+  overflow-x: none;
   font-size: 14px;
-  padding-bottom: 200px;
+  padding-bottom: 220px;
 }
 #aside_account .account_container .floating-stack dl {
-  margin: 0 0 0rem;
+  margin: 0 0 0;
   display: grid;
-  grid-template-columns: 2.5rem 1fr;
+  grid-template-columns: 2.2rem 1fr;
   align-items: baseline;
 }
 #aside_account .account_container .floating-stack dl dt {
@@ -490,14 +492,12 @@ $border-size: 2px; */
 }
 
 #account_4 {
-  display: box;
+  display: block;
   margin-top: 20px;
   border-right: 3px dotted Black;
   border-left: 3px dotted Black;
   border-radius: 20px;
-  /*background-color: RGB(221, 155, 55, 0.2);*/
 }
-
 #account_4 p {
   padding: 0px;
   font-size: 14px;
@@ -515,11 +515,9 @@ $border-size: 2px; */
   padding-top: 0px;
   width: 33%;
   height: 80px;
-  /*border-top: 2px dotted black;
-  border-bottom: 2px dotted black;*/
   background-color: azure;
   border-radius: 20px;
-  box-shadow: 10px 10px 50px grey;
+  box-shadow: 0.5rem 0.5rem 2rem;
 }
 
 .account_4_Box {

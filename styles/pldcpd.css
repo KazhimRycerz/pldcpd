@@ -283,11 +283,6 @@ header {
 }
 
 #header_myaccount {
-  /*border: 1px solid black;*/
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: end;
   background-color: azure;
   width: 15vw;
   height: 60px;
@@ -297,11 +292,21 @@ header {
     box-shadow: $boxshadow;
   } */
 }
-#header_myaccount a {
+#header_myaccount ul {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: end;
+  gap: 0px;
+}
+#header_myaccount ul li {
+  list-style-type: none;
+}
+#header_myaccount ul li a {
   text-decoration: none;
   color: black;
 }
-#header_myaccount a:hover {
+#header_myaccount ul li a:hover {
   text-decoration: none;
   color: #7d0000;
 }
@@ -323,26 +328,6 @@ main {
   /*background-color: azure;*/
   width: 80%;
   margin: 10px auto;
-}
-
-#aside_account {
-  display: block;
-  background-color: azure;
-  box-shadow: 0.5rem 0.5rem 2rem;
-  width: 15vw;
-  min-width: 200px;
-  height: auto;
-  padding: 10px;
-  margin-right: 20px;
-  position: fixed;
-  top: 180px;
-  right: 0;
-  text-align: left;
-  font-size: 0.9rem;
-  z-index: 5;
-}
-#aside_account > p {
-  margin-top: 10px;
 }
 
 @keyframes aside {
@@ -382,6 +367,27 @@ main {
   border-radius: 20%;
   text-align: center;
   z-index: 100;
+}
+
+#aside_account {
+  display: block;
+  background-color: azure;
+  box-shadow: 0.5rem 0.5rem 2rem;
+  width: 15vw;
+  min-width: 200px;
+  height: auto;
+  padding: 10px;
+  margin-right: 20px;
+  position: fixed;
+  top: 180px;
+  right: 0;
+  text-align: left;
+  font-size: 0.9rem;
+  z-index: 5;
+  border-radius: 10px;
+}
+#aside_account > p {
+  margin-top: 10px;
 }
 
 #aside_account span {
@@ -588,6 +594,10 @@ main {
   margin: 0 auto;
 }
 
+#C1A4 > img {
+  margin-top: 20px;
+}
+
 #learningbox_1 {
   border-top: 3px dotted Black;
   border-bottom: 3px dotted Black;
@@ -622,19 +632,23 @@ main {
   box-shadow: 0.5rem 0.5rem 2rem;
   background-color: #b4c8e6;
   /*border: 2px solid rgb(114, 4, 4);*/
-  padding: 10px;
   width: 20%;
-  margin: 0px;
   border-radius: 10px;
 }
-#lb_1_angebote > div p {
-  font-size: 0.9rem;
+#lb_1_angebote > div h5 {
+  /* font-size: $small; */
+  margin: 10px;
 }
 
 #lb_1_angebote img {
   object-fit: cover;
   width: 100%;
+  height: 120px;
   margin-top: 10px;
+  border-radius: 0 0 10px 10px;
+  position: relative;
+  bottom: 0%;
+  top: 10px;
 }
 
 #Promoter_1 {
@@ -700,6 +714,7 @@ main {
   grid-row: 1/2;
   /*background: rgb(218, 164, 157);*/
   padding: 0px;
+  background: linear-gradient(#adadd5, #e49696) fixed;
 }
 #info_1_1 > div {
   display: flex;
@@ -713,6 +728,7 @@ main {
   grid-row: 1/2;
   /*background: rgb(218, 164, 157);*/
   padding: 10px;
+  background: linear-gradient(#adadd5, #e49696) fixed;
 }
 #info_1_2 p {
   font-size: 1.1rem;
@@ -759,8 +775,7 @@ tr:hover {
 }
 
 #JR1 {
-  color: black;
-  font-Size: 16px;
+  font-Size: 1.1rem;
   padding: 10px 20px;
   width: 300px;
   display: inline;
@@ -799,7 +814,8 @@ tr:hover {
 #box1 {
   grid-column: 1/2;
   grid-row: 1/3;
-  padding: 1em;
+  padding: 1rem;
+  background: linear-gradient(#adadd5, #e49696) fixed;
 }
 
 #box2 {
@@ -851,20 +867,12 @@ tr:hover {
   padding-bottom: 30px;
 }
 
-#learningbox_5 > div p {
-  font-size: 1.1rem;
-}
-
-#learningbox_5 > a > img {
-  width: 1.5%;
-}
-
 #Karrierebox {
   display: flex;
   flex-wrap: wrap;
   align-content: space-around;
   align-content: center;
-  grid-gap: 10px;
+  grid-gap: 20px;
   width: 80%;
   /*background-color: rgb(180, 200, 230);*/
   margin: -10px auto;
@@ -872,17 +880,23 @@ tr:hover {
 
 #Karrierebox > div {
   box-shadow: 0.5rem 0.5rem 2rem;
-  background-color: #c9c2c2;
+  background-color: #b4c8e6;
   /*border: 2px solid rgb(120, 10, 10);*/
-  padding: 1%;
   flex-basis: 30%;
   flex-shrink: 1;
   flex-grow: 2;
+  border-radius: 10px;
 }
-
-#Karrierebox > div > img {
+#Karrierebox > div p {
+  padding: 10px;
+}
+#Karrierebox > div img {
   object-fit: cover;
   width: 100%;
+  height: 150px;
+  border-radius: 0 0 10px 10px;
+  position: relative;
+  top: 5px;
 }
 
 /*Learning nach Karrierelevel Ende*/
@@ -1054,7 +1068,7 @@ footer ion-icon {
   overflow: visible;
 }
 
-@media (max-width: 2048px) {
+@media (max-width: 1024px) {
   #Gruß p {
     font-size: 1.1rem;
     line-height: 2rem;
