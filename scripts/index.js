@@ -1,7 +1,8 @@
 "use strict";
 
 //Datenerfassung
-let myKF = 120;
+let myKF;
+myKF = 120;
 myKF += 12.5;
 let myLF = 111;
 let myPEX = 1524;

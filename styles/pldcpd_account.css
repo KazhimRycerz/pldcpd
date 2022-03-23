@@ -130,6 +130,7 @@ $border-size: 2px; */
   width: 80%;
   top: 100px;
   border-radius: 20px;
+  z-index: 3;
 }
 
 .Trenner {

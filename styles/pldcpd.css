@@ -130,6 +130,7 @@ $border-size: 2px; */
   width: 80%;
   top: 100px;
   border-radius: 20px;
+  z-index: 3;
 }
 
 .Trenner {
@@ -146,6 +147,72 @@ body {
   background-repeat: repeat-y;
   background-attachment: fixed;
   margin-top: 150px;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.rotate {
+  width: 13vw;
+  aspect-ratio: 1;
+  z-index: -1;
+}
+
+#r1 {
+  position: fixed;
+  left: 0.2vw;
+  top: 10.2vw;
+}
+
+#r2 {
+  position: fixed;
+  left: 22vw;
+  top: -1vw;
+}
+
+#r3 {
+  position: fixed;
+  left: 0.2vw;
+  top: 35vw;
+}
+
+#r4 {
+  position: fixed;
+  left: 1020px;
+  top: -40px;
+}
+
+#r5 {
+  position: fixed;
+  left: 5px;
+  top: 940px;
+}
+
+#r6 {
+  position: fixed;
+  right: -10px;
+  top: 550px;
+}
+
+#r7 {
+  position: fixed;
+  right: -10px;
+  top: 160px;
+}
+
+#r8 {
+  position: fixed;
+  right: -10px;
+  top: 950px;
+}
+
+.rotate:hover {
+  animation: rotate 10s infinite linear;
 }
 
 /*Alles zum Header*/
@@ -201,7 +268,7 @@ header {
   height: auto;
   width: auto;
   background-color: none;
-  z-index: 1;
+  z-index: 98;
   text-decoration: none;
 }
 .navheader #dropdown ul li {
@@ -317,11 +384,11 @@ header {
 /*Ende Styles zum Header*/
 /*Beginn Css für den Main*/
 main {
-  display: inline;
+  display: none;
   align-content: stretch;
   margin-left: 10%;
   margin-right: 10%;
-  z-index: 2;
+  z-index: 10;
 }
 
 #Content {
@@ -340,7 +407,6 @@ main {
 }
 #aside_h_Btn {
   display: block;
-  /* color: $cpdred; */
   background-color: rgba(170, 170, 170, 0.75);
   box-shadow: 0px 0px 10px 1px lemonchiffon inset, -2px -2px 5px 3px grey, -5px -5px 5px white inset;
   width: 65px;
@@ -351,7 +417,7 @@ main {
   border: none;
   border-radius: 20%;
   text-align: center;
-  z-index: 100;
+  z-index: 98;
 }
 
 #aside_s_Btn {
@@ -366,7 +432,7 @@ main {
   border: none;
   border-radius: 20%;
   text-align: center;
-  z-index: 100;
+  z-index: 98;
 }
 
 #aside_account {
@@ -383,7 +449,7 @@ main {
   right: 0;
   text-align: left;
   font-size: 0.9rem;
-  z-index: 5;
+  z-index: 10;
   border-radius: 10px;
 }
 #aside_account > p {
