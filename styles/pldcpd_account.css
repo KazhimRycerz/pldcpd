@@ -6,6 +6,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: FoundSanExpNorm;
+  cursor: url(../../images/c.png), auto;
 }
 
 @font-face {
@@ -235,7 +236,7 @@ $border-size: 2px; */
 
 #LC_only {
   font-family: "VIA-Verlag";
-  Color: #7d0000;
+  color: #7d0000;
   letter-spacing: -3px;
   text-align: center;
   font-size: 130%;
@@ -274,8 +275,7 @@ $border-size: 2px; */
 }
 #account_1_data > div {
   margin: 10px;
-  margin-top: 0px;
-  padding: 10px;
+  padding: 5px;
   width: 25%;
   height: 80px;
   background-color: azure;
@@ -285,6 +285,15 @@ $border-size: 2px; */
 }
 #account_1_data > div p {
   line-height: 1rem;
+  font-size: 0.9rem;
+  margin: 5px 0 5px 0;
+  width: 50%;
+  height: 30px;
+  line-height: 30px;
+  border: solid;
+}
+#account_1_data > div p:last-child {
+  width: 100%;
 }
 
 .account_Box {
@@ -293,25 +302,31 @@ $border-size: 2px; */
   top: 10px;
   right: 10px;
   font-weight: bold;
-  font-size: 26px;
+  font-size: 24px;
   width: 120px;
-  height: 35px;
+  height: 30px;
   /*border: 2px dotted black;*/
   border-radius: 10px;
   text-align: center;
   background-color: rgba(221, 155, 55, 0.2);
 }
 
+#account_1_data > div:nth-of-child(2) {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
 .account_Box_Date {
   display: block;
   position: absolute;
   font-weight: bold;
-  font-size: 26px;
+  font-size: 24px;
   letter-spacing: -2px;
   margin: -50px 100px;
   margin-right: 0px;
   width: 120px;
-  /*border: 2px dotted black;*/
+  /* border: 2px dotted black; */
   border-bottom: 3px solid azure;
   border-radius: 10px;
   text-align: center;
@@ -321,13 +336,13 @@ $border-size: 2px; */
 #my_start {
   top: 60px;
   right: 10px;
-  height: 31px;
+  height: 30px;
 }
 
 #my_active {
   top: 90px;
   right: 10px;
-  height: 31px;
+  height: 30px;
 }
 
 /* zweite Datenreihe*/
@@ -385,7 +400,7 @@ $border-size: 2px; */
   color: white;
   width: 60px;
   height: 80px;
-  Line-height: 100%;
+  line-height: 100%;
   border-radius: 10px;
 }
 
@@ -447,49 +462,24 @@ $border-size: 2px; */
   border-right: 3px dotted black;
   border-left: 3px dotted black;
   border-radius: 20px;
-  /*background-color: RGB(221, 155, 55, 0.2);*/
 }
-
-#account_3_data {
+#account_3 #account_3_data {
   display: flex;
   margin-top: 0px;
 }
-
-.account_3 {
+#account_3 #account_3_data .account_3 {
   margin: 10px;
   margin-top: 0px;
   padding: 10px;
-  padding-top: 0px;
   width: 33%;
   height: 80px;
-  /*border-top: 2px dotted black;
-  border-bottom: 2px dotted black;*/
   background-color: azure;
   border-radius: 20px;
   box-shadow: 0.5rem 0.5rem 2rem;
 }
-.account_3 p {
+#account_3 #account_3_data .account_3 p {
   padding: 0px;
   font-size: 0.9rem;
-}
-
-.account_3_Box {
-  display: block;
-  font-family: "FoundSanBd";
-  font-size: 30px;
-  margin: -50px 100px;
-  margin-right: 20px;
-  width: 50%;
-  height: auto;
-  /*border: 2px dotted black;*/
-  border-radius: 10px;
-  text-align: center;
-  align-items: center;
-  background-color: rgba(221, 155, 55, 0.2);
-}
-
-#account_3_p {
-  margin-left: 0px;
 }
 
 #account_4 {

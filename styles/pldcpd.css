@@ -6,6 +6,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: FoundSanExpNorm;
+  cursor: url(../../images/c.png), auto;
 }
 
 @font-face {
@@ -158,61 +159,75 @@ body {
   }
 }
 .rotate {
+  position: fixed;
   width: 13vw;
   aspect-ratio: 1;
   z-index: -1;
+  animation: rotate 20s infinite linear;
 }
 
 #r1 {
-  position: fixed;
-  left: 0.2vw;
-  top: 10.2vw;
-}
-
-#r2 {
-  position: fixed;
   left: 22vw;
   top: -1vw;
 }
 
+#r2 {
+  left: 66vw;
+  top: -1vw;
+}
+
 #r3 {
-  position: fixed;
   left: 0.2vw;
-  top: 35vw;
+  top: 10.2vw;
 }
 
 #r4 {
-  position: fixed;
-  left: 1020px;
-  top: -40px;
+  left: 43.5vw;
+  top: 10.2vw;
 }
 
 #r5 {
-  position: fixed;
-  left: 5px;
-  top: 940px;
+  left: 86.8vw;
+  top: 10.2vw;
 }
 
 #r6 {
-  position: fixed;
-  right: -10px;
-  top: 550px;
+  left: 0.2vw;
+  top: 34.8vw;
 }
 
 #r7 {
-  position: fixed;
-  right: -10px;
-  top: 160px;
+  left: 86.8vw;
+  top: 34.8vw;
 }
 
 #r8 {
-  position: fixed;
-  right: -10px;
-  top: 950px;
+  left: 0.2vw;
+  top: 59.9vw;
 }
 
-.rotate:hover {
-  animation: rotate 10s infinite linear;
+#r9 {
+  left: 86.8vw;
+  top: 59.9vw;
+}
+
+#r10 {
+  left: 0.2vw;
+  top: 85vw;
+}
+
+#r11 {
+  left: 43.8vw;
+  top: 85vw;
+}
+
+#r12 {
+  left: 86.8vw;
+  top: 85vw;
+}
+
+main:hover, main:focus, header:hover, header:focus, footer:hover, footer:focus .rotate {
+  animation: none;
 }
 
 /*Alles zum Header*/
@@ -384,7 +399,7 @@ header {
 /*Ende Styles zum Header*/
 /*Beginn Css für den Main*/
 main {
-  display: none;
+  display: inline;
   align-content: stretch;
   margin-left: 10%;
   margin-right: 10%;
