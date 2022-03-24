@@ -948,12 +948,17 @@ tr:hover {
 #karrierebox > div {
   box-shadow: 0.5rem 0.5rem 2rem;
   background-color: #b4c8e6;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   flex-basis: 30%;
   flex-shrink: 1;
   flex-grow: 2;
   border-radius: 10px;
+  height: 400px;
 }
 #karrierebox > div p {
+  font-size: 1.2rem;
   padding: 10px;
 }
 #karrierebox > div img {
@@ -963,12 +968,52 @@ tr:hover {
   aspect-ratio: 3/2;
   border-radius: 0 0 10px 10px;
   position: relative;
-  top: 5px;
+  bottom: 0px;
+}
+
+#learning_5_1 > img {
+  object-fit: cover;
+  object-position: 1rem;
+}
+
+#learning_5_2 > img {
+  object-fit: cover;
+  object-position: 1rem;
+}
+
+#learning_5_3 > img {
+  object-fit: cover;
+  object-position: 1rem;
+}
+
+#learning_5_4 > img {
+  object-fit: cover;
+  object-position: 1rem;
+}
+
+#learning_5_5 > img {
+  object-fit: cover;
+  object-position: 1rem;
+}
+
+#learning_5_6 > img {
+  object-fit: cover;
+  object-position: 1rem;
+}
+
+#learning_5_7 > img {
+  object-fit: cover;
+  object-position: 1rem;
+}
+
+#learning_5_8 > img {
+  object-fit: cover;
+  object-position: 1rem;
 }
 
 #learning_5_9 > img {
   object-fit: cover;
-  object-position: -10px;
+  object-position: -20px;
 }
 
 /*Learning nach Karrierelevel Ende*/

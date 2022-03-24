@@ -135,7 +135,7 @@ $border-size: 2px; */
 }
 
 .Trenner {
-  margin: 100px auto;
+  margin: 50px auto;
   width: 5%;
   display: block;
 }
@@ -265,15 +265,13 @@ $border-size: 2px; */
   border-right: 3px dotted Black;
   border-left: 3px dotted Black;
   border-radius: 20px;
-  /*background-color: RGB(221, 155, 55, 0.2);*/
 }
-
-#account_1_data {
+#account_1 #account_1_data {
   display: flex;
   margin-top: 0px;
   width: 100%;
 }
-#account_1_data > div {
+#account_1 #account_1_data > div {
   margin: 10px;
   padding: 5px;
   width: 25%;
@@ -283,7 +281,7 @@ $border-size: 2px; */
   box-shadow: 0.5rem 0.5rem 2rem;
   position: relative;
 }
-#account_1_data > div p {
+#account_1 #account_1_data > div p {
   line-height: 1rem;
   font-size: 0.9rem;
   margin: 5px 0 5px 0;
@@ -292,7 +290,7 @@ $border-size: 2px; */
   line-height: 30px;
   border: solid;
 }
-#account_1_data > div p:last-child {
+#account_1 #account_1_data > div p:last-child {
   width: 100%;
 }
 
@@ -317,7 +315,7 @@ $border-size: 2px; */
   flex-wrap: wrap;
 }
 
-.account_Box_Date {
+.account_box_dates {
   display: block;
   position: absolute;
   font-weight: bold;
