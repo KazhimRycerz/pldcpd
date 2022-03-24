@@ -135,7 +135,7 @@ $border-size: 2px; */
 }
 
 .Trenner {
-  margin: 100px auto;
+  margin: 50px auto;
   width: 5%;
   display: block;
 }
@@ -222,6 +222,11 @@ body {
 }
 
 #r12 {
+  left: 66.8vw;
+  top: 85vw;
+}
+
+#r13 {
   left: 86.8vw;
   top: 85vw;
 }
@@ -886,58 +891,40 @@ tr:hover {
   grid-gap: 1em;
   margin-top: 10px;
   margin-bottom: 20px;
-}
-
-#ib_2_angebote p {
   font-size: 1.1rem;
 }
-
-#box1 {
+#ib_2_angebote > div {
+  background: linear-gradient(#adadd5, #e49696) fixed;
+  padding: 1rem;
+  box-shadow: 0.5rem 0.5rem 2rem;
+}
+#ib_2_angebote #box1 {
   grid-column: 1/2;
   grid-row: 1/3;
-  padding: 1rem;
-  background: linear-gradient(#adadd5, #e49696) fixed;
 }
-
-#box2 {
+#ib_2_angebote #box2 {
   grid-column: 2/3;
   grid-row: 1/2;
-  padding: 1em;
 }
-
-#box3 {
+#ib_2_angebote #box3 {
   grid-column: 3/4;
   grid-row: 1/2;
-  padding: 1em;
 }
-
-#box4 {
+#ib_2_angebote #box4 {
   grid-column: 2/4;
   grid-row: 2/3;
-  padding: 1em;
 }
-
-#box5 {
+#ib_2_angebote #box5 {
   grid-column: 1/3;
   grid-row: 3/5;
-  padding: 1em;
 }
-
-#box6 {
+#ib_2_angebote #box6 {
   grid-column: 3/4;
   grid-row: 3/4;
-  padding: 1em;
 }
-
-#box7 {
+#ib_2_angebote #box7 {
   grid-column: 3/4;
   grid-row: 4/5;
-  padding: 1em;
-}
-
-#infobox_2 img {
-  width: 180px;
-  padding: 0px;
 }
 
 /* Learning nach Karrierelevel Start */
@@ -948,126 +935,43 @@ tr:hover {
   padding-bottom: 30px;
 }
 
-#Karrierebox {
+#karrierebox {
   display: flex;
   flex-wrap: wrap;
   align-content: space-around;
   align-content: center;
   grid-gap: 20px;
-  width: 80%;
-  /*background-color: rgb(180, 200, 230);*/
-  margin: -10px auto;
+  width: calc(100% - 40px);
+  margin: 0 auto;
 }
 
-#Karrierebox > div {
+#karrierebox > div {
   box-shadow: 0.5rem 0.5rem 2rem;
   background-color: #b4c8e6;
-  /*border: 2px solid rgb(120, 10, 10);*/
   flex-basis: 30%;
   flex-shrink: 1;
   flex-grow: 2;
   border-radius: 10px;
 }
-#Karrierebox > div p {
+#karrierebox > div p {
   padding: 10px;
 }
-#Karrierebox > div img {
+#karrierebox > div img {
   object-fit: cover;
+  object-position: top left;
   width: 100%;
-  height: 150px;
+  aspect-ratio: 3/2;
   border-radius: 0 0 10px 10px;
   position: relative;
   top: 5px;
 }
 
+#learning_5_9 > img {
+  object-fit: cover;
+  object-position: -10px;
+}
+
 /*Learning nach Karrierelevel Ende*/
-/*Section stickyDefList*/
-/* .sDL_container {
-  display: grid;
-  place-items: center;
-  min-height: 100px;
-  margin:100px;
-}
-
-.floating-stack {
-  background: #455A64;
-  color: #fff;
-  height: 50vh;
-  width: 320px;
-  border-radius: 1rem;
-  overflow-y: auto;
-  font-size: 14px;
-}
-
-.floating-stack > dl {
-  margin: 0 0 1rem;
-  display: grid;
-  grid-template-columns: 2.5rem fr;
-  align-items: center;
-}
-
-.floating-stack dt {
-  position: sticky;
-  top: 0.5rem;
-  left: 0.5rem;
-  font-weight: bold;
-  background: #263238;
-  color: #cfd8dc;
-  height: 2rem;
-  width: 2rem;
-  border-radius: 50%;
-  padding: 0.25rem 1rem;
-  grid-column: 1;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-}
-
-.floating-stack dd {
-  grid-column: 2;
-  margin: 0;
-  padding: 0.2rem;
-}
-
-.floating-stack dd:hover{
-  background-color:$first-color;
-  color: black;
-}
-
-.floating-stack > dl:first-of-type > dd:first-of-type {
-  margin-top: 0.25rem;
-} */
-/* Slides*/
-/* #slides {
-	position: relative;
-  border: 2px solid red;
-  border-top: 3px dotted Black;
-  border-bottom: 3px dotted Black;
-  border-radius: 20px;
-}
-
-.slide {
-	position: relative;
-	left: 0; top: 0;
-	width: 90%; 
-  height: 90%;
-  margin: auto;
-  padding: 20px;
-  opacity: 0;
-	z-index: 1;
-	transition: opacity 1s;
-}
-
-.showing {
-	opacity: 1;
-	z-index: 2;
-}
-
-#slides img {
-  width: 100%;
-}
- */
 /*Ende Css für den Main*/
 footer {
   position: static;
@@ -1097,6 +1001,7 @@ ul {
 
 footer ion-icon {
   font-size: 30px;
+  color: #000032;
 }
 
 #navaside {
