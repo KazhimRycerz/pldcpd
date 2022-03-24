@@ -6,6 +6,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: FoundSanExpNorm;
+  cursor: url(../../images/c.png), auto;
 }
 
 @font-face {
@@ -37,8 +38,8 @@
   src: url("../../fonts/CorporateSTOT-Reg.otf") format("otf");
 }
 @font-face {
-  font-family: "FallingSkyCondOu";
-  src: url("../../fonts/Falling-Sky-Condensed-Outline/FallingSkyCondOu.otf") format("otf");
+  font-family: "FallingSkyOu";
+  src: url("../../fonts/Falling-Sky-Condensed-Outline/FallingSkyOu.woff2") format("woff2"), url("../../fonts/Falling-Sky-Condensed-Outline/FallingSkyOu.otf") format("otf");
 }
 @font-face {
   font-family: "ChalkLine";
@@ -69,22 +70,6 @@ $border-size: 2px; */
 /*Mediasetting*/
 /* Fonts */
 /* logos */
-body {
-  line-height: 1.2;
-  letter-spacing: 0px;
-  background-image: url(../images/Wallpaper_07.JPG);
-  background-size: 100vw;
-  background-repeat: repeat-y;
-  background-attachment: fixed;
-  margin-top: 150px;
-}
-
-/* Basics for the total website*/
-.grad {
-  background-image: linear-gradient(#bebedc, #e2abab);
-  background-attachment: fixed;
-}
-
 .logo_cpd {
   width: 8%;
   margin-left: 0px;
@@ -135,18 +120,114 @@ body {
   bottom: -0.14em;
 }
 
+.grad {
+  background-image: linear-gradient(#adadd5, #e49696);
+  background-attachment: fixed;
+}
+
 .Background {
   background-color: azure;
   margin: auto;
   width: 80%;
   top: 100px;
   border-radius: 20px;
+  z-index: 3;
 }
 
 .Trenner {
   margin: 100px auto;
   width: 5%;
   display: block;
+}
+
+body {
+  line-height: 1.2;
+  letter-spacing: 0px;
+  background-image: url(../images/Wallpaper_07.JPG);
+  background-size: 100vw;
+  background-repeat: repeat-y;
+  background-attachment: fixed;
+  margin-top: 150px;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.rotate {
+  position: fixed;
+  width: 13vw;
+  aspect-ratio: 1;
+  z-index: -1;
+  animation: rotate 20s infinite linear;
+}
+
+#r1 {
+  left: 22vw;
+  top: -1vw;
+}
+
+#r2 {
+  left: 66vw;
+  top: -1vw;
+}
+
+#r3 {
+  left: 0.2vw;
+  top: 10.2vw;
+}
+
+#r4 {
+  left: 43.5vw;
+  top: 10.2vw;
+}
+
+#r5 {
+  left: 86.8vw;
+  top: 10.2vw;
+}
+
+#r6 {
+  left: 0.2vw;
+  top: 34.8vw;
+}
+
+#r7 {
+  left: 86.8vw;
+  top: 34.8vw;
+}
+
+#r8 {
+  left: 0.2vw;
+  top: 59.9vw;
+}
+
+#r9 {
+  left: 86.8vw;
+  top: 59.9vw;
+}
+
+#r10 {
+  left: 0.2vw;
+  top: 85vw;
+}
+
+#r11 {
+  left: 43.8vw;
+  top: 85vw;
+}
+
+#r12 {
+  left: 86.8vw;
+  top: 85vw;
+}
+
+main:hover, main:focus, header:hover, header:focus, footer:hover, footer:focus .rotate {
+  animation: none;
 }
 
 /*Alles zum Header*/
@@ -202,7 +283,7 @@ header {
   height: auto;
   width: auto;
   background-color: none;
-  z-index: 1;
+  z-index: 98;
   text-decoration: none;
 }
 .navheader #dropdown ul li {
@@ -284,11 +365,6 @@ header {
 }
 
 #header_myaccount {
-  /*border: 1px solid black;*/
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: end;
   background-color: azure;
   width: 15vw;
   height: 60px;
@@ -298,11 +374,21 @@ header {
     box-shadow: $boxshadow;
   } */
 }
-#header_myaccount a {
+#header_myaccount ul {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: end;
+  gap: 0px;
+}
+#header_myaccount ul li {
+  list-style-type: none;
+}
+#header_myaccount ul li a {
   text-decoration: none;
   color: black;
 }
-#header_myaccount a:hover {
+#header_myaccount ul li a:hover {
   text-decoration: none;
   color: #7d0000;
 }
@@ -317,14 +403,51 @@ main {
   align-content: stretch;
   margin-left: 10%;
   margin-right: 10%;
-  z-index: 2;
-  align-items: center;
+  z-index: 10;
 }
 
 #Content {
   /*background-color: azure;*/
   width: 80%;
-  margin: 0 auto;
+  margin: 10px auto;
+}
+
+@keyframes aside {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+#aside_h_Btn {
+  display: block;
+  background-color: rgba(170, 170, 170, 0.75);
+  box-shadow: 0px 0px 10px 1px lemonchiffon inset, -2px -2px 5px 3px grey, -5px -5px 5px white inset;
+  width: 65px;
+  height: 40px;
+  position: fixed;
+  top: 150px;
+  right: 30px;
+  border: none;
+  border-radius: 20%;
+  text-align: center;
+  z-index: 98;
+}
+
+#aside_s_Btn {
+  display: none;
+  background-color: rgba(170, 170, 170, 0.75);
+  box-shadow: 0px 0px 10px 1px lemonchiffon inset, -2px -2px 5px 3px grey, -5px -5px 5px white inset;
+  width: 65px;
+  height: 40px;
+  position: fixed;
+  top: 150px;
+  right: 30px;
+  border: none;
+  border-radius: 20%;
+  text-align: center;
+  z-index: 98;
 }
 
 #aside_account {
@@ -341,50 +464,20 @@ main {
   right: 0;
   text-align: left;
   font-size: 0.9rem;
-  z-index: 5;
+  z-index: 10;
+  border-radius: 10px;
 }
 #aside_account > p {
   margin-top: 10px;
 }
 
-#aside_h_Btn {
-  display: block;
-  /* color: $cpdred; */
-  background-color: rgba(170, 170, 170, 0.75);
-  box-shadow: 0px 0px 10px 1px grey inset, -2px -2px 5px 3px grey, -5px -5px 5px white inset;
-  width: 65px;
-  height: 40px;
-  position: fixed;
-  top: 150px;
-  right: 30px;
-  border: none;
-  border-radius: 20%;
-  text-align: center;
-  z-index: 100;
-}
-
-#aside_s_Btn {
-  display: none;
-  background-color: rgba(170, 170, 170, 0.75);
-  box-shadow: 0px 0px 10px 1px grey inset, -2px -2px 5px 3px grey, -5px -5px 5px white inset;
-  width: 65px;
-  height: 40px;
-  position: fixed;
-  top: 150px;
-  right: 30px;
-  border: none;
-  border-radius: 20%;
-  text-align: center;
-  z-index: 100;
-}
-
-aside span {
+#aside_account span {
   font-weight: bold;
   font-style: normal;
-  font-size: 2.5rem;
+  font-size: 1.1rem;
 }
 
-aside img {
+#aside_account img {
   width: 30%;
   float: right;
   margin-left: 0px;
@@ -426,8 +519,7 @@ aside img {
 
 #home_data output {
   display: flex;
-  background-color: #afc8c8;
-  border: 2px solid azure;
+  background-color: #b4c8e6;
   text-align: center;
   justify-content: center;
   padding: 3px;
@@ -450,22 +542,23 @@ aside img {
   gap: 5px;
   align-items: center;
   margin: 10px auto;
-  width: 60%;
+  padding: 0 10px 0 10px;
+  width: 75%;
   border: 2px dotted black;
   border-radius: 10px;
   background-color: rgba(221, 155, 55, 0.2);
 }
-
 #aside_gutbox output {
-  font-size: 2em;
-  font-family: "Thunderlord";
+  display: inline;
+  text-align: end;
+  font-size: 2rem;
+  font-family: "FallingSkyOu";
   font-weight: bold;
   background-color: none;
 }
 
 /*Content*/
 #Gruß_main {
-  background-color: #7d0000;
   background-image: url(../images/Sonnenuntergang.jpg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -475,7 +568,6 @@ aside img {
   width: 100%;
   color: lemonchiffon;
   position: relative;
-  top: 0px;
 }
 
 #Gruß_main:hover {
@@ -583,6 +675,10 @@ aside img {
   margin: 0 auto;
 }
 
+#C1A4 > img {
+  margin-top: 20px;
+}
+
 #learningbox_1 {
   border-top: 3px dotted Black;
   border-bottom: 3px dotted Black;
@@ -615,21 +711,25 @@ aside img {
 
 #lb_1_angebote > div {
   box-shadow: 0.5rem 0.5rem 2rem;
-  background-color: #afc8c8;
+  background-color: #b4c8e6;
   /*border: 2px solid rgb(114, 4, 4);*/
-  padding: 10px;
   width: 20%;
-  margin: 0px;
   border-radius: 10px;
 }
-#lb_1_angebote > div p {
-  font-size: 0.9rem;
+#lb_1_angebote > div h5 {
+  /* font-size: $small; */
+  margin: 10px;
 }
 
 #lb_1_angebote img {
   object-fit: cover;
   width: 100%;
+  height: 120px;
   margin-top: 10px;
+  border-radius: 0 0 10px 10px;
+  position: relative;
+  bottom: 0%;
+  top: 10px;
 }
 
 #Promoter_1 {
@@ -695,6 +795,7 @@ aside img {
   grid-row: 1/2;
   /*background: rgb(218, 164, 157);*/
   padding: 0px;
+  background: linear-gradient(#adadd5, #e49696) fixed;
 }
 #info_1_1 > div {
   display: flex;
@@ -708,6 +809,7 @@ aside img {
   grid-row: 1/2;
   /*background: rgb(218, 164, 157);*/
   padding: 10px;
+  background: linear-gradient(#adadd5, #e49696) fixed;
 }
 #info_1_2 p {
   font-size: 1.1rem;
@@ -754,8 +856,7 @@ tr:hover {
 }
 
 #JR1 {
-  color: black;
-  font-Size: 16px;
+  font-Size: 1.1rem;
   padding: 10px 20px;
   width: 300px;
   display: inline;
@@ -794,7 +895,8 @@ tr:hover {
 #box1 {
   grid-column: 1/2;
   grid-row: 1/3;
-  padding: 1em;
+  padding: 1rem;
+  background: linear-gradient(#adadd5, #e49696) fixed;
 }
 
 #box2 {
@@ -840,18 +942,10 @@ tr:hover {
 
 /* Learning nach Karrierelevel Start */
 #learningbox_5 {
-  border-top: 3px dotted Black;
-  border-bottom: 3px dotted Black;
+  border-top: 3px dotted black;
+  border-bottom: 3px dotted black;
   border-radius: 20px;
   padding-bottom: 30px;
-}
-
-#learningbox_5 > div p {
-  font-size: 1.1rem;
-}
-
-#learningbox_5 > a > img {
-  width: 1.5%;
 }
 
 #Karrierebox {
@@ -859,7 +953,7 @@ tr:hover {
   flex-wrap: wrap;
   align-content: space-around;
   align-content: center;
-  grid-gap: 10px;
+  grid-gap: 20px;
   width: 80%;
   /*background-color: rgb(180, 200, 230);*/
   margin: -10px auto;
@@ -867,17 +961,23 @@ tr:hover {
 
 #Karrierebox > div {
   box-shadow: 0.5rem 0.5rem 2rem;
-  background-color: #c9c2c2;
+  background-color: #b4c8e6;
   /*border: 2px solid rgb(120, 10, 10);*/
-  padding: 1%;
   flex-basis: 30%;
   flex-shrink: 1;
   flex-grow: 2;
+  border-radius: 10px;
 }
-
-#Karrierebox > div > img {
+#Karrierebox > div p {
+  padding: 10px;
+}
+#Karrierebox > div img {
   object-fit: cover;
   width: 100%;
+  height: 150px;
+  border-radius: 0 0 10px 10px;
+  position: relative;
+  top: 5px;
 }
 
 /*Learning nach Karrierelevel Ende*/
@@ -971,22 +1071,32 @@ tr:hover {
 /*Ende Css für den Main*/
 footer {
   position: static;
+  bottom: 0;
   background-color: azure;
-  padding: 5px;
-  width: 80%;
+  padding: 10px;
+  width: 100%;
+  height: 120px;
   height: fit-content;
   font-size: 12px;
-  margin: 50px auto;
-  border-radius: 20px;
+  margin-top: 50px;
 }
 
 footer p {
   text-align: center;
   font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+ul {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  gap: 10px;
+  list-style-type: none;
 }
 
 footer ion-icon {
-  font-size: 20px;
+  font-size: 30px;
 }
 
 #navaside {
@@ -1039,7 +1149,7 @@ footer ion-icon {
   overflow: visible;
 }
 
-@media (max-width: 2048px) {
+@media (max-width: 1024px) {
   #Gruß p {
     font-size: 1.1rem;
     line-height: 2rem;

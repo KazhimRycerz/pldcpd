@@ -1,3 +1,7 @@
+@import "./reset/reset.scss";
+@import "./typography/typography.scss";
+@import "./variables/variables.scss";
+
 :root {
     --rd: rgb(67, 30, 26);
     --rdt: rgba(67, 30, 26, 0.7);
@@ -18,7 +22,7 @@
       font-size: 14px;
       vertical-align: top;
       line-height: 1.2;
-      color: rgb(67, 30, 26)
+      color: rgb(67, 30, 26);
     }
     
     
@@ -39,7 +43,7 @@
     
     form {
       background-color: var(--rdt);
-      font-family: sans-serif;
+      font-family: $primary-font;
       border-radius: 0 20px 20px 0;
       width: 50%;
       z-index:1;
@@ -49,7 +53,7 @@
     }
     
     form:hover, form:focus-within {
-      background-color: white;
+     /*  background-color: white; */
     }
     
     
@@ -62,7 +66,7 @@
     
     input {
       background-color: var(--mc);
-      color: var(--rd);
+      color: $cpdred;
       box-shadow: 5px 5px 10px var(--md); 
       text-align:left;
       position: relative;
@@ -94,8 +98,7 @@
       min-height: 75px;
       resize: none;
       background-color: var(--mc);
-      box-shadow: 10px 10px 50px grey; 
-      font-family: FoundSanExpMed;
+      box-shadow: $boxshadow; 
     }
     
     label[for="Auswahl_Gender"]{
@@ -127,7 +130,7 @@
     }
     
     #newsletter_list {
-      box-shadow: 10px 10px 50px grey;
+      box-shadow: $boxshadow;
       display: inline-block;
       width: 180px;
       background-color: var(--mc);
@@ -149,7 +152,7 @@
     #Monat {
       width: 200px;
       background-color: rgb(180, 200, 230);
-      box-shadow: 10px 10px 50px grey; 
+      box-shadow: $boxshadow; 
     }
     
     label[for="favcolor"],[for="myfile"]{

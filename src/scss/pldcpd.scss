@@ -13,78 +13,80 @@
   margin-top:150px;
 }
 
-
-/* Basics for the total website*/
-
-
-.grad {
-  background-image: linear-gradient(rgb(190, 190, 220), rgb(226, 171, 171));
-  background-attachment:fixed;
-}
-
-.logo_cpd {
-  width: 8%;
-  margin-left:0px;
-  margin-right:10px;
-  right:10px;
-  align-items:right;
-}
-
-.LC {
-  font-family: $calli;
-  font-weight: bold;
-  letter-spacing: -5px;
-  line-height: normal;
-  font-style: normal;
-  color: $cpdred;
-  font-size: 2.5rem;
-  position: relative;
-  bottom: -0.15rem;
-}
-
-.C {
-  font-family: $calli;
-  color: $cpdred;
-  font-size: 1.3em;
-  position:relative;
-  top: 3px;
-  /* bottom: -0.14em; */
-  text-decoration:none;
-}
-
-.Calli {
-  font-family: $calli;
-  line-height: normal;
-  font-style: normal;
-  font-size: $normal;
-  position:relative;
-  bottom: -0.14em;
-  text-decoration:none;
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
   }
-
-.LitCoin {
-  font-family: $calli;
-  font-style: normal; 
-  line-height: normal;
-  color:rgb(125, 0, 0); 
-  font-size: 1.5em;
-  position:relative; 
-  bottom: -0.14em;
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-.Background{
-  background-color: $first-color;
-  margin: auto;
-  width:80%;
-  top: 100px;
-  border-radius: 20px;
+.rotate {
+  position: fixed;
+  width: 13vw; 
+  aspect-ratio: 1;
+  z-index: -1;
+  animation: rotate 20s infinite linear;
 }
 
-.Trenner {
-  margin: 100px auto;
-  width: 5%;
-  display:block;
+#r1 {
+    left: 22vw;
+    top: -1vw;
+} 
+#r2 {
+    left: 66vw;
+    top: -1vw;
 }
+#r3 {
+  left: 0.2vw;
+  top: 10.2vw;
+}
+#r4 {
+   left:43.5vw;
+   top: 10.2vw;
+}
+#r5 {
+   left: 86.8vw;
+   top: 10.2vw;
+}
+#r6 {
+    left: 0.2vw;
+    top: 34.8vw;
+}
+#r7 {
+    left: 86.8vw;
+    top: 34.8vw;
+}
+#r8 {
+    left: 0.2vw;
+    top: 59.9vw;
+}
+#r9 {
+    left: 86.8vw;
+    top: 59.9vw;
+}
+#r10 {
+    left: 0.2vw;
+    top: 85.0vw;
+}
+#r11 {
+    left: 43.8vw;
+    top: 85.0vw;
+}
+#r12 {
+    left: 66.8vw;
+    top: 85.0vw;
+}
+#r13 {
+  left: 86.8vw;
+  top: 85.0vw;
+}
+
+main:hover, main:focus, header:hover, header:focus, footer:hover, footer:focus .rotate {
+  animation: none;
+}
+
 
 /*Alles zum Header*/
 header {
@@ -138,7 +140,7 @@ header {
       height: auto;
       width: auto;
       background-color: none;
-      z-index: 1;
+      z-index: 98;
       text-decoration: none;
       
       li {        
@@ -220,24 +222,31 @@ header {
 }
 
 #header_myaccount {
-  /*border: 1px solid black;*/
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: end;
   background-color: $first-color;
   width: 15vw;
   height: 60px;
   margin-right: 30px;
   font-size: $small;
-    a {
-      text-decoration:none;
-      color: black;
-    } 
-    a:hover{
-      text-decoration:none;
-      color: $cpdred;
+    ul {
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+      align-items: end;
+      gap: 0px;
+      li {
+        list-style-type: none;
+        a {
+          text-decoration:none;
+          color: black;
+        }
+        a:hover{
+          text-decoration:none;
+          color: $cpdred;
+        }
+      }
     }
+    
+    
     /* :hover {
       box-shadow: $boxshadow;
     } */
@@ -246,12 +255,8 @@ header {
     }
 }
 
-
 /*Ende Styles zum Header*/
  
-
-
-
 /*Beginn Css für den Main*/ 
 
 main{
@@ -259,14 +264,48 @@ main{
   align-content:stretch;
   margin-left: 10%;
   margin-right: 10%;
-  z-index: 2;
-  align-items: center;
+  z-index: 10;
 }
 
 #Content {
   /*background-color: azure;*/
   width: 80%;
-  margin: 0 auto;  
+  margin: 10px auto;  
+}
+
+@keyframes aside {
+  0%  {opacity: 0;}
+  100% {opacity: 1;}
+  }
+
+#aside_h_Btn {
+  display: block;
+  background-color: $button-color;
+  box-shadow: $btnshadow;
+  width: 65px;
+  height: 40px;
+  position: fixed;
+  top: 150px;
+  right: 30px;
+  border: none;
+  border-radius: 20%;
+  text-align:center;
+  z-index: 98;
+ }
+
+#aside_s_Btn {
+  display: none;
+  background-color: $button-color;
+  box-shadow: $btnshadow;
+  width: 65px;
+  height: 40px;
+  position: fixed;
+  top: 150px;
+  right:30px;
+  border: none;
+  border-radius: 20%;
+  text-align:center;
+  z-index: 98;
 }
 
 #aside_account {
@@ -283,57 +322,25 @@ main{
   right: 0;
   text-align: left;
   font-size: $small;
-  z-index: 5;
+  z-index: 10;
+  border-radius: 10px;
   >p {
     margin-top: 10px;
   }
 }
 
-#aside_h_Btn {
-  display: block;
-  /* color: $cpdred; */
-  background-color: $button-color;
-  box-shadow: $btnshadow;
-  width: 65px;
-  height: 40px;
-  position: fixed;
-  top: 150px;
-  right: 30px;
-  border: none;
-  border-radius: 20%;
-  text-align:center;
-  z-index: 100;
- }
-
-#aside_s_Btn {
-  display: none;
-  background-color: $button-color;
-  box-shadow: $btnshadow;
-  width: 65px;
-  height: 40px;
-  position: fixed;
-  top: 150px;
-  right:30px;
-  border: none;
-  border-radius: 20%;
-  text-align:center;
-  z-index: 100;
-}
-
-aside span {
+#aside_account span {
   font-weight: bold;
   font-style: normal;
-  font-size: 2.5rem;
+  font-size: $normal;
   }
 
-aside img {
+#aside_account img {
   width:30%;
   float: right;
   margin-left: 0px;
   margin-top: 15px;
 }
-
-
 
 #home_data{
   border: 2px dotted black;
@@ -371,7 +378,6 @@ aside img {
 #home_data output{
   display: flex;
   background-color: $third-color;
-  border: 2px solid rgb(240, 255, 255);
   text-align:center;
   justify-content:center;
   padding: 3px;
@@ -394,25 +400,28 @@ aside img {
   gap: 5px;
   align-items:center;
   margin: 10px auto; 
-  width: 60%;
+  padding: 0 10px 0 10px;
+  width: 75%;
   border: 2px dotted black;
   border-radius: 10px;
   background-color:$fourth-color;
+  output {
+    display: inline;
+    text-align: end;
+    font-size: $xxlarge;
+    font-family: $guthaben;
+    font-weight: bold;
+    background-color: none;
+  }
 }
 
 
-  #aside_gutbox output{
-  font-size: 2.0em;
-  font-family: $guthaben;
-  font-weight: bold;
-  background-color: none;
-  }
+  
   
 
 /*Content*/
 
 #Gruß_main {
-  background-color: $cpdred;
   background-image: url(../images/Sonnenuntergang.jpg);
   background-size:cover;
   background-repeat: no-repeat;
@@ -422,7 +431,6 @@ aside img {
   width: 100%;
   color:$secondary-color;
   position:relative;
-  top: 0px;
 
 }
 
@@ -483,11 +491,11 @@ aside img {
   font-size: $normal;
   width: 100%;
   #C1A1, #C1A4 {
-  margin: 0 10px 0 20px;
-  border-left: 3px dotted Black;
-  /*border-right: 3px dotted Black;*/
-  border-radius: 20px;
-  padding: 20px;
+    margin: 0 10px 0 20px;
+    border-left: 3px dotted Black;
+    /*border-right: 3px dotted Black;*/
+    border-radius: 20px;
+    padding: 20px;
   }
   #C1A1 {
     position: relative;
@@ -536,6 +544,9 @@ aside img {
   width: 2.0rem;
   margin: 0 auto;
 }
+#C1A4>img {
+  margin-top: 20px;
+}
 
 
  
@@ -576,12 +587,11 @@ aside img {
   box-shadow: $boxshadow; 
   background-color: $third-color;
   /*border: 2px solid rgb(114, 4, 4);*/
-  padding: 10px;
   width: 20%;
-  margin: 0px;
   border-radius: 10px;
-  p {
-   font-size: $small; 
+  h5 {
+   /* font-size: $small; */
+   margin: 10px; 
   }
   
 }
@@ -589,7 +599,12 @@ aside img {
 #lb_1_angebote img{
   object-fit: cover;
   width: 100%;
+  height: 120px;
   margin-top: 10px;
+  border-radius: 0 0 10px 10px;
+  position: relative;
+  bottom: 0%;
+  top: 10px;
 }  
 
 #Promoter_1 {
@@ -655,6 +670,7 @@ aside img {
   grid-row: 1/2;
   /*background: rgb(218, 164, 157);*/ 
   padding: 0px;
+  background: $grad;
   >div {
     display: flex;
     gap: 20px;
@@ -672,6 +688,7 @@ aside img {
   p {
     font-size: $normal;
   }
+  background: $grad;
 }
 
 #infobox_1 div img {
@@ -716,8 +733,7 @@ tr:hover {
 }
 
 #JR1 {
-  color: rgb(0, 0, 0);
-  font-Size: 16px;
+  font-Size: $normal;
   padding:10px 20px;
   width: 300px;
   display: inline;    
@@ -747,212 +763,124 @@ tr:hover {
   grid-gap: 1em;
   margin-top: 10px;
   margin-bottom: 20px;
-}
-
-#ib_2_angebote p {
   font-size: $normal;
-}
-
-#box1 {
-  grid-column: 1/2;
-  grid-row: 1/3;
-  padding: 1em;
+  >div {
+    background: $grad;
+    padding: 1rem;
+    box-shadow: $boxshadow;
+  }
+  #box1 {
+    grid-column: 1/2;
+    grid-row: 1/3;
+  }
+  #box2 {
+    grid-column: 2/3;
+    grid-row: 1/2;
+  }
+  #box3 {
+    grid-column: 3/4;
+    grid-row: 1/2;
+  }
+  #box4 {
+    grid-column: 2/4;
+    grid-row: 2/3;
+  }
+  #box5 {
+    grid-column: 1/3;
+    grid-row: 3/5;
+  }
+  #box6 {
+    grid-column: 3/4;
+    grid-row: 3/4;
   }
 
-#box2 {
-  grid-column: 2/3;
-  grid-row: 1/2;
-  padding: 1em;
+  #box7 {
+    grid-column: 3/4;
+    grid-row: 4/5;
+  }
 }
 
-#box3 {
-  grid-column: 3/4;
-  grid-row: 1/2;
-  padding: 1em;
-}
-
-#box4 {
-  grid-column: 2/4;
-  grid-row: 2/3;
-  padding: 1em;
-}
-
-#box5 {
-  grid-column: 1/3;
-  grid-row: 3/5;
-  padding: 1em;
-}
-#box6 {
-  grid-column: 3/4;
-  grid-row: 3/4;
-  padding: 1em;
-}
-
-#box7 {
-  grid-column: 3/4;
-  grid-row: 4/5;
-  padding: 1em;
-}
-     
-#infobox_2 img {
-  width: 180px;
-  padding: 0px
-}
 
 /* Learning nach Karrierelevel Start */
 
 #learningbox_5{
-  border-top: 3px dotted Black;
-  border-bottom: 3px dotted Black;
+  border-top: 3px dotted black;
+  border-bottom: 3px dotted black;
   border-radius: 20px;
   padding-bottom: 30px;
 }
-
-#learningbox_5>div p {
-    font-size: $normal;
-  }
   
-#learningbox_5>a>img {
-    width: 1.5%;
-  }
-
-#Karrierebox {
+#karrierebox {
   display: flex;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
   align-content:space-around;
   align-content: center;
-  grid-gap:10px;
-  width: 80%;
-  /*background-color: rgb(180, 200, 230);*/
-  margin: -10px auto;
-  }
+  grid-gap: 20px;
+  width: calc(100% - 40px);
+  margin: 0 auto;
+}
   
-#Karrierebox>div {
+#karrierebox>div {
   box-shadow: $boxshadow; 
-  background-color: rgb(201, 194, 194);
-  /*border: 2px solid rgb(120, 10, 10);*/
-  padding: 1%;
+  background-color: $third-color;
   flex-basis: 30%;
   flex-shrink: 1;
   flex-grow: 2;
-}
-   
-#Karrierebox>div>img{
+  border-radius: 10px;
+  p {
+    padding: 10px;
+  }
+  img {
   object-fit: cover;
+  object-position: top left;
   width: 100%;
+  aspect-ratio: 3/2;
+  border-radius: 0 0 10px 10px;
+  position: relative;
+  top: 5px;
+  }
 }
+#learning_5_9>img {
+    object-fit:cover;
+    object-position: -10px;
+}
+
+
 
 /*Learning nach Karrierelevel Ende*/
-
-/*Section stickyDefList*/
-/* .sDL_container {
-  display: grid;
-  place-items: center;
-  min-height: 100px;
-  margin:100px;
-}
-  
-.floating-stack {
-  background: #455A64;
-  color: #fff;
-  height: 50vh;
-  width: 320px;
-  border-radius: 1rem;
-  overflow-y: auto;
-  font-size: 14px;
-}
-  
-.floating-stack > dl {
-  margin: 0 0 1rem;
-  display: grid;
-  grid-template-columns: 2.5rem fr;
-  align-items: center;
-}
-  
-.floating-stack dt {
-  position: sticky;
-  top: 0.5rem;
-  left: 0.5rem;
-  font-weight: bold;
-  background: #263238;
-  color: #cfd8dc;
-  height: 2rem;
-  width: 2rem;
-  border-radius: 50%;
-  padding: 0.25rem 1rem;
-  grid-column: 1;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-}
-  
-.floating-stack dd {
-  grid-column: 2;
-  margin: 0;
-  padding: 0.2rem;
-}
-
-.floating-stack dd:hover{
-  background-color:$first-color;
-  color: black;
-}
-  
-.floating-stack > dl:first-of-type > dd:first-of-type {
-  margin-top: 0.25rem;
-} */
-  
-/* Slides*/
-/* #slides {
-	position: relative;
-  border: 2px solid red;
-  border-top: 3px dotted Black;
-  border-bottom: 3px dotted Black;
-  border-radius: 20px;
-}
-
-.slide {
-	position: relative;
-	left: 0; top: 0;
-	width: 90%; 
-  height: 90%;
-  margin: auto;
-  padding: 20px;
-  opacity: 0;
-	z-index: 1;
-	transition: opacity 1s;
-}
-
-.showing {
-	opacity: 1;
-	z-index: 2;
-}
-  
-#slides img {
-  width: 100%;
-}
- */
-
 
  /*Ende Css für den Main*/ 
 
 footer {
-  position: static;
+  position:static;
+  bottom: 0;
   background-color:$first-color;
-  padding:5px;
-  width:80%;
+  padding: 10px;
+  width:100%;
+  height: 120px;
   height:fit-content;
   font-size: 12px;
-  margin: 50px auto;
-  border-radius: 20px;
+  margin-top: 50px;
+  
 }
 footer p {
   text-align: center;
   font-size: $small;
+  margin-bottom: 10px;
+}
+
+ul {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  gap: 10px;
+  list-style-type: none;
+
 }
 
 footer ion-icon {
-  font-size: 20px;;
+  font-size: 30px;;
+  color:$pldblue;
 }
 
 #navaside {
@@ -1008,7 +936,7 @@ footer ion-icon {
  }
   
    
- @media (max-width: $widedesktop){
+ @media (max-width: $desktop){
   #Gruß p {
     font-size: $normal;
     line-height: 2.0rem;

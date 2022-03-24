@@ -1,4 +1,145 @@
 @charset "UTF-8";
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: FoundSanExpNorm;
+  cursor: url(../../images/c.png), auto;
+}
+
+@font-face {
+  font-family: "VIA-Verlag";
+  src: url("../../fonts/VIA-Verlag.woff2") format("woff2"), url("../../fonts/VIA-Verlag.otf") format("otf");
+}
+@font-face {
+  font-family: "BillboardShadow";
+  src: url("../fonts/Billboard-Shadow.otf") format("otf");
+}
+@font-face {
+  font-family: "FoundSanExpMed";
+  src: url("../../fonts/FOUSANMD.woff2") format("woff2"), url("../fonts/FOUSANMD.otf") format("otf");
+}
+@font-face {
+  font-family: "Carbono";
+  src: url("../../fonts/carbono/carbono.ttf") format("ttf");
+}
+@font-face {
+  font-family: "Vacaciones";
+  src: url("../../fonts/vacaciones-outline/Vacaciones-font-ffp-defharo.otf") format("otf"), url("../../fonts/vacaciones-outline/Vacaciones-font-ffp-defharo.woff2") format("woff2");
+}
+@font-face {
+  font-family: "CorporateDemi";
+  src: url("../../fonts/CorporateSTOT-Dem.otf") format("otf");
+}
+@font-face {
+  font-family: "CorporateReg";
+  src: url("../../fonts/CorporateSTOT-Reg.otf") format("otf");
+}
+@font-face {
+  font-family: "FallingSkyOu";
+  src: url("../../fonts/Falling-Sky-Condensed-Outline/FallingSkyOu.woff2") format("woff2"), url("../../fonts/Falling-Sky-Condensed-Outline/FallingSkyOu.otf") format("otf");
+}
+@font-face {
+  font-family: "ChalkLine";
+  src: url("../../fonts/chalk_line_outline/ChalkLine-Outline.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Rampart";
+  src: url("../../fonts/Rampart_One/RampartOne-Regular.ttf") format("ttf");
+}
+@font-face {
+  font-family: "Thunderlord";
+  src: url("../../fonts/thunder_lord/Thunder Lord.woff2") format("woff2"), url("../../fonts/thunder_lord/Thunder Lord.ttf") format("ttf");
+}
+@font-face {
+  font-family: "FoundSanExpNorm";
+  src: url("../../fonts/FOUSANNO.woff2") format("woff2"), url("../fonts/FOUSANNO.otf") format("otf");
+}
+@font-face {
+  font-family: "FoundSanBd";
+  src: url("../../fonts/FOUSANBD.woff2") format("woff2"), url("../fonts/FOUSANBD.otf") format("otf");
+}
+/* textsizes*/
+/*$medium: 4rem;
+$large: 10rem;
+$huge: 20rem;
+
+$border-size: 2px; */
+/*Mediasetting*/
+/* Fonts */
+/* logos */
+.logo_cpd {
+  width: 8%;
+  margin-left: 0px;
+  margin-right: 10px;
+  right: 10px;
+  align-items: right;
+}
+
+.LC {
+  font-family: "VIA-Verlag";
+  font-weight: bold;
+  letter-spacing: -5px;
+  line-height: normal;
+  font-style: normal;
+  color: #7d0000;
+  font-size: 2.5rem;
+  position: relative;
+  bottom: -0.15rem;
+}
+
+.C {
+  font-family: "VIA-Verlag";
+  color: #7d0000;
+  font-size: 1.3em;
+  position: relative;
+  top: 3px;
+  /* bottom: -0.14em; */
+  text-decoration: none;
+}
+
+.Calli {
+  font-family: "VIA-Verlag";
+  line-height: normal;
+  font-style: normal;
+  font-size: 1.1rem;
+  position: relative;
+  bottom: -0.14em;
+  text-decoration: none;
+}
+
+.LitCoin {
+  font-family: "VIA-Verlag";
+  font-style: normal;
+  line-height: normal;
+  color: #7d0000;
+  font-size: 1.5em;
+  position: relative;
+  bottom: -0.14em;
+}
+
+.grad {
+  background-image: linear-gradient(#adadd5, #e49696);
+  background-attachment: fixed;
+}
+
+.Background {
+  background-color: azure;
+  margin: auto;
+  width: 80%;
+  top: 100px;
+  border-radius: 20px;
+  z-index: 3;
+}
+
+.Trenner {
+  margin: 100px auto;
+  width: 5%;
+  display: block;
+}
+
 :root {
   --rd: rgb(67, 30, 26);
   --rdt: rgba(67, 30, 26, 0.7);
@@ -37,7 +178,7 @@ main {
 
 form {
   background-color: var(--rdt);
-  font-family: sans-serif;
+  font-family: "FoundSanExpNorm", sans-serif;
   border-radius: 0 20px 20px 0;
   width: 50%;
   z-index: 1;
@@ -47,7 +188,7 @@ form {
 }
 
 form:hover, form:focus-within {
-  background-color: white;
+  /*  background-color: white; */
 }
 
 label {
@@ -59,7 +200,7 @@ label {
 
 input {
   background-color: var(--mc);
-  color: var(--rd);
+  color: #7d0000;
   box-shadow: 5px 5px 10px var(--md);
   text-align: left;
   position: relative;
@@ -91,8 +232,7 @@ textarea {
   min-height: 75px;
   resize: none;
   background-color: var(--mc);
-  box-shadow: 10px 10px 50px grey;
-  font-family: FoundSanExpMed;
+  box-shadow: 0.5rem 0.5rem 2rem;
 }
 
 label[for=Auswahl_Gender] {
@@ -124,7 +264,7 @@ label[for=Auswahl_newsletter] {
 }
 
 #newsletter_list {
-  box-shadow: 10px 10px 50px grey;
+  box-shadow: 0.5rem 0.5rem 2rem;
   display: inline-block;
   width: 180px;
   background-color: var(--mc);
@@ -146,7 +286,7 @@ label[for=Auswahl_newsletter] {
 #Monat {
   width: 200px;
   background-color: #b4c8e6;
-  box-shadow: 10px 10px 50px grey;
+  box-shadow: 0.5rem 0.5rem 2rem;
 }
 
 label[for=favcolor], [for=myfile] {

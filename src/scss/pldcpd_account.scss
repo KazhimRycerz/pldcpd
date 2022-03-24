@@ -2,29 +2,28 @@
 @import "./typography/typography.scss";
 @import "./variables/variables.scss";
 
-
 #header_myaccount img {
-    width:30%;
-    height: 30%;
-    float: left;
-    margin-left: 20px;
-    margin-right: 50px;
-    margin-top: -25px;
-    }
+  width: 30%;
+  height: 30%;
+  float: left;
+  margin-left: 20px;
+  margin-right: 50px;
+  margin-top: -25px;
+}
 
-#header_myaccount p a{
-  text-decoration:none;
+#header_myaccount p a {
+  text-decoration: none;
   color: black;
 }
 
-#header_myaccount p a:hover{
-  text-decoration:none;
+#header_myaccount p a:hover {
+  text-decoration: none;
   color: rgb(200, 0, 0);
 }
 
 /*Ende Styles zum Header Account-Seite*/
- 
-/*Beginn Css für den Main*/ 
+
+/*Beginn Css für den Main*/
 
 #aside_account {
   display: inline-block;
@@ -42,199 +41,222 @@
   text-align: left;
   vertical-align: top;
   font-size: 14px;
+  border-radius: 10px;
   /*z-index: 1;*/
-    .account_container {
-      display: grid;
-      place-items: center;
-      margin-bottom: 0px;
-      .floating-stack {
-        background: $first-color;
-        height: 400px;
-        width: 240px;
-        overflow-y: auto;
-        font-size: 14px;
-        padding-bottom: 10px;
-        dl {
-          margin: 0 0 0rem;
-          display: grid;
-          grid-template-columns: 2.5rem 1fr;
-          align-items: baseline;
-          dt {
-            text-align: center;
-            font-family: $guthaben;
-            position: sticky;
-            top: 0.5rem;
-            left: 0.5rem;
-            font-weight: bold;
-            background:  rgb(17, 59, 13);
-            color: $first-color;
-            height: 35px;
-            width: 35px;
-            border-radius: 50%;
-            line-height:35px;
-            grid-column: 1;
-          }
-          dd {
-            grid-column: 2;
-            margin: 0px;
-            padding: 10px;
-            padding-top: 10px;
-            h3 {
-              font-weight: 900;
-              font-family: $primary-font-bold;
-            }
-          }
-          dd:hover{
-            background-color:rgb(180, 200, 230);
-            color: black;
+  .account_container {
+    display: grid;
+    width: 100%;
+    place-items: center;
+    margin: 10px 0 10px 0;
+    .floating-stack {
+      background: $first-color;
+      height: 380px;
+      width: 100%;
+      overflow-y: scroll;
+      overflow-x: none;
+      font-size: 14px;
+      padding-bottom: 220px;
+
+      dl {
+        margin: 0 0 0;
+        display: grid;
+        grid-template-columns: 2.2rem 1fr;
+        align-items: baseline;
+        dt {
+          text-align: center;
+          font-family: $guthaben;
+          position: sticky;
+          top: 0.5rem;
+          left: 0.5rem;
+          font-weight: bold;
+          background: rgb(17, 59, 13);
+          color: $first-color;
+          height: 35px;
+          width: 35px;
+          border-radius: 50%;
+          line-height: 35px;
+          grid-column: 1;
+        }
+        dd {
+          grid-column: 2;
+          margin: 0px;
+          padding: 10px;
+          padding-top: 10px;
+          h3 {
+            font-weight: 900;
+            font-family: $primary-font-bold;
           }
         }
-        > dl:first-of-type > dd:first-of-type {
-          margin-top: 0.25rem;
+        dd:hover {
+          background-color: rgb(180, 200, 230);
+          color: black;
         }
+      }
+      > dl:first-of-type > dd:first-of-type {
+        margin-top: 0.25rem;
       }
     }
   }
-  
+}
 
-  #LC_only {
-      font-family: $calli;
-      Color: $cpdred;
-      letter-spacing: -3px;
-      text-align:center;
-      font-size: 130%;
-      text-shadow: 1px 1px rgb(225, 220, 100);
-      border-style: solid;
-      border-color: rgb(223, 168, 17);
-      border-width: 2px;
-      background:  rgb(192, 112, 7);
-      background-image: linear-gradient(to top left, rgb(160, 88, 0), rgb(225, 220, 100));
-  }
+#LC_only {
+  font-family: $calli;
+  color: $cpdred;
+  letter-spacing: -3px;
+  text-align: center;
+  font-size: 130%;
+  text-shadow: 1px 1px rgb(225, 220, 100);
+  border-style: solid;
+  border-color: rgb(223, 168, 17);
+  border-width: 2px;
+  background-color: rgb(192, 112, 7);
+  background-image: linear-gradient(
+    to top left,
+    rgb(160, 88, 0),
+    rgb(225, 220, 100)
+  );
+}
 
 #account_main {
   overflow: scroll;
   scrollbar-width: 10px;
-  height:100px;
+  height: 100px;
 }
 
-#Content h3{
+#Content h3 {
   margin: 10px;
   padding-top: 10px;
 }
-  
-#account_1{
+
+#account_1 {
   display: block;
-  margin-top:20px;
+  margin-top: 20px;
   border-right: 3px dotted Black;
   border-left: 3px dotted Black;
   border-radius: 20px;
-   /*background-color: RGB(221, 155, 55, 0.2);*/
-  }
-
-
-#account_1_data{
-  display:flex;
-  margin-top:0px;
+  #account_1_data {
+  display: flex;
+  margin-top: 0px;
   width: 100%;
-  >div {
+  > div {
     margin: 10px;
-    margin-top: 0px;
-    padding: 10px;
+    padding: 5px;
     width: 25%;
     height: 80px;
     background-color: $first-color;
     border-radius: 20px;
-    box-shadow: $boxshadow; 
+    box-shadow: $boxshadow;
     position: relative;
     p {
       line-height: 1rem;
+      font-size: $small;
+      margin: 5px 0 5px 0;
+      width: 50%;
+      height: 30px;
+      line-height:30px;
+      border: solid;
+    }
+    p:last-child {
+      width: 100%;
     }
   }
 }
-
+}
 
 .account_Box {
   display: block;
-  position:absolute;
+  position: absolute;
   top: 10px;
   right: 10px;
-  font-weight:bold;
-  font-size: 26px;
+  font-weight: bold;
+  font-size: 24px;
   width: 120px;
-  height: 35px;
+  height: 30px;
   /*border: 2px dotted black;*/
   border-radius: 10px;
   text-align: center;
-  background-color:rgb(221, 155, 55, 0.2);
+  background-color: rgb(221, 155, 55, 0.2);
 }
 
-.account_Box_Date {
+#account_1_data>div:nth-of-child(2) {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+    
+}
+.account_box_dates {
   display: block;
   position: absolute;
   font-weight: bold;
-  font-size: 26px;
+  font-size: 24px;
   letter-spacing: -2px;
-  margin: -50px 100px; 
+  margin: -50px 100px;
   margin-right: 0px;
   width: 120px;
-  height: 35px;
-  /*border: 2px dotted black;*/
-  border-bottom:3px solid $first-color;
+  /* border: 2px dotted black; */
+  border-bottom: 3px solid $first-color;
   border-radius: 10px;
   text-align: center;
-  background-color:rgb(221, 155, 55, 0.2);
-  }
-  #my_start {
-    top: 60px;
-  right: 10px;
-  }
-  #my_active {
-    top: 90px;
-  right: 10px;
-  }
+  background-color: rgb(221, 155, 55, 0.2);
+}
 
-  /* zweite Datenreihe*/
+#my_start {
+  top: 60px;
+  right: 10px;
+  height: 30px;
+}
+#my_active {
+  top: 90px;
+  right: 10px;
+  height: 30px;
+}
 
-#account_2{
+/* zweite Datenreihe*/
+
+#account_2 {
   display: block;
   margin-top: 20px;
   border-left: 3px dotted black;
   border-right: 3px dotted black;
   border-radius: 20px;
-   /*background-color: RGB(221, 155, 55, 0.2);*/
+  /*background-color: RGB(221, 155, 55, 0.2);*/
   height: auto;
+  > p {
+    margin-left: 10px;
   }
-#account_2_data{
-  display:flex;
-  justify-content: space-between;
-  margin-top:20px;
-  div {
-    width: 20%;
-  }
-  }
-
-.account_2{
+}
+#account_2_data {
   display: flex;
   justify-content: space-between;
-  margin: 10px;
-  padding: 10px;
-  /*border: 2px dotted black;*/
-  background-color:$first-color;
-  border-radius: 20px;
-  box-shadow: $boxshadow;
-  height: 80px;
-  position: relative;
-  div:first-child {
-    position: absolute;
-    bottom: 25px;
+  margin-top: 20px;
+  .account_2 {
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    padding: 10px;
+    /*border: 2px dotted black;*/
+    background-color: $first-color;
+    border-radius: 20px;
+    box-shadow: $boxshadow;
+    height: 80px;
+    position: relative;
+    div > h2 {
+      font-family: $guthaben;
+    }
+    div:first-child {
+      position: relative;
+      top: -20px;
+    }
+    > div:last-child {
+      position: relative;
+      right: 0px;
+      width: 50%;
+    }
   }
-  div:last-child {
-    position: absolute;
-    right: 50px;
-  }
-  }
+}
 
-.account_2_H {
+.account_2 > div > h2 {
   padding: 5px;
   font-family: $calli;
   font-weight: bold;
@@ -244,192 +266,136 @@
   color: white;
   width: 60px;
   height: 80px;
-  Line-height: 90%;
+  line-height: 100%;
   border-radius: 10px;
-}  
-#account_2_data p {
-  padding-left: 5px;
-  margin-top: -80px;
-  font-family: $primary-font;
-  font-size: 12px;
-  color: rgb(255, 255, 255);
-}  
+}
 
-.account_data_box{
-  display: block;
+.account_2 > div > p {
+  padding-left: 4px;
+  margin-top: -40px;
+  font-family: $primary-font;
+  font-size: 10px;
+  text-align: center;
+  color: rgb(255, 255, 255);
+}
+
+.account_data_box {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  gap: 0px;
   /*position: relative;*/
 }
 
-.account_pers_data{
+.account_pers_data {
   display: block;
   background-color: rgb(180, 200, 230);
   font-family: $primary-font;
   font-weight: bold;
-  box-shadow: none; 
-  text-align:center;
+  box-shadow: none;
+  text-align: center;
+  line-height: 25px;
   width: 70px;
-  height:30px;
+  height: 30px;
   border: none;
   border-radius: 5px;
-  font-size: 26px;
+  font-size: 24px;
   color: black;
   padding: 2px;
-  justify-content: center;
   margin-left: 10px;
-  margin-top:0px;
-  margin-bottom: 5px;
 }
-  
-.account_market_data{
+
+.account_market_data {
   display: block;
   background-color: none;
-  box-shadow: none; 
+  box-shadow: none;
   text-align: center;
   width: 70px;
-  border: 1px solid rgb(180, 200, 230);
+  border: 1px solid $third-color;
   border-radius: 5px;
   font-size: 16px;
   color: black;
   padding: 2px;
-  text-align:center;
+  text-align: center;
   justify-content: center;
   margin-top: 5px;
   margin-left: 10px;
 }
 
-  #account_2 >p {
-    margin-left: 10px; 
-    margin-top: -10px;
-    padding-bottom: 0px;
-    font-size: 14px;
-  }
-
-  #account_3{
-    display: block;
-    margin-top:20px;
-    border-right: 3px dotted black;
-    border-left: 3px dotted black;
-    border-radius: 20px;
-    /*background-color: RGB(221, 155, 55, 0.2);*/
-    }
-  #account_3 p{
-    padding: 0px;
-    font-size: 14px;
-      }
-  
-  #account_3_data{
-    display:flex;
-    margin-top:0px;
-    }
-    
-  .account_3{
-    margin: 10px;
+#account_3 {
+  display: block;
+  margin-top: 20px;
+  border-right: 3px dotted black;
+  border-left: 3px dotted black;
+  border-radius: 20px;
+  #account_3_data {
+    display: flex;
     margin-top: 0px;
-    padding: 10px;
-    padding-top:0px;
-    width: 33%;
-    height: 80px;
-    /*border-top: 2px dotted black;
-    border-bottom: 2px dotted black;*/
-    background-color:azure;
-    border-radius: 20px;
-    box-shadow: $boxshadow; 
-  }
-  
-  .account_3_Box {
-    display: block;
-    font-family: FoundSanExpMed;
-    font-weight:bold;
-    font-size: 30px;
-    margin: -50px 100px; 
-    margin-right: 20px;
-    width: 50%;
-    height: auto;
-    /*border: 2px dotted black;*/
-    border-radius: 10px;
-    text-align: center;
-    align-items: center;
-    background-color:rgb(221, 155, 55, 0.2);
-    }
-
-  #account_3_p {
-    margin-left: 0px;
-     }
-
-
-     #account_4{
-      display:box;
-      margin-top:20px;
-      border-right: 3px dotted Black;
-      border-left: 3px dotted Black;
-      border-radius: 20px;
-      /*background-color: RGB(221, 155, 55, 0.2);*/
-      }
-    #account_4 p{
-      padding: 00px;
-      font-size: 14px;
-        }
-    
-    #account_4_data{
-      display:flex;
-      margin-top:0px;
-      }
-      
-    .account_4{
+    .account_3 {
       margin: 10px;
       margin-top: 0px;
       padding: 10px;
-      padding-top:0px;
       width: 33%;
       height: 80px;
-      /*border-top: 2px dotted black;
-      border-bottom: 2px dotted black;*/
-      background-color:azure;
+      background-color: $first-color;
       border-radius: 20px;
-      box-shadow: 10px 10px 50px grey; 
-      font-family: FoundSanExpMed;
+      box-shadow: $boxshadow;
+      p {
+        padding: 0px;
+        font-size: $small;
       }
-    
-    .account_4_Box {
-      display: block;
-      font-family: FoundSanExpMed;
-      font-weight:bold;
-      font-size: 30px;
-      margin: -50px 100px; 
-      margin-right: 20px;
-      width: 50%;
-      height: auto;
-      /*border: 2px dotted black;*/
-      border-radius: 10px;
-      text-align: center;
-      align-items: center;
-      background-color:rgb(221, 155, 55, 0.2);
-      }
-  
-    #account_4_p {
-      margin-left: 0px;
-       }
- /*Ende Css für den Main*/ 
+    }
+  }
+}
 
-footer {
-  position: relative;
-  background-color:azure;
-  padding:5px;
-  width:80%;
-  height:fit-content;
-  font-size: 12px;
-  bottom: 0px;
-  left: 0;
-  right: 0;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  margin-left:150px;
-  margin-right:150px;
+
+
+
+#account_4 {
+  display: block;
+  margin-top: 20px;
+  border-right: 3px dotted Black;
+  border-left: 3px dotted Black;
   border-radius: 20px;
+  p {
+    padding: 00px;
+    font-size: 14px;
   }
+}
 
-footer p {
-  position:center;
+#account_4_data {
+  display: flex;
+  margin-top: 0px;
+}
+
+.account_4 {
+  margin: 10px;
+  margin-top: 0px;
+  padding: 10px;
+  padding-top: 0px;
+  width: 33%;
+  height: 80px;
+  background-color: $first-color;
+  border-radius: 20px;
+  box-shadow: $boxshadow;
+}
+
+.account_4_Box {
+  display: block;
+  font-weight: bold;
+  font-size: 30px;
+  margin: -50px 100px;
+  margin-right: 20px;
+  width: 50%;
+  height: auto;
+  /*border: 2px dotted black;*/
+  border-radius: 10px;
   text-align: center;
-  }
- 
+  align-items: center;
+  background-color: rgb(221, 155, 55, 0.2);
+}
+
+#account_4_p {
+  margin-left: 0px;
+}
+/*Ende Css für den Main*/

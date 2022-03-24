@@ -15,6 +15,21 @@
 
 <body>
 
+  
+    <img src="./images/drehmoment.png" id="r1" class="rotate" alt="">
+    <img src="./images/drehmoment.png" id="r2" class="rotate" alt="">
+    <img src="./images/drehmoment.png" id="r3" class="rotate" alt="">
+    <img src="./images/drehmoment.png" id="r4" class="rotate" alt="">
+    <img src="./images/drehmoment.png" id="r5" class="rotate" alt="">
+    <img src="./images/drehmoment.png" id="r6" class="rotate" alt="">
+    <img src="./images/drehmoment.png" id="r7" class="rotate" alt="">
+    <img src="./images/drehmoment.png" id="r8" class="rotate" alt="">
+    <img src="./images/drehmoment.png" id="r9" class="rotate" alt="">
+    <img src="./images/drehmoment.png" id="r10" class="rotate" alt="">
+    <img src="./images/drehmoment.png" id="r11" class="rotate" alt="">
+    <img src="./images/drehmoment.png" id="r12" class="rotate" alt="">
+    <img src="./images/drehmoment.png" id="r13" class="rotate" alt="">
+  
   <header>
 
     <nav class="navheader">
@@ -39,16 +54,19 @@
     </div>
 
     <div id="header_myaccount">
-        <a href="pldcpd_register.html"> register me <span class="C">C</span></a>
-        <a href="pldcpd_login.html"> log me in <span class="C">C</span></a>
-        <button> show account <span class="C">C</span></button>
-        <button> hide account <span class="C">C</span></button>
+      <ul>
+        <li><a href="pldcpd_register.html"> register <span class="C">C</span></a></li>
+        <li><a href="pldcpd_login.html"> log me out <span class="C">C</span></a></li>
+        <!-- <button> show account <span class="C">C</span></button>
+        <button> hide account <span class="C">C</span></button> -->
+      </ul>
     </div>
 
   </header>
 
 
-  <div class="Background">
+  <div id="background_home" class="Background">
+    
     <main>
       <button type="button" id="aside_h_Btn" >hide<br>account
       </button>
@@ -77,14 +95,12 @@
           <p> Markt Wissensschnitt</p>
         </div>
 
-        <p>Die Werte vergleichen Ihren Stand des Wissens mit dem Durchschnitt aller teilnehmenden Lichtdesigner. Derzeit
-          liegt Ihr Wissen über dem Marktdurchschnitt.</p>
+        <p>Die Werte vergleichen Ihren Stand des Wissens mit dem Durchschnitt aller teilnehmenden Lichtdesigner. Derzeit liegt Ihr Wissen über dem Marktdurchschnitt.</p>
 
-        <p>Ihr aktuelles <span class="LitCoin">L</span><span class="Calli">it</span><span class="LitCoin">C</span><span
-            class="Calli">oin</span> Guthaben:</p>
+        <p>Ihr aktuelles <span class="LitCoin">L</span><span class="Calli">it</span><span class="LitCoin">C</span><span class="Calli">oin</span> Guthaben:</p>
         <div id="aside_gutbox">
-          <output id="aside_guthaben"> 2500 </output> 
-          <span class="LC"> LC</span>
+          <output id="aside_guthaben"></output> 
+          <p class="LC"> LC</p>
         </div>
 
         <p>Ihre gesamte Übesicht Ihres Kontos können Sie <a href="pldcpd_account.html">hier</a> aufrufen. <a class="C"
@@ -144,33 +160,33 @@
 
           <div id="lb_1_angebote">
             <div>
-              <p> Themenbereich<br><strong>Lichtdesign</strong><br><br>folge hier <a class="C"
+              <h5> <strong>Themenbereich<br>Lichtdesign</strong><br><br>folge hier <a class="C"
                 href="pldcpd_account.html">C</a>
-              </p>
+              </h5>
               <img src="./images/Vulkan.GIF">
             </div>
 
             <div>
-              <p> Themenbereich <br><strong>Lichttechnik</strong><br><br>folge hier <a class="C"
-                href="pldcpd_account.html">C</a></p>
+              <h5> Themenbereich <br><strong>Lichttechnik</strong><br><br>folge hier <a class="C"
+                href="pldcpd_account.html">C</a></h5>
               <img src="./images/Egon Zitter 7.jpg">
             </div>
 
             <div>
-              <p> Themenbereich <br><strong>Berufspraxis</strong><br><br>folge hier <a class="C"
-                href="pldcpd_account.html">C</a></p>
+              <h5> Themenbereich <br><strong>Berufspraxis</strong><br><br>folge hier <a class="C"
+                href="pldcpd_account.html">C</a></h5>
               <img src="./images/Egon Zitter 8 Libellen.JPG">
             </div>
 
             <div>
-              <p>Themenbereich <br><strong>Tageslicht</strong><br><br>folge hier <a class="C"
-                href="pldcpd_account.html">C</a></p>
+              <h5>Themenbereich <br><strong>Tageslicht</strong><br><br>folge hier <a class="C"
+                href="pldcpd_account.html">C</a></h5>
               <img src="./images/Sonnenuntergang.jpg">
             </div>
 
             <div>
-              <p>Themenbereich <br><strong>Meinung</strong><br><br>folge hier <a class="C"
-                href="pldcpd_account.html">C</a></p>
+              <h5>Themenbereich <br><strong>Meinung</strong><br><br>folge hier <a class="C"
+                href="pldcpd_account.html">C</a></h5>
               <img src="./images/unsplash.jpg">
             </div>
           </div>
@@ -187,7 +203,7 @@
 
         <section id="infobox_1">
 
-           <div id="info_1_1" class="grad">
+           <div id="info_1_1">
             <div>
               <h2>Lernangebote</h2>
               <label for="Filter">Sortiert nach</label>
@@ -302,7 +318,7 @@
             </table><br><br>
           </div>
 
-          <div id="info_1_2" class="grad">
+          <div id="info_1_2">
             <p> <img src="./images/Egon Zitter 7.jpg"> <h2>Special II</h2>
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. In officiis alias impedit, incidunt recusandae fugiat, eos quia atque voluptatem, veritatis. Magni ab architecto blanditiis aperiam ullam illum rerum accusamus maxime, aliquid, vel laudantium dignissimos, cupiditate ratione sapiente amet labore dolores! Saepe officiis magni similique non corporis accusamus ex reprehenderit, expedita aliquid vero? Rem, rerum culpa? Nostrum, libero cum excepturi quis ab voluptatem sunt dolores non ratione maxime.<br><br></p>
           </div>
@@ -311,23 +327,17 @@
         <a href="index.html">
           <img class="Trenner" src="./images/c.png"> </a>
 
-        <!-- <section id="learningbox_2">
-        <h2> Hier folgt die Learningbox_2</h2>
-        </section>
-        <br>-->
-
         <section id="infobox_2">
           <h2> Aktuelle Lernangebote </h2> 
-          <p>Hier können sie die neusten Angebote <br>zur Weiterbildung sehen. Klicken Sie
+          <p>Hier können sie die neusten Angebote zur Weiterbildung sehen. Klicken Sie
           und schauen Sie im Detail, was angeboten wird.</p>
           <a href="#"><img src="./images/c.png" class="logo_cpd"></a>
 
           <div id="ib_2_angebote">
-            <div id="box1" class="grad">
-              <h3>Box 1</h3>
+            <div id="box1">
+              <h3>Themenbereich Design</h3>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita nostrum voluptatibus,
-                reiciendis! <img src="./images/Vulkan.GIF"
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita nostrum voluptatibus, reiciendis! <img src="./images/Vulkan.GIF"
                   style="float:left; margin-top:10px;margin-bottom:10px; margin-right:10px; width: 60%"> Dolorum nisi
                 aspernatur unde est, magnam excepturi possimus.pariatur molestias accusamus recusandae minima cum, animi,
                 sapiente rem iste earum ipsum aut ratione. Ad maiores corrupti magnam deleniti molestias aperiam quas
@@ -336,7 +346,7 @@
               </p>
             </div>
 
-            <div id="box2" class="grad">
+            <div id="box2">
               <h3>Box 2</h3>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit perferendis velit tenetur
@@ -346,7 +356,7 @@
               </p>
             </div>
 
-            <div id="box3" class="grad">
+            <div id="box3">
               <h3>Box 3</h3>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas tenetur molestiae natus ullam
@@ -357,7 +367,7 @@
               </p>
             </div>
 
-            <div id="box4" class="grad">
+            <div id="box4">
               <h3>Box 4</h3>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente vero, repudiandae debitis
@@ -365,7 +375,7 @@
               </p>
             </div>
 
-            <div id="box5" class="grad">
+            <div id="box5">
               <h3>Box 5</h3>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum saepe quisquam numquam
@@ -375,7 +385,7 @@
               </p>
             </div>
 
-            <div id="box6" class="grad">
+            <div id="box6">
               <h3>Box 6</h3>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem harum obcaecati iusto
@@ -383,7 +393,7 @@
               </p>
             </div>
 
-            <div id="box7" class="grad">
+            <div id="box7">
               <h3>Box 7</h3>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem harum obcaecati iusto
@@ -407,7 +417,7 @@
             <a href="#"><img src="./images/c.png" class="logo_cpd"></a>
           </div> 
 
-          <div id="Karrierebox">
+          <div id="karrierebox">
             <div id="learning_5_1">
               <p> <strong>Professional <br> Level I</strong> <br> Student<br></p>
               <img src="./images/Level_1_SLD.jpg">
@@ -463,61 +473,6 @@
 
           </div>
         </section>
-            <!--
-              <section id="stickyDefList">
-                <div class="sDL_container">
-                  <div class="floating-stack">
-                    <dl>
-                      <dt>A</dt>
-                      <dd>Algeria</dd>
-                      <dd>Angola</dd>
-                
-                      <dt>B</dt>
-                      <dd>Benin</dd>
-                      <dd>Botswana</dd>
-                      <dd>Burkina Faso</dd>
-                      <dd>Burundi</dd>
-                
-                      <dt>C</dt>
-                      <dd>Cabo Verde</dd>
-                      <dd>Cameroon</dd>
-                      <dd>Central African Republic</dd>
-                      <dd>Chad</dd>
-                      <dd>Comoros</dd>
-                      <dd>Congo, Democratic Republic of the</dd>
-                      <dd>Congo, Republic of the</dd>
-                      <dd>Cote d'Ivoire</dd>
-                
-                      <dt>D</dt>
-                      <dd>Djibouti</dd>
-                                            
-                      <dt>E</dt>
-                      <dd>Egypt</dd>
-                      <dd>Equatorial Guinea</dd>
-                      <dd>Eritrea</dd>
-                      <dd>Eswatini (formerly Swaziland)</dd>
-                      <dd>Ethiopia</dd>
-                    </dl>
-                  </div>
-                </div>
-              </section>
-            -->
-          <br><br>
-        
-          <!-- <div id="slides">
-            <figure class="slide showing">
-              <img src="./images/Egon Zitter 2.jpg">
-              <figcaption>Javascript Slideshow ohne jQuery</figcaption> 
-            </figure>
-            <figure class="slide">
-              <img src="./images/Egon Zitter 7.jpg">
-              <figcaption>HTML ohne zusätzliches Markup</figcaption> 
-            </figure>
-            <figure class="slide">
-              <img src="./images/Johannes Mikkelsen 4.jpg">
-              <figcaption>Nur ein paar Zeilen Javasctipt</figcaption> 
-            </figure>
-          </div> -->
           
       </div>
       
@@ -528,20 +483,24 @@
     <p>
       Rycerz Media GmbH<br>
       Marienfelder Str. 18<br>
-      33330 Gütersloh<br>
-      <a href="https://twitter.com/RitterJoachim/" target="_blank"><ion-icon name="logo-twitter"></ion-icon></a>
-      <a href="https://www.facebook.com/joachim.ritter.31/" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a>
-      <a href="https://www.linkedin.com/in/joachimr/" target="_blank"><ion-icon name="logo-linkedin"></ion-icon></a>
-      <a href="https://www.instagram.com/ritter_joachim/" target="_blank"><ion-icon name="logo-instagram"></ion-icon></a>
-      <a href="https://github.com/KazhimRycerz/" target="_blank"><ion-icon name="logo-github"></ion-icon></a>
-      <a href="skype:jritter_43/"><ion-icon name="logo-skype"></ion-icon></a>
-      <a href="slack:Joachim Ritter"><ion-icon name="logo-slack"></ion-icon></a>
-    </p>
+      33330 Gütersloh</p>
+
+      <ul>
+        <li><a href="https://twitter.com/RitterJoachim/" target="_blank"><ion-icon name="logo-twitter"></ion-icon></a></li>
+        <li><a href="https://www.facebook.com/joachim.ritter.31/" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a></li>
+        <li><a href="https://www.linkedin.com/in/joachimr/" target="_blank"><ion-icon name="logo-linkedin"></ion-icon></a></li>
+        <li><a href="https://www.instagram.com/ritter_joachim/" target="_blank"><ion-icon name="logo-instagram"></ion-icon></a></li>
+        <li><a href="https://www.xing.com/profile/Joachim_Ritter19/" target="_blank"><ion-icon name="logo-xing"></ion-icon></a></li>
+        <li><a href="https://github.com/KazhimRycerz/" target="_blank"><ion-icon name="logo-github"></ion-icon></a></li>
+        <li><a href="skype:jritter_43/"><ion-icon name="logo-skype"></ion-icon></a></li>
+        <li><a href="slack:Joachim Ritter"><ion-icon name="logo-slack"></ion-icon></a></li>
+      </ul>
+    
   </footer>
 
 
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script src="./scripts/pldcpd.js"></script>
+  <script src="./scripts/index.js"></script>
 
 </body>
 
