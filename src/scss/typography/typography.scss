@@ -8,20 +8,16 @@
 }
 @font-face {
   font-family: "BillboardShadow";
-  src: url("../fonts/Billboard-Shadow.otf") format("otf");
+  src: url("../fonts/Billboard/Billboard-Shadow.otf") format("otf"),url("../fonts/Billboard/Billboard-Shadow.woff2") format("woff2");
 }
   
-@font-face {
-  font-family: "FoundSanExpMed";
-  src: url("../../fonts/FOUSANMD.woff2") format("woff2"), url("../fonts/FOUSANMD.otf") format("otf");
-}
 @font-face {
   font-family: "Carbono";
   src: url("../../fonts/carbono/carbono.ttf") format("ttf");
 }
 @font-face {
   font-family: "Vacaciones";
-  src: url("../../fonts/vacaciones-outline/Vacaciones-font-ffp-defharo.otf") format("otf"), url("../../fonts/vacaciones-outline/Vacaciones-font-ffp-defharo.woff2") format("woff2");
+  src: url("../../fonts/vacaciones-outline/Vacaciones-font-ffp-defharo.woff2") format("woff2"), url("../../fonts/vacaciones-outline/Vacaciones-font-ffp-defharo.otf") format("otf");
 }
 @font-face {
   font-family: "CorporateDemi";
@@ -29,7 +25,7 @@
 }
 @font-face {
     font-family: "CorporateReg";
-  src: url("../../fonts/CorporateSTOT-Reg.otf") format("otf");
+  src: url("../../fonts/Corporate/CorporateSTOT-Reg.otf") format("otf");
 }
 @font-face {
   font-family: "FallingSkyOu";
@@ -45,13 +41,21 @@
 }
 @font-face {
   font-family: "Thunderlord";
-  src: url("../../fonts/thunder_lord/Thunder\ Lord.woff2") format("woff2"), url("../../fonts/thunder_lord/Thunder\ Lord.ttf") format("ttf");
+  src: url("../../fonts/thunder_lord/ThunderLord.woff2") format("woff2"), url("../../fonts/thunder_lord/ThunderLord.ttf") format("ttf");
 }
 @font-face {
   font-family: "FoundSanExpNorm";
-  src: url("../../fonts/FOUSANNO.woff2") format("woff2"), url("../fonts/FOUSANNO.otf") format("otf");
+  src: url("../../fonts/Foundry/FOUSANNO.woff2") format("woff2"), url("../fonts/Foundry/FOUSANNO.otf") format("otf");
 }
 @font-face {
   font-family: "FoundSanBd";
-  src: url("../../fonts/FOUSANBD.woff2") format("woff2"), url("../fonts/FOUSANBD.otf") format("otf");
+  src: url("../../fonts/Foundry/FOUSANBD.woff2") format("woff2"), url("../fonts/Foundry/FOUSANBD.otf") format("otf");
+}
+@font-face {
+  font-family: "FoundSanExpMed";
+  src: url("../../fonts/Foundry/FOUSANMD.woff2") format("woff2"), url("../fonts/Foundry/FOUSANMD.otf") format("otf");
+}
+@font-face {
+  font-family: "FoundSanExBold";
+  src: url("../../fonts/Foundry/FOUSANEB.woff2") format("woff2"), url("../fonts/Foundry/FOUSANEB.otf") format("otf");
 }

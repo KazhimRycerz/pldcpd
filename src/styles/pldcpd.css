@@ -15,11 +15,7 @@
 }
 @font-face {
   font-family: "BillboardShadow";
-  src: url("../fonts/Billboard-Shadow.otf") format("otf");
-}
-@font-face {
-  font-family: "FoundSanExpMed";
-  src: url("../../fonts/FOUSANMD.woff2") format("woff2"), url("../fonts/FOUSANMD.otf") format("otf");
+  src: url("../fonts/Billboard/Billboard-Shadow.otf") format("otf"), url("../fonts/Billboard/Billboard-Shadow.woff2") format("woff2");
 }
 @font-face {
   font-family: "Carbono";
@@ -27,7 +23,7 @@
 }
 @font-face {
   font-family: "Vacaciones";
-  src: url("../../fonts/vacaciones-outline/Vacaciones-font-ffp-defharo.otf") format("otf"), url("../../fonts/vacaciones-outline/Vacaciones-font-ffp-defharo.woff2") format("woff2");
+  src: url("../../fonts/vacaciones-outline/Vacaciones-font-ffp-defharo.woff2") format("woff2"), url("../../fonts/vacaciones-outline/Vacaciones-font-ffp-defharo.otf") format("otf");
 }
 @font-face {
   font-family: "CorporateDemi";
@@ -35,7 +31,7 @@
 }
 @font-face {
   font-family: "CorporateReg";
-  src: url("../../fonts/CorporateSTOT-Reg.otf") format("otf");
+  src: url("../../fonts/Corporate/CorporateSTOT-Reg.otf") format("otf");
 }
 @font-face {
   font-family: "FallingSkyOu";
@@ -51,15 +47,23 @@
 }
 @font-face {
   font-family: "Thunderlord";
-  src: url("../../fonts/thunder_lord/Thunder Lord.woff2") format("woff2"), url("../../fonts/thunder_lord/Thunder Lord.ttf") format("ttf");
+  src: url("../../fonts/thunder_lord/ThunderLord.woff2") format("woff2"), url("../../fonts/thunder_lord/ThunderLord.ttf") format("ttf");
 }
 @font-face {
   font-family: "FoundSanExpNorm";
-  src: url("../../fonts/FOUSANNO.woff2") format("woff2"), url("../fonts/FOUSANNO.otf") format("otf");
+  src: url("../../fonts/Foundry/FOUSANNO.woff2") format("woff2"), url("../fonts/Foundry/FOUSANNO.otf") format("otf");
 }
 @font-face {
   font-family: "FoundSanBd";
-  src: url("../../fonts/FOUSANBD.woff2") format("woff2"), url("../fonts/FOUSANBD.otf") format("otf");
+  src: url("../../fonts/Foundry/FOUSANBD.woff2") format("woff2"), url("../fonts/Foundry/FOUSANBD.otf") format("otf");
+}
+@font-face {
+  font-family: "FoundSanExpMed";
+  src: url("../../fonts/Foundry/FOUSANMD.woff2") format("woff2"), url("../fonts/Foundry/FOUSANMD.otf") format("otf");
+}
+@font-face {
+  font-family: "FoundSanExBold";
+  src: url("../../fonts/Foundry/FOUSANEB.woff2") format("woff2"), url("../fonts/Foundry/FOUSANEB.otf") format("otf");
 }
 /* textsizes*/
 /*$medium: 4rem;
@@ -125,15 +129,6 @@ $border-size: 2px; */
   background-attachment: fixed;
 }
 
-.Background {
-  background-color: azure;
-  margin: auto;
-  width: 80%;
-  top: 100px;
-  border-radius: 20px;
-  z-index: 3;
-}
-
 .Trenner {
   margin: 50px auto;
   width: 5%;
@@ -163,6 +158,7 @@ body {
   width: 13vw;
   aspect-ratio: 1;
   z-index: -1;
+  /* animation: none; */
   animation: rotate 20s infinite linear;
 }
 
@@ -313,13 +309,6 @@ header {
     opacity: 1;
   }
 }
-/* @function fadeaout($display)
-{@if $display == none{
-
-} @else {
-
-}
-} */
 #dropdown:hover #dropdown-content {
   opacity: 1;
   width: auto;
@@ -404,27 +393,15 @@ header {
 /*Ende Styles zum Header*/
 /*Beginn Css für den Main*/
 main {
-  display: inline;
-  align-content: stretch;
+  width: 80%;
   margin-left: 10%;
   margin-right: 10%;
-  z-index: 10;
+  z-index: 5;
+  position: relative;
+  border-radius: 20px;
+  background-color: azure;
 }
 
-#Content {
-  /*background-color: azure;*/
-  width: 80%;
-  margin: 10px auto;
-}
-
-@keyframes aside {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 #aside_h_Btn {
   display: block;
   background-color: rgba(170, 170, 170, 0.75);
@@ -432,10 +409,10 @@ main {
   width: 65px;
   height: 40px;
   position: fixed;
-  top: 150px;
+  top: 160px;
   right: 30px;
   border: none;
-  border-radius: 20%;
+  border-radius: 10px;
   text-align: center;
   z-index: 98;
 }
@@ -447,16 +424,15 @@ main {
   width: 65px;
   height: 40px;
   position: fixed;
-  top: 150px;
+  top: 160px;
   right: 30px;
   border: none;
-  border-radius: 20%;
+  border-radius: 10px;
   text-align: center;
   z-index: 98;
 }
 
 #aside_account {
-  display: block;
   background-color: azure;
   box-shadow: 0.5rem 0.5rem 2rem;
   width: 15vw;
@@ -467,26 +443,44 @@ main {
   position: fixed;
   top: 180px;
   right: 0;
-  text-align: left;
   font-size: 0.9rem;
-  z-index: 10;
+  z-index: 90;
   border-radius: 10px;
 }
 #aside_account > p {
   margin-top: 10px;
 }
-
 #aside_account span {
   font-weight: bold;
   font-style: normal;
   font-size: 1.1rem;
 }
-
 #aside_account img {
   width: 30%;
   float: right;
   margin-left: 0px;
   margin-top: 15px;
+}
+
+@keyframes hideaside {
+  0% {
+    transform: translateX 0%;
+  }
+  25% {
+    transform: translateX 50%;
+    z-index: 0;
+  }
+  50% {
+    transform: translateX 0%;
+    z-index: 0;
+  }
+  100% {
+    transform: translateX -100%;
+    z-index: 0;
+  }
+}
+#aside_account:hover {
+  animation: hideaside 5s ease-in-out forwards;
 }
 
 #home_data {
@@ -510,19 +504,13 @@ main {
   width: 100%;
   padding-bottom: 3px;
 }
-
-#home_data > div:first-of-type {
-  border-bottom: 2px dotted black;
-}
-
-#home_data > div > div {
+#home_data div div {
   display: block;
   box-shadow: none;
   text-align: center;
   font-size: 0.71vw;
 }
-
-#home_data output {
+#home_data div div output {
   display: flex;
   background-color: #b4c8e6;
   text-align: center;
@@ -532,9 +520,13 @@ main {
   width: 90%;
   border: none;
   border-radius: 3px;
-  font-size: 1.1rem;
-  font-weight: bold;
+  font-size: 0.9rem;
+  font-weight: 900;
   color: black;
+}
+
+#home_data > div:first-of-type {
+  border-bottom: 2px dotted black;
 }
 
 #home_data > div:last-of-type > div output {
@@ -563,35 +555,41 @@ main {
 }
 
 /*Content*/
+#Content {
+  /*background-color: azure;*/
+  width: 80%;
+  margin: 0 auto;
+  z-index: 2;
+  /* border: solid; */
+}
+
 #Gruß_main {
   background-image: url(../images/Sonnenuntergang.jpg);
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center 60%;
+  background-position: 60%;
   background-attachment: local;
   height: 400px;
   width: 100%;
   color: lemonchiffon;
   position: relative;
+  border-radius: 20px 20px 0 0;
 }
-
 #Gruß_main:hover {
   background-image: url(../images/Sonnenuntergang_dark.jpg);
 }
-
 #Gruß_main h1 {
   display: inline-block;
-  font-family: "FoundSanExpNorm", sans-serif;
-  font-size: 2vw;
+  font-family: "FoundSanBd";
+  font-size: 2rem;
   width: 10vw;
   min-width: 25%;
   text-align: left;
   position: absolute;
   left: 2vw;
-  top: 20px;
+  top: 30px;
   margin: 0;
 }
-
 #Gruß_main p {
   display: inline-block;
   font-size: 1.2rem;
@@ -600,7 +598,7 @@ main {
   min-width: 15vw;
   text-align: left;
   position: absolute;
-  right: 2vw;
+  right: 10vw;
   top: 20px;
 }
 
@@ -608,12 +606,6 @@ main {
   color: lemonchiffon;
 }
 
-/*h1 {
-  background: -webkit-linear-gradient(#eee, #333);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-*/
 #Gruß_main i {
   font-size: 2rem;
 }
@@ -627,6 +619,9 @@ main {
   margin-bottom: 50px;
   font-size: 1.1rem;
   width: 100%;
+}
+#C1 h3 {
+  font-family: "FoundSanBd";
 }
 #C1 #C1A1, #C1 #C1A4 {
   margin: 0 10px 0 20px;
@@ -702,6 +697,9 @@ main {
   margin: 20px auto;
   gap: 20px;
 }
+.infobox_intro h2 {
+  font-family: "FoundSanBd";
+}
 
 #lb_1_angebote {
   display: flex;
@@ -750,7 +748,6 @@ main {
   z-index: 100;
   box-sizing: border-box;
 }
-
 #Promoter_1 div {
   border: 20px ridge lemonchiffon;
   display: Block;
@@ -760,8 +757,7 @@ main {
   height: 75%;
   margin: 0% auto;
 }
-
-#Promoter_1 p {
+#Promoter_1 div p {
   display: block;
   width: min-width;
   font-family: sans-serif;
@@ -793,6 +789,9 @@ main {
   border-top: 3px dotted Black;
   border-bottom: 3px dotted Black;
   border-radius: 20px;
+}
+#infobox_1 h2 {
+  font-family: "FoundSanBd";
 }
 
 #info_1_1 {
@@ -874,6 +873,9 @@ tr:hover {
   border-radius: 20px;
   padding: 20px;
   font-size: 1.1rem;
+}
+#infobox_2 h2 {
+  font-family: "FoundSanBd";
 }
 
 #infobox_2 > h2, #infobox_2 > p {
@@ -1022,29 +1024,29 @@ footer {
   position: static;
   bottom: 0;
   background-color: azure;
-  padding: 10px;
+  padding: 10px 0 10px 0;
   width: 100%;
   height: 120px;
   height: fit-content;
   font-size: 12px;
   margin-top: 50px;
 }
-
 footer p {
   text-align: center;
+  width: 80%;
   font-size: 0.9rem;
-  margin-bottom: 10px;
+  margin: 10px auto;
 }
-
-ul {
+footer ul {
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
+  width: 80%;
+  margin: 0 auto;
   gap: 10px;
   list-style-type: none;
 }
-
-footer ion-icon {
+footer ul ion-icon {
   font-size: 30px;
   color: #000032;
 }
@@ -1117,7 +1119,7 @@ footer ion-icon {
     width: 75%;
   }
 }
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   #home_data output {
     font-size: 0.75rem;
   }
