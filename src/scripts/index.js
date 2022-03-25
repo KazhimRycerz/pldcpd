@@ -42,14 +42,15 @@ const hide_btn = document.getElementById("aside_h_Btn");
 const show_btn = document.getElementById("aside_s_Btn");
 
 const hide_account = () => {
-  /* home_aside_account.style.animation = "hideaside"; */
-  home_aside_account.style.display = "none";
+  home_aside_account.style.animation = "hideaside 3s ease-in-out forwards";
+  /* home_aside_account.style.display = "none"; */
   hide_btn.style.display = "none";
   show_btn.style.display = "block";
 };
 
 const show_account = () => {
-  home_aside_account.style.display = "block";
+  home_aside_account.style.animation = "showaside 3s ease-in-out forwards";
+  /* home_aside_account.style.display = "block"; */
   hide_btn.style.display = "block";
   show_btn.style.display = "none";
 };
