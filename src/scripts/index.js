@@ -37,19 +37,19 @@ function accountData() {
 }
 accountData();
 
-const aside = document.getElementById("aside_account");
-
+const home_aside_account = document.getElementById("home_aside_account");
 const hide_btn = document.getElementById("aside_h_Btn");
 const show_btn = document.getElementById("aside_s_Btn");
 
 const hide_account = () => {
-  aside.style.display = "none";
+  /* home_aside_account.style.animation = "hideaside"; */
+  home_aside_account.style.display = "none";
   hide_btn.style.display = "none";
   show_btn.style.display = "block";
 };
 
 const show_account = () => {
-  aside.style.display = "block";
+  home_aside_account.style.display = "block";
   hide_btn.style.display = "block";
   show_btn.style.display = "none";
 };
