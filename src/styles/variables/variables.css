@@ -62,15 +62,6 @@ $border-size: 2px; */
   background-attachment: fixed;
 }
 
-.Background {
-  background-color: azure;
-  margin: auto;
-  width: 80%;
-  top: 100px;
-  border-radius: 20px;
-  z-index: 3;
-}
-
 .Trenner {
   margin: 50px auto;
   width: 5%;

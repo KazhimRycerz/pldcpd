@@ -1,8 +1,8 @@
 # pldcpd
 
-![Screenshot from Project](./pldcpd.png)
+![Screenshot from Project](./pldcpdscreenshot.png)
 
-### About Project
+### About the Project
 
   International Plattform for coordinating CPD (Continuing Professional Development) for lighting designers, architects and engineers in architecture.
 

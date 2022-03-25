@@ -14,7 +14,7 @@
 }
 @font-face {
   font-family: "Vacaciones";
-  src: url("../../fonts/vacaciones-outline/Vacaciones-font-ffp-defharo.otf") format("otf"), url("../../fonts/vacaciones-outline/Vacaciones-font-ffp-defharo.woff2") format("woff2");
+  src: url("../../fonts/vacaciones-outline/Vacaciones-font-ffp-defharo.woff2") format("woff2"), url("../../fonts/vacaciones-outline/Vacaciones-font-ffp-defharo.otf") format("otf");
 }
 @font-face {
   font-family: "CorporateDemi";

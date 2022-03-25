@@ -5,7 +5,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: FoundSanExpNorm;
   cursor: url(../../images/c.png), auto;
 }
 
@@ -23,7 +22,7 @@
 }
 @font-face {
   font-family: "Vacaciones";
-  src: url("../../fonts/vacaciones-outline/Vacaciones-font-ffp-defharo.otf") format("otf"), url("../../fonts/vacaciones-outline/Vacaciones-font-ffp-defharo.woff2") format("woff2");
+  src: url("../../fonts/vacaciones-outline/Vacaciones-font-ffp-defharo.woff2") format("woff2"), url("../../fonts/vacaciones-outline/Vacaciones-font-ffp-defharo.otf") format("otf");
 }
 @font-face {
   font-family: "CorporateDemi";
@@ -127,15 +126,6 @@ $border-size: 2px; */
 .grad {
   background-image: linear-gradient(#adadd5, #e49696);
   background-attachment: fixed;
-}
-
-.Background {
-  background-color: azure;
-  margin: auto;
-  width: 80%;
-  top: 100px;
-  border-radius: 20px;
-  z-index: 3;
 }
 
 .Trenner {
