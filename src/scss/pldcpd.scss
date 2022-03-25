@@ -23,7 +23,7 @@
 }
 
 .rotate {
-  position: fixed;
+  position:fixed;
   width: 13vw; 
   aspect-ratio: 1;
   z-index: -1;
@@ -952,7 +952,7 @@ footer ion-icon {
   }
   }
   
-  @media (max-width: $desktop){
+  @media (max-width: $tablet){
     #home_data output {
       font-size: $xsmall;
     }

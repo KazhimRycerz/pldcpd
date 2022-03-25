@@ -44,6 +44,7 @@ Instagram: [Joachim Ritter](https://www.instagram.com/ritter_joachim/)<br>
 - [Google Fonts](https://fonts.google.com/)
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [ColorZilla](https://www.colorzilla.com/chrome/)
+- [Font-Awesome](https://fontawesome.com/)
 
 ---
 
