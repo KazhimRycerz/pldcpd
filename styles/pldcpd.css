@@ -592,7 +592,7 @@ main {
 #Content {
   /*background-color: azure;*/
   width: 80%;
-  margin: 0 auto;
+  margin: 20px auto;
   z-index: 2;
 }
 
@@ -910,6 +910,9 @@ tr:hover {
 #infobox_2 h2 {
   font-family: "FoundSanBd";
 }
+#infobox_2 h3 {
+  font-family: "FoundSanBd";
+}
 
 #infobox_2 > h2, #infobox_2 > p {
   display: inline-block;
@@ -969,9 +972,9 @@ tr:hover {
   border-radius: 20px;
   padding-bottom: 30px;
 }
-
-#karrierebox {
+#learningbox_5 #karrierebox {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   align-content: space-around;
   align-content: center;
@@ -979,9 +982,8 @@ tr:hover {
   width: calc(100% - 40px);
   margin: 0 auto;
 }
-
-#karrierebox > div {
-  box-shadow: 0.5rem 0.5rem 2rem;
+#learningbox_5 #karrierebox > div {
+  box-shadow: 0.5rem 0.5rem 2rem, 2px 2px 10px 3px azure inset, -2px -2px 10px 3px azure inset;
   background-color: #b4c8e6;
   display: flex;
   flex-direction: column;
@@ -989,66 +991,39 @@ tr:hover {
   flex-basis: 30%;
   flex-shrink: 1;
   flex-grow: 2;
+  border: 1px solid azure;
   border-radius: 10px;
   height: 400px;
 }
-#karrierebox > div p {
-  font-size: 1.2rem;
-  padding: 10px;
+#learningbox_5 #karrierebox > div div {
+  border-radius: 10px 10px 0 0;
+  margin: 20px;
+  box-shadow: none;
 }
-#karrierebox > div img {
+#learningbox_5 #karrierebox > div div p:first-child {
+  font-family: "FoundSanBd";
+  font-size: 1.1rem;
+}
+#learningbox_5 #karrierebox > div div h3 {
+  font-family: "FoundSanBd";
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+#learningbox_5 #karrierebox > div div p:last-child {
+  font-family: "FoundSanExpNorm", sans-serif;
+  font-size: 1.1rem;
+}
+#learningbox_5 #karrierebox > div img {
   object-fit: cover;
   object-position: top left;
   width: 100%;
   aspect-ratio: 3/2;
+  overflow: hidden;
+  border-top: none;
   border-radius: 0 0 10px 10px;
   position: relative;
   bottom: 0px;
-}
-
-#learning_5_1 > img {
-  object-fit: cover;
-  object-position: 1rem;
-}
-
-#learning_5_2 > img {
-  object-fit: cover;
-  object-position: 1rem;
-}
-
-#learning_5_3 > img {
-  object-fit: cover;
-  object-position: 1rem;
-}
-
-#learning_5_4 > img {
-  object-fit: cover;
-  object-position: 1rem;
-}
-
-#learning_5_5 > img {
-  object-fit: cover;
-  object-position: 1rem;
-}
-
-#learning_5_6 > img {
-  object-fit: cover;
-  object-position: 1rem;
-}
-
-#learning_5_7 > img {
-  object-fit: cover;
-  object-position: 1rem;
-}
-
-#learning_5_8 > img {
-  object-fit: cover;
-  object-position: 1rem;
-}
-
-#learning_5_9 > img {
-  object-fit: cover;
-  object-position: -20px;
+  box-shadow: 2px 2px 10px 3px azure;
 }
 
 /*Learning nach Karrierelevel Ende*/
