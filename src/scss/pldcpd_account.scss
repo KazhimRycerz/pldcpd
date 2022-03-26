@@ -1,6 +1,7 @@
-@import "./reset/reset.scss";
-@import "./typography/typography.scss";
-@import "./variables/variables.scss";
+@import "./pldcpd.scss";
+body {
+  font-family: $primary-font;
+}
 
 #header_myaccount img {
   width: 30%;
@@ -23,26 +24,55 @@
 
 /*Ende Styles zum Header Account-Seite*/
 
-/*Beginn Css für den Main*/
+/*Beginn Css für den Aside*/
 
-#aside_account {
-  display: inline-block;
-  /*overflow: scroll;
-  scrollbar-width: 10px;*/
+#account_aside_h_Btn {
+  display: block;
+  color: $cpdblue;
+  background-color: $button-color;
+  box-shadow: $btnshadow;
+  width: 65px;
+  height: 40px;
+  position: fixed;
+  top: 150px;
+  right: 30px;
+  border: none;
+  border-radius: 10px;
+  text-align:center;
+  z-index: 98;
+ }
+
+#account_aside_s_Btn {
+  display: none;
+  color: $cpdblue;
+  background-color: $button-color;
+  box-shadow: $btnshadow;
+  width: 65px;
+  height: 40px;
+  position: fixed;
+  top: 150px;
+  right:30px;
+  border: none;
+  border-radius: 10px;
+  text-align:center;
+  z-index: 98;
+}
+
+#account_aside_account {
   background-color: $first-color;
   box-shadow: $boxshadow;
   width: 15vw;
+  min-width: 200px;
   height: 400px;
   padding: 0px;
   margin-right: 20px;
   position: fixed;
   top: 180px;
   right: 0;
-  text-align: left;
-  vertical-align: top;
-  font-size: 14px;
+  font-size: $small;
   border-radius: 10px;
-  /*z-index: 1;*/
+  z-index: 10;
+  display: inline-block;
   .account_container {
     display: grid;
     width: 100%;
@@ -54,9 +84,8 @@
       width: 100%;
       overflow-y: scroll;
       overflow-x: none;
-      font-size: 14px;
+      font-size: $small;
       padding-bottom: 220px;
-
       dl {
         margin: 0 0 0;
         display: grid;
@@ -102,7 +131,7 @@
 #LC_only {
   font-family: $calli;
   color: $cpdred;
-  letter-spacing: -3px;
+  letter-spacing: -2px;
   text-align: center;
   font-size: 130%;
   text-shadow: 1px 1px rgb(225, 220, 100);
@@ -117,10 +146,30 @@
   );
 }
 
+@keyframes hide_account_aside {
+  0%  {transform: translateX(0%) /* perspective(300px) rotateY(0deg) */;}
+  30% {transform: translateX(60%) scale(90%)  /* rotateY(60deg)perspective(300px); */ }
+  60% {z-index:1;}
+  99% {transform: translateX(-120%) scale(90%)/* rotateY(0deg) perspective(0rem) */; z-index: -1; opacity: 1;}
+  100% {transform: translateX(-120%) scale(90%)/* rotateY(0deg) perspective(0rem) */; z-index: -1; opacity: 0;}
+  }
+
+@keyframes show_account_aside {
+  0%  {opacity:0;}
+  1%  {transform: translateX(-120%) scale(90%)/* rotateY(0deg) perspective(0rem) */; z-index: -1;opacity: 1;}
+  30% {z-index:1;}
+  60% {transform: translateX(60%) scale(90%) /* rotateY(180deg) perspective(10rem) */; }
+  100% {transform: translateX(0%) scale(100%);z-index:10;}
+  }
+
+
 #account_main {
   overflow: scroll;
   scrollbar-width: 10px;
   height: 100px;
+}
+#Content {
+  border: solid;
 }
 
 #Content h3 {

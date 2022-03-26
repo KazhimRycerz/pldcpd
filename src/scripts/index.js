@@ -38,19 +38,17 @@ function accountData() {
 accountData();
 
 const home_aside_account = document.getElementById("home_aside_account");
-const hide_btn = document.getElementById("aside_h_Btn");
-const show_btn = document.getElementById("aside_s_Btn");
+const hide_btn = document.getElementById("home_aside_h_Btn");
+const show_btn = document.getElementById("home_aside_s_Btn");
 
 const hide_account = () => {
-  home_aside_account.style.animation = "hideaside 3s ease-in-out forwards";
-  /* home_aside_account.style.display = "none"; */
+  home_aside_account.style.animation = "hide_home_aside 3s ease-in-out forwards";
   hide_btn.style.display = "none";
   show_btn.style.display = "block";
 };
 
 const show_account = () => {
-  home_aside_account.style.animation = "showaside 3s ease-in-out forwards";
-  /* home_aside_account.style.display = "block"; */
+  home_aside_account.style.animation = "show_home_aside 3s ease-in-out forwards";
   hide_btn.style.display = "block";
   show_btn.style.display = "none";
 };

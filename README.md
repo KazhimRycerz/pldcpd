@@ -1,6 +1,6 @@
 # pldcpd
 
-![Screenshot from Project](./pldcpdscreenshot.png)
+![Screenshot from Project](./pldcpdscreenshot.jpg)
 
 ### About the Project
 
@@ -14,7 +14,7 @@ lorem ........
 ##### Developed With
 
 - [x] _HTML5_
-- [ ] _CSS3_
+- [x] _CSS3_
 - [ ] _SASS_
 - [x] _SCSS_
 - [x] _JavaScript_
