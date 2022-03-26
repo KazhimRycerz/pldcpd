@@ -1,25 +1,7 @@
 @import "./pldcpd.scss";
+
 body {
   font-family: $primary-font;
-}
-
-#header_myaccount img {
-  width: 30%;
-  height: 30%;
-  float: left;
-  margin-left: 20px;
-  margin-right: 50px;
-  margin-top: -25px;
-}
-
-#header_myaccount p a {
-  text-decoration: none;
-  color: black;
-}
-
-#header_myaccount p a:hover {
-  text-decoration: none;
-  color: rgb(200, 0, 0);
 }
 
 /*Ende Styles zum Header Account-Seite*/
@@ -163,90 +145,96 @@ body {
   }
 
 
-#account_main {
-  overflow: scroll;
-  scrollbar-width: 10px;
-  height: 100px;
-}
+  
 #Content {
-  border: solid;
-}
-
-#Content h3 {
-  margin: 10px;
-  padding-top: 10px;
-}
-
-#account_1 {
-  display: block;
-  margin-top: 20px;
-  border-right: 3px dotted Black;
-  border-left: 3px dotted Black;
-  border-radius: 20px;
-  #account_1_data {
-  display: flex;
-  margin-top: 0px;
-  width: 100%;
-  > div {
+  h1 {
+    font-family: $primary-font-bold;
+  }
+  h3 {
+    font-family: $primary-font-bold;
     margin: 10px;
-    padding: 5px;
-    width: 25%;
-    height: 80px;
-    background-color: $first-color;
+    padding-top: 10px;
+  }
+  #account_1 {
+    display: block;
+    margin-top: 20px;
+    border-right: 3px dotted Black;
+    border-left: 3px dotted Black;
     border-radius: 20px;
-    box-shadow: $boxshadow;
-    position: relative;
-    p {
-      line-height: 1rem;
-      font-size: $small;
-      margin: 5px 0 5px 0;
-      width: 50%;
-      height: 30px;
-      line-height:30px;
-      border: solid;
-    }
-    p:last-child {
+  
+    #account_1_data {
+      display: flex;
+      margin-top: 0px;
       width: 100%;
+      > div {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-evenly;
+        gap: 5px;
+        margin: 10px;
+        padding: 5px;
+        width: 25%;
+        height: 80px;
+        background-color: $first-color;
+        border-radius: $radiussmall;
+        box-shadow: $boxshadow;
+        position: relative;
+        output {
+          line-height: 1rem;
+          font-size: $small;
+          width: 45%;
+          /* border: solid; */
+          border-radius: $radiussmall;
+        }
+        p {
+          line-height: 1rem;
+          font-size: $small;
+          font-family: $primary-font;
+          width: 45%;
+          
+        }
+      }
     }
   }
 }
-}
 
 .account_Box {
-  display: block;
   position: absolute;
   top: 10px;
   right: 10px;
-  font-weight: bold;
-  font-size: 24px;
+  font-family: $primary-font-bold;
+  font-size: $normal;
   width: 120px;
   height: 30px;
   /*border: 2px dotted black;*/
-  border-radius: 10px;
+  border-radius: $radiussmall;
+  padding: 7px;
   text-align: center;
-  background-color: rgb(221, 155, 55, 0.2);
+  background-color: $fourth-color;
 }
 
 #account_1_data>div:nth-of-child(2) {
   display: flex;
+  flex: 1 auto 1;
   flex-direction: column;
   flex-wrap: wrap;
+  
     
 }
 .account_box_dates {
   display: block;
   position: absolute;
-  font-weight: bold;
-  font-size: 24px;
+  font-family: $primary-font-bold;
+  font-size: $xxlarge;
   letter-spacing: -2px;
   margin: -50px 100px;
   margin-right: 0px;
   width: 120px;
-  /* border: 2px dotted black; */
   border-bottom: 3px solid $first-color;
-  border-radius: 10px;
+  border-radius: $radiussmall;
   text-align: center;
-  background-color: rgb(221, 155, 55, 0.2);
+  padding: 7px;
+  background-color: $fourth-color;
 }
 
 #my_start {
@@ -286,7 +274,7 @@ body {
     padding: 10px;
     /*border: 2px dotted black;*/
     background-color: $first-color;
-    border-radius: 20px;
+    border-radius: $radiussmall;
     box-shadow: $boxshadow;
     height: 80px;
     position: relative;
@@ -316,7 +304,7 @@ body {
   width: 60px;
   height: 80px;
   line-height: 100%;
-  border-radius: 10px;
+  border-radius: $radiussmall;
 }
 
 .account_2 > div > p {
@@ -331,45 +319,45 @@ body {
 .account_data_box {
   display: flex;
   flex-flow: column;
-  justify-content: center;
-  gap: 0px;
-  /*position: relative;*/
+  justify-content: space-between;
+  gap: 5px;
+  .account_pers_data {
+    display: block;
+    background-color: rgb(180, 200, 230);
+    font-family: $primary-font;
+    font-weight: bold;
+    box-shadow: none;
+    text-align: center;
+    line-height: 25px;
+    width: 70px;
+    height: 30px;
+    border: none;
+    border-radius: $radiusxsmall;
+    font-size: $xlarge;
+    color: black;
+    padding: 2px;
+    margin-left: 10px;
+  }
+  .account_market_data {
+    display: block;
+    background-color: none;
+    box-shadow: none;
+    text-align: center;
+    width: 70px;
+    border: 1px solid $third-color;
+    border-radius: 5px;
+    font-size: $small;
+    color: black;
+    padding: 0px;
+    text-align: center;
+    justify-content: center;
+    margin-top: 0;
+    margin-left: 10px;
+  }
 }
 
-.account_pers_data {
-  display: block;
-  background-color: rgb(180, 200, 230);
-  font-family: $primary-font;
-  font-weight: bold;
-  box-shadow: none;
-  text-align: center;
-  line-height: 25px;
-  width: 70px;
-  height: 30px;
-  border: none;
-  border-radius: 5px;
-  font-size: 24px;
-  color: black;
-  padding: 2px;
-  margin-left: 10px;
-}
 
-.account_market_data {
-  display: block;
-  background-color: none;
-  box-shadow: none;
-  text-align: center;
-  width: 70px;
-  border: 1px solid $third-color;
-  border-radius: 5px;
-  font-size: 16px;
-  color: black;
-  padding: 2px;
-  text-align: center;
-  justify-content: center;
-  margin-top: 5px;
-  margin-left: 10px;
-}
+
 
 #account_3 {
   display: block;
@@ -387,7 +375,7 @@ body {
       width: 33%;
       height: 80px;
       background-color: $first-color;
-      border-radius: 20px;
+      border-radius: $radiussmall;
       box-shadow: $boxshadow;
       p {
         padding: 0px;
@@ -425,7 +413,7 @@ body {
   width: 33%;
   height: 80px;
   background-color: $first-color;
-  border-radius: 20px;
+  border-radius: $radiussmall;
   box-shadow: $boxshadow;
 }
 
@@ -446,5 +434,12 @@ body {
 
 #account_4_p {
   margin-left: 0px;
+  border: solid;
 }
 /*Ende Css für den Main*/
+
+footer {
+  position: absolute;
+    bottom: 0;
+  }
+

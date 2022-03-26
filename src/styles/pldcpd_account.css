@@ -592,7 +592,7 @@ main {
 #Content {
   /*background-color: azure;*/
   width: 80%;
-  margin: 0 auto;
+  margin: 20px auto;
   z-index: 2;
 }
 
@@ -910,6 +910,9 @@ tr:hover {
 #infobox_2 h2 {
   font-family: "FoundSanBd";
 }
+#infobox_2 h3 {
+  font-family: "FoundSanBd";
+}
 
 #infobox_2 > h2, #infobox_2 > p {
   display: inline-block;
@@ -969,9 +972,9 @@ tr:hover {
   border-radius: 20px;
   padding-bottom: 30px;
 }
-
-#karrierebox {
+#learningbox_5 #karrierebox {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   align-content: space-around;
   align-content: center;
@@ -979,9 +982,8 @@ tr:hover {
   width: calc(100% - 40px);
   margin: 0 auto;
 }
-
-#karrierebox > div {
-  box-shadow: 0.5rem 0.5rem 2rem;
+#learningbox_5 #karrierebox > div {
+  box-shadow: 0.5rem 0.5rem 2rem, 2px 2px 10px 3px azure inset, -2px -2px 10px 3px azure inset;
   background-color: #b4c8e6;
   display: flex;
   flex-direction: column;
@@ -989,66 +991,39 @@ tr:hover {
   flex-basis: 30%;
   flex-shrink: 1;
   flex-grow: 2;
+  border: 1px solid azure;
   border-radius: 10px;
   height: 400px;
 }
-#karrierebox > div p {
-  font-size: 1.2rem;
-  padding: 10px;
+#learningbox_5 #karrierebox > div div {
+  border-radius: 10px 10px 0 0;
+  margin: 20px;
+  box-shadow: none;
 }
-#karrierebox > div img {
+#learningbox_5 #karrierebox > div div p:first-child {
+  font-family: "FoundSanBd";
+  font-size: 1.1rem;
+}
+#learningbox_5 #karrierebox > div div h3 {
+  font-family: "FoundSanBd";
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+#learningbox_5 #karrierebox > div div p:last-child {
+  font-family: "FoundSanExpNorm", sans-serif;
+  font-size: 1.1rem;
+}
+#learningbox_5 #karrierebox > div img {
   object-fit: cover;
   object-position: top left;
   width: 100%;
   aspect-ratio: 3/2;
+  overflow: hidden;
+  border-top: none;
   border-radius: 0 0 10px 10px;
   position: relative;
   bottom: 0px;
-}
-
-#learning_5_1 > img {
-  object-fit: cover;
-  object-position: 1rem;
-}
-
-#learning_5_2 > img {
-  object-fit: cover;
-  object-position: 1rem;
-}
-
-#learning_5_3 > img {
-  object-fit: cover;
-  object-position: 1rem;
-}
-
-#learning_5_4 > img {
-  object-fit: cover;
-  object-position: 1rem;
-}
-
-#learning_5_5 > img {
-  object-fit: cover;
-  object-position: 1rem;
-}
-
-#learning_5_6 > img {
-  object-fit: cover;
-  object-position: 1rem;
-}
-
-#learning_5_7 > img {
-  object-fit: cover;
-  object-position: 1rem;
-}
-
-#learning_5_8 > img {
-  object-fit: cover;
-  object-position: 1rem;
-}
-
-#learning_5_9 > img {
-  object-fit: cover;
-  object-position: -20px;
+  box-shadow: 2px 2px 10px 3px azure;
 }
 
 /*Learning nach Karrierelevel Ende*/
@@ -1168,25 +1143,6 @@ footer ul ion-icon {
 }
 body {
   font-family: "FoundSanExpNorm", sans-serif;
-}
-
-#header_myaccount img {
-  width: 30%;
-  height: 30%;
-  float: left;
-  margin-left: 20px;
-  margin-right: 50px;
-  margin-top: -25px;
-}
-
-#header_myaccount p a {
-  text-decoration: none;
-  color: black;
-}
-
-#header_myaccount p a:hover {
-  text-decoration: none;
-  color: #c80000;
 }
 
 /*Ende Styles zum Header Account-Seite*/
@@ -1348,73 +1304,72 @@ body {
     z-index: 10;
   }
 }
-#account_main {
-  overflow: scroll;
-  scrollbar-width: 10px;
-  height: 100px;
+#Content h1 {
+  font-family: "FoundSanBd";
 }
-
-#Content {
-  border: solid;
-}
-
 #Content h3 {
+  font-family: "FoundSanBd";
   margin: 10px;
   padding-top: 10px;
 }
-
-#account_1 {
+#Content #account_1 {
   display: block;
   margin-top: 20px;
   border-right: 3px dotted Black;
   border-left: 3px dotted Black;
   border-radius: 20px;
 }
-#account_1 #account_1_data {
+#Content #account_1 #account_1_data {
   display: flex;
   margin-top: 0px;
   width: 100%;
 }
-#account_1 #account_1_data > div {
+#Content #account_1 #account_1_data > div {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-evenly;
+  gap: 5px;
   margin: 10px;
   padding: 5px;
   width: 25%;
   height: 80px;
   background-color: azure;
-  border-radius: 20px;
+  border-radius: 10px;
   box-shadow: 0.5rem 0.5rem 2rem;
   position: relative;
 }
-#account_1 #account_1_data > div p {
+#Content #account_1 #account_1_data > div output {
   line-height: 1rem;
   font-size: 0.9rem;
-  margin: 5px 0 5px 0;
-  width: 50%;
-  height: 30px;
-  line-height: 30px;
-  border: solid;
+  width: 45%;
+  /* border: solid; */
+  border-radius: 10px;
 }
-#account_1 #account_1_data > div p:last-child {
-  width: 100%;
+#Content #account_1 #account_1_data > div p {
+  line-height: 1rem;
+  font-size: 0.9rem;
+  font-family: "FoundSanExpNorm", sans-serif;
+  width: 45%;
 }
 
 .account_Box {
-  display: block;
   position: absolute;
   top: 10px;
   right: 10px;
-  font-weight: bold;
-  font-size: 24px;
+  font-family: "FoundSanBd";
+  font-size: 1.1rem;
   width: 120px;
   height: 30px;
   /*border: 2px dotted black;*/
   border-radius: 10px;
+  padding: 7px;
   text-align: center;
   background-color: rgba(221, 155, 55, 0.2);
 }
 
 #account_1_data > div:nth-of-child(2) {
   display: flex;
+  flex: 1 auto 1;
   flex-direction: column;
   flex-wrap: wrap;
 }
@@ -1422,16 +1377,16 @@ body {
 .account_box_dates {
   display: block;
   position: absolute;
-  font-weight: bold;
-  font-size: 24px;
+  font-family: "FoundSanBd";
+  font-size: 2rem;
   letter-spacing: -2px;
   margin: -50px 100px;
   margin-right: 0px;
   width: 120px;
-  /* border: 2px dotted black; */
   border-bottom: 3px solid azure;
   border-radius: 10px;
   text-align: center;
+  padding: 7px;
   background-color: rgba(221, 155, 55, 0.2);
 }
 
@@ -1474,7 +1429,7 @@ body {
   padding: 10px;
   /*border: 2px dotted black;*/
   background-color: azure;
-  border-radius: 20px;
+  border-radius: 10px;
   box-shadow: 0.5rem 0.5rem 2rem;
   height: 80px;
   position: relative;
@@ -1518,12 +1473,10 @@ body {
 .account_data_box {
   display: flex;
   flex-flow: column;
-  justify-content: center;
-  gap: 0px;
-  /*position: relative;*/
+  justify-content: space-between;
+  gap: 5px;
 }
-
-.account_pers_data {
+.account_data_box .account_pers_data {
   display: block;
   background-color: #b4c8e6;
   font-family: "FoundSanExpNorm", sans-serif;
@@ -1535,13 +1488,12 @@ body {
   height: 30px;
   border: none;
   border-radius: 5px;
-  font-size: 24px;
+  font-size: 1.5rem;
   color: black;
   padding: 2px;
   margin-left: 10px;
 }
-
-.account_market_data {
+.account_data_box .account_market_data {
   display: block;
   background-color: none;
   box-shadow: none;
@@ -1549,12 +1501,12 @@ body {
   width: 70px;
   border: 1px solid #b4c8e6;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 0.9rem;
   color: black;
-  padding: 2px;
+  padding: 0px;
   text-align: center;
   justify-content: center;
-  margin-top: 5px;
+  margin-top: 0;
   margin-left: 10px;
 }
 
@@ -1576,7 +1528,7 @@ body {
   width: 33%;
   height: 80px;
   background-color: azure;
-  border-radius: 20px;
+  border-radius: 10px;
   box-shadow: 0.5rem 0.5rem 2rem;
 }
 #account_3 #account_3_data .account_3 p {
@@ -1609,7 +1561,7 @@ body {
   width: 33%;
   height: 80px;
   background-color: azure;
-  border-radius: 20px;
+  border-radius: 10px;
   box-shadow: 0.5rem 0.5rem 2rem;
 }
 
@@ -1630,8 +1582,13 @@ body {
 
 #account_4_p {
   margin-left: 0px;
+  border: solid;
 }
 
 /*Ende Css für den Main*/
+footer {
+  position: absolute;
+  bottom: 0;
+}
 
 /*# sourceMappingURL=pldcpd_account.css.map */
