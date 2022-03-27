@@ -42,16 +42,19 @@ const hide_btn = document.getElementById("home_aside_h_Btn");
 const show_btn = document.getElementById("home_aside_s_Btn");
 
 const hide_account = () => {
-  home_aside_account.style.animation = "hide_home_aside 3s ease-in-out forwards";
+  home_aside_account.style.animation = "hide_home_aside 2s ease-in-out forwards";
+  show_btn.style.animation = "moveButton 1s 0s ease-in-out forwards";
+  hide_btn.style.animation = "moveButton 1s 0s ease-in-out forwards";
   hide_btn.style.display = "none";
   show_btn.style.display = "block";
 };
 
 const show_account = () => {
-  home_aside_account.style.animation = "show_home_aside 3s ease-in-out forwards";
   hide_btn.style.display = "block";
   show_btn.style.display = "none";
-};
+  hide_btn.style.animation = "moveButtonback 1s ease-in-out forwards";
+  home_aside_account.style.animation = "show_home_aside 2s ease-in-out forwards";
+ };
 
 hide_btn.addEventListener("click", hide_account);
 show_btn.addEventListener("click", show_account);
