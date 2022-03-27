@@ -181,7 +181,9 @@
       animation: navpresenter 3s  forwards;
     }
     li a:hover {
-      color: $cpdred;}
+      color: $cpdred;
+      text-shadow: 1px 1px 20px $cpdred;
+    }
   }
   
   #dropbtn p::after {
@@ -234,6 +236,7 @@
           a:hover{
             text-decoration:none;
             color: $cpdred;
+            text-shadow: 1px 1px 20px $cpdred;
           }
         }
       }
@@ -277,7 +280,7 @@
     border: none;
     border-radius: 10px;
     text-align:center;
-    z-index: 98;
+    z-index: 10;
    }
   
   #home_aside_s_Btn {
@@ -293,7 +296,7 @@
     border: none;
     border-radius: 10px;
     text-align:center;
-    z-index: 98;
+    z-index: 2;
   }
   
   #home_aside_account {
@@ -341,18 +344,25 @@
     1%  {transform: translateX(-120%) scale(90%) /* rotateY(0deg) perspective(0rem) */; z-index: -1;opacity: 1;}
     30% {z-index:1;}
     60% {transform: translateX(60%) scale(90%) /* rotateY(180deg) perspective(10rem) */; }
-    100% {transform: translateX(0%) scale(100%);z-index:10;}
+    100% {transform: translateX(0%) scale(100%);z-index:11;}
     }
 
-    /* @keyframes moveButton {
-      0%  {transform: translateX(0%) rotate(0%);}
-      
-      100% {transform: translateX(-92px) translateY(30px) rotate(-90deg);}
+    @keyframes moveButton {
+      0%  {transform: translateX(0%) rotate(0%);z-index:11;}
+      50% {z-index: 11;}
+      100% {transform: translateX(-115px) translateY(30px) rotate(-90deg);z-index:0; display: block;}
       }
 
-      #home_aside_s_Btn:hover {
+    @keyframes moveButtonback {
+      0%  {transform: translateX(-115px) translateY(30px) rotate(-90deg);z-index:0;}
+      90%  {z-index: 0;}
+      100% {transform: translateX(0%) rotate(0%);z-index: 11;}
+    }
+    
+
+    /* #home_aside_s_Btn:hover {
    animation: moveButton 1s ease-in-out forwards;
-  } */
+  }  */
 
     
   #home_data{
@@ -392,6 +402,10 @@
             font-size: $small;
             font-weight:900;
             color: black;
+          }
+          output[id^="ma"]{
+            background-color: transparent;
+            border: 1px solid $third-color;
           }
         }
       }
@@ -451,7 +465,7 @@
     h1 {
         display:inline-block;
         font-family: $primary-font-bold;
-        font-size: $xxlarge;
+        font-size: $xxxlarge;
         width: 10vw;
         min-width: 25%; 
         text-align: left; 
@@ -459,6 +473,7 @@
         left: 2vw;
         top: 30px;
         margin: 0;
+        text-shadow: 5px 5px 30px $first-color;
       }
     p {
       display:inline-block;
@@ -469,7 +484,7 @@
       text-align: left; 
       position:absolute;
       right: 10vw;
-      top: 20px;
+      top: 30px;
     }
   }
     
@@ -581,8 +596,9 @@
     flex-wrap: nowrap;
     justify-content:space-between;
     align-content:stretch;
-    grid-gap: 10px;
+    gap: 10px;
     width: 1/5;
+    height: 300px;
     margin-top: 20px;
     
   
@@ -599,19 +615,17 @@
      /* font-size: $small; */
      margin: 10px; 
     }
-    
+    img{
+      object-fit: cover;
+      width: 100%;
+      margin-top: 10px;
+      border-radius: 0 0 10px 10px;
+      position: relative;
+      bottom: 0px;
+      top: 10px;
+    }  
   }
   
-  #lb_1_angebote img{
-    object-fit: cover;
-    width: 100%;
-    height: 120px;
-    margin-top: 10px;
-    border-radius: 0 0 10px 10px;
-    position: relative;
-    bottom: 0%;
-    top: 10px;
-  }  
   
   #Promoter_1 {
     width: 100vw;
