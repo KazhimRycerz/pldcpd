@@ -407,14 +407,14 @@ main {
 
 #home_aside_h_Btn {
   display: block;
+  position: fixed;
+  top: 150px;
+  right: 30px;
   color: #000032;
   background-color: rgba(170, 170, 170, 0.75);
   box-shadow: 0px 0px 10px 1px lemonchiffon inset, -2px -2px 5px 3px grey, -5px -5px 5px white inset;
   width: 65px;
   height: 40px;
-  position: fixed;
-  top: 150px;
-  right: 30px;
   border: none;
   border-radius: 10px;
   text-align: center;
@@ -423,14 +423,14 @@ main {
 
 #home_aside_s_Btn {
   display: none;
+  position: fixed;
+  top: 150px;
+  right: 30px;
   color: #000032;
   background-color: rgba(170, 170, 170, 0.75);
   box-shadow: 0px 0px 10px 1px lemonchiffon inset, -2px -2px 5px 3px grey, -5px -5px 5px white inset;
   width: 65px;
   height: 40px;
-  position: fixed;
-  top: 150px;
-  right: 30px;
   border: none;
   border-radius: 10px;
   text-align: center;
