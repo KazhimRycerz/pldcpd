@@ -269,14 +269,14 @@
   
   #home_aside_h_Btn {
     display: block;
+    position: fixed;
+    top: 150px;
+    right: 30px;
     color: $cpdblue;
     background-color: $button-color;
     box-shadow: $btnshadow;
     width: 65px;
     height: 40px;
-    position: fixed;
-    top: 150px;
-    right: 30px;
     border: none;
     border-radius: 10px;
     text-align:center;
@@ -285,14 +285,14 @@
   
   #home_aside_s_Btn {
     display: none;
+    position: fixed;
+    top: 150px;
+    right:30px;
     color: $cpdblue;
     background-color: $button-color;
     box-shadow: $btnshadow;
     width: 65px;
     height: 40px;
-    position: fixed;
-    top: 150px;
-    right:30px;
     border: none;
     border-radius: 10px;
     text-align:center;
