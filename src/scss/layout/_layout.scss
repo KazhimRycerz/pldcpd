@@ -566,7 +566,18 @@
     margin-top: 20px;
   }
   
-  
+  .infobox_intro {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: top;
+      width: 80%;
+      margin: 20px auto;
+      gap: 20px;
+      h2 {
+        font-family: $primary-font-bold;
+      }
+    }
    
   #learningbox_1 {
     border-top: 3px dotted Black;
@@ -575,22 +586,8 @@
     padding: 20px;
     border-radius: 20px;
     font-size: $normal;
-  }
-  
-  .infobox_intro {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: top;
-    width: 80%;
-    margin: 20px auto;
-    gap: 20px;
-    h2 {
-      font-family: $primary-font-bold;
-    }
-  }
-  
-  #lb_1_angebote {
+    
+    #lb_1_angebote {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -598,34 +595,40 @@
     align-content:stretch;
     gap: 10px;
     width: 1/5;
-    height: 300px;
+    height: 250px;
     margin-top: 20px;
-    
-  
-    
-  }
-  
-  #lb_1_angebote>div {
-    box-shadow: $boxshadow; 
-    background-color: $third-color;
-    /*border: 2px solid rgb(114, 4, 4);*/
-    width: 20%;
-    border-radius: 10px;
-    h5 {
-     /* font-size: $small; */
-     margin: 10px; 
+      div {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-between;
+        box-shadow: $boxshadow; 
+        background-color: $third-color;
+        /*border: 2px solid rgb(114, 4, 4);*/
+        width: 20%;
+        border: 1px solid white;
+        border-radius: $radiussmall;
+        h5 {
+          font-size: $small;
+          font-family: $primary-font-bold;
+          margin: 10px; 
+        }
+        p {
+          margin: 10px; 
+          font-size: $small;
+        }
+        img{
+          object-fit: cover;
+          width: 100%;
+          aspect-ratio: 3/2;
+          margin-top: 10px;
+          border-radius: 0 0 $radiussmall $radiussmall;
+          position: relative;
+          bottom: -0px;
+          border: 0 1px 1px 1px solid white;
+        }  
+      }  
     }
-    img{
-      object-fit: cover;
-      width: 100%;
-      margin-top: 10px;
-      border-radius: 0 0 10px 10px;
-      position: relative;
-      bottom: 0px;
-      top: 10px;
-    }  
   }
-  
   
   #Promoter_1 {
     width: 100vw;
