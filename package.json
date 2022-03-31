@@ -17,7 +17,7 @@
     "server": "light-server -c light-server.json",
     "open-browser": "open -a 'Google Chrome' http://127.0.0.1:8080",
     "clean": "rm -rf dist src/styles",
-    "copy": "mkdir dist && rsync ./src/ ./dist/ -avr --exclude=/scss",
+    "copy": " mkdir dist && cp -r src/* dist",
     "build": "run-s clean sass-build copy",
     "publish": "gh-pages -d dist",
     "deploy": "run-s build publish"
