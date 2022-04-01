@@ -18,22 +18,24 @@ function accountData(){
 accountData();
 
 const accountAsideAccount = document.getElementById("account_aside_account");
-const accountHideBtn = document.getElementById("account_aside_h_Btn");
-const accountShowBtn = document.getElementById("account_aside_s_Btn");
+const accountHideButton = document.getElementById("account_aside_h_Btn");
+const accountShowButton = document.getElementById("account_aside_s_Btn");
 
 const hideAccountInfo = () => {
-  accountAsideAccount.style.animation = "hide_account_aside 3s ease-in-out forwards";
-  /* home_aside_account.style.display = "none"; */
-  accountHideBtn.style.display = "none";
-  accountShowBtn.style.display = "block";
+  accountAsideAccount.style.animation = "hide_account_aside 2s ease-in-out forwards";
+  accountShowButton.style.animation = "moveAsideButton 1s 0s ease-in-out forwards";
+  accountHideButton.style.animation = "moveAsideButton 1s 0s ease-in-out forwards";
+  accountHideButton.style.display = "none";
+  accountShowButton.style.display = "block";
 };
 
 const showAccountInfo = () => {
-  accountAsideAccount.style.animation = "show_account_aside 3s ease-in-out forwards";
-  /* home_aside_account.style.display = "block"; */
-  accountHideBtn.style.display = "block";
-  accountShowBtn.style.display = "none";
+  accountHideButton.style.display = "block";
+  accountShowButton.style.display = "none";
+  accountHideButton.style.animation = "moveAsideButtonback 1s ease-in-out forwards";
+  accountAsideAccount.style.animation = "show_account_aside 2s ease-in-out forwards";
+   
 };
 
-accountHideBtn.addEventListener("click", hideAccountInfo);
-accountShowBtn.addEventListener("click", showAccountInfo);
+accountHideButton.addEventListener("click", hideAccountInfo);
+accountShowButton.addEventListener("click", showAccountInfo);
