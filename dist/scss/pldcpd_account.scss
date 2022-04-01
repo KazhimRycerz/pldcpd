@@ -1,43 +1,38 @@
 @import "./pldcpd.scss";
 
-body {
-  font-family: $primary-font;
-}
-
-/*Ende Styles zum Header Account-Seite*/
 
 /*Beginn Css für den Aside*/
 
 #account_aside_h_Btn {
   display: block;
+  position: fixed;
+  top: 150px;
+  right: 30px;
   color: $cpdblue;
   background-color: $button-color;
   box-shadow: $btnshadow;
   width: 65px;
   height: 40px;
-  position: fixed;
-  top: 150px;
-  right: 30px;
   border: none;
   border-radius: 10px;
   text-align:center;
-  z-index: 98;
+  z-index: 10;
  }
 
 #account_aside_s_Btn {
   display: none;
+  position: fixed;
+  top: 150px;
+  right:30px;
   color: $cpdblue;
   background-color: $button-color;
   box-shadow: $btnshadow;
   width: 65px;
   height: 40px;
-  position: fixed;
-  top: 150px;
-  right:30px;
   border: none;
   border-radius: 10px;
   text-align:center;
-  z-index: 98;
+  z-index: 2;
 }
 
 #account_aside_account {
@@ -52,9 +47,8 @@ body {
   top: 180px;
   right: 0;
   font-size: $small;
-  border-radius: 10px;
   z-index: 10;
-  display: inline-block;
+  border-radius: 10px;
   .account_container {
     display: grid;
     width: 100%;
@@ -130,22 +124,34 @@ body {
 
 @keyframes hide_account_aside {
   0%  {transform: translateX(0%) /* perspective(300px) rotateY(0deg) */;}
-  30% {transform: translateX(60%) scale(90%)  /* rotateY(60deg)perspective(300px); */ }
+  30% {transform: translateX(60%) scale(90%) /* rotateY(60deg)perspective(300px); */ }
   60% {z-index:1;}
+  /* 50% {transform: translateX(0%);z-index:1;}
+  75% {transform: translateX(-60%);} */
   99% {transform: translateX(-120%) scale(90%)/* rotateY(0deg) perspective(0rem) */; z-index: -1; opacity: 1;}
   100% {transform: translateX(-120%) scale(90%)/* rotateY(0deg) perspective(0rem) */; z-index: -1; opacity: 0;}
   }
 
 @keyframes show_account_aside {
   0%  {opacity:0;}
-  1%  {transform: translateX(-120%) scale(90%)/* rotateY(0deg) perspective(0rem) */; z-index: -1;opacity: 1;}
+  1%  {transform: translateX(-120%) scale(90%) /* rotateY(0deg) perspective(0rem) */; z-index: -1;opacity: 1;}
   30% {z-index:1;}
   60% {transform: translateX(60%) scale(90%) /* rotateY(180deg) perspective(10rem) */; }
-  100% {transform: translateX(0%) scale(100%);z-index:10;}
-  }
+  100% {transform: translateX(0%) scale(100%);z-index:11;}
+}
 
+  @keyframes moveAsideButton {
+    0%  {transform: translateX(0%)   rotate(0%);z-index:11;}
+    50% {z-index: 0;}
+    100% {transform: translateX(0%) translateY(30px) rotate(-90deg);z-index:0; display: block; right:7.8vw}
+    }
 
-  
+  @keyframes moveAsideButtonback {
+    0%  {transform: translateX(0%) translateY(30px) rotate(-90deg);z-index:0;right:7.8vw}
+      90%  {z-index: 0;}
+      100% {transform: translateX(0%) rotate(0%);z-index: 11;}
+    }
+   
 #Content {
   h1 {
     font-family: $primary-font-bold;
@@ -436,6 +442,50 @@ body {
   margin-left: 0px;
   border: solid;
 }
+
+#account_5 {
+  display: block;
+  margin-top: 20px;
+  border-right: 3px dotted Black;
+  border-left: 3px dotted Black;
+  border-radius: 20px;
+  p {
+    padding: 00px;
+    font-size: 14px;
+  }
+  >div {
+    display: flex;
+    margin-top: 0px;
+  }
+}
+
+.account_5 {
+  margin: 10px;
+  margin-top: 0px;
+  padding: 10px;
+  padding-top: 0px;
+  width: 33%;
+  height: 80px;
+  background-color: $first-color;
+  border-radius: $radiussmall;
+  box-shadow: $boxshadow;
+}
+
+.account_5_Box {
+  display: block;
+  font-weight: bold;
+  font-size: 30px;
+  margin: -50px 100px;
+  margin-right: 20px;
+  width: 50%;
+  height: auto;
+  /*border: 2px dotted black;*/
+  border-radius: 10px;
+  text-align: center;
+  align-items: center;
+  background-color: rgb(221, 155, 55, 0.2);
+}
+
 /*Ende Css für den Main*/
 
 footer {
