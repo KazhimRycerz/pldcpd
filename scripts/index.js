@@ -1,26 +1,24 @@
 "use strict";
 
-//Datenerfassung
-let myKF;
 myKF = 120;
 myKF += 12.5;
-let myLF = 111;
-let myPEX = 1524;
-let myPED = 2400;
-let myLP = 200;
-let maKF = 120;
-let maLF = 105;
-let maPEX = 1950;
-let maPED = 1500;
-let maLP = 150;
-let myLCoins = 1500;
+myLF = 111;
+myPEX = 1524;
+myPED = 2400;
+myLP = 200;
+maKF = 120;
+maLF = 105;
+maPEX = 1950;
+maPED = 1500;
+maLP = 150;
+myLCoins = 1500;
 myLCoins += 20;
-let firstName = "Joachim";
-let lastName = "Ritter";
+firstName = "Joachim";
+lastName = "Ritter";
 /* const firstName = "Joachim";
   const lastName = "Ritter"; */
-let myCL = "IV";
-let boolVar = false;
+myCL = "IV";
+boolVar = false;
 
 // Ende Datenerfassung
 
@@ -37,24 +35,25 @@ function accountData() {
 }
 accountData();
 
-const home_aside_account = document.getElementById("home_aside_account");
-const hide_btn = document.getElementById("home_aside_h_Btn");
-const show_btn = document.getElementById("home_aside_s_Btn");
+const homeAsideAccount = document.getElementById("home_aside_account");
+const hideButton = document.getElementById("home_aside_h_Btn");
+const showButton = document.getElementById("home_aside_s_Btn");
 
-const hide_account = () => {
-  home_aside_account.style.animation = "hide_home_aside 2s ease-in-out forwards";
-  show_btn.style.animation = "moveButton 1s 0s ease-in-out forwards";
-  hide_btn.style.animation = "moveButton 1s 0s ease-in-out forwards";
-  hide_btn.style.display = "none";
-  show_btn.style.display = "block";
+const hideAccount = () => {
+  homeAsideAccount.style.animation = "hide_home_aside 2s ease-in-out forwards";
+  showButton.style.animation = "moveButton 1s 0s ease-in-out forwards";
+  hideButton.style.animation = "moveButton 1s 0s ease-in-out forwards";
+  hideButton.style.display = "none";
+  showButton.style.display = "block";
 };
 
-const show_account = () => {
-  hide_btn.style.display = "block";
-  show_btn.style.display = "none";
-  hide_btn.style.animation = "moveButtonback 1s ease-in-out forwards";
-  home_aside_account.style.animation = "show_home_aside 2s ease-in-out forwards";
+const showAccount = () => {
+  hideButton.style.display = "block";
+  showButton.style.display = "none";
+  hideButton.style.animation = "moveButtonback 1s ease-in-out forwards";
+  homeAsideAccount.style.animation = "show_home_aside 2s ease-in-out forwards";
  };
 
-hide_btn.addEventListener("click", hide_account);
-show_btn.addEventListener("click", show_account);
+hideButton.addEventListener("click", hideAccount);
+showButton.addEventListener("click", showAccount);
+
