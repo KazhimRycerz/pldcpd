@@ -1,5 +1,7 @@
 @import "./typography/typography.scss";
 @import "./reset/reset.scss";
 @import "./variables/variables.scss";
-@import "./layout/_layout.scss";
+/* @import "./layout/_layout.scss"; */
+@import "./layout/global.scss";
+@import "./layout/home.scss";
 
