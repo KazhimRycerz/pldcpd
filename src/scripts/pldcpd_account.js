@@ -1,5 +1,7 @@
 'use strict';
 
+myKF += 10;
+
 function accountData(){
   document.getElementById("myCL").innerHTML = myCL;
   document.getElementById("myLCoins").innerHTML = myLCoins;
