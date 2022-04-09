@@ -1,0 +1,501 @@
+@import "../variables/variables.scss";
+
+
+#account_aside_h_Btn {
+  display: block;
+  position: fixed;
+  top: 150px;
+  right: 30px;
+  color: $cpdblue;
+  background-color: $button-color;
+  box-shadow: $btnshadow;
+  width: 65px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  text-align:center;
+  z-index: 10;
+ }
+
+#account_aside_s_Btn {
+  display: none;
+  position: fixed;
+  top: 150px;
+  right:30px;
+  color: $cpdblue;
+  background-color: $button-color;
+  box-shadow: $btnshadow;
+  width: 65px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  text-align:center;
+  z-index: 2;
+}
+
+#account_aside_account {
+  background-color: $first-color;
+  box-shadow: $boxshadow;
+  width: 15vw;
+  min-width: 200px;
+  height: 400px;
+  padding: 0px;
+  margin-right: 20px;
+  position: fixed;
+  top: 180px;
+  right: 0;
+  font-size: $small;
+  z-index: 10;
+  border-radius: 10px;
+  .account_container {
+    display: grid;
+    width: 100%;
+    place-items: center;
+    margin: 10px 0 10px 0;
+    .floating-stack {
+      background: $first-color;
+      height: 380px;
+      width: 100%;
+      overflow-y: scroll;
+      overflow-x: none;
+      font-size: $small;
+      padding-bottom: 220px;
+      dl {
+        margin: 0 0 0;
+        display: grid;
+        grid-template-columns: 2.2rem 1fr;
+        align-items: baseline;
+        dt {
+          text-align: center;
+          font-family: $guthaben;
+          position: sticky;
+          top: 0.5rem;
+          left: 0.5rem;
+          font-weight: bold;
+          background: rgb(17, 59, 13);
+          color: $first-color;
+          height: 35px;
+          width: 35px;
+          border-radius: 50%;
+          line-height: 35px;
+          grid-column: 1;
+        }
+        dd {
+          grid-column: 2;
+          margin: 0px;
+          padding: 10px;
+          padding-top: 10px;
+          h3 {
+            font-weight: 900;
+            font-family: $primary-font-bold;
+          }
+        }
+        dd:hover {
+          background-color: rgb(180, 200, 230);
+          color: black;
+        }
+      }
+      > dl:first-of-type > dd:first-of-type {
+        margin-top: 0.25rem;
+      }
+    }
+  }
+}
+
+#LC_only {
+  font-family: $calli;
+  color: $cpdred;
+  letter-spacing: -2px;
+  text-align: center;
+  font-size: 130%;
+  text-shadow: 1px 1px rgb(225, 220, 100);
+  border-style: solid;
+  border-color: rgb(223, 168, 17);
+  border-width: 2px;
+  background-color: rgb(192, 112, 7);
+  background-image: linear-gradient(
+    to top left,
+    rgb(160, 88, 0),
+    rgb(225, 220, 100)
+  );
+}
+
+@keyframes hide_account_aside {
+  0%  {transform: translateX(0%) /* perspective(300px) rotateY(0deg) */;}
+  30% {transform: translateX(60%) scale(90%) /* rotateY(60deg)perspective(300px); */ }
+  60% {z-index:1;}
+  /* 50% {transform: translateX(0%);z-index:1;}
+  75% {transform: translateX(-60%);} */
+  99% {transform: translateX(-120%) scale(90%)/* rotateY(0deg) perspective(0rem) */; z-index: -1; opacity: 1;}
+  100% {transform: translateX(-120%) scale(90%)/* rotateY(0deg) perspective(0rem) */; z-index: -1; opacity: 0;}
+  }
+
+@keyframes show_account_aside {
+  0%  {opacity:0;}
+  1%  {transform: translateX(-120%) scale(90%) /* rotateY(0deg) perspective(0rem) */; z-index: -1;opacity: 1;}
+  30% {z-index:1;}
+  60% {transform: translateX(60%) scale(90%) /* rotateY(180deg) perspective(10rem) */; }
+  100% {transform: translateX(0%) scale(100%);z-index:11;}
+}
+
+  @keyframes moveAsideButton {
+    0%  {transform: translateX(0%)   rotate(0%);z-index:11;}
+    50% {z-index: 0;}
+    100% {transform: translateX(0%) translateY(30px) rotate(-90deg);z-index:0; display: block; right:calc(10vw - 35px)}
+    }
+
+  @keyframes moveAsideButtonback {
+    0%  {transform: translateX(0%) translateY(30px) rotate(-90deg);z-index:0;right:calc(10vw - 35px)}
+      90%  {z-index: 0;}
+      100% {transform: translateX(0%) rotate(0%);z-index: 11;}
+    }
+
+    /* #account_aside_h_Btn:hover {
+   animation: moveButton 1s ease-in-out forwards;
+   }  */
+
+   main {
+     margin-top: -20px;
+   }
+   
+#Content {
+  h1 {
+    font-family: $primary-font-bold;
+  }
+  h3 {
+    font-family: $primary-font-bold;
+    margin: 10px;
+    padding-top: 10px;
+  }
+  #account_1 {
+    display: block;
+    margin-top: 20px;
+    border-right: 3px dotted Black;
+    border-left: 3px dotted Black;
+    border-radius: 20px;
+  
+    #account_1_data {
+      display: flex;
+      margin-top: 0px;
+      width: 100%;
+      > div {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-evenly;
+        gap: 5px;
+        margin: 10px;
+        padding: 5px;
+        width: 25%;
+        height: 80px;
+        background-color: $first-color;
+        border-radius: $radiussmall;
+        box-shadow: $boxshadow;
+        position: relative;
+        output {
+          line-height: 1rem;
+          font-size: $small;
+          width: 45%;
+          /* border: solid; */
+          border-radius: $radiussmall;
+        }
+        p {
+          line-height: 1rem;
+          font-size: $small;
+          font-family: $primary-font;
+          width: 45%;
+          
+        }
+      }
+    }
+  }
+}
+
+.account_Box {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-family: $primary-font-bold;
+  font-size: $normal;
+  width: 120px;
+  height: 30px;
+  /*border: 2px dotted black;*/
+  border-radius: $radiussmall;
+  padding: 7px;
+  text-align: center;
+  background-color: $fourth-color;
+}
+
+#account_1_data>div:nth-of-child(2) {
+  display: flex;
+  flex: 1 auto 1;
+  flex-direction: column;
+  flex-wrap: wrap;
+  
+    
+}
+.account_box_dates {
+  display: block;
+  position: absolute;
+  font-family: $primary-font-bold;
+  font-size: $xxlarge;
+  letter-spacing: -2px;
+  margin: -50px 100px;
+  margin-right: 0px;
+  width: 120px;
+  border-bottom: 3px solid $first-color;
+  border-radius: $radiussmall;
+  text-align: center;
+  padding: 7px;
+  background-color: $fourth-color;
+}
+
+#my_start {
+  top: 60px;
+  right: 10px;
+  height: 30px;
+}
+#my_active {
+  top: 90px;
+  right: 10px;
+  height: 30px;
+}
+
+/* zweite Datenreihe*/
+
+#account_2 {
+  display: block;
+  margin-top: 20px;
+  border-left: 3px dotted black;
+  border-right: 3px dotted black;
+  border-radius: 20px;
+  /*background-color: RGB(221, 155, 55, 0.2);*/
+  height: auto;
+  > p {
+    margin-left: 10px;
+  }
+}
+#account_2_data {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  .account_2 {
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    padding: 10px;
+    /*border: 2px dotted black;*/
+    background-color: $first-color;
+    border-radius: $radiussmall;
+    box-shadow: $boxshadow;
+    height: 80px;
+    position: relative;
+    div > h2 {
+      font-family: $guthaben;
+    }
+    div:first-child {
+      position: relative;
+      top: -20px;
+    }
+    > div:last-child {
+      position: relative;
+      right: 0px;
+      width: 50%;
+    }
+  }
+}
+
+.account_2 > div > h2 {
+  padding: 5px;
+  font-family: $calli;
+  font-weight: bold;
+  background-color: rgb(17, 59, 13);
+  font-size: 30px;
+  text-align: center;
+  color: white;
+  width: 60px;
+  height: 80px;
+  line-height: 100%;
+  border-radius: $radiussmall;
+}
+
+.account_2 > div > p {
+  padding-left: 4px;
+  margin-top: -40px;
+  font-family: $primary-font;
+  font-size: 10px;
+  text-align: center;
+  color: rgb(255, 255, 255);
+}
+
+.account_data_box {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  gap: 5px;
+  .account_pers_data {
+    display: block;
+    background-color: rgb(180, 200, 230);
+    font-family: $primary-font;
+    font-weight: bold;
+    box-shadow: none;
+    text-align: center;
+    line-height: 25px;
+    width: 70px;
+    height: 30px;
+    border: none;
+    border-radius: $radiusxsmall;
+    font-size: $xlarge;
+    color: black;
+    padding: 2px;
+    margin-left: 10px;
+  }
+  .account_market_data {
+    display: block;
+    background-color: none;
+    box-shadow: none;
+    text-align: center;
+    width: 70px;
+    border: 1px solid $third-color;
+    border-radius: 5px;
+    font-size: $small;
+    color: black;
+    padding: 0px;
+    text-align: center;
+    justify-content: center;
+    margin-top: 0;
+    margin-left: 10px;
+  }
+}
+
+
+
+
+#account_3 {
+  display: block;
+  margin-top: 20px;
+  border-right: 3px dotted black;
+  border-left: 3px dotted black;
+  border-radius: 20px;
+  #account_3_data {
+    display: flex;
+    margin-top: 0px;
+    .account_3 {
+      margin: 10px;
+      margin-top: 0px;
+      padding: 10px;
+      width: 33%;
+      height: 80px;
+      background-color: $first-color;
+      border-radius: $radiussmall;
+      box-shadow: $boxshadow;
+      p {
+        padding: 0px;
+        font-size: $small;
+      }
+    }
+  }
+}
+
+
+
+
+#account_4 {
+  display: block;
+  margin-top: 20px;
+  border-right: 3px dotted Black;
+  border-left: 3px dotted Black;
+  border-radius: 20px;
+  p {
+    padding: 00px;
+    font-size: 14px;
+  }
+}
+
+#account_4_data {
+  display: flex;
+  margin-top: 0px;
+}
+
+.account_4 {
+  margin: 10px;
+  margin-top: 0px;
+  padding: 10px;
+  padding-top: 0px;
+  width: 33%;
+  height: 80px;
+  background-color: $first-color;
+  border-radius: $radiussmall;
+  box-shadow: $boxshadow;
+}
+
+.account_4_Box {
+  display: block;
+  font-weight: bold;
+  font-size: 30px;
+  margin: -50px 100px;
+  margin-right: 20px;
+  width: 50%;
+  height: auto;
+  /*border: 2px dotted black;*/
+  border-radius: 10px;
+  text-align: center;
+  align-items: center;
+  background-color: rgb(221, 155, 55, 0.2);
+}
+
+#account_4_p {
+  margin-left: 0px;
+  border: solid;
+}
+
+#account_5 {
+  display: block;
+  margin-top: 20px;
+  border-right: 3px dotted Black;
+  border-left: 3px dotted Black;
+  border-radius: 20px;
+  p {
+    padding: 00px;
+    font-size: 14px;
+  }
+  >div {
+    display: flex;
+    margin-top: 0px;
+  }
+}
+
+.account_5 {
+  margin: 10px;
+  margin-top: 0px;
+  padding: 10px;
+  padding-top: 0px;
+  width: 33%;
+  height: 80px;
+  background-color: $first-color;
+  border-radius: $radiussmall;
+  box-shadow: $boxshadow;
+}
+
+.account_5_Box {
+  display: block;
+  font-weight: bold;
+  font-size: 30px;
+  margin: -50px 100px;
+  margin-right: 20px;
+  width: 50%;
+  height: auto;
+  /*border: 2px dotted black;*/
+  border-radius: 10px;
+  text-align: center;
+  align-items: center;
+  background-color: rgb(221, 155, 55, 0.2);
+}
+
+/*Ende Css für den Main*/
+
+footer {
+  position: static;
+    bottom: 0;
+  }
+

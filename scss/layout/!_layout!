@@ -1006,6 +1006,9 @@
     #C1A2, #C1A3 {
       width: 75%;
     }
+    #Content {
+      width: 100%;
+    }
     }
     
     @media (max-width: $tablet){

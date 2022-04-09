@@ -1,0 +1,306 @@
+@import "../variables/variables.scss";
+
+
+ body {
+    font-family: $primary-font;
+    line-height: 1.2;
+    letter-spacing: 0px;
+    background-image: url(../images/Wallpaper_07.JPG);
+    background-size: 100vw;
+    background-repeat:repeat-y;
+    background-attachment: fixed;
+    margin-top:150px;
+  }
+  
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .rotate {
+    position: fixed;
+    width: 13vw; 
+    aspect-ratio: 1;
+    z-index: -1;
+    /* animation: none; */
+    animation: rotate 20s infinite linear;
+  }
+  
+  #r1 {
+      left: 22vw;
+      top: -1vw;
+  } 
+  #r2 {
+      left: 66vw;
+      top: -1vw;
+  }
+  #r3 {
+    left: 0.2vw;
+    top: 10.2vw;
+  }
+  #r4 {
+     left:43.5vw;
+     top: 10.2vw;
+  }
+  #r5 {
+     left: 86.8vw;
+     top: 10.2vw;
+  }
+  #r6 {
+      left: 0.2vw;
+      top: 34.8vw;
+  }
+  #r7 {
+      left: 86.8vw;
+      top: 34.8vw;
+  }
+  #r8 {
+      left: 0.2vw;
+      top: 59.9vw;
+  }
+  #r9 {
+      left: 86.8vw;
+      top: 59.9vw;
+  }
+  #r10 {
+      left: 0.2vw;
+      top: 85.0vw;
+  }
+  #r11 {
+      left: 43.8vw;
+      top: 85.0vw;
+  }
+  #r12 {
+      left: 66.8vw;
+      top: 85.0vw;
+  }
+  #r13 {
+    left: 86.8vw;
+    top: 85.0vw;
+  }
+  
+
+  main:hover .rotate, main:focus .rotate, header:hover .rotate, header:focus .rotate, footer:hover .rotate, footer:focus .rotate {
+    animation: none;
+  }
+  
+  
+  /*Alles zum Header*/
+  header {
+    font-family: $primary-font;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    /* margin-bottom: 30px; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    width: 100vw;
+    height: 100px;
+    background-color: $first-color;
+    box-shadow: $boxshadow;
+    z-index: 99;
+   }
+  
+  /* Neue Navigation*/
+  
+  .navheader {
+    width:30%;
+    position:relative;
+    left: 10.5%;
+    #dropdown {
+      position: relative;
+      left:0;
+      width: 100%;
+      display: block;
+      #dropbtn {
+        font-family: $primary-font;
+        width: 140px;
+        text-align: left;
+        position: relative;
+        background-color: transparent;
+        color: black;
+        font-size: $small;
+        border: none;
+      }
+      ul {
+        color: black;
+        font-size: $small;
+        display: flex;
+        opacity: 0;
+        flex-direction: row;
+        justify-content: left;
+        position: absolute;
+        bottom: -11px;
+        left: -20px;
+        height: auto;
+        width: auto;
+        background-color: none;
+        z-index: 98;
+        text-decoration: none;
+        
+        li {        
+          padding: 0 20px;
+          display: flex;
+          font-size: $small;
+          background-color: none;
+          /* box-shadow: $boxshadow; */
+          * {
+            text-decoration: none;
+          }
+          a {
+            color: black;
+          }
+        }
+      }
+    }
+  }
+  
+  @keyframes navpresenter {
+  0%  {opacity: 0;}
+  100% {opacity: 1;}
+  }
+  
+  #dropdown:hover #dropdown-content {
+    opacity: 1;
+    width: auto;
+    li:nth-child(2){
+      opacity: 0;
+      animation: navpresenter 1s forwards; 
+      animation-fill-mode: both;
+    }
+    li:nth-child(3){
+      opacity: 0;
+      animation: navpresenter 2s  forwards;
+    }
+    li:nth-child(4){
+      opacity: 0;
+      animation: navpresenter 3s  forwards;
+    }
+    li a:hover {
+      color: $cpdred;
+      text-shadow: 1px 1px 20px $cpdred;
+    }
+  }
+  
+  #dropbtn p::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    
+  }
+  
+  #dropdown:hover #dropbtn {
+    display: none;
+    opacity: 0;
+  }
+  
+  .image_header {
+      height:30px;
+   }
+  
+  .text_header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: nowrap;
+    margin-top: 0px;
+    margin-left: -15%;
+    font-size: $small;
+    text-decoration: none;
+    vertical-align: top;
+    line-height: 1.2;
+  }
+  
+  #header_myaccount {
+    background-color: $first-color;
+    width: 15vw;
+    height: 60px;
+    margin-right: 30px;
+    font-size: $small;
+      ul {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: end;
+        gap: 0px;
+        li {
+          list-style-type: none;
+          a {
+            text-decoration:none;
+            color: black;
+          }
+          a:hover{
+            text-decoration:none;
+            color: $cpdred;
+            text-shadow: 1px 1px 20px $cpdred;
+          }
+        }
+      }    
+    }
+  
+  /*Ende Styles zum Header*/
+   
+  /*Beginn Css für den Main*/ 
+  
+  main {
+    width: 80%;
+    margin-top: 0px;
+    margin-left: 10%;
+    margin-right: 10%;
+    z-index: 5;
+    position: relative;
+    border-radius: 20px;
+    background-color: $first-color;
+    border:2px solid $first-color;
+  }
+    
+    
+  /*Content*/
+
+  #Content {
+    /*background-color: azure;*/
+    width: 80%;
+    margin: 20px auto;  
+    z-index: 2;
+  }
+  
+  
+  footer {
+    position:static;
+    bottom: 0;
+    background-color:$first-color;
+    padding: 10px 0 10px 0;
+    width:100vw;
+    height: 120px;
+    height:fit-content;
+    font-size: 12px;
+    margin-top: 50px;
+    p {
+      text-align: center;
+      width:80%;
+      font-size: $small;
+      margin: 10px auto;
+    }
+    ul {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: center;
+      width: 80%;
+      margin: 0 auto;
+      gap: 10px;
+      list-style-type: none;
+      ion-icon {
+        font-size: 30px;;
+        color:$cpdblue;
+      }
+    }
+  }
+  
+  
+    

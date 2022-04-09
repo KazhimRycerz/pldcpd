@@ -134,6 +134,77 @@ $border-radius:*/
   display: block;
 }
 
+/* @import "./layout/_layout.scss"; */
+/* textsizes*/
+/*$medium: 4rem;
+$large: 10rem;
+$huge: 20rem;
+
+$border-radius:*/
+/*Mediasetting*/
+/* Fonts */
+/* logos */
+.logo_cpd {
+  width: 8%;
+  margin-left: 0px;
+  margin-right: 10px;
+  right: 10px;
+  align-items: right;
+}
+
+.LC {
+  font-family: "VIA-Verlag";
+  font-weight: bold;
+  letter-spacing: -5px;
+  line-height: normal;
+  font-style: normal;
+  color: #7d0000;
+  font-size: 2.5rem;
+  position: relative;
+  bottom: -0.15rem;
+}
+
+.C {
+  font-family: "VIA-Verlag";
+  color: #7d0000;
+  font-size: 1.3em;
+  position: relative;
+  top: 3px;
+  /* bottom: -0.14em; */
+  text-decoration: none;
+}
+
+.Calli {
+  font-family: "VIA-Verlag";
+  line-height: normal;
+  font-style: normal;
+  font-size: 1.1rem;
+  position: relative;
+  bottom: -0.14em;
+  text-decoration: none;
+}
+
+.LitCoin {
+  font-family: "VIA-Verlag";
+  font-style: normal;
+  line-height: normal;
+  color: #7d0000;
+  font-size: 1.5em;
+  position: relative;
+  bottom: -0.14em;
+}
+
+.grad {
+  background-image: linear-gradient(#adadd5, #e49696);
+  background-attachment: fixed;
+}
+
+.Trenner {
+  margin: 50px auto;
+  width: 5%;
+  display: block;
+}
+
 body {
   font-family: "FoundSanExpNorm", sans-serif;
   line-height: 1.2;
@@ -237,7 +308,7 @@ header {
   position: fixed;
   top: 0px;
   left: 0px;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -365,9 +436,6 @@ header {
   height: 60px;
   margin-right: 30px;
   font-size: 0.9rem;
-  /* :hover {
-    box-shadow: $boxshadow;
-  } */
 }
 #header_myaccount ul {
   display: flex;
@@ -388,14 +456,12 @@ header {
   color: #7d0000;
   text-shadow: 1px 1px 20px #7d0000;
 }
-#header_myaccount button {
-  display: none;
-}
 
 /*Ende Styles zum Header*/
 /*Beginn Css für den Main*/
 main {
   width: 80%;
+  margin-top: 0px;
   margin-left: 10%;
   margin-right: 10%;
   z-index: 5;
@@ -403,6 +469,115 @@ main {
   border-radius: 20px;
   background-color: azure;
   border: 2px solid azure;
+}
+
+/*Content*/
+#Content {
+  /*background-color: azure;*/
+  width: 80%;
+  margin: 20px auto;
+  z-index: 2;
+}
+
+footer {
+  position: static;
+  bottom: 0;
+  background-color: azure;
+  padding: 10px 0 10px 0;
+  width: 100vw;
+  height: 120px;
+  height: fit-content;
+  font-size: 12px;
+  margin-top: 50px;
+}
+footer p {
+  text-align: center;
+  width: 80%;
+  font-size: 0.9rem;
+  margin: 10px auto;
+}
+footer ul {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  width: 80%;
+  margin: 0 auto;
+  gap: 10px;
+  list-style-type: none;
+}
+footer ul ion-icon {
+  font-size: 30px;
+  color: #000032;
+}
+
+/* textsizes*/
+/*$medium: 4rem;
+$large: 10rem;
+$huge: 20rem;
+
+$border-radius:*/
+/*Mediasetting*/
+/* Fonts */
+/* logos */
+.logo_cpd {
+  width: 8%;
+  margin-left: 0px;
+  margin-right: 10px;
+  right: 10px;
+  align-items: right;
+}
+
+.LC {
+  font-family: "VIA-Verlag";
+  font-weight: bold;
+  letter-spacing: -5px;
+  line-height: normal;
+  font-style: normal;
+  color: #7d0000;
+  font-size: 2.5rem;
+  position: relative;
+  bottom: -0.15rem;
+}
+
+.C {
+  font-family: "VIA-Verlag";
+  color: #7d0000;
+  font-size: 1.3em;
+  position: relative;
+  top: 3px;
+  /* bottom: -0.14em; */
+  text-decoration: none;
+}
+
+.Calli {
+  font-family: "VIA-Verlag";
+  line-height: normal;
+  font-style: normal;
+  font-size: 1.1rem;
+  position: relative;
+  bottom: -0.14em;
+  text-decoration: none;
+}
+
+.LitCoin {
+  font-family: "VIA-Verlag";
+  font-style: normal;
+  line-height: normal;
+  color: #7d0000;
+  font-size: 1.5em;
+  position: relative;
+  bottom: -0.14em;
+}
+
+.grad {
+  background-image: linear-gradient(#adadd5, #e49696);
+  background-attachment: fixed;
+}
+
+.Trenner {
+  margin: 50px auto;
+  width: 5%;
+  display: block;
 }
 
 #home_aside_h_Btn {
@@ -540,7 +715,7 @@ main {
   }
 }
 /*  #home_aside_s_Btn:hover {
- animation: moveButton 1s ease-in-out forwards;
+  animation: moveButton 1s ease-in-out forwards;
 }  */
 #home_data {
   border: 2px dotted black;
@@ -618,13 +793,6 @@ main {
 }
 
 /*Content*/
-#Content {
-  /*background-color: azure;*/
-  width: 80%;
-  margin: 20px auto;
-  z-index: 2;
-}
-
 #Gruß_main {
   background-image: url(../images/Sonnenuntergang.jpg);
   background-size: cover;
@@ -1073,37 +1241,6 @@ tr:hover {
 
 /*Learning nach Karrierelevel Ende*/
 /*Ende Css für den Main*/
-footer {
-  position: static;
-  bottom: 0;
-  background-color: azure;
-  padding: 10px 0 10px 0;
-  width: 100vw;
-  height: 120px;
-  height: fit-content;
-  font-size: 12px;
-  margin-top: 50px;
-}
-footer p {
-  text-align: center;
-  width: 80%;
-  font-size: 0.9rem;
-  margin: 10px auto;
-}
-footer ul {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  width: 80%;
-  margin: 0 auto;
-  gap: 10px;
-  list-style-type: none;
-}
-footer ul ion-icon {
-  font-size: 30px;
-  color: #000032;
-}
-
 #navaside {
   display: none;
   flex-direction: column;
@@ -1175,6 +1312,10 @@ footer ul ion-icon {
   #C1A2, #C1A3 {
     width: 75%;
   }
+
+  #Content {
+    width: 100%;
+  }
 }
 @media (max-width: 768px) {
   #home_data output {
@@ -1195,4 +1336,4 @@ footer ul ion-icon {
   }
 }
 
-/*# sourceMappingURL=pldcpd.css.map */
+/*# sourceMappingURL=index.css.map */
