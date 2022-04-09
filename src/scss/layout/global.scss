@@ -249,7 +249,7 @@
   /*Beginn Css für den Main*/ 
   
   main {
-    width: 80%;
+    width: 80vw;
     margin-top: 0px;
     margin-left: 10%;
     margin-right: 10%;
@@ -268,6 +268,7 @@
     width: 80%;
     margin: 20px auto;  
     z-index: 2;
+  
   }
   
   
@@ -301,6 +302,30 @@
       }
     }
   }
+
+  @media (max-width: $desktop){
+
+
+    
+    }
+    
+    @media (max-width: $tablet){
+      body {
+        background-image: none;
+      }
+      .drehmoment {
+        display: none;
+      }
+      main {
+        width: 100vw;
+        margin: 0 0;
+      }
+      #Content {
+        width: 100%;
+      }
+      
+  
+    }
   
   
     

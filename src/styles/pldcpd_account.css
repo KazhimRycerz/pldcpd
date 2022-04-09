@@ -460,7 +460,7 @@ header {
 /*Ende Styles zum Header*/
 /*Beginn Css für den Main*/
 main {
-  width: 80%;
+  width: 80vw;
   margin-top: 0px;
   margin-left: 10%;
   margin-right: 10%;
@@ -510,6 +510,24 @@ footer ul ion-icon {
   color: #000032;
 }
 
+@media (max-width: 760px) {
+  body {
+    background-image: none;
+  }
+
+  .drehmoment {
+    display: none;
+  }
+
+  main {
+    width: 100vw;
+    margin: 0 0;
+  }
+
+  #Content {
+    width: 100%;
+  }
+}
 /* textsizes*/
 /*$medium: 4rem;
 $large: 10rem;
