@@ -1,6 +1,26 @@
 'use strict';
+myKF = 120;
+myKF += 12.5;
+myLF = 111;
+myPEX = 1524;
+myPED = 2400;
+myLP = 200;
+maKF = 120;
+maLF = 105;
+maPEX = 1950;
+maPED = 1500;
+maLP = 150;
+myLCoins = 1500;
+myLCoins += 20;
+firstName = "Joachim";
+lastName = "Ritter";
+/* const firstName = "Joachim";
+  const lastName = "Ritter"; */
+myCL = "IV";
+boolVar = false;
 
-function accountData(){
+
+function accountDataAccount(){
   document.getElementById("myCL").innerHTML = myCL;
   document.getElementById("myLCoins").innerHTML = myLCoins;
   document.getElementById("myKF").innerHTML = myKF;
@@ -15,7 +35,7 @@ function accountData(){
   document.getElementById("maLP").innerHTML = maLP;
   document.getElementById("aside_Guthaben_p").innerHTML = myLCoins;
 }
-accountData();
+accountDataAccount();
 
 const accountAsideAccount = document.getElementById("account_aside_account");
 const accountHideButton = document.getElementById("account_aside_h_Btn");
