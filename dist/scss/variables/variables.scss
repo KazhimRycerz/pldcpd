@@ -35,8 +35,8 @@ $radiusxsmall:5px;
 
 /*Mediasetting*/
 $phone: 675px;
-$tablet: 768px;
-$desktop: 1024px; 
+$tablet: 760px;
+$desktop: 1040px; 
 $widedesktop: 2048px;
 $highres: 3000px;
 
@@ -51,63 +51,4 @@ $logosize10: 10px;
 $logosize20: 20px;
 
   
-  .logo_cpd {
-    width: 8%;
-    margin-left:0px;
-    margin-right:10px;
-    right:10px;
-    align-items:right;
-  }
   
-  .LC {
-    font-family: $calli;
-    font-weight: bold;
-    letter-spacing: -5px;
-    line-height: normal;
-    font-style: normal;
-    color: $cpdred;
-    font-size: 2.5rem;
-    position: relative;
-    bottom: -0.15rem;
-  }
-  
-  .C {
-    font-family: $calli;
-    color: $cpdred;
-    font-size: 1.3em;
-    position:relative;
-    top: 3px;
-    /* bottom: -0.14em; */
-    text-decoration:none;
-  }
-  
-  .Calli {
-    font-family: $calli;
-    line-height: normal;
-    font-style: normal;
-    font-size: $normal;
-    position:relative;
-    bottom: -0.14em;
-    text-decoration:none;
-    }
-  
-  .LitCoin {
-    font-family: $calli;
-    font-style: normal; 
-    line-height: normal;
-    color: $cpdred; 
-    font-size: 1.5em;
-    position:relative; 
-    bottom: -0.14em;
-  }
-  
-  .grad {
-    background-image: linear-gradient(rgb(173, 173, 213), rgb(228, 150, 150));
-    background-attachment:fixed;
-  }
-   
-  .Trenner {
-    margin: 50px auto;
-    width: 5%;
-    display:block;
-  }

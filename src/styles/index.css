@@ -73,67 +73,6 @@ $border-radius:*/
 /*Mediasetting*/
 /* Fonts */
 /* logos */
-.logo_cpd {
-  width: 8%;
-  margin-left: 0px;
-  margin-right: 10px;
-  right: 10px;
-  align-items: right;
-}
-
-.LC {
-  font-family: "VIA-Verlag";
-  font-weight: bold;
-  letter-spacing: -5px;
-  line-height: normal;
-  font-style: normal;
-  color: #7d0000;
-  font-size: 2.5rem;
-  position: relative;
-  bottom: -0.15rem;
-}
-
-.C {
-  font-family: "VIA-Verlag";
-  color: #7d0000;
-  font-size: 1.3em;
-  position: relative;
-  top: 3px;
-  /* bottom: -0.14em; */
-  text-decoration: none;
-}
-
-.Calli {
-  font-family: "VIA-Verlag";
-  line-height: normal;
-  font-style: normal;
-  font-size: 1.1rem;
-  position: relative;
-  bottom: -0.14em;
-  text-decoration: none;
-}
-
-.LitCoin {
-  font-family: "VIA-Verlag";
-  font-style: normal;
-  line-height: normal;
-  color: #7d0000;
-  font-size: 1.5em;
-  position: relative;
-  bottom: -0.14em;
-}
-
-.grad {
-  background-image: linear-gradient(#adadd5, #e49696);
-  background-attachment: fixed;
-}
-
-.Trenner {
-  margin: 50px auto;
-  width: 5%;
-  display: block;
-}
-
 /* @import "./layout/_layout.scss"; */
 /* textsizes*/
 /*$medium: 4rem;
@@ -296,10 +235,6 @@ body {
 #r13 {
   left: 86.8vw;
   top: 85vw;
-}
-
-main:hover .rotate, main:focus .rotate, header:hover .rotate, header:focus .rotate, footer:hover .rotate, footer:focus .rotate {
-  animation: none;
 }
 
 /*Alles zum Header*/
@@ -537,67 +472,6 @@ $border-radius:*/
 /*Mediasetting*/
 /* Fonts */
 /* logos */
-.logo_cpd {
-  width: 8%;
-  margin-left: 0px;
-  margin-right: 10px;
-  right: 10px;
-  align-items: right;
-}
-
-.LC {
-  font-family: "VIA-Verlag";
-  font-weight: bold;
-  letter-spacing: -5px;
-  line-height: normal;
-  font-style: normal;
-  color: #7d0000;
-  font-size: 2.5rem;
-  position: relative;
-  bottom: -0.15rem;
-}
-
-.C {
-  font-family: "VIA-Verlag";
-  color: #7d0000;
-  font-size: 1.3em;
-  position: relative;
-  top: 3px;
-  /* bottom: -0.14em; */
-  text-decoration: none;
-}
-
-.Calli {
-  font-family: "VIA-Verlag";
-  line-height: normal;
-  font-style: normal;
-  font-size: 1.1rem;
-  position: relative;
-  bottom: -0.14em;
-  text-decoration: none;
-}
-
-.LitCoin {
-  font-family: "VIA-Verlag";
-  font-style: normal;
-  line-height: normal;
-  color: #7d0000;
-  font-size: 1.5em;
-  position: relative;
-  bottom: -0.14em;
-}
-
-.grad {
-  background-image: linear-gradient(#adadd5, #e49696);
-  background-attachment: fixed;
-}
-
-.Trenner {
-  margin: 50px auto;
-  width: 5%;
-  display: block;
-}
-
 #home_aside_h_Btn {
   display: block;
   position: fixed;
@@ -954,7 +828,7 @@ $border-radius:*/
   align-content: stretch;
   gap: 10px;
   width: 1/5;
-  height: 250px;
+  height: auto;
   margin-top: 20px;
 }
 #learningbox_1 #lb_1_angebote div {

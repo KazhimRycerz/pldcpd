@@ -162,10 +162,6 @@ body {
   top: 85vw;
 }
 
-main:hover .rotate, main:focus .rotate, header:hover .rotate, header:focus .rotate, footer:hover .rotate, footer:focus .rotate {
-  animation: none;
-}
-
 /*Alles zum Header*/
 header {
   font-family: "FoundSanExpNorm", sans-serif;
