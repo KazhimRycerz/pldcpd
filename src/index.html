@@ -29,7 +29,7 @@
     </div>
   
   <header>
-
+    
     <nav class="navheader">
       <div id="dropdown">
         <button id="dropbtn"><p><span class="C">C</span> about</p></button>
@@ -38,34 +38,48 @@
           <li><a href="About_profession.html"><span class="C">C</span> my Profession</a></li>
           <li><a href="About_PLDCPD.html"><span class="C">C</span> PLDCPD </a></li>
           <li><a href="About_RYCERZ.html"><span class="C">C</span> RYCERZ </a></l>
-        </ul>
+          </ul>
+        </div>
+      </nav>
+      
+      <div class="text_header">
+        <a href="index.html"><img class="image_header" src="./images/pldcpd.png"></a>
+        <p>
+          Plattform for <br>
+          Continuing <br>
+          Professional <br>
+          Development</p>
+        </div>
+        
+        <div id="header_myaccount">
+          <ul>
+            <li><a href="pldcpd_register.html"> register <span class="C">C</span></a></li>
+            <li><a href="pldcpd_login.html"> log me out <span class="C">C</span></a></li>
+            <li><a href="pldcpd_account.html"> account <span class="C">C</span></a></li>
+          </ul>
+        </div>
+      </header>
+      
+      <nav id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#"><span class="C">C</span> lerning</a>
+        <a href="#"><span class="C">C</span> services</a>
+        <a href="#"><span class="C">C</span> clients</a>
+        <a href="#"><span class="C">C</span> your account</a>
+        <a href="#"><span class="C">C</span> contact</a>
+      </nav>
+      
+      <div id="main">
+        <!-- <h2>Direct link to education</h2> -->
+        <span onclick="openNav()">&#9776; </span>
       </div>
-    </nav>
-
-    <div class="text_header">
-      <a href="index.html"><img class="image_header" src="./images/pldcpd.png"></a>
-      <p>
-        Plattform for <br>
-        Continuing <br>
-        Professional <br>
-        Development</p>
-    </div>
-
-    <div id="header_myaccount">
-      <ul>
-        <li><a href="pldcpd_register.html"> register <span class="C">C</span></a></li>
-        <li><a href="pldcpd_login.html"> log me out <span class="C">C</span></a></li>
-        <li><a href="pldcpd_account.html"> account <span class="C">C</span></a></li>
-      </ul>
-    </div>
-  </header>
-  
-  <aside id="home_aside_account">
-    
-    <img src="./images/Joachim privat.JPG">
-    <p><strong>Hallo, Joachim Ritter </strong><br>
-      Journalist <br>Karrierelevel <br>--- <span> IV </span> ---<br>Project Lighting Designer</p> <br>
-
+      
+      <aside id="home_aside_account">
+        
+        <img src="./images/Joachim privat.JPG">
+        <p><strong>Hallo, Joachim Ritter </strong><br>
+          Journalist <br>Karrierelevel <br>--- <span> IV </span> ---<br>Project Lighting Designer</p> <br>
+          
     <div id="home_data">
       <p> Ihr persönlicher Wissensstatus</p>
       <div>
@@ -101,30 +115,21 @@
 <button type="button" id="home_aside_s_Btn" >show<br>account
 </button>
 
+
+<main>     
+  
+  <section id="Gruß_main">
+    <h1> Ihre persönliche Berufsplanung im Lichtdesign</h1>
+    <p> Willkommen auf der Weiterbildungplattform für professionelle Lichtdesigner. Hier können Sie Ihre Karriere
+      planen und kontinuierlich prüfen, welchen Status Sie erreicht haben. Auch geben wir Ihnen Hinweise auf neue
+      Themen und Learnmöglichkeiten und welchen Abschluss <i class="fa-solid fa-graduation-cap"></i> Sie erzielen können. <a href="About_profession.html"> More </a></p>
+    </section>
+    
+    
+    
+    
+    <div id="Content">
       
-    <main>     
-      
-      <section id="Gruß_main">
-        <h1> Ihre persönliche Berufsplanung im Lichtdesign</h1>
-        <p> Willkommen auf der Weiterbildungplattform für professionelle Lichtdesigner. Hier können Sie Ihre Karriere
-          planen und kontinuierlich prüfen, welchen Status Sie erreicht haben. Auch geben wir Ihnen Hinweise auf neue
-          Themen und Learnmöglichkeiten und welchen Abschluss <i class="fa-solid fa-graduation-cap"></i> Sie erzielen können. <a href="About_profession.html"> More </a></p>
-        </section>
-        
-        <!-- <nav id="navaside">
-          <a href="#" id="A">A</a>
-          <a href="#">B</a>
-          <a href="#">C</a>
-          <a href="#">D</a>
-          <a href="#">E</a>
-          <a href="#">F</a>
-          <a href="#">G</a>
-          <a href="#">H</a>
-        </nav> -->
-        
-        
-        <div id="Content">
-        
         <section id="C1">
           <article id="C1A1"> 
             <img src="./images/Level_4_SLD.jpg"> 
@@ -536,13 +541,18 @@
       <li><a href="skype:jritter_43/"><ion-icon name="logo-skype"></ion-icon></a></li>
       <li><a href="slack:Joachim Ritter"><ion-icon name="logo-slack"></ion-icon></a></li>
     </ul>
-    
+    <div>
+      Imprint
+      Privacy policy
+    </div>
   </footer>
 
 
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script src="./scripts/daten.js"></script>
+  <script src="./scripts/global.js"></script>
   <script src="./scripts/index.js"></script>
+
 
 </body>
 

@@ -1,5 +1,6 @@
 @import "../variables/variables.scss";
 
+
 #home_aside_h_Btn {
   display: block;
   position: fixed;
@@ -10,7 +11,7 @@
   box-shadow: $btnshadow;
   width: 65px;
   height: 40px;
-  border: none;
+  border: 1px solid grey;
   border-radius: 10px;
   text-align:center;
   z-index: 10;
@@ -26,10 +27,10 @@
   box-shadow: $btnshadow;
   width: 65px;
   height: 40px;
-  border: none;
+  border: 1px solid grey;
   border-radius: 10px;
   text-align:center;
-  z-index: 2;
+  z-index: 10;
 }
 
 #home_aside_account {
@@ -44,7 +45,7 @@
   top: 180px;
   right: 0;
   font-size: $small;
-  z-index: 10;
+  z-index: 6;
   border-radius: 10px;
   >p {
     margin-top: 10px;
@@ -62,6 +63,8 @@
   }
 }
 
+
+
 @keyframes hide_home_aside {
   0%  {transform: translateX(0%) /* perspective(300px) rotateY(0deg) */;}
   30% {transform: translateX(60%) scale(90%) /* rotateY(60deg)perspective(300px); */ }
@@ -77,22 +80,21 @@
   1%  {transform: translateX(-120%) scale(90%) /* rotateY(0deg) perspective(0rem) */; z-index: -1;opacity: 1;}
   30% {z-index:1;}
   60% {transform: translateX(60%) scale(90%) /* rotateY(180deg) perspective(10rem) */; }
-  100% {transform: translateX(0%) scale(100%);z-index:11;}
+  100% {transform: translateX(0%) scale(100%);z-index:9;}
   }
 
   @keyframes moveButton {
-    0%  {transform: translateX(0%) rotate(0%);z-index:11;}
+    0%  {transform: translateX(0%) rotate(0%);z-index:9;}
     50% {z-index: 0;}
-    100% {transform: translateX(0%) translateY(30px) rotate(-90deg);z-index:0; display: block; right:calc(10vw - 48px)}
+    100% {transform: translateX(0%) translateY(30px) rotate(-90deg);z-index:0;  right:calc(10vw - 48px)}
     }
 
   @keyframes moveButtonback {
     0%  {transform: translateX(0%) translateY(30px) rotate(-90deg);z-index:0;right:calc(10vw - 48px)}
     90%  {z-index: 0;}
-    100% {transform: translateX(0%) rotate(0%);z-index: 11;}
+    100% {transform: translateX(0%) rotate(0%);z-index: 9;}
   }
-  
-  
+    
 #home_data{
   border: 2px dotted black;
   background-color:$fourth-color;
@@ -190,7 +192,7 @@
       font-family: $primary-font-bold;
       font-size: $xxxlarge;
       width: 10vw;
-      min-width: 30%; 
+      min-width: 40%; 
       text-align: left; 
       position: absolute;
       left: 2vw;
@@ -233,7 +235,7 @@
   }
   #C1A1, #C1A4 {
     margin: 0 10px 0 20px;
-    border-left: 3px dotted Black;
+    border-left: 3px dotted $cpdred;
     /*border-right: 3px dotted Black;*/
     border-radius: 20px;
     padding: 20px;
@@ -256,7 +258,7 @@
     #C1A2, #C1A3 {
       width: 250px;
       margin: 0px auto;
-      border-top: 3px dotted Black;
+      border-top: 3px dotted $cpdred;
       border-radius: 20px;
       padding: 10px;
       position: relative;
@@ -303,8 +305,8 @@
   }
   
 #learningbox_1 {
-  border-top: 3px dotted Black;
-  border-bottom: 3px dotted Black;
+  border-top: 3px dotted $cpdred;
+  border-bottom: 3px dotted $cpdred;
   padding-bottom: 20px;
   padding: 20px;
   border-radius: 20px;
@@ -397,8 +399,8 @@
 }
 
 #learningbox_2 {
-  border-top: 3px dotted Black;
-  border-bottom: 3px dotted Black;
+  border-top: 3px dotted $cpdred;
+  border-bottom: 3px dotted $cpdred;
   padding-bottom: 20px;
   padding: 20px;
   border-radius: 20px;
@@ -496,8 +498,8 @@ tr:hover {
     
 #infobox_2{
   display: inline-block;
-  border-top: 3px dotted Black;
-  border-bottom: 3px dotted Black;
+  border-top: 3px dotted $cpdred;
+  border-bottom: 3px dotted $cpdred;
   border-radius: 20px;
   padding: 20px;
   font-size: $normal;
@@ -565,8 +567,8 @@ tr:hover {
 /* Learning nach Karrierelevel Start */
 
 #learningbox_5 {
-  border-top: 3px dotted black;
-  border-bottom: 3px dotted black;
+  border-top: 3px dotted $cpdred;
+  border-bottom: 3px dotted $cpdred;
   border-radius: 20px;
   padding-bottom: 30px;
   padding: 0 20px 30px 20px;
@@ -631,64 +633,15 @@ tr:hover {
   /*Ende Css für den Main*/ 
 
 
-
-#navaside {
-  display: none;
-  flex-direction: column;
-  justify-content:space-between;
-  position: fixed;
-  left: 11%;
-  top:180px;
-  padding: 10px;
-  width:auto;
-  height: 280px;
-  background-color: $first-color;
-  z-index: 5;
-  border: 3px dotted black;
-  border-radius: 20px;
-  a {
-    font-family: $primary-font;
-    margin: 0px;
-    text-align: center;
-    vertical-align:auto; 
-    box-sizing: border-box;
-    padding: 5px;
-    font-size: 1.1rem;
-    width: 30px;
-    overflow:visible;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    background: rgb(250,250,250);
-    background: radial-gradient(circle, $secondary-color, rgba(240,210,10,0.8) 100%);
-    box-shadow: 0 0 20px 5px rgb(205, 90, 0), 0 0 10px 5px rgb(205, 90, 0) inset;
-    text-decoration:none;
-    }
-}
-
-  
-
-  #navaside a:hover {
-  background: rgb(250,250,250);
-  background: radial-gradient(circle, rgb(205, 90, 0) 0%, rgb(205, 90, 0) 100%);
-  box-shadow: 0 0 10px 5px $secondary-color, 0 0 10px 5px $secondary-color inset;
-  color: $secondary-color;  
-  }
-
-  #A:focus::after {
-    content:" wie Alternative";
-    color: black;
-  }
-  #A:focus {
-  color: black;
-  overflow: visible;
-
-  }
   
     
   @media (max-width: $desktop){
     
   #home_aside_account {  
   animation: hide_home_aside 2s ease-in-out forwards
+  }
+  #home_aside_h_Btn, #home_aside_s_Btn {
+    animation: moveButton 1s ease-in-out forwards;
   }
 
   #Gruß_main h1 {
@@ -718,9 +671,6 @@ tr:hover {
       gap: 20px;
     }
 
-    #home_aside_h_Btn, #home_aside_s_Btn {
-      animation: moveButton 1s ease-in-out forwards;
-    }
 
     #karrierebox {
       display: flex;
