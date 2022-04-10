@@ -455,15 +455,10 @@ header {
   cursor: pointer;
 }
 
-@media screen and (max-height: 450px) {
-  .sidenav {
-    padding-top: 15px;
-  }
-
-  .sidenav a {
-    font-size: 18px;
-  }
-}
+/* @media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+} */
 /*Beginn Css für den Main*/
 main {
   width: 80vw;
@@ -514,6 +509,18 @@ footer ul {
 footer ul ion-icon {
   font-size: 30px;
   color: #000032;
+}
+footer div {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  gap: 150px;
+  margin: 30px auto;
+}
+footer div ul {
+  display: flex;
+  flex-flow: column wrap;
+  font-size: 1.1rem;
 }
 
 @media (max-width: 760px) {
@@ -1215,7 +1222,12 @@ tr:hover {
 
   #Gruß_main p {
     font-size: 1.1rem;
-    line-height: 2rem;
+    line-height: 1.7rem;
+    min-width: 30%;
+    width: 20vw;
+    min-width: 30%;
+    right: 12vw;
+    top: 30px;
   }
 
   #home_data output {
@@ -1266,10 +1278,9 @@ tr:hover {
   }
 
   #Gruß_main p {
-    font-size: 0.9rem;
-    line-height: 2.2rem;
+    line-height: 1.5rem;
     width: 25vw;
-    min-width: 40%;
+    min-width: 50%;
     text-align: left;
     position: absolute;
     right: 5vw;
