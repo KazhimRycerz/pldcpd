@@ -1,5 +1,66 @@
 @import "../variables/variables.scss";
 
+.logo_cpd {
+  width: 8%;
+  margin-left:0px;
+  margin-right:10px;
+  right:10px;
+  align-items:right;
+}
+
+.LC {
+  font-family: $calli;
+  font-weight: bold;
+  letter-spacing: -5px;
+  line-height: normal;
+  font-style: normal;
+  color: $cpdred;
+  font-size: 2.5rem;
+  position: relative;
+  bottom: -0.15rem;
+}
+
+.C {
+  font-family: $calli;
+  color: $cpdred;
+  font-size: 1.3em;
+  position:relative;
+  top: 3px;
+  /* bottom: -0.14em; */
+  text-decoration:none;
+}
+
+.Calli {
+  font-family: $calli;
+  line-height: normal;
+  font-style: normal;
+  font-size: $normal;
+  position:relative;
+  bottom: -0.14em;
+  text-decoration:none;
+  }
+
+.LitCoin {
+  font-family: $calli;
+  font-style: normal; 
+  line-height: normal;
+  color: $cpdred; 
+  font-size: 1.5em;
+  position:relative; 
+  bottom: -0.14em;
+}
+
+.grad {
+  background-image: linear-gradient(rgb(173, 173, 213), rgb(228, 150, 150));
+  background-attachment:fixed;
+}
+ 
+.Trenner {
+  margin: 50px auto;
+  width: 5%;
+  display:block;
+}
+
 
  body {
     font-family: $primary-font;
@@ -81,11 +142,6 @@
   #r13 {
     left: 86.8vw;
     top: 85.0vw;
-  }
-  
-
-  main:hover .rotate, main:focus .rotate, header:hover .rotate, header:focus .rotate, footer:hover .rotate, footer:focus .rotate {
-    animation: none;
   }
   
   
@@ -249,7 +305,7 @@
   /*Beginn Css für den Main*/ 
   
   main {
-    width: 80%;
+    width: 80vw;
     margin-top: 0px;
     margin-left: 10%;
     margin-right: 10%;
@@ -268,6 +324,7 @@
     width: 80%;
     margin: 20px auto;  
     z-index: 2;
+  
   }
   
   
@@ -301,6 +358,30 @@
       }
     }
   }
+
+  @media (max-width: $desktop){
+
+
+    
+    }
+    
+    @media (max-width: $tablet){
+      body {
+        background-image: none;
+      }
+      .drehmoment {
+        display: none;
+      }
+      main {
+        width: 100vw;
+        margin: 0 0;
+      }
+      #Content {
+        width: 100%;
+      }
+      
+  
+    }
   
   
     

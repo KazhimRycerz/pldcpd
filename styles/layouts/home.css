@@ -8,67 +8,6 @@ $border-radius:*/
 /*Mediasetting*/
 /* Fonts */
 /* logos */
-.logo_cpd {
-  width: 8%;
-  margin-left: 0px;
-  margin-right: 10px;
-  right: 10px;
-  align-items: right;
-}
-
-.LC {
-  font-family: "VIA-Verlag";
-  font-weight: bold;
-  letter-spacing: -5px;
-  line-height: normal;
-  font-style: normal;
-  color: #7d0000;
-  font-size: 2.5rem;
-  position: relative;
-  bottom: -0.15rem;
-}
-
-.C {
-  font-family: "VIA-Verlag";
-  color: #7d0000;
-  font-size: 1.3em;
-  position: relative;
-  top: 3px;
-  /* bottom: -0.14em; */
-  text-decoration: none;
-}
-
-.Calli {
-  font-family: "VIA-Verlag";
-  line-height: normal;
-  font-style: normal;
-  font-size: 1.1rem;
-  position: relative;
-  bottom: -0.14em;
-  text-decoration: none;
-}
-
-.LitCoin {
-  font-family: "VIA-Verlag";
-  font-style: normal;
-  line-height: normal;
-  color: #7d0000;
-  font-size: 1.5em;
-  position: relative;
-  bottom: -0.14em;
-}
-
-.grad {
-  background-image: linear-gradient(#adadd5, #e49696);
-  background-attachment: fixed;
-}
-
-.Trenner {
-  margin: 50px auto;
-  width: 5%;
-  display: block;
-}
-
 #home_aside_h_Btn {
   display: block;
   position: fixed;
@@ -186,14 +125,14 @@ $border-radius:*/
     transform: translateX(0%) translateY(30px) rotate(-90deg);
     z-index: 0;
     display: block;
-    right: calc(10vw - 35px);
+    right: calc(10vw - 48px);
   }
 }
 @keyframes moveButtonback {
   0% {
     transform: translateX(0%) translateY(30px) rotate(-90deg);
     z-index: 0;
-    right: calc(10vw - 35px);
+    right: calc(10vw - 48px);
   }
   90% {
     z-index: 0;
@@ -203,9 +142,6 @@ $border-radius:*/
     z-index: 11;
   }
 }
-/*  #home_aside_s_Btn:hover {
-  animation: moveButton 1s ease-in-out forwards;
-}  */
 #home_data {
   border: 2px dotted black;
   background-color: rgba(221, 155, 55, 0.2);
@@ -635,7 +571,7 @@ tr:hover {
 #ib_2_angebote > div {
   background: linear-gradient(#adadd5, #e49696) fixed;
   padding: 1rem;
-  box-shadow: 0.5rem 0.5rem 2rem;
+  box-shadow: 0.5rem 0.5rem 2rem, 2px 2px 10px 3px azure inset, -2px -2px 10px 3px azure inset;
 }
 #ib_2_angebote #box1 {
   grid-column: 1/2;
@@ -672,15 +608,15 @@ tr:hover {
   border-bottom: 3px dotted black;
   border-radius: 20px;
   padding-bottom: 30px;
+  padding: 0 20px 30px 20px;
 }
 #learningbox_5 #karrierebox {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-content: space-around;
-  align-content: center;
+  justify-content: space-evenly;
   grid-gap: 20px;
-  width: calc(100% - 40px);
+  width: 100%;
   margin: 0 auto;
 }
 #learningbox_5 #karrierebox > div {
@@ -694,7 +630,7 @@ tr:hover {
   flex-grow: 2;
   border: 1px solid azure;
   border-radius: 10px;
-  height: 400px;
+  height: auto;
 }
 #learningbox_5 #karrierebox > div div {
   border-radius: 10px 10px 0 0;
@@ -780,7 +716,11 @@ tr:hover {
   overflow: visible;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1040px) {
+  #home_aside_account {
+    animation: hide_home_aside 2s ease-in-out forwards;
+  }
+
   #Gruß_main h1 {
     font-size: 2rem;
   }
@@ -801,23 +741,55 @@ tr:hover {
   #C1A2, #C1A3 {
     width: 75%;
   }
-
-  #Content {
-    width: 100%;
-  }
 }
-@media (max-width: 768px) {
+@media (max-width: 760px) {
+  .infobox_intro {
+    width: 100%;
+    margin: 20px auto;
+    gap: 20px;
+  }
+
+  #home_aside_h_Btn, #home_aside_s_Btn {
+    animation: moveButton 1s ease-in-out forwards;
+  }
+
+  #karrierebox {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    grid-gap: 20px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  #Promoter_1 {
+    display: none;
+  }
+
+  #home_aside_h_Btn, #home_aside_s_Btn, #home_aside_account {
+    display: none;
+  }
+
   #home_data output {
     font-size: 0.75rem;
   }
 
   #Gruß_main h1 {
     font-size: 1.5rem;
+    top: 20px;
+    line-height: 2.2rem;
   }
 
   #Gruß_main p {
-    font-size: 0.75rem;
-    width: 50%;
+    font-size: 0.9rem;
+    line-height: 2.2rem;
+    width: 25vw;
+    min-width: 40%;
+    text-align: left;
+    position: absolute;
+    right: 5vw;
+    top: 20px;
   }
 
   #C1A2, #C1A3 {

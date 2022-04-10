@@ -74,67 +74,6 @@ $border-radius:*/
 /*Mediasetting*/
 /* Fonts */
 /* logos */
-.logo_cpd {
-  width: 8%;
-  margin-left: 0px;
-  margin-right: 10px;
-  right: 10px;
-  align-items: right;
-}
-
-.LC {
-  font-family: "VIA-Verlag";
-  font-weight: bold;
-  letter-spacing: -5px;
-  line-height: normal;
-  font-style: normal;
-  color: #7d0000;
-  font-size: 2.5rem;
-  position: relative;
-  bottom: -0.15rem;
-}
-
-.C {
-  font-family: "VIA-Verlag";
-  color: #7d0000;
-  font-size: 1.3em;
-  position: relative;
-  top: 3px;
-  /* bottom: -0.14em; */
-  text-decoration: none;
-}
-
-.Calli {
-  font-family: "VIA-Verlag";
-  line-height: normal;
-  font-style: normal;
-  font-size: 1.1rem;
-  position: relative;
-  bottom: -0.14em;
-  text-decoration: none;
-}
-
-.LitCoin {
-  font-family: "VIA-Verlag";
-  font-style: normal;
-  line-height: normal;
-  color: #7d0000;
-  font-size: 1.5em;
-  position: relative;
-  bottom: -0.14em;
-}
-
-.grad {
-  background-image: linear-gradient(#adadd5, #e49696);
-  background-attachment: fixed;
-}
-
-.Trenner {
-  margin: 50px auto;
-  width: 5%;
-  display: block;
-}
-
 /* textsizes*/
 /*$medium: 4rem;
 $large: 10rem;
@@ -298,10 +237,6 @@ body {
   top: 85vw;
 }
 
-main:hover .rotate, main:focus .rotate, header:hover .rotate, header:focus .rotate, footer:hover .rotate, footer:focus .rotate {
-  animation: none;
-}
-
 /*Alles zum Header*/
 header {
   font-family: "FoundSanExpNorm", sans-serif;
@@ -460,7 +395,7 @@ header {
 /*Ende Styles zum Header*/
 /*Beginn Css für den Main*/
 main {
-  width: 80%;
+  width: 80vw;
   margin-top: 0px;
   margin-left: 10%;
   margin-right: 10%;
@@ -510,6 +445,24 @@ footer ul ion-icon {
   color: #000032;
 }
 
+@media (max-width: 760px) {
+  body {
+    background-image: none;
+  }
+
+  .drehmoment {
+    display: none;
+  }
+
+  main {
+    width: 100vw;
+    margin: 0 0;
+  }
+
+  #Content {
+    width: 100%;
+  }
+}
 /* textsizes*/
 /*$medium: 4rem;
 $large: 10rem;
@@ -519,67 +472,6 @@ $border-radius:*/
 /*Mediasetting*/
 /* Fonts */
 /* logos */
-.logo_cpd {
-  width: 8%;
-  margin-left: 0px;
-  margin-right: 10px;
-  right: 10px;
-  align-items: right;
-}
-
-.LC {
-  font-family: "VIA-Verlag";
-  font-weight: bold;
-  letter-spacing: -5px;
-  line-height: normal;
-  font-style: normal;
-  color: #7d0000;
-  font-size: 2.5rem;
-  position: relative;
-  bottom: -0.15rem;
-}
-
-.C {
-  font-family: "VIA-Verlag";
-  color: #7d0000;
-  font-size: 1.3em;
-  position: relative;
-  top: 3px;
-  /* bottom: -0.14em; */
-  text-decoration: none;
-}
-
-.Calli {
-  font-family: "VIA-Verlag";
-  line-height: normal;
-  font-style: normal;
-  font-size: 1.1rem;
-  position: relative;
-  bottom: -0.14em;
-  text-decoration: none;
-}
-
-.LitCoin {
-  font-family: "VIA-Verlag";
-  font-style: normal;
-  line-height: normal;
-  color: #7d0000;
-  font-size: 1.5em;
-  position: relative;
-  bottom: -0.14em;
-}
-
-.grad {
-  background-image: linear-gradient(#adadd5, #e49696);
-  background-attachment: fixed;
-}
-
-.Trenner {
-  margin: 50px auto;
-  width: 5%;
-  display: block;
-}
-
 #account_aside_h_Btn {
   display: block;
   position: fixed;
