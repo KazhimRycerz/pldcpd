@@ -320,14 +320,14 @@ header {
 /*Ende Styles zum Header*/
 .sidenav {
   height: auto;
-  width: 0;
+  width: 150px;
   position: fixed;
   z-index: 10;
   top: 120px;
-  left: 0;
+  left: -150px;
   /* background-color: #111111c2; */
   overflow-x: hidden;
-  transition: 0.5s;
+  transition: 0.5s ease-in-out;
   padding-top: 60px;
 }
 
@@ -337,14 +337,19 @@ header {
   font-size: 1.1rem;
   color: lemonchiffon;
   display: block;
-  transition: 0.5s;
+  transition: 0.75s;
+  min-width: 10vw;
 }
 .sidenav a span {
   color: #7d0000;
 }
 
+#mySidenav a:first-child {
+  text-shadow: none;
+}
+
 .sidenav a:hover, .sidenav a:active {
-  color: #f1f1f1;
+  color: lemonchiffon;
   text-shadow: 10px 5px 15px white;
 }
 .sidenav a:hover span, .sidenav a:active span {
@@ -354,17 +359,18 @@ header {
 
 .sidenav .closebtn {
   position: absolute;
-  top: 10px;
-  right: 70px;
-  font-size: 36px;
-  margin-left: 50px;
+  top: 0px;
+  left: 3vw;
+  font-size: 54px;
+  font-weight: 900;
+  margin-left: 0px;
   color: lemonchiffon;
 }
 
 #main {
   position: fixed;
   top: 115px;
-  transition: margin-left 0.5s;
+  transition: margin-left 0.75s;
   margin-left: 1vw;
   padding: 16px;
   color: lemonchiffon;

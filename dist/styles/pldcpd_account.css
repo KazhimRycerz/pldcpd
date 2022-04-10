@@ -252,7 +252,7 @@ header {
   height: 100px;
   background-color: azure;
   box-shadow: 0.5rem 0.5rem 2rem;
-  z-index: 99;
+  z-index: 95;
 }
 
 /* Neue Navigation*/
@@ -393,6 +393,77 @@ header {
 }
 
 /*Ende Styles zum Header*/
+.sidenav {
+  height: auto;
+  width: 150px;
+  position: fixed;
+  z-index: 10;
+  top: 120px;
+  left: -150px;
+  /* background-color: #111111c2; */
+  overflow-x: hidden;
+  transition: 0.5s ease-in-out;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 30px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  color: lemonchiffon;
+  display: block;
+  transition: 0.75s;
+  min-width: 10vw;
+}
+.sidenav a span {
+  color: #7d0000;
+}
+
+#mySidenav a:first-child {
+  text-shadow: none;
+}
+
+.sidenav a:hover, .sidenav a:active {
+  color: lemonchiffon;
+  text-shadow: 10px 5px 15px white;
+}
+.sidenav a:hover span, .sidenav a:active span {
+  text-shadow: none;
+  color: lemonchiffon;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0px;
+  left: 3vw;
+  font-size: 54px;
+  font-weight: 900;
+  margin-left: 0px;
+  color: lemonchiffon;
+}
+
+#main {
+  position: fixed;
+  top: 115px;
+  transition: margin-left 0.75s;
+  margin-left: 1vw;
+  padding: 16px;
+  color: lemonchiffon;
+}
+#main span {
+  font-size: 3rem;
+  cursor: pointer;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+
+  .sidenav a {
+    font-size: 18px;
+  }
+}
 /*Beginn Css für den Main*/
 main {
   width: 80vw;

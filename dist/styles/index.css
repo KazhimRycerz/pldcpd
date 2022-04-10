@@ -252,7 +252,7 @@ header {
   height: 100px;
   background-color: azure;
   box-shadow: 0.5rem 0.5rem 2rem;
-  z-index: 99;
+  z-index: 95;
 }
 
 /* Neue Navigation*/
@@ -393,6 +393,77 @@ header {
 }
 
 /*Ende Styles zum Header*/
+.sidenav {
+  height: auto;
+  width: 150px;
+  position: fixed;
+  z-index: 10;
+  top: 120px;
+  left: -150px;
+  /* background-color: #111111c2; */
+  overflow-x: hidden;
+  transition: 0.5s ease-in-out;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 30px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  color: lemonchiffon;
+  display: block;
+  transition: 0.75s;
+  min-width: 10vw;
+}
+.sidenav a span {
+  color: #7d0000;
+}
+
+#mySidenav a:first-child {
+  text-shadow: none;
+}
+
+.sidenav a:hover, .sidenav a:active {
+  color: lemonchiffon;
+  text-shadow: 10px 5px 15px white;
+}
+.sidenav a:hover span, .sidenav a:active span {
+  text-shadow: none;
+  color: lemonchiffon;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0px;
+  left: 3vw;
+  font-size: 54px;
+  font-weight: 900;
+  margin-left: 0px;
+  color: lemonchiffon;
+}
+
+#main {
+  position: fixed;
+  top: 115px;
+  transition: margin-left 0.75s;
+  margin-left: 1vw;
+  padding: 16px;
+  color: lemonchiffon;
+}
+#main span {
+  font-size: 3rem;
+  cursor: pointer;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+
+  .sidenav a {
+    font-size: 18px;
+  }
+}
 /*Beginn Css für den Main*/
 main {
   width: 80vw;
@@ -482,7 +553,7 @@ $border-radius:*/
   box-shadow: 0px 0px 10px 1px lemonchiffon inset, -2px -2px 5px 3px grey, -5px -5px 5px white inset;
   width: 65px;
   height: 40px;
-  border: none;
+  border: 1px solid grey;
   border-radius: 10px;
   text-align: center;
   z-index: 10;
@@ -498,10 +569,10 @@ $border-radius:*/
   box-shadow: 0px 0px 10px 1px lemonchiffon inset, -2px -2px 5px 3px grey, -5px -5px 5px white inset;
   width: 65px;
   height: 40px;
-  border: none;
+  border: 1px solid grey;
   border-radius: 10px;
   text-align: center;
-  z-index: 2;
+  z-index: 10;
 }
 
 #home_aside_account {
@@ -516,7 +587,7 @@ $border-radius:*/
   top: 180px;
   right: 0;
   font-size: 0.9rem;
-  z-index: 10;
+  z-index: 6;
   border-radius: 10px;
 }
 #home_aside_account > p {
@@ -574,13 +645,13 @@ $border-radius:*/
   }
   100% {
     transform: translateX(0%) scale(100%);
-    z-index: 11;
+    z-index: 9;
   }
 }
 @keyframes moveButton {
   0% {
     transform: translateX(0%) rotate(0%);
-    z-index: 11;
+    z-index: 9;
   }
   50% {
     z-index: 0;
@@ -588,7 +659,6 @@ $border-radius:*/
   100% {
     transform: translateX(0%) translateY(30px) rotate(-90deg);
     z-index: 0;
-    display: block;
     right: calc(10vw - 48px);
   }
 }
@@ -603,7 +673,7 @@ $border-radius:*/
   }
   100% {
     transform: translateX(0%) rotate(0%);
-    z-index: 11;
+    z-index: 9;
   }
 }
 #home_data {
@@ -702,7 +772,7 @@ $border-radius:*/
   font-family: "FoundSanBd";
   font-size: 3rem;
   width: 10vw;
-  min-width: 30%;
+  min-width: 40%;
   text-align: left;
   position: absolute;
   left: 2vw;
@@ -745,7 +815,7 @@ $border-radius:*/
 }
 #C1 #C1A1, #C1 #C1A4 {
   margin: 0 10px 0 20px;
-  border-left: 3px dotted Black;
+  border-left: 3px dotted #7d0000;
   /*border-right: 3px dotted Black;*/
   border-radius: 20px;
   padding: 20px;
@@ -768,7 +838,7 @@ $border-radius:*/
 #C1 div #C1A2, #C1 div #C1A3 {
   width: 250px;
   margin: 0px auto;
-  border-top: 3px dotted Black;
+  border-top: 3px dotted #7d0000;
   border-radius: 20px;
   padding: 10px;
   position: relative;
@@ -813,8 +883,8 @@ $border-radius:*/
 }
 
 #learningbox_1 {
-  border-top: 3px dotted Black;
-  border-bottom: 3px dotted Black;
+  border-top: 3px dotted #7d0000;
+  border-bottom: 3px dotted #7d0000;
   padding-bottom: 20px;
   padding: 20px;
   border-radius: 20px;
@@ -828,7 +898,7 @@ $border-radius:*/
   align-content: stretch;
   gap: 10px;
   width: 1/5;
-  height: 250px;
+  height: auto;
   margin-top: 20px;
 }
 #learningbox_1 #lb_1_angebote div {
@@ -905,8 +975,8 @@ $border-radius:*/
 }
 
 #learningbox_2 {
-  border-top: 3px dotted Black;
-  border-bottom: 3px dotted Black;
+  border-top: 3px dotted #7d0000;
+  border-bottom: 3px dotted #7d0000;
   padding-bottom: 20px;
   padding: 20px;
   border-radius: 20px;
@@ -1002,8 +1072,8 @@ tr:hover {
 
 #infobox_2 {
   display: inline-block;
-  border-top: 3px dotted Black;
-  border-bottom: 3px dotted Black;
+  border-top: 3px dotted #7d0000;
+  border-bottom: 3px dotted #7d0000;
   border-radius: 20px;
   padding: 20px;
   font-size: 1.1rem;
@@ -1068,8 +1138,8 @@ tr:hover {
 
 /* Learning nach Karrierelevel Start */
 #learningbox_5 {
-  border-top: 3px dotted black;
-  border-bottom: 3px dotted black;
+  border-top: 3px dotted #7d0000;
+  border-bottom: 3px dotted #7d0000;
   border-radius: 20px;
   padding-bottom: 30px;
   padding: 0 20px 30px 20px;
@@ -1130,59 +1200,13 @@ tr:hover {
 
 /*Learning nach Karrierelevel Ende*/
 /*Ende Css für den Main*/
-#navaside {
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  position: fixed;
-  left: 11%;
-  top: 180px;
-  padding: 10px;
-  width: auto;
-  height: 280px;
-  background-color: azure;
-  z-index: 5;
-  border: 3px dotted black;
-  border-radius: 20px;
-}
-#navaside a {
-  font-family: "FoundSanExpNorm", sans-serif;
-  margin: 0px;
-  text-align: center;
-  vertical-align: auto;
-  box-sizing: border-box;
-  padding: 5px;
-  font-size: 1.1rem;
-  width: 30px;
-  overflow: visible;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: #fafafa;
-  background: radial-gradient(circle, lemonchiffon, rgba(240, 210, 10, 0.8) 100%);
-  box-shadow: 0 0 20px 5px #cd5a00, 0 0 10px 5px #cd5a00 inset;
-  text-decoration: none;
-}
-
-#navaside a:hover {
-  background: #fafafa;
-  background: radial-gradient(circle, #cd5a00 0%, #cd5a00 100%);
-  box-shadow: 0 0 10px 5px lemonchiffon, 0 0 10px 5px lemonchiffon inset;
-  color: lemonchiffon;
-}
-
-#A:focus::after {
-  content: " wie Alternative";
-  color: black;
-}
-
-#A:focus {
-  color: black;
-  overflow: visible;
-}
-
 @media (max-width: 1040px) {
   #home_aside_account {
     animation: hide_home_aside 2s ease-in-out forwards;
+  }
+
+  #home_aside_h_Btn, #home_aside_s_Btn {
+    animation: moveButton 1s ease-in-out forwards;
   }
 
   #Gruß_main h1 {
@@ -1211,10 +1235,6 @@ tr:hover {
     width: 100%;
     margin: 20px auto;
     gap: 20px;
-  }
-
-  #home_aside_h_Btn, #home_aside_s_Btn {
-    animation: moveButton 1s ease-in-out forwards;
   }
 
   #karrierebox {
