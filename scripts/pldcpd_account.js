@@ -1,4 +1,30 @@
 'use strict';
+
+
+const accountAsideAccount = document.getElementById("account_aside_account");
+const accountHideButton = document.getElementById("account_aside_h_Btn");
+const accountShowButton = document.getElementById("account_aside_s_Btn");
+
+const hideAccountInfo = () => {
+  accountAsideAccount.style.animation = "hide_account_aside 2s ease-in-out forwards";
+  accountShowButton.style.animation = "moveAsideButton 1s 0s ease-in-out forwards";
+  accountHideButton.style.animation = "moveAsideButton 1s 0s ease-in-out forwards";
+  accountHideButton.style.display = "none";
+  accountShowButton.style.display = "block";
+};
+
+const showAccountInfo = () => {
+  accountHideButton.style.display = "block";
+  accountShowButton.style.display = "none";
+  accountHideButton.style.animation = "moveAsideButtonback 1s ease-in-out forwards";
+  accountShowButton.style.animation = "moveAsideButtonback 1s ease-in-out forwards";
+  accountAsideAccount.style.animation = "show_account_aside 2s ease-in-out forwards";
+};
+
+accountHideButton.addEventListener("click", hideAccountInfo);
+accountShowButton.addEventListener("click", showAccountInfo);
+
+
 myKF = 120;
 myKF += 12.5;
 myLF = 111;
@@ -33,29 +59,7 @@ function accountDataAccount(){
   document.getElementById("maPED").innerHTML = maPED;
   document.getElementById("myLP").innerHTML = myLP;
   document.getElementById("maLP").innerHTML = maLP;
-  document.getElementById("aside_Guthaben_p").innerHTML = myLCoins;
+  /* document.getElementById("aside_Guthaben_p").innerHTML = myLCoins; */
 }
 accountDataAccount();
 
-const accountAsideAccount = document.getElementById("account_aside_account");
-const accountHideButton = document.getElementById("account_aside_h_Btn");
-const accountShowButton = document.getElementById("account_aside_s_Btn");
-
-const hideAccountInfo = () => {
-  accountAsideAccount.style.animation = "hide_account_aside 2s ease-in-out forwards";
-  accountShowButton.style.animation = "moveAsideButton 1s 0s ease-in-out forwards";
-  accountHideButton.style.animation = "moveAsideButton 1s 0s ease-in-out forwards";
-  accountHideButton.style.display = "none";
-  accountShowButton.style.display = "block";
-};
-
-const showAccountInfo = () => {
-  accountHideButton.style.display = "block";
-  accountShowButton.style.display = "none";
-  accountHideButton.style.animation = "moveAsideButtonback 1s ease-in-out forwards";
-  accountAsideAccount.style.animation = "show_account_aside 2s ease-in-out forwards";
-   
-};
-
-accountHideButton.addEventListener("click", hideAccountInfo);
-accountShowButton.addEventListener("click", showAccountInfo);

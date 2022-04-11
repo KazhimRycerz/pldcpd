@@ -579,7 +579,7 @@ $border-radius:*/
   border: none;
   border-radius: 10px;
   text-align: center;
-  z-index: 2;
+  z-index: 10;
 }
 
 #account_aside_account {
@@ -705,13 +705,13 @@ $border-radius:*/
   }
   100% {
     transform: translateX(0%) scale(100%);
-    z-index: 11;
+    z-index: 9;
   }
 }
 @keyframes moveAsideButton {
   0% {
     transform: translateX(0%) rotate(0%);
-    z-index: 11;
+    z-index: 9;
   }
   50% {
     z-index: 0;
@@ -720,21 +720,21 @@ $border-radius:*/
     transform: translateX(0%) translateY(30px) rotate(-90deg);
     z-index: 0;
     display: block;
-    right: calc(10vw - 35px);
+    right: calc(10vw - 48px);
   }
 }
 @keyframes moveAsideButtonback {
   0% {
     transform: translateX(0%) translateY(30px) rotate(-90deg);
     z-index: 0;
-    right: calc(10vw - 35px);
+    right: calc(10vw - 48px);
   }
   90% {
     z-index: 0;
   }
   100% {
     transform: translateX(0%) rotate(0%);
-    z-index: 11;
+    z-index: 9;
   }
 }
 /* #account_aside_h_Btn:hover {
