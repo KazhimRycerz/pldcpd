@@ -680,7 +680,12 @@ tr:hover {
 
   #Gruß_main p {
     font-size: 1.1rem;
-    line-height: 2rem;
+    line-height: 1.7rem;
+    min-width: 30%;
+    width: 20vw;
+    min-width: 30%;
+    right: 12vw;
+    top: 30px;
   }
 
   #home_data output {
@@ -731,10 +736,9 @@ tr:hover {
   }
 
   #Gruß_main p {
-    font-size: 0.9rem;
-    line-height: 2.2rem;
+    line-height: 1.5rem;
     width: 25vw;
-    min-width: 40%;
+    min-width: 50%;
     text-align: left;
     position: absolute;
     right: 5vw;

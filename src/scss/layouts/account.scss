@@ -2,7 +2,7 @@
 
 
 #account_aside_h_Btn {
-  display: block;
+  display:block;
   position: fixed;
   top: 150px;
   right: 30px;
@@ -30,7 +30,7 @@
   border: none;
   border-radius: 10px;
   text-align:center;
-  z-index: 2;
+  z-index: 10;
 }
 
 #account_aside_account {
@@ -135,19 +135,19 @@
   1%  {transform: translateX(-120%) scale(90%) /* rotateY(0deg) perspective(0rem) */; z-index: -1;opacity: 1;}
   30% {z-index:1;}
   60% {transform: translateX(60%) scale(90%) /* rotateY(180deg) perspective(10rem) */; }
-  100% {transform: translateX(0%) scale(100%);z-index:11;}
+  100% {transform: translateX(0%) scale(100%);z-index:9;}
 }
 
   @keyframes moveAsideButton {
-    0%  {transform: translateX(0%)   rotate(0%);z-index:11;}
+    0%  {transform: translateX(0%)   rotate(0%);z-index:9;}
     50% {z-index: 0;}
-    100% {transform: translateX(0%) translateY(30px) rotate(-90deg);z-index:0; display: block; right:calc(10vw - 35px)}
+    100% {transform: translateX(0%) translateY(30px) rotate(-90deg);z-index:0; display: block; right:calc(10vw - 48px)}
     }
 
   @keyframes moveAsideButtonback {
-    0%  {transform: translateX(0%) translateY(30px) rotate(-90deg);z-index:0;right:calc(10vw - 35px)}
+    0%  {transform: translateX(0%) translateY(30px) rotate(-90deg);z-index:0;right:calc(10vw - 48px)}
       90%  {z-index: 0;}
-      100% {transform: translateX(0%) rotate(0%);z-index: 11;}
+      100% {transform: translateX(0%) rotate(0%);z-index: 9;}
     }
 
     /* #account_aside_h_Btn:hover {
@@ -325,7 +325,7 @@
   font-family: $primary-font;
   font-size: 10px;
   text-align: center;
-  color: rgb(255, 255, 255);
+  color: white;
 }
 
 .account_data_box {
@@ -335,7 +335,7 @@
   gap: 5px;
   .account_pers_data {
     display: block;
-    background-color: rgb(180, 200, 230);
+    background-color: $third-color;
     font-family: $primary-font;
     font-weight: bold;
     box-shadow: none;
