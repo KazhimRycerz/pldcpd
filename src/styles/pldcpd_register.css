@@ -214,7 +214,8 @@ body {
   font-family: "FoundSanExpNorm", sans-serif;
   line-height: 1.2;
   letter-spacing: 0px;
-  background-image: url(../images/Wallpaper_07.JPG);
+  background-color: #500000;
+  background-image: url(../../images/Wallpaper_07_cpd_dark.PNG);
   background-size: 100vw;
   background-repeat: repeat-y;
   background-attachment: fixed;
@@ -236,6 +237,7 @@ body {
   z-index: -1;
   /* animation: none; */
   animation: rotate 20s infinite linear;
+  /* display:  none; */
 }
 
 #r1 {
@@ -465,7 +467,7 @@ header {
   position: fixed;
   z-index: 10;
   top: 120px;
-  left: -150px;
+  left: -200px;
   background-color: rgba(18, 18, 18, 0.5);
   overflow-x: hidden;
   transition: 0.5s ease-in-out;
@@ -556,6 +558,7 @@ footer {
   height: fit-content;
   font-size: 12px;
   margin-top: 50px;
+  z-index: 10;
 }
 footer p {
   text-align: center;
@@ -589,6 +592,11 @@ footer div ul {
   font-size: 1.1rem;
 }
 
+@media (max-width: 1040px) {
+  #Content {
+    width: 100%;
+  }
+}
 @media (max-width: 760px) {
   body {
     background-image: none;
@@ -765,7 +773,8 @@ body {
   font-family: "FoundSanExpNorm", sans-serif;
   line-height: 1.2;
   letter-spacing: 0px;
-  background-image: url(../images/Wallpaper_07.JPG);
+  background-color: #500000;
+  background-image: url(../../images/Wallpaper_07_cpd_dark.PNG);
   background-size: 100vw;
   background-repeat: repeat-y;
   background-attachment: fixed;
@@ -787,6 +796,7 @@ body {
   z-index: -1;
   /* animation: none; */
   animation: rotate 20s infinite linear;
+  /* display:  none; */
 }
 
 #r1 {
@@ -1016,7 +1026,7 @@ header {
   position: fixed;
   z-index: 10;
   top: 120px;
-  left: -150px;
+  left: -200px;
   background-color: rgba(18, 18, 18, 0.5);
   overflow-x: hidden;
   transition: 0.5s ease-in-out;
@@ -1107,6 +1117,7 @@ footer {
   height: fit-content;
   font-size: 12px;
   margin-top: 50px;
+  z-index: 10;
 }
 footer p {
   text-align: center;
@@ -1140,6 +1151,11 @@ footer div ul {
   font-size: 1.1rem;
 }
 
+@media (max-width: 1040px) {
+  #Content {
+    width: 100%;
+  }
+}
 @media (max-width: 760px) {
   body {
     background-image: none;
@@ -1172,7 +1188,7 @@ footer div ul {
 }
 :root {
   --rd: $cpdred;
-  --rdt: rgba(67, 30, 26, 0.7);
+  --rdt: rgba(69, 8, 1, 0.7);
   --rh: #D5B7B8;
   --mc: rgb(41, 197, 202);
   --mcd: #57888F;
@@ -1203,16 +1219,18 @@ footer div ul {
 } */
 main {
   background-image: url(../images/Baum_3.JPG);
+  background-color: transparent;
   background-size: 50%;
   background-repeat: no-repeat;
-  background-position: -1px top;
+  background-position: left center;
   display: flex;
   justify-content: flex-end;
-  margin: -20px auto 20px;
+  position: fixed;
+  box-shadow: 0.5rem 0.5rem 2rem var(--mc);
 }
 
 form {
-  background-color: #7d0000;
+  background-color: #500000;
   font-family: "FoundSanExpNorm", sans-serif;
   border-radius: 0 20px 20px 0;
   width: 50%;
@@ -1220,6 +1238,8 @@ form {
   padding-left: 20px;
   padding-top: 20px;
   color: var(--mc);
+  overflow-x: none;
+  overflow-y: scroll;
 }
 form h1 {
   margin-bottom: 20px;
@@ -1230,7 +1250,7 @@ form h1 {
 } */
 label {
   display: inline-block;
-  width: 200px;
+  width: 50%;
   border: none;
   color: var(--rh);
 }
@@ -1242,7 +1262,7 @@ input {
   text-align: left;
   position: relative;
   left: 0;
-  width: 250px;
+  width: 45%;
   border: none;
   padding: 5px;
   margin: 5px 0;
@@ -1251,14 +1271,18 @@ input {
 fieldset {
   border-color: var(--rh);
   border-width: 2px;
-  width: 45%;
-  margin: 20px auto;
+  width: 98%;
+  margin: 20px 10px 20px -10px;
   color: var(--rh);
-  position: absolute;
+  position: relative;
+  padding: 8px;
+}
+fieldset input {
+  left: 20px;
 }
 
 label[for=Hinweise] {
-  width: 200px;
+  width: 50%;
   vertical-align: top;
 }
 
@@ -1269,11 +1293,10 @@ textarea {
   min-height: 75px;
   resize: none;
   background-color: var(--mc);
-  box-shadow: 0.5rem 0.5rem 2rem;
 }
 
 label[for=Auswahl_Gender] {
-  width: 200px;
+  width: 50%;
   vertical-align: top;
 }
 
@@ -1281,36 +1304,35 @@ label[for=Auswahl_Gender] {
   display: inline-block;
   width: 180px;
   background-color: var(--mc);
-  box-shadow: 10px 10px 50px grey;
   padding: 10px;
 }
 
 #gender_list label {
-  width: 120px;
+  width: 50%;
   display: inline-block;
+  vertical-align: top;
 }
 
 #gender_list input {
-  width: min-content;
+  width: 45%;
   display: inline-block;
 }
 
 label[for=Auswahl_newsletter] {
-  width: 200px;
+  width: 50%;
   vertical-align: top;
 }
 
 #newsletter_list {
-  box-shadow: 0.5rem 0.5rem 2rem;
   display: inline-block;
-  width: 180px;
+  width: 45%;
   background-color: var(--mc);
   padding: 10px;
   margin-bottom: 20px;
 }
 
 #newsletter_list label {
-  width: 120px;
+  width: 90%;
   display: inline-block;
 }
 
@@ -1322,12 +1344,7 @@ label[for=Auswahl_newsletter] {
 
 #Monat {
   width: 200px;
-  background-color: #b4c8e6;
-  box-shadow: 0.5rem 0.5rem 2rem;
-}
-
-label[for=favcolor], [for=myfile] {
-  width: 200px;
+  background-color: var(--mc);
 }
 
 hr {
@@ -1350,6 +1367,11 @@ hr {
 .registerbtn:hover {
   /*opacity:10;*/
   background-color: #748296;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
 }
 
 /*speziell für das Formular Ende*/

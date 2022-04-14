@@ -3,7 +3,7 @@
 
 :root {
     --rd: $cpdred;
-    --rdt: rgba(67, 30, 26, 0.7);
+    --rdt: rgba(69, 8, 1, 0.7);
     --rh: #D5B7B8;
     --mc: rgb(41, 197, 202); 
     --mcd: #57888F;
@@ -35,16 +35,19 @@
 
     main {
       background-image: url(../images/Baum_3.JPG);
+      background-color: transparent;
       background-size: 50%;
       background-repeat: no-repeat;
-      background-position:  -1px top;
+      background-position:  left center;
       display: flex;
       justify-content: flex-end;
-      margin: -20px auto 20px;
+      position: fixed;
+      box-shadow: 0.5rem 0.5rem 2rem var(--mc);
+      
     }
     
     form {
-      background-color: $cpdred;
+      background-color: rgb(80, 0, 0);
       font-family: $primary-font;
       border-radius: 0 20px 20px 0;
       width: 50%;
@@ -52,6 +55,8 @@
       padding-left: 20px;
       padding-top: 20px;
       color: var(--mc);
+      overflow-x: none;
+      overflow-y: scroll;
       h1 {
           margin-bottom: 20px;
       }
@@ -64,7 +69,7 @@
     
     label {
       display: inline-block;
-      width: 200px;
+      width: 50%;
       border: none;
       color: var(--rh)
     }
@@ -76,7 +81,7 @@
       text-align:left;
       position: relative;
       left: 0;
-      width: 250px;
+      width: 45%;
       border: none;
       padding: 5px;
       margin:5px 0;
@@ -85,14 +90,20 @@
     fieldset {
       border-color: var(--rh);
       border-width: 2px;
-      width: 45%;
-      margin: 20px auto;
+      width: 98%;
+      margin: 20px 10px 20px -10px ;
       color: var(--rh);
-      position:absolute;
+      position:relative;
+      padding: 8px;
+      input {
+      left: 20px;
+      
+      }
+      
     }
     
     label[for="Hinweise"]{
-      width: 200px;
+      width: 50%;
       vertical-align: top;
     }
     
@@ -103,11 +114,11 @@
       min-height: 75px;
       resize: none;
       background-color: var(--mc);
-      box-shadow: $boxshadow; 
+      
     }
     
     label[for="Auswahl_Gender"]{
-      width: 200px;
+      width: 50%;
       vertical-align: top;
     }
     
@@ -115,36 +126,37 @@
       display: inline-block;
       width: 180px;
       background-color: var(--mc);
-      box-shadow: 10px 10px 50px grey; 
+     
       padding: 10px;
       }
     
     #gender_list label {
-    width: 120px;
+    width: 50%;
     display: inline-block;
+    vertical-align: top;
     }
     
     #gender_list input {
-      width: min-content;
+      width: 45%;
       display: inline-block;
       }
     
     label[for="Auswahl_newsletter"]{
-      width: 200px;
+      width: 50%;
       vertical-align: top;
     }
     
     #newsletter_list {
-      box-shadow: $boxshadow;
+      
       display: inline-block;
-      width: 180px;
+      width: 45%;
       background-color: var(--mc);
       padding: 10px;
       margin-bottom: 20px;
     }
     
     #newsletter_list label{
-      width: 120px;
+      width: 90%;
       display: inline-block;
     }
     #newsletter_list input{
@@ -156,13 +168,10 @@
         
     #Monat {
       width: 200px;
-      background-color: rgb(180, 200, 230);
-      box-shadow: $boxshadow; 
-    }
+      background-color: var(--mc);
+         }
     
-    label[for="favcolor"],[for="myfile"]{
-      width: 200px;
-    }
+    
     
     hr {
       width: 250px;
@@ -187,6 +196,13 @@
     }
     
     
+    footer {
+      position:fixed;
+      bottom: 0;
+    }
+
+
+
       /*speziell für das Formular Ende*/ 
     
       
