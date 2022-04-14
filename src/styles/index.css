@@ -1,6 +1,8 @@
 @charset "UTF-8";
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css");
 @font-face {
   font-family: "VIA-Verlag";
   src: url("../fonts/VIA-Verlag.woff2") format("woff2"), url("../fonts/VIA-Verlag.otf") format("otf");
@@ -64,15 +66,6 @@
   cursor: url(../../images/c.png), auto;
 }
 
-/* textsizes*/
-/*$medium: 4rem;
-$large: 10rem;
-$huge: 20rem;
-
-$border-radius:*/
-/*Mediasetting*/
-/* Fonts */
-/* logos */
 /* textsizes*/
 /*$medium: 4rem;
 $large: 10rem;
@@ -393,13 +386,13 @@ header {
 
 /*Ende Styles zum Header*/
 .sidenav {
-  height: auto;
-  width: 150px;
+  height: 100%;
+  width: calc(10vw - 5px);
   position: fixed;
   z-index: 10;
   top: 120px;
   left: -150px;
-  /* background-color: #111111c2; */
+  background-color: rgba(18, 18, 18, 0.5);
   overflow-x: hidden;
   transition: 0.5s ease-in-out;
   padding-top: 60px;
@@ -539,7 +532,82 @@ footer div ul {
   #Content {
     width: 100%;
   }
+
+  #main {
+    transition: top 1s;
+    top: 10px;
+    left: -10px;
+    color: black;
+    z-index: 100;
+  }
+
+  .sidenav {
+    width: 200px;
+  }
 }
+@font-face {
+  font-family: "VIA-Verlag";
+  src: url("../fonts/VIA-Verlag.woff2") format("woff2"), url("../fonts/VIA-Verlag.otf") format("otf");
+}
+@font-face {
+  font-family: "BillboardShadow";
+  src: url("../fonts/Billboard/Billboard-Shadow.woff2") format("woff2"), url("../fonts/Billboard/Billboard-Shadow.otf") format("otf");
+}
+@font-face {
+  font-family: "Carbono";
+  src: url("../fonts/carbono/carbono.woff2") format("woff2"), url("../fonts/carbono/carbono.otf") format("otf");
+}
+@font-face {
+  font-family: "Vacaciones";
+  src: url("../fonts/vacaciones-outline/Vacaciones-font-ffp-defharo.woff2") format("woff2"), url("../fonts/vacaciones-outline/Vacaciones-font-ffp-defharo.otf") format("otf");
+}
+@font-face {
+  font-family: "CorporateDemi";
+  src: url("../fonts/CorporateSTOT-Dem.woff2") format("woff2"), url("../fonts/CorporateSTOT-Dem.otf") format("otf");
+}
+@font-face {
+  font-family: "CorporateReg";
+  src: url("../fonts/Corporate/CorporateSTOT-Reg.woff2") format("woff2"), url("../fonts/Corporate/CorporateSTOT-Reg.otf") format("otf");
+}
+@font-face {
+  font-family: "FallingSkyOu";
+  src: url("../fonts/Falling-Sky-Condensed-Outline/FallingSkyOu.woff2") format("woff2"), url("../fonts/Falling-Sky-Condensed-Outline/FallingSkyOu.otf") format("otf");
+}
+@font-face {
+  font-family: "ChalkLine";
+  src: url("../fonts/chalk_line_outline/ChalkLine-Outline.woff2") format("woff2"), url("../fonts/chalk_line_outline/ChalkLine-Outline.otf") format("otf");
+}
+@font-face {
+  font-family: "Rampart";
+  src: url("../fonts/Rampart_One/RampartOne-Regular.woff2") format("woff2"), url("../fonts/Rampart_One/RampartOne-Regular.otf") format("otf");
+}
+@font-face {
+  font-family: "Thunderlord";
+  src: url("../fonts/thunder_lord/ThunderLord.woff2") format("woff2"), url("../fonts/thunder_lord/ThunderLord.otf") format("otf");
+}
+@font-face {
+  font-family: "FoundSanExpNorm";
+  src: url("../fonts/Foundry/FOUSANNO.woff2") format("woff2"), url("../fonts/Foundry/FOUSANNO.otf") format("otf");
+}
+@font-face {
+  font-family: "FoundSanBd";
+  src: url("../fonts/Foundry/FOUSANBD.woff2") format("woff2"), url("../fonts/Foundry/FOUSANBD.otf") format("otf");
+}
+@font-face {
+  font-family: "FoundSanExpMed";
+  src: url("../fonts/Foundry/FOUSANMD.woff2") format("woff2"), url("../fonts/Foundry/FOUSANMD.otf") format("otf");
+}
+@font-face {
+  font-family: "FoundSanExBold";
+  src: url("../fonts/Foundry/FOUSANEB.woff2") format("woff2"), url("../fonts/Foundry/FOUSANEB.otf") format("otf");
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  cursor: url(../../images/c.png), auto;
+}
+
 /* textsizes*/
 /*$medium: 4rem;
 $large: 10rem;

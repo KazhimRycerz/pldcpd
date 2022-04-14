@@ -5,7 +5,7 @@ function openNav() {
 }
 
 function closeNav() {
-  document.getElementById("mySidenav").style.left = "-150px";
+  document.getElementById("mySidenav").style.left = "-200px";
   document.getElementById("main").style.marginLeft = "1vw";
   /* document.body.style.backgroundColor = "white"; */
 }
