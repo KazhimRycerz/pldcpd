@@ -1,3 +1,5 @@
+@import "../typography/typography.scss";
+@import "../reset/reset.scss";
 @import "../variables/variables.scss";
 
 .logo_cpd {
@@ -303,13 +305,13 @@
   /*Ende Styles zum Header*/
   
   .sidenav {
-    height: auto;
-    width: 150px;
+    height: 100%;
+    width: calc(10vw - 5px);
     position: fixed;
     z-index: 10;
     top: 120px;
     left: -150px;
-    /* background-color: #111111c2; */
+    background-color: hsla(0, 0%, 7%, 0.5);
     overflow-x: hidden;
     transition: 0.5s ease-in-out;
     padding-top: 60px;
@@ -361,6 +363,7 @@
     span {
       font-size:3rem;
       cursor:pointer;
+   
     }
   }
   
@@ -467,6 +470,16 @@
         width: 100%;
       }
       
+      #main {
+        transition: top 1s;
+        top: 10px;
+        left: -10px;
+        color: black;
+        z-index: 100;
+      }
+      .sidenav {
+        width: 200px;
+      }
   
     }
   
