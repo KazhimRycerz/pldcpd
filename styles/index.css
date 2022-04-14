@@ -140,7 +140,8 @@ body {
   font-family: "FoundSanExpNorm", sans-serif;
   line-height: 1.2;
   letter-spacing: 0px;
-  background-image: url(../images/Wallpaper_07.JPG);
+  background-color: #500000;
+  background-image: url(../../images/Wallpaper_07_cpd_dark.PNG);
   background-size: 100vw;
   background-repeat: repeat-y;
   background-attachment: fixed;
@@ -162,6 +163,7 @@ body {
   z-index: -1;
   /* animation: none; */
   animation: rotate 20s infinite linear;
+  /* display:  none; */
 }
 
 #r1 {
@@ -391,7 +393,7 @@ header {
   position: fixed;
   z-index: 10;
   top: 120px;
-  left: -150px;
+  left: -200px;
   background-color: rgba(18, 18, 18, 0.5);
   overflow-x: hidden;
   transition: 0.5s ease-in-out;
@@ -482,6 +484,7 @@ footer {
   height: fit-content;
   font-size: 12px;
   margin-top: 50px;
+  z-index: 10;
 }
 footer p {
   text-align: center;
@@ -515,6 +518,11 @@ footer div ul {
   font-size: 1.1rem;
 }
 
+@media (max-width: 1040px) {
+  #Content {
+    width: 100%;
+  }
+}
 @media (max-width: 760px) {
   body {
     background-image: none;
@@ -1023,10 +1031,10 @@ $border-radius:*/
   border: 20px ridge lemonchiffon;
   display: Block;
   position: relative;
-  bottom: -10%;
-  width: 80%;
-  height: 75%;
-  margin: 0% auto;
+  top: 15%;
+  width: 80vw;
+  height: 70%;
+  margin: auto auto;
 }
 #Promoter_1 div p {
   display: block;
@@ -1126,11 +1134,11 @@ th {
 }
 
 tr:nth-child(even) {
-  background-color: #869986;
+  background-color: #b4c8e6;
 }
 
 tr:hover {
-  background-color: #c4c49e;
+  background-color: azure;
 }
 
 #Filter {
@@ -1291,9 +1299,9 @@ tr:hover {
     font-size: 1.1rem;
     line-height: 1.7rem;
     min-width: 30%;
-    width: 20vw;
+    width: 25vw;
     min-width: 30%;
-    right: 12vw;
+    right: 15vw;
     top: 30px;
   }
 
@@ -1307,6 +1315,12 @@ tr:hover {
 
   #C1A2, #C1A3 {
     width: 75%;
+  }
+
+  #Promoter_1 {
+    width: 125vw;
+    height: 110vh;
+    left: -30%;
   }
 }
 @media (max-width: 760px) {

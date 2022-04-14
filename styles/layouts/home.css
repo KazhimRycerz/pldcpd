@@ -479,10 +479,10 @@ $border-radius:*/
   border: 20px ridge lemonchiffon;
   display: Block;
   position: relative;
-  bottom: -10%;
-  width: 80%;
-  height: 75%;
-  margin: 0% auto;
+  top: 15%;
+  width: 80vw;
+  height: 70%;
+  margin: auto auto;
 }
 #Promoter_1 div p {
   display: block;
@@ -582,11 +582,11 @@ th {
 }
 
 tr:nth-child(even) {
-  background-color: #869986;
+  background-color: #b4c8e6;
 }
 
 tr:hover {
-  background-color: #c4c49e;
+  background-color: azure;
 }
 
 #Filter {
@@ -747,9 +747,9 @@ tr:hover {
     font-size: 1.1rem;
     line-height: 1.7rem;
     min-width: 30%;
-    width: 20vw;
+    width: 25vw;
     min-width: 30%;
-    right: 12vw;
+    right: 15vw;
     top: 30px;
   }
 
@@ -763,6 +763,12 @@ tr:hover {
 
   #C1A2, #C1A3 {
     width: 75%;
+  }
+
+  #Promoter_1 {
+    width: 125vw;
+    height: 110vh;
+    left: -30%;
   }
 }
 @media (max-width: 760px) {

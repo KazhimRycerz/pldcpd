@@ -213,7 +213,8 @@ body {
   font-family: "FoundSanExpNorm", sans-serif;
   line-height: 1.2;
   letter-spacing: 0px;
-  background-image: url(../images/Wallpaper_07.JPG);
+  background-color: #500000;
+  background-image: url(../../images/Wallpaper_07_cpd_dark.PNG);
   background-size: 100vw;
   background-repeat: repeat-y;
   background-attachment: fixed;
@@ -235,6 +236,7 @@ body {
   z-index: -1;
   /* animation: none; */
   animation: rotate 20s infinite linear;
+  /* display:  none; */
 }
 
 #r1 {
@@ -464,7 +466,7 @@ header {
   position: fixed;
   z-index: 10;
   top: 120px;
-  left: -150px;
+  left: -200px;
   background-color: rgba(18, 18, 18, 0.5);
   overflow-x: hidden;
   transition: 0.5s ease-in-out;
@@ -555,6 +557,7 @@ footer {
   height: fit-content;
   font-size: 12px;
   margin-top: 50px;
+  z-index: 10;
 }
 footer p {
   text-align: center;
@@ -588,6 +591,11 @@ footer div ul {
   font-size: 1.1rem;
 }
 
+@media (max-width: 1040px) {
+  #Content {
+    width: 100%;
+  }
+}
 @media (max-width: 760px) {
   body {
     background-image: none;
