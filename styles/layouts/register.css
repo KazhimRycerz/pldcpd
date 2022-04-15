@@ -1,4 +1,5 @@
 @charset "UTF-8";
+/* $third-color: rgb(180, 200, 230); */
 /* textsizes*/
 /*$medium: 4rem;
 $large: 10rem;
@@ -73,6 +74,7 @@ $border-radius:*/
   cursor: url(../../images/c.png), auto;
 }
 
+/* $third-color: rgb(180, 200, 230); */
 /* textsizes*/
 /*$medium: 4rem;
 $large: 10rem;
@@ -398,13 +400,13 @@ header {
   height: 100%;
   width: calc(10vw - 5px);
   position: fixed;
-  z-index: 10;
-  top: 120px;
+  z-index: 0;
+  top: 100px;
   left: -200px;
-  background-color: rgba(18, 18, 18, 0.5);
+  background-color: rgba(30, 140, 160, 0.5);
   overflow-x: hidden;
   transition: 0.5s ease-in-out;
-  padding-top: 60px;
+  padding-top: 80px;
 }
 
 .sidenav a {
@@ -414,7 +416,7 @@ header {
   color: lemonchiffon;
   display: block;
   transition: 0.75s;
-  min-width: 10vw;
+  width: 10vw;
 }
 .sidenav a span {
   color: #7d0000;
@@ -435,7 +437,7 @@ header {
 
 .sidenav .closebtn {
   position: absolute;
-  top: 0px;
+  top: 20px;
   left: 3vw;
   font-size: 54px;
   font-weight: 900;
@@ -517,7 +519,7 @@ footer div {
   flex-flow: row nowrap;
   justify-content: center;
   gap: 150px;
-  margin: 30px auto;
+  margin: 30px;
 }
 footer div ul {
   display: flex;
