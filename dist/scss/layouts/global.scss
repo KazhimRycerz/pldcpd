@@ -68,7 +68,8 @@
     font-family: $primary-font;
     line-height: 1.2;
     letter-spacing: 0px;
-    background-image: url(../images/Wallpaper_07.JPG);
+    background-color: rgb(80, 0,0);
+    background-image: url(../../images/Wallpaper_07_cpd_dark.PNG);
     background-size: 100vw;
     background-repeat:repeat-y;
     background-attachment: fixed;
@@ -91,6 +92,7 @@
     z-index: -1;
     /* animation: none; */
     animation: rotate 20s infinite linear;
+    /* display:  none; */
   }
   
   #r1 {
@@ -308,13 +310,13 @@
     height: 100%;
     width: calc(10vw - 5px);
     position: fixed;
-    z-index: 10;
-    top: 120px;
-    left: -150px;
-    background-color: hsla(0, 0%, 7%, 0.5);
+    z-index: 0;
+    top: 100px;
+    left: -200px;
+    background-color: $third-color;
     overflow-x: hidden;
     transition: 0.5s ease-in-out;
-    padding-top: 60px;
+    padding-top: 80px;
   }
   
   .sidenav a {
@@ -324,7 +326,7 @@
     color: $secondary-color;
     display: block;
     transition: 0.75s;
-    min-width: 10vw;
+    width: 10vw;
     span {
       color: $cpdred;
     }
@@ -345,7 +347,7 @@
   
   .sidenav .closebtn {
     position: absolute;
-    top: 0px;
+    top: 20px;
     left: 3vw;
     font-size: 54px;
     font-weight: 900;
@@ -415,12 +417,15 @@
     height:fit-content;
     font-size: 12px;
     margin-top: 50px;
+    z-index: 10;
     p {
       text-align: center;
       width:80%;
       font-size: $small;
       margin: 10px auto;
     }
+
+    
     ul {
       display: flex;
       flex-flow: row nowrap;
@@ -440,7 +445,7 @@
       flex-flow: row nowrap;
       justify-content: center;
       gap: 150px;
-      margin: 30px auto;
+      margin: 30px ;
       ul {
         display: flex;
         flex-flow: column wrap;
@@ -450,7 +455,9 @@
   }
 
   @media (max-width: $desktop){
-
+    #Content {
+      width: 100%;
+    }
 
     
     }

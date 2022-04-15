@@ -64,6 +64,7 @@
   cursor: url(../../images/c.png), auto;
 }
 
+/* $third-color: rgb(180, 200, 230); */
 /* textsizes*/
 /*$medium: 4rem;
 $large: 10rem;
@@ -235,7 +236,7 @@ $border-radius:*/
 }
 #home_data div div output {
   display: flex;
-  background-color: #b4c8e6;
+  background-color: rgba(30, 140, 160, 0.5);
   text-align: center;
   justify-content: center;
   padding: 3px;
@@ -249,7 +250,7 @@ $border-radius:*/
 }
 #home_data div div output[id^=ma] {
   background-color: transparent;
-  border: 1px solid #b4c8e6;
+  border: 1px solid rgba(30, 140, 160, 0.5);
 }
 
 #home_data > div:first-of-type {
@@ -436,7 +437,7 @@ $border-radius:*/
   flex-flow: column nowrap;
   justify-content: space-between;
   box-shadow: 0.5rem 0.5rem 2rem;
-  background-color: #b4c8e6;
+  background-color: rgba(30, 140, 160, 0.5);
   /*border: 2px solid rgb(114, 4, 4);*/
   width: 20%;
   border: 1px solid white;
@@ -582,7 +583,7 @@ th {
 }
 
 tr:nth-child(even) {
-  background-color: #b4c8e6;
+  background-color: rgba(30, 140, 160, 0.5);
 }
 
 tr:hover {
@@ -685,7 +686,7 @@ tr:hover {
 }
 #learningbox_5 #karrierebox > div {
   box-shadow: 0.5rem 0.5rem 2rem, 2px 2px 10px 3px azure inset, -2px -2px 10px 3px azure inset;
-  background-color: #b4c8e6;
+  background-color: rgba(30, 140, 160, 0.5);
   display: flex;
   flex-direction: column;
   justify-content: space-between;

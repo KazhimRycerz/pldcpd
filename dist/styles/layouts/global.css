@@ -64,6 +64,7 @@
   cursor: url(../../images/c.png), auto;
 }
 
+/* $third-color: rgb(180, 200, 230); */
 /* textsizes*/
 /*$medium: 4rem;
 $large: 10rem;
@@ -138,7 +139,8 @@ body {
   font-family: "FoundSanExpNorm", sans-serif;
   line-height: 1.2;
   letter-spacing: 0px;
-  background-image: url(../images/Wallpaper_07.JPG);
+  background-color: #500000;
+  background-image: url(../../images/Wallpaper_07_cpd_dark.PNG);
   background-size: 100vw;
   background-repeat: repeat-y;
   background-attachment: fixed;
@@ -160,6 +162,7 @@ body {
   z-index: -1;
   /* animation: none; */
   animation: rotate 20s infinite linear;
+  /* display:  none; */
 }
 
 #r1 {
@@ -387,13 +390,13 @@ header {
   height: 100%;
   width: calc(10vw - 5px);
   position: fixed;
-  z-index: 10;
-  top: 120px;
-  left: -150px;
-  background-color: rgba(18, 18, 18, 0.5);
+  z-index: 0;
+  top: 100px;
+  left: -200px;
+  background-color: rgba(30, 140, 160, 0.5);
   overflow-x: hidden;
   transition: 0.5s ease-in-out;
-  padding-top: 60px;
+  padding-top: 80px;
 }
 
 .sidenav a {
@@ -403,7 +406,7 @@ header {
   color: lemonchiffon;
   display: block;
   transition: 0.75s;
-  min-width: 10vw;
+  width: 10vw;
 }
 .sidenav a span {
   color: #7d0000;
@@ -424,7 +427,7 @@ header {
 
 .sidenav .closebtn {
   position: absolute;
-  top: 0px;
+  top: 20px;
   left: 3vw;
   font-size: 54px;
   font-weight: 900;
@@ -480,6 +483,7 @@ footer {
   height: fit-content;
   font-size: 12px;
   margin-top: 50px;
+  z-index: 10;
 }
 footer p {
   text-align: center;
@@ -505,7 +509,7 @@ footer div {
   flex-flow: row nowrap;
   justify-content: center;
   gap: 150px;
-  margin: 30px auto;
+  margin: 30px;
 }
 footer div ul {
   display: flex;
@@ -513,6 +517,11 @@ footer div ul {
   font-size: 1.1rem;
 }
 
+@media (max-width: 1040px) {
+  #Content {
+    width: 100%;
+  }
+}
 @media (max-width: 760px) {
   body {
     background-image: none;
