@@ -1,20 +1,22 @@
 //colors
 $first-color: rgb(240, 255, 255);
 $secondary-color: lemonchiffon;
-$third-color: rgba(30, 140, 160, 0.5);
+$third-color: rgba(30, 140, 160, 1.0);
+$third-color-o: rgba(30, 140, 160, 0.5);
 /* $third-color: rgb(180, 200, 230); */
 $fourth-color: rgba(221, 155, 55, 0.2);
 $button-color: rgba(170, 170, 170, 0.75);
 $cpdred: rgb(125, 0, 0);
+$cpdred-o:rgba(125, 0, 0, 0.5);
 $cpdblue: rgb(0, 0, 50);
 
 //shadows
 $boxshadow: 0.5rem 0.5rem 2rem;
-$btnshadow: 0px 0px 10px 1px $secondary-color inset, -2px -2px 5px 3px grey,  -5px -5px 5px white inset; 
+$btnshadow: 0px 0px 10px 1px $third-color inset, -2px -2px 5px 3px grey,  -5px -5px 5px white inset; 
 $rshadow: 3px 3px black, -3px -3px black, 3px -3px black, -3px 3px black;
 
 //backgroundcolours
-$grad: linear-gradient(rgb(173, 173, 213), rgb(228, 150, 150)) fixed;
+$grad: linear-gradient($third-color-o, $cpdred-o) fixed;
 
 /* textsizes*/
 $xxxlarge: 3rem;
@@ -37,7 +39,7 @@ $radiusxsmall:5px;
 /*Mediasetting*/
 $phone: 675px;
 $tablet: 760px;
-$desktop: 1040px; 
+$desktop: 1024px; 
 $widedesktop: 2048px;
 $highres: 3000px;
 
