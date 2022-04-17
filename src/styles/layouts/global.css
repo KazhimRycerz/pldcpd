@@ -102,6 +102,7 @@ $border-radius:*/
   top: 3px;
   /* bottom: -0.14em; */
   text-decoration: none;
+  cursor: pointer;
 }
 
 .Calli {
@@ -388,7 +389,7 @@ header {
 /*Ende Styles zum Header*/
 .sidenav {
   height: 100%;
-  width: calc(10vw - 5px);
+  width: calc(10vw - 3px);
   position: fixed;
   z-index: 0;
   top: 100px;
@@ -406,7 +407,7 @@ header {
   color: lemonchiffon;
   display: block;
   transition: 0.75s;
-  width: 10vw;
+  width: auto;
 }
 .sidenav a span {
   color: #7d0000;
@@ -433,6 +434,7 @@ header {
   font-weight: 900;
   margin-left: 0px;
   color: lemonchiffon;
+  cursor: pointer;
 }
 
 #main {
@@ -442,6 +444,7 @@ header {
   margin-left: 1vw;
   padding: 16px;
   color: lemonchiffon;
+  text-shadow: 0.5rem 0.5rem 2rem;
 }
 #main span {
   font-size: 3rem;
@@ -517,7 +520,7 @@ footer div ul {
   font-size: 1.1rem;
 }
 
-@media (max-width: 1040px) {
+@media (max-width: 1024px) {
   #Content {
     width: 100%;
   }
@@ -550,6 +553,7 @@ footer div ul {
 
   .sidenav {
     width: 200px;
+    z-index: 10;
   }
 }
 
