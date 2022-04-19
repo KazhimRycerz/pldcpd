@@ -104,6 +104,7 @@ $border-radius:*/
   top: 3px;
   /* bottom: -0.14em; */
   text-decoration: none;
+  cursor: pointer;
 }
 
 .Calli {
@@ -390,7 +391,7 @@ header {
 /*Ende Styles zum Header*/
 .sidenav {
   height: 100%;
-  width: calc(10vw - 5px);
+  width: calc(10vw - 3px);
   position: fixed;
   z-index: 0;
   top: 100px;
@@ -408,7 +409,7 @@ header {
   color: lemonchiffon;
   display: block;
   transition: 0.75s;
-  width: 10vw;
+  width: auto;
 }
 .sidenav a span {
   color: #7d0000;
@@ -435,6 +436,7 @@ header {
   font-weight: 900;
   margin-left: 0px;
   color: lemonchiffon;
+  cursor: pointer;
 }
 
 #main {
@@ -444,6 +446,7 @@ header {
   margin-left: 1vw;
   padding: 16px;
   color: lemonchiffon;
+  text-shadow: 0.5rem 0.5rem 2rem;
 }
 #main span {
   font-size: 3rem;
@@ -519,7 +522,7 @@ footer div ul {
   font-size: 1.1rem;
 }
 
-@media (max-width: 1040px) {
+@media (max-width: 1024px) {
   #Content {
     width: 100%;
   }
@@ -552,6 +555,7 @@ footer div ul {
 
   .sidenav {
     width: 200px;
+    z-index: 10;
   }
 }
 @font-face {
@@ -634,7 +638,7 @@ $border-radius:*/
   right: 30px;
   color: #000032;
   background-color: rgba(170, 170, 170, 0.75);
-  box-shadow: 0px 0px 10px 1px lemonchiffon inset, -2px -2px 5px 3px grey, -5px -5px 5px white inset;
+  box-shadow: 0px 0px 10px 1px #1e8ca0 inset, -2px -2px 5px 3px grey, -5px -5px 5px white inset;
   width: 65px;
   height: 40px;
   border: 1px solid grey;
@@ -650,7 +654,7 @@ $border-radius:*/
   right: 30px;
   color: #000032;
   background-color: rgba(170, 170, 170, 0.75);
-  box-shadow: 0px 0px 10px 1px lemonchiffon inset, -2px -2px 5px 3px grey, -5px -5px 5px white inset;
+  box-shadow: 0px 0px 10px 1px #1e8ca0 inset, -2px -2px 5px 3px grey, -5px -5px 5px white inset;
   width: 65px;
   height: 40px;
   border: 1px solid grey;
@@ -789,7 +793,7 @@ $border-radius:*/
 }
 #home_data div div output {
   display: flex;
-  background-color: rgba(30, 140, 160, 0.5);
+  background-color: #1e8ca0;
   text-align: center;
   justify-content: center;
   padding: 3px;
@@ -799,11 +803,12 @@ $border-radius:*/
   border-radius: 3px;
   font-size: 0.9rem;
   font-weight: 900;
-  color: black;
+  color: lemonchiffon;
 }
 #home_data div div output[id^=ma] {
   background-color: transparent;
-  border: 1px solid rgba(30, 140, 160, 0.5);
+  border: 1px solid #1e8ca0;
+  color: #1e8ca0;
 }
 
 #home_data > div:first-of-type {
@@ -862,26 +867,28 @@ $border-radius:*/
   left: 2vw;
   top: 30px;
   margin: 0;
-  text-shadow: 5px 5px 30px azure;
+  /* text-shadow: 5px 5px 30px $first-color; */
 }
 #Gruß_main p {
   display: inline-block;
   font-size: 1.2rem;
   line-height: 2.2rem;
-  width: 20vw;
-  min-width: 30%;
+  width: 26vw;
+  /* min-width: 31%; */
   text-align: left;
   position: absolute;
-  right: 10vw;
+  right: 12vw;
   top: 30px;
 }
 
 #Gruß_main a {
   color: lemonchiffon;
+  cursor: pointer;
 }
 
 #Gruß_main i {
   font-size: 2rem;
+  cursor: pointer;
 }
 
 #C1 {
@@ -947,6 +954,7 @@ $border-radius:*/
   display: block;
   width: 2rem;
   margin: 0 auto;
+  cursor: pointer;
 }
 
 #C1A4 > img {
@@ -1094,7 +1102,7 @@ $border-radius:*/
   grid-row: 1/2;
   /*background: rgb(218, 164, 157);*/
   padding: 0px;
-  background: linear-gradient(#adadd5, #e49696) fixed;
+  background: linear-gradient(rgba(30, 140, 160, 0.5), rgba(125, 0, 0, 0.5)) fixed;
 }
 #info_1_1 > div {
   display: flex;
@@ -1108,7 +1116,7 @@ $border-radius:*/
   grid-row: 1/2;
   /*background: rgb(218, 164, 157);*/
   padding: 10px;
-  background: linear-gradient(#adadd5, #e49696) fixed;
+  background: linear-gradient(rgba(30, 140, 160, 0.5), rgba(125, 0, 0, 0.5)) fixed;
 }
 #info_1_2 p {
   font-size: 1.1rem;
@@ -1187,9 +1195,10 @@ tr:hover {
   font-size: 1.1rem;
 }
 #ib_2_angebote > div {
-  background: linear-gradient(#adadd5, #e49696) fixed;
+  background: linear-gradient(rgba(30, 140, 160, 0.5), rgba(125, 0, 0, 0.5)) fixed;
   padding: 1rem;
   box-shadow: 0.5rem 0.5rem 2rem, 2px 2px 10px 3px azure inset, -2px -2px 10px 3px azure inset;
+  border-radius: 10px;
 }
 #ib_2_angebote #box1 {
   grid-column: 1/2;
@@ -1263,6 +1272,7 @@ tr:hover {
   font-family: "FoundSanBd";
   font-size: 1.5rem;
   margin-bottom: 10px;
+  color: lemonchiffon;
 }
 #learningbox_5 #karrierebox > div div p:last-child {
   font-family: "FoundSanExpNorm", sans-serif;
@@ -1284,7 +1294,7 @@ tr:hover {
 
 /*Learning nach Karrierelevel Ende*/
 /*Ende Css für den Main*/
-@media (max-width: 1040px) {
+@media (max-width: 1024px) {
   #home_aside_account {
     animation: hide_home_aside 2s ease-in-out forwards;
   }
@@ -1295,15 +1305,14 @@ tr:hover {
 
   #Gruß_main h1 {
     font-size: 2rem;
+    line-height: 2.5rem;
   }
 
   #Gruß_main p {
     font-size: 1.1rem;
     line-height: 1.7rem;
-    min-width: 30%;
     width: 25vw;
-    min-width: 30%;
-    right: 15vw;
+    right: 13vw;
     top: 30px;
   }
 
