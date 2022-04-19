@@ -466,19 +466,18 @@ header {
 /*Ende Styles zum Header*/
 .sidenav {
   height: 100%;
-  width: calc(10vw - 3px);
+  width: calc(15vw - 3px);
   position: fixed;
-  z-index: 0;
+  z-index: 10;
   top: 100px;
   left: -200px;
-  background-color: rgba(30, 140, 160, 0.5);
-  overflow-x: hidden;
+  background-color: rgba(30, 140, 160, 0.75);
   transition: 0.5s ease-in-out;
   padding-top: 80px;
 }
 
 .sidenav a {
-  padding: 8px 8px 8px 30px;
+  padding: 8px 8px 8px 60px;
   text-decoration: none;
   font-size: 1.1rem;
   color: lemonchiffon;
@@ -1031,19 +1030,18 @@ header {
 /*Ende Styles zum Header*/
 .sidenav {
   height: 100%;
-  width: calc(10vw - 3px);
+  width: calc(15vw - 3px);
   position: fixed;
-  z-index: 0;
+  z-index: 10;
   top: 100px;
   left: -200px;
-  background-color: rgba(30, 140, 160, 0.5);
-  overflow-x: hidden;
+  background-color: rgba(30, 140, 160, 0.75);
   transition: 0.5s ease-in-out;
   padding-top: 80px;
 }
 
 .sidenav a {
-  padding: 8px 8px 8px 30px;
+  padding: 8px 8px 8px 60px;
   text-decoration: none;
   font-size: 1.1rem;
   color: lemonchiffon;
@@ -1206,29 +1204,6 @@ footer div ul {
   --mcd: #57888F;
 }
 
-/* #register_text_header {
-  display: flex;
-  position:relative;
-  align-items: center;
-  justify-content: space-evenly;
-  gap: 10px;
-  margin: 0 auto;
-  font-size: 14px;
-  vertical-align: top;
-  line-height: 1.2;
-  color: rgb(67, 30, 26);
-}
-
-
-
-#register_body {
-  background-image: url(../images/Baum_3.JPG);
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-position:  -1px top;
-  width: 80%;
-  margin: 0 auto;
-} */
 main {
   background-image: url(../images/Baum_3.JPG);
   background-color: transparent;
