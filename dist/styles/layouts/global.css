@@ -389,19 +389,18 @@ header {
 /*Ende Styles zum Header*/
 .sidenav {
   height: 100%;
-  width: calc(10vw - 3px);
+  width: calc(15vw - 3px);
   position: fixed;
-  z-index: 0;
+  z-index: 10;
   top: 100px;
   left: -200px;
-  background-color: rgba(30, 140, 160, 0.5);
-  overflow-x: hidden;
+  background-color: rgba(30, 140, 160, 0.75);
   transition: 0.5s ease-in-out;
   padding-top: 80px;
 }
 
 .sidenav a {
-  padding: 8px 8px 8px 30px;
+  padding: 8px 8px 8px 60px;
   text-decoration: none;
   font-size: 1.1rem;
   color: lemonchiffon;
