@@ -2,16 +2,20 @@
 
 ![Screenshot from Project](./pldcpdscreenshot.jpg)
 
-### About the Project
+### About the project
 
   International Plattform for coordinating CPD (Continuing Professional Development) for lighting designers, architects and engineers in architecture.
 
+### Status
+
+Still in development... Launch planned in Jan 2023.
+
   
-### How to use this Project
+### How to use this project
 
-lorem ........
+Search for educational opportunities based on your level of professional carrer. 
 
-##### Developed With
+##### Developed with
 
 - [x] _HTML5_
 - [x] _CSS3_

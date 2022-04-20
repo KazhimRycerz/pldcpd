@@ -398,17 +398,19 @@ header {
 
 /*Ende Styles zum Header*/
 .sidenav {
+  /* display: flex;
+  flex: column nowrap; */
   height: 100%;
   width: calc(15vw - 3px);
   position: fixed;
   z-index: 10;
   top: 100px;
-  left: -200px;
+  left: -400px;
   background-color: rgba(30, 140, 160, 0.75);
   transition: 0.5s ease-in-out;
   padding-top: 80px;
+  border: solid;
 }
-
 .sidenav a {
   padding: 8px 8px 8px 60px;
   text-decoration: none;
@@ -594,8 +596,8 @@ form {
   padding-left: 20px;
   padding-top: 20px;
   color: var(--mc);
-  overflow-x: none;
-  overflow-y: scroll;
+  /* overflow-x: none;
+  overflow-y: scroll; */
 }
 form h1 {
   margin-bottom: 20px;

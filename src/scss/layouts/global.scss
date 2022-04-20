@@ -308,29 +308,30 @@
   /*Ende Styles zum Header*/
   
   .sidenav {
+    /* display: flex;
+    flex: column nowrap; */
     height: 100%;
     width: calc(15vw - 3px);
     position: fixed;
     z-index: 10;
     top: 100px;
-    left: -200px;
+    left: -400px;
     background-color: $third-color-75;
-    
     transition: 0.5s ease-in-out;
     padding-top: 80px;
-  }
-  
-  .sidenav a {
-    padding: 8px 8px 8px 60px;
-    text-decoration: none;
-    font-size: $normal;
-    color: $secondary-color;
-    display: block;
-    transition: 0.75s;
-    width: auto;
-    span {
-      color: $cpdred;
-    }
+    border: solid;
+      a {
+      padding: 8px 8px 8px 60px;
+      text-decoration: none;
+      font-size: $normal;
+      color: $secondary-color;
+      display: block;
+      transition: 0.75s;
+      width: auto;
+        span {
+          color: $cpdred;
+        }
+      }
   }
 
   #mySidenav a:first-child {
