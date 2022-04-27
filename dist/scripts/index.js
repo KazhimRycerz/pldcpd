@@ -22,7 +22,7 @@ boolVar = false;
 
 // Ende Datenerfassung
 
-function accountData() {
+const accountData =()=> {
   document.getElementById("myKF").innerHTML = myKF;
   document.getElementById("myLF").innerHTML = myLF;
   document.getElementById("myPED").innerHTML = myPEX;
