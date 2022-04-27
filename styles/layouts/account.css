@@ -102,7 +102,7 @@ $border-radius:*/
   font-weight: 900;
   font-family: "FoundSanBd";
 }
-#account_aside_account .account_container .floating-stack dl dd:hover {
+#account_aside_account .account_container .floating-stack dl dd:hover, #account_aside_account .account_container .floating-stack dl dd:active {
   background-color: rgba(30, 140, 160, 0.5);
   color: black;
 }
