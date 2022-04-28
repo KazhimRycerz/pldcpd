@@ -77,7 +77,7 @@ $border-radius:*/
 #home_aside_h_Btn {
   display: block;
   position: fixed;
-  top: 150px;
+  top: 155px;
   right: 30px;
   color: #000032;
   background-color: rgba(170, 170, 170, 0.75);
@@ -93,7 +93,7 @@ $border-radius:*/
 #home_aside_s_Btn {
   display: none;
   position: fixed;
-  top: 150px;
+  top: 155px;
   right: 30px;
   color: #000032;
   background-color: rgba(170, 170, 170, 0.75);

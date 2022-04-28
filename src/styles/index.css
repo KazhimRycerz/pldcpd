@@ -394,6 +394,7 @@ header {
   flex: column nowrap; */
   height: 500px;
   width: 15vw;
+  min-width: 200px;
   position: fixed;
   z-index: 10;
   top: 180px;
@@ -443,7 +444,7 @@ header {
 #main {
   position: fixed;
   top: 25px;
-  left: 80px;
+  left: 60px;
   transition: margin-left 0.75s;
   margin-left: 1vw;
   padding: 0px;
@@ -549,9 +550,9 @@ footer div ul {
 
   #main {
     transition: top 1s;
-    top: 10px;
-    left: -10px;
-    color: black;
+    top: 20px;
+    left: 0px;
+    color: #1e8ca0;
     z-index: 100;
   }
 
@@ -636,7 +637,7 @@ $border-radius:*/
 #home_aside_h_Btn {
   display: block;
   position: fixed;
-  top: 150px;
+  top: 155px;
   right: 30px;
   color: #000032;
   background-color: rgba(170, 170, 170, 0.75);
@@ -652,7 +653,7 @@ $border-radius:*/
 #home_aside_s_Btn {
   display: none;
   position: fixed;
-  top: 150px;
+  top: 155px;
   right: 30px;
   color: #000032;
   background-color: rgba(170, 170, 170, 0.75);
