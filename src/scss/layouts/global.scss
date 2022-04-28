@@ -177,7 +177,7 @@
     #dropdown {
       position: relative;
       left:0;
-      width: 100%;
+      width: 80%;
       display: block;
       #dropbtn {
         font-family: $primary-font;
@@ -310,64 +310,61 @@
   .sidenav {
     /* display: flex;
     flex: column nowrap; */
-    height: 500px;
+    height: 510px;
     width: 15vw;
     min-width: 200px;
     position: fixed;
     z-index: 10;
     top: 180px;
     left: -400px;
-    background-color: $third-color-75;
+    background-color: $first-color;
     transition: 0.5s ease-in-out;
     padding-top: 80px;
     border-radius: 10px;
-    
-      a {
+    box-shadow: $boxshadow;
+    a {
       padding: 8px 8px 8px 60px;
       text-decoration: none;
-      font-size: $normal;
-      color: $secondary-color;
+      font-size: $small;
+      color: black;
       display: block;
       transition: 0.75s;
       width: auto;
-        span {
-          color: $cpdred;
+      margin-left: 30%;
+      
+      span {
+        color: $cpdred;
         }
       }
   }
 
-  #mySidenav a:first-child {
+  /* .sidenav ul li a:first-child {
     text-shadow: none;
-  }
+  } */
   
-  .sidenav a:hover, .sidenav a:active  {
-    color: $secondary-color;
-    text-shadow: 10px 5px 15px white;
-    span {
-      text-shadow: none;
-      color: $secondary-color;
-    }
+  .sidenav ul li a:hover, .sidenav ul li:active  {
+    text-shadow: 1px 1px 20px $cpdred;
   }
   
   .sidenav .closebtn {
     position: absolute;
     top: 0px;
-    left: 0vw;
+    left: 4vw;
     font-size: 54px;
     font-weight: 900;
     margin-left: 0px;
-    color: $secondary-color;
+    color: $cpdred;
     cursor:pointer;
   }
   
   #main {
     position:fixed;
     top: 25px;
-    left: 60px;
+    left: 2vw;
     transition: margin-left 0.75s;
     margin-left:1vw;
     padding: 0px;
-    color: $third-color;
+    color: $cpdred;
     z-index: 100;
     
     span {
@@ -437,7 +434,7 @@
       display: flex;
       flex-flow: row nowrap;
       justify-content: center;
-      width: 80%;
+      width: 50%;
       margin: 0 auto;
       gap: 10px;
       list-style-type: none;
@@ -451,12 +448,13 @@
       display: flex;
       flex-flow: row nowrap;
       justify-content: center;
-      gap: 150px;
-      margin: 30px ;
+      gap: 60px;
+      margin: 20px 0 0 0 ;
       ul {
         display: flex;
         flex-flow: column wrap;
         font-size: $normal;
+        width: 100%;
       }
     }
   }
@@ -484,17 +482,18 @@
         width: 100%;
       }
       
-      #main {
+      /* #main {
         transition: top 1s;
         top: 20px;
         left: 0px;
         color: $third-color;
         z-index: 100;
-      }
+      } */
       .sidenav {
         width: 200px;
         z-index: 10;
       }
+       
   
     }
   

@@ -1,12 +1,15 @@
 const openNav = () => {
   document.getElementById("mySidenav").style.left = "20px";
   document.getElementById("main").style.marginLeft = "-150px";
+  document.getElementById("Gruß_main_h1").style.left = "8vw";
+
   /* document.body.style.backgroundColor = "rgba(0,0,0,0.4)"; */
 }
 
 const closeNav = () => {
   document.getElementById("mySidenav").style.left = "-550px";
   document.getElementById("main").style.marginLeft = "1vw";
+  document.getElementById("Gruß_main_h1").style.left = "4vw";
   /* document.body.style.backgroundColor = "white"; */
 }
 

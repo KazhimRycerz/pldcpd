@@ -45,6 +45,7 @@ const hideAccount = () => {
   hideButton.style.animation = "moveButton 1s 0s ease-in-out forwards";
   hideButton.style.display = "none";
   showButton.style.display = "block";
+  Gruß_main_p.style.right = "4vw";
 };
 
 const showAccount = () => {
@@ -52,6 +53,7 @@ const showAccount = () => {
   showButton.style.display = "none";
   hideButton.style.animation = "moveButtonback 1s ease-in-out forwards";
   homeAsideAccount.style.animation = "show_home_aside 2s ease-in-out forwards";
+  Gruß_main_p.style.right = "8vw";
  };
 
 hideButton.addEventListener("click", hideAccount);

@@ -200,6 +200,7 @@
       text-align: left; 
       position: absolute;
       left: 2vw;
+      transition: 0.5s ease-in-out;
       top: 30px;
       margin: 0;
       /* text-shadow: 5px 5px 30px $first-color; */
@@ -212,7 +213,8 @@
     /* min-width: 31%; */
     text-align: left; 
     position:absolute;
-    right: 12vw;
+    right: 8vw;
+    transition: 1.0s ease-in-out;
     top: 30px;
   }
 }
@@ -232,10 +234,10 @@
   flex-flow: row nowrap;
   justify-content: center;
   position: relative;
-  margin-top: 80px;
+  margin-top: 60px;
   margin-bottom: 50px;
   font-size: $normal;
-  width: 100%;
+  width: 0100%;
   h3 {
     font-family: $primary-font-bold;
   }
@@ -590,7 +592,7 @@ tr:hover {
     margin: 0 auto;
     >div {
       box-shadow: $boxshadow, 2px 2px 10px 3px $first-color inset, -2px -2px 10px 3px $first-color inset; 
-      background-color: $third-color-o;
+      background-color: $third-color-75;
       display: flex;
       flex-direction: column;
       justify-content:space-between;
@@ -650,7 +652,7 @@ tr:hover {
   animation: hide_home_aside 2s ease-in-out forwards
   }
   #home_aside_h_Btn, #home_aside_s_Btn {
-    animation: moveButton 1s ease-in-out forwards;
+  animation: moveButton 1s ease-in-out forwards;
   }
 
   #Gruß_main h1 {
@@ -725,6 +727,10 @@ tr:hover {
       position:absolute;
       right: 5vw;
       top: 20px;
+    }
+
+    #C1 {
+      left: 50px;
     }
     #C1A2, #C1A3 {
       width: 100%;
