@@ -1,5 +1,11 @@
 @charset "UTF-8";
 /* $third-color: rgb(180, 200, 230); */
+/* 
+Persian Plum: #641b1a
+Blue Chill: #118890
+Blue Dianne: #225d63
+Pine Green: #047c74 
+*/
 /* textsizes*/
 /*$medium: 4rem;
 $large: 10rem;
@@ -112,7 +118,7 @@ $border-radius:*/
 
 #LC_only {
   font-family: "VIA-Verlag";
-  color: #7d0000;
+  color: #641b1a;
   letter-spacing: -2px;
   text-align: center;
   font-size: 130%;
@@ -214,8 +220,8 @@ main {
 #Content #account_1 {
   display: block;
   margin-top: 20px;
-  border-right: 3px dotted #7d0000;
-  border-left: 3px dotted #7d0000;
+  border-right: 3px dotted #641b1a;
+  border-left: 3px dotted #641b1a;
   border-radius: 20px;
 }
 #Content #account_1 #account_1_data {
@@ -305,8 +311,8 @@ main {
 #account_2 {
   display: block;
   margin-top: 20px;
-  border-left: 3px dotted #7d0000;
-  border-right: 3px dotted #7d0000;
+  border-left: 3px dotted #641b1a;
+  border-right: 3px dotted #641b1a;
   border-radius: 20px;
   /*background-color: RGB(221, 155, 55, 0.2);*/
   height: auto;
@@ -417,8 +423,8 @@ main {
 #account_3 {
   display: block;
   margin-top: 20px;
-  border-right: 3px dotted #7d0000;
-  border-left: 3px dotted #7d0000;
+  border-right: 3px dotted #641b1a;
+  border-left: 3px dotted #641b1a;
   border-radius: 20px;
 }
 #account_3 #account_3_data {
@@ -443,8 +449,8 @@ main {
 #account_4 {
   display: block;
   margin-top: 20px;
-  border-right: 3px dotted #7d0000;
-  border-left: 3px dotted #7d0000;
+  border-right: 3px dotted #641b1a;
+  border-left: 3px dotted #641b1a;
   border-radius: 20px;
 }
 #account_4 #account_4_data {
@@ -497,8 +503,8 @@ main {
 #account_5 {
   display: block;
   margin-top: 20px;
-  border-right: 3px dotted #7d0000;
-  border-left: 3px dotted #7d0000;
+  border-right: 3px dotted #641b1a;
+  border-left: 3px dotted #641b1a;
   border-radius: 20px;
 }
 #account_5 p {

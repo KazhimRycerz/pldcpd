@@ -68,6 +68,12 @@
 }
 
 /* $third-color: rgb(180, 200, 230); */
+/* 
+Persian Plum: #641b1a
+Blue Chill: #118890
+Blue Dianne: #225d63
+Pine Green: #047c74 
+*/
 /* textsizes*/
 /*$medium: 4rem;
 $large: 10rem;
@@ -141,6 +147,12 @@ $border-radius:*/
 }
 
 /* $third-color: rgb(180, 200, 230); */
+/* 
+Persian Plum: #641b1a
+Blue Chill: #118890
+Blue Dianne: #225d63
+Pine Green: #047c74 
+*/
 /* textsizes*/
 /*$medium: 4rem;
 $large: 10rem;
@@ -164,7 +176,7 @@ $border-radius:*/
   letter-spacing: -5px;
   line-height: normal;
   font-style: normal;
-  color: #7d0000;
+  color: #641b1a;
   font-size: 2.5rem;
   position: relative;
   bottom: -0.15rem;
@@ -172,13 +184,13 @@ $border-radius:*/
 
 .C {
   font-family: "VIA-Verlag";
-  color: #7d0000;
+  color: #641b1a;
   font-size: 1.3em;
   position: relative;
   top: 3px;
   /* bottom: -0.14em; */
   text-decoration: none;
-  cursor: pointer;
+  cursor: url(../images/point.png);
 }
 
 .Calli {
@@ -195,7 +207,7 @@ $border-radius:*/
   font-family: "VIA-Verlag";
   font-style: normal;
   line-height: normal;
-  color: #7d0000;
+  color: #641b1a;
   font-size: 1.5em;
   position: relative;
   bottom: -0.14em;
@@ -403,8 +415,8 @@ header {
   animation: navpresenter 3s forwards;
 }
 #dropdown:hover #dropdown-content li a:hover {
-  color: #7d0000;
-  text-shadow: 1px 1px 20px #7d0000;
+  color: #641b1a;
+  text-shadow: 1px 1px 20px #641b1a;
 }
 
 #dropbtn p::after {
@@ -423,6 +435,7 @@ header {
 }
 
 .text_header {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -433,6 +446,16 @@ header {
   text-decoration: none;
   vertical-align: top;
   line-height: 1.2;
+}
+
+.Punkt {
+  width: 2%;
+  position: absolute;
+  left: 40%;
+  top: 10px;
+  /*  transform: scale(20); */
+  transition: transform 1s;
+  z-index: 110;
 }
 
 #header_myaccount {
@@ -458,11 +481,23 @@ header {
 }
 #header_myaccount ul li a:hover {
   text-decoration: none;
-  color: #7d0000;
-  text-shadow: 1px 1px 20px #7d0000;
+  color: #641b1a;
+  text-shadow: 1px 1px 20px #641b1a;
 }
 
 /*Ende Styles zum Header*/
+#main {
+  position: fixed;
+  top: 15px;
+  left: 2vw;
+  transition: margin-left 0.75s;
+  margin-left: 1vw;
+  padding: 0px;
+  color: #641b1a;
+  z-index: 100;
+  font-size: 3rem;
+}
+
 .sidenav {
   /* display: flex;
   flex: column nowrap; */
@@ -479,50 +514,63 @@ header {
   border-radius: 10px;
   box-shadow: 0.5rem 0.5rem 2rem;
 }
-.sidenav a {
-  padding: 8px 8px 8px 60px;
+.sidenav ul {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 10px;
+  position: relative;
+  left: 100px;
+}
+.sidenav ul li {
+  width: 50%;
+  list-style-type: none;
+}
+.sidenav ul li a {
+  padding: 8px 8px 0px 0px;
   text-decoration: none;
   font-size: 0.9rem;
   color: black;
   display: block;
   transition: 0.75s;
-  width: auto;
+  width: max-width;
+  line-height: 100%;
   margin-left: 30%;
+  /*  border-left: dotted;   
+   border-right: dotted; */
+  border-radius: 10px;
 }
-.sidenav a span {
-  color: #7d0000;
+.sidenav ul li a span {
+  color: #641b1a;
+}
+.sidenav ul li:first-child a {
+  border-bottom: none;
+}
+.sidenav ul li:first-child a:hover {
+  text-shadow: none;
+}
+.sidenav img {
+  width: 50%;
+  display: block;
+  position: relative;
+  left: 50%;
+  top: 20px;
 }
 
 /* .sidenav ul li a:first-child {
   text-shadow: none;
 } */
 .sidenav ul li a:hover, .sidenav ul li:active {
-  text-shadow: 1px 1px 20px #7d0000;
+  text-shadow: 1px 1px 20px #641b1a;
 }
 
 .sidenav .closebtn {
   position: absolute;
-  top: 0px;
-  left: 4vw;
+  top: -80px;
+  left: 2vw;
   font-size: 54px;
   font-weight: 900;
   margin-left: 0px;
-  color: #7d0000;
-  cursor: pointer;
-}
-
-#main {
-  position: fixed;
-  top: 25px;
-  left: 2vw;
-  transition: margin-left 0.75s;
-  margin-left: 1vw;
-  padding: 0px;
-  color: #7d0000;
-  z-index: 100;
-}
-#main span {
-  font-size: 3rem;
+  color: #641b1a;
   cursor: pointer;
 }
 
@@ -580,7 +628,7 @@ footer ul {
 }
 footer ul ion-icon {
   font-size: 30px;
-  color: #000032;
+  color: #1e8ca0;
 }
 footer div {
   display: flex;
@@ -632,6 +680,12 @@ footer div ul {
   }
 }
 /* $third-color: rgb(180, 200, 230); */
+/* 
+Persian Plum: #641b1a
+Blue Chill: #118890
+Blue Dianne: #225d63
+Pine Green: #047c74 
+*/
 /* textsizes*/
 /*$medium: 4rem;
 $large: 10rem;
@@ -744,7 +798,7 @@ $border-radius:*/
 
 #LC_only {
   font-family: "VIA-Verlag";
-  color: #7d0000;
+  color: #641b1a;
   letter-spacing: -2px;
   text-align: center;
   font-size: 130%;
@@ -846,8 +900,8 @@ main {
 #Content #account_1 {
   display: block;
   margin-top: 20px;
-  border-right: 3px dotted #7d0000;
-  border-left: 3px dotted #7d0000;
+  border-right: 3px dotted #641b1a;
+  border-left: 3px dotted #641b1a;
   border-radius: 20px;
 }
 #Content #account_1 #account_1_data {
@@ -937,8 +991,8 @@ main {
 #account_2 {
   display: block;
   margin-top: 20px;
-  border-left: 3px dotted #7d0000;
-  border-right: 3px dotted #7d0000;
+  border-left: 3px dotted #641b1a;
+  border-right: 3px dotted #641b1a;
   border-radius: 20px;
   /*background-color: RGB(221, 155, 55, 0.2);*/
   height: auto;
@@ -1049,8 +1103,8 @@ main {
 #account_3 {
   display: block;
   margin-top: 20px;
-  border-right: 3px dotted #7d0000;
-  border-left: 3px dotted #7d0000;
+  border-right: 3px dotted #641b1a;
+  border-left: 3px dotted #641b1a;
   border-radius: 20px;
 }
 #account_3 #account_3_data {
@@ -1075,8 +1129,8 @@ main {
 #account_4 {
   display: block;
   margin-top: 20px;
-  border-right: 3px dotted #7d0000;
-  border-left: 3px dotted #7d0000;
+  border-right: 3px dotted #641b1a;
+  border-left: 3px dotted #641b1a;
   border-radius: 20px;
 }
 #account_4 #account_4_data {
@@ -1129,8 +1183,8 @@ main {
 #account_5 {
   display: block;
   margin-top: 20px;
-  border-right: 3px dotted #7d0000;
-  border-left: 3px dotted #7d0000;
+  border-right: 3px dotted #641b1a;
+  border-left: 3px dotted #641b1a;
   border-radius: 20px;
 }
 #account_5 p {

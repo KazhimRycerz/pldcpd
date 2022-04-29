@@ -7,14 +7,23 @@ $third-color-75: rgba(30, 140, 160, 0.75);
 /* $third-color: rgb(180, 200, 230); */
 $fourth-color: rgba(221, 155, 55, 0.2);
 $button-color: rgba(170, 170, 170, 0.75);
-$cpdred: rgb(125, 0, 0);
-$cpdred-o:rgba(125, 0, 0, 0.5);
+$cpdred: /* rgb(125, 0, 0); */rgb(100, 27, 26);//Persian Plum
+$cpdred-o:/* rgba(125, 0, 0, 0.5); */rgba(120, 27, 26, 0.5);
 $cpdblue: rgb(0, 0, 50);
+
+/* 
+Persian Plum: #641b1a
+Blue Chill: #118890
+Blue Dianne: #225d63
+Pine Green: #047c74 
+*/
 
 //shadows
 $boxshadow: 0.5rem 0.5rem 2rem;
 $btnshadow: 0px 0px 10px 1px $third-color inset, -2px -2px 5px 3px grey,  -5px -5px 5px white inset; 
 $rshadow: 3px 3px black, -3px -3px black, 3px -3px black, -3px 3px black;
+$hovershadow:3px;
+$text-shadow: 1px 1px 20px $cpdred;
 
 //backgroundcolours
 $grad: linear-gradient($third-color-o, $cpdred-o) fixed;

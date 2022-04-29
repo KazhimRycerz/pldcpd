@@ -21,3 +21,9 @@ const hideAccount = () => {
   hideButton.style.display = "none";
   showButton.style.display = "block";
 }; */
+
+var f = document.getElementById('Punkt');
+document.addEventListener('click', function(ev){
+    f.style.transform = 'translateY('+(ev.clientY -25)+'px)';
+    f.style.transform += 'translateX('+(ev.clientX-25)+'px)';
+},false);

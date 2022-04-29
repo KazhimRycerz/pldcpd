@@ -30,7 +30,7 @@
   top: 3px;
   /* bottom: -0.14em; */
   text-decoration:none;
-  cursor:pointer;
+  cursor: url(../images/point.png);
 }
 
 .Calli {
@@ -264,8 +264,9 @@
   .image_header {
       height:30px;
    }
-  
+    
   .text_header {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -278,6 +279,16 @@
     line-height: 1.2;
   }
   
+  .Punkt {
+    width: 2.0%;
+    position: absolute;
+    left: 40%;
+    top: 10px;
+    /*  transform: scale(20); */
+    transition: transform 1s;
+    z-index: 110;
+  }
+
   #header_myaccount {
     background-color: transparent;
     width: 15vw;
@@ -299,13 +310,25 @@
           a:hover{
             text-decoration:none;
             color: $cpdred;
-            text-shadow: 1px 1px 20px $cpdred;
+            text-shadow: $text-shadow;
           }
         }
       }    
     }
-  
-  /*Ende Styles zum Header*/
+    
+    /*Ende Styles zum Header*/
+
+    #main {
+      position:fixed;
+      top: 15px;
+      left: 2vw;
+      transition: margin-left 0.75s;
+      margin-left:1vw;
+      padding: 0px;
+      color: $cpdred;
+      z-index: 100;
+      font-size:3rem;
+    }
   
   .sidenav {
     /* display: flex;
@@ -322,20 +345,48 @@
     padding-top: 80px;
     border-radius: 10px;
     box-shadow: $boxshadow;
-    a {
-      padding: 8px 8px 8px 60px;
-      text-decoration: none;
-      font-size: $small;
-      color: black;
-      display: block;
-      transition: 0.75s;
-      width: auto;
-      margin-left: 30%;
+    ul {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: 10px;
+      position: relative;
+      left: 100px;
+    li {
+      width: 50%;
+      list-style-type: none;
       
-      span {
-        color: $cpdred;
+      a {
+        padding: 8px 8px 0px 0px;
+        text-decoration: none;
+        font-size: $small;
+        color: black;
+        display: block;
+        transition: 0.75s;
+        width: max-width;
+        line-height: 100%;
+        margin-left: 30%;
+       /*  border-left: dotted;   
+        border-right: dotted; */
+        border-radius: 10px; 
+        span {
+          color: $cpdred;
         }
       }
+    }
+  }
+    ul li:first-child a {
+      border-bottom: none;
+    }
+    ul li:first-child a:hover {
+      text-shadow: none;
+    }
+    img {
+      width: 50%;
+      display: block;
+      position: relative;
+      left: 50%;
+      top: 20px;
+    }
   }
 
   /* .sidenav ul li a:first-child {
@@ -343,13 +394,13 @@
   } */
   
   .sidenav ul li a:hover, .sidenav ul li:active  {
-    text-shadow: 1px 1px 20px $cpdred;
+    text-shadow: $text-shadow;
   }
   
   .sidenav .closebtn {
     position: absolute;
-    top: 0px;
-    left: 4vw;
+    top: -80px;
+    left: 2vw;
     font-size: 54px;
     font-weight: 900;
     margin-left: 0px;
@@ -357,21 +408,6 @@
     cursor:pointer;
   }
   
-  #main {
-    position:fixed;
-    top: 25px;
-    left: 2vw;
-    transition: margin-left 0.75s;
-    margin-left:1vw;
-    padding: 0px;
-    color: $cpdred;
-    z-index: 100;
-    
-    span {
-      font-size:3rem;
-      cursor:pointer;   
-    }
-  }
   
   /* @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
@@ -440,7 +476,7 @@
       list-style-type: none;
       ion-icon {
         font-size: 30px;;
-        color:$cpdblue;
+        color:$third-color;
       }
     }
     
