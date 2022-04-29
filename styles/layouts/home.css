@@ -65,6 +65,12 @@
 }
 
 /* $third-color: rgb(180, 200, 230); */
+/* 
+Persian Plum: #641b1a
+Blue Chill: #118890
+Blue Dianne: #225d63
+Pine Green: #047c74 
+*/
 /* textsizes*/
 /*$medium: 4rem;
 $large: 10rem;
@@ -351,7 +357,7 @@ $border-radius:*/
 }
 #C1 #C1A1, #C1 #C1A4 {
   margin: 0 10px 0 20px;
-  border-left: 3px dotted #7d0000;
+  border-left: 3px dotted #641b1a;
   /*border-right: 3px dotted Black;*/
   border-radius: 20px;
   padding: 20px;
@@ -374,7 +380,7 @@ $border-radius:*/
 #C1 div #C1A2, #C1 div #C1A3 {
   width: 250px;
   margin: 0px auto;
-  border-top: 3px dotted #7d0000;
+  border-top: 3px dotted #641b1a;
   border-radius: 20px;
   padding: 10px;
   position: relative;
@@ -420,8 +426,8 @@ $border-radius:*/
 }
 
 #learningbox_1 {
-  border-top: 3px dotted #7d0000;
-  border-bottom: 3px dotted #7d0000;
+  border-top: 3px dotted #641b1a;
+  border-bottom: 3px dotted #641b1a;
   padding-bottom: 20px;
   padding: 20px;
   border-radius: 20px;
@@ -512,8 +518,8 @@ $border-radius:*/
 }
 
 #learningbox_2 {
-  border-top: 3px dotted #7d0000;
-  border-bottom: 3px dotted #7d0000;
+  border-top: 3px dotted #641b1a;
+  border-bottom: 3px dotted #641b1a;
   padding-bottom: 20px;
   padding: 20px;
   border-radius: 20px;
@@ -547,7 +553,7 @@ $border-radius:*/
   grid-row: 1/2;
   /*background: rgb(218, 164, 157);*/
   padding: 0px;
-  background: linear-gradient(rgba(30, 140, 160, 0.5), rgba(125, 0, 0, 0.5)) fixed;
+  background: linear-gradient(rgba(30, 140, 160, 0.5), rgba(120, 27, 26, 0.5)) fixed;
 }
 #info_1_1 > div {
   display: flex;
@@ -561,7 +567,7 @@ $border-radius:*/
   grid-row: 1/2;
   /*background: rgb(218, 164, 157);*/
   padding: 10px;
-  background: linear-gradient(rgba(30, 140, 160, 0.5), rgba(125, 0, 0, 0.5)) fixed;
+  background: linear-gradient(rgba(30, 140, 160, 0.5), rgba(120, 27, 26, 0.5)) fixed;
 }
 #info_1_2 p {
   font-size: 1.1rem;
@@ -609,8 +615,8 @@ tr:hover {
 
 #infobox_2 {
   display: inline-block;
-  border-top: 3px dotted #7d0000;
-  border-bottom: 3px dotted #7d0000;
+  border-top: 3px dotted #641b1a;
+  border-bottom: 3px dotted #641b1a;
   border-radius: 20px;
   padding: 20px;
   font-size: 1.1rem;
@@ -640,7 +646,7 @@ tr:hover {
   font-size: 1.1rem;
 }
 #ib_2_angebote > div {
-  background: linear-gradient(rgba(30, 140, 160, 0.5), rgba(125, 0, 0, 0.5)) fixed;
+  background: linear-gradient(rgba(30, 140, 160, 0.5), rgba(120, 27, 26, 0.5)) fixed;
   padding: 1rem;
   box-shadow: 0.5rem 0.5rem 2rem, 2px 2px 10px 3px azure inset, -2px -2px 10px 3px azure inset;
   border-radius: 10px;
@@ -676,8 +682,8 @@ tr:hover {
 
 /* Learning nach Karrierelevel Start */
 #learningbox_5 {
-  border-top: 3px dotted #7d0000;
-  border-bottom: 3px dotted #7d0000;
+  border-top: 3px dotted #641b1a;
+  border-bottom: 3px dotted #641b1a;
   border-radius: 20px;
   padding-bottom: 30px;
   padding: 0 20px 30px 20px;

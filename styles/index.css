@@ -67,6 +67,12 @@
 }
 
 /* $third-color: rgb(180, 200, 230); */
+/* 
+Persian Plum: #641b1a
+Blue Chill: #118890
+Blue Dianne: #225d63
+Pine Green: #047c74 
+*/
 /* textsizes*/
 /*$medium: 4rem;
 $large: 10rem;
@@ -90,7 +96,7 @@ $border-radius:*/
   letter-spacing: -5px;
   line-height: normal;
   font-style: normal;
-  color: #7d0000;
+  color: #641b1a;
   font-size: 2.5rem;
   position: relative;
   bottom: -0.15rem;
@@ -98,13 +104,13 @@ $border-radius:*/
 
 .C {
   font-family: "VIA-Verlag";
-  color: #7d0000;
+  color: #641b1a;
   font-size: 1.3em;
   position: relative;
   top: 3px;
   /* bottom: -0.14em; */
   text-decoration: none;
-  cursor: pointer;
+  cursor: url(../images/point.png);
 }
 
 .Calli {
@@ -121,7 +127,7 @@ $border-radius:*/
   font-family: "VIA-Verlag";
   font-style: normal;
   line-height: normal;
-  color: #7d0000;
+  color: #641b1a;
   font-size: 1.5em;
   position: relative;
   bottom: -0.14em;
@@ -329,8 +335,8 @@ header {
   animation: navpresenter 3s forwards;
 }
 #dropdown:hover #dropdown-content li a:hover {
-  color: #7d0000;
-  text-shadow: 1px 1px 20px #7d0000;
+  color: #641b1a;
+  text-shadow: 1px 1px 20px #641b1a;
 }
 
 #dropbtn p::after {
@@ -349,6 +355,7 @@ header {
 }
 
 .text_header {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -359,6 +366,16 @@ header {
   text-decoration: none;
   vertical-align: top;
   line-height: 1.2;
+}
+
+.Punkt {
+  width: 2%;
+  position: absolute;
+  left: 40%;
+  top: 10px;
+  /*  transform: scale(20); */
+  transition: transform 1s;
+  z-index: 110;
 }
 
 #header_myaccount {
@@ -384,11 +401,23 @@ header {
 }
 #header_myaccount ul li a:hover {
   text-decoration: none;
-  color: #7d0000;
-  text-shadow: 1px 1px 20px #7d0000;
+  color: #641b1a;
+  text-shadow: 1px 1px 20px #641b1a;
 }
 
 /*Ende Styles zum Header*/
+#main {
+  position: fixed;
+  top: 15px;
+  left: 2vw;
+  transition: margin-left 0.75s;
+  margin-left: 1vw;
+  padding: 0px;
+  color: #641b1a;
+  z-index: 100;
+  font-size: 3rem;
+}
+
 .sidenav {
   /* display: flex;
   flex: column nowrap; */
@@ -405,50 +434,63 @@ header {
   border-radius: 10px;
   box-shadow: 0.5rem 0.5rem 2rem;
 }
-.sidenav a {
-  padding: 8px 8px 8px 60px;
+.sidenav ul {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 10px;
+  position: relative;
+  left: 100px;
+}
+.sidenav ul li {
+  width: 50%;
+  list-style-type: none;
+}
+.sidenav ul li a {
+  padding: 8px 8px 0px 0px;
   text-decoration: none;
   font-size: 0.9rem;
   color: black;
   display: block;
   transition: 0.75s;
-  width: auto;
+  width: max-width;
+  line-height: 100%;
   margin-left: 30%;
+  /*  border-left: dotted;   
+   border-right: dotted; */
+  border-radius: 10px;
 }
-.sidenav a span {
-  color: #7d0000;
+.sidenav ul li a span {
+  color: #641b1a;
+}
+.sidenav ul li:first-child a {
+  border-bottom: none;
+}
+.sidenav ul li:first-child a:hover {
+  text-shadow: none;
+}
+.sidenav img {
+  width: 50%;
+  display: block;
+  position: relative;
+  left: 50%;
+  top: 20px;
 }
 
 /* .sidenav ul li a:first-child {
   text-shadow: none;
 } */
 .sidenav ul li a:hover, .sidenav ul li:active {
-  text-shadow: 1px 1px 20px #7d0000;
+  text-shadow: 1px 1px 20px #641b1a;
 }
 
 .sidenav .closebtn {
   position: absolute;
-  top: 0px;
-  left: 4vw;
+  top: -80px;
+  left: 2vw;
   font-size: 54px;
   font-weight: 900;
   margin-left: 0px;
-  color: #7d0000;
-  cursor: pointer;
-}
-
-#main {
-  position: fixed;
-  top: 25px;
-  left: 2vw;
-  transition: margin-left 0.75s;
-  margin-left: 1vw;
-  padding: 0px;
-  color: #7d0000;
-  z-index: 100;
-}
-#main span {
-  font-size: 3rem;
+  color: #641b1a;
   cursor: pointer;
 }
 
@@ -506,7 +548,7 @@ footer ul {
 }
 footer ul ion-icon {
   font-size: 30px;
-  color: #000032;
+  color: #1e8ca0;
 }
 footer div {
   display: flex;
@@ -621,6 +663,12 @@ footer div ul {
 }
 
 /* $third-color: rgb(180, 200, 230); */
+/* 
+Persian Plum: #641b1a
+Blue Chill: #118890
+Blue Dianne: #225d63
+Pine Green: #047c74 
+*/
 /* textsizes*/
 /*$medium: 4rem;
 $large: 10rem;
@@ -907,7 +955,7 @@ $border-radius:*/
 }
 #C1 #C1A1, #C1 #C1A4 {
   margin: 0 10px 0 20px;
-  border-left: 3px dotted #7d0000;
+  border-left: 3px dotted #641b1a;
   /*border-right: 3px dotted Black;*/
   border-radius: 20px;
   padding: 20px;
@@ -930,7 +978,7 @@ $border-radius:*/
 #C1 div #C1A2, #C1 div #C1A3 {
   width: 250px;
   margin: 0px auto;
-  border-top: 3px dotted #7d0000;
+  border-top: 3px dotted #641b1a;
   border-radius: 20px;
   padding: 10px;
   position: relative;
@@ -976,8 +1024,8 @@ $border-radius:*/
 }
 
 #learningbox_1 {
-  border-top: 3px dotted #7d0000;
-  border-bottom: 3px dotted #7d0000;
+  border-top: 3px dotted #641b1a;
+  border-bottom: 3px dotted #641b1a;
   padding-bottom: 20px;
   padding: 20px;
   border-radius: 20px;
@@ -1068,8 +1116,8 @@ $border-radius:*/
 }
 
 #learningbox_2 {
-  border-top: 3px dotted #7d0000;
-  border-bottom: 3px dotted #7d0000;
+  border-top: 3px dotted #641b1a;
+  border-bottom: 3px dotted #641b1a;
   padding-bottom: 20px;
   padding: 20px;
   border-radius: 20px;
@@ -1103,7 +1151,7 @@ $border-radius:*/
   grid-row: 1/2;
   /*background: rgb(218, 164, 157);*/
   padding: 0px;
-  background: linear-gradient(rgba(30, 140, 160, 0.5), rgba(125, 0, 0, 0.5)) fixed;
+  background: linear-gradient(rgba(30, 140, 160, 0.5), rgba(120, 27, 26, 0.5)) fixed;
 }
 #info_1_1 > div {
   display: flex;
@@ -1117,7 +1165,7 @@ $border-radius:*/
   grid-row: 1/2;
   /*background: rgb(218, 164, 157);*/
   padding: 10px;
-  background: linear-gradient(rgba(30, 140, 160, 0.5), rgba(125, 0, 0, 0.5)) fixed;
+  background: linear-gradient(rgba(30, 140, 160, 0.5), rgba(120, 27, 26, 0.5)) fixed;
 }
 #info_1_2 p {
   font-size: 1.1rem;
@@ -1165,8 +1213,8 @@ tr:hover {
 
 #infobox_2 {
   display: inline-block;
-  border-top: 3px dotted #7d0000;
-  border-bottom: 3px dotted #7d0000;
+  border-top: 3px dotted #641b1a;
+  border-bottom: 3px dotted #641b1a;
   border-radius: 20px;
   padding: 20px;
   font-size: 1.1rem;
@@ -1196,7 +1244,7 @@ tr:hover {
   font-size: 1.1rem;
 }
 #ib_2_angebote > div {
-  background: linear-gradient(rgba(30, 140, 160, 0.5), rgba(125, 0, 0, 0.5)) fixed;
+  background: linear-gradient(rgba(30, 140, 160, 0.5), rgba(120, 27, 26, 0.5)) fixed;
   padding: 1rem;
   box-shadow: 0.5rem 0.5rem 2rem, 2px 2px 10px 3px azure inset, -2px -2px 10px 3px azure inset;
   border-radius: 10px;
@@ -1232,8 +1280,8 @@ tr:hover {
 
 /* Learning nach Karrierelevel Start */
 #learningbox_5 {
-  border-top: 3px dotted #7d0000;
-  border-bottom: 3px dotted #7d0000;
+  border-top: 3px dotted #641b1a;
+  border-bottom: 3px dotted #641b1a;
   border-radius: 20px;
   padding-bottom: 30px;
   padding: 0 20px 30px 20px;
