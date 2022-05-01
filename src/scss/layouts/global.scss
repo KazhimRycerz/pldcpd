@@ -176,14 +176,17 @@
     left: 10.5%;
     #dropdown {
       position: relative;
-      left:0;
-      width: 80%;
+      bottom: -11px;
+      left:-10px;
+      width: 100%;
       display: block;
+      border: none;
       #dropbtn {
         font-family: $primary-font;
-        width: 140px;
+        width: 100%;
         text-align: left;
-        position: relative;
+        position: absolute;
+        bottom: 0px;
         background-color: transparent;
         color: black;
         font-size: $small;
@@ -193,23 +196,27 @@
         color: black;
         font-size: $small;
         display: flex;
+        gap: 20px;
         opacity: 0;
         flex-direction: row;
         justify-content: left;
         position: absolute;
-        bottom: -11px;
-        left: -20px;
+        bottom: 0px;
+        left: 0px;
         height: auto;
         width: auto;
         background-color: none;
         z-index: 98;
         text-decoration: none;
+        border: none;
+        transition: 1s;
         
         li {        
-          padding: 0 20px;
+          padding: 0 0px;
           display: flex;
           font-size: $small;
           background-color: none;
+          width: auto;
           /* box-shadow: $boxshadow; */
           * {
             text-decoration: none;
@@ -248,14 +255,11 @@
       text-shadow: 1px 1px 20px $cpdred;
     }
   }
-  
   #dropbtn p::after {
     content: "";
     width: 10px;
     height: 10px;
-    
   }
-  
   #dropdown:hover #dropbtn {
     display: none;
     opacity: 0;
@@ -272,7 +276,7 @@
     gap: 10px;
     flex-wrap: nowrap;
     margin-top: 0px;
-    margin-left: -15%;
+    margin-left: 15%;
     font-size: $small;
     text-decoration: none;
     vertical-align: top;
@@ -317,22 +321,101 @@
     }
     
     /*Ende Styles zum Header*/
-
-    #main {
+    
+    #btn_nav_open {
       position:fixed;
       top: 15px;
       left: 2vw;
-      transition: margin-left 0.75s;
+      transition: display 0.75s;
       margin-left:1vw;
       padding: 0px;
       color: $cpdred;
       z-index: 100;
       font-size:3rem;
+      border: none;
+      width: 40px;
+    }
+    #btn_nav_close {
+      position:fixed;
+      top: 5px;
+      left: 2vw;
+      transition: display 0.75s;
+      margin-left:1vw;
+      padding: 5px;
+      color: $cpdred;
+      z-index: 100;
+      font-size:3.5rem;
+      border: none;
+      display: none;
     }
   
-  .sidenav {
-    /* display: flex;
-    flex: column nowrap; */
+    #navmain {
+      position: fixed;
+      top: -200px;
+      width: 100%;
+      height: 300px;
+      margin: 0 auto;
+      background: $first-color;
+      z-index: 90;
+      padding-top: 50px;
+      box-shadow: $boxshadowbottom;
+      transition: 0.3s ease-in-out;
+      border: none;
+      div {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        width: 80%;
+        margin: 0 auto;
+        gap: 20px;
+        ul {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        width: 50%;
+        margin: 0 auto;
+        list-style-type: none;
+        border: none;
+        p {
+        font-size: $large;
+        font-weight: 900;
+        border-right: dotted $cpdred;
+        border-left: dotted $cpdred; 
+        border-radius: 10px;
+        width: min-width; 
+        padding-left: 10px;
+      }
+        li {
+          width: auto;
+          list-style-type: none;
+          border: none;
+          a {
+            padding: 8px 8px 0px 0px;
+            text-decoration: none;
+            font-size: $small;
+            color: black;
+            display: block;
+            transition: 0.75s;
+            width: max-width;
+            line-height: 100%;
+            margin-left: 0%;
+          /*  border-left: dotted;   
+            border-right: dotted; */
+            border-radius: 10px; 
+            span {
+              color: $cpdred;
+            }
+          }
+          a:hover {
+            color: $cpdred;
+            text-shadow: 1px 1px 20px $cpdred;
+          }
+        }
+      }
+      }
+    }
+  
+  /* .sidenav {
     height: 510px;
     width: 15vw;
     min-width: 200px;
@@ -365,8 +448,8 @@
         width: max-width;
         line-height: 100%;
         margin-left: 30%;
-       /*  border-left: dotted;   
-        border-right: dotted; */
+        border-left: dotted;   
+        border-right: dotted; 
         border-radius: 10px; 
         span {
           color: $cpdred;
@@ -387,11 +470,8 @@
       left: 50%;
       top: 20px;
     }
-  }
+  } 
 
-  /* .sidenav ul li a:first-child {
-    text-shadow: none;
-  } */
   
   .sidenav ul li a:hover, .sidenav ul li:active  {
     text-shadow: $text-shadow;
@@ -406,7 +486,7 @@
     margin-left: 0px;
     color: $cpdred;
     cursor:pointer;
-  }
+  }*/
   
   
   /* @media screen and (max-height: 450px) {

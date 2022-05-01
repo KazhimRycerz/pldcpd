@@ -46,6 +46,10 @@ $border-radius:*/
   src: url("../fonts/Falling-Sky-Condensed-Outline/FallingSkyOu.woff2") format("woff2"), url("../fonts/Falling-Sky-Condensed-Outline/FallingSkyOu.otf") format("otf");
 }
 @font-face {
+  font-family: "Frederica";
+  src: url("../fonts/FrederickatheGreat.woff2") format("woff2"), url("../fonts/Falling-Sky-Condensed-Outline/FrederickatheGreat.otf") format("otf");
+}
+@font-face {
   font-family: "ChalkLine";
   src: url("../fonts/chalk_line_outline/ChalkLine-Outline.woff2") format("woff2"), url("../fonts/chalk_line_outline/ChalkLine-Outline.otf") format("otf");
 }
@@ -279,15 +283,18 @@ header {
 }
 .navheader #dropdown {
   position: relative;
-  left: 0;
-  width: 80%;
+  bottom: -11px;
+  left: -10px;
+  width: 100%;
   display: block;
+  border: none;
 }
 .navheader #dropdown #dropbtn {
   font-family: "FoundSanExpNorm", sans-serif;
-  width: 140px;
+  width: 100%;
   text-align: left;
-  position: relative;
+  position: absolute;
+  bottom: 0px;
   background-color: transparent;
   color: black;
   font-size: 0.9rem;
@@ -297,23 +304,27 @@ header {
   color: black;
   font-size: 0.9rem;
   display: flex;
+  gap: 20px;
   opacity: 0;
   flex-direction: row;
   justify-content: left;
   position: absolute;
-  bottom: -11px;
-  left: -20px;
+  bottom: 0px;
+  left: 0px;
   height: auto;
   width: auto;
   background-color: none;
   z-index: 98;
   text-decoration: none;
+  border: none;
+  transition: 1s;
 }
 .navheader #dropdown ul li {
-  padding: 0 20px;
+  padding: 0 0px;
   display: flex;
   font-size: 0.9rem;
   background-color: none;
+  width: auto;
   /* box-shadow: $boxshadow; */
 }
 .navheader #dropdown ul li * {
@@ -375,7 +386,7 @@ header {
   gap: 10px;
   flex-wrap: nowrap;
   margin-top: 0px;
-  margin-left: -15%;
+  margin-left: 15%;
   font-size: 0.9rem;
   text-decoration: none;
   vertical-align: top;
@@ -420,46 +431,79 @@ header {
 }
 
 /*Ende Styles zum Header*/
-#main {
+#btn_nav_open {
   position: fixed;
   top: 15px;
   left: 2vw;
-  transition: margin-left 0.75s;
+  transition: display 0.75s;
   margin-left: 1vw;
   padding: 0px;
   color: #641b1a;
   z-index: 100;
   font-size: 3rem;
+  border: none;
+  width: 40px;
 }
 
-.sidenav {
-  /* display: flex;
-  flex: column nowrap; */
-  height: 510px;
-  width: 15vw;
-  min-width: 200px;
+#btn_nav_close {
   position: fixed;
-  z-index: 10;
-  top: 180px;
-  left: -400px;
-  background-color: azure;
-  transition: 0.5s ease-in-out;
-  padding-top: 80px;
-  border-radius: 10px;
-  box-shadow: 0.5rem 0.5rem 2rem;
+  top: 5px;
+  left: 2vw;
+  transition: display 0.75s;
+  margin-left: 1vw;
+  padding: 5px;
+  color: #641b1a;
+  z-index: 100;
+  font-size: 3.5rem;
+  border: none;
+  display: none;
 }
-.sidenav ul {
+
+#navmain {
+  position: fixed;
+  top: -200px;
+  width: 100%;
+  height: 300px;
+  margin: 0 auto;
+  background: azure;
+  z-index: 90;
+  padding-top: 50px;
+  box-shadow: 2.5rem 0.5rem 2rem;
+  transition: 0.3s ease-in-out;
+  border: none;
+}
+#navmain div {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  width: 80%;
+  margin: 0 auto;
+  gap: 20px;
+}
+#navmain div ul {
   display: flex;
   flex-flow: column nowrap;
-  gap: 10px;
-  position: relative;
-  left: 100px;
-}
-.sidenav ul li {
+  justify-content: center;
   width: 50%;
+  margin: 0 auto;
   list-style-type: none;
+  border: none;
 }
-.sidenav ul li a {
+#navmain div ul p {
+  font-size: 1.2rem;
+  font-weight: 900;
+  border-right: dotted #641b1a;
+  border-left: dotted #641b1a;
+  border-radius: 10px;
+  width: min-width;
+  padding-left: 10px;
+}
+#navmain div ul li {
+  width: auto;
+  list-style-type: none;
+  border: none;
+}
+#navmain div ul li a {
   padding: 8px 8px 0px 0px;
   text-decoration: none;
   font-size: 0.9rem;
@@ -468,33 +512,79 @@ header {
   transition: 0.75s;
   width: max-width;
   line-height: 100%;
-  margin-left: 30%;
+  margin-left: 0%;
   /*  border-left: dotted;   
-   border-right: dotted; */
+    border-right: dotted; */
   border-radius: 10px;
 }
-.sidenav ul li a span {
+#navmain div ul li a span {
   color: #641b1a;
 }
-.sidenav ul li:first-child a {
-  border-bottom: none;
-}
-.sidenav ul li:first-child a:hover {
-  text-shadow: none;
-}
-.sidenav img {
-  width: 50%;
-  display: block;
-  position: relative;
-  left: 50%;
-  top: 20px;
+#navmain div ul li a:hover {
+  color: #641b1a;
+  text-shadow: 1px 1px 20px #641b1a;
 }
 
-/* .sidenav ul li a:first-child {
-  text-shadow: none;
-} */
-.sidenav ul li a:hover, .sidenav ul li:active {
-  text-shadow: 1px 1px 20px #641b1a;
+/* .sidenav {
+  height: 510px;
+  width: 15vw;
+  min-width: 200px;
+  position: fixed;
+  z-index: 10;
+  top: 180px;
+  left: -400px;
+  background-color: $first-color;
+  transition: 0.5s ease-in-out;
+  padding-top: 80px;
+  border-radius: 10px;
+  box-shadow: $boxshadow;
+  ul {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 10px;
+    position: relative;
+    left: 100px;
+  li {
+    width: 50%;
+    list-style-type: none;
+
+    a {
+      padding: 8px 8px 0px 0px;
+      text-decoration: none;
+      font-size: $small;
+      color: black;
+      display: block;
+      transition: 0.75s;
+      width: max-width;
+      line-height: 100%;
+      margin-left: 30%;
+      border-left: dotted;   
+      border-right: dotted; 
+      border-radius: 10px; 
+      span {
+        color: $cpdred;
+      }
+    }
+  }
+}
+  ul li:first-child a {
+    border-bottom: none;
+  }
+  ul li:first-child a:hover {
+    text-shadow: none;
+  }
+  img {
+    width: 50%;
+    display: block;
+    position: relative;
+    left: 50%;
+    top: 20px;
+  }
+} 
+
+
+.sidenav ul li a:hover, .sidenav ul li:active  {
+  text-shadow: $text-shadow;
 }
 
 .sidenav .closebtn {
@@ -504,10 +594,9 @@ header {
   font-size: 54px;
   font-weight: 900;
   margin-left: 0px;
-  color: #641b1a;
-  cursor: pointer;
-}
-
+  color: $cpdred;
+  cursor:pointer;
+}*/
 /* @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
@@ -554,7 +643,7 @@ footer p {
 footer ul {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: center;
+  justify-content: top;
   width: 50%;
   margin: 0 auto;
   gap: 10px;

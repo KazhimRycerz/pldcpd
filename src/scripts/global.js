@@ -1,26 +1,25 @@
 const openNav = () => {
-  document.getElementById("mySidenav").style.left = "20px";
-  document.getElementById("main").style.marginLeft = "-150px";
-  document.getElementById("Gruß_main_h1").style.left = "8vw";
+  // document.getElementById("mySidenav").style.left = "20px";
+  /* document.getElementById("main").style.marginLeft = "-150px"; */
+  document.getElementById("btn_nav_open").style.display = "none";
+  /* document.getElementById("Gruß_main_h1").style.left = "10vw";
+  document.getElementById("Gruß_main_h1").style.fontSize = "xxlarge"; */
+  document.getElementById("btn_nav_close").style.display = "block";
+  document.getElementById("navmain").style.top = "100px";
+ /*  document.getElementById("header").style.boxShadow = "none"; */
 
-  /* document.body.style.backgroundColor = "rgba(0,0,0,0.4)"; */
 }
 
 const closeNav = () => {
-  document.getElementById("mySidenav").style.left = "-550px";
-  document.getElementById("main").style.marginLeft = "1vw";
-  document.getElementById("Gruß_main_h1").style.left = "4vw";
-  /* document.body.style.backgroundColor = "white"; */
+  //document.getElementById("mySidenav").style.left = "-550px";
+  /* document.getElementById("main").style.marginLeft = "1vw"; */
+  document.getElementById("btn_nav_open").style.display = "block";
+  /* document.getElementById("Gruß_main_h1").style.left = "4vw";
+  document.getElementById("Gruß_main_h1").style.fontSize = "xxxlarge"; */
+  document.getElementById("btn_nav_close").style.display = "none";
+  document.getElementById("navmain").style.top = "-200px";
+  document.getElementById("header").style.boxShadow = $boxshadow;
 }
-
-/* 
-const hideAccount = () => {
-  homeAsideAccount.style.animation = "hide_home_aside 2s ease-in-out forwards";
-  showButton.style.animation = "moveButton 1s 0s ease-in-out forwards";
-  hideButton.style.animation = "moveButton 1s 0s ease-in-out forwards";
-  hideButton.style.display = "none";
-  showButton.style.display = "block";
-}; */
 
 var f = document.getElementById('Punkt');
 document.addEventListener('click', function(ev){

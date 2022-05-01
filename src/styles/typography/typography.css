@@ -29,6 +29,10 @@
   src: url("../fonts/Falling-Sky-Condensed-Outline/FallingSkyOu.woff2") format("woff2"), url("../fonts/Falling-Sky-Condensed-Outline/FallingSkyOu.otf") format("otf");
 }
 @font-face {
+  font-family: "Frederica";
+  src: url("../fonts/FrederickatheGreat.woff2") format("woff2"), url("../fonts/Falling-Sky-Condensed-Outline/FrederickatheGreat.otf") format("otf");
+}
+@font-face {
   font-family: "ChalkLine";
   src: url("../fonts/chalk_line_outline/ChalkLine-Outline.woff2") format("woff2"), url("../fonts/chalk_line_outline/ChalkLine-Outline.otf") format("otf");
 }
