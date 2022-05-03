@@ -68,35 +68,35 @@
 
 
 
+
+
 @keyframes hide_home_aside {
-  0%  {transform: translateX(0%) /* perspective(300px) rotateY(0deg) */;}
-  30% {transform: translateX(60%) scale(90%) /* rotateY(60deg)perspective(300px); */ }
+  0%  {transform: translateX(0%);}
+  30% {transform: translateX(60%) scale(90%) }
   60% {z-index:1;}
-  /* 50% {transform: translateX(0%);z-index:1;}
-  75% {transform: translateX(-60%);} */
-  99% {transform: translateX(-120%) scale(90%)/* rotateY(0deg) perspective(0rem) */; z-index: -1; opacity: 1;}
-  100% {transform: translateX(-120%) scale(90%)/* rotateY(0deg) perspective(0rem) */; z-index: -1; opacity: 0;}
+  99% {transform: translateX(-120%) scale(90%); z-index: -1; opacity: 1;}
+  100% {transform: translateX(-120%) scale(90%); z-index: -1; opacity: 0;}
   }
 
 @keyframes show_home_aside {
   0%  {opacity:0;}
-  1%  {transform: translateX(-120%) scale(90%) /* rotateY(0deg) perspective(0rem) */; z-index: -1;opacity: 1;}
+  1%  {transform: translateX(-120%) scale(90%); z-index: -1;opacity: 1;}
   30% {z-index:1;}
-  60% {transform: translateX(60%) scale(90%) /* rotateY(180deg) perspective(10rem) */; }
+  60% {transform: translateX(60%) scale(90%); }
   100% {transform: translateX(0%) scale(100%);z-index:9;}
   }
 
-  @keyframes moveButton {
-    0%  {transform: translateX(0%) rotate(0%);z-index:9;}
-    50% {z-index: 0;}
-    100% {transform: translateX(0%) translateY(30px) rotate(-90deg);z-index:0;  right:calc(10vw - 48px)}
-    }
-
-  @keyframes moveButtonback {
-    0%  {transform: translateX(0%) translateY(30px) rotate(-90deg);z-index:0;right:calc(10vw - 48px)}
-    90%  {z-index: 0;}
-    100% {transform: translateX(0%) rotate(0%);z-index: 9;}
+@keyframes moveButton {
+  0%  {transform: translateX(0%) rotate(0%);z-index:9;}
+  50% {z-index: 0;}
+  100% {transform: translateX(0%) translateY(30px) rotate(-90deg);z-index:0;  right:calc(10vw - 48px)}
   }
+
+@keyframes moveButtonback {
+  0%  {transform: translateX(0%) translateY(30px) rotate(-90deg); z-index:0;right:calc(10vw - 48px)}
+  90%  {z-index: 0;}
+  100% {transform: translateX(0%) rotate(0%);z-index: 9;}
+}
     
 #home_data{
   border: 2px dotted black;
@@ -104,45 +104,45 @@
   border-radius: 5px;
   padding: 5px;
   margin: 0 auto;
-    p{
-      margin: 2px 0 2px 5px;
-      font-family: $primary-font;
-      font-weight:900;
-    }
+  p{
+    margin: 2px 0 2px 5px;
+    font-family: $primary-font;
+    font-weight:900;
+  }
+  div {
+    font-size: $xsmall;
+    display: flex;
+    flex-direction: row; 
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    width: 100%;
+    padding-bottom: 3px;
     div {
-      font-size: $xsmall;
-      display: flex;
-      flex-direction: row; 
-      flex-wrap: nowrap;
-      justify-content: space-around;
-      width: 100%;
-      padding-bottom: 3px;
-      div {
-        display: block;
-        box-shadow: none; 
+      display: block;
+      box-shadow: none; 
+      text-align:center;
+      font-size: 0.71vw; 
+      output{
+        display: flex;
+        background-color: $third-color;
         text-align:center;
-        font-size: 0.71vw; 
-        output{
-          display: flex;
-          background-color: $third-color;
-          text-align:center;
-          justify-content:center;
-          padding: 3px;
-          margin: 0 auto;
-          width: 90%;
-          border: none;
-          border-radius: 3px;
-          font-size: $small;
-          font-weight:900;
-          color: $secondary-color;
-        }
-        output[id^="ma"]{
-          background-color: transparent;
-          border: 1px solid $third-color;
-          color: $third-color;
-        }
+        justify-content:center;
+        padding: 3px;
+        margin: 0 auto;
+        width: 90%;
+        border: none;
+        border-radius: 3px;
+        font-size: $small;
+        font-weight:900;
+        color: $secondary-color;
+      }
+      output[id^="ma"]{
+        background-color: transparent;
+        border: 1px solid $third-color;
+        color: $third-color;
       }
     }
+  }
 }
   
 #home_data>div:first-of-type {
@@ -173,9 +173,8 @@
   }
 }
   
+
 /*Content*/
-
-
 
 #Gruß_main {
   background-image: url(../images/Sonnenuntergang.jpg);
@@ -237,7 +236,7 @@
   margin-top: 60px;
   margin-bottom: 50px;
   font-size: $normal;
-  width: 0100%;
+  width: 100%;
   h3 {
     font-family: $primary-font-bold;
   }
@@ -271,24 +270,19 @@
       padding: 10px;
       position: relative;
       left: -20%;
-      top:  10%;
-      p {
-        width: 100%;
-      }
-      
+      top:  10%;    
     }
     #C1A3 {
-      position: relative;
       left: 10%;
     }
   }
 }
 
-  #C1 article>img {
-  object-fit: cover;
-  margin-bottom:10px;
-  width: 100%;
-  }
+#C1 article>img {
+object-fit: cover;
+margin-bottom:10px;
+width: 100%;
+}
   
 #C1 img[src$="c.png"] {
   display:block;
@@ -646,7 +640,7 @@ tr:hover {
 
   
     
-  @media (max-width: $desktop){
+@media (max-width: $desktop){
     
   #home_aside_account {  
   animation: hide_home_aside 2s ease-in-out forwards
@@ -672,20 +666,32 @@ tr:hover {
   #aside_guthaben {
     width: 100%;
   }
-  #C1A2, #C1A3 {
-    width: 75%;
+  #C1 {
+    font-size: $small;
+    width: 100%;
+    gap: 0px;
+  } 
+  #C1A1 {
+    
+    left: 20px;
   }
-  #Promoter_1 {
-    width: 125vw;
-    height: 110vh;
-    left: -30%;
-    div {
 
-    }
+  #C1A2, #C1A3 {
+    border-radius: 20px;
+    padding: 10px;
+    position: relative;
+    left: -10px;
+    top:  10%;
   }
+
+  #Promoter_1 {
+    width: 105vw;
+    height: 110vh;
+    left: -20%;
   }
+}
   
-  @media (max-width: $tablet){
+@media (max-width: $tablet){
     .infobox_intro {
       width: 100%;
       margin: 20px auto;
@@ -729,11 +735,4 @@ tr:hover {
       top: 20px;
     }
 
-    #C1 {
-      left: 50px;
-    }
-    #C1A2, #C1A3 {
-      width: 100%;
-    }
-
-  }
+}
