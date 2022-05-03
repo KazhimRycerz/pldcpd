@@ -368,6 +368,7 @@
         width: 80%;
         margin: 0 auto;
         gap: 20px;
+        border: none;
         ul {
         display: flex;
         flex-flow: column nowrap;
@@ -382,11 +383,11 @@
         border-right: dotted $cpdred;
         border-left: dotted $cpdred; 
         border-radius: 10px;
-        width: min-width; 
-        padding-left: 10px;
-      }
+        width: max-content; 
+        padding: 0 10px 0 10px;
+        }
         li {
-          width: auto;
+          width: max-content;
           list-style-type: none;
           border: none;
           a {
@@ -415,94 +416,8 @@
       }
     }
   
-  /* .sidenav {
-    height: 510px;
-    width: 15vw;
-    min-width: 200px;
-    position: fixed;
-    z-index: 10;
-    top: 180px;
-    left: -400px;
-    background-color: $first-color;
-    transition: 0.5s ease-in-out;
-    padding-top: 80px;
-    border-radius: 10px;
-    box-shadow: $boxshadow;
-    ul {
-      display: flex;
-      flex-flow: column nowrap;
-      gap: 10px;
-      position: relative;
-      left: 100px;
-    li {
-      width: 50%;
-      list-style-type: none;
-      
-      a {
-        padding: 8px 8px 0px 0px;
-        text-decoration: none;
-        font-size: $small;
-        color: black;
-        display: block;
-        transition: 0.75s;
-        width: max-width;
-        line-height: 100%;
-        margin-left: 30%;
-        border-left: dotted;   
-        border-right: dotted; 
-        border-radius: 10px; 
-        span {
-          color: $cpdred;
-        }
-      }
-    }
-  }
-    ul li:first-child a {
-      border-bottom: none;
-    }
-    ul li:first-child a:hover {
-      text-shadow: none;
-    }
-    img {
-      width: 50%;
-      display: block;
-      position: relative;
-      left: 50%;
-      top: 20px;
-    }
-  } 
-
+    /*Beginn Css für den Main*/ 
   
-  .sidenav ul li a:hover, .sidenav ul li:active  {
-    text-shadow: $text-shadow;
-  }
-  
-  .sidenav .closebtn {
-    position: absolute;
-    top: -80px;
-    left: 2vw;
-    font-size: 54px;
-    font-weight: 900;
-    margin-left: 0px;
-    color: $cpdred;
-    cursor:pointer;
-  }*/
-  
-  
-  /* @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
-  } */
-  
-
-
-
-
-  /*Beginn Css für den Main*/ 
-  
-
-
-
   main {
     width: 80vw;
     margin-top: 0px;
@@ -549,7 +464,7 @@
     ul {
       display: flex;
       flex-flow: row nowrap;
-      justify-content: top;
+      justify-content: center;
       width: 50%;
       margin: 0 auto;
       gap: 10px;

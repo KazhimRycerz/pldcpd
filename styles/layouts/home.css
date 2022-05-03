@@ -156,8 +156,6 @@ $border-radius:*/
   60% {
     z-index: 1;
   }
-  /* 50% {transform: translateX(0%);z-index:1;}
-  75% {transform: translateX(-60%);} */
   99% {
     transform: translateX(-120%) scale(90%);
     z-index: -1;
@@ -391,11 +389,7 @@ $border-radius:*/
   left: -20%;
   top: 10%;
 }
-#C1 div #C1A2 p, #C1 div #C1A3 p {
-  width: 100%;
-}
 #C1 div #C1A3 {
-  position: relative;
   left: 10%;
 }
 
@@ -779,14 +773,28 @@ tr:hover {
     width: 100%;
   }
 
+  #C1 {
+    font-size: 0.9rem;
+    width: 100%;
+    gap: 0px;
+  }
+
+  #C1A1 {
+    left: 20px;
+  }
+
   #C1A2, #C1A3 {
-    width: 75%;
+    border-radius: 20px;
+    padding: 10px;
+    position: relative;
+    left: -10px;
+    top: 10%;
   }
 
   #Promoter_1 {
-    width: 125vw;
+    width: 105vw;
     height: 110vh;
-    left: -30%;
+    left: -20%;
   }
 }
 @media (max-width: 760px) {
@@ -832,14 +840,6 @@ tr:hover {
     position: absolute;
     right: 5vw;
     top: 20px;
-  }
-
-  #C1 {
-    left: 50px;
-  }
-
-  #C1A2, #C1A3 {
-    width: 100%;
   }
 }
 

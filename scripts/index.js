@@ -53,7 +53,7 @@ const showAccount = () => {
   showButton.style.display = "none";
   hideButton.style.animation = "moveButtonback 1s ease-in-out forwards";
   homeAsideAccount.style.animation = "show_home_aside 2s ease-in-out forwards";
-  Gruß_main_p.style.right = "8vw";
+  Gruß_main_p.style.right = "10vw";
  };
 
 hideButton.addEventListener("click", hideAccount);
