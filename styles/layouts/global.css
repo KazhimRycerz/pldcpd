@@ -606,10 +606,6 @@ footer div ul {
     color: $third-color;
     z-index: 100;
   } */
-  .sidenav {
-    width: 200px;
-    z-index: 10;
-  }
 }
 
 /*# sourceMappingURL=global.css.map */

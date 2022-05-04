@@ -360,7 +360,7 @@ $border-radius:*/
 #C1 #C1A1, #C1 #C1A4 {
   margin: 0 10px 0 20px;
   border-left: 3px dotted #641b1a;
-  /*border-right: 3px dotted Black;*/
+  border-right: 3px dotted Black;
   border-radius: 20px;
   padding: 20px;
 }
@@ -383,6 +383,7 @@ $border-radius:*/
   width: 250px;
   margin: 0px auto;
   border-top: 3px dotted #641b1a;
+  border-bottom: 3px dotted #641b1a;
   border-radius: 20px;
   padding: 10px;
   position: relative;
@@ -773,28 +774,38 @@ tr:hover {
     width: 100%;
   }
 
+  section p {
+    font-size: 0.9rem;
+  }
+
   #C1 {
     font-size: 0.9rem;
     width: 100%;
-    gap: 0px;
+    gap: 10px;
+  }
+  #C1 #C1A1 {
+    position: relative;
+    left: -10px;
+  }
+  #C1 div {
+    left: 0px;
+  }
+  #C1 div #C1A2, #C1 div #C1A3 {
+    width: 250px;
+    padding: 10px;
+    position: relative;
+    left: 0%;
+  }
+  #C1 div #C1A3 {
+    left: 0%;
   }
 
   #C1A1 {
     left: 20px;
   }
 
-  #C1A2, #C1A3 {
-    border-radius: 20px;
-    padding: 10px;
-    position: relative;
-    left: -10px;
-    top: 10%;
-  }
-
   #Promoter_1 {
-    width: 105vw;
-    height: 110vh;
-    left: -20%;
+    display: none;
   }
 }
 @media (max-width: 760px) {
@@ -812,10 +823,6 @@ tr:hover {
     grid-gap: 20px;
     width: 100%;
     margin: 0 auto;
-  }
-
-  #Promoter_1 {
-    display: none;
   }
 
   #home_aside_h_Btn, #home_aside_s_Btn, #home_aside_account {
