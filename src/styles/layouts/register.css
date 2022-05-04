@@ -622,10 +622,6 @@ footer div ul {
     color: $third-color;
     z-index: 100;
   } */
-  .sidenav {
-    width: 200px;
-    z-index: 10;
-  }
 }
 :root {
   --rd: $cpdred;
