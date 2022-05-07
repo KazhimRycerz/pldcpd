@@ -240,10 +240,11 @@
   h3 {
     font-family: $primary-font-bold;
   }
+  
   #C1A1, #C1A4 {
     margin: 0 10px 0 20px;
     border-left: 3px dotted $cpdred;
-    /*border-right: 3px dotted Black;*/
+    border-right: 3px dotted Black;
     border-radius: 20px;
     padding: 20px;
   }
@@ -266,6 +267,7 @@
       width: 250px;
       margin: 0px auto;
       border-top: 3px dotted $cpdred;
+      border-bottom: 3px dotted $cpdred;
       border-radius: 20px;
       padding: 10px;
       position: relative;
@@ -666,28 +668,40 @@ tr:hover {
   #aside_guthaben {
     width: 100%;
   }
+
+  section p {
+    font-size: $small;
+  }
+
   #C1 {
     font-size: $small;
     width: 100%;
-    gap: 0px;
-  } 
+    gap: 10px;
+    #C1A1 {
+      position: relative;
+      left: -10px;
+    }
+    div {
+      left: 0px;
+      #C1A2, #C1A3 {
+        width: 250px;
+        padding: 10px;
+        position: relative;
+        left: 0%;  
+      }
+      #C1A3 {
+        left: 0%;
+      }
+    }
+  }
+
   #C1A1 {
-    
     left: 20px;
   }
 
-  #C1A2, #C1A3 {
-    border-radius: 20px;
-    padding: 10px;
-    position: relative;
-    left: -10px;
-    top:  10%;
-  }
 
   #Promoter_1 {
-    width: 105vw;
-    height: 110vh;
-    left: -20%;
+    display: none;
   }
 }
   
@@ -698,7 +712,6 @@ tr:hover {
       gap: 20px;
     }
 
-
     #karrierebox {
       display: flex;
       flex-direction: row;
@@ -708,15 +721,10 @@ tr:hover {
       width: 100%;
       margin: 0 auto; 
     }
-    
-    #Promoter_1 {
-      display: none;
-    }
 
     #home_aside_h_Btn, #home_aside_s_Btn, #home_aside_account {
       display: none;
     }
-
     #home_data output {
       font-size: $xsmall;
     }

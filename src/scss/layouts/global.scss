@@ -360,6 +360,7 @@ header {
   box-shadow: $boxshadowbottom;
   transition: 0.3s ease-in-out;
   border: none;
+  /* animation: show_nav_main 2s forwards; */
   div {
     display: flex;
     flex-flow: row nowrap;
@@ -414,7 +415,19 @@ header {
   }
   }
 }
-  
+/* @keyframes show_nav_main {
+  0%  {transform: translateY(-200); z-index: 90 }
+  70% {transform: translateY(330px); z-index: 90 }
+  100% {transform: translateY(300px); z-index: 100}
+}
+
+@keyframes hide_nav_main {
+  0%  {transform: translateY(300px)}
+  20% {transform: translateY(330px); z-index: 90 }
+  100%  {transform: translateY(-200);}
+} */
+
+
 /*Beginn Css für den Main*/ 
   
 main {

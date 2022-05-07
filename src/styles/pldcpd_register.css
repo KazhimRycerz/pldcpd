@@ -542,6 +542,7 @@ header {
   box-shadow: 2.5rem 0.5rem 2rem;
   transition: 0.3s ease-in-out;
   border: none;
+  /* animation: show_nav_main 2s forwards; */
 }
 #navmain div {
   display: flex;
@@ -597,6 +598,17 @@ header {
   text-shadow: 1px 1px 20px #641b1a;
 }
 
+/* @keyframes show_nav_main {
+  0%  {transform: translateY(-200); z-index: 90 }
+  70% {transform: translateY(330px); z-index: 90 }
+  100% {transform: translateY(300px); z-index: 100}
+}
+
+@keyframes hide_nav_main {
+  0%  {transform: translateY(300px)}
+  20% {transform: translateY(330px); z-index: 90 }
+  100%  {transform: translateY(-200);}
+} */
 /*Beginn Css für den Main*/
 main {
   width: 80vw;
@@ -647,7 +659,7 @@ footer ul {
 }
 footer ul ion-icon {
   font-size: 30px;
-  color: #1e8ca0;
+  color: #196e8c;
 }
 footer div {
   display: flex;
@@ -1164,6 +1176,7 @@ header {
   box-shadow: 2.5rem 0.5rem 2rem;
   transition: 0.3s ease-in-out;
   border: none;
+  /* animation: show_nav_main 2s forwards; */
 }
 #navmain div {
   display: flex;
@@ -1219,6 +1232,17 @@ header {
   text-shadow: 1px 1px 20px #641b1a;
 }
 
+/* @keyframes show_nav_main {
+  0%  {transform: translateY(-200); z-index: 90 }
+  70% {transform: translateY(330px); z-index: 90 }
+  100% {transform: translateY(300px); z-index: 100}
+}
+
+@keyframes hide_nav_main {
+  0%  {transform: translateY(300px)}
+  20% {transform: translateY(330px); z-index: 90 }
+  100%  {transform: translateY(-200);}
+} */
 /*Beginn Css für den Main*/
 main {
   width: 80vw;
@@ -1269,7 +1293,7 @@ footer ul {
 }
 footer ul ion-icon {
   font-size: 30px;
-  color: #1e8ca0;
+  color: #196e8c;
 }
 footer div {
   display: flex;

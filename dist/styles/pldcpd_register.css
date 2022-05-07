@@ -693,10 +693,6 @@ footer div ul {
     color: $third-color;
     z-index: 100;
   } */
-  .sidenav {
-    width: 200px;
-    z-index: 10;
-  }
 }
 /* $third-color: rgb(180, 200, 230); */
 /* 
@@ -1319,10 +1315,6 @@ footer div ul {
     color: $third-color;
     z-index: 100;
   } */
-  .sidenav {
-    width: 200px;
-    z-index: 10;
-  }
 }
 :root {
   --rd: $cpdred;
