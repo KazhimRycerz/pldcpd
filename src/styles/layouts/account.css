@@ -496,10 +496,6 @@ main {
   line-height: 50px;
 }
 
-/* #account_4_p {
-  margin-left: 0px;
-  border: solid;
-} */
 #account_5 {
   display: block;
   margin-top: 20px;
@@ -529,18 +525,22 @@ main {
 }
 
 #account_5_Box {
-  display: block;
   font-weight: bold;
   font-size: 30px;
-  margin: -50px 100px;
+  margin: auto auto;
   margin-right: 20px;
   width: 50%;
-  height: auto;
+  height: 50px;
   /*border: 2px dotted black;*/
   border-radius: 10px;
   text-align: center;
   align-items: center;
   background-color: rgba(221, 155, 55, 0.2);
+}
+#account_5_Box p {
+  margin: 0;
+  font-size: 2rem;
+  line-height: 50px;
 }
 
 /*Ende Css für den Main*/

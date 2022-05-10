@@ -46,7 +46,7 @@ const hideAccount = () => {
   hideButton.style.display = "none";
   showButton.style.display = "block";
   Gruß_main_p.style.right = "4vw";
-  //C1.style.left = "4vw";
+  C1.style.left = "4vw";
 };
 
 const showAccount = () => {
