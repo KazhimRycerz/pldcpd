@@ -292,8 +292,8 @@ $border-radius:*/
 }
 
 /*Content*/
-#Gruß_main {
-  background-image: url(../images/Sonnenuntergang.jpg);
+#intro_berufspraxis {
+  background-image: url(../images/efe_kurnaz.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 60%;
@@ -303,11 +303,11 @@ $border-radius:*/
   color: lemonchiffon;
   position: relative;
   border-radius: 20px 20px 0 0;
+  /* &:hover {
+    background-image: url(../images/Sonnenuntergang_dark.jpg);
+    } */
 }
-#Gruß_main:hover {
-  background-image: url(../images/Sonnenuntergang_dark.jpg);
-}
-#Gruß_main h1 {
+#intro_berufspraxis h1 {
   display: inline-block;
   font-family: "FoundSanBd";
   font-size: 3rem;
@@ -321,7 +321,7 @@ $border-radius:*/
   margin: 0;
   /* text-shadow: 5px 5px 30px $first-color; */
 }
-#Gruß_main p {
+#intro_berufspraxis p {
   display: inline-block;
   font-size: 1.2rem;
   line-height: 2.2rem;
@@ -790,30 +790,6 @@ tr:hover {
     font-size: 0.9rem;
   }
 
-  #C1 {
-    font-size: 0.9rem;
-    width: 100%;
-    gap: 10px;
-    margin-left: 0;
-    left: 0vw;
-  }
-  #C1 #C1A1 {
-    position: relative;
-    left: 0px;
-  }
-  #C1 div {
-    left: 0px;
-  }
-  #C1 div #C1A2, #C1 div #C1A3 {
-    width: 250px;
-    padding: 10px;
-    position: relative;
-    left: 0%;
-  }
-  #C1 div #C1A3 {
-    left: 0%;
-  }
-
   #C1A1 {
     left: 20px;
   }
@@ -870,4 +846,4 @@ tr:hover {
   }
 }
 
-/*# sourceMappingURL=home.css.map */
+/*# sourceMappingURL=professional_issues.css.map */
