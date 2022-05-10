@@ -22,7 +22,7 @@ $border-radius:*/
   right: 30px;
   color: #000032;
   background-color: rgba(170, 170, 170, 0.75);
-  box-shadow: 0px 0px 10px 1px #1e8ca0 inset, -2px -2px 5px 3px grey, -5px -5px 5px white inset;
+  box-shadow: 0px 0px 10px 1px #196e8c inset, -2px -2px 5px 3px grey, -5px -5px 5px white inset;
   width: 65px;
   height: 40px;
   border: none;
@@ -38,7 +38,7 @@ $border-radius:*/
   right: 30px;
   color: #000032;
   background-color: rgba(170, 170, 170, 0.75);
-  box-shadow: 0px 0px 10px 1px #1e8ca0 inset, -2px -2px 5px 3px grey, -5px -5px 5px white inset;
+  box-shadow: 0px 0px 10px 1px #196e8c inset, -2px -2px 5px 3px grey, -5px -5px 5px white inset;
   width: 65px;
   height: 40px;
   border: none;
@@ -90,7 +90,7 @@ $border-radius:*/
   top: 0.5rem;
   left: 0.5rem;
   font-weight: bold;
-  background: #1e8ca0;
+  background: #196e8c;
   color: azure;
   height: 35px;
   width: 35px;
@@ -109,7 +109,7 @@ $border-radius:*/
   font-family: "FoundSanBd";
 }
 #account_aside_account .account_container .floating-stack dl dd:hover, #account_aside_account .account_container .floating-stack dl dd:active {
-  background-color: rgba(30, 140, 160, 0.5);
+  background-color: rgba(25, 110, 140, 0.5);
   color: black;
 }
 #account_aside_account .account_container .floating-stack > dl:first-of-type > dd:first-of-type {
@@ -358,7 +358,7 @@ main {
   padding: 5px;
   font-family: "VIA-Verlag";
   font-weight: bold;
-  background-color: #1e8ca0;
+  background-color: #196e8c;
   font-size: 30px;
   text-align: center;
   color: white;
@@ -409,7 +409,7 @@ main {
   box-shadow: none;
   text-align: center;
   width: 70px;
-  border: 1px solid #1e8ca0;
+  border: 1px solid #196e8c;
   border-radius: 5px;
   font-size: 0.9rem;
   color: black;
@@ -496,10 +496,6 @@ main {
   line-height: 50px;
 }
 
-/* #account_4_p {
-  margin-left: 0px;
-  border: solid;
-} */
 #account_5 {
   display: block;
   margin-top: 20px;
@@ -529,18 +525,22 @@ main {
 }
 
 #account_5_Box {
-  display: block;
   font-weight: bold;
   font-size: 30px;
-  margin: -50px 100px;
+  margin: auto auto;
   margin-right: 20px;
   width: 50%;
-  height: auto;
+  height: 50px;
   /*border: 2px dotted black;*/
   border-radius: 10px;
   text-align: center;
   align-items: center;
   background-color: rgba(221, 155, 55, 0.2);
+}
+#account_5_Box p {
+  margin: 0;
+  font-size: 2rem;
+  line-height: 50px;
 }
 
 /*Ende Css für den Main*/
