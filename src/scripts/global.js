@@ -18,16 +18,24 @@ const closeNav = () => {
 //     f.style.transform += 'translateX('+(ev.clientX-25)+'px)';
 // },false);
 
-
 const stopRotate = (event) => {
   const move = event.target;
-  const moveArea1 = document.querySelector("#header");
-  const moveArea2 = document.querySelector("main");
-  const moveArea3 = document.querySelector("aside");
-  const rotaters = document.querySelectorAll(".rotate");
-  console.log(move, moveArea1, moveArea2)
-  if (move == moveArea1 || move == moveArea2 || move == moveArea3) {rotaters.forEach(elem => elem.style.animationPlayState = "paused")}
-  else {rotaters.forEach(elem => elem.style.animationPlayState = "running")}
+  const moveArea = document.querySelectorAll("header, header *, main, main *, aside, aside *");
+  const rotaters = document.querySelectorAll(".drehmoment img");
+  
+  moveArea.forEach(elemArea => {
+    if   (elemArea == move) 
+    {rotaters.forEach(elem => elem.style.animation = "paused"); 
+    /* console.log(elemArea, move) */ }
+    else {rotaters.forEach(elem => elem.style.animation = "running");   
+    console.log(elemArea, move) }
+  })
+  
+  //if (move == moveArea /* || move == moveArea2  || move == moveArea3*/) {rotaters.forEach(elem => elem.style.animationPlayState = "paused")}
+  //else {rotaters.forEach(elem => elem.style.animationPlayState = "running")}
 }
 
+
 document.addEventListener('mouseover', stopRotate);
+
+
