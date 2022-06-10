@@ -12,10 +12,22 @@ const closeNav = () => {
   document.getElementById("header").style.boxShadow = $boxshadow;
 }
 
-var f = document.getElementById('Punkt');
-document.addEventListener('click', function(ev){
-    f.style.transform = 'translateY('+(ev.clientY -25)+'px)';
-    f.style.transform += 'translateX('+(ev.clientX-25)+'px)';
-},false);
+// var f = document.getElementById('Punkt');
+// document.addEventListener('click', function(ev){
+//     f.style.transform = 'translateY('+(ev.clientY -25)+'px)';
+//     f.style.transform += 'translateX('+(ev.clientX-25)+'px)';
+// },false);
 
 
+const stopRotate = (event) => {
+  const move = event.target;
+  const moveArea1 = document.querySelector("#header");
+  const moveArea2 = document.querySelector("main");
+  const moveArea3 = document.querySelector("aside");
+  const rotaters = document.querySelectorAll(".rotate");
+  console.log(move, moveArea1, moveArea2)
+  if (move == moveArea1 || move == moveArea2 || move == moveArea3) {rotaters.forEach(elem => elem.style.animationPlayState = "paused")}
+  else {rotaters.forEach(elem => elem.style.animationPlayState = "running")}
+}
+
+document.addEventListener('mouseover', stopRotate);
