@@ -30,8 +30,7 @@ const stopRotate = (event) => {
   const moveArea3 = document.querySelector("aside");
   const rotaters = document.querySelectorAll(".rotate");
   console.log(move, moveArea1, moveArea2)
-  if (move == moveArea1 || move == moveArea2 || move == moveArea3) 
-  {rotaters.forEach(elem => elem.style.animationPlayState = "paused")}
+  if (move == moveArea1 || move == moveArea2 || move == moveArea3) {rotaters.forEach(elem => elem.style.animationPlayState = "paused")}
   else {rotaters.forEach(elem => elem.style.animationPlayState = "running")}
 }
 
