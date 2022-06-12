@@ -4,7 +4,7 @@
 
 
 
-#home_aside_h_Btn {
+/* #home_aside_h_Btn {
   display: block;
   position: fixed;
   top: 155px;
@@ -96,7 +96,7 @@
   0%  {transform: translateX(0%) translateY(30px) rotate(-90deg); z-index:0;right:calc(10vw - 48px)}
   90%  {z-index: 0;}
   100% {transform: translateX(0%) rotate(0%);z-index: 9;}
-}
+} */
     
 #home_data{
   border: 2px dotted black;
@@ -715,6 +715,14 @@ tr:hover {
   #Promoter_1 {
     display: none;
   }
+
+  #info_1_2>p {
+    font-size: $small;
+  }
+
+  #learningbox_5 p {
+    font-size: $small;
+  }
 }
   
 @media (max-width: $tablet){
@@ -760,5 +768,9 @@ tr:hover {
 #C1 {
     /* left: -1vw; */
 margin: 60px auto;
+  }
+
+  #learningbox_5 p {
+    font-size: $small;
   }
 }
