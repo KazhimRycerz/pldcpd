@@ -172,7 +172,7 @@ body {
   background-repeat: repeat-y;
   background-attachment: fixed;
   margin-top: 150px;
-  overflow: auto;
+  overflow-x: hidden;
 }
 
 @keyframes rotate {
