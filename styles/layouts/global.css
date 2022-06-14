@@ -228,13 +228,13 @@ body {
 }
 
 #r11 {
-  left: 43.8vw;
-  top: 85vw;
+  left: 21.8vw;
+  top: 98vw;
 }
 
 #r12 {
-  left: 66.8vw;
-  top: 85vw;
+  left: 64.8vw;
+  top: 98vw;
 }
 
 #r13 {
@@ -436,25 +436,28 @@ header {
 #navmain {
   position: fixed;
   top: -200px;
-  width: 100vw;
+  width: 90vw;
   height: 300px;
-  margin: 0 auto;
+  margin: 0 5vw;
   background: azure;
   z-index: 90;
   padding-top: 50px;
   box-shadow: 2.5rem 0.5rem 2rem;
-  transition: 0.3s ease-in-out;
-  border: none;
-  /* animation: show_nav_main 2s forwards; */
+  padding-top: 20px;
+  border-radius: 0 0 100px 100px;
 }
 #navmain div {
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
-  width: 80%;
-  margin: 0 auto;
+  width: 90%;
+  margin: 0px auto 0px;
   gap: 20px;
   border: none;
+  border-right: dotted black 3px;
+  border-left: dotted black 3px;
+  border-radius: 80px;
+  padding: 50px;
 }
 #navmain div ul {
   display: flex;
