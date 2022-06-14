@@ -138,12 +138,12 @@ body {
     top: 85.0vw;
 }
 #r11 {
-    left: 43.8vw;
-    top: 85.0vw;
+    left: 21.8vw;
+    top: 98.0vw;
 }
 #r12 {
-    left: 66.8vw;
-    top: 85.0vw;
+    left: 64.8vw;
+    top: 98.0vw;
 }
 #r13 {
   left: 86.8vw;
@@ -340,24 +340,28 @@ header {
 #navmain {
   position: fixed;
   top: -200px;
-  width: 100vw;
+  width: 90vw;
   height: 300px;
-  margin: 0 auto;
+  margin: 0 5vw;
   background: $first-color;
   z-index: 90;
   padding-top: 50px;
   box-shadow: $boxshadowbottom;
-  transition: 0.3s ease-in-out;
-  border: none;
-  /* animation: show_nav_main 2s forwards; */
+  // transition: 0.3s ease-in-out;
+  padding-top: 20px;
+  border-radius:0 0 100px 100px;
   div {
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
-    width: 80%;
-    margin: 0 auto;
+    width: 90%;
+    margin: 0px auto 0px;
     gap: 20px;
     border: none;
+    border-right: dotted black 3px;
+    border-left: dotted black 3px;
+    border-radius:80px;
+    padding: 50px;
     ul {
     display: flex;
     flex-flow: column nowrap;
@@ -577,6 +581,7 @@ header {
 /*Beginn Css für den Main*/ 
   
 main {
+  //display: none;
   width: 80vw;
   margin: 0 auto;
   /* margin-left: 10%;
