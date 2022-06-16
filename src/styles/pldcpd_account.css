@@ -491,32 +491,61 @@ header {
   text-shadow: 1px 1px 20px #641b1a;
 }
 
-#btn_nav_open {
+#burger-menu {
+  cursor: pointer;
+  height: 35px;
+  width: 35px;
+  margin: 0px;
+  overflow: visible;
   position: fixed;
-  top: 15px;
-  left: 2vw;
-  transition: display 0.75s;
-  margin-left: 1vw;
-  padding: 0px;
-  color: #641b1a;
+  top: 35px;
+  left: 3vw;
   z-index: 100;
-  font-size: 3rem;
-  border: none;
-  width: 40px;
+  /* THE LINES */
 }
-
-#btn_nav_close {
-  position: fixed;
-  top: 5px;
-  left: 2vw;
-  transition: display 0.75s;
-  margin-left: 1vw;
-  padding: 5px;
-  color: #641b1a;
-  z-index: 100;
-  font-size: 3.5rem;
-  border: none;
-  display: none;
+#burger-menu span, #burger-menu span::before, #burger-menu span::after {
+  background: #641b1a;
+  display: block;
+  height: 4.5px;
+  opacity: 1;
+  position: absolute;
+  transition: 0.3s ease-in-out;
+}
+#burger-menu span::before,
+#burger-menu span::after {
+  content: "";
+}
+#burger-menu span::before {
+  left: 0px;
+  top: -10px;
+  width: 27px;
+}
+#burger-menu span {
+  right: 0px;
+  top: 13px;
+  width: 27px;
+}
+#burger-menu span::after {
+  left: 0px;
+  top: 10px;
+  width: 27px;
+}
+#burger-menu.changeBurger span::before {
+  top: 0px;
+  transform: rotate(90deg);
+  width: 33px;
+}
+#burger-menu.changeBurger span {
+  transform: rotate(-45deg);
+  top: 13px;
+  width: 33px;
+}
+#burger-menu.changeBurger span::after {
+  top: 0px;
+  left: 0;
+  transform: rotate(90deg);
+  opacity: 0;
+  width: 0;
 }
 
 #navmain {
@@ -539,7 +568,6 @@ header {
   width: 80%;
   margin: 0 auto 0px;
   gap: 20px;
-  border: none;
   border-right: dotted #641b1a 3px;
   border-left: dotted #641b1a 3px;
   border-radius: 80px;
@@ -579,7 +607,7 @@ header {
   line-height: 100%;
   margin-left: 0%;
   /*  border-left: dotted;   
-    border-right: dotted; */
+  border-right: dotted; */
   border-radius: 10px;
 }
 #navmain div ul li a span {
@@ -588,6 +616,14 @@ header {
 #navmain div ul li a:hover {
   color: #641b1a;
   text-shadow: 1px 1px 20px #641b1a;
+}
+#navmain.showNav {
+  top: 100px;
+  transition: 0.3s ease-in-out;
+}
+#navmain.hideNav {
+  top: -500px;
+  transition: 0.3s ease-in-out;
 }
 
 /*Ende Styles zum Header*/
@@ -891,13 +927,9 @@ footer div ul {
     margin: 0 0;
   }
 
-  /* #main {
-    transition: top 1s;
-    top: 20px;
-    left: 0px;
-    color: $third-color;
-    z-index: 100;
-  } */
+  #navmain div {
+    border: none;
+  }
 }
 /* $third-color: rgb(180, 200, 230); */
 /* 
