@@ -407,57 +407,85 @@ header {
   text-shadow: 1px 1px 20px #641b1a;
 }
 
-#btn_nav_open {
+#burger-menu {
+  cursor: pointer;
+  height: 35px;
+  width: 35px;
+  margin: 0px;
+  overflow: visible;
   position: fixed;
-  top: 15px;
-  left: 2vw;
-  transition: display 0.75s;
-  margin-left: 1vw;
-  padding: 0px;
-  color: #641b1a;
+  top: 35px;
+  left: 3vw;
   z-index: 100;
-  font-size: 3rem;
-  border: none;
-  width: 40px;
+  /* THE LINES */
 }
-
-#btn_nav_close {
-  position: fixed;
-  top: 5px;
-  left: 2vw;
-  transition: display 0.75s;
-  margin-left: 1vw;
-  padding: 5px;
-  color: #641b1a;
-  z-index: 100;
-  font-size: 3.5rem;
-  border: none;
-  display: none;
+#burger-menu span, #burger-menu span::before, #burger-menu span::after {
+  background: #641b1a;
+  display: block;
+  height: 4.5px;
+  opacity: 1;
+  position: absolute;
+  transition: 0.3s ease-in-out;
+}
+#burger-menu span::before,
+#burger-menu span::after {
+  content: "";
+}
+#burger-menu span::before {
+  left: 0px;
+  top: -10px;
+  width: 27px;
+}
+#burger-menu span {
+  right: 0px;
+  top: 13px;
+  width: 27px;
+}
+#burger-menu span::after {
+  left: 0px;
+  top: 10px;
+  width: 27px;
+}
+#burger-menu.changeBurger span::before {
+  top: 0px;
+  transform: rotate(90deg);
+  width: 33px;
+}
+#burger-menu.changeBurger span {
+  transform: rotate(-45deg);
+  top: 13px;
+  width: 33px;
+}
+#burger-menu.changeBurger span::after {
+  top: 0px;
+  left: 0;
+  transform: rotate(90deg);
+  opacity: 0;
+  width: 0;
 }
 
 #navmain {
   position: fixed;
-  top: -200px;
-  width: 90vw;
-  height: 300px;
-  margin: 0 5vw;
+  top: -500px;
+  width: 100%;
+  height: 500px;
+  margin: 0 auto;
   background: azure;
   z-index: 90;
   padding-top: 50px;
+  padding-bottom: 30px;
   box-shadow: 2.5rem 0.5rem 2rem;
   padding-top: 20px;
-  border-radius: 0 0 100px 100px;
 }
 #navmain div {
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
-  width: 90%;
-  margin: 0px auto 0px;
+  width: 80%;
+  margin: 0 auto 0px;
   gap: 20px;
-  border: none;
-  border-right: dotted black 3px;
-  border-left: dotted black 3px;
+  border-right: dotted #641b1a 3px;
+  border-left: dotted #641b1a 3px;
   border-radius: 80px;
   padding: 50px;
 }
@@ -495,7 +523,7 @@ header {
   line-height: 100%;
   margin-left: 0%;
   /*  border-left: dotted;   
-    border-right: dotted; */
+  border-right: dotted; */
   border-radius: 10px;
 }
 #navmain div ul li a span {
@@ -504,6 +532,14 @@ header {
 #navmain div ul li a:hover {
   color: #641b1a;
   text-shadow: 1px 1px 20px #641b1a;
+}
+#navmain.showNav {
+  top: 100px;
+  transition: 0.3s ease-in-out;
+}
+#navmain.hideNav {
+  top: -500px;
+  transition: 0.3s ease-in-out;
 }
 
 /*Ende Styles zum Header*/
@@ -553,7 +589,8 @@ header {
   right: 0;
   font-size: 0.9rem;
   z-index: 9;
-  border-radius: 10px;
+  display: none;
+  border-radius: 5px;
 }
 #home_aside_account > p {
   margin-top: 10px;
@@ -570,6 +607,34 @@ header {
   margin-top: 15px;
 }
 
+@keyframes moveButton {
+  0% {
+    transform: translateX(0%) rotate(0%);
+    z-index: 10;
+  }
+  50% {
+    z-index: 0;
+  }
+  100% {
+    transform: translateX(0%) translateY(30px) rotate(-90deg);
+    z-index: 0;
+    right: calc(10% - 44px);
+  }
+}
+@keyframes moveButtonback {
+  0% {
+    transform: translateX(0%) translateY(30px) rotate(-90deg);
+    z-index: 0;
+    right: calc(10% - 44px);
+  }
+  90% {
+    z-index: 0;
+  }
+  100% {
+    transform: translateX(0%) rotate(0%);
+    z-index: 9;
+  }
+}
 @keyframes hide_home_aside {
   0% {
     transform: translateX(0%);
@@ -589,54 +654,33 @@ header {
     transform: translateX(-120%) scale(90%);
     z-index: -1;
     opacity: 0;
+    display: none;
   }
 }
 @keyframes show_home_aside {
   0% {
     opacity: 0;
+    display: block;
   }
   1% {
     transform: translateX(-120%) scale(90%);
+    display: block;
     z-index: -1;
     opacity: 1;
+    display: block;
   }
   30% {
     z-index: 1;
+    display: block;
   }
   60% {
     transform: translateX(60%) scale(90%);
+    display: block;
   }
   100% {
     transform: translateX(0%) scale(100%);
     z-index: 9;
-  }
-}
-@keyframes moveButton {
-  0% {
-    transform: translateX(0%) rotate(0%);
-    z-index: 10;
-  }
-  50% {
-    z-index: 0;
-  }
-  100% {
-    transform: translateX(0%) translateY(30px) rotate(-90deg);
-    z-index: 0;
-    right: calc(10vw - 40px);
-  }
-}
-@keyframes moveButtonback {
-  0% {
-    transform: translateX(0%) translateY(30px) rotate(-90deg);
-    z-index: 0;
-    right: calc(10vw - 40px);
-  }
-  90% {
-    z-index: 0;
-  }
-  100% {
-    transform: translateX(0%) rotate(0%);
-    z-index: 9;
+    display: block;
   }
 }
 #home_data {
@@ -718,7 +762,7 @@ header {
 /*Beginn Css für den Main*/
 main {
   width: 80vw;
-  margin: 0 auto;
+  margin: 0 10%;
   /* margin-left: 10%;
   margin-right: 10%;  */
   z-index: 5;
@@ -731,7 +775,7 @@ main {
 /*Content*/
 #Content {
   width: 80%;
-  margin: 20px auto;
+  margin: 0px auto;
   z-index: 2;
 }
 
@@ -799,17 +843,9 @@ footer div ul {
     margin: 0 0;
   }
 
-  #Content {
-    width: 100%;
+  #navmain div {
+    border: none;
   }
-
-  /* #main {
-    transition: top 1s;
-    top: 20px;
-    left: 0px;
-    color: $third-color;
-    z-index: 100;
-  } */
 }
 @font-face {
   font-family: "VIA-Verlag";
@@ -1025,21 +1061,33 @@ $border-radius:*/
 
 #C1 {
   display: flex;
+  flex-basis: auto;
   flex-flow: row nowrap;
-  justify-content: center;
+  justify-content: left;
   position: relative;
   gap: 20px;
   margin: 60px auto;
   font-size: 1.1rem;
   width: 100%;
+  margin-left: 0;
   transition: 1.5s ease-in-out;
-  border: none;
 }
 #C1 h3 {
   font-family: "FoundSanBd";
 }
+#C1 article > img {
+  object-fit: cover;
+  margin-bottom: 10px;
+  width: 100%;
+}
+#C1 img[src$="c.png"] {
+  display: block;
+  width: 2rem;
+  margin: 0 auto;
+  cursor: pointer;
+}
 #C1 #C1A1, #C1 #C1A4 {
-  margin: 0 10px 0 20px;
+  margin: 0 0px 0 20px;
   border-left: 3px dotted #641b1a;
   border-right: 3px dotted Black;
   border-radius: 20px;
@@ -1047,21 +1095,20 @@ $border-radius:*/
 }
 #C1 #C1A1 {
   position: relative;
-  left: -120px;
-  margin-left: 20px;
+  left: -40px;
+  margin-left: 0px;
   margin-right: 0;
 }
-#C1 div {
+#C1 #C1Center {
   display: flex;
   flex-direction: column;
   justify-content: start;
   gap: 2rem;
   align-items: center;
   position: relative;
-  left: -30px;
-  margin: 0 auto;
+  margin: 0 0;
 }
-#C1 div #C1A2, #C1 div #C1A3 {
+#C1 #C1Center #C1A2, #C1 #C1Center #C1A3 {
   width: 250px;
   margin: 0px auto;
   border-top: 3px dotted #641b1a;
@@ -1072,21 +1119,8 @@ $border-radius:*/
   left: -20%;
   top: 10%;
 }
-#C1 div #C1A3 {
+#C1 #C1Center #C1A3 {
   left: 10%;
-}
-
-#C1 article > img {
-  object-fit: cover;
-  margin-bottom: 10px;
-  width: 100%;
-}
-
-#C1 img[src$="c.png"] {
-  display: block;
-  width: 2rem;
-  margin: 0 auto;
-  cursor: pointer;
 }
 
 #C1A4 > img {
@@ -1472,32 +1506,31 @@ tr:hover {
   #C1 {
     font-size: 0.9rem;
     width: 100%;
-    gap: 10px;
-    margin-left: 0;
+    gap: 0px;
+    margin: 20px auto;
     left: 0vw;
   }
   #C1 #C1A1 {
+    width: 100%;
     position: relative;
     left: 0px;
+    margin: 0;
   }
-  #C1 div {
+  #C1 #C1Center {
     left: 0px;
+    margin: 0 5px 0 5px;
   }
-  #C1 div #C1A2, #C1 div #C1A3 {
+  #C1 #C1Center #C1A2, #C1 #C1Center #C1A3 {
     width: 250px;
     padding: 10px;
     position: relative;
     left: 0%;
   }
-  #C1 div #C1A3 {
-    left: 0%;
+  #C1 #C1A4 {
+    margin: 0 0px 0 0px;
   }
 
-  #C1A1 {
-    left: 20px;
-  }
-
-  #Promoter_1 {
+  #Promoter_1, #Promoter_1 + a {
     display: none;
   }
 
@@ -1552,7 +1585,7 @@ tr:hover {
   }
 
   #C1 {
-    /* left: -1vw; */
+    left: -1vw;
     margin: 60px auto;
   }
 
