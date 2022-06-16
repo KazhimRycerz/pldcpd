@@ -215,21 +215,33 @@ $border-radius:*/
 
 #C1 {
   display: flex;
+  flex-basis: auto;
   flex-flow: row nowrap;
-  justify-content: center;
+  justify-content: left;
   position: relative;
   gap: 20px;
   margin: 60px auto;
   font-size: 1.1rem;
   width: 100%;
+  margin-left: 0;
   transition: 1.5s ease-in-out;
-  border: none;
 }
 #C1 h3 {
   font-family: "FoundSanBd";
 }
+#C1 article > img {
+  object-fit: cover;
+  margin-bottom: 10px;
+  width: 100%;
+}
+#C1 img[src$="c.png"] {
+  display: block;
+  width: 2rem;
+  margin: 0 auto;
+  cursor: pointer;
+}
 #C1 #C1A1, #C1 #C1A4 {
-  margin: 0 10px 0 20px;
+  margin: 0 0px 0 20px;
   border-left: 3px dotted #641b1a;
   border-right: 3px dotted Black;
   border-radius: 20px;
@@ -237,21 +249,20 @@ $border-radius:*/
 }
 #C1 #C1A1 {
   position: relative;
-  left: -120px;
-  margin-left: 20px;
+  left: -40px;
+  margin-left: 0px;
   margin-right: 0;
 }
-#C1 div {
+#C1 #C1Center {
   display: flex;
   flex-direction: column;
   justify-content: start;
   gap: 2rem;
   align-items: center;
   position: relative;
-  left: -30px;
-  margin: 0 auto;
+  margin: 0 0;
 }
-#C1 div #C1A2, #C1 div #C1A3 {
+#C1 #C1Center #C1A2, #C1 #C1Center #C1A3 {
   width: 250px;
   margin: 0px auto;
   border-top: 3px dotted #641b1a;
@@ -262,21 +273,8 @@ $border-radius:*/
   left: -20%;
   top: 10%;
 }
-#C1 div #C1A3 {
+#C1 #C1Center #C1A3 {
   left: 10%;
-}
-
-#C1 article > img {
-  object-fit: cover;
-  margin-bottom: 10px;
-  width: 100%;
-}
-
-#C1 img[src$="c.png"] {
-  display: block;
-  width: 2rem;
-  margin: 0 auto;
-  cursor: pointer;
 }
 
 #C1A4 > img {
@@ -662,32 +660,31 @@ tr:hover {
   #C1 {
     font-size: 0.9rem;
     width: 100%;
-    gap: 10px;
-    margin-left: 0;
+    gap: 0px;
+    margin: 20px auto;
     left: 0vw;
   }
   #C1 #C1A1 {
+    width: 100%;
     position: relative;
     left: 0px;
+    margin: 0;
   }
-  #C1 div {
+  #C1 #C1Center {
     left: 0px;
+    margin: 0 5px 0 5px;
   }
-  #C1 div #C1A2, #C1 div #C1A3 {
+  #C1 #C1Center #C1A2, #C1 #C1Center #C1A3 {
     width: 250px;
     padding: 10px;
     position: relative;
     left: 0%;
   }
-  #C1 div #C1A3 {
-    left: 0%;
+  #C1 #C1A4 {
+    margin: 0 0px 0 0px;
   }
 
-  #C1A1 {
-    left: 20px;
-  }
-
-  #Promoter_1 {
+  #Promoter_1, #Promoter_1 + a {
     display: none;
   }
 
@@ -742,7 +739,7 @@ tr:hover {
   }
 
   #C1 {
-    /* left: -1vw; */
+    left: -1vw;
     margin: 60px auto;
   }
 

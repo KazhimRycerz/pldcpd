@@ -35,29 +35,4 @@ const accountData =()=> {
 }
 accountData();
 
-const homeAsideAccount = document.getElementById("home_aside_account");
-const hideButton = document.getElementById("home_aside_h_Btn");
-const showButton = document.getElementById("home_aside_s_Btn");
-
-const hideAccount = () => {
-  homeAsideAccount.style.animation = "hide_home_aside 2s ease-in-out forwards";
-  showButton.style.animation = "moveButton 1s 0s ease-in-out forwards";
-  hideButton.style.animation = "moveButton 1s 0s ease-in-out forwards";
-  hideButton.style.display = "none";
-  showButton.style.display = "block";
-  Gruß_main_p.style.right = "4vw";
-  C1.style.left = "4vw";
-};
-
-const showAccount = () => {
-  hideButton.style.display = "block";
-  showButton.style.display = "none";
-  hideButton.style.animation = "moveButtonback 1s ease-in-out forwards";
-  homeAsideAccount.style.animation = "show_home_aside 2s ease-in-out forwards";
-  Gruß_main_p.style.right = "10vw";
-  C1.style.left = "0";
- };
-
-hideButton.addEventListener("click", hideAccount);
-showButton.addEventListener("click", showAccount);
 
