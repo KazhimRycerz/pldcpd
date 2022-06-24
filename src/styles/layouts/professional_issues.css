@@ -65,7 +65,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  cursor: url(../../images/c.png), auto;
 }
 
 /* $third-color: rgb(180, 200, 230); */
@@ -286,7 +285,7 @@ $border-radius:*/
   display: inline;
   text-align: end;
   font-size: 2rem;
-  font-family: "FallingSkyOu";
+  font-family: "FoundSanBd";
   font-weight: bold;
   background-color: none;
 }

@@ -66,3 +66,37 @@ showButton.addEventListener("click", showAccount);
 window.onload = function() {
   hideAccount()
 };
+
+
+//______________Login_______________________________________//
+
+const logInExecute = ()=>{
+let flagLogin = false
+logIn.classList.toggle("logintoggle");
+  if ( flagLogin ) {
+    hideButton.style.display = "none";
+    showButton.style.display = "block";
+  } else {
+    hideButton.style.display = "none";
+    showButton.style.display = "block";;
+    //flag = true
+  }
+  flagLogin = ! flagLogin;
+}
+
+
+/* const logInExecuteTemporary =()=>{
+  if(logInOut.textContent == "log me in C") {
+    console.log(logInOut.textContent)
+    showButton.style.display="none"
+    hideButton.style.display="none"
+    logInOut.textContent = "log me out C"
+  } else {
+    showButton.style.display="inline-block"
+    hideButton.style.display="inline-block"
+    logInOut.textContent = "log me in C"
+  }
+} */
+
+const logInOut = document.querySelector(".login")
+logInOut.addEventListener('click', logInExecute)

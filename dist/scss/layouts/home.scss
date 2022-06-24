@@ -136,21 +136,34 @@
   
 #C1{
   display: flex;
+  flex-basis: auto;
   flex-flow: row nowrap;
-  justify-content: center;
+  justify-content: left;
   position: relative;
   gap: 20px;
   margin: 60px auto;
   font-size: $normal;
   width: 100%;
+  margin-left: 0;
   transition: 1.5s ease-in-out;
-  border: none;
+  //border: solid;
   h3 {
     font-family: $primary-font-bold;
   }
-  
+  article>img {
+    object-fit: cover;
+    margin-bottom:10px;
+    width: 100%;
+    }
+  img[src$="c.png"] {
+    display:block;
+    width: 2.0rem;
+    margin: 0 auto;
+    cursor: pointer;
+  }
+
   #C1A1, #C1A4 {
-    margin: 0 10px 0 20px;
+    margin: 0 0px 0 20px;
     border-left: 3px dotted $cpdred;
     border-right: 3px dotted Black;
     border-radius: 20px;
@@ -158,19 +171,20 @@
   }
   #C1A1 {
     position: relative;
-    left: -120px;
-    margin-left: 20px;
+    left: -40px;
+    margin-left: 0px;
     margin-right: 0;
   }
-  div {
+  #C1Center {
     display: flex;
     flex-direction: column;
     justify-content: start;
     gap: 2rem;
     align-items: center;
     position: relative;
-    left: -30px;
-    margin: 0 auto;
+    //left: -30px;
+    margin: 0 0;
+    //border: solid;
 
     #C1A2, #C1A3 {
       width: 250px;
@@ -188,19 +202,7 @@
     }
   }
 }
-
-#C1 article>img {
-object-fit: cover;
-margin-bottom:10px;
-width: 100%;
-}
   
-#C1 img[src$="c.png"] {
-  display:block;
-  width: 2.0rem;
-  margin: 0 auto;
-  cursor: pointer;
-}
 #C1A4>img {
   margin-top: 20px;
 }
@@ -593,39 +595,38 @@ tr:hover {
   #C1 {
     font-size: $small;
     width: 100%;
-    gap: 10px;
-    margin-left: 0;
+    gap: 0px;
+    margin: 20px auto;
     left: 0vw;
-    
+    //border: solid;
+
     #C1A1 {
+      width: 100%;
       position: relative;
       left: 0px;
+      margin: 0;
     }
-    div {
+    #C1Center {
       left: 0px;
-      #C1A2, #C1A3 {
+      margin: 0 5px 0 5px;
+        #C1A2, #C1A3 {
         width: 250px;
         padding: 10px;
         position: relative;
-        left: 0%;  
-      }
-      #C1A3 {
         left: 0%;
       }
     }
+    #C1A4 {
+    margin: 0 0px 0 0px;
+    }
   }
-
-  #C1A1 {
-    left: 20px;
-  }
-  #Promoter_1 {
+  #Promoter_1, #Promoter_1 + a {
     display: none;
   }
-
+ 
   #info_1_2>p {
     font-size: $small;
   }
-
   #learningbox_5 p {
     font-size: $small;
   }
@@ -672,8 +673,8 @@ tr:hover {
       top: 20px;
     }
 #C1 {
-    /* left: -1vw; */
-margin: 60px auto;
+    left: -1vw;
+    margin: 60px auto;
   }
 
   #learningbox_5 p {

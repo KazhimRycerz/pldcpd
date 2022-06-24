@@ -462,6 +462,13 @@ header {
     top: -500px;
     transition: 0.3s ease-in-out;
   }
+  #navPromo {
+    background-image: url(../images/JohannesMikkelsen5.jpg);
+    background-size: cover;
+    p {
+      color: white
+    }
+  }
 }
 /*Ende Styles zum Header*/
 
@@ -469,7 +476,7 @@ header {
 /* Aside Programmierung*/
 
 #home_aside_h_Btn {
-  display: block;
+  display: none;
   position: fixed;
   top: 155px;
   right: 30px;
@@ -482,6 +489,9 @@ header {
   border-radius: 10px;
   text-align:center;
   z-index: 10; 
+    &.logintoggle{
+      display: none
+    }
   }
 
 #home_aside_s_Btn {
@@ -498,6 +508,9 @@ header {
   border-radius: 10px;
   text-align:center;
   z-index: 10;
+    &.logintoggle{
+      display: none
+    }
 }
 
 #home_aside_account {
@@ -619,7 +632,8 @@ header {
   margin: 10px auto; 
   padding: 0 10px 0 10px;
   width: 75%;
-  border: 2px dotted black;
+  height: 45px;
+  border: 2px dotted $cpdred;
   border-radius: 10px;
   background-color:$fourth-color;
   output {
@@ -628,7 +642,17 @@ header {
     font-size: $xxlarge;
     font-family: $guthaben;
     font-weight: bold;
-    background-color: none;
+    line-height:45px;
+    //border:solid black;
+    color: $cpdred-o;
+    background-color: transparent;
+    -webkit-text-stroke: 2px rgba(0, 0, 0, 0.500);
+    //-webkit-text-fill-color: 2px white;
+    letter-spacing: -2px;
+    p {
+      -webkit-text-stroke: 2px white;
+      line-height: 45px;
+    }
   }
 }
     
