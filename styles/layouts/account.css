@@ -85,7 +85,7 @@ $border-radius:*/
 }
 #account_aside_account .account_container .floating-stack dl dt {
   text-align: center;
-  font-family: "FallingSkyOu";
+  font-family: "FoundSanBd";
   position: sticky;
   top: 0.5rem;
   left: 0.5rem;
@@ -341,7 +341,7 @@ main {
   position: relative;
 }
 #account_2_data .account_2 div > h2 {
-  font-family: "FallingSkyOu";
+  font-family: "FoundSanBd";
 }
 #account_2_data .account_2 div:first-child {
   position: relative;

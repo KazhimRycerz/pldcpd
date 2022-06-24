@@ -69,7 +69,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  cursor: url(../../images/c.png), auto;
 }
 
 /* $third-color: rgb(180, 200, 230); */
@@ -152,7 +151,6 @@ $border-radius:*/
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  cursor: url(../../images/c.png), auto;
 }
 
 /* $third-color: rgb(180, 200, 230); */
@@ -626,11 +624,18 @@ header {
   top: -500px;
   transition: 0.3s ease-in-out;
 }
+#navmain #navPromo {
+  background-image: url(../images/JohannesMikkelsen5.jpg);
+  background-size: cover;
+}
+#navmain #navPromo p {
+  color: white;
+}
 
 /*Ende Styles zum Header*/
 /* Aside Programmierung*/
 #home_aside_h_Btn {
-  display: block;
+  display: none;
   position: fixed;
   top: 155px;
   right: 30px;
@@ -643,6 +648,9 @@ header {
   border-radius: 10px;
   text-align: center;
   z-index: 10;
+}
+#home_aside_h_Btn.logintoggle {
+  display: none;
 }
 
 #home_aside_s_Btn {
@@ -659,6 +667,9 @@ header {
   border-radius: 10px;
   text-align: center;
   z-index: 10;
+}
+#home_aside_s_Btn.logintoggle {
+  display: none;
 }
 
 #home_aside_account {
@@ -831,7 +842,8 @@ header {
   margin: 10px auto;
   padding: 0 10px 0 10px;
   width: 75%;
-  border: 2px dotted black;
+  height: 45px;
+  border: 2px dotted #641b1a;
   border-radius: 10px;
   background-color: rgba(221, 155, 55, 0.2);
 }
@@ -839,9 +851,17 @@ header {
   display: inline;
   text-align: end;
   font-size: 2rem;
-  font-family: "FallingSkyOu";
+  font-family: "FoundSanBd";
   font-weight: bold;
-  background-color: none;
+  line-height: 45px;
+  color: rgba(120, 27, 26, 0.5);
+  background-color: transparent;
+  -webkit-text-stroke: 2px rgba(0, 0, 0, 0.5);
+  letter-spacing: -2px;
+}
+#aside_gutbox output p {
+  -webkit-text-stroke: 2px white;
+  line-height: 45px;
 }
 
 /*Beginn Css für den Main*/
@@ -1012,7 +1032,6 @@ $border-radius:*/
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  cursor: url(../../images/c.png), auto;
 }
 
 /* $third-color: rgb(180, 200, 230); */
@@ -1486,11 +1505,18 @@ header {
   top: -500px;
   transition: 0.3s ease-in-out;
 }
+#navmain #navPromo {
+  background-image: url(../images/JohannesMikkelsen5.jpg);
+  background-size: cover;
+}
+#navmain #navPromo p {
+  color: white;
+}
 
 /*Ende Styles zum Header*/
 /* Aside Programmierung*/
 #home_aside_h_Btn {
-  display: block;
+  display: none;
   position: fixed;
   top: 155px;
   right: 30px;
@@ -1503,6 +1529,9 @@ header {
   border-radius: 10px;
   text-align: center;
   z-index: 10;
+}
+#home_aside_h_Btn.logintoggle {
+  display: none;
 }
 
 #home_aside_s_Btn {
@@ -1519,6 +1548,9 @@ header {
   border-radius: 10px;
   text-align: center;
   z-index: 10;
+}
+#home_aside_s_Btn.logintoggle {
+  display: none;
 }
 
 #home_aside_account {
@@ -1691,7 +1723,8 @@ header {
   margin: 10px auto;
   padding: 0 10px 0 10px;
   width: 75%;
-  border: 2px dotted black;
+  height: 45px;
+  border: 2px dotted #641b1a;
   border-radius: 10px;
   background-color: rgba(221, 155, 55, 0.2);
 }
@@ -1699,9 +1732,17 @@ header {
   display: inline;
   text-align: end;
   font-size: 2rem;
-  font-family: "FallingSkyOu";
+  font-family: "FoundSanBd";
   font-weight: bold;
-  background-color: none;
+  line-height: 45px;
+  color: rgba(120, 27, 26, 0.5);
+  background-color: transparent;
+  -webkit-text-stroke: 2px rgba(0, 0, 0, 0.5);
+  letter-spacing: -2px;
+}
+#aside_gutbox output p {
+  -webkit-text-stroke: 2px white;
+  line-height: 45px;
 }
 
 /*Beginn Css für den Main*/
