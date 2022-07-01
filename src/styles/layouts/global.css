@@ -603,10 +603,6 @@ header {
 @keyframes buttonAppear {
   0% {
     transform: scale(0%);
-    display: none;
-  }
-  1% {
-    display: inline-block;
   }
   100% {
     transform: scale(100%);
@@ -616,30 +612,28 @@ header {
   0% {
     transform: scale(100%);
   }
-  99% {
-    display: none;
-  }
   100% {
     transform: scale(0%);
   }
 }
 @keyframes moveButton {
   0% {
-    transform: translateX(0%) rotate(0%);
+    transform: rotate(0deg);
     z-index: 10;
+    right: 30px;
   }
   50% {
     z-index: 0;
   }
   100% {
-    transform: translateX(0%) translateY(30px) rotate(-90deg);
+    transform: translateY(30px) rotate(-90deg);
     z-index: 0;
     right: calc(10% - 44px);
   }
 }
 @keyframes moveButtonback {
   0% {
-    transform: translateX(0%) translateY(30px) rotate(-90deg);
+    transform: translateY(30px) rotate(-90deg);
     z-index: 0;
     right: calc(10% - 44px);
   }
@@ -647,8 +641,9 @@ header {
     z-index: 0;
   }
   100% {
-    transform: translateX(0%) rotate(0%);
+    transform: rotate(0deg);
     z-index: 10;
+    right: 30px;
   }
 }
 @keyframes hide_home_aside {

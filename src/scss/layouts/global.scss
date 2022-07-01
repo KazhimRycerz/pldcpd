@@ -494,7 +494,6 @@ header {
   border-radius: 10px;
   text-align:center;
   z-index: 0;
-  
   }
 
 #home_aside_account {
@@ -529,26 +528,24 @@ header {
 }
 
 @keyframes buttonAppear {
-  0% {transform: scale(0%); display:none }
-  1% {display:inline-block }
+  0% {transform: scale(0%)}
   100% {transform: scale(100%) }
 }
 @keyframes buttonDisappear{
   0% {transform: scale(100%) }
-  99% {display:none}
   100% {transform: scale(0%) }
 }
 
 
 @keyframes moveButton {
-  0%  {transform: translateX(0%) rotate(0%);z-index:10;}
+  0%  {transform: rotate(0deg);z-index:10;right: 30px;}
   50% {z-index: 0;}
-  100% {transform: translateX(0%) translateY(30px) rotate(-90deg);z-index:0;  right:calc(10% - 44px)}
+  100% {transform:  translateY(30px) rotate(-90deg);z-index:0;  right:calc(10% - 44px)}
   }
 @keyframes moveButtonback {
-  0%  {transform: translateX(0%) translateY(30px) rotate(-90deg); z-index:0; right:calc(10% - 44px)}
+  0%  {transform:  translateY(30px) rotate(-90deg); z-index:0; right:calc(10% - 44px)}
   90%  {z-index: 0;}
-  100% {transform: translateX(0%) rotate(0%);z-index: 10;}
+  100% {transform:  rotate(0deg);z-index: 10; right: 30px;}
 }
 @keyframes hide_home_aside {
   0%  {transform: translateX(0%);z-index:9}
@@ -562,7 +559,7 @@ header {
   1%  {transform: translateX(-120%) scale(90%); display: block; z-index: -1;opacity: 1;display: block;}
   30% {z-index:1; display: block;}
   60% {transform: translateX(60%) scale(90%); display: block;}
-  100% {transform: translateX(0%) scale(100%);z-index:9;display: block;}
+  100% {transform: translateX(0%) scale(100%); z-index:9; display: block;}
   }
 
     
