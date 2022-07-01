@@ -65,7 +65,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  cursor: url(../../images/c.png), auto;
 }
 
 /* $third-color: rgb(180, 200, 230); */
@@ -84,82 +83,80 @@ $border-radius:*/
 /*Mediasetting*/
 /* Fonts */
 /* logos */
-#home_data {
+/* #home_data{
   border: 2px dotted black;
-  background-color: rgba(221, 155, 55, 0.2);
+  background-color:$fourth-color;
   border-radius: 5px;
   padding: 5px;
   margin: 0 auto;
-}
-#home_data p {
-  margin: 2px 0 2px 5px;
-  font-family: "FoundSanExpNorm", sans-serif;
-  font-weight: 900;
-}
-#home_data div {
-  font-size: 0.75rem;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-around;
-  width: 100%;
-  padding-bottom: 3px;
-}
-#home_data div div {
-  display: block;
-  box-shadow: none;
-  text-align: center;
-  font-size: 0.71vw;
-}
-#home_data div div output {
-  display: flex;
-  background-color: #196e8c;
-  text-align: center;
-  justify-content: center;
-  padding: 3px;
-  margin: 0 auto;
-  width: 90%;
-  border: none;
-  border-radius: 3px;
-  font-size: 0.9rem;
-  font-weight: 900;
-  color: lemonchiffon;
-}
-#home_data div div output[id^=ma] {
-  background-color: transparent;
-  border: 1px solid #196e8c;
-  color: #196e8c;
+  p{
+    margin: 2px 0 2px 5px;
+    font-family: $primary-font;
+    font-weight:900;
+  }
+  div {
+    font-size: $xsmall;
+    display: flex;
+    flex-direction: row; 
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    width: 100%;
+    padding-bottom: 3px;
+    div {
+      display: block;
+      box-shadow: none; 
+      text-align:center;
+      font-size: 0.71vw; 
+      output{
+        display: flex;
+        background-color: $third-color;
+        text-align:center;
+        justify-content:center;
+        padding: 3px;
+        margin: 0 auto;
+        width: 90%;
+        border: none;
+        border-radius: 3px;
+        font-size: $small;
+        font-weight:900;
+        color: $secondary-color;
+      }
+      output[id^="ma"]{
+        background-color: transparent;
+        border: 1px solid $third-color;
+        color: $third-color;
+      }
+    }
+  }
 }
 
-#home_data > div:first-of-type {
+#home_data>div:first-of-type {
   border-bottom: 2px dotted black;
 }
-
-#home_data > div:last-of-type > div output {
+#home_data>div:last-of-type>div output{
   margin-top: 5px;
 }
-
-#aside_gutbox {
-  display: flex;
+ */
+/* #aside_gutbox {
+  display:flex;
   justify-content: center;
   gap: 5px;
-  align-items: center;
-  margin: 10px auto;
+  align-items:center;
+  margin: 10px auto; 
   padding: 0 10px 0 10px;
   width: 75%;
   border: 2px dotted black;
   border-radius: 10px;
-  background-color: rgba(221, 155, 55, 0.2);
-}
-#aside_gutbox output {
-  display: inline;
-  text-align: end;
-  font-size: 2rem;
-  font-family: "FallingSkyOu";
-  font-weight: bold;
-  background-color: none;
-}
-
+  background-color:$fourth-color;
+  output {
+    display: inline;
+    text-align: end;
+    font-size: $xxlarge;
+    font-family: $guthaben;
+    font-weight: bold;
+    background-color: none;
+  }
+} */
 /*Content*/
 #Gruß_main {
   background-image: url(../images/Sonnenuntergang.jpg);
