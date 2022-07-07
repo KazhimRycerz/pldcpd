@@ -399,6 +399,10 @@ header {
   height: auto;
   margin-right: 10vw;
   font-size: 0.9rem;
+  /* #showlogin{
+    &.buttonAppear{ 
+    } 
+  } */
 }
 #header_myaccount ul {
   display: flex;
@@ -568,11 +572,10 @@ header {
 
 /*Ende Styles zum Header*/
 /* Aside Programmierung*/
-#buttonShowAccount {
-  display: none;
+.buttonShowAccount {
+  display: inline-block;
   position: fixed;
   top: 155px;
-  right: calc(10% - 44px);
   transform: translateY(30px) rotate(-90deg);
   color: #000032;
   background-color: rgba(170, 170, 170, 0.75);
@@ -583,6 +586,14 @@ header {
   border-radius: 10px;
   text-align: center;
   z-index: 0;
+}
+.buttonShowAccount.showBut {
+  right: calc(10% - 44px);
+  transition: 0.5s ease-in-out;
+}
+.buttonShowAccount.hideBut {
+  right: calc(10% - 24px);
+  transition: 0.5s ease-in-out;
 }
 
 #home_aside_account {
