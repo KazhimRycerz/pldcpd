@@ -627,22 +627,6 @@ header {
   margin-top: 15px;
 }
 
-@keyframes buttonAppear {
-  0% {
-    transform: scale(0%);
-  }
-  100% {
-    transform: scale(100%);
-  }
-}
-@keyframes buttonDisappear {
-  0% {
-    transform: scale(100%);
-  }
-  100% {
-    transform: scale(0%);
-  }
-}
 @keyframes moveButton {
   0% {
     transform: rotate(0deg);

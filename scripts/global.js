@@ -70,36 +70,24 @@ const hideAccount = () => {
 
 const handleButton = () => {
   if (flagButton && buttonShowAccount.textContent == "show account") {
-    console.log(
-      flagButton,
-      logInOut.textContent,
-      buttonShowAccount.textContent
-    );
+    console.log(flagButton, logInOut.textContent, buttonShowAccount.textContent);
     buttonShowAccount.classList.replace("hideBut", "showBut");
     logInOut.textContent = "log me out ";
-    //user.style.display= "inline-block";
+    user.style.display= "inline-block";
     flagButton = false;
   } else if (!flagButton && buttonShowAccount.textContent == "show account") {
-    console.log(
-      flagButton,
-      logInOut.textContent,
-      buttonShowAccount.textContent
-    );
+    console.log(flagButton, logInOut.textContent, buttonShowAccount.textContent);
     buttonShowAccount.classList.replace("showBut", "hideBut");
     logInOut.textContent = "log me in ";
-    //user.style.display= "none";
+    user.style.display= "none";
     flagButton = true;
   } else if (!flagButton && buttonShowAccount.textContent == "hide account") {
+    /*  const response =await hideAccount();
+    buttonShowAccount.classList.replace("showBut", "hideBut"); */
     const promise = new Promise((resolve, reject) => {
       resolve(hideAccount());
-    });
-    promise.then((result) => handleButton());
-    console.log(
-      "test",
-      flagButton,
-      logInOut.textContent,
-      buttonShowAccount.textContent
-    );
+      });
+      promise.then((result) => handleButton());
   } else {
     alert("Ein Fehler ist aufgetreten");
   }
