@@ -1,0 +1,74 @@
+@import '../../scss/global.scss';
+
+  @keyframes rotate {
+   0% {
+     transform: rotate(0deg)
+   };
+   100% {
+     transform: rotate(360deg)
+   }
+ }
+   
+ .drehmoment img {
+   position: fixed;
+   width: 13vw; 
+   aspect-ratio: 1;
+   z-index: -1;
+   //animation: none;
+   animation: rotate 20s infinite linear;
+   // display:  none;
+ }
+   
+ #r1 {
+     left: 22vw;
+     top: -1vw;
+ } 
+ #r2 {
+     left: 66vw;
+     top: -1vw;
+ }
+ #r3 {
+   left: 0.2vw;
+   top: 10.2vw;
+ }
+ #r4 {
+     left:43.5vw;
+     top: 10.2vw;
+ }
+ #r5 {
+     left: 86.8vw;
+     top: 10.2vw;
+ }
+ #r6 {
+     left: 0.2vw;
+     top: 34.8vw;
+ }
+ #r7 {
+     left: 86.8vw;
+     top: 34.8vw;
+ }
+ #r8 {
+     left: 0.2vw;
+     top: 59.9vw;
+ }
+ #r9 {
+     left: 86.8vw;
+     top: 59.9vw;
+ }
+ #r10 {
+     left: 0.2vw;
+     top: 85.0vw;
+ }
+ #r11 {
+     left: 21.8vw;
+     top: 98.0vw;
+ }
+ #r12 {
+     left: 64.8vw;
+     top: 98.0vw;
+ }
+ #r13 {
+   left: 86.8vw;
+   top: 85.0vw;
+ }
+ 

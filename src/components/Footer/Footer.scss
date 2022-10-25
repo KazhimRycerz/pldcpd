@@ -1,0 +1,50 @@
+@import '../../scss/global.scss';
+
+
+footer {
+   /* position:static;
+   bottom: 0; */
+   background-color:$first-color;
+   padding: 10px 0 10px 0;
+   width:100vw;
+   height: 120px;
+   height:fit-content;
+   font-size: 12px;
+   margin-top: 50px;
+   z-index: 10;
+   p {
+     text-align: center;
+     width:80%;
+     font-size: $small;
+     margin: 10px auto;
+   }
+ 
+ 
+   ul {
+     display: flex;
+     flex-flow: row nowrap;
+     justify-content: center;
+     width: 50%;
+     margin: 0 auto;
+     gap: 10px;
+     list-style-type: none;
+     ion-icon {
+       font-size: 30px;;
+       color:$third-color;
+     }
+   }
+ 
+   div {
+     display: flex;
+     flex-flow: row nowrap;
+     justify-content: center;
+     gap: 60px;
+     margin: 20px 0 0 0 ;
+     ul {
+       display: flex;
+       flex-flow: column wrap;
+       font-size: $normal;
+       width: 100%;
+     }
+   }
+ }

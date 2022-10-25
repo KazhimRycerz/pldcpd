@@ -1,0 +1,169 @@
+@import '../../scss/global.scss';
+
+.buttonShowAccount {
+   display: inline-block;
+   position: fixed;
+   top: 155px;
+   //right:calc(10% - 24px);// 10% - 44px
+   transform: translateY(30px) rotate(-90deg); 
+   color: $cpdblue;
+   background-color: $button-color;
+   box-shadow: $btnshadow;
+   width: 65px;
+   height: 40px;
+   border: 1px solid grey;
+   border-radius: 10px;
+   text-align:center;
+   z-index: 0;
+   &.showBut {
+     right:calc(10% - 33px);//ex44
+     transition: 0.5s ease-in-out;
+   }
+   &.hideBut {
+     right:calc(10% - 10px);//ex24
+     transition: 0.5s ease-in-out;
+   }
+   }
+ 
+ #home_aside_account {
+   //display: none;
+   background-color: $first-color;
+   box-shadow: $boxshadow;
+   width: 15vw;
+   min-width: 200px;
+   height: auto;
+   padding: 10px;
+   margin-right: 20px;
+   position: fixed;
+   top: 180px;
+   right: 0;
+   font-size: $small;
+   z-index: 0;
+   border-radius: 5px;
+   >p {
+     margin-top: 10px;
+   }
+   >p:first-of-type>span {
+     font-weight: bold;
+     font-style: normal;
+     font-size: $xxlarge;
+   }
+   img {
+     width:30%;
+     float: right;
+     margin-left: 0px;
+     margin-top: 15px;
+   }
+ }
+ 
+ @keyframes moveButton {
+   0%  {transform: rotate(0deg);z-index:10;right: 33px;} //ex30
+   50% {z-index: 0;}
+   100% {transform:  translateY(30px) rotate(-90deg);z-index:0;  right:calc(10% - 33px)}//44px
+   }
+ @keyframes moveButtonback {
+   0%  {transform:  translateY(30px) rotate(-90deg); z-index:0; right:calc(10% - 33px)}//44px
+   90%  {z-index: 0;}
+   100% {transform:  rotate(0deg);z-index: 10; right: 30px;}
+ }
+ @keyframes hide_home_aside {
+   0%  {transform: translateX(0%);z-index:9}
+   30% {transform: translateX(60%) scale(90%) }
+   60% {z-index:1}
+   99% {transform: translateX(-120%) scale(90%); z-index: -1; opacity: 1}
+   100% {transform: translateX(-120%) scale(90%); z-index: -1; opacity: 0; display: none;}
+   }
+ @keyframes show_home_aside {
+   0%  {opacity:0; display: none;}
+   1%  {transform: translateX(-120%) scale(90%); display: block; z-index: -1;opacity: 1;display: block;}
+   30% {z-index:1; display: block;}
+   60% {transform: translateX(60%) scale(90%); display: block;}
+   100% {transform: translateX(0%) scale(100%); z-index:9; display: block;}
+   }
+ 
+     
+ #home_data{
+   border: 2px dotted black;
+   background-color:$fourth-color;
+   border-radius: 5px;
+   padding: 5px;
+   margin: 0 auto;
+   p{
+     margin: 2px 0 2px 5px;
+     font-family: $primary-font;
+     font-weight:900;
+   }
+   div {
+     font-size: $xsmall;
+     display: flex;
+     flex-direction: row; 
+     flex-wrap: nowrap;
+     justify-content: space-around;
+     width: 100%;
+     padding-bottom: 3px;
+     div {
+       display: block;
+       box-shadow: none; 
+       text-align:center;
+       font-size: 0.71vw; 
+       output{
+         display: flex;
+         background-color: $third-color;
+         text-align:center;
+         justify-content:center;
+         padding: 3px;
+         margin: 0 auto;
+         width: 90%;
+         border: none;
+         border-radius: 3px;
+         font-size: $small;
+         font-weight:900;
+         color: $secondary-color;
+       }
+       output[id^="ma"]{
+         background-color: transparent;
+         border: 1px solid $third-color;
+         color: $third-color;
+       }
+     }
+   }
+ }
+   
+ #home_data>div:first-of-type {
+   border-bottom: 2px dotted black;
+ }
+ #home_data>div:last-of-type>div output{
+   margin-top: 5px;
+ }
+ 
+ #aside_gutbox {
+   display:flex;
+   justify-content: center;
+   gap: 5px;
+   align-items:center;
+   margin: 10px auto; 
+   padding: 0 10px 0 10px;
+   width: 75%;
+   height: 45px;
+   border: 2px dotted $cpdred;
+   border-radius: 10px;
+   background-color:$fourth-color;
+   output {
+     display: inline;
+     text-align: end;
+     font-size: $xxlarge;
+     font-family: $guthaben;
+     font-weight: bold;
+     line-height:45px;
+     //border:solid black;
+     color: $cpdred-o;
+     background-color: transparent;
+     -webkit-text-stroke: 2px rgba(0, 0, 0, 0.500);
+     //-webkit-text-fill-color: 2px white;
+     letter-spacing: -2px;
+     p {
+       -webkit-text-stroke: 2px white;
+       line-height: 45px;
+     }
+   }
+ }

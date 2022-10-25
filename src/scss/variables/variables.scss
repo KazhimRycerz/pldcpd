@@ -1,0 +1,69 @@
+//colors
+$first-color: rgb(240, 255, 255);
+$secondary-color: lemonchiffon;
+$third-color: rgb(25, 110, 140);
+$third-color-o: rgba(25, 110, 140, 0.5);
+$third-color-75: rgba(25, 110, 140, 0.75);
+/* $third-color: rgb(180, 200, 230); */
+$fourth-color: rgba(221, 155, 55, 0.2);
+$button-color: rgba(170, 170, 170, 0.75);
+$cpdred: /* rgb(125, 0, 0); */rgb(100, 27, 26);//Persian Plum
+$cpdred-o:/* rgba(125, 0, 0, 0.5); */rgba(120, 27, 26, 0.5);
+$cpdblue: rgb(0, 0, 50);
+$databaseblue:#49586F;
+
+/* 
+Persian Plum: #641b1a
+Blue Chill: #118890
+Blue Dianne: #225d63
+Pine Green: #047c74 
+*/
+
+//shadows
+$boxshadow: 0.5rem 0.5rem 2rem;
+$boxshadowbottom: 2.5rem 0.5rem 2rem;
+$btnshadow: 0px 0px 10px 1px $third-color inset, -2px -2px 5px 3px grey,  -5px -5px 5px white inset; 
+$rshadow: 3px 3px black, -3px -3px black, 3px -3px black, -3px 3px black;
+$hovershadow:3px;
+$text-shadow: 1px 1px 20px $cpdred;
+
+//backgroundcolours
+$grad: linear-gradient($third-color-o, $cpdred-o) fixed;
+
+/* textsizes*/
+$xxxlarge: 3rem;
+$xxlarge: 2.0rem;
+$xlarge: 1.5rem;
+$large: 1.2rem;
+$normal: 1.1rem;
+$small: 0.9rem;
+$xsmall: 0.75rem;
+$xxsmall: 0.5rem;
+/*$medium: 4rem;
+$large: 10rem;
+$huge: 20rem;
+
+$border-radius:*/
+$radiuslarge: 20px;
+$radiussmall:10px;
+$radiusxsmall:5px;
+
+/*Mediasetting*/
+$phone: 675px;
+$tablet: 760px;
+$desktop: 1024px; 
+$widedesktop: 2048px;
+$highres: 3000px;
+
+/* Fonts */
+$primary-font: "FoundSanExpNorm", sans-serif;
+$primary-font-bold: "FoundSanBd";
+$calli: "VIA-Verlag";
+$guthaben: "FoundSanBd";
+
+/* logos */
+$logosize10: 10px;
+$logosize20: 20px;
+
+  
+  
