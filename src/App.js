@@ -8,14 +8,15 @@ import CareerPlanning from "./pages/CareerPlanning/CareerPlanning.jsx";
 import RegisterLogin from "./pages/RegisterLogin/RegisterLogin.jsx";
 import AboutTheProfession from "./pages/AboutTheProfession/AboutTheProfession.jsx";
 import Page404 from "./pages/Page404/Page404.jsx";
-import HeaderContext from "./context/HeaderContext.js";
+import AccountButtonContext from "./context/AccountButtonContext.js";
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <HeaderContext.Provider>
+        <AccountButtonContext.Provider>
         <Routes>
+          <Route path="/pldcpd" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/" element={<Home />} />
           <Route path="/knowledgeaccount" element={<KnowledgeAccount />} />
@@ -23,9 +24,9 @@ function App() {
           <Route path="/careerplanning" element={<CareerPlanning />} />
           <Route path="/abouttheprofession" element={<AboutTheProfession />} />
           <Route path="/registerlogin" element={<RegisterLogin />} />
-        {/*  <Route path="/*" element={<Page404 />} /> */}
+          <Route path="/*" element={<Page404 />} />
         </Routes>
-        </HeaderContext.Provider>
+        </AccountButtonContext.Provider>
       </Router>
     </div>
   );

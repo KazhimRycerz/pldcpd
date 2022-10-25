@@ -42,10 +42,14 @@ const TurningElements = () => {
       <img src={drehmoment2} id="r7" className="rotate" alt="" />
       <img src={drehmoment2} id="r8" className="rotate" alt="" />
       <img src={drehmoment2} id="r9" className="rotate" alt="" />
-      <img src={drehmoment2} id="r10" className="rotate" alt="" />
+      {/* <img src={drehmoment2} id="r10" className="rotate" alt="" /> */}
       <img src={drehmoment2} id="r11" className="rotate" alt="" />
       <img src={drehmoment2} id="r12" className="rotate" alt="" />
       <img src={drehmoment2} id="r13" className="rotate" alt="" />
+      <img src={drehmoment2} id="r14" className="rotate" alt="" />
+      <img src={drehmoment2} id="r15" className="rotate" alt="" />
+      <img src={drehmoment2} id="r16" className="rotate" alt="" />
+      <img src={drehmoment2} id="r17" className="rotate" alt="" />
     </div>
   );
 };

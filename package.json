@@ -3,7 +3,7 @@
   "description": "PLDCPD",
   "version": "0.1.0",
   "main": "src/index.js",
-  "homepage": "https://kazhimrycerz.github.io/client",
+  "homepage": "https://kazhimrycerz.github.io/pldcpd",
   "type": "module",
   "private": true,
   "dependencies": {

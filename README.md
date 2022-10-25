@@ -1,6 +1,6 @@
 # pldcpd
 
-![Screenshot from Project](./pldcpdscreenshot.jpg)
+![Screenshot from Project](./PLDCPDscreenshot.jpg)
 
 ### About the project
 
