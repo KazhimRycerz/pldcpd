@@ -1,7 +1,7 @@
 import drehmoment2 from "../../images/drehmoment2.png";
-//import drehmoment2 from '../../../public/images/drehmoment2.png'
+//import drehmoment1 from "../../images/finger-print-outline.svg";
 import "./TurningElements.scss";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 const TurningElements = () => {
   let stopRotate;
@@ -42,7 +42,7 @@ const TurningElements = () => {
       <img src={drehmoment2} id="r7" className="rotate" alt="" />
       <img src={drehmoment2} id="r8" className="rotate" alt="" />
       <img src={drehmoment2} id="r9" className="rotate" alt="" />
-      {/* <img src={drehmoment2} id="r10" className="rotate" alt="" /> */}
+      <img src={drehmoment2} id="r10" className="rotate" alt="" />
       <img src={drehmoment2} id="r11" className="rotate" alt="" />
       <img src={drehmoment2} id="r12" className="rotate" alt="" />
       <img src={drehmoment2} id="r13" className="rotate" alt="" />
@@ -50,6 +50,10 @@ const TurningElements = () => {
       <img src={drehmoment2} id="r15" className="rotate" alt="" />
       <img src={drehmoment2} id="r16" className="rotate" alt="" />
       <img src={drehmoment2} id="r17" className="rotate" alt="" />
+      <img src={drehmoment2} id="r18" className="rotate" alt="" />
+      <img src={drehmoment2} id="r19" className="rotate" alt="" />
+      <img src={drehmoment2} id="r20" className="rotate" alt="" />
+      <img src={drehmoment2} id="r21" className="rotate" alt="" />
     </div>
   );
 };

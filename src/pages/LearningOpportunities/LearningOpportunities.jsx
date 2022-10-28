@@ -1,11 +1,15 @@
 import './LearningOpportunities.scss'
+import LearningOpportunitiesMain from '../../components/LearningOpportunitiesMain/LearningOpportunitiesMain.js'
 
-const Animal = (props) => {
-    const { name, species, onAnimalDelete, id } = props;
 
-    return (<>
-        <li>A {species} called {name} <button onClick={() => onAnimalDelete(id)}>delete</button></li>
-    </>)
+const learningOpportunities = (props) => {
+    
+
+    return (
+    <>
+        <LearningOpportunitiesMain />
+    </>
+    )
 }
 
-export default Animal; 
+export default learningOpportunities; 

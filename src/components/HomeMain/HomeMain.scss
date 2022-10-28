@@ -13,7 +13,8 @@
    position:relative;
    border-radius: 20px 20px 0 0;
    &:hover {
-     background-image: url(../../images/Sonnenuntergang_dark.jpg);
+    //filter: brightness(0.5);
+    background-image: url(../../images/Sonnenuntergang_dark.jpg);
    }
    h1 {
      display:inline-block;
@@ -253,6 +254,7 @@
    grid-gap: 20px;
    font-size: $normal;
    margin-top: 20px;
+   //border: solid;
    /* border-top: 3px dotted Black;
    border-bottom: 3px dotted Black;
    border-radius: 20px; */
@@ -265,7 +267,7 @@
      float: left;
      margin: 10px;
    }
-  
+   
   }
   
    
@@ -300,7 +302,6 @@
    font-size: $small;
    float: left;
    margin: 0px;
-   padding: 0px 0px;
    height: 30px;
    width:100%;
    text-align: center;
@@ -308,8 +309,11 @@
    
  }
 
- tr{
-   padding: 3px;
+ tr, td{
+   padding:5px 10px;
+   #titel {
+    font-weight: 900;
+   }
  }
  
  th {
@@ -324,6 +328,7 @@
  
  tr:hover {
    background-color: $first-color;
+   //filter: brightness(2.5)
  }
  
  #Filter{

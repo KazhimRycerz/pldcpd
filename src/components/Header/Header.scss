@@ -174,6 +174,11 @@
      top: 35px;
      left:3.0vw;
      z-index: 9;
+     :hover {
+      color: $cpdred;
+      box-shadow: 0px 0px 25px 5px $cpdred;
+      }
+     
  
      /* THE LINES */
      span, span::before, span::after {
@@ -236,7 +241,7 @@
          width: 0;
        }
      }
-   }
+    }
  
    #navmain {
      position: fixed;

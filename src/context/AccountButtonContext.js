@@ -1,15 +1,7 @@
-import { useState, createContext } from 'react'
+import react, { useState, createContext } from 'react'
 
-const buttonPosition = {
-   position0: {
-
-   },
-   position1: {
-
-   },
-   position2: {
-
-   }
+const buttonPosition = ()=> {
+   //Definieren des State
 }
 
 const AccountButtonContext = createContext (buttonPosition.position0)

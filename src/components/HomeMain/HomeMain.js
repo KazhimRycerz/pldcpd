@@ -261,7 +261,7 @@ const HomeMain = () => {
                 <tbody>
                   <tr>
                     <td>20.10.2021</td>
-                    <td>Die neue Art des Lichtdesigns in der Architektur</td>
+                    <td id="titel">Die neue Art des Lichtdesigns in der Architektur</td>
                     <td>Kazhim Rycerz / Kazhal Akbari</td>
                     <td>Design</td>
                     <td>4-5</td>

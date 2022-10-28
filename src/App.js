@@ -7,6 +7,7 @@ import PersonalAccount from "./pages/PersonalAccount/PersonalAccount.jsx";
 import CareerPlanning from "./pages/CareerPlanning/CareerPlanning.jsx";
 import RegisterLogin from "./pages/RegisterLogin/RegisterLogin.jsx";
 import AboutTheProfession from "./pages/AboutTheProfession/AboutTheProfession.jsx";
+import ListOfLearningOpportunities from "./pages/LearningOpportunities/LearningOpportunities.jsx";
 import Page404 from "./pages/Page404/Page404.jsx";
 import AccountButtonContext from "./context/AccountButtonContext.js";
 
@@ -23,6 +24,10 @@ function App() {
           <Route path="/personalaccount" element={<PersonalAccount />} />
           <Route path="/careerplanning" element={<CareerPlanning />} />
           <Route path="/abouttheprofession" element={<AboutTheProfession />} />
+          <Route path="/listoflearningopprortunities" element={<ListOfLearningOpportunities />} />
+          {/* <Route path="/listofprojectsworkedon" element={<ListOfProjectsWorkedOn />} /> */}
+          {/* <Route path="/historyofcpd" element={<HistoryOfCPD />} /> */}
+          {/* <Route path="/community" element={<Community />} /> */}
           <Route path="/registerlogin" element={<RegisterLogin />} />
           <Route path="/*" element={<Page404 />} />
         </Routes>

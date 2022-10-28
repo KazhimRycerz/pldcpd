@@ -1,10 +1,10 @@
 import './AccountAside.scss'
 import { Link } from 'react-router-dom'
 import React, { createContext,  useState } from 'react'
+import JoachimRitter from '../../images/Joachim_privat.jpg'
 
-
-
-  /* const moveAccountAndButton = () => {
+/* 
+  const moveAccountAndButton = () => {
   if (buttonShowAccount.textContent == "show account") {
     showAccount();
   } else if (buttonShowAccount.textContent == "hide account") {
@@ -64,19 +64,21 @@ const hideAccount = () => {
   C1.style.left = "0px"; //4
   C1.style.margin = "60px auto"; //4
   buttonShowAccount.textContent = "show account";
-};  
- */
+};   
+
+*/
+
 
 const AccountAside = () => {
-//const [showAccount, setShowAccount] = useState("false")
-//const [showButton, setShowButton] = useState("false") // hier habe ich drei!! Optionen --> Lösung finden
+//const [showAccount, setShowAccount] = useState(".hideBut") //.showBut
+//const [showButton, setShowButton] = useState("position0") // position1, position2!! Optionen --> Lösung finden
 
 return (
    <>
       <button type="button" class="buttonShowAccount hideBut" id="buttonShowAccount">show account</button>
          
       <aside id="home_aside_account">
-        <img src="./images/Joachim privat.JPG" alt="Joachim Ritter privat" />
+        <img src={JoachimRitter} alt="Joachim Ritter privat" />
         <p><strong>Hallo, Joachim Ritter </strong><br />
         Journalist <br />Karrierelevel <br />--- <span> IV </span> ---<br />Project Lighting Designer</p> <br />
               

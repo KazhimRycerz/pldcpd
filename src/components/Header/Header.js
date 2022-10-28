@@ -1,7 +1,6 @@
 import "./Header.scss";
 import { NavLink, Link } from "react-router-dom";
 import { useState } from "react";
-import { asideContext } from "../AccountAside/AccountAside.js";
 import pldcpd from "../../images/pldcpd.png";
 
 
