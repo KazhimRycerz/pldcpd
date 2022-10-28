@@ -2,6 +2,7 @@ import './AccountAside.scss'
 import { Link } from 'react-router-dom'
 import React, { createContext,  useState } from 'react'
 import JoachimRitter from '../../images/Joachim_privat.jpg'
+import { AccountButtonProvider } from '../../context/AccountButtonContext.js'
 
 /* 
   const moveAccountAndButton = () => {
@@ -76,6 +77,8 @@ const AccountAside = () => {
 return (
    <>
       <button type="button" class="buttonShowAccount hideBut" id="buttonShowAccount">show account</button>
+      {/* <button type="button" class="buttonShowAccount hideBut" id="testbutton">testbutton</button> */}
+      <AccountButtonProvider />
          
       <aside id="home_aside_account">
         <img src={JoachimRitter} alt="Joachim Ritter privat" />

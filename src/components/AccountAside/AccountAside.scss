@@ -1,7 +1,33 @@
 @import '../../scss/global.scss';
 
+#testbutton {
+  display: inline-block;
+  position: fixed;
+  top: 155px;
+  transform: translateY(30px) rotate(-90deg); 
+  color: $cpdblue;
+  background-color: $button-color;
+  box-shadow: $btnshadow;
+  width: 65px;
+  height: 40px;
+  border: 1px solid grey;
+  border-radius: 10px;
+  text-align:center;
+  z-index: 0;
+  &.showBut {
+    right:calc(10% - 33px);//ex44
+    transition: 0.5s ease-in-out;
+  }
+  &.hideBut {
+    right:calc(10% - 10px);//ex24
+    transition: 0.5s ease-in-out;
+  }
+  }
+
+
 .buttonShowAccount {
-   display: inline-block;
+  display: none; 
+  //display: inline-block;
    position: fixed;
    top: 155px;
    //right:calc(10% - 24px);// 10% - 44px
