@@ -1,9 +1,30 @@
-@import '../../scss/global.scss';
+@import '../scss/global.scss';
 
+
+.buttonPosition0 { //button hidden behind Main
+  display: inline-block;
+  position: fixed;
+  top: 155px;
+  transform: translateY(30px) rotate(-90deg); 
+  color: $cpdblue;
+  background-color: $button-color;
+  box-shadow: $btnshadow;
+  width: 65px;
+  height: 40px;
+  border: 1px solid grey;
+  border-radius: 10px;
+  text-align:center;
+  z-index: 0;
+}
+
+.buttonPosition1 {
+  right:calc(10% - 33px);//ex44
+  transition: 0.5s ease-in-out;
+}
 
 .buttonShowAccount {
   //display: none; 
-  display: inline-block;
+   display: inline-block;
    position: fixed;
    top: 155px;
    //right:calc(10% - 24px);// 10% - 44px
@@ -57,7 +78,6 @@
      margin-top: 15px;
    }
  }
- .moveButton {animation : moveButton 1s 0s ease-in-out forwards}
  
  @keyframes moveButton {
    0%  {transform: rotate(0deg);z-index:10;right: 33px;} //ex30

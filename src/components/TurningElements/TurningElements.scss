@@ -11,48 +11,50 @@
    
  .drehmoment img {
    position: fixed;
-   width: 13vw; 
+   opacity: 1;
+   width: 15vw; 
+   //width: 13vw; 
    aspect-ratio: 1;
    z-index: -1;
    //animation: none;
-   animation: rotate 20s infinite linear;
+   animation: rotate 25s infinite linear;
    // display:  none;
  }
    
 #r1 {
  left: 22vw;
- top: -1vw;
+ top: -1.5vh;
 } 
 #r2 {
  left: 66vw;
- top: -1vw;
+ top: -1.5vh;
 }
 #r3 {
- left: 0.2vw;
+ left: -2.5vw;
  top: 10.2vw;
 }
 #r4 {
- left:43.5vw;
- top: 10.2vw;
+  left:43.5vw;
+  top: 10.2vw;
 }
 #r5 {
- left: 86.8vw;
+ left: 87.5vw;
  top: 10.2vw;
 }
 #r6 {
- left: 0.2vw;
+ left: -2.5vw;
  top: 34.8vw;
 }
 #r7 {
- left: 86.8vw;
+  left: 87.5vw;
  top: 34.8vw;
 }
 #r8 {
- left: 0.2vw;
+ left: -2.5vw;
  top: 59.9vw;
 }
 #r9 {
- left: 86.8vw;
+  left: 87.5vw;
  top: 59.9vw;
 }
 #r10 {
@@ -64,7 +66,7 @@
  top: 72.4vw;
 }
 #r12 {
- left: 0.2vw;
+ left: -2.5vw;
  top: 85.0vw;
 }
 #r13 {
@@ -72,7 +74,7 @@
  top: 85.0vw;
 }
 #r14 {
- left: 86.8vw;
+  left: 87.5vw;
  top: 85.0vw;
 }
 #r15 {
@@ -84,7 +86,7 @@
  top: 98.0vw;
 }
 #r17 {
- left: 0.2vw;
+ left: -2.5vw;
  top: 110.4vw;
 }
 #r18 {
@@ -92,7 +94,7 @@
   top: 110.4vw;
  }
  #r19 {
-  left: 86.8vw;
+  left: 87.5vw;
   top: 110.4vw;
  }
  #r20 {

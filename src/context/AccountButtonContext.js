@@ -1,7 +1,23 @@
-import { useState, createContext } from 'react'
+import React, { useState, useContext, createContext } from 'react'
+import './AccountButtonContext.scss'
 
+const AsideAccountButtonContext = React.createContext(null)
 
-const buttonPosition = {
+const AccountButtonProvider = (props)=>{
+   const [buttonPos, setButtonPos] = useState("buttonPosition0");
+   
+   return (
+      <AsideAccountButtonContext.Provider value={{buttonPos, setButtonPos}}>
+         {props.children}
+      </AsideAccountButtonContext.Provider>
+   )
+}
+export { AsideAccountButtonContext, AccountButtonProvider }
+
+//const [accountPos, setaccountPos] = useState("accountPosition0");
+//const [loggedIn, setLoggedIn] = useState(false);
+
+/* const buttonPosition = {
    position0: {
       display: "none",
       position: "fixed",
@@ -18,10 +34,11 @@ const buttonPosition = {
       textAlign:"center",
       zIndex: 0
    },
-   position1: {
+    position1: {
       right:"calc(10% - 33px)",
       transition: "0.5s ease-in-out"
    },
+} */
     /* position2: {
       @keyframes //moveButton 
        {
@@ -57,13 +74,5 @@ const buttonPosition = {
             right: "30px"
          }
        }
-   } */
-}
-
-export const AccountButtonContext = createContext (buttonPosition.position0)
-
-export const AccountButtonProvider =()=>{
-
-   <button type="button" class="buttonShowAccount hideBut" id="testbutton">testbutton</button>
-
-}
+   } 
+} */

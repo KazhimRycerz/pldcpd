@@ -9,13 +9,12 @@ import RegisterLogin from "./pages/RegisterLogin/RegisterLogin.jsx";
 import AboutTheProfession from "./pages/AboutTheProfession/AboutTheProfession.jsx";
 import ListOfLearningOpportunities from "./pages/LearningOpportunities/LearningOpportunities.jsx";
 import Page404 from "./pages/Page404/Page404.jsx";
-import { AccountButtonContext } from "./context/AccountButtonContext.js";
+/* import { AccountButtonContext } from "./context/AccountButtonContext.js"; */
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <AccountButtonContext.Provider>
         <Routes>
           <Route path="/pldcpd" element={<Home />} />
           <Route path="/home" element={<Home />} />
@@ -30,8 +29,7 @@ function App() {
           {/* <Route path="/community" element={<Community />} /> */}
           <Route path="/registerlogin" element={<RegisterLogin />} />
           <Route path="/*" element={<Page404 />} />
-        </Routes>
-        </AccountButtonContext.Provider>
+          </Routes>
       </Router>
     </div>
   );

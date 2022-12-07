@@ -1,8 +1,8 @@
 import './AccountAside.scss'
 import { Link } from 'react-router-dom'
-import React, { createContext,  useState } from 'react'
+import React, { useContext, useState } from 'react'
 import JoachimRitter from '../../images/Joachim_privat.jpg'
-import { AccountButtonProvider } from '../../context/AccountButtonContext.js'
+import  { AsideAccountButtonContext } from "../../context/AccountButtonContext.js" 
 
 /* 
   const moveAccountAndButton = () => {
@@ -73,12 +73,14 @@ const hideAccount = () => {
 const AccountAside = () => {
 //const [showAccount, setShowAccount] = useState(".hideBut") //.showBut
 //const [showButton, setShowButton] = useState("position0") // position1, position2!! Optionen --> Lösung finden
+const {buttonPos, setButtonPos} = useContext(AsideAccountButtonContext)
 
 return (
    <>
-      <button type="button" class="buttonShowAccount hideBut" id="buttonShowAccount">show account</button>
-      <button type="button" class="buttonShowAccount hideBut" id="testbutton">testbutton</button>
-      <AccountButtonProvider />
+      <button type="button" 
+      className={["buttonShowAccount", buttonPos === "buttonPosition0" ? "hideBut" : "showBut" ].join(" ")} id="buttonShowAccount">show account</button>
+      {/* <button type="button" class="buttonShowAccount hideBut" id="testbutton">testbutton</button> */}
+      {/* <AccountButtonContext /> */}
          
       <aside id="home_aside_account">
         <img src={JoachimRitter} alt="Joachim Ritter privat" />
