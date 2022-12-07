@@ -4,11 +4,11 @@ import React, { useContext, useState } from 'react'
 import JoachimRitter from '../../images/Joachim_privat.jpg'
 import  { AsideAccountButtonContext } from "../../context/AccountButtonContext.js" 
 
-/* 
-  const moveAccountAndButton = () => {
-  if (buttonShowAccount.textContent == "show account") {
+
+/*   const moveAccountAndButton = () => {
+  if (buttonShowAccount.textContent === "show account") {
     showAccount();
-  } else if (buttonShowAccount.textContent == "hide account") {
+  } else if (buttonShowAccount.textContent === "hide account") {
     hideAccount();
   } else {
     alert("Ein Fehler ist aufgetreten");
@@ -16,19 +16,19 @@ import  { AsideAccountButtonContext } from "../../context/AccountButtonContext.j
 };
 
 const handleButton = () => {
-  if (flagButton && buttonShowAccount.textContent == "show account") {
-    console.log(flagButton, logInOut.textContent, buttonShowAccount.textContent);
+  if (flagButton && buttonShowAccount.textContent === "show account") {
+    //console.log(flagButton, logInOut.textContent, buttonShowAccount.textContent);
     buttonShowAccount.classList.replace("hideBut", "showBut");
     logInOut.textContent = "log me out ";
     user.style.display= "inline-block";
     flagButton = false;
-  } else if (!flagButton && buttonShowAccount.textContent == "show account") {
+  } else if (!flagButton && buttonShowAccount.textContent === "show account") {
     console.log(flagButton, logInOut.textContent, buttonShowAccount.textContent);
     buttonShowAccount.classList.replace("showBut", "hideBut");
     logInOut.textContent = "log me in ";
     user.style.display= "none";
     flagButton = true;
-  } else if (!flagButton && buttonShowAccount.textContent == "hide account") {
+  } else if (!flagButton && buttonShowAccount.textContent === "hide account") {
     const promise = new Promise((resolve, reject) => {
       resolve(hideAccount());
       });
@@ -65,23 +65,26 @@ const hideAccount = () => {
   C1.style.left = "0px"; //4
   C1.style.margin = "60px auto"; //4
   buttonShowAccount.textContent = "show account";
-};   
+};  */  
 
-*/
+
 
 
 const AccountAside = () => {
-//const [showAccount, setShowAccount] = useState(".hideBut") //.showBut
-//const [showButton, setShowButton] = useState("position0") // position1, position2!! Optionen --> Lösung finden
+const [showAccount, setShowAccount] = useState("hideAccount()")
 const {buttonPos, setButtonPos} = useContext(AsideAccountButtonContext)
 
 return (
    <>
       <button type="button" 
-      className={["buttonShowAccount", buttonPos === "buttonPosition0" ? "hideBut" : "showBut" ].join(" ")} id="buttonShowAccount">show account</button>
-      {/* <button type="button" class="buttonShowAccount hideBut" id="testbutton">testbutton</button> */}
-      {/* <AccountButtonContext /> */}
-         
+      className={["buttonShowAccount", buttonPos === "buttonPosition0" ? "hideBut" : "showBut" ].join(" ")} id="buttonShowAccount" 
+      //onClick ={event => handleButton()}
+      
+      /* onClick={event => {
+                {[loggedIn, buttonPos === "buttonPosition1" ? setButtonPos("buttonPosition2"), setShowAccount(showAccount()), className(moveButton) : setButtonPos("buttonPosition1"), setShowAccount(hideAccount)]}
+              }} */
+      >show account</button>
+               
       <aside id="home_aside_account">
         <img src={JoachimRitter} alt="Joachim Ritter privat" />
         <p><strong>Hallo, Joachim Ritter </strong><br />
