@@ -9,8 +9,7 @@ const Header = () => {
   const [showMenue, setShowMenue] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const {buttonPos, setButtonPos} = useContext(AsideAccountButtonContext)
-  console.log("buttonPos:", buttonPos)
-
+  
   return (
     <>
       <header className="header">
@@ -23,7 +22,7 @@ const Header = () => {
             </button>
             <ul id="dropdown-content">
               <li>
-                <Link to="/Home">
+                <Link to="/home">
                   <span className="C">C</span> about
                 </Link>
               </li>
@@ -34,12 +33,12 @@ const Header = () => {
               </li>
               <li>
                 <Link to="/aboutpldcpd">
-                  <span className="C">C</span> PLDCPD{" "}
+                  <span className="C">C</span> PLDCPD
                 </Link>
               </li>
               <li>
                 <Link to="/aboutrycerz">
-                  <span className="C">C</span> RYCERZ{" "}
+                  <span className="C">C</span> RYCERZ
                 </Link>
               </li>
             </ul>
@@ -143,7 +142,7 @@ const Header = () => {
             </li>
             <li>
               <NavLink to="/home" className="closebtn">
-                <span className="C">C</span> lerning
+                <span className="C">C</span> learning
               </NavLink>
             </li>
             <li>
@@ -179,7 +178,7 @@ const Header = () => {
             </li>
             <li>
               <NavLink to="/home" className="closebtn">
-                <span className="C">C</span> lerning
+                <span className="C">C</span> learning
               </NavLink>
             </li>
             <li>
@@ -215,7 +214,7 @@ const Header = () => {
             </li>
             <li>
               <NavLink to="/home" className="closebtn">
-                <span className="C">C</span> lerning
+                <span className="C">C</span> learning
               </NavLink>
             </li>
             <li>
@@ -251,7 +250,7 @@ const Header = () => {
             </li>
             <li>
               <NavLink to="/home" className="closebtn">
-                <span className="C">C</span> lerning
+                <span className="C">C</span> learning
               </NavLink>
             </li>
             <li>
