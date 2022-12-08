@@ -29,7 +29,6 @@ const HomeMain = () => {
           Ihre persönliche Berufsplanung im Lichtdesign
         </h1>
         <p id="Gruß_main_p">
-          {" "}
           Willkommen auf der Weiterbildungplattform für professionelle
           Lichtdesigner. Hier können Sie Ihre Karriere planen und kontinuierlich
           prüfen, welchen Status Sie erreicht haben. Auch geben wir Ihnen

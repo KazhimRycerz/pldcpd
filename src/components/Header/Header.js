@@ -6,9 +6,13 @@ import  { AsideAccountButtonContext } from "../../context/AccountButtonContext.j
 
 
 const Header = () => {
+  const buttonPosition0 = "buttonTestAccount"
+  const buttonMove1 = "buttonTestAccount showTestBut" 
+  const buttonMove4 = "buttonTestAccount hideTestBut" 
+
   const [showMenue, setShowMenue] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
-  const {buttonPos, setButtonPos} = useContext(AsideAccountButtonContext)
+  const { buttonPos, setButtonPos } = useContext(AsideAccountButtonContext)
   
   return (
     <>
@@ -66,7 +70,8 @@ const Header = () => {
               id="showlogin"
               onClick={() => {
                 setLoggedIn(!loggedIn);
-                {loggedIn ? setButtonPos("buttonPosition0") : setButtonPos("buttonPosition1")}
+                /* {loggedIn ? setButtonPos("buttonPosition0") : setButtonPos("buttonPosition1")} */
+                {loggedIn ? setButtonPos({buttonMove1}) : setButtonPos({buttonMove4})}
               }}
             >
               {loggedIn ? "log me out" : "log me in"}{" "}

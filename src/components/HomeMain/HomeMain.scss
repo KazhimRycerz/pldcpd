@@ -480,5 +480,32 @@
      }
    }
  }   
+
+ @media (max-width: $desktop){
+  #Gruß_main {
+      h1 {
+        font-size: 40px;
+      };
+      p {
+      font-size: 20px;
+      line-height: 26px;
+      width: 40%
+    }
+  }
+}
+ 
+ 
+ @media (max-width: $tablet){
+  #Gruß_main {
+      h1 {
+        font-size: 40px;
+      };
+      p {
+      font-size: 18px;
+      line-height: 26px;
+      width: 40%
+    }
+  }
+}
  
  

@@ -1,13 +1,53 @@
 @import '../../scss/global.scss';
 
-
-.buttonShowAccount {
+.buttonTestAccount {
   //display: none; 
   display: inline-block;
    position: fixed;
    top: 155px;
+   right:calc(10% - 10px);// 10% - 44px
+   transform: translateY(33px) rotate(-90deg); 
+   color: $cpdblue;
+   background-color: $button-color;
+   box-shadow: $btnshadow;
+   width: 65px;
+   height: 40px;
+   border: 1px solid grey;
+   border-radius: 10px;
+   text-align:center;
+   z-index: 0;
+    &.showTestBut {
+      right:calc(10% - 33px);//ex44
+      transition: 0.5s ease-in-out;
+    }
+    &.hideTestBut {
+      right:calc(10% - 10px);//ex24
+      transition: 0.5s ease-in-out;
+    }
+   }
+
+   .moveTestButton {animation : moveTestButton 1s 0s ease-in-out forwards}
+   .moveTestButtonback {animation : moveTestButtonback 1s 0s ease-in-out forwards}
+   
+   @keyframes moveTestButton {
+     0%  {transform: rotate(0deg);z-index:10;right: 33px;}
+     50% {z-index: 0;}
+     100% {transform:  translateY(33px) rotate(-90deg);z-index:0;  right:calc(10% - 33px)}
+     }
+   @keyframes moveTestButtonback {
+     0%  {transform:  translateY(33px) rotate(-90deg); z-index:0; right:calc(10% - 33px)}
+     90%  {z-index: 0;}
+     100% {transform:  rotate(0deg);z-index: 10; right: 33px;}
+   }
+
+
+.buttonShowAccount {
+  display: none; 
+  //display: inline-block;
+   position: fixed;
+   top: 155px;
    //right:calc(10% - 24px);// 10% - 44px
-   transform: translateY(30px) rotate(-90deg); 
+   transform: translateY(33px) rotate(-90deg); 
    color: $cpdblue;
    background-color: $button-color;
    box-shadow: $btnshadow;
@@ -58,6 +98,7 @@
    }
  }
  .moveButton {animation : moveButton 1s 0s ease-in-out forwards}
+ .moveButtonback {animation : moveButtonback 1s 0s ease-in-out forwards}
  
  @keyframes moveButton {
    0%  {transform: rotate(0deg);z-index:10;right: 33px;} //ex30
@@ -170,3 +211,20 @@
      }
    }
  }
+
+
+ @media (max-width: $tablet){
+  #buttonShowAccount {
+     z-index: 0;
+     transform: translateY(-25px) rotate(0deg); 
+/* 
+    &.showBut {
+      right:calc(10% - 33px);//ex44
+      transition: 0.5s ease-in-out;
+    }
+    &.hideBut {
+      right:calc(10% - 10px);//ex24
+      transition: 0.5s ease-in-out;
+    } */
+  }
+}
