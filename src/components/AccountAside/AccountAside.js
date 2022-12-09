@@ -69,7 +69,7 @@ const hideAccount = () => {
  */
 
 const AccountAside = () => {
-const [showAccount, setShowAccount] = useState("hideAccount");
+const [showAccount, setShowAccount] = useState("");
 const [buttonText, setButtonText] = useState("hide account")
 const {buttonPos, setButtonPos} = useContext(AsideAccountButtonContext)
 
@@ -86,15 +86,16 @@ const handleButton=(buttonPos) => {
   if ( buttonPos === buttonMove1 ) {
     setButtonPos(buttonMove2);
     setButtonText("hide account");
+    setShowAccount("showAccount");
   } else if( buttonPos === buttonMove2 ) {
     setButtonPos(buttonMove3);
     setButtonText("show account");
-    setShowAccount("showAccount");
+    setShowAccount("hideAccount");
   } else if( buttonPos === buttonMove3 ) {
     setButtonPos(buttonMove2);
-    setShowAccount("hideAccount");
+    setShowAccount("showAccount");
   } else {
-    setButtonPos(buttonMove4);
+    setButtonPos(buttonPosition0);
     /* setShowAccount("hideAccount") */
   }
 }

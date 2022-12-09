@@ -44,6 +44,11 @@
 // Account Conatiner
  #home_aside_account {
    display: block;
+   
+   transform: translateX(-120%) scale(90%); 
+   z-index: -1; 
+   opacity: 0; 
+
    background-color: $first-color;
    box-shadow: $boxshadow;
    width: 15vw;
@@ -55,7 +60,7 @@
    top: 180px;
    right: 0;
    font-size: $small;
-   z-index: 0;
+   //z-index: 0;
    border-radius: 5px;
    >p {
      margin-top: 10px;
@@ -81,10 +86,10 @@
     1%  {transform: translateX(-120%) scale(90%); display: block; z-index: -1;opacity: 1;display: block;}
     30% {z-index:1; display: block;}
     60% {transform: translateX(60%) scale(90%); display: block;}
-    100% {transform: translateX(0%) scale(100%); z-index:9; display: block;}
+    100% {transform: translateX(0%) scale(100%); z-index:9; display: block; opacity: 1}
     }
  @keyframes hide_home_aside {
-   0%  {transform: translateX(0%);z-index:9}
+   0%  {transform: translateX(0%);z-index:9; opacity: 1}
    30% {transform: translateX(60%) scale(90%) }
    60% {z-index:1}
    99% {transform: translateX(-120%) scale(90%); z-index: -1; opacity: 1}
