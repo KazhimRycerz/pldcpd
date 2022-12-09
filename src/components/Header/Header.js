@@ -4,12 +4,8 @@ import { useContext, useState } from "react";
 import pldcpd from "../../images/pldcpd.png";
 import  { AsideAccountButtonContext } from "../../context/AccountButtonContext.js" 
 
-
 const Header = () => {
-  const buttonPosition0 = "buttonTestAccount"
-  const buttonMove1 = "buttonTestAccount showTestBut" 
-  const buttonMove4 = "buttonTestAccount hideTestBut" 
-
+  
   const [showMenue, setShowMenue] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const { buttonPos, setButtonPos } = useContext(AsideAccountButtonContext)
@@ -71,7 +67,7 @@ const Header = () => {
               onClick={() => {
                 setLoggedIn(!loggedIn);
                 /* {loggedIn ? setButtonPos("buttonPosition0") : setButtonPos("buttonPosition1")} */
-                {loggedIn ? setButtonPos({buttonMove1}) : setButtonPos({buttonMove4})}
+                {loggedIn ? setButtonPos("buttonAccount hideBut") : setButtonPos("buttonAccount showBut")}
               }}
             >
               {loggedIn ? "log me out" : "log me in"}{" "}

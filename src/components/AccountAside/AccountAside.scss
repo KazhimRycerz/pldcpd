@@ -1,52 +1,12 @@
 @import '../../scss/global.scss';
 
-.buttonTestAccount {
+
+.buttonAccount {
   //display: none; 
-  display: inline-block;
+   display: inline-block;
    position: fixed;
    top: 155px;
-   right:calc(10% - 10px);// 10% - 44px
-   transform: translateY(33px) rotate(-90deg); 
-   color: $cpdblue;
-   background-color: $button-color;
-   box-shadow: $btnshadow;
-   width: 65px;
-   height: 40px;
-   border: 1px solid grey;
-   border-radius: 10px;
-   text-align:center;
-   z-index: 0;
-    &.showTestBut {
-      right:calc(10% - 33px);//ex44
-      transition: 0.5s ease-in-out;
-    }
-    &.hideTestBut {
-      right:calc(10% - 10px);//ex24
-      transition: 0.5s ease-in-out;
-    }
-   }
-
-   .moveTestButton {animation : moveTestButton 1s 0s ease-in-out forwards}
-   .moveTestButtonback {animation : moveTestButtonback 1s 0s ease-in-out forwards}
-   
-   @keyframes moveTestButton {
-     0%  {transform: rotate(0deg);z-index:10;right: 33px;}
-     50% {z-index: 0;}
-     100% {transform:  translateY(33px) rotate(-90deg);z-index:0;  right:calc(10% - 33px)}
-     }
-   @keyframes moveTestButtonback {
-     0%  {transform:  translateY(33px) rotate(-90deg); z-index:0; right:calc(10% - 33px)}
-     90%  {z-index: 0;}
-     100% {transform:  rotate(0deg);z-index: 10; right: 33px;}
-   }
-
-
-.buttonShowAccount {
-  display: none; 
-  //display: inline-block;
-   position: fixed;
-   top: 155px;
-   //right:calc(10% - 24px);// 10% - 44px
+   right:calc(10% - 10px);
    transform: translateY(33px) rotate(-90deg); 
    color: $cpdblue;
    background-color: $button-color;
@@ -97,18 +57,20 @@
      margin-top: 15px;
    }
  }
- .moveButton {animation : moveButton 1s 0s ease-in-out forwards}
- .moveButtonback {animation : moveButtonback 1s 0s ease-in-out forwards}
+ .moveButton {animation: moveButton 1s 0s ease-in-out forwards}
+ .moveButtonback {animation: moveButtonback 1s 0s ease-in-out forwards}
+ .showAccount {animation: show_home_aside 2s ease-in-out forwards}
+ .hideAccount {animation: hide_home_aside 2s ease-in-out forwards}
  
  @keyframes moveButton {
    0%  {transform: rotate(0deg);z-index:10;right: 33px;} //ex30
    50% {z-index: 0;}
-   100% {transform:  translateY(30px) rotate(-90deg);z-index:0;  right:calc(10% - 33px)}//44px
+   100% {transform:  translateY(33px) rotate(-90deg);z-index:0;  right:calc(10% - 33px)}//44px
    }
  @keyframes moveButtonback {
-   0%  {transform:  translateY(30px) rotate(-90deg); z-index:0; right:calc(10% - 33px)}//44px
+   0%  {transform:  translateY(33px) rotate(-90deg); z-index:0; right:calc(10% - 33px)}//44px
    90%  {z-index: 0;}
-   100% {transform:  rotate(0deg);z-index: 10; right: 30px;}
+   100% {transform:  rotate(0deg);z-index: 10; right: 33px;}
  }
  @keyframes hide_home_aside {
    0%  {transform: translateX(0%);z-index:9}

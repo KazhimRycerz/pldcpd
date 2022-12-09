@@ -4,7 +4,6 @@ import React, { useContext, useState } from 'react'
 import JoachimRitter from '../../images/Joachim_privat.jpg'
 import  { AsideAccountButtonContext } from "../../context/AccountButtonContext.js" 
 
-
  /* const moveAccountAndButton = () => {
   if (buttonShowAccount.textContent === "show account") {
     showAccount();
@@ -13,9 +12,9 @@ import  { AsideAccountButtonContext } from "../../context/AccountButtonContext.j
   } else {
     alert("Ein Fehler ist aufgetreten");
   }
-};
+};*/
 
- const handleButton = () => {
+ /*const handleButton = () => {
   if (flagButton && buttonShowAccount.textContent === "show account") {
     //console.log(flagButton, logInOut.textContent, buttonShowAccount.textContent);
     buttonShowAccount.classList.replace("hideBut", "showBut");
@@ -68,26 +67,32 @@ const hideAccount = () => {
 };   
 
  */
+
 const AccountAside = () => {
 const [showAccount, setShowAccount] = useState("hideAccount")
 const {buttonPos, setButtonPos} = useContext(AsideAccountButtonContext)
-/* const moveButtonback = buttonPos === "buttonPosition2" ? "moveButtonback" : "" 
-const moveButton = buttonPos === "buttonPosition1" ? "moveButton" : ""  */
 
-const buttonPosition0 = "buttonTestAccount"
-const buttonMove1 = "buttonTestAccount showTestBut" 
-const buttonMove2 = "buttonTestAccount showTestBut moveTestButtonback" 
-const buttonMove3 = "buttonTestAccount showTestBut moveTestButton" 
-const buttonMove4 = "buttonTestAccount hideTestBut" 
+const buttonPosition0 = "buttonAccount" 
+const buttonMove1 = "buttonAccount showBut" 
+const buttonMove2 = "buttonAccount showBut moveButtonback" 
+const buttonMove3 = "buttonAccount showBut moveButton" 
+const buttonMove4 = "buttonAccount hideBut" 
 
-const handleTestButton=() => {
-  if ( buttonPos === {buttonMove1} ) {
-    setButtonPos({buttonMove2});
-  } else if( buttonPos === {buttonMove2} ) {
-    setButtonPos({buttonMove3})
-  } else if( buttonPos === {buttonMove3} ) {
-    setButtonPos({buttonMove2})
-  } else {setButtonPos({buttonPosition0})}
+const handleButton=(buttonPos) => {
+  if ( buttonPos === buttonMove1 ) {
+    setButtonPos(buttonMove2);
+  } else if( buttonPos === buttonMove2 ) {
+    setButtonPos(buttonMove3);
+    setShowAccount("showAccount")
+  } else if( buttonPos === buttonMove3 ) {
+    setButtonPos(buttonMove2);
+    setShowAccount("hideAccount")
+  } /* else if( buttonPos = buttonPosition0){
+    alert("Joachim")
+  }  */ else {setButtonPos(buttonPosition0);
+    console.log("expected buttonAccount" + buttonPos)
+    setShowAccount("hideAccount")
+  }
 }
 
 /* const handleButton=() => {
@@ -100,18 +105,18 @@ const handleTestButton=() => {
 
 return (
    <>
-      {/* {<button type="button" 
-        className={["buttonShowAccount", buttonPos === "buttonPosition0" ? "hideBut" : "showBut", moveButtonback, moveButton ].join(" ")} id="buttonShowAccount" 
-        onClick ={handleButton}
-        >show account
-      </button>} */}
-
       <button type="button" 
-      onClick ={handleTestButton}
-      className = {buttonMove3} //{{buttonPos}}
-      >test<br />button</button>
+        onClick ={()=>handleButton(buttonPos)}
+        className = {buttonPos} 
+        >show account
+      </button>
+
+      {/* <button type="button" 
+      onClick ={()=>handleButton(buttonPos)}
+      className = {buttonPos} 
+      >test<br />button</button> */}
                
-      <aside id="home_aside_account">
+      <aside id="home_aside_account" className="">
         <img src={JoachimRitter} alt="Joachim Ritter privat" />
         <p><strong>Hallo, Joachim Ritter </strong><br />
         Journalist <br />Karrierelevel <br />--- <span> IV </span> ---<br />Project Lighting Designer</p> <br />

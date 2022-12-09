@@ -1,15 +1,19 @@
 import React, { useState, useContext, createContext } from 'react'
 import './AccountButtonContext.scss'
 
+
+// 1. Button Positionen / Class handeln
 const AsideAccountButtonContext = React.createContext(null)
 
 const AccountButtonProvider = (props)=>{
-   const buttonPosition0 = "buttonTestAccount"
-   const buttonMove1 = "buttonTestAccount showTestBut" 
-   const buttonMove2 = "buttonTestAccount showTestBut moveTestButtonback" 
-   const buttonMove3 = "buttonTestAccount showTestBut moveTestButton" 
-   const buttonMove4 = "buttonTestAccount hideTestBut" 
-   const [buttonPos, setButtonPos] = useState({buttonPosition0});
+
+   const buttonPosition0 = "buttonAccount"
+   const buttonMove1 = "buttonAccount showBut" 
+   const buttonMove2 = "buttonAccount showBut moveButtonback" 
+   const buttonMove3 = "buttonAccount showBut moveButton" 
+   const buttonMove4 = "buttonAccount hideBut" 
+
+   const [buttonPos, setButtonPos] = useState("buttonAccount");
    
    return (
       <AsideAccountButtonContext.Provider value={{buttonPos, setButtonPos}}>
@@ -18,3 +22,18 @@ const AccountButtonProvider = (props)=>{
    )
 }
 export { AsideAccountButtonContext, AccountButtonProvider }
+
+
+// 2. Account Positionen / Class handeln
+/* const AsideAccountContext = React.createContext(null)
+
+const AsideAccountProvider = (props)=>{
+   const [showAccount, setShowAccount] = useState("hideAccount")
+   
+   return (
+      <AsideAccountButtonContext.Provider value={{showAccount, setShowAccount}}>
+         {props.children}
+      </AsideAccountButtonContext.Provider>
+   )
+}
+export { AsideAccountContext, AsideAccountProvider } */

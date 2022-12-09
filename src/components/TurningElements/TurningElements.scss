@@ -1,13 +1,14 @@
 @import '../../scss/global.scss';
 
 .drehmoment img {
+  //display: none;
   position: fixed;
   opacity: 1;
   width: 15vw; 
   //width: 13vw; 
   aspect-ratio: 1;
   z-index: -1;
-  animation: rotate 25s infinite linear;
+  //animation: rotate 25s infinite linear;
 }
 
 #r1 {
