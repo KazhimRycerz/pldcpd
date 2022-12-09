@@ -50,7 +50,7 @@ showLogin.addEventListener("click", handleButton);
 buttonShowAccount.addEventListener("click", moveAccountAndButton);
 
 const showAccount = () => {
-  buttonShowAccount.style.animation = "moveButtonback 1s ease-in-out forwards";
+  buttonShowAccount.style.animation = "moveButton 1s ease-in-out forwards";
   homeAsideAccount.style.animation = "show_home_aside 2s ease-in-out forwards";
   homeAsideAccount.style.display = "block";
   gruß.style.right = "10vw";
@@ -59,7 +59,7 @@ const showAccount = () => {
 };
 const hideAccount = () => {
   homeAsideAccount.style.animation = "hide_home_aside 2s ease-in-out forwards";
-  buttonShowAccount.style.animation = "moveButton 1s 0s ease-in-out forwards";
+  buttonShowAccount.style.animation = "moveButtonBack 1s 0s ease-in-out forwards";
   gruß.style.right = "4vw";
   C1.style.left = "0px"; //4
   C1.style.margin = "60px auto"; //4
@@ -69,54 +69,46 @@ const hideAccount = () => {
  */
 
 const AccountAside = () => {
-const [showAccount, setShowAccount] = useState("hideAccount")
+const [showAccount, setShowAccount] = useState("hideAccount");
+const [buttonText, setButtonText] = useState("hide account")
 const {buttonPos, setButtonPos} = useContext(AsideAccountButtonContext)
 
 const buttonPosition0 = "buttonAccount" 
 const buttonMove1 = "buttonAccount showBut" 
-const buttonMove2 = "buttonAccount showBut moveButtonback" 
-const buttonMove3 = "buttonAccount showBut moveButton" 
-const buttonMove4 = "buttonAccount hideBut" 
+const buttonMove2 = "buttonAccount showBut moveButton" 
+const buttonMove3 = "buttonAccount showBut moveButtonBack" 
+const buttonMove4 = "buttonAccount hideBut"
+
+/* const positionAccounthidden = "home_aside_account hideAccount"
+const positionAccountshow = "home_aside_account showAccount" */
 
 const handleButton=(buttonPos) => {
   if ( buttonPos === buttonMove1 ) {
     setButtonPos(buttonMove2);
+    setButtonText("hide account");
   } else if( buttonPos === buttonMove2 ) {
     setButtonPos(buttonMove3);
-    setShowAccount("showAccount")
+    setButtonText("show account");
+    setShowAccount("showAccount");
   } else if( buttonPos === buttonMove3 ) {
     setButtonPos(buttonMove2);
-    setShowAccount("hideAccount")
-  } /* else if( buttonPos = buttonPosition0){
-    alert("Joachim")
-  }  */ else {setButtonPos(buttonPosition0);
-    console.log("expected buttonAccount" + buttonPos)
-    setShowAccount("hideAccount")
+    setShowAccount("hideAccount");
+  } else {
+    setButtonPos(buttonMove4);
+    /* setShowAccount("hideAccount") */
   }
 }
-
-/* const handleButton=() => {
-  if ( buttonPos === "buttonPosition1" ) {
-    setButtonPos("buttonPosition2")
-  } else if( buttonPos === "buttonPosition2" ) {
-    setButtonPos("buttonPosition1")
-  }
-} */
 
 return (
    <>
       <button type="button" 
         onClick ={()=>handleButton(buttonPos)}
+        id="buttonShowAccount"
         className = {buttonPos} 
-        >show account
+        >{buttonText} 
       </button>
-
-      {/* <button type="button" 
-      onClick ={()=>handleButton(buttonPos)}
-      className = {buttonPos} 
-      >test<br />button</button> */}
                
-      <aside id="home_aside_account" className="">
+      <aside id="home_aside_account" className = {showAccount} >
         <img src={JoachimRitter} alt="Joachim Ritter privat" />
         <p><strong>Hallo, Joachim Ritter </strong><br />
         Journalist <br />Karrierelevel <br />--- <span> IV </span> ---<br />Project Lighting Designer</p> <br />

@@ -18,17 +18,32 @@
    text-align:center;
    z-index: 0;
    &.showBut {
-     right:calc(10% - 33px);//ex44
-     transition: 0.5s ease-in-out;
-   }
+    right:calc(10% - 33px);//ex44
+    transition: 0.5s ease-in-out;
+    }
    &.hideBut {
-     right:calc(10% - 10px);//ex24
-     transition: 0.5s ease-in-out;
-   }
-   }
+    right:calc(10% - 10px);//ex24
+    transition: 0.5s ease-in-out;
+  }
+}
+.moveButton {animation: moveButton 1s 0s ease-in-out forwards}
+.moveButtonBack {animation: moveButtonBack 1s 0s ease-in-out forwards}
+
+  
+  @keyframes moveButton {
+    0%  {transform:  translateY(33px) rotate(-90deg); z-index:0; right:calc(10% - 33px)}//44px
+    90%  {z-index: 0;}
+    100% {transform:  rotate(0deg);z-index: 10; right: 33px;}
+  }
+  @keyframes moveButtonBack {
+    0%  {transform: rotate(0deg);z-index:10;right: 33px;} //ex30
+    50% {z-index: 0;}
+    100% {transform:  translateY(33px) rotate(-90deg);z-index:0;  right:calc(10% - 33px)}//44px
+    }
  
+// Account Conatiner
  #home_aside_account {
-   display: none;
+   display: block;
    background-color: $first-color;
    box-shadow: $boxshadow;
    width: 15vw;
@@ -56,35 +71,24 @@
      margin-left: 0px;
      margin-top: 15px;
    }
- }
- .moveButton {animation: moveButton 1s 0s ease-in-out forwards}
- .moveButtonback {animation: moveButtonback 1s 0s ease-in-out forwards}
- .showAccount {animation: show_home_aside 2s ease-in-out forwards}
- .hideAccount {animation: hide_home_aside 2s ease-in-out forwards}
+  }
+  
+  .showAccount {animation: show_home_aside 2s ease-in-out forwards}
+  .hideAccount {animation: hide_home_aside 2s ease-in-out forwards}
  
- @keyframes moveButton {
-   0%  {transform: rotate(0deg);z-index:10;right: 33px;} //ex30
-   50% {z-index: 0;}
-   100% {transform:  translateY(33px) rotate(-90deg);z-index:0;  right:calc(10% - 33px)}//44px
-   }
- @keyframes moveButtonback {
-   0%  {transform:  translateY(33px) rotate(-90deg); z-index:0; right:calc(10% - 33px)}//44px
-   90%  {z-index: 0;}
-   100% {transform:  rotate(0deg);z-index: 10; right: 33px;}
- }
+  @keyframes show_home_aside {
+    0%  {opacity:0; display: block;}
+    1%  {transform: translateX(-120%) scale(90%); display: block; z-index: -1;opacity: 1;display: block;}
+    30% {z-index:1; display: block;}
+    60% {transform: translateX(60%) scale(90%); display: block;}
+    100% {transform: translateX(0%) scale(100%); z-index:9; display: block;}
+    }
  @keyframes hide_home_aside {
    0%  {transform: translateX(0%);z-index:9}
    30% {transform: translateX(60%) scale(90%) }
    60% {z-index:1}
    99% {transform: translateX(-120%) scale(90%); z-index: -1; opacity: 1}
    100% {transform: translateX(-120%) scale(90%); z-index: -1; opacity: 0; display: none;}
-   }
- @keyframes show_home_aside {
-   0%  {opacity:0; display: none;}
-   1%  {transform: translateX(-120%) scale(90%); display: block; z-index: -1;opacity: 1;display: block;}
-   30% {z-index:1; display: block;}
-   60% {transform: translateX(60%) scale(90%); display: block;}
-   100% {transform: translateX(0%) scale(100%); z-index:9; display: block;}
    }
  
      
@@ -189,4 +193,9 @@
       transition: 0.5s ease-in-out;
     } */
   }
-}
+  .hideBut {
+    transform: translateY(-25px) rotate(0deg) translateY(33px);
+    top:20%;//ex24
+     transition: 0.5s ease-in-out;
+  }
+ }

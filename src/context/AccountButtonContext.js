@@ -7,11 +7,11 @@ const AsideAccountButtonContext = React.createContext(null)
 
 const AccountButtonProvider = (props)=>{
 
-   const buttonPosition0 = "buttonAccount"
+   /* const buttonPosition0 = "buttonAccount"
    const buttonMove1 = "buttonAccount showBut" 
-   const buttonMove2 = "buttonAccount showBut moveButtonback" 
-   const buttonMove3 = "buttonAccount showBut moveButton" 
-   const buttonMove4 = "buttonAccount hideBut" 
+   const buttonMove2 = "buttonAccount showBut moveButton" 
+   const buttonMove3 = "buttonAccount showBut moveButtonBack" 
+   const buttonMove4 = "buttonAccount hideBut"  */
 
    const [buttonPos, setButtonPos] = useState("buttonAccount");
    

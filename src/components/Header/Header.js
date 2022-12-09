@@ -66,7 +66,6 @@ const Header = () => {
               id="showlogin"
               onClick={() => {
                 setLoggedIn(!loggedIn);
-                /* {loggedIn ? setButtonPos("buttonPosition0") : setButtonPos("buttonPosition1")} */
                 {loggedIn ? setButtonPos("buttonAccount hideBut") : setButtonPos("buttonAccount showBut")}
               }}
             >
