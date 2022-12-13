@@ -1,10 +1,9 @@
 {
   "files": {
-    "main.css": "/pldcpd/static/css/main.de289c86.css",
-    "main.js": "/pldcpd/static/js/main.468c18fd.js",
+    "main.css": "/pldcpd/static/css/main.b35f6b89.css",
+    "main.js": "/pldcpd/static/js/main.fe6da3f3.js",
     "static/media/Vulkan.gif": "/pldcpd/static/media/Vulkan.3fe35e5fca25582b5eaa.gif",
     "static/media/RampartOne-Regular.otf": "/pldcpd/static/media/RampartOne-Regular.d5c388272379f39c06fb.otf",
-    "static/media/Wallpaper_07_cpd_dark.PNG": "/pldcpd/static/media/Wallpaper_07_cpd_dark.e1df4e2b9221036c2319.PNG",
     "static/media/unsplash.jpg": "/pldcpd/static/media/unsplash.49c74b9ba7d11090733b.jpg",
     "static/media/FrederickatheGreat-Regular.otf": "/pldcpd/static/media/FrederickatheGreat-Regular.71d00f9bfe711bfefaa4.otf",
     "static/media/RampartOne-Regular.woff2": "/pldcpd/static/media/RampartOne-Regular.17bb11c2c7f73abfe808.woff2",
@@ -13,6 +12,7 @@
     "static/media/Baustelle.jpg": "/pldcpd/static/media/Baustelle.3ea770cc8976e8240a37.jpg",
     "static/media/FallingSkyOu.otf": "/pldcpd/static/media/FallingSkyOu.39f81c0efef0b8d94354.otf",
     "static/media/Sonnenuntergang.jpg": "/pldcpd/static/media/Sonnenuntergang.1514da00b25ec75ff82b.jpg",
+    "static/media/Joachim_privat.jpg": "/pldcpd/static/media/Joachim_privat.5b0d7556265d87d0cd90.jpg",
     "static/media/FrederickatheGreat-Regular.woff2": "/pldcpd/static/media/FrederickatheGreat-Regular.d6d0a6fc609ee78b7c81.woff2",
     "static/media/Sonnenuntergang_dark.jpg": "/pldcpd/static/media/Sonnenuntergang_dark.960a1542865bbffdca5e.jpg",
     "static/media/Egon_Zitter_8_Libellen.jpg": "/pldcpd/static/media/Egon_Zitter_8_Libellen.a1e507570c7c3ea9a662.jpg",
@@ -20,7 +20,7 @@
     "static/media/ChalkLine-Outline.otf": "/pldcpd/static/media/ChalkLine-Outline.54c106fd3b70d4b0b22a.otf",
     "static/media/level_8_master.jpg": "/pldcpd/static/media/level_8_master.1ae0af0bee46a50bb3f9.jpg",
     "static/media/level_9_authorised_expert.jpg": "/pldcpd/static/media/level_9_authorised_expert.0a1320339e6a48b57978.jpg",
-    "static/media/drehmoment2.png": "/pldcpd/static/media/drehmoment2.9251c6f7a1ece608646a.png",
+    "static/media/drehmoment2.png": "/pldcpd/static/media/drehmoment2.cfaa52d4b3c4d27630a9.png",
     "static/media/Vacaciones-font-ffp-defharo.otf": "/pldcpd/static/media/Vacaciones-font-ffp-defharo.fc97657be1bebb564c40.otf",
     "static/media/FallingSkyOu.woff2": "/pldcpd/static/media/FallingSkyOu.9ef8666e51278edb8f9f.woff2",
     "static/media/level_6_associate.jpg": "/pldcpd/static/media/level_6_associate.4411a0efc1db886cd78d.jpg",
@@ -50,11 +50,11 @@
     "static/media/VIA-Verlag.otf": "/pldcpd/static/media/VIA-Verlag.f9b0807e13383d5cb88c.otf",
     "static/media/VIA-Verlag.woff2": "/pldcpd/static/media/VIA-Verlag.ca1bde523566b12176ee.woff2",
     "index.html": "/pldcpd/index.html",
-    "main.de289c86.css.map": "/pldcpd/static/css/main.de289c86.css.map",
-    "main.468c18fd.js.map": "/pldcpd/static/js/main.468c18fd.js.map"
+    "main.b35f6b89.css.map": "/pldcpd/static/css/main.b35f6b89.css.map",
+    "main.fe6da3f3.js.map": "/pldcpd/static/js/main.fe6da3f3.js.map"
   },
   "entrypoints": [
-    "static/css/main.de289c86.css",
-    "static/js/main.468c18fd.js"
+    "static/css/main.b35f6b89.css",
+    "static/js/main.fe6da3f3.js"
   ]
 }
