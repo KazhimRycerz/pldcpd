@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import React, { useContext, useState } from 'react'
 import JoachimRitter from '../../images/Joachim_privat.jpg'
 import  { AsideAccountButtonContext } from "../../context/AccountButtonContext.js" 
+import { AsideAccountContext } from '../../context/AsideAccountContext.js'
 
  /* const moveAccountAndButton = () => {
   if (buttonShowAccount.textContent === "show account") {
@@ -35,7 +36,6 @@ import  { AsideAccountButtonContext } from "../../context/AccountButtonContext.j
   } else {
     alert("Ein Fehler ist aufgetreten");
   }
-  console.log(flagButton, logInOut.textContent, buttonShowAccount.textContent);
 };
 
 let flagButton = true;
@@ -65,11 +65,10 @@ const hideAccount = () => {
   C1.style.margin = "60px auto"; //4
   buttonShowAccount.textContent = "show account";
 };   
-
  */
 
 const AccountAside = () => {
-const [showAccount, setShowAccount] = useState("");
+const {showAccount, setShowAccount} = useContext(AsideAccountContext);
 const [buttonText, setButtonText] = useState("hide account")
 const {buttonPos, setButtonPos} = useContext(AsideAccountButtonContext)
 
@@ -83,11 +82,13 @@ const buttonMove4 = "buttonAccount hideBut"
 const positionAccountshow = "home_aside_account showAccount" */
 
 const handleButton=(buttonPos) => {
+  console.log("passiert das hier")
   if ( buttonPos === buttonMove1 ) {
     setButtonPos(buttonMove2);
     setButtonText("hide account");
     setShowAccount("showAccount");
   } else if( buttonPos === buttonMove2 ) {
+    console.log("Hallo Welt")
     setButtonPos(buttonMove3);
     setButtonText("show account");
     setShowAccount("hideAccount");
@@ -96,7 +97,7 @@ const handleButton=(buttonPos) => {
     setShowAccount("showAccount");
   } else {
     setButtonPos(buttonPosition0);
-    /* setShowAccount("hideAccount") */
+    setShowAccount("hideAccount")
   }
 }
 
@@ -110,6 +111,8 @@ return (
       </button>
                
       <aside id="home_aside_account" className = {showAccount} >
+        {console.log("show account in accountaside", showAccount)}
+        {console.log("buttonpos in accountaside", buttonPos)}
         <img src={JoachimRitter} alt="Joachim Ritter privat" />
         <p><strong>Hallo, Joachim Ritter </strong><br />
         Journalist <br />Karrierelevel <br />--- <span> IV </span> ---<br />Project Lighting Designer</p> <br />
