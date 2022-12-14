@@ -71,15 +71,15 @@ const Header = () => {
               onClick={() => {
                 setLoggedIn(!loggedIn);
               
-                loggedIn && showAccount === "hideAccount"
-                ? setShowAccount("hideAccount")
-                : setShowAccount("");
+                loggedIn && showAccount === "showAccount"
+                  ? setShowAccount("hideAccount")
+                  : setShowAccount("");
 
-                if (loggedIn && showAccount === "hideAccount"){
+                /* if (loggedIn && showAccount === "hideAccount"){
                   setShowAccount("showAccount")
                 } else if (!loggedIn && showAccount === "showAccount"){
                   setShowAccount("hideAccount")
-                }
+                } */
 
                 
                 if(!loggedIn && buttonPos === "buttonAccount") {
