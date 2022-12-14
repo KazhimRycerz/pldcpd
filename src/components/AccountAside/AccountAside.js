@@ -82,13 +82,11 @@ const buttonMove4 = "buttonAccount hideBut"
 const positionAccountshow = "home_aside_account showAccount" */
 
 const handleButton=(buttonPos) => {
-  console.log("passiert das hier")
   if ( buttonPos === buttonMove1 ) {
     setButtonPos(buttonMove2);
     setButtonText("hide account");
     setShowAccount("showAccount");
   } else if( buttonPos === buttonMove2 ) {
-    console.log("Hallo Welt")
     setButtonPos(buttonMove3);
     setButtonText("show account");
     setShowAccount("hideAccount");

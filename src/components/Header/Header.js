@@ -1,6 +1,6 @@
 import "./Header.scss";
 import { NavLink, Link } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import pldcpd from "../../images/pldcpd.png";
 import { AsideAccountContext } from "../../context/AsideAccountContext.js";
 import { AsideAccountButtonContext } from "../../context/AccountButtonContext.js";
@@ -10,6 +10,10 @@ const Header = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const { buttonPos, setButtonPos } = useContext(AsideAccountButtonContext);
   const { showAccount, setShowAccount } = useContext(AsideAccountContext);
+  useEffect(() => {
+  console.log("buttonPosition:", buttonPos)
+}
+  )
 
   return (
     <>
@@ -67,15 +71,17 @@ const Header = () => {
               id="showlogin"
               onClick={() => {
                 setLoggedIn(!loggedIn);
-                console.log("Showing");
-
+              
                 loggedIn && showAccount === "showAccount"
                   ? setShowAccount("hideAccount")
                   : setShowAccount("");
+
+
+
                 loggedIn
                   ? setButtonPos("buttonAccount hideBut")
                   : setButtonPos("buttonAccount showBut");
-                console.log("showaccount", showAccount);
+                //console.log("showaccount", showAccount);
               }}
             >
               {loggedIn ? "log me out" : "log me in"}{" "}

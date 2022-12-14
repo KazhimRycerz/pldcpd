@@ -32,7 +32,7 @@ const TurningElements = () => {
     };
   }, []);
   return (
-    <div onMouseEnter className="drehmoment" >
+    <div className="drehmoment" >
       <img src={drehmoment2} id="r1" className="rotate" alt="" />
       <img src={drehmoment2} id="r2" className="rotate" alt="" />
       <img src={drehmoment2} id="r3" className="rotate" alt="" />

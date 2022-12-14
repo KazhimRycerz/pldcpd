@@ -224,7 +224,7 @@ const HomeMain = () => {
             <div id="info_1_1">
               <div>
                 <h2>Lernangebote</h2>
-                <label for="Filter">Sortiert nach</label>
+                <label htmlFor="Filter">Sortiert nach</label>
                 <select name="Filter" id="Filter">
                   <option value="Themenfeld">Themenfeld</option>
                   <option value="Art">Art</option>
@@ -235,7 +235,6 @@ const HomeMain = () => {
               </div>
 
               <table>
-                <thead>
                   <colgroup>
                     <col width="10%" />
                     <col width="30%" />
@@ -245,6 +244,7 @@ const HomeMain = () => {
                     <col width="15%" />
                     <col width="15%" />
                   </colgroup>
+                <thead>
 
                   <tr>
                     <th>Datum</th>
@@ -349,8 +349,10 @@ const HomeMain = () => {
                   </tr>
                 </tbody>
                 <tfoot>
-                  <td>5</td>
-                  <td>20</td>
+                  <tr>
+                    <td>5</td>
+                    <td>20</td>
+                  </tr>
                 </tfoot>
               </table>
               <br />
