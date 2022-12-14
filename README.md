@@ -22,7 +22,7 @@ Search for educational opportunities based on your level of professional carrer.
 - [ ] _SASS_
 - [x] _SCSS_
 - [x] _JavaScript_
-- [ ] _React_
+- [x] _React_
 - [ ] _Bootstrap_
 - [x] _npm_
 - [ ] _..._
