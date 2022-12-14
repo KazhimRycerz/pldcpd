@@ -77,6 +77,7 @@ const buttonMove1 = "buttonAccount showBut"
 const buttonMove2 = "buttonAccount showBut moveButton" 
 const buttonMove3 = "buttonAccount showBut moveButtonBack" 
 const buttonMove4 = "buttonAccount hideBut"
+const buttonMove5 = "buttonAccount moveButtonBackToStart"
 
 /* const positionAccounthidden = "home_aside_account hideAccount"
 const positionAccountshow = "home_aside_account showAccount" */
@@ -109,8 +110,6 @@ return (
       </button>
                
       <aside id="home_aside_account" className = {showAccount} >
-        {console.log("show account in accountaside", showAccount)}
-        {console.log("buttonpos in accountaside", buttonPos)}
         <img src={JoachimRitter} alt="Joachim Ritter privat" />
         <p><strong>Hallo, Joachim Ritter </strong><br />
         Journalist <br />Karrierelevel <br />--- <span> IV </span> ---<br />Project Lighting Designer</p> <br />

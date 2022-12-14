@@ -12,8 +12,7 @@ const Header = () => {
   const { showAccount, setShowAccount } = useContext(AsideAccountContext);
   useEffect(() => {
   console.log("buttonPosition:", buttonPos)
-}
-  )
+  })
 
   return (
     <>
@@ -72,16 +71,30 @@ const Header = () => {
               onClick={() => {
                 setLoggedIn(!loggedIn);
               
-                loggedIn && showAccount === "showAccount"
-                  ? setShowAccount("hideAccount")
-                  : setShowAccount("");
+                loggedIn && showAccount === "hideAccount"
+                ? setShowAccount("hideAccount")
+                : setShowAccount("");
 
+                if (loggedIn && showAccount === "hideAccount"){
+                  setShowAccount("showAccount")
+                } else if (!loggedIn && showAccount === "showAccount"){
+                  setShowAccount("hideAccount")
+                }
 
+                
+                if(!loggedIn && buttonPos === "buttonAccount") {
+                  setButtonPos("buttonAccount showBut")
+                } else if (loggedIn && buttonPos === "buttonAccount showBut") {setButtonPos("buttonAccount hideBut")
+                } else if (!loggedIn && buttonPos === "buttonAccount hideBut") {setButtonPos("buttonAccount showBut")
+                } else if (!loggedIn && buttonPos === "buttonAccount moveButtonBackToStart") {setButtonPos("buttonAccount showBut")
+                } else if (loggedIn && buttonPos === "buttonAccount showBut moveButtonBack") {setButtonPos("buttonAccount hideBut")
+                } else if (loggedIn && buttonPos === "buttonAccount showBut moveButton") {setButtonPos("buttonAccount moveButtonBackToStart")
+                } else {setButtonPos("buttonAccount")
+                }
 
-                loggedIn
+                /* loggedIn
                   ? setButtonPos("buttonAccount hideBut")
-                  : setButtonPos("buttonAccount showBut");
-                //console.log("showaccount", showAccount);
+                  : setButtonPos("buttonAccount showBut"); */
               }}
             >
               {loggedIn ? "log me out" : "log me in"}{" "}
