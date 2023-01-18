@@ -1,7 +1,8 @@
 @import '../../scss/global.scss';
 
 
-.buttonAccount {
+//.buttonAccount {
+#buttonShowAccount {
   //display: none; 
    display: inline-block;
    position: fixed;
@@ -24,12 +25,11 @@
    &.hideBut {
     right:calc(10% - 10px);//ex24
     transition: 0.5s ease-in-out;
+    }
+   &.moveButton {animation: moveButton 1s 0s ease-in-out forwards}
+   &.moveButtonBack {animation: moveButtonBack 1s 0s ease-in-out forwards}
+   &.moveButtonBackToStart {animation: moveButtonBackToStart 1.5s ease-in-out forwards}
   }
-}
-.moveButton {animation: moveButton 1s 0s ease-in-out forwards}
-.moveButtonBack {animation: moveButtonBack 1s 0s ease-in-out forwards}
-.moveButtonBackToStart {animation: moveButtonBackToStart 1s 0s ease-in-out forwards}
-
   
   @keyframes moveButton {
     0%  {transform:  translateY(33px) rotate(-90deg); z-index:0; right:calc(10% - 33px)}//44px
@@ -41,22 +41,18 @@
     50% {z-index: 0;}
     100% {transform:  translateY(33px) rotate(-90deg);z-index:0;  right:calc(10% - 33px)}//44px
     }
-
   @keyframes moveButtonBackToStart {
     0%  {transform: rotate(0deg);z-index:10;right: 33px;} //ex30
     50% {z-index: 0;}
-    100% {transform:  translateY(33px) rotate(-90deg);z-index:0;  right:calc(10% - 10px)}//33px
-   /* 100% {right:calc(10% - 10px)} */;  
+    100% {transform:  translateY(33px) rotate(-90deg);z-index:0;  right:calc(10% - 10px)}//33px 
   }
 
 // Account Conatiner
  #home_aside_account {
    display: block;
-   
    transform: translateX(-120%) scale(90%); 
    z-index: -1; 
    opacity: 0; 
-
    background-color: $first-color;
    box-shadow: $boxshadow;
    width: 15vw;
@@ -84,13 +80,13 @@
      margin-left: 0px;
      margin-top: 15px;
    }
+   &.showAccount {animation: show_home_aside 2s ease-in-out forwards}
+   &.hideAccount {animation: hide_home_aside 2s ease-in-out forwards}
   }
   
-  .showAccount {animation: show_home_aside 2s ease-in-out forwards}
-  .hideAccount {animation: hide_home_aside 2s ease-in-out forwards}
  
   @keyframes show_home_aside {
-    0%  {opacity:0; display: block;}
+    0%  {opacity:0; display: none;}
     1%  {transform: translateX(-120%) scale(90%); display: block; z-index: -1;opacity: 1;display: block;}
     30% {z-index:1; display: block;}
     60% {transform: translateX(60%) scale(90%); display: block;}

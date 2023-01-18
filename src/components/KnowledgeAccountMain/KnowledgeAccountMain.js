@@ -11,38 +11,56 @@ const  KnowledgeAccountMain = ()=>{
             </section>
 
             <section id="account_1">
-               <h3> Ihre Karrieredaten</h3>
+               <h3> Ihre Karrierestatus</h3>
                <div id="account_1_data">
-               <div>
-                  <output id="fullName">Joachim Ritter</output>
-                  <output id="profession"> Lighting Designer</output>
-                  <output id="company">VIA-Design</output>
-               </div>
+                  <div>
+                     <div> 
+                        <p>username:</p> 
+                        <output id="fullName">Joachim Ritter</output></div>
+                     <div>
+                        <p>profession:</p> 
+                        <output id="profession"> Lighting Designer</output>
+                     </div>
+                        <div><p>current company:</p>
+                        <output id="company">VIA-Design</output>
+                     </div>
+                  </div>
 
-               <div>
-                  <p>Karrierelevel</p>
-                  <output className="account_Box" id="myCL"> IV</output>
-                  <output id="account_1_p">Project Lighting Designer</output>
-               </div>
+                  <div>
+                     <div>
+                        <p>Karrierelevel</p>
+                        <output id="myCL"> IV</output>
+                     </div>
+                     <div><p></p></div>
+                        <div><p id="account_1_p">Project Lighting Designer</p></div>
+                  </div>
 
-               <div>
-                  
-                  <p>CPD-aktiv seit</p>
-                  <output className="account_box_dates" id="my_start"> 01.11.20
-                  </output>
-                  <p>beruflich aktiv seit </p>
-                  <output className="account_box_dates" id="my_active"> 01.06.11
-                  </output>
-                  
-               </div>
+                  <div>
+                     <div>
+                        <p>CPD-aktiv seit</p>
+                        <output id="my_start"> 01.11.20
+                        </output>
+                     </div>
+                     <div>
+                        <p>beruflich aktiv seit </p>
+                        <output id="my_active"> 01.06.11
+                        </output>
+                     </div>
+                     <div>
+                        <p></p>
+                     </div>
+                     
+                  </div>
 
-               <div>
-                  <p>Ihr Guthaben</p>
-                  <output className="account_Box" id="myLCoins"> myLC <strong id="LC"> LC</strong>
-                  </output>
-                  <p>Ihr Guthaben</p>
-               </div>
-
+                  <div>
+                     <div>
+                        <p>Ihr Guthaben</p>
+                        <output className="account_Box" id="myLCoins"> myLC <span id="LC"> LC</span>
+                        </output>
+                     </div>
+                     <div><p></p></div>
+                     <div><p></p></div>
+                  </div>
                </div>
             </section>
 
@@ -52,61 +70,71 @@ const  KnowledgeAccountMain = ()=>{
                Teilnehmer an.</p>
 
                <div id="account_2_data">
+                  <div className="account_2">
+                     <div>
+                        <h2>KF</h2>
+                        <p>Knowledge<br />Factor</p>
+                     </div>
+                     <div className="account_data_box">
+                        <output className="account_pers_data" id="myKF">myKF</output>
+                        <output className="account_market_data" id="maKF">maKF</output>
+                     </div>
+                  </div>
 
-               <div className="account_2">
-                  <div>
-                     <h2>KF</h2>
-                     <p>Knowledge<br />Factor</p>
+                  <div className="account_2">
+                     <div>
+                        <h2>LF</h2>
+                        <p>Learning<br />Factor</p>
+                     </div>
+                     <div className="account_data_box">
+                        <output className="account_pers_data" id="myLF">myLF</output>
+                        <output className="account_market_data" id="maLF">maLF</output>
+                     </div>
                   </div>
-                  <div className="account_data_box">
-                     <output className="account_pers_data" id="myKF">myKF</output>
-                     <output className="account_market_data" id="maKF">maKF</output>
-                  </div>
-               </div>
 
-               <div className="account_2">
-                  <div>
-                     <h2>LF</h2>
-                     <p>Learning<br />Factor</p>
+                  <div className="account_2">
+                     <div>
+                        <h2>PEX</h2>
+                        <p>Professional<br />Experience</p>
+                     </div>
+                     <div className="account_data_box">
+                        <output className="account_pers_data" id="myPEX">myPEX</output>
+                        <output className="account_market_data" id="maPEX">maPEX</output>
+                     </div>
                   </div>
-                  <div className="account_data_box">
-                     <output className="account_pers_data" id="myLF">myLF</output>
-                     <output className="account_market_data" id="maLF">maLF</output>
-                  </div>
-               </div>
 
-               <div className="account_2">
-                  <div>
-                     <h2>PEX</h2>
-                     <p>Professional<br />Experience</p>
+                  <div className="account_2">
+                     <div>
+                        <h2>PED</h2>
+                        <p>Professional<br />Education</p>
+                     </div>
+                     <div className="account_data_box">
+                        <output className="account_pers_data" id="myPED">myPED</output>
+                        <output className="account_market_data" id="maPED">maPED</output>
+                     </div>
                   </div>
-                  <div className="account_data_box">
-                     <output className="account_pers_data" id="myPEX">myPEX</output>
-                     <output className="account_market_data" id="maPEX">maPEX</output>
-                  </div>
-               </div>
 
-               <div className="account_2">
-                  <div>
-                     <h2>PED</h2>
-                     <p>Professional<br />Education</p>
+                  <div className="account_2">
+                     <div>
+                        <h2>LP</h2>
+                        <p>Learning<br />Points</p>
+                     </div>
+                     <div className="account_data_box">
+                        <output className="account_pers_data" id="myLP">myLP</output>
+                        <output className="account_market_data" id="maLP">maLP</output>
+                     </div>
                   </div>
-                  <div className="account_data_box">
-                     <output className="account_pers_data" id="myPED">myPED</output>
-                     <output className="account_market_data" id="maPED">maPED</output>
-                  </div>
-               </div>
 
-               <div className="account_2">
-                  <div>
-                     <h2>LP</h2>
-                     <p>Learning<br />Points</p>
+                  <div className="account_2">
+                     <div>
+                        <h2>LP</h2>
+                        <p>Learning<br />Points</p>
+                     </div>
+                     <div className="account_data_box">
+                        <output className="account_pers_data" id="myLP">myLP</output>
+                        <output className="account_market_data" id="maLP">maLP</output>
+                     </div>
                   </div>
-                  <div className="account_data_box">
-                     <output className="account_pers_data" id="myLP">myLP</output>
-                     <output className="account_market_data" id="maLP">maLP</output>
-                  </div>
-               </div>
                </div>
 
             </section>
@@ -154,7 +182,7 @@ const  KnowledgeAccountMain = ()=>{
                </div>
 
                <div className="account_4">
-                  <p>Ihr <span className="LitCoin">L</span>it<em em className="LitCoin">C</em>oin <br />Guthaben</p>
+                  <p>Ihr <span className="LitCoin">L</span>it<span className="LitCoin">C</span>oin <br />Guthaben</p>
                   <div id="account_4_Box"> 250 <span className="LC"> LC</span> </div>
                   
                </div>
@@ -176,7 +204,7 @@ const  KnowledgeAccountMain = ()=>{
                </div>
 
                <div className="account_5">
-                  <p>Ihr <span className="LitCoin">L</span>it<em em className="LitCoin">C</em>oin <br />Guthaben</p>
+                  <p>Ihr <span className="LitCoin">L</span>it<span className="LitCoin">C</span>oin <br />Guthaben</p>
                   <div id="account_5_Box"> <p>250 <span className="LC"> LC</span></p>
                   </div>
                </div>

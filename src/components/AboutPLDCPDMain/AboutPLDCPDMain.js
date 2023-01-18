@@ -154,7 +154,12 @@ const  AboutPLDCPDMain = ()=>{
                </div>
 
                <div className="account_4">
-                  <p>Ihr <span className="LitCoin">L</span>it<em em className="LitCoin">C</em>oin <br />Guthaben</p>
+                  <p>Ihr 
+                  <span className="LitCoin">L</span>
+                  it
+                  <span className="LitCoin">C</span>
+                  oin <br />
+                  Guthaben</p>
                   <div id="account_4_Box"> 250 <span className="LC"> LC</span> </div>
                   
                </div>
@@ -176,7 +181,11 @@ const  AboutPLDCPDMain = ()=>{
                </div>
 
                <div className="account_5">
-                  <p>Ihr <span className="LitCoin">L</span>it<em em className="LitCoin">C</em>oin <br />Guthaben</p>
+                  <p>Ihr 
+                     <span className="LitCoin">L</span>
+                     it
+                     <span className="LitCoin">C</span>
+                     oin <br />Guthaben</p>
                   <div id="account_5_Box"> <p>250 <span className="LC"> LC</span></p>
                   </div>
                </div>
