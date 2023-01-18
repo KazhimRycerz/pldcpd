@@ -11,7 +11,9 @@ const Header = () => {
   const { buttonPos, setButtonPos } = useContext(AsideAccountButtonContext);
   const { showAccount, setShowAccount } = useContext(AsideAccountContext);
   useEffect(() => {
+  console.log("loggedIn:", loggedIn);
   console.log("buttonPosition:", buttonPos)
+  console.log("AccountPosition:", showAccount)
   })
 
   return (
@@ -74,27 +76,16 @@ const Header = () => {
                 loggedIn && showAccount === "showAccount"
                   ? setShowAccount("hideAccount")
                   : setShowAccount("");
-
-                /* if (loggedIn && showAccount === "hideAccount"){
-                  setShowAccount("showAccount")
-                } else if (!loggedIn && showAccount === "showAccount"){
-                  setShowAccount("hideAccount")
-                } */
-
                 
-                if(!loggedIn && buttonPos === "buttonAccount") {
-                  setButtonPos("buttonAccount showBut")
-                } else if (loggedIn && buttonPos === "buttonAccount showBut") {setButtonPos("buttonAccount hideBut")
-                } else if (!loggedIn && buttonPos === "buttonAccount hideBut") {setButtonPos("buttonAccount showBut")
-                } else if (!loggedIn && buttonPos === "buttonAccount moveButtonBackToStart") {setButtonPos("buttonAccount showBut")
-                } else if (loggedIn && buttonPos === "buttonAccount showBut moveButtonBack") {setButtonPos("buttonAccount hideBut")
-                } else if (loggedIn && buttonPos === "buttonAccount showBut moveButton") {setButtonPos("buttonAccount moveButtonBackToStart")
-                } else {setButtonPos("buttonAccount")
+                       if(!loggedIn && buttonPos === "") {setButtonPos("showBut")
+                } else if (loggedIn && buttonPos === "showBut") {setButtonPos("hideBut")
+                } else if (!loggedIn && buttonPos === "hideBut") {setButtonPos("showBut")
+                } else if (!loggedIn && buttonPos === "moveButtonBackToStart") {setButtonPos("showBut")
+                } else if (loggedIn && buttonPos === "showBut moveButtonBack") {setButtonPos("hideBut")
+                } else if (loggedIn && buttonPos === "showBut moveButton") {setButtonPos("moveButtonBackToStart")
+                } else if (!loggedIn && buttonPos === "hideBut moveButton") {setButtonPos("hideBut")
+                } else {setButtonPos("")
                 }
-
-                /* loggedIn
-                  ? setButtonPos("buttonAccount hideBut")
-                  : setButtonPos("buttonAccount showBut"); */
               }}
             >
               {loggedIn ? "log me out" : "log me in"}{" "}

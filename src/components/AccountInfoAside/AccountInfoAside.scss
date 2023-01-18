@@ -1,0 +1,179 @@
+@import '../../scss/global.scss';
+
+
+//.buttonAccount {
+#buttonShowAccount {
+  //display: none; 
+   display: inline-block;
+   position: fixed;
+   top: 155px;
+   right:calc(10% - 10px);
+   transform: translateY(33px) rotate(-90deg); 
+   color: $cpdblue;
+   background-color: $button-color;
+   box-shadow: $btnshadow;
+   width: 65px;
+   height: 40px;
+   border: 1px solid grey;
+   border-radius: 10px;
+   text-align:center;
+   vertical-align:bottom;
+   z-index: 0;
+   &.showBut {
+     right:calc(10% - 33px);//ex44
+     transition: 0.5s ease-in-out;
+     vertical-align:bottom;
+    }
+   &.hideBut {
+    right:calc(10% - 10px);//ex24
+    transition: 0.5s ease-in-out;
+    vertical-align:middle;  
+  }
+   &.moveButton {animation: moveButton 1s 0s ease-in-out forwards}
+   &.moveButtonBack {animation: moveButtonBack 1s 0s ease-in-out forwards}
+   &.moveButtonBackToStart {animation: moveButtonBackToStart 1.5s ease-in-out forwards}
+  }
+  
+  @keyframes moveButton {
+    0%  {transform:  translateY(33px) rotate(-90deg); z-index:0; right:calc(10% - 33px)}//44px
+    90%  {z-index: 0;}
+    100% {transform:  rotate(0deg);z-index: 10; right: 33px;}
+  }
+  @keyframes moveButtonBack {
+    0%  {transform: rotate(0deg);z-index:10;right: 33px;} //ex30
+    50% {z-index: 0;}
+    100% {transform:  translateY(33px) rotate(-90deg);z-index:0;  right:calc(10% - 33px)}//44px
+    }
+  @keyframes moveButtonBackToStart {
+    0%  {transform: rotate(0deg);z-index:10;right: 33px;} //ex30
+    50% {z-index: 0;}
+    100% {transform:  translateY(33px) rotate(-90deg);z-index:0;  right:calc(10% - 10px)}//33px 
+  }
+
+// Account Conatiner
+#account_aside_account {
+  display: block;
+  transform: translateX(-120%) scale(90%);
+  background-color: $first-color;
+  box-shadow: $boxshadow;
+  width: 15vw;
+  min-width: 200px;
+  height: 400px;
+  padding: 0px;
+  margin-right: 20px;
+  position: fixed;
+  top: 180px;
+  right: 0;
+  font-size: $small;
+  z-index: 10;
+  border-radius: 10px;
+  .account_container {
+    display: grid;
+    width: 100%;
+    place-items: center;
+    margin: 10px 0 10px 0;
+    .floating-stack {
+      background: $first-color;
+      height: 380px;
+      width: 100%;
+      overflow-y: scroll;
+      overflow-x: none;
+      font-size: $small;
+      padding-bottom: 220px;
+      dl {
+        margin: 0 0 0;
+        display: grid;
+        grid-template-columns: 2.2rem 1fr;
+        align-items: baseline;
+        dt {
+          text-align: center;
+          font-family: $guthaben;
+          position: sticky;
+          top: 0.5rem;
+          left: 0.5rem;
+          font-weight: bold;
+          background: $third-color;
+          color: $first-color;
+          height: 35px;
+          width: 35px;
+          border-radius: 50%;
+          line-height: 35px;
+          grid-column: 1;
+        }
+        dd {
+          grid-column: 2;
+          margin: 0px;
+          padding: 10px;
+          padding-top: 10px;
+          h3 {
+            font-weight: 900;
+            font-family: $primary-font-bold;
+          }
+        }
+        dd:hover, dd:active {
+          background-color: $third-color-o;
+          color: black;
+        }
+      }
+      > dl:first-of-type > dd:first-of-type {
+        margin-top: 0.25rem;
+      }
+    }
+  }
+}
+
+#LC_only {
+  font-family: $calli;
+  color: $cpdred;
+  letter-spacing: -2px;
+  text-align: center;
+  font-size: 130%;
+  text-shadow: 1px 1px rgb(225, 220, 100);
+  border-style: solid;
+  border-color: rgb(223, 168, 17);
+  border-width: 2px;
+  background-color: rgb(192, 112, 7);
+  background-image: linear-gradient(
+    to top left,
+    rgb(160, 88, 0),
+    rgb(225, 220, 100)
+  );
+  &.showAccount {animation: show_home_aside 2s ease-in-out forwards}
+  &.hideAccount {animation: hide_home_aside 2s ease-in-out forwards}
+}  
+ 
+  @keyframes show_home_aside {
+    0%  {opacity:0; display: none;}
+    1%  {transform: translateX(-120%) scale(90%); display: block; z-index: -1;opacity: 1;display: block;}
+    30% {z-index:1; display: block;}
+    60% {transform: translateX(60%) scale(90%); display: block;}
+    100% {transform: translateX(0%) scale(100%); z-index:9; display: block; opacity: 1}
+    }
+ @keyframes hide_home_aside {
+   0%  {transform: translateX(0%);z-index:9; opacity: 1}
+   30% {transform: translateX(60%) scale(90%) }
+   60% {z-index:1}
+   99% {transform: translateX(-120%) scale(90%); z-index: -1; opacity: 1}
+   100% {transform: translateX(-120%) scale(90%); z-index: -1; opacity: 0; display: none;}
+   }
+ 
+ @media (max-width: $tablet){
+  #buttonShowAccount {
+     z-index: 0;
+     transform: translateY(-25px) rotate(0deg); 
+/* 
+    &.showBut {
+      right:calc(10% - 33px);//ex44
+      transition: 0.5s ease-in-out;
+    }
+    &.hideBut {
+      right:calc(10% - 10px);//ex24
+      transition: 0.5s ease-in-out;
+    } */
+  }
+  .hideBut {
+    transform: translateY(-25px) rotate(0deg) translateY(33px);
+    top:20%;//ex24
+     transition: 0.5s ease-in-out;
+  }
+ }

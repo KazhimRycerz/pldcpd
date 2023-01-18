@@ -5,7 +5,7 @@ const AsideAccountButtonContext = React.createContext(null)
 
 const AccountButtonProvider = (props)=>{
 
-   const [buttonPos, setButtonPos] = useState("buttonAccount");
+   const [buttonPos, setButtonPos] = useState("");
    
    return (
       <AsideAccountButtonContext.Provider value={{buttonPos, setButtonPos}}>
