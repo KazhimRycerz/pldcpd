@@ -77,7 +77,7 @@ const Header = () => {
                   : setShowAccount("");
                 
                     /* if (!loggedIn) {location.reload
-                }  else */if (!loggedIn && buttonPos === "") {setButtonPos("showBut")
+             }  else */if (!loggedIn && buttonPos === "") {setButtonPos("showBut")
                 } else if (loggedIn && buttonPos === "showBut") {setButtonPos("hideBut")
                 } else if (!loggedIn && buttonPos === "hideBut") {setButtonPos("showBut")
                 } else if (!loggedIn && buttonPos === "moveButtonBackToStart") {setButtonPos("showBut")
