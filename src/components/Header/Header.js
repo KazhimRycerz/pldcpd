@@ -2,14 +2,13 @@ import "./Header.scss";
 import { NavLink, Link } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import pldcpd from "../../images/pldcpd.png";
-import { AsideAccountContext } from "../../context/AsideAccountContext.js";
-import { AsideAccountButtonContext } from "../../context/AccountButtonContext.js";
+import { SectionsContext } from "../../context/SectionsContext.js";
 
 const Header = () => {
   const [showMenue, setShowMenue] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
-  const { buttonPos, setButtonPos } = useContext(AsideAccountButtonContext);
-  const { showAccount, setShowAccount } = useContext(AsideAccountContext);
+  const { loggedIn, setLoggedIn } = useContext(SectionsContext);
+  const { buttonPos, setButtonPos } = useContext(SectionsContext);
+  const { showAccount, setShowAccount } = useContext(SectionsContext);
   useEffect(() => {
   console.log("loggedIn:", loggedIn);
   console.log("buttonPosition:", buttonPos)
@@ -77,7 +76,8 @@ const Header = () => {
                   ? setShowAccount("hideAccount")
                   : setShowAccount("");
                 
-                       if(!loggedIn && buttonPos === "") {setButtonPos("showBut")
+                    /* if (!loggedIn) {location.reload
+             }  else */if (!loggedIn && buttonPos === "") {setButtonPos("showBut")
                 } else if (loggedIn && buttonPos === "showBut") {setButtonPos("hideBut")
                 } else if (!loggedIn && buttonPos === "hideBut") {setButtonPos("showBut")
                 } else if (!loggedIn && buttonPos === "moveButtonBackToStart") {setButtonPos("showBut")

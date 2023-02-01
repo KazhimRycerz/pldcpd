@@ -2,27 +2,12 @@ import './AccountInfoAside.scss'
 import { Link } from 'react-router-dom'
 import React, { useContext, useState } from 'react'
 import JoachimRitter from '../../images/Joachim_privat.jpg'
-import  { AsideAccountButtonContext } from "../../context/AccountButtonContext.js" 
-import { AsideAccountContext } from '../../context/AsideAccountContext.js'
-
-/*const showAccount = () => {
-  homeAsideAccount.style.display = "block";
-  gruß.style.right = "10vw";
-  C1.style.left = "-2.5vw";
-  buttonShowAccount.textContent = "hide account";
-};
-const hideAccount = () => {
-  gruß.style.right = "4vw";
-  C1.style.left = "0px"; //4
-  C1.style.margin = "60px auto"; //4
-  buttonShowAccount.textContent = "show account";
-};   
- */
+import { SectionsContext } from '../../context/SectionsContext.js'
 
 const AccountAside = () => {
-const {showAccount, setShowAccount} = useContext(AsideAccountContext);
+const {showAccount, setShowAccount} = useContext(SectionsContext);
 const [buttonText, setButtonText] = useState("show info")
-const {buttonPos, setButtonPos} = useContext(AsideAccountButtonContext)
+const {buttonPos, setButtonPos} = useContext(SectionsContext)
 
 const buttonPosition0 = "" 
 const buttonMove1 = "showBut" 

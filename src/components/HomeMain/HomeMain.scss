@@ -4,6 +4,9 @@ img[src*="c.png"] {
   animation: rotate 30s infinite linear;
 }
 
+#le {
+  height: 400px;
+}
 
 #Gruß_main {
    background-image: url(../../images/Sonnenuntergang.jpg);
@@ -90,7 +93,7 @@ img[src*="c.png"] {
    #C1A1, #C1A4 {
      margin: 0 0px 0 20px;
      border-left: 3px dotted $cpdred;
-     border-right: 3px dotted Black;
+     border-right: 3px dotted $cpdred;
      border-radius: 20px;
      padding: 20px;
    }

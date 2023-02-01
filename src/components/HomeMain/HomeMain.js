@@ -16,13 +16,13 @@ import Egon_Zitter_7 from "../../images/Egon_Zitter_7.jpg"
 import Egon_Zitter_8_Libellen from "../../images/Egon_Zitter_8_Libellen.jpg"
 import Sonnenuntergang from "../../images/Sonnenuntergang.jpg"
 import unsplash from "../../images/unsplash.jpg"
-import { AccountButtonProvider } from "../../context/AccountButtonContext.js";
-
-
+//import { AccountButtonProvider } from "../../context/AccountButtonContext.js";
+//import LightingEffect from "../../components/LightingEffect/LightingEffect.js"
 
 const HomeMain = () => {
   return (
     <main>
+      {/* <section id="le" ><LightingEffect /></section> */}
       <section id="Gruß_main">
         <h1 id="Gruß_main_h1">
           {" "}
@@ -43,7 +43,8 @@ const HomeMain = () => {
       <div id="Content">
         <section id="C1">
           <article id="C1A1">
-            <img src={Level_4_SLD} alt=""/>
+            <img src={Level_4_SLD} alt="" />
+            {/* <img src={import('../../images/Level_4_SLD.jpg')} alt=""/> */}
             <h3>Professionalität</h3>
             <p>
               Sie wollen ein anerkannter Lichtdesigner werden? Dann sind Sie

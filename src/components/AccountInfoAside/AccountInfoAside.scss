@@ -6,9 +6,9 @@
   //display: none; 
    display: inline-block;
    position: fixed;
-   top: 155px;
    right:calc(10% - 10px);
    transform: translateY(33px) rotate(-90deg); 
+   z-index: 0;
    color: $cpdblue;
    background-color: $button-color;
    box-shadow: $btnshadow;
@@ -16,9 +16,9 @@
    height: 40px;
    border: 1px solid grey;
    border-radius: 10px;
+   top: 155px;
    text-align:center;
    vertical-align:bottom;
-   z-index: 0;
    &.showBut {
      right:calc(10% - 33px);//ex44
      transition: 0.5s ease-in-out;
@@ -54,19 +54,21 @@
 #account_aside_account {
   display: block;
   transform: translateX(-120%) scale(90%);
+  z-index: -1;
+  opacity: 0; 
   background-color: $first-color;
   box-shadow: $boxshadow;
   width: 15vw;
   min-width: 200px;
   height: 400px;
-  padding: 0px;
+  padding: 10px;
+  padding-left: 00px;
   margin-right: 20px;
   position: fixed;
   top: 180px;
   right: 0;
   font-size: $small;
-  z-index: 10;
-  border-radius: 10px;
+  border-radius: 5px;
   .account_container {
     display: grid;
     width: 100%;
