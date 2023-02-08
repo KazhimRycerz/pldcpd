@@ -56,7 +56,7 @@ function LightingEffect() {
         <svg viewBox="-50 0 100 20">
           <text x="0" y="15"> lighting design </text>
         </svg>
-      <img src={GlitterIMG} loading="lazy" alt="Glitter Background" onLoad={imgFunction} />
+      <img src="https://assets.codepen.io/13471/silver-glitter-background.png" loading="lazy" alt="Glitter Background" onLoad={imgFunction} />
       </section>
     </div>
   );
