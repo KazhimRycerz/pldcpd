@@ -1,12 +1,13 @@
 {
   "files": {
-    "main.css": "/pldcpd/static/css/main.47dee3a3.css",
-    "main.js": "/pldcpd/static/js/main.50c6c2a2.js",
+    "main.css": "/pldcpd/static/css/main.49b995b4.css",
+    "main.js": "/pldcpd/static/js/main.731833a0.js",
     "static/media/Vulkan.gif": "/pldcpd/static/media/Vulkan.3fe35e5fca25582b5eaa.gif",
     "static/media/RampartOne-Regular.otf": "/pldcpd/static/media/RampartOne-Regular.d5c388272379f39c06fb.otf",
     "static/media/unsplash.jpg": "/pldcpd/static/media/unsplash.49c74b9ba7d11090733b.jpg",
     "static/media/FrederickatheGreat-Regular.otf": "/pldcpd/static/media/FrederickatheGreat-Regular.71d00f9bfe711bfefaa4.otf",
     "static/media/RampartOne-Regular.woff2": "/pldcpd/static/media/RampartOne-Regular.17bb11c2c7f73abfe808.woff2",
+    "static/media/silver-glitter-background.png": "/pldcpd/static/media/silver-glitter-background.4fee6998f5b9d38435ab.png",
     "static/media/JohannesMikkelsen4.jpg": "/pldcpd/static/media/JohannesMikkelsen4.d8bab975d9e8f3b58f94.jpg",
     "static/media/Egon_Zitter_7.jpg": "/pldcpd/static/media/Egon_Zitter_7.73f864b653eae1473778.jpg",
     "static/media/Baustelle.jpg": "/pldcpd/static/media/Baustelle.3ea770cc8976e8240a37.jpg",
@@ -50,11 +51,11 @@
     "static/media/VIA-Verlag.otf": "/pldcpd/static/media/VIA-Verlag.f9b0807e13383d5cb88c.otf",
     "static/media/VIA-Verlag.woff2": "/pldcpd/static/media/VIA-Verlag.ca1bde523566b12176ee.woff2",
     "index.html": "/pldcpd/index.html",
-    "main.47dee3a3.css.map": "/pldcpd/static/css/main.47dee3a3.css.map",
-    "main.50c6c2a2.js.map": "/pldcpd/static/js/main.50c6c2a2.js.map"
+    "main.49b995b4.css.map": "/pldcpd/static/css/main.49b995b4.css.map",
+    "main.731833a0.js.map": "/pldcpd/static/js/main.731833a0.js.map"
   },
   "entrypoints": [
-    "static/css/main.47dee3a3.css",
-    "static/js/main.50c6c2a2.js"
+    "static/css/main.49b995b4.css",
+    "static/js/main.731833a0.js"
   ]
 }
