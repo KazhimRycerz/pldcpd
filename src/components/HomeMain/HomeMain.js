@@ -17,12 +17,12 @@ import Egon_Zitter_8_Libellen from "../../images/Egon_Zitter_8_Libellen.jpg"
 import Sonnenuntergang from "../../images/Sonnenuntergang.jpg"
 import unsplash from "../../images/unsplash.jpg"
 //import { AccountButtonProvider } from "../../context/AccountButtonContext.js";
-//import LightingEffect from "../../components/LightingEffect/LightingEffect.js"
+import LightingEffect from "../../components/LightingEffect/LightingEffect.js"
 
 const HomeMain = () => {
   return (
     <main>
-      {/* <section id="le" ><LightingEffect /></section> */}
+      
       <section id="Gruß_main">
         <h1 id="Gruß_main_h1">
           {" "}
@@ -105,6 +105,9 @@ const HomeMain = () => {
             </Link>
           </article>
         </section>
+
+        <section id="le" ><LightingEffect /></section>
+        
         <section id="learningbox_1">
           <div className="infobox_intro">
             <h2> Aktuelle Lernangebote </h2>
@@ -117,6 +120,7 @@ const HomeMain = () => {
             <img src={C} alt="" className="logo_cpd" />
             </Link>
           </div>
+
 
           <div id="lb_1_angebote">
             <div>
@@ -200,6 +204,7 @@ const HomeMain = () => {
         <Link to="/home">
           <img className="Trenner" src={C} alt="" />
         </Link>
+        
         <div id="Promoter_1">
           <div>
             <p>Lightingdesign at it's best!</p>

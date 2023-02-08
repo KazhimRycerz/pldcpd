@@ -1,13 +1,18 @@
 @import '../../scss/global.scss';
 
-:root{
-  --glitter: url("https://assets.codepen.io/13471/silver-glitter-background.png");
+/* :root{
+  --glitter: url("../../images/silver-glitter-background.png");
   --ratio-x: .5;
   --ratio-y: .75;
   --from-center: 2; 
-}
+} */
 
-#app {
+#glitter {
+  --glitter: url("../../images/silver-glitter-background.png");
+  --ratio-x: .5;
+  --ratio-y: .75;
+  --from-center: 2; 
+
   --bgoffsetx: calc( 2.9px * var(--ratio-x)); 
   --bgoffsety: calc( 4.3px * var(--ratio-y));
   --pointerx: calc( 100% * var(--ratio-x));
@@ -46,34 +51,34 @@
 
 }
 
-#app.loading { 
+#glitter.loading { 
   opacity: 0;
 }
 
-#app {
+#glitter {
   image-rendering: optimizeQuality;
   transform: translate3d( 0, 0, 0.01px );
 }
 
-#app * {
+#glitter * {
   pointer-events: none;
   text-anchor: middle;
 }
 
-#app svg {
+#glitter svg {
   mix-blend-mode: color-dodge;
   fill: #908190;
   opacity: calc( 1.5 - var(--from-center) );
   filter: drop-shadow(0 0 30px black) drop-shadow(0 0 10px black) brightness(1.3); 
 }
 
-body {
+/* body {
   color: black;
   background: black;
   font-family: "Cinzel", sans-serif;
-}
+} */
 
- #app {
+html, body, #glitter {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -84,14 +89,14 @@ body {
   grid-row: 1;
 }
 
-#glitterIMG {
+#glitter img {
   position: absolute;
   width: 1px;
   height: 1px;
   opacity: 0;
 }
 
-.social-icon {
+/* .social-icon {
   stroke-width: 1.25; 
   stroke: cyan; 
   fill: none; 
@@ -104,11 +109,11 @@ body {
   height: 24px;
   z-index: 10;
   animation: iconsLoad 10s ease both 1s;
-}
-.social-icon .twitter {
+} */
+/* .social-icon .twitter {
   right: 40px;
   animation-delay: 0s;
-}
+} */
 @keyframes iconsLoad {
   from { opacity: 0; }
   to { opacity: 1; }
