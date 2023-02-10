@@ -40,10 +40,9 @@ const HomeMain = () => {
         </p>
       </section>
 
-      <div id="Content">
         <section id="C1">
           <article id="C1A1">
-            <img src={Level_4_SLD} alt="" />
+            {<img src={Level_4_SLD} alt="" />}
             {/* <img src={import('../../images/Level_4_SLD.jpg')} alt=""/> */}
             <h3>Professionalität</h3>
             <p>
@@ -77,11 +76,13 @@ const HomeMain = () => {
               <h3>Teil einer Community</h3>
               <p>
                 Wollen sie ein Teil der Community sein? Kennen Sie schon das
-                neue Netzwerk für Lichtdesigner? Dann sollten Sie rasch hier
-                schauen
-              </p>{" "}
+                neue Netzwerk für Lichtdesigner? Dann sollten Sie mal
               <Link to="/abouttheprofession">
-                hier
+              {" "}hier{" "}
+              </Link>
+              schauen
+              </p>
+              <Link to="/abouttheprofession">
                 <img src={C} alt=""/>
               </Link>
             </article>
@@ -106,7 +107,7 @@ const HomeMain = () => {
           </article>
         </section>
 
-        <section id="le" ><LightingEffect /></section>
+        <section id="lightingEffect" ><LightingEffect /></section>
         
         <section id="learningbox_1">
           <div className="infobox_intro">
@@ -117,7 +118,7 @@ const HomeMain = () => {
               im Detail, was zur weiterbildung angeboten wird.
             </p>
             <Link to="/#">
-            <img src={C} alt="" className="logo_cpd" />
+              <img src={C} alt="" className="logo_cpd" />
             </Link>
           </div>
 
@@ -204,15 +205,17 @@ const HomeMain = () => {
         <Link to="/home">
           <img className="Trenner" src={C} alt="" />
         </Link>
-        
-        <div id="Promoter_1">
+      
+        <section id="Promoter_1">
           <div>
             <p>Lightingdesign at it's best!</p>
           </div>
-        </div>
+        </section>
+
         <Link to="/home">
           <img className="Trenner" src={C} alt="" />
         </Link>
+
         <section id="learningbox_2">
           <div className="infobox_intro">
             <h2> Aktuelle Lernangebote </h2>
@@ -382,12 +385,14 @@ const HomeMain = () => {
             </div>
           </div>
         </section>
+        
         <Link to="/home">
           <img className="Trenner" src={C} alt="" />{" "}
         </Link>
+
         <section id="infobox_2">
           <div className="infobox_intro">
-            <h2> Aktuelle Lernangebote </h2>
+            <h2> Aktuelle Lernangebote sortiert nach Themenbereiche</h2>
             <p>
               Hier können sie die neusten Angebote zur Weiterbildung sehen.
               Klicken Sie und schauen Sie im Detail, was angeboten wird.
@@ -396,7 +401,6 @@ const HomeMain = () => {
               <img src={C} alt="" className="logo_cpd" />
             </Link>
           </div>
-
           <div id="ib_2_angebote">
             <div id="box1">
               <h3>Themenbereich Design</h3>
@@ -477,13 +481,10 @@ const HomeMain = () => {
             </div>
           </div>
         </section>
-        <br />
-        <br />
+     
         <img className="Trenner" src={C} alt="" />{" "}
         <Link to="/home"></Link>
-        <br />
-        <br />
-        <br />
+      
         <section id="learningbox_5">
           <div className="infobox_intro">
             <h2>
@@ -622,9 +623,9 @@ const HomeMain = () => {
         </section>
         <br />
         <br />
-        <br />
-        <br />
-      </div>
+       
+      {/* <div id="Content">
+      </div> */}
     </main>
   );
 };
