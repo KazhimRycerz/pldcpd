@@ -10,8 +10,8 @@ const Home = () => {
     <>
         <Header />
         <AccountAside />
-        {/* <HomeMain />
-        <Footer /> */}
+        <HomeMain />
+        <Footer />
     </>
   );
 };
