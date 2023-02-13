@@ -1,0 +1,12 @@
+* {
+    margin: 0;
+    padding: 0px;
+    box-sizing: border-box;
+    ::-webkit-scrollbar {
+        display: none;
+      }
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+   //scrollbar-width: 0px;          /* "auto" or "thin" */
+    //scrollbar-color: blue orange;   /* scroll thumb and track */ 
+}
