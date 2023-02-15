@@ -6,7 +6,7 @@ import { SectionsContext } from '../../context/SectionsContext.js'
 
 const AccountAside = () => {
 const {showAccount, setShowAccount} = useContext(SectionsContext);
-const [buttonText, setButtonText] = useState("hide account")
+const [buttonText, setButtonText] = useState("hide  account")
 const {buttonPos, setButtonPos} = useContext(SectionsContext)
 
 const buttonPosition0 = "" 
@@ -19,7 +19,7 @@ const buttonMove4 = "hideBut"
 const handleButton=(buttonPos) => {
   if ( buttonPos === buttonMove1 ) {
     setButtonPos(buttonMove2);
-    setButtonText("hide account");
+    setButtonText("hide  account");
     setShowAccount("showAccount");
   } else if( buttonPos === buttonMove2) {
     setButtonPos(buttonMove3 );
@@ -27,7 +27,7 @@ const handleButton=(buttonPos) => {
     setShowAccount("hideAccount");
   } else if( buttonPos === buttonMove3) {
     setButtonPos(buttonMove2 );
-    setButtonText("hide account");
+    setButtonText("hide  account");
     setShowAccount("showAccount");
   } else {
     setButtonPos(buttonPosition0);
@@ -52,16 +52,16 @@ return (
         <div id="home_data">
           <p> Ihr persönlicher Wissensstatus</p>
           <div>
-            <div>myKF <output id="myKF">myKF</output></div>
-            <div>myLF <output id="myLF">myLF</output></div>
-            <div>myPEDh <output id="myPED">myPEDh</output></div>
-            <div>myPEXh <output id="myPEX">myPEXh</output></div>
+            <div>myKF <p id="myKF">myKF</p></div>
+            <div>myLF <p id="myLF">myLF</p></div>
+            <div>myPEDh <p id="myPED">myPEDh</p></div>
+            <div>myPEXh <p id="myPEX">myPEXh</p></div>
           </div>
           <div>
-            <div><output id="maKF">maKF</output>maKF</div>
-            <div><output id="maLF">maLF</output>maLF</div>
-            <div><output id="maPED">maPED</output>maPEDh</div>
-            <div><output id="maPEX">maPEX</output>maPEXh</div>
+            <div><p id="maKF">maKF</p>maKF</div>
+            <div><p id="maLF">maLF</p>maLF</div>
+            <div><p id="maPED">maPED</p>maPEDh</div>
+            <div><p id="maPEX">maPEX</p>maPEXh</div>
           </div>
           <p> Markt Wissensschnitt</p>
         </div>
@@ -70,7 +70,7 @@ return (
     
         <p>Ihr aktuelles <span className="LitCoin">L</span><span className="Calli">it</span><span className="LitCoin">C</span><span className="Calli">oin</span> Guthaben:</p>
         <div id="aside_gutbox">
-          <output id="aside_guthaben"></output> 
+          <p id="aside_guthaben"></p> 
           <p className="LC">LC</p>
         </div>
     

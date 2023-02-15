@@ -16,7 +16,7 @@
    height: 40px;
    border: 1px solid grey;
    border-radius: 10px;
-   text-align:center;
+   text-align: center;
    line-height: 15px;
    z-index: 0;
    &.showBut {
@@ -121,13 +121,13 @@
      flex-wrap: nowrap;
      justify-content: space-around;
      width: 100%;
-     padding-bottom: 3px;
+     padding: 3px;
      div {
        display: block;
        box-shadow: none; 
        text-align:center;
-       font-size: 0.71vw; 
-       output{
+       font-size: 0.5rem; 
+       p{
          display: flex;
          background-color: $third-color;
          text-align:center;
@@ -137,11 +137,11 @@
          width: 90%;
          border: none;
          border-radius: 3px;
-         font-size: $small;
+         font-size: 0.75rem;
          font-weight:900;
          color: $secondary-color;
        }
-       output[id^="ma"]{
+       p[id^="ma"]{
          background-color: transparent;
          border: 1px solid $third-color;
          color: $third-color;
@@ -169,7 +169,7 @@
    border: 2px dotted $cpdred;
    border-radius: 10px;
    background-color:$fourth-color;
-   output {
+   #aside_guthaben {
      display: inline;
      text-align: end;
      font-size: $xxlarge;
@@ -188,7 +188,6 @@
      }
    }
  }
-
 
  @media (max-width: $tablet){
   #buttonShowAccount {
@@ -209,4 +208,5 @@
     top:20%;//ex24
      transition: 0.5s ease-in-out;
   }
+  
  }
