@@ -1,36 +1,44 @@
 import './AccountInfoAside.scss'
 import { Link } from 'react-router-dom'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import JoachimRitter from '../../images/Joachim_privat.jpg'
 import { SectionsContext } from '../../context/SectionsContext.js'
 
 const AccountAside = () => {
 const {showAccount, setShowAccount} = useContext(SectionsContext);
-const [buttonText, setButtonText] = useState("hide info")
+const [buttonText, setButtonText] = useState("show info")
 const {buttonPos, setButtonPos} = useContext(SectionsContext)
+const { loggedIn, setLoggedIn } = useContext(SectionsContext);
+
 
 const buttonPosition0 = "" 
 const buttonMove1 = "showBut" 
 const buttonMove2 = "showBut moveButton" 
 const buttonMove3 = "showBut moveButtonBack" 
 const buttonMove4 = "hideBut"
-//const buttonMove5 = "moveButtonBackToStart"
+const buttonMove5 = "moveButtonBackToStart"
+
+useEffect(() => {
+  !loggedIn && (setButtonPos(buttonMove4))
+  if (buttonPos === buttonMove2) {
+    setButtonText("hide Info");
+    } else {setButtonText("show Info")
+    }
+  })
 
 const handleButton=(buttonPos) => {
   if ( buttonPos === buttonMove1 ) {
     setButtonPos(buttonMove2);
-    setButtonText(" hide info");
     setShowAccount("showAccount");
   } else if( buttonPos === buttonMove2) {
     setButtonPos(buttonMove3 );
-    setButtonText("show Info");
     setShowAccount("hideAccount");
   } else if( buttonPos === buttonMove3) {
     setButtonPos(buttonMove2 );
-    setShowAccount("showAccount");
+    setButtonText("hide info");
   } else {
     setButtonPos(buttonPosition0);
-    setShowAccount("hideAccount")
+    setShowAccount("hideAccount");
   }
 }
 
@@ -38,7 +46,7 @@ return (
    <>
       <button type="button" 
         onClick ={()=>handleButton(buttonPos)}
-        id="buttonShowAccount"
+        id="buttonShowInfo"
         className = {buttonPos}>
           {buttonText} 
       </button>

@@ -79,15 +79,11 @@ body {
   margin-top:150px;
   overflow-x:hidden  
 }
-
-
   
 main {
   //display: none;
   width: 80vw;
   margin: 0 10%;
-  /* margin-left: 10%;
-  margin-right: 10%;  */
   z-index: 5;
   position: relative;
   border-radius: 20px;
@@ -98,19 +94,17 @@ main {
     
 /*Content*/
 
-#Content {
+/* #Content {
   width: 80%;
   margin: 0px auto;  
   z-index: 2;
-}
-  
+} */
 
-
-@media (max-width: $desktop){
+/* @media (max-width: $desktop){
   #Content {
     width: 100%;
   }
-}
+} */
     
 @media (max-width: $tablet){
   body {

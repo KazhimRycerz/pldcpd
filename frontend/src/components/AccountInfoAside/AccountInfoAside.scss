@@ -1,8 +1,7 @@
 @import '../../scss/global.scss';
 
-
 //.buttonAccount {
-#buttonShowAccount {
+#buttonShowInfo {
   //display: none; 
    display: inline-block;
    position: fixed;
@@ -29,7 +28,7 @@
    &.hideBut {
     right:calc(10% - 10px);//ex24
     transition: 0.5s ease-in-out;  
-    line-height: 35px;
+    line-height: 15px;
   }
    &.moveButton {animation: moveButton 1s 0s ease-in-out forwards}
    &.moveButtonBack {animation: moveButtonBack 1s 0s ease-in-out forwards}
@@ -37,23 +36,22 @@
   }
   
   @keyframes moveButton {
-    0%  {transform:  translateY(33px) rotate(-90deg); z-index:0; right:calc(10% - 33px);line-height: 55px;}//44px
-    50% {line-height:45px}
+    0%  {transform:  translateY(33px) rotate(-90deg); z-index:0; right:calc(10% - 33px)}//44px
+    //50% {line-height:55px}
     90%  {z-index: 0}
-    100% {transform:  rotate(0deg);z-index: 10; right: 33px;line-height: 35px;}
-  }
+    100% {transform:  rotate(0deg);z-index: 10; right: 33px;line-height: 15px}
+  }  
   @keyframes moveButtonBack {
-    0%  {transform: rotate(0deg);z-index:10;right: 33px;line-height: 35px;} //ex30
-    50% {z-index: 0;line-height: 45px}
-    100% {transform:  translateY(33px) rotate(-90deg);z-index:0;  right:calc(10% - 33px); line-height: 55px;}//44px
-    }
+    0%  {transform: rotate(0deg);z-index:10;right: 33px;line-height: 15px} 
+    50% {z-index: 0}
+    100% {transform:  translateY(33px) rotate(-90deg);z-index:0;  right:calc(10% - 33px)}
+    } 
   @keyframes moveButtonBackToStart {
-    0%  {transform: rotate(0deg);z-index:10;right: 33px;} //ex30
+    0%  {transform: rotate(0deg);z-index:10;right: 33px;}
     50% {z-index: 0;}
-    100% {transform:  translateY(33px) rotate(-90deg);z-index:0;  right:calc(10% - 10px)}//33px 
-  }
+    100% {transform:  translateY(33px) rotate(-90deg);z-index:0;  right:calc(10% - 10px)}
+  } 
 
-// Account Conatiner
 #account_aside_account {
   display: block;
   transform: translateX(-120%) scale(90%);

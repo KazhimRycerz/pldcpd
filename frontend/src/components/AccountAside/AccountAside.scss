@@ -12,53 +12,43 @@
    color: $cpdblue;
    background-color: $button-color;
    box-shadow: $btnshadow;
-   width: 65px;
+   width: 70px;
    height: 40px;
    border: 1px solid grey;
    border-radius: 10px;
    text-align:center;
+   line-height: 15px;
    z-index: 0;
    &.showBut {
     right:calc(10% - 33px);
     transition: 0.5s ease-in-out;
+    line-height: 15px;
     }
    &.hideBut {
     right:calc(10% - 10px);
     transition: 0.5s ease-in-out;
-    }
-   &.moveButton {
-    transform: rotate(0deg);
-    z-index: 10; right: 33px;
-    }
-   &.moveButtonBack{
-    transform:  translateY(33px) rotate(-90deg); 
-    right:calc(10% - 33px)
-    }
-   &.moveButtonBackToStart {
-    transform:  translateY(33px) rotate(-90deg);
-    z-index:0;
-    right:calc(10% - 10px)
-    }
-   //&.moveButton {animation: moveButton 1s 0s ease-in-out forwards}
-   //&.moveButtonBack {animation: moveButtonBack 1s 0s ease-in-out forwards}
-   //&.moveButtonBackToStart {animation: moveButtonBackToStart 1.5s ease-in-out forwards}
+    line-height: 15px;
+    }   
+   &.moveButton {animation: moveButton 1s 0s ease-in-out forwards}
+   &.moveButtonBack {animation: moveButtonBack 1s 0s ease-in-out forwards}
+   &.moveButtonBackToStart {animation: moveButtonBackToStart 1.5s ease-in-out forwards}
   }
   
-  /* @keyframes moveButton {
-    0%  {transform:  translateY(33px) rotate(-90deg); z-index:0; right:calc(10% - 33px)}//44px
+  @keyframes moveButton {
+    0%  {transform:  translateY(33px) rotate(-90deg); z-index:0; right:calc(10% - 33px);line-height: 15px}
     90%  {z-index: 0;}
-    100% {transform: rotate(0deg);z-index: 10; right: 33px;}
+    100% {transform: rotate(0deg);z-index: 10; right: 33px;line-height: 15px;}
   }
   @keyframes moveButtonBack {
-    0%  {transform: rotate(0deg);z-index:10;right: 33px;} //ex30
+    0%  {transform: rotate(0deg);z-index:10;right: 33px;line-height: 15px} 
     50% {z-index: 0;}
-    100% {transform:  translateY(33px) rotate(-90deg); right:calc(10% - 33px)}//44px
+    100% {transform:  translateY(33px) rotate(-90deg); right:calc(10% - 33px);line-height: 15px}
     }
   @keyframes moveButtonBackToStart {
-    0%  {transform: rotate(0deg);z-index:10;right: 33px;} //ex30
+    0%  {transform: rotate(0deg);z-index:10;right: 33px;line-height: 15px}
     50% {z-index: 0;}
-    100% {transform:  translateY(33px) rotate(-90deg);z-index:0;right:calc(10% - 10px)}//33px 
-  } */
+    100% {transform:  translateY(33px) rotate(-90deg);z-index:0;right:calc(10% - 10px);line-height: 15px} 
+  }
 
 // Account Conatiner
  #home_aside_account {

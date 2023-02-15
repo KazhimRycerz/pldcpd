@@ -8,8 +8,8 @@ const KnowledgeAccount = () => {
   return (
     <>
       <Header />
-      <KnowledgeAccountMain />
       <AccountAside />
+      <KnowledgeAccountMain />
       <Footer />
     </>
   );

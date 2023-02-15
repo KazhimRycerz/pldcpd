@@ -77,14 +77,15 @@ const Header = () => {
                   : setShowAccount("");
                 
                     /* if (!loggedIn) {location.reload
-             }  else */if (!loggedIn && buttonPos === "") {setButtonPos("showBut")
-                } else if (loggedIn && buttonPos === "showBut") {setButtonPos("hideBut")
+             }  else */if (!loggedIn && buttonPos === "") {setButtonPos("showBut") //ok
+                } else if (loggedIn && buttonPos === "showBut") {setButtonPos("hideBut") //ok
                 } else if (!loggedIn && buttonPos === "hideBut") {setButtonPos("showBut")
-                } else if (!loggedIn && buttonPos === "moveButtonBackToStart") {setButtonPos("showBut")
-                } else if (loggedIn && buttonPos === "showBut moveButtonBack") {setButtonPos("hideBut")
                 } else if (loggedIn && buttonPos === "showBut moveButton") {setButtonPos("moveButtonBackToStart")
+                } else if (!loggedIn && buttonPos === "moveButtonBackToStart") {setButtonPos("showBut")
+               /*  } else if (loggedIn && buttonPos === "moveButtonBackToStart") {setButtonPos("showBut") */
+                } else if (loggedIn && buttonPos === "showBut moveButtonBack") {setButtonPos("hideBut")
                 } else if (!loggedIn && buttonPos === "hideBut moveButton") {setButtonPos("hideBut")
-                } else {setButtonPos("")
+                } else {setButtonPos("") 
                 }
               }}
             >
