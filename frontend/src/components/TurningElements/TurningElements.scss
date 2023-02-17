@@ -1,14 +1,16 @@
-@import '../../scss/global.scss';
+//@import '../../scss/global.scss';
 
-.drehmoment img {
+#drehmoment {
+  img {
   //display: none;
   position: fixed;
   opacity: 1;
   width: 15vw; 
-  //width: 13vw; 
+  max-width: 200px;
   aspect-ratio: 1;
   z-index: -1;
   animation: rotate 25s infinite linear;
+  }
 }
 
 #r1 {

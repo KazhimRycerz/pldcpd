@@ -21,8 +21,7 @@ import LightingEffect from "../../components/LightingEffect/LightingEffect.js"
 
 const HomeMain = () => {
   return (
-    <main>
-      
+    <main> {/* Styling in global */}
       <section id="Gruß_main">
         <h1 id="Gruß_main_h1">
           {" "}

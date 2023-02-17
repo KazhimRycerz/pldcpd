@@ -2,7 +2,6 @@
 @import "./reset/reset.scss";
 @import "./variables/variables.scss";
 
-
 .logo_cpd {
   width: 8%;
   margin-left:0px;
@@ -66,11 +65,10 @@
 }
 
 body {
-  margin: 0;
+  margin: 0 auto;
   background-color: $cpdblue;
   //background-color: rgb(80, 0,0);
-  /* background-image: url(../images/Wallpaper_07_cpd_dark.PNG); */
-  background-size: 100vw;
+  background-size: 100%;
   background-repeat:repeat-y;
   background-attachment: fixed;
   font-family: $primary-font;
@@ -79,10 +77,16 @@ body {
   margin-top:150px;
   overflow-x:hidden  
 }
+
+Header {
+  position: fixed;
+   top: 0px;
+   left: 0px; 
+} 
   
 main {
   //display: none;
-  width: 80vw;
+  width: 80%;
   margin: 0 10%;
   z-index: 5;
   position: relative;
@@ -91,8 +95,12 @@ main {
   border:2px solid $first-color;
 }
     
+Footer {
+  position:static;
+  bottom: 0;  
+}
     
-/*Content*/
+/*Content --> nicht mehr relevant*/
 
 /* #Content {
   width: 80%;
