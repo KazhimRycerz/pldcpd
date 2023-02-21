@@ -3,7 +3,8 @@ import ContactModel from '../models/contactModel.js'
 export const getAllContacts = async (req, res) => {
     try {
     const contact = await ContactModel.find()
-      .populate("knowledgeData");
+      .populate("professionalStatus")
+      .populate("careerPath");
         res.status(200).json(contact)
     } catch (error) {
         console.log(error)
@@ -20,7 +21,8 @@ export const getContact = async (req, res) => {
   
       const contactPopulated = await ContactModel
         .findById(contactId)
-        .populate("knowledgeData");
+        .populate("professionalStatus")
+        .populate("careerPath");
 
       console.log("contact.userName", contact.userName); 
     // hier kann ich auf das virtuelle Feld "firstName" zugreifen

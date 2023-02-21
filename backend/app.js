@@ -3,7 +3,7 @@ import connectMongoose from "./util/connectMogoose.js";
 import  { unkownHandler, errorHandler } from './middleware/middelware.js'
 import indexRouter from './routes/indexRouter.js'
 import contactsRouter from './routes/contactsRouter.js'
-import knowledgeRouter from './routes/knowledgeRouter.js'
+import professionalStatusRouter from './routes/professionalStatusRouter.js'
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import cors from "cors";
@@ -20,7 +20,7 @@ app.use(express.json())
 app.use(express.static("public"));
 app.use(expressFileUpload({createParentPath: true,}));
 
-app.use("/knowledgeAccount", knowledgeRouter)
+app.use("/professionalStatus", professionalStatusRouter)
 app.use("/contacts",  contactsRouter)
 app.use("/home", indexRouter)
 app.use("/", indexRouter)

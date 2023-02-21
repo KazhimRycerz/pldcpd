@@ -1,8 +1,8 @@
-import KnowledgeModel from '../models/knowledgeModel.js'
+import ProfessionalStatusModel from '../models/professionalStatusModel.js'
 
 export const getMaKnowledgeData = async (req, res) => {
     try {
-    const maKnowledgeStatus = await KnowledgeModel.find()
+    const maKnowledgeStatus = await ProfessionalStatusModel.find()
       //.populate("NNData");
         res.status(200).json(maKnowledgeStatus)
     } catch (error) {
@@ -15,7 +15,7 @@ export const getMyKnowledgeData = async (req, res) => {
 
     const myKDId = req.params.id;
     try {
-      const myKFData = await KnowledgeModel
+      const myKFData = await ProfessionalStatusModel
         .findById(myKDId);
   
        /*const myKFIdPopulated = await KnowledgeModel
@@ -39,7 +39,7 @@ export const getMyKnowledgeData = async (req, res) => {
 
 export const addMyKnowledgeData = async (req, res) => {
     try {
-    const newKData = await KnowledgeModel.create(req.body)
+    const newKData = await ProfessionalStatusModel.create(req.body)
     res.send(`Data created and saved. ID:${newKData._id}`)
     } catch (error) {
         console.log(error)
@@ -51,7 +51,7 @@ export const updateMyKnowledgeData = async (req, res) => {
 
     const DataId = req.params.id;
     try {
-        const myKData = await KnowledgeModel.findOneAndUpdate(DataId, req.body);
+        const myKData = await ProfessionalStatusModel.findOneAndUpdate(DataId, req.body);
   
       res.json(myKData)
     } catch (error) {

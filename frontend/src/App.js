@@ -11,6 +11,7 @@ import AboutRycerz from "./pages/AboutRycerz/AboutRycerz.jsx";
 import AboutPLDCPD from "./pages/AboutPLDCPD/AboutPLDCPD.jsx";
 import ListOfLearningOpportunities from "./pages/LearningOpportunities/LearningOpportunities.jsx";
 import Page404 from "./pages/Page404/Page404.jsx";
+import Sandbox from "./pages/Sandbox/Sandbox.jsx";
 /* import { AccountButtonContext } from "./context/AccountButtonContext.js"; */
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route path="/aboutrycerz" element={<AboutRycerz />} />
           <Route path="/aboutpldcpd" element={<AboutPLDCPD />} />
           <Route path="/listoflearningopprortunities" element={<ListOfLearningOpportunities />} />
+          <Route path="/sandbox" element={<Sandbox />} />
           {/* <Route path="/listofprojectsworkedon" element={<ListOfProjectsWorkedOn />} /> */}
           {/* <Route path="/historyofcpd" element={<HistoryOfCPD />} /> */}
           {/* <Route path="/community" element={<Community />} /> */}

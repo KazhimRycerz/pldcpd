@@ -1,7 +1,27 @@
 import mongoose from 'mongoose';
 
-const knowledgeSchema = mongoose.Schema({
-
+const professionalStatusSchema = mongoose.Schema({
+   activated: {
+      type:Boolean,
+      default: true
+   },
+   careerPathStatus: {
+      type: String,
+      default: "0_no_level",
+      enum: ["0_no level",
+      "1_Student", 
+      "2_Newly Qualified Lighting Designer", 
+      "3_Junior Lighting Designer", 
+      "4_Project Lighting Designer", 
+      "5_Senior Lighting Designer", 
+      "6_Associate Lighting Designer", 
+      "7_Principal lighting designer / practice owner", 
+      "8_Master", 
+      "9_Authoriesd expert", 
+      "10_Educator", 
+      "11_Educator and Researcher", 
+      "12_Journalist / Promoter"]
+   },   
    myKF: {
       type: Number,
       default: 0
@@ -50,7 +70,7 @@ const knowledgeSchema = mongoose.Schema({
 })
 
 // MONGOOSE MIDDLEWARE
-knowledgeSchema.pre('save', function(next) {
+professionalStatusSchema.pre('save', function(next) {
    // Diese Callback-Function wird jedes mal VOR dem Aufruf von .save() 
    // ausgeführt
    console.log('mongoose save() oder updateOne() aufgerufen');
@@ -58,7 +78,7 @@ knowledgeSchema.pre('save', function(next) {
    next(); // jetzt wird save aufgerufen
 })
 
-knowledgeSchema.pre(['findOneAndUpdate', 'updateOne'], function(next){
+professionalStatusSchema.pre(['findOneAndUpdate', 'updateOne'], function(next){
    // Diese Callback-Function wird jedes mal VOR dem Aufruf von .findOneAndUpdate() 
    // und updateOne() ausgeführt
    console.debug('mongoose findOneAndUpdate oder updateOne aufgerufen');
@@ -66,5 +86,5 @@ knowledgeSchema.pre(['findOneAndUpdate', 'updateOne'], function(next){
    next(); // ohne next würde save() niemals ausgeführt werden
  } );
 
-const KnowledgeModel = mongoose.model("Knowledge", knowledgeSchema);
-export default KnowledgeModel;
+const ProfessionalStatusModel = mongoose.model("professionalStatus", professionalStatusSchema);
+export default ProfessionalStatusModel;

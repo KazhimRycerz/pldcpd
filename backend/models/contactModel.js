@@ -1,46 +1,40 @@
 import mongoose from 'mongoose';
-import KnowledgeModel from './knowledgeModel.js';
+import ProfessionalStatusModel from './professionalStatusModel.js';
+import CareerModel from './careerModel.js';
 
-const addressSchema = mongoose.Schema({
-   city: {
-      type: {
-         zip: String,
-         name: String
-      },
-      required: true,
-   },
-   street: {
-      type: String,
-      minLength: 5,
-   },
-   countrycode: {
-      type: String,
-      length: 2,
-      enum: ["DE", "GB", "IT"]
-   }
-})
-
-//
 
 const contactSchema = mongoose.Schema({
    firstName: {
       type: String,
-      default: "Unknown",
+      default: "",
    },
    lastName: {
       type: String,
-      default: "Unknown",
+      default: "",
    },
-   eMail: {
+   titel:{
       type: String,
-      required: true,
-      unique: true,
-      trim: true
+      default:"",
    },
-   address: {
-      type:addressSchema,
+   appendix: {
+      type: String,
+      default:"",
+   },
+   /* address: {
+      type: addressSchema,
       required: false,
-   },
+      default:""
+   }, */
+   professionalStatus: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'professionalStatus',
+      default: ""
+      },
+   careerPath: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "career",
+      default: ""
+    }],
    dateOfBirth: {
       type: Date/*,
        validate: {
@@ -49,10 +43,6 @@ const contactSchema = mongoose.Schema({
         } */
    },
 
-   knowledgeData: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Knowledge'
-      },
    createdOn:{
       type: Date,
       immutable: true,
@@ -78,6 +68,6 @@ contactSchema.pre(['findOneAndUpdate', 'updateOne'], function(next){
    next(); // ohne next würde save() niemals ausgeführt werden
  } );
 
-const ContactModel = mongoose.model("Contact", contactSchema);
+const ContactModel = mongoose.model("contact", contactSchema);
 export default ContactModel;
 

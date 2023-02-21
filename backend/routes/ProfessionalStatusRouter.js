@@ -3,7 +3,7 @@ import {
    getMaKnowledgeData, 
    getMyKnowledgeData, 
    addMyKnowledgeData,
-   updateMyKnowledgeData} from '../controller/knowledgeController.js'
+   updateMyKnowledgeData} from '../controller/ProfessionalStatusController.js'
 
 const router = Router()
 router
