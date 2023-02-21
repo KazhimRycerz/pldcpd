@@ -1,96 +1,104 @@
 @import "../../scss/global.scss";
 
 main {
-  margin-top: -40px;
-  height: auto;
+  //margin-top: -40px;
+  //height: auto;
 
-#Content {
-  //border: solid black;
-  width: 80%;
-  margin: 20px auto;
-  h1 {
-    padding-top: 50px;
-    font-family: $primary-font-bold;
-    font-size: $xxlarge;
+  section {
+    width: 80%;
+    margin: 0 auto;
+    h3 {
+      font-family: $primary-font-bold;
+      margin: 10px;
+      padding-top: 10px;
+    }
   }
-  h3 {
-    font-family: $primary-font-bold;
-    margin: 10px;
-    padding-top: 10px;
-  }
-  #account_1 {
-    display: block;
-    margin-top: 20px;
-    border-right: 3px dotted $cpdred;
-    border-left: 3px dotted $cpdred;
-    border-radius: 20px;
 
-    #account_1_data {
-      display: flex;
-      flex-flow: row wrap;
-      //flex-grow:2;
-      padding: 10px;
-      width: 100%;
-      height: auto;
-      //justify-content: space-around;
-      > div {
+  #Gruß_account {
+    //border: solid black;
+    width: 80%;
+    margin: 20px auto;
+    h1 {
+      padding-top: 50px;
+      font-family: $primary-font-bold;
+      font-size: $xxlarge;
+    }
+  }
+    #account_1 {
+      display: block;
+      margin-top: 20px;
+      border-right: 3px dotted $cpdred;
+      border-left: 3px dotted $cpdred;
+      border-radius: 20px;
+      #account_1_data {
         display: flex;
-        flex-flow: column nowrap;
-        justify-content: space-evenly;
-        gap: 5px;
-        margin: 10px;
-        padding: 15px;
-        width: 47%;
-        height: 120px;
-        background-color: $first-color;
-        border-radius: $radiussmall;
-        box-shadow: $boxshadow;
-        position: relative;
+        flex-flow: row wrap;
+        //flex-grow:2;
+        padding: 10px;
+        width: 100%;
+        height: auto;
+        //justify-content: space-around;
         > div {
           display: flex;
-          flex-flow: row nowrap;
-          justify-content: space-between;
-          p {
-            line-height: 1rem;
-            font-size: $small;
-            font-family: $primary-font;
-            width: 50%;
-            padding: 5px;
-            //border: solid;
+          flex-flow: column nowrap;
+          justify-content: space-evenly;
+          gap: 5px;
+          margin: 10px;
+          padding: 15px;
+          width: 47%;
+          height: 120px;
+          background-color: $first-color;
+          border-radius: $radiussmall;
+          box-shadow: $boxshadow;
+          position: relative;
+          > div {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            p {
+              line-height: 1rem;
+              font-size: $small;
+              font-family: $primary-font;
+              width: 50%;
+              padding: 5px;
+              //border: solid;
+            }
+            output {
+              line-height: 1rem;
+              font-size: $small;
+              text-align: center;
+              vertical-align: middle;
+              width: 50%;
+              padding: 5px;
+              //border: solid;
+              border-radius: $radiussmall;
+              color: $first-color;
+              background-color: $cpdblue;
+              opacity: 1;
+            }
           }
-          output {
-            line-height: 1rem;
-            font-size: $small;
-            width: 50%;
-            padding: 5px;
-            //border: solid;
-            border-radius: $radiussmall;
-            color: $cpdblue;
-            background-color: $fourth-color;
+          #account_1_p {
+            font-size: 1.5rem;
+            width: 100%;
+            text-align: center
           }
-        }
-        #account_1_p {
-          font-size: 1.5rem;
-          width: 100%;
         }
       }
     }
-  }
-}
 
-/* .account_Box {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-family: $primary-font-bold;
-  font-size: $normal;
-  width: 120px;
-  height: 30px;
-  border-radius: $radiussmall;
-  padding: 7px;
-  text-align: center;
-  background-color: $fourth-color;
-} */
+  /* .account_Box {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-family: $primary-font-bold;
+    font-size: $normal;
+    width: 120px;
+    height: 30px;
+    border-radius: $radiussmall;
+    padding: 7px;
+    text-align: center;
+    background-color: $fourth-color;
+  } */
 
 #account_1_data > div:nth-of-child(2) {
   display: flex;
@@ -161,6 +169,8 @@ main {
     position: relative;
     div > h2 {
       font-family: $guthaben;
+      background-color: $cpdblue;
+      opacity: 1;
       width: 75px;
     }
     div:first-child {

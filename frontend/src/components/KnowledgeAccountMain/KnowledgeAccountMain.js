@@ -4,7 +4,7 @@ const  KnowledgeAccountMain = ()=>{
 
    return (
       <main>
-         <div id="Content">
+         {/* <div id="Content"> */}
 
             <section id="Gruß_account">
                <h1> Ihre Fachwissen im Überblick</h1>
@@ -211,7 +211,7 @@ const  KnowledgeAccountMain = ()=>{
                </div>
             </section>
             
-         </div>
+         {/* </div> */}
       </main>
       )
 }
