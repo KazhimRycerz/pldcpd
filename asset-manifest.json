@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/pldcpd/static/css/main.efd3f67a.css",
-    "main.js": "/pldcpd/static/js/main.f005477c.js",
+    "main.css": "/pldcpd/static/css/main.dadd2f94.css",
+    "main.js": "/pldcpd/static/js/main.066cd4dc.js",
     "static/media/Vulkan.gif": "/pldcpd/static/media/Vulkan.3fe35e5fca25582b5eaa.gif",
     "static/media/RampartOne-Regular.otf": "/pldcpd/static/media/RampartOne-Regular.d5c388272379f39c06fb.otf",
     "static/media/unsplash.jpg": "/pldcpd/static/media/unsplash.49c74b9ba7d11090733b.jpg",
@@ -51,11 +51,11 @@
     "static/media/VIA-Verlag.otf": "/pldcpd/static/media/VIA-Verlag.f9b0807e13383d5cb88c.otf",
     "static/media/VIA-Verlag.woff2": "/pldcpd/static/media/VIA-Verlag.ca1bde523566b12176ee.woff2",
     "index.html": "/pldcpd/index.html",
-    "main.efd3f67a.css.map": "/pldcpd/static/css/main.efd3f67a.css.map",
-    "main.f005477c.js.map": "/pldcpd/static/js/main.f005477c.js.map"
+    "main.dadd2f94.css.map": "/pldcpd/static/css/main.dadd2f94.css.map",
+    "main.066cd4dc.js.map": "/pldcpd/static/js/main.066cd4dc.js.map"
   },
   "entrypoints": [
-    "static/css/main.efd3f67a.css",
-    "static/js/main.f005477c.js"
+    "static/css/main.dadd2f94.css",
+    "static/js/main.066cd4dc.js"
   ]
 }
