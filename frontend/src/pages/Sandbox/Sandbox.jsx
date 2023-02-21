@@ -1,16 +1,15 @@
 import Header from '../../components/Header/Header.js'
 import Footer from '../../components/Footer/Footer.js'
-import RollingDay from '../../components/RollingDay/RollingDay.js'
 import './Sandbox.scss'
 
 const Sandbox = () => {
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       <div id="sandbox">
-        <RollingDay />
+        <p>this is the sandbox of this website</p>
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </>
   )
 };
