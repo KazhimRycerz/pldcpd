@@ -337,7 +337,7 @@ img[src*="c.png"] {
 
 #lightingEffect {
   height: auto;
-  width: 100.4%;
+  width: calc(100% + 4px);
   position: relative;
   left: -2px;
   box-shadow: 20px 0px 20px white, -20px 0px 20px white;
@@ -417,7 +417,7 @@ img[src*="c.png"] {
 }
 
 #Promoter_1 {
-  width: 100.4%;
+  width: calc(100% + 4px);
   position: relative;
   left: -2px;
   border: 2px sold white;
