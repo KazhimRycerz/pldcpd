@@ -4,17 +4,56 @@ import ContactModel from './contactModel.js';
 const companySchema = mongoose.Schema({
    companyName: {
       type: String,
-      default: "Unknown",
+      default: "",
       required: true,
    },
-   address: {
+   companyType: {
+      type: String,
+      default: "??",
+      required: true,
+   },
+   city: {
       type: String,
       default: "Unknown",
+      required: false,
    },
-   eMail: {
+   zip:{
       type: String,
-      required: true,
+      default: "Unknown",
+      required: false,
+   },
+   street: {
+      type: String,
+      minLength: 5,
+      default: "Unknown",
+      required: false,
+   },
+   countryCode: {
+      type: String,
+      length: 2,
+      enum: ["DE", "GB", "IT", "US"]
+   },
+   homepage: {
+      type: String,
+
+   },
+   internalClientID: {
+      type: String,
       unique: true,
+      required: false
+   },
+   branch: String,
+   active: {
+      type: Boolean,
+      default: true,
+   },
+   ustID: {
+      type: String
+   },
+   companyEmail: {
+      type: String,
+      required: false,
+      unique: false,
       trim: true
    },
    createdOn:{
@@ -22,7 +61,12 @@ const companySchema = mongoose.Schema({
       immutable: true,
       default: ()=> new Date(), 
    },
-   updatedOn: Date
+   updatedOn: Date,
+   updatedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "contact",
+      default: "63ea64b974720450742a2dd0",
+   }
 })
 
 // MONGOOSE MIDDLEWARE

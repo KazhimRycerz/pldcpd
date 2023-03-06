@@ -1,0 +1,124 @@
+#drehmoment img {
+  position: fixed;
+  opacity: 1;
+  width: 15vw;
+  max-width: 200px;
+  aspect-ratio: 1;
+  z-index: -1;
+  animation: rotate 25s infinite linear;
+}
+#drehmoment #r1 {
+  left: 22vw;
+  top: 0px;
+  animation-duration: 20.5s;
+}
+#drehmoment #r2 {
+  left: 66vw;
+  top: 0px;
+  animation-duration: 22.5s;
+}
+#drehmoment #r3 {
+  left: -2.5vw;
+  top: 150px;
+  animation-duration: 24s;
+}
+#drehmoment #r4 {
+  left: 43.5vw;
+  top: 150px;
+  animation-duration: 26s;
+}
+#drehmoment #r5 {
+  left: 87.5vw;
+  top: 150px;
+  animation-duration: 22s;
+}
+#drehmoment #r6 {
+  left: 22vw;
+  top: 300px;
+}
+#drehmoment #r7 {
+  left: 66vw;
+  top: 300px;
+  animation-duration: 22.5s;
+}
+#drehmoment #r8 {
+  left: -2.5vw;
+  top: 450px;
+  animation-duration: 25.6s;
+}
+#drehmoment #r9 {
+  left: 43.5vw;
+  top: 450px;
+  animation-duration: 25.6s;
+}
+#drehmoment #r10 {
+  left: 87.5vw;
+  top: 450px;
+  animation-duration: 24.5s;
+}
+#drehmoment #r11 {
+  left: 22vw;
+  top: 600px;
+}
+#drehmoment #r12 {
+  left: 66vw;
+  top: 600px;
+  animation-duration: 22.5s;
+}
+#drehmoment #r13 {
+  left: -2.5vw;
+  top: 750px;
+  animation-duration: 25.6s;
+}
+#drehmoment #r14 {
+  left: 43.5vw;
+  top: 750px;
+  animation-duration: 25.6s;
+}
+#drehmoment #r15 {
+  left: 87.5vw;
+  top: 750px;
+  animation-duration: 24.5s;
+}
+#drehmoment #r16 {
+  left: 22vw;
+  top: 900px;
+}
+#drehmoment #r17 {
+  left: 66vw;
+  top: 900px;
+  animation-duration: 22.5s;
+}
+#drehmoment #r18 {
+  left: -2.5vw;
+  top: 1050px;
+  animation-duration: 25.6s;
+}
+#drehmoment #r19 {
+  left: 43.5vw;
+  top: 1050px;
+  animation-duration: 25.6s;
+}
+#drehmoment #r20 {
+  left: 87.5vw;
+  top: 1050px;
+  animation-duration: 24.5s;
+}
+#drehmoment #r21 {
+  left: 22vw;
+  top: 1200px;
+}
+#drehmoment #r22 {
+  left: 66vw;
+  top: 1200px;
+  animation-duration: 22.5s;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}/*# sourceMappingURL=TurningElements.css.map */

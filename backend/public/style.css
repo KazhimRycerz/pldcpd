@@ -1,0 +1,11 @@
+
+body {
+    background-color: rgb(100, 27, 26);
+}
+h1 {
+    justify-content: center;
+    width: 75%;
+    margin: 50vh auto;
+    vertical-align: middle;
+    color: rgb(175, 215, 250);
+}

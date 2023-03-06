@@ -1,19 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./scss/index.scss";
 import App from "./App.js";
-import TurningsElements from "./components/TurningElements/Turningselements.js";
+import "./scss/index.scss";
+import TurningsElements from "./components/TurningElements/Turningselements.jsx";
 import { SectionsProvider } from "./context/SectionsContext.js";
+import { BrowserRouter as Router } from "react-router-dom";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    
-    <SectionsProvider>
-      <TurningsElements />
-      <App />
-    </SectionsProvider>
-    
+    <Router>
+      <SectionsProvider>
+        <TurningsElements />
+        <App />
+      </SectionsProvider>
+    </Router>
   </React.StrictMode>
 );

@@ -1,0 +1,60 @@
+@import "../../scss/global.scss";
+
+
+#nextBtnToStepTwo {
+    margin-top: 1rem;
+}
+#submitBtn {
+    margin-top: 1.5rem;
+}
+.weiterButton {
+    font-size: 1rem;
+    padding: 0.5rem 1.5rem;
+    background-color: $cpdblue;
+    color: $first-color;
+    border: 1px solid var(--dark-green-color);
+    box-shadow: $btnshadow;
+    border-radius: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: font-weight 500ms ease-in, font-size 1s ease-in,
+      padding 1s ease-in, color 500ms ease-in, background-color 500ms ease-in;
+  }
+  
+  .weiterButton:hover {
+    background-color: $first-color;
+    color: $cpdblue;
+    font-weight: bolder;
+  }
+  
+  .button-dark-green {
+    font-size: 2rem;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--dark-green-color);
+    color: var(--beige-color);
+    border: 2px solid var(--beige-color);
+    box-shadow: none;
+    border-radius: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: font-weight 500ms ease-in, font-size 1s ease-in,
+      padding 1s ease-in, color 500ms ease-in, background-color 500ms ease-in;
+  }
+  
+  .button-dark-green:hover {
+    background-color: var(--middle-green-color);
+    color: var(--dark-green-color);
+  }
+  
+  .button-beige {
+    font-size: $normal;
+    padding: 0.75rem 1.5rem;
+    background-color: $first-color;
+    color: $cpdblue;
+    border: 1px solid $cpdblue;
+    box-shadow: none;
+    border-radius: 1rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: font-weight 500ms ease-in, font-size 1s ease-in, padding 1s ease-in, color 500ms ease-in, background-color 500ms ease-in;
+  }

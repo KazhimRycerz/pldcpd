@@ -1,0 +1,489 @@
+@charset "UTF-8";
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css");
+@font-face {
+  font-family: "VIA-Verlag";
+  src: url("../../fonts/VIA-Verlag.woff2") format("woff2"), url("../../fonts/VIA-Verlag.otf") format("otf");
+}
+@font-face {
+  font-family: "BillboardShadow";
+  src: url("../../fonts/Bilboard/Billboard-Shadow.woff2") format("woff2"), url("../../fonts/Bilboard/Billboard-Shadow.otf") format("otf");
+}
+@font-face {
+  font-family: "Carbono";
+  src: url("../../fonts/carbono/carbono.woff2") format("woff2"), url("../../fonts/carbono/carbono.otf") format("otf");
+}
+@font-face {
+  font-family: "Vacaciones";
+  src: url("../../fonts/vacaciones-outline/Vacaciones-font-ffp-defharo.woff2") format("woff2"), url("../../fonts/vacaciones-outline/Vacaciones-font-ffp-defharo.otf") format("otf");
+}
+@font-face {
+  font-family: "CorporateDemi";
+  src: url("../../fonts/Corporate/CorporateSTOT-Dem.woff2") format("woff2"), url("../../fonts/Corporate//CorporateSTOT-Dem.otf") format("otf");
+}
+@font-face {
+  font-family: "CorporateReg";
+  src: url("../../fonts/Corporate/CorporateSTOT-Reg.woff2") format("woff2"), url("../../fonts/Corporate/CorporateSTOT-Reg.otf") format("otf");
+}
+@font-face {
+  font-family: "FallingSkyOu";
+  src: url("../../fonts/Falling-Sky-Condensed-Outline/FallingSkyOu.woff2") format("woff2"), url("../../fonts/Falling-Sky-Condensed-Outline/FallingSkyOu.otf") format("otf");
+}
+@font-face {
+  font-family: "Frederica";
+  src: url("../../fonts/Fredericka_the_Great/FrederickatheGreat-Regular.woff2") format("woff2"), url("../../fonts/Fredericka_the_Great/FrederickatheGreat-Regular.otf") format("otf");
+}
+@font-face {
+  font-family: "ChalkLine";
+  src: url("../../fonts/chalk_line_outline/ChalkLine-Outline.woff2") format("woff2"), url("../../fonts/chalk_line_outline/ChalkLine-Outline.otf") format("otf");
+}
+@font-face {
+  font-family: "Rampart";
+  src: url("../../fonts/Rampart_One/RampartOne-Regular.woff2") format("woff2"), url("../../fonts/Rampart_One/RampartOne-Regular.otf") format("otf");
+}
+@font-face {
+  font-family: "Thunderlord";
+  src: url("../../fonts/thunder_lord/ThunderLord.woff2") format("woff2"), url("../../fonts/thunder_lord/ThunderLord.otf") format("otf");
+}
+@font-face {
+  font-family: "FoundSanExpNorm";
+  src: url("../../fonts/Foundry/FOUSANNO.woff2") format("woff2"), url("../../fonts/Foundry/FOUSANNO.otf") format("otf");
+}
+@font-face {
+  font-family: "FoundSanBd";
+  src: url("../../fonts/Foundry/FOUSANBD.woff2") format("woff2"), url("../../fonts/Foundry/FOUSANBD.otf") format("otf");
+}
+@font-face {
+  font-family: "FoundSanExpMed";
+  src: url("../../fonts/Foundry/FOUSANMD.woff2") format("woff2"), url("../../fonts/Foundry/FOUSANMD.otf") format("otf");
+}
+@font-face {
+  font-family: "FoundSanExBold";
+  src: url("../../fonts/Foundry/FOUSANEB.woff2") format("woff2"), url("../../fonts/Foundry/FOUSANEB.otf") format("otf");
+}
+* {
+  margin: 0;
+  padding: 0px;
+  box-sizing: border-box;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+* ::-webkit-scrollbar {
+  display: none;
+}
+
+/* 
+Persian Plum: #641b1a
+Blue Chill: #118890
+Blue Dianne: #225d63
+Pine Green: #047c74 
+*/
+/* textsizes*/
+/*$medium: 4rem;
+$large: 10rem;
+$huge: 20rem;
+
+$border-radius:*/
+/*Mediasetting*/
+/* Fonts */
+/* logos */
+:root {
+  --beige-transparent-color: #f4e3d7bb;
+  --beige-color: #f4e3d7;
+  --middle-green-color: #008000;
+  --dark-green-color: rgb(0, 66, 0);
+  --dark-color: #011b10;
+  --dark-transparent-color: #011b1080;
+}
+
+.logo_cpd {
+  width: 8%;
+  margin-left: 0px;
+  margin-right: 10px;
+  right: 10px;
+  align-items: right;
+}
+
+.LC {
+  font-family: "VIA-Verlag";
+  font-weight: bold;
+  letter-spacing: -5px;
+  line-height: normal;
+  font-style: normal;
+  color: rgb(100, 27, 26);
+  font-size: 2.5rem;
+  position: relative;
+  bottom: -0.15rem;
+}
+
+.C {
+  font-family: "VIA-Verlag";
+  color: rgb(100, 27, 26);
+  font-size: 1.3em;
+  position: relative;
+  top: 3px;
+  /* bottom: -0.14em; */
+  text-decoration: none;
+  cursor: url(../images/point.png);
+}
+
+.Calli {
+  font-family: "VIA-Verlag";
+  line-height: normal;
+  font-style: normal;
+  font-size: 1.1rem;
+  position: relative;
+  bottom: -0.14em;
+  text-decoration: none;
+}
+
+.LitCoin {
+  font-family: "VIA-Verlag";
+  font-style: normal;
+  line-height: normal;
+  color: rgb(100, 27, 26);
+  font-size: 1.5em;
+  position: relative;
+  bottom: -0.14em;
+}
+
+.grad {
+  background-image: linear-gradient(rgb(173, 173, 213), rgb(228, 150, 150));
+  background-attachment: fixed;
+}
+
+.Trenner {
+  margin: 50px auto;
+  width: 5%;
+  display: block;
+}
+
+body {
+  margin: 0 auto;
+  background-color: rgb(0, 0, 30);
+  background-size: 100%;
+  background-repeat: repeat-y;
+  background-attachment: fixed;
+  font-family: "FoundSanExpNorm", sans-serif;
+  line-height: 1.2;
+  letter-spacing: 0px;
+  margin-top: 150px;
+  overflow-x: hidden;
+  height: 100vh;
+}
+
+Header {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+}
+
+main {
+  width: 80%;
+  margin: 0 10%;
+  z-index: 5;
+  position: relative;
+  border-radius: 20px;
+  background-color: rgb(240, 255, 255);
+  border: 2px solid rgb(240, 255, 255);
+}
+
+Footer {
+  position: relative;
+  bottom: 0px;
+}
+
+/*Content --> nicht mehr relevant*/
+/* #Content {
+  width: 80%;
+  margin: 0px auto;  
+  z-index: 2;
+} */
+/* @media (max-width: $desktop){
+  #Content {
+    width: 100%;
+  }
+} */
+@media (max-width: 760px) {
+  body {
+    background-image: none;
+  }
+  .drehmoment {
+    display: none;
+  }
+  main {
+    width: 100vw;
+    margin: 0 0;
+  }
+  #navmain div {
+    border: none;
+  }
+}
+.RegisterForm {
+  border-radius: 20px;
+  width: 80%;
+  max-width: 800px;
+  height: auto;
+  margin: 0 auto;
+  background-color: rgb(240, 255, 255);
+  border: none;
+  font-family: "FoundSanExpNorm", sans-serif;
+}
+
+.RegisterForm h2 {
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 1.25rem 1rem;
+  margin-bottom: 1.5rem;
+  color: rgb(0, 0, 30);
+  border-radius: 20px 20px 0 0;
+  transition: font-size 1s ease-in;
+}
+
+.RegisterForm form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 1rem;
+  margin: 2rem;
+}
+
+.RegisterForm > div:last-child {
+  display: flex;
+  border-radius: 0 0 10px 10px;
+  transition: box-shadow 500ms ease-in;
+}
+
+/* .RegisterForm > div:last-child > .button-beige {
+  box-shadow: $btnshadow;
+  background-color: $cpdblue;
+  transition: box-shadow 500ms ease-in;
+}
+
+.RegisterForm > div:last-child > .button-beige:hover {
+  box-shadow: 0 0 2rem var(--beige-color);
+} */
+#stepOne,
+#stepTwo,
+#stepThree {
+  background-color: rgb(240, 255, 255);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  width: 60%;
+  padding: 1.5rem 1rem;
+  border-radius: 10px;
+  box-shadow: 0.5rem 0.5rem 2rem;
+  transition: width 1s ease-in;
+}
+
+#stepTwo {
+  gap: 1.5rem;
+}
+
+.RegisterForm .gender > h3 {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+#stepOne > label {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  transition: font-size 1s ease-in, width 1s ease-in, margin-left 1s ease-in;
+}
+
+#stepThree > label {
+  transition: font-size 1s ease-in, width 1s ease-in, margin-left 1s ease-in;
+}
+
+/* .RegisterForm .disabilities {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} */
+.RegisterForm sup {
+  color: var(--middle-green-color);
+  font-weight: bold;
+}
+
+#infoUsername {
+  position: relative;
+}
+
+#infoUsername:before {
+  content: "Ihr Benutzername muss zwischen 4 und 20 Zeichen lang sein";
+}
+
+#infoFirstName:before {
+  content: "Bitte geben Sie Ihren Vornamen ein";
+}
+
+#infoLastName:before {
+  content: "Bitte geben Sie ihren Nachnamen ein";
+}
+
+#infoLocation:before {
+  content: "Bitte geben Sie Ihre Stadt ein";
+}
+
+#infoEmail:before {
+  content: "Geben Sie bitte Ihre Email-Adresse ein";
+}
+
+#infoPsw:before {
+  content: "Ihr Passwort muss mindestens 8 Zeichen lang sein und eine Zahl, einen Groß- und einen Kleinbuchstaben enthalten.";
+}
+
+#infoUsername:before,
+#infoFirstName:before,
+#infoLastName:before,
+#infoEmail:before,
+#infoPsw:before,
+#infoUsername:after,
+#infoFirstName:after,
+#infoLastName:after,
+#infoEmail:after,
+#infoPsw:after {
+  background-color: rgb(240, 255, 255);
+  color: var(--middle-green-color);
+  font-weight: bold;
+  text-align: center;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  transition: opacity 1s ease-in-out;
+  position: absolute;
+  z-index: 1;
+  visibility: hidden;
+  opacity: 0;
+}
+
+#infoUsername:after,
+#infoFirstName:after,
+#infoLastName:after,
+#infoLocation:after,
+#infoEmail:after,
+#infoPsw:after {
+  content: "Pflichtfeld!";
+  color: red;
+  margin-top: -3rem;
+  transition: opacity 0.5s ease-in-out;
+}
+
+#infoUsername:hover::before,
+#infoFirstName:hover::before,
+#infoLastName:hover::before,
+#infoLocation:hover::before,
+#infoEmail:hover::before,
+#infoPsw:hover::before,
+#infoUsername:hover::after,
+#infoFirstName:hover::after,
+#infoLastName:hover::after,
+#infoLocation:hover::after,
+#infoEmail:hover::after,
+#infoPsw:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+#bereitsRegistriert {
+  margin: 20px auto;
+  font-size: 0.9rem;
+  padding: 0.75rem 1.5rem;
+  background-color: rgb(240, 255, 255);
+  color: rgb(0, 0, 30);
+  box-shadow: 0px 0px 10px 1px rgb(25, 110, 140) inset, -2px -2px 5px 3px grey, -2px -2px 5px white inset;
+  border-radius: 10px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: font-weight 500ms ease-in, font-size 1s ease-in, padding 1s ease-in, color 500ms ease-in, background-color 500ms ease-in;
+}
+
+#bereitsRegistriert:hover {
+  background-color: rgb(0, 0, 30);
+  color: rgb(240, 255, 255);
+}
+
+/* @media screen and (max-width: 767px) {
+  .RegisterForm h2 {
+    font-size: 2.25rem;
+  }
+
+  #stepOne,
+  #stepTwo,
+  #stepThree {
+    width: 95%;
+  }
+
+  #stepOne > label,
+  #stepThree > label {
+    font-size: 1.75rem;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 2rem;
+    width: 100%;
+  }
+
+  #stepOne > label input[type="text"],
+  #stepTwo input[type="text"],
+  #stepThree input[type="password"],
+  #stepThree input[type="email"] {
+    font-size: 1.5rem;
+    margin-top: -0.5rem;
+    width: 90%;
+    transition: font-size 1s ease-in,margin-top 1s ease-in, width 1s ease-in;
+  }
+
+
+  #stepTwo .radio {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #stepTwo .checked {
+    font-size: 1.25rem;
+    transition: font-size 1s ease-in;
+  }
+
+  #stepTwo h3 {
+    font-size: 2rem;
+    text-align: center;
+    transition: font-size 1s ease-in;
+  }
+
+  #infoUsername:before,
+  #infoFirstName:before,
+  #infoLastName:before,
+  #infoLocation::before,
+  #infoEmail:before,
+  #infoPsw:before,
+  #infoUsername:after,
+  #infoFirstName:after,
+  #infoLastName:after,
+  #infoLocation:after,
+  #infoEmail:after,
+  #infoPsw:after {
+    transform: translateX(-90px);
+  }
+
+  .RegisterForm > div:last-child {
+    margin-left: 2.5%;
+    transition: margin-left 1s ease-in;
+  }
+} 
+
+
+@media screen and (min-width:1024px){
+  #stepOne,
+  #stepTwo,
+  #stepThree {
+    width: 900px;
+  }
+
+  .RegisterForm > div:last-child{
+    margin-left: calc((100vw - 900px) / 2);
+  }
+} *//*# sourceMappingURL=RegisterForm.css.map */

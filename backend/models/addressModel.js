@@ -17,7 +17,7 @@ const addressSchema = mongoose.Schema({
       default: "Unknown",
       required: false,
    },
-   countrycode: {
+   countryCode: {
       type: String,
       length: 2,
       enum: ["DE", "GB", "IT", "US"]

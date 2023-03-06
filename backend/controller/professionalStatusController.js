@@ -51,7 +51,8 @@ export const updateMyKnowledgeData = async (req, res) => {
 
     const DataId = req.params.id;
     try {
-        const myKData = await ProfessionalStatusModel.findOneAndUpdate(DataId, req.body);
+        const myKData = await ProfessionalStatusModel
+        .findOneAndUpdate(DataId, req.body);
   
       res.json(myKData)
     } catch (error) {

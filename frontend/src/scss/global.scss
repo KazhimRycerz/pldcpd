@@ -2,6 +2,8 @@
 @import "./reset/reset.scss";
 @import "./variables/variables.scss";
 
+
+
 .logo_cpd {
   width: 8%;
   margin-left:0px;
@@ -75,7 +77,8 @@ body {
   line-height: 1.2;
   letter-spacing: 0px;
   margin-top:150px;
-  overflow-x:hidden  
+  overflow-x: hidden; 
+  height: 100vh
 }
 
 Header {
@@ -96,8 +99,8 @@ main {
 }
     
 Footer {
-  position:static;
-  bottom: 0;  
+  position: relative;
+  bottom: 0px;  
 }
     
 /*Content --> nicht mehr relevant*/

@@ -1,13 +1,13 @@
 import mongoose from 'mongoose';
 
 const professionalStatusSchema = mongoose.Schema({
-   activated: {
+   active: {
       type:Boolean,
       default: true
    },
    careerPathStatus: {
       type: String,
-      default: "0_no_level",
+      default: "0_no level",
       enum: ["0_no level",
       "1_Student", 
       "2_Newly Qualified Lighting Designer", 
@@ -17,39 +17,47 @@ const professionalStatusSchema = mongoose.Schema({
       "6_Associate Lighting Designer", 
       "7_Principal lighting designer / practice owner", 
       "8_Master", 
-      "9_Authoriesd expert", 
+      "9_Authorised expert", 
       "10_Educator", 
       "11_Educator and Researcher", 
-      "12_Journalist / Promoter"]
+      "12_Journalist / Promoter"],
+      require: true
    },   
    myKF: {
       type: Number,
-      default: 0
+      default: 0,
+      require: true
    },
    myLF: {
       type: Number,
-      default: 0
+      default: 0,
+      require: true
    },
    myPEDh: {
       type: Number,
-      default: 0
+      default: 0,
+      require: true
    },
    myPEXh: {
       type: Number,
-      default: 0
+      default: 0,
+      require: true
    },
    myLP: {
       type: Number,
-      default: 0
+      default: 0,
+      require: true
    },
    myLC: {
       type: Number,
-      default: 0
+      default: 0,
+      require: true
    },
    myCStatus: {
       type: Number,
       default: 0,
-      enum: [1, 2, 3,4,5,6,7,8,9,10]
+      enum: [1, 2, 3,4,5,6,7,8,9,10],
+      require: true
    },
    cpdActiveSince:{
       type: Date,

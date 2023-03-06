@@ -1,5 +1,5 @@
 import './LearningOpportunities.scss'
-import LearningOpportunitiesMain from '../../components/LearningOpportunitiesMain/LearningOpportunitiesMain.js'
+import LearningOpportunitiesMain from '../../components/LearningOpportunitiesMain/LearningOpportunitiesMain.jsx'
 
 
 const learningOpportunities = (props) => {

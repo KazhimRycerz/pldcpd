@@ -25,17 +25,33 @@ const careerSchema = mongoose.Schema({
    },
    eMail: {
       type: String,
-      required: true,
-      unique: true,
-      trim: true
+      required: false,
+      unique: false,
+      trim: true,
+      default:""
+   },
+   directPhoneContact: {
+      type: String,
+      required: false,
+      unique: false,
    },
    startDate:{
       type: Date,
-      immutable: true 
+      immutable: false,
+      default: ""
    },
    endDate:{
       type: Date,
-      immutable: true 
+      immutable: false,
+      default: ""
+   },
+   active: {
+      type:Boolean,
+      default: true
+   },
+   timeSpan:{
+      type: Number,
+     /*  default: ()=> new Date()-startDate, */
    },
    createdOn:{
       type: Date,

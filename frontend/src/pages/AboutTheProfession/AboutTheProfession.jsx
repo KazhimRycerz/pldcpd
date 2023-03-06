@@ -1,6 +1,6 @@
-import Header from '../../components/Header/Header.js'
-import Footer from '../../components/Footer/Footer.js'
-//import AboutTheProfessionMain from '../../components/AboutTheProfession/AboutTheProfessionMain.js'
+import Header from '../../components/Header/Header.jsx'
+import Footer from '../../components/Footer/Footer.jsx'
+//import AboutTheProfessionMain from '../../components/AboutTheProfession/AboutTheProfessionMain.jsx'
 import './AboutTheProfession.scss'
 
 const AboutTheProfession = () => {
