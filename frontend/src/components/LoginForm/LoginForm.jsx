@@ -1,7 +1,7 @@
 import React, { useState, useRef, useContext } from "react";
 import axiosConfig from "../../util/axiosConfig.js";
 import { SectionsContext } from "../../context/SectionsContext.js";
-import { Navigate, NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import "./LoginForm.scss";
 import swal from "sweetalert";
 
@@ -94,17 +94,17 @@ function LoginForm() {
               placeholder="dein Passwort"
             />
           </label>
-          <input className="loginButton" type="submit" value="Anmelden" />
+          <input className="loginButton" type="submit" value="Daten senden" />
         </form>
       </>
       
 
-      <h2>Sie haben noch kein Konto?</h2>
-      <div className="toRegister">
+      <h2>Sie haben noch kein Konto? Dann können Sie sich hier</h2>
+      <div id="toRegister">
         <p>als neuer Benutzer</p>
-        <NavLink to={"/register"} className="button-green">
-          Registrieren
-        </NavLink>
+        <Link to={"/register"} id="toRegisterButton">
+          registrieren
+        </Link>
       </div>
 
       {isLoading && <p>Lade - bitte warten...</p>}
