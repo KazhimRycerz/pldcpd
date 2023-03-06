@@ -9,6 +9,7 @@ import PersonalAccount from "./pages/PersonalAccount/PersonalAccount.jsx";
 import CareerPlanning from "./pages/CareerPlanning/CareerPlanning.jsx";
 import Login from "./pages/LoginPage/Login.jsx";
 import Register from "./pages/RegisterPage/Register.jsx";
+import UserProfile from "./pages/UserProfile/UserProfile.jsx";
 import AboutTheProfession from "./pages/AboutTheProfession/AboutTheProfession.jsx";
 import AboutRycerz from "./pages/AboutRycerz/AboutRycerz.jsx";
 import AboutPLDCPD from "./pages/AboutPLDCPD/AboutPLDCPD.jsx";
@@ -49,6 +50,7 @@ function App() {
           {/* <Route path="/registerlogin" element={<RegisterLogin />} /> */}
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/userprofile" element={<UserProfile />} />
           <Route path="/*" element={<Page404 />} />
           </Routes>
       {/* </Router> */}
