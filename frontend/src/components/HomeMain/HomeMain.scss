@@ -142,7 +142,9 @@ img[src*="c.png"] {
 
 #lightingEffect {
   height: auto;
-  position:relative;
+  width: calc(100% + 4px);
+  position: relative;
+  left: -2px;
   //left: calc(0% - 2px);
   //width: calc(100% + 6px);
   //margin: -0.15%; 
@@ -224,7 +226,9 @@ img[src*="c.png"] {
  }
  
  #Promoter_1 {
+    width: calc(100% + 4px);
     position: relative;
+    left: -2px;
     border: 2px sold white;
     //left: calc(0% - 3px);
     //width: calc(100% + 6px);
