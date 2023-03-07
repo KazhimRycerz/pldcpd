@@ -1,7 +1,7 @@
 import React, { useState, useRef, useContext } from "react";
 import axiosConfig from "../../util/axiosConfig.js";
 import { SectionsContext } from "../../context/SectionsContext.js";
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./LoginForm.scss";
 import swal from "sweetalert";
 

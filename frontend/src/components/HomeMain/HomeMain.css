@@ -343,9 +343,10 @@ img[src*="c.png"] {
 }
 
 #lightingEffect {
-  width: 100%;
   height: auto;
+  width: calc(100% + 4px);
   position: relative;
+  left: -2px;
   box-shadow: 20px 0px 20px white, -20px 0px 20px white;
 }
 
@@ -423,7 +424,9 @@ img[src*="c.png"] {
 }
 
 #Promoter_1 {
+  width: calc(100% + 4px);
   position: relative;
+  left: -2px;
   border: 2px sold white;
   width: 100%;
   height: 50vh;
