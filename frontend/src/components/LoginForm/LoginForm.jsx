@@ -1,7 +1,7 @@
 import React, { useState, useRef, useContext } from "react";
 import axiosConfig from "../../util/axiosConfig.js";
 import { SectionsContext } from "../../context/SectionsContext.js";
-import { Link } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 import "./LoginForm.scss";
 import swal from "sweetalert";
 
@@ -70,6 +70,8 @@ function LoginForm() {
 
   return (
     <main className="LoginForm">
+
+
 
       <>
         <h2>anmelden</h2>

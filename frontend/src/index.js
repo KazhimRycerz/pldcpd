@@ -5,6 +5,7 @@ import "./scss/index.scss";
 import TurningsElements from "./components/TurningElements/Turningselements.jsx";
 import { SectionsProvider } from "./context/SectionsContext.js";
 import { BrowserRouter as Router } from "react-router-dom";
+//import Footer from "./components/Footer/Footer.jsx"
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

@@ -2,7 +2,42 @@
 @import "./reset/reset.scss";
 @import "./variables/variables.scss";
 
+body {
+  margin: 0 auto;
+  background-color: $cpdblue;
+  //background-color: rgb(80, 0,0);
+  background-size: 100%;
+  background-repeat:repeat-y;
+  background-attachment: fixed;
+  font-family: $primary-font;
+  line-height: 1.2;
+  letter-spacing: 0px;
+  margin-top:150px;
+  overflow-x: hidden; 
+  height: auto;  
+}
 
+Header {
+  position: fixed;
+   top: 0px;
+   left: 0px; 
+} 
+  
+main {
+  //display: none;
+  width: 80%;
+  margin: 0 10%;
+  z-index: 5;
+  position: relative;
+  border-radius: 20px;
+  background-color: $first-color;
+  border:2px solid $first-color;
+}
+    
+Footer {
+  position: relative;
+  bottom: 0px;  
+}
 
 .logo_cpd {
   width: 8%;
@@ -66,42 +101,6 @@
   display:block;
 }
 
-body {
-  margin: 0 auto;
-  background-color: $cpdblue;
-  //background-color: rgb(80, 0,0);
-  background-size: 100%;
-  background-repeat:repeat-y;
-  background-attachment: fixed;
-  font-family: $primary-font;
-  line-height: 1.2;
-  letter-spacing: 0px;
-  margin-top:150px;
-  overflow-x: hidden; 
-  height: 100vh
-}
-
-Header {
-  position: fixed;
-   top: 0px;
-   left: 0px; 
-} 
-  
-main {
-  //display: none;
-  width: 80%;
-  margin: 0 10%;
-  z-index: 5;
-  position: relative;
-  border-radius: 20px;
-  background-color: $first-color;
-  border:2px solid $first-color;
-}
-    
-Footer {
-  position: relative;
-  bottom: 0px;  
-}
     
 /*Content --> nicht mehr relevant*/
 
