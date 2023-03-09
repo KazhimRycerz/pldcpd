@@ -16,9 +16,6 @@ const userSchema = mongoose.Schema({
       unique: true,
       trim: true
    },
-   carrerPath: [{
-      type: 
-   }]
    createdOn:{
       type: Date,
       immutable: true,
