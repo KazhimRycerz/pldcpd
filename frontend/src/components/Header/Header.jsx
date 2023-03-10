@@ -82,6 +82,7 @@ const Header = () => {
               onClick={() => {
                 //setLoggedIn(!loggedIn);
                 isAuth ? setIsAuth(false) : setIsAuth(true);
+                //!isAuth ?  logout : setLoggedIn(false);
               
                 isAuth && showAccount === "showAccount"
                   ? setShowAccount("hideAccount")
