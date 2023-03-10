@@ -1,18 +1,20 @@
 import React, { useState, useRef, useContext } from "react";
 import axiosConfig from "../../util/axiosConfig.js";
 import { SectionsContext } from "../../context/SectionsContext.js";
-import { Navigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./LoginForm.scss";
 import swal from "sweetalert";
 
 function LoginForm() {
+  const { loggedIn, setLoggedIn } = useContext(SectionsContext);
+  const {buttonPos, setButtonPos} = useContext(SectionsContext)
   const [isLoading, setIsLoading] = useState(false);
   const {
     isAuth,
     setIsAuth,
     setStepOne,
   } = useContext(SectionsContext);
-
+const { navigate } = useContext(SectionsContext)
   const formEl = useRef(null);
   const usernameEL = useRef(null);
   const passwordEl = useRef(null);
@@ -30,6 +32,9 @@ function LoginForm() {
     setIsAuth(true);
     localStorage.setItem("userName", respData.userName);
     localStorage.setItem("userId", respData.userId);
+    setLoggedIn("true");
+    setButtonPos("showBut");
+    navigate("/home");
   };
 
   const submitHandler = async (e) => {

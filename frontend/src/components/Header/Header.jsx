@@ -10,10 +10,13 @@ const Header = () => {
   const { loggedIn, setLoggedIn } = useContext(SectionsContext);
   const { buttonPos, setButtonPos } = useContext(SectionsContext);
   const { showAccount, setShowAccount } = useContext(SectionsContext);
+  const { isAuth, setIsAuth } = useContext(SectionsContext);
+  const { logout } = useContext(SectionsContext);
   useEffect(() => {
   console.log("loggedIn:", loggedIn);
   console.log("buttonPosition:", buttonPos)
   console.log("AccountPosition:", showAccount)
+  console.log("isAuth", isAuth)
   })
 
   return (
@@ -64,43 +67,48 @@ const Header = () => {
 
         <div id="header_myaccount">
           <ul>
-            <li>
-              <Link to="/register"> register </Link>
-              <span className="C">C</span>
+            <li
+            id="showregister">
+              {!isAuth  ? <Link to="/register"> register 
+              <span className="C">C</span> </Link>: <span></span>}
+              
             </li>
-            <li>
+            {/* <li>
               <Link to="/login"> login </Link>
               <span className="C">C</span>
-            </li>
-            {/* <li
+            </li> */}
+            <li
               id="showlogin"
               onClick={() => {
-                setLoggedIn(!loggedIn);
+                //setLoggedIn(!loggedIn);
+                isAuth ? setIsAuth(false) : setIsAuth(true);
               
-                loggedIn && showAccount === "showAccount"
+                isAuth && showAccount === "showAccount"
                   ? setShowAccount("hideAccount")
                   : setShowAccount("");
+                isAuth ? setLoggedIn(true) : setLoggedIn(false)
                 
-                if (!loggedIn && buttonPos === "") {setButtonPos("showBut") //ok
-                } else if (loggedIn && buttonPos === "showBut") {setButtonPos("hideBut") //ok
-                } else if (!loggedIn && buttonPos === "hideBut") {setButtonPos("showBut")
-                } else if (loggedIn && buttonPos === "showBut moveButton") {setButtonPos("moveButtonBackToStart")
-                } else if (!loggedIn && buttonPos === "moveButtonBackToStart") {setButtonPos("showBut")
-               //  } else if (loggedIn && buttonPos === "moveButtonBackToStart") {setButtonPos("showBut")
-                } else if (loggedIn && buttonPos === "showBut moveButtonBack") {setButtonPos("hideBut")
-                } else if (!loggedIn && buttonPos === "hideBut moveButton") {setButtonPos("hideBut")
+                if (!isAuth && buttonPos === "") {setButtonPos("showBut") //ok
+                } else if (isAuth && buttonPos === "showBut") {setButtonPos("hideBut") //ok
+                } else if (!isAuth && buttonPos === "hideBut") {setButtonPos("showBut")
+                } else if (isAuth && buttonPos === "showBut moveButton") {setButtonPos("moveButtonBackToStart")
+                } else if (!isAuth && buttonPos === "moveButtonBackToStart") {setButtonPos("showBut")
+               //  } else if (isAuth && buttonPos === "moveButtonBackToStart") {setButtonPos("showBut")
+                } else if (isAuth && buttonPos === "showBut moveButtonBack") {setButtonPos("hideBut")
+                } else if (!isAuth && buttonPos === "hideBut moveButton") {setButtonPos("hideBut")
                 } else {setButtonPos("") 
                 }
+
               }}
             >
-              {loggedIn ? "log me out" : "log me in"}
+              {isAuth ? <span> log me out </span> : <Link to="/login"> login </Link>}
               <span className="C">C</span>
             </li>
-            <li className={loggedIn ? "" : "user"}>
-              <Link to="/login">
-                logged in as Joachim Ritter <span className="C">C</span>
-              </Link>
-            </li> */}
+            <li className={isAuth ? "" : "user"}>
+              <p>
+                logged in as {localStorage.userName} <span className="C">C</span>
+            </p>
+            </li>
           </ul>
         </div>
 

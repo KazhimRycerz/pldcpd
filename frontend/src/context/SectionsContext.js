@@ -18,17 +18,16 @@ const SectionsProvider = ({ children }) => {
       return true;
     }
   });
-  
   const [buttonPos, setButtonPos] = useState("");
   const [showAccount, setShowAccount] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
-  const [eventLogin, setEventLogin] = useState(false);
+  //const [eventLogin, setEventLogin] = useState(false);
   const [userData, setUserData] = useState({});
 
   const logout = () => {
     localStorage.clear();
     setIsAuth(false);
-    setEventLogin(false);
+    //setEventLogin(false);
     axiosConfig.post("/user/logout").then((res) => {
       console.log(res.data);
     });
@@ -36,7 +35,7 @@ const SectionsProvider = ({ children }) => {
       title: `Du hast dich erfolgreich abgemeldet`,
       icon: "success",
     });
-    navigate("/login");
+    navigate("/home");
   };
 
 
@@ -49,8 +48,8 @@ const SectionsProvider = ({ children }) => {
         buttonPos, 
         setButtonPos,
         navigate,
-        eventLogin,
-        setEventLogin,
+        //eventLogin,
+        //setEventLogin,
         userData,
         setUserData,
         showAccount, 
