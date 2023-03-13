@@ -27,6 +27,8 @@ const SectionsProvider = ({ children }) => {
   const logout = () => {
     localStorage.clear();
     setIsAuth(false);
+    setLoggedIn(false);
+    setShowAccount("hideAccount");
     //setEventLogin(false);
     axiosConfig.post("/user/logout").then((res) => {
       console.log(res.data);

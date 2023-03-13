@@ -69,25 +69,19 @@ const Header = () => {
           <ul>
             <li
             id="showregister">
-              {!isAuth  ? <Link to="/register"> register 
+              {!isAuth && !loggedIn ? <Link to="/register"> register 
               <span className="C">C</span> </Link>: <span></span>}
               
             </li>
-            {/* <li>
-              <Link to="/login"> login </Link>
-              <span className="C">C</span>
-            </li> */}
             <li
               id="showlogin"
               onClick={() => {
                 //setLoggedIn(!loggedIn);
-                isAuth ? setIsAuth(false) : setIsAuth(true);
-                //!isAuth ?  logout : setLoggedIn(false);
-              
+                isAuth && loggedIn ? logout():
                 isAuth && showAccount === "showAccount"
                   ? setShowAccount("hideAccount")
                   : setShowAccount("");
-                isAuth ? setLoggedIn(true) : setLoggedIn(false)
+
                 
                 if (!isAuth && buttonPos === "") {setButtonPos("showBut") //ok
                 } else if (isAuth && buttonPos === "showBut") {setButtonPos("hideBut") //ok
@@ -151,7 +145,7 @@ const Header = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/KnowledgeAccount" className="closebtn">
+              <NavLink NavLink to="/KnowledgeAccount" className="closebtn">
                 <span className="C">C</span> your CPD account
               </NavLink>
             </li>
@@ -188,9 +182,9 @@ const Header = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/KnowledgeAccount" className="closebtn">
+              <NavLink to= "/KnowledgeAccount" className="closebtn">
                 <span className="C">C</span> your CPD account
-              </NavLink>
+              </NavLink> 
             </li>
             <li>
               <NavLink to="/home" className="closebtn">

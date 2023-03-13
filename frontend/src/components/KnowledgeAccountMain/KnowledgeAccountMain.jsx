@@ -1,6 +1,15 @@
 import './KnowledgeAccountMain.scss'
+import { useNavigate } from "react-router-dom";
+import { useContext, useState, useEffect } from "react";
+import { SectionsContext } from "../../context/SectionsContext.js";
+
 
 const  KnowledgeAccountMain = ()=>{
+
+   const { isAuth } = useContext(SectionsContext);
+   const { logout } = useContext(SectionsContext);
+   const navigate = useNavigate();
+
 
    return (
       <main>
@@ -213,7 +222,7 @@ const  KnowledgeAccountMain = ()=>{
             
          {/* </div> */}
       </main>
-      )
+)
 }
 
 export default KnowledgeAccountMain

@@ -101,6 +101,22 @@ Footer {
   display:block;
 }
 
+.swal-title {
+  color: $cpdblue;
+}
+.swal-button,
+.swal-button--confirm {
+  color: $first-color;
+  background-color: $cpdblue;
+  box-shadow: $btnshadow;
+}
+
+.swal-button:hoover,
+.swal-button--confirm:hoover {
+  color: $cpdblue;
+  background-color: $first-color;
+  box-shadow: $btnshadow;
+}
     
 /*Content --> nicht mehr relevant*/
 

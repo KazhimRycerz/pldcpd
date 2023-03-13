@@ -5,9 +5,10 @@ import JoachimRitter from '../../images/Joachim_privat.jpg'
 import { SectionsContext } from '../../context/SectionsContext.js'
 
 const AccountAside = () => {
-const {showAccount, setShowAccount} = useContext(SectionsContext);
-const [buttonText, setButtonText] = useState("hide  account")
-const {buttonPos, setButtonPos} = useContext(SectionsContext)
+const [buttonText, setButtonText] = useState("hide  account");
+const { showAccount, setShowAccount } = useContext(SectionsContext);
+const { buttonPos, setButtonPos } = useContext(SectionsContext);
+const { isAuth, setIsAuth } = useContext(SectionsContext);
 
 const buttonPosition0 = "" 
 const buttonMove1 = "showBut" 

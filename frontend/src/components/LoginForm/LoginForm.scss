@@ -35,24 +35,32 @@
   //background-color: var(--beige-transparent-color);
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   align-items: center;
-  width: 80%;
+  width: 60%;
   padding: 1.5rem 1rem;
-  border-radius: 1.5rem;
-  box-shadow: 0 0 1rem var(--dark-color);
+  border-radius: 10px;
+  box-shadow: $boxshadow;
   margin: 0 auto;
   transition: width 1s ease-in, padding 1s ease-in;
+ 
 }
 
 
 .LoginForm form label > input {
-  height: 2.5rem;
-  background-color: var(--beige-transparent-color);
-  border-color: var(--middle-green-color);
-  border-radius: 0.75rem;
-  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center; 
+  width: 60%;
+  height: 2rem;
+  background-color: white;
+  //border-color: var(--middle-green-color);
+  border-radius: 10px;
+  font-size: 1rem;
   padding-left: 0.5rem;
   transition: font-size 1s ease-in;
+  text-align: left;
 }
 
 .LoginForm form > input {
@@ -61,24 +69,29 @@
 }
 
 .LoginForm form label > input:focus {
-  background-color: var(--beige-color);
-  outline: 3px solid var(--middle-green-color);
+  //background-color: var(--beige-color);
+  //outline: 3px solid var(--middle-green-color);
 }
 
 .LoginForm form label > input::placeholder {
-  color: var(--dark-transparent-color);
+  color: $cpdred;
 }
 
 .LoginForm label {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  flex-direction: row;
+  justify-content: space-between;
+  vertical-align: middle;
   font-weight: bold;
-  font-size: 2rem;
+  font-size:1rem;
   margin-top: 1rem;
-  transition: font-size 1s ease-in;
+  /* transition: font-size 1s ease-in;
   transition: margin-left 1s ease-in;
-  transition: width 1s ease-in;
+  transition: width 1s ease-in; */
+  width: 80%;
+  text-align:left;
+  //vertical-align: middle;;
+  //border: solid;
 }
 
 .LoginForm label:last-of-type {
