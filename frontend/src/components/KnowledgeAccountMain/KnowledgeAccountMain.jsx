@@ -6,15 +6,8 @@ import { SectionsContext } from "../../context/SectionsContext.js";
 
 const  KnowledgeAccountMain = ()=>{
 
-   const { isAuth } = useContext(SectionsContext);
-   const { logout } = useContext(SectionsContext);
-   const navigate = useNavigate();
-
-
    return (
       <main>
-         {/* <div id="Content"> */}
-
             <section id="Gruß_account">
                <h1> Ihre Fachwissen im Überblick</h1>
             </section>
@@ -220,7 +213,6 @@ const  KnowledgeAccountMain = ()=>{
                </div>
             </section>
             
-         {/* </div> */}
       </main>
 )
 }

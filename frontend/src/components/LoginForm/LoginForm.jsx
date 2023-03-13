@@ -6,13 +6,12 @@ import "./LoginForm.scss";
 import swal from "sweetalert";
 
 function LoginForm() {
-  const { loggedIn, setLoggedIn } = useContext(SectionsContext);
-  const {buttonPos, setButtonPos} = useContext(SectionsContext)
+  //const { loggedIn, setLoggedIn } = useContext(SectionsContext);
+  const { setButtonPos } = useContext(SectionsContext)
   const [isLoading, setIsLoading] = useState(false);
   const {
-    isAuth,
     setIsAuth,
-    setStepOne,
+    //setStepOne,
   } = useContext(SectionsContext);
 const { navigate } = useContext(SectionsContext)
   const formEl = useRef(null);
@@ -32,9 +31,10 @@ const { navigate } = useContext(SectionsContext)
     setIsAuth(true);
     localStorage.setItem("userName", respData.userName);
     localStorage.setItem("userId", respData.userId);
-    setLoggedIn("true");
+    /* setLoggedIn("true"); */
     setButtonPos("showBut");
-    navigate("/home");
+    window.history.back();
+    //navigate("/home");
   };
 
   const submitHandler = async (e) => {
@@ -106,9 +106,8 @@ const { navigate } = useContext(SectionsContext)
       </>
       
 
-      <h2>Sie haben noch kein Konto? Dann können Sie sich hier</h2>
+      <h2>Sie haben noch kein Konto? Dann können Sie sich hier als neuer User</h2>
       <div id="toRegister">
-        <p>als neuer Benutzer</p>
         <Link to={"/register"} id="toRegisterButton">
           registrieren
         </Link>

@@ -1,15 +1,13 @@
 import './AccountInfoAside.scss'
 import { Link } from 'react-router-dom'
 import React, { useContext, useState, useEffect } from 'react'
-import JoachimRitter from '../../images/Joachim_privat.jpg'
 import { SectionsContext } from '../../context/SectionsContext.js'
 
 const AccountAside = () => {
 const {showAccount, setShowAccount} = useContext(SectionsContext);
 const [buttonText, setButtonText] = useState("show info")
 const {buttonPos, setButtonPos} = useContext(SectionsContext)
-const {loggedIn, setLoggedIn} = useContext(SectionsContext);
-
+const { isAuth } = useContext(SectionsContext);
 
 const buttonPosition0 = "" 
 const buttonMove1 = "showBut" 
@@ -19,7 +17,7 @@ const buttonMove4 = "hideBut"
 const buttonMove5 = "moveButtonBackToStart"
 
 useEffect(() => {
-  !loggedIn && (setButtonPos(buttonMove4))
+  !isAuth && (setButtonPos(buttonMove4))
   if (buttonPos === buttonMove2) {
     setButtonText("hide Info");
     } else {setButtonText("show Info")
@@ -52,8 +50,8 @@ return (
       </button>
                
       <aside id="home_aside_account" className = {showAccount} >
-        <div className="account_container">
-          <div className="floating-stack">
+        <div className="account_container" >
+          <div id="floating-stack">
             <dl>
               <dt>KF</dt>
               <dd>

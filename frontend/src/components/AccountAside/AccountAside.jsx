@@ -8,14 +8,15 @@ const AccountAside = () => {
 const [buttonText, setButtonText] = useState("hide  account");
 const { showAccount, setShowAccount } = useContext(SectionsContext);
 const { buttonPos, setButtonPos } = useContext(SectionsContext);
-const { isAuth, setIsAuth } = useContext(SectionsContext);
+//const { isAuth } = useContext(SectionsContext);
 
 const buttonPosition0 = "" 
 const buttonMove1 = "showBut" 
 const buttonMove2 = "showBut moveButton" 
 const buttonMove3 = "showBut moveButtonBack" 
-const buttonMove4 = "hideBut"
+//const buttonMove4 = "hideBut"
 //const buttonMove5 = "moveButtonBackToStart"
+//isAuth ? setButtonPos("showBut") : setButtonPos("");
 
 const handleButton=(buttonPos) => {
   if ( buttonPos === buttonMove1 ) {

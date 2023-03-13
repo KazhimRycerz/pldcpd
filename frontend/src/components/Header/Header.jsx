@@ -7,13 +7,12 @@ import { SectionsContext } from "../../context/SectionsContext.js";
 
 const Header = () => {
   const [showMenue, setShowMenue] = useState(false);
-  const { loggedIn, setLoggedIn } = useContext(SectionsContext);
+  const { loggedIn } = useContext(SectionsContext);
   const { buttonPos, setButtonPos } = useContext(SectionsContext);
   const { showAccount, setShowAccount } = useContext(SectionsContext);
-  const { isAuth, setIsAuth } = useContext(SectionsContext);
+  const { isAuth } = useContext(SectionsContext);
   const { logout } = useContext(SectionsContext);
   useEffect(() => {
-  console.log("loggedIn:", loggedIn);
   console.log("buttonPosition:", buttonPos)
   console.log("AccountPosition:", showAccount)
   console.log("isAuth", isAuth)
@@ -69,7 +68,7 @@ const Header = () => {
           <ul>
             <li
             id="showregister">
-              {!isAuth && !loggedIn ? <Link to="/register"> register 
+              {!isAuth /* && !loggedIn */ ? <Link to="/register"> register 
               <span className="C">C</span> </Link>: <span></span>}
               
             </li>
@@ -77,7 +76,7 @@ const Header = () => {
               id="showlogin"
               onClick={() => {
                 //setLoggedIn(!loggedIn);
-                isAuth && loggedIn ? logout():
+                isAuth /* && loggedIn */ ? logout():
                 isAuth && showAccount === "showAccount"
                   ? setShowAccount("hideAccount")
                   : setShowAccount("");

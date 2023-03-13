@@ -18,23 +18,26 @@ const SectionsProvider = ({ children }) => {
       return true;
     }
   });
-  const [buttonPos, setButtonPos] = useState("");
+  const [buttonPos, setButtonPos] = useState(isAuth ? "showBut" : "");
   const [showAccount, setShowAccount] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
-  //const [eventLogin, setEventLogin] = useState(false);
+  //const [loggedIn, setLoggedIn] = useState("true");
   const [userData, setUserData] = useState({});
+
 
   const logout = () => {
     localStorage.clear();
     setIsAuth(false);
-    setLoggedIn(false);
-    setShowAccount("hideAccount");
-    //setEventLogin(false);
+    //setLoggedIn(false);
+    if(isAuth && showAccount === "showAccount") {setShowAccount("hideAccount")
+  } else { setShowAccount("");
+
+  }
+    
     axiosConfig.post("/user/logout").then((res) => {
       console.log(res.data);
     });
     swal({
-      title: `Du hast dich erfolgreich abgemeldet`,
+      title: `Sie haben sich erfolgreich abgemeldet`,
       icon: "success",
     });
     navigate("/home");
@@ -49,15 +52,15 @@ const SectionsProvider = ({ children }) => {
         setIsAuth,
         buttonPos, 
         setButtonPos,
-        navigate,
+        
         //eventLogin,
         //setEventLogin,
         userData,
         setUserData,
         showAccount, 
         setShowAccount,
-        loggedIn, 
-        setLoggedIn
+        /* loggedIn, 
+        setLoggedIn */
       }}
     >
       {children}
