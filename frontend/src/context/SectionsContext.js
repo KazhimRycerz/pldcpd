@@ -8,6 +8,7 @@ const SectionsContext = createContext();
 
 const SectionsProvider = ({ children }) => {
   const navigate = useNavigate();
+  const [goSite, setGoSite ] = useState("")
   const [isAuth, setIsAuth] = useState(() => {
     const isLoggedCookie = Cookies.get("isLogged");
     if (!isLoggedCookie) return false;
@@ -19,7 +20,7 @@ const SectionsProvider = ({ children }) => {
     }
   });
   const [buttonPos, setButtonPos] = useState(isAuth ? "showBut" : "");
-  const [showAccount, setShowAccount] = useState("");
+  const [asidePos, setAsidePos] = useState("accountAside");
   //const [loggedIn, setLoggedIn] = useState("true");
   const [userData, setUserData] = useState({});
 
@@ -27,11 +28,8 @@ const SectionsProvider = ({ children }) => {
   const logout = () => {
     localStorage.clear();
     setIsAuth(false);
-    //setLoggedIn(false);
-    if(isAuth && showAccount === "showAccount") {setShowAccount("hideAccount")
-  } else { setShowAccount("");
-
-  }
+    /* if(!isAuth && asidePos === "accountAside showAccount") {setAsidePos("accountAside hideAccount")
+  } else { setAsidePos("accountAside hideAccount")} */
     
     axiosConfig.post("/user/logout").then((res) => {
       console.log(res.data);
@@ -51,14 +49,16 @@ const SectionsProvider = ({ children }) => {
         logout,
         setIsAuth,
         buttonPos, 
+        navigate,
         setButtonPos,
-        
+        goSite,
+        setGoSite,
         //eventLogin,
         //setEventLogin,
         userData,
         setUserData,
-        showAccount, 
-        setShowAccount,
+        asidePos, 
+        setAsidePos,
         /* loggedIn, 
         setLoggedIn */
       }}

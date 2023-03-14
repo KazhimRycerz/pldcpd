@@ -1,22 +1,47 @@
 import "./Header.scss";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import pldcpd from "../../images/pldcpd.png";
 import { SectionsContext } from "../../context/SectionsContext.js";
 
-
 const Header = () => {
   const [showMenue, setShowMenue] = useState(false);
-  const { loggedIn } = useContext(SectionsContext);
+  //const { loggedIn } = useContext(SectionsContext);
   const { buttonPos, setButtonPos } = useContext(SectionsContext);
-  const { showAccount, setShowAccount } = useContext(SectionsContext);
+  const { asidePos, setAsidePos } = useContext(SectionsContext);
+  const { goSite, setGoSite } = useContext(SectionsContext)
   const { isAuth } = useContext(SectionsContext);
   const { logout } = useContext(SectionsContext);
+  const navigate = useNavigate;
+
   useEffect(() => {
   console.log("buttonPosition:", buttonPos)
-  console.log("AccountPosition:", showAccount)
+  console.log("asidePos:", asidePos)
   console.log("isAuth", isAuth)
   })
+
+
+  const manageLoginButton =()=> {
+    isAuth && logout()
+    !isAuth && asidePos === "accountAside showAccount"
+      ? setAsidePos("accountAside hideAccount")
+      : setAsidePos("accountAside");
+
+    if (!isAuth && buttonPos === "") {setButtonPos("showBut") //ok
+    } else if (isAuth && buttonPos === "showBut") {setButtonPos("hideBut") //ok
+    } else if (!isAuth && buttonPos === "hideBut") {setButtonPos("showBut")
+    } else if (isAuth && buttonPos === "showBut moveButton") {setButtonPos("moveButtonBackToStart")
+    } else if (!isAuth && buttonPos === "moveButtonBackToStart") {setButtonPos("showBut")
+    //  } else if (isAuth && buttonPos === "moveButtonBackToStart") {setButtonPos("showBut")
+    } else if (isAuth && buttonPos === "showBut moveButtonBack") {setButtonPos("hideBut")
+    } else if (!isAuth && buttonPos === "hideBut moveButton") {setButtonPos("hideBut")
+    } else {setButtonPos("") 
+    }
+  }
+
+  const manageLinkToKnowledgeAccount =()=>{
+    if (!isAuth) {setGoSite("/KnowledgeAccount"); navigate("/login")}
+  }
 
   return (
     <>
@@ -30,33 +55,33 @@ const Header = () => {
             </button>
             <ul id="dropdown-content">
               <li>
-                <Link to="/home">
+                <NavLink to="/home">
                   <span className="C">C</span> about
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link to="/abouttheprofession">
+                <NavLink to="/abouttheprofession">
                   <span className="C">C</span> my Profession
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link to="/aboutpldcpd">
+                <NavLink to="/aboutpldcpd">
                   <span className="C">C</span> PLDCPD
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link to="/aboutrycerz">
+                <NavLink to="/aboutrycerz">
                   <span className="C">C</span> RYCERZ
-                </Link>
+                </NavLink>
               </li>
             </ul>
           </div>
         </nav>
 
         <div className="text_header">
-          <Link to="/home">
+          <NavLink to="/home">
             <img className="image_header" src={pldcpd} alt="" />
-          </Link>
+          </NavLink>
 
           <p>
             Plattform for Continuing <br />
@@ -68,32 +93,13 @@ const Header = () => {
           <ul>
             <li
             id="showregister">
-              {!isAuth /* && !loggedIn */ ? <Link to="/register"> register 
+              {!isAuth ? <Link to="/register"> register 
               <span className="C">C</span> </Link>: <span></span>}
               
             </li>
             <li
               id="showlogin"
-              onClick={() => {
-                //setLoggedIn(!loggedIn);
-                isAuth /* && loggedIn */ ? logout():
-                isAuth && showAccount === "showAccount"
-                  ? setShowAccount("hideAccount")
-                  : setShowAccount("");
-
-                
-                if (!isAuth && buttonPos === "") {setButtonPos("showBut") //ok
-                } else if (isAuth && buttonPos === "showBut") {setButtonPos("hideBut") //ok
-                } else if (!isAuth && buttonPos === "hideBut") {setButtonPos("showBut")
-                } else if (isAuth && buttonPos === "showBut moveButton") {setButtonPos("moveButtonBackToStart")
-                } else if (!isAuth && buttonPos === "moveButtonBackToStart") {setButtonPos("showBut")
-               //  } else if (isAuth && buttonPos === "moveButtonBackToStart") {setButtonPos("showBut")
-                } else if (isAuth && buttonPos === "showBut moveButtonBack") {setButtonPos("hideBut")
-                } else if (!isAuth && buttonPos === "hideBut moveButton") {setButtonPos("hideBut")
-                } else {setButtonPos("") 
-                }
-
-              }}
+              onClick={manageLoginButton}
             >
               {isAuth ? <span> log me out </span> : <Link to="/login"> login </Link>}
               <span className="C">C</span>
@@ -143,8 +149,8 @@ const Header = () => {
                 <span className="C">C</span> clients
               </NavLink>
             </li>
-            <li>
-              <NavLink NavLink to="/KnowledgeAccount" className="closebtn">
+            <li onClick={manageLinkToKnowledgeAccount}>
+               <NavLink NavLink to="/KnowledgeAccount" className="closebtn">
                 <span className="C">C</span> your CPD account
               </NavLink>
             </li>

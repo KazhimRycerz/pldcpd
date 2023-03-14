@@ -6,7 +6,7 @@ import { SectionsContext } from '../../context/SectionsContext.js'
 
 const AccountAside = () => {
 const [buttonText, setButtonText] = useState("hide  account");
-const { showAccount, setShowAccount } = useContext(SectionsContext);
+const { asidePos, setAsidePos } = useContext(SectionsContext);
 const { buttonPos, setButtonPos } = useContext(SectionsContext);
 //const { isAuth } = useContext(SectionsContext);
 
@@ -18,22 +18,28 @@ const buttonMove3 = "showBut moveButtonBack"
 //const buttonMove5 = "moveButtonBackToStart"
 //isAuth ? setButtonPos("showBut") : setButtonPos("");
 
+const accountPos1 = "accountAside"
+const accountPos2 = "accountAside showAccount"
+const accountPos3 = "accountAside hideAccount"
+
+
+
 const handleButton=(buttonPos) => {
   if ( buttonPos === buttonMove1 ) {
     setButtonPos(buttonMove2);
-    setButtonText("hide  account");
-    setShowAccount("showAccount");
+    setButtonText("hide account");
+    setAsidePos(accountPos2);
   } else if( buttonPos === buttonMove2) {
     setButtonPos(buttonMove3 );
     setButtonText("show account");
-    setShowAccount("hideAccount");
+    setAsidePos(accountPos3);
   } else if( buttonPos === buttonMove3) {
     setButtonPos(buttonMove2 );
-    setButtonText("hide  account");
-    setShowAccount("showAccount");
+    setButtonText("hide account");
+    setAsidePos(accountPos2);
   } else {
     setButtonPos(buttonPosition0);
-    setShowAccount("showAccount")
+    setAsidePos(accountPos2)
   }
 }
 
@@ -46,7 +52,7 @@ return (
           {buttonText} 
       </button>
                
-      <aside id="home_aside_account" className = {showAccount} >
+      <aside id="homeAsideAccount" className = {asidePos} >
         <img src={JoachimRitter} alt="Joachim Ritter privat" />
         <p><strong>Hallo, Joachim Ritter </strong><br />
         Journalist <br />Karrierelevel <br />--- <span> IV </span> ---<br />Project Lighting Designer</p> <br />

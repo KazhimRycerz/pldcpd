@@ -4,7 +4,7 @@ import React, { useContext, useState, useEffect } from 'react'
 import { SectionsContext } from '../../context/SectionsContext.js'
 
 const AccountAside = () => {
-const {showAccount, setShowAccount} = useContext(SectionsContext);
+const {asidePos, setAsidePos} = useContext(SectionsContext);
 const [buttonText, setButtonText] = useState("show info")
 const {buttonPos, setButtonPos} = useContext(SectionsContext)
 const { isAuth } = useContext(SectionsContext);
@@ -24,19 +24,26 @@ useEffect(() => {
     }
   })
 
+const accountPos1 = "accountAside"
+const accountPos2 = "accountAside showAccount"
+const accountPos3 = "accountAside hideAccount"
+
 const handleButton=(buttonPos) => {
   if ( buttonPos === buttonMove1 ) {
     setButtonPos(buttonMove2);
-    setShowAccount("showAccount");
+    setButtonText("hide account");
+    setAsidePos(accountPos2);
   } else if( buttonPos === buttonMove2) {
     setButtonPos(buttonMove3 );
-    setShowAccount("hideAccount");
+    setButtonText("show account");
+    setAsidePos(accountPos3);
   } else if( buttonPos === buttonMove3) {
     setButtonPos(buttonMove2 );
-    setButtonText("hide info");
+    setButtonText("hide account");
+    setAsidePos(accountPos2);
   } else {
     setButtonPos(buttonPosition0);
-    setShowAccount("hideAccount");
+    setAsidePos(accountPos2)
   }
 }
 
@@ -49,7 +56,7 @@ return (
           {buttonText} 
       </button>
                
-      <aside id="home_aside_account" className = {showAccount} >
+      <aside id="infoAsideAccount" className = {asidePos} >
         <div className="account_container" >
           <div id="floating-stack">
             <dl>
