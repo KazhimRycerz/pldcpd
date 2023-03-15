@@ -1,8 +1,8 @@
 import "./scss/App.scss";
 import React, { useContext, useEffect } from "react";
 import { SectionsContext } from "./context/SectionsContext.js";
-import { Routes, Route/* , useLocation */ } from "react-router-dom";
-import { autoLogout } from "./util/AutoLogout.js";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { AutoLogout } from "./util/AutoLogout.js";
 import Home from "./pages/Home/Home.jsx";
 import KnowledgeAccount from "./pages/KnowledgeAccount/KnowledgeAccount.jsx";
 import PersonalAccount from "./pages/PersonalAccount/PersonalAccount.jsx";
@@ -18,15 +18,15 @@ import Page404 from "./pages/Page404/Page404.jsx";
 import Sandbox from "./pages/Sandbox/Sandbox.jsx";
 
 function App() {
-  const { isAuth } = useContext(SectionsContext);
+  //const { isAuth } = useContext(SectionsContext);
   
-  /* let location = useLocation();
+  let location = useLocation();
 
   useEffect(() => {
     console.log(location.pathname);
-  }, [location]); */
+  }, [location]);
   
-  let autoLog = autoLogout()
+  let autoLog = AutoLogout()
     useEffect(() => {
     }, [autoLog])
   

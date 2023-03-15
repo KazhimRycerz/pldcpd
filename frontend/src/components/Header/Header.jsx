@@ -9,10 +9,9 @@ const Header = () => {
   //const { loggedIn } = useContext(SectionsContext);
   const { buttonPos, setButtonPos } = useContext(SectionsContext);
   const { asidePos, setAsidePos } = useContext(SectionsContext);
-  const { goSite, setGoSite } = useContext(SectionsContext)
   const { isAuth } = useContext(SectionsContext);
   const { logout } = useContext(SectionsContext);
-  const navigate = useNavigate;
+  const { navigate } = useContext(SectionsContext);
 
   useEffect(() => {
   console.log("buttonPosition:", buttonPos)
@@ -40,8 +39,8 @@ const Header = () => {
   }
 
   const manageLinkToKnowledgeAccount =()=>{
-    if (!isAuth) {setGoSite("/KnowledgeAccount"); navigate("/login")}
-  }
+    !isAuth && navigate("/login")
+  } 
 
   return (
     <>
@@ -105,9 +104,9 @@ const Header = () => {
               <span className="C">C</span>
             </li>
             <li className={isAuth ? "" : "user"}>
-              <p>
+              <Link to="/KnowledgeAccount">
                 logged in as {localStorage.userName} <span className="C">C</span>
-            </p>
+            </Link>
             </li>
           </ul>
         </div>
@@ -150,9 +149,12 @@ const Header = () => {
               </NavLink>
             </li>
             <li onClick={manageLinkToKnowledgeAccount}>
-               <NavLink NavLink to="/KnowledgeAccount" className="closebtn">
+            <NavLink to="/KnowledgeAccount" className="closebtn">
                 <span className="C">C</span> your CPD account
               </NavLink>
+              {/* {isAuth && <NavLink to="/KnowledgeAccount" className="closebtn">
+                <span className="C">C</span> your CPD account
+              </NavLink>} */}
             </li>
             <li>
               <NavLink to="/404" className="closebtn">
@@ -187,9 +189,9 @@ const Header = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to= "/KnowledgeAccount" className="closebtn">
+            {isAuth && <NavLink to="/KnowledgeAccount" className="closebtn">
                 <span className="C">C</span> your CPD account
-              </NavLink> 
+              </NavLink>} 
             </li>
             <li>
               <NavLink to="/home" className="closebtn">
@@ -223,9 +225,9 @@ const Header = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/KnowledgeAccount" className="closebtn">
+            {isAuth && <NavLink to="/KnowledgeAccount" className="closebtn">
                 <span className="C">C</span> your CPD account
-              </NavLink>
+              </NavLink>}
             </li>
             <li>
               <NavLink to="/home" className="closebtn">
@@ -259,9 +261,9 @@ const Header = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/KnowledgeAccount" className="closebtn">
+            {isAuth && <NavLink to="/KnowledgeAccount" className="closebtn">
                 <span className="C">C</span> your CPD account
-              </NavLink>
+              </NavLink>}
             </li>
             <li>
               <NavLink to="/home" className="closebtn">
@@ -295,9 +297,9 @@ const Header = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/KnowledgeAccount" className="closebtn">
+            {isAuth && <NavLink to="/KnowledgeAccount" className="closebtn">
                 <span className="C">C</span> your CPD account
-              </NavLink>
+              </NavLink>}
             </li>
             <li>
               <NavLink to="/home" className="closebtn">

@@ -4,29 +4,29 @@ import React, { useContext, useState, useEffect } from 'react'
 import { SectionsContext } from '../../context/SectionsContext.js'
 
 const AccountAside = () => {
-const {asidePos, setAsidePos} = useContext(SectionsContext);
-const [buttonText, setButtonText] = useState("show info")
-const {buttonPos, setButtonPos} = useContext(SectionsContext)
 const { isAuth } = useContext(SectionsContext);
+const {asidePos, setAsidePos} = useContext(SectionsContext);
+const {buttonPos, setButtonPos} = useContext(SectionsContext)
+const [buttonText, setButtonText] = useState("show info")
 
-const buttonPosition0 = "" 
+const buttonPos0 = "buttonZeroPosition" 
 const buttonMove1 = "showBut" 
 const buttonMove2 = "showBut moveButton" 
 const buttonMove3 = "showBut moveButtonBack" 
 const buttonMove4 = "hideBut"
 const buttonMove5 = "moveButtonBackToStart"
 
-useEffect(() => {
-  !isAuth && (setButtonPos(buttonMove4))
-  if (buttonPos === buttonMove2) {
-    setButtonText("hide Info");
-    } else {setButtonText("show Info")
-    }
-  })
-
 const accountPos1 = "accountAside"
 const accountPos2 = "accountAside showAccount"
-const accountPos3 = "accountAside hideAccount"
+const accountPos3 = "accountAside hideAccount" 
+
+useEffect((buttonPos) => {
+  //!isAuth && (setButtonPos(buttonMove4))
+  if (buttonPos === buttonMove2) {
+    setButtonText("hide Info");
+  } else {setButtonText("show Info")
+}
+})
 
 const handleButton=(buttonPos) => {
   if ( buttonPos === buttonMove1 ) {
@@ -42,13 +42,13 @@ const handleButton=(buttonPos) => {
     setButtonText("hide account");
     setAsidePos(accountPos2);
   } else {
-    setButtonPos(buttonPosition0);
+    setButtonPos(buttonPos0);
     setAsidePos(accountPos2)
   }
 }
 
 return (
-   <>
+   < >
       <button type="button" 
         onClick ={()=>handleButton(buttonPos)}
         id="buttonShowInfo"

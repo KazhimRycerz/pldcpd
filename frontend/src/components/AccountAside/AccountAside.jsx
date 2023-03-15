@@ -5,12 +5,12 @@ import JoachimRitter from '../../images/Joachim_privat.jpg'
 import { SectionsContext } from '../../context/SectionsContext.js'
 
 const AccountAside = () => {
-const [buttonText, setButtonText] = useState("hide  account");
-const { asidePos, setAsidePos } = useContext(SectionsContext);
-const { buttonPos, setButtonPos } = useContext(SectionsContext);
+  const { asidePos, setAsidePos } = useContext(SectionsContext);
+  const { buttonPos, setButtonPos } = useContext(SectionsContext);
+  const [buttonText, setButtonText] = useState("hide  account");
 //const { isAuth } = useContext(SectionsContext);
 
-const buttonPosition0 = "" 
+const buttonPos0 = "buttonZeroPosition" 
 const buttonMove1 = "showBut" 
 const buttonMove2 = "showBut moveButton" 
 const buttonMove3 = "showBut moveButtonBack" 
@@ -21,8 +21,6 @@ const buttonMove3 = "showBut moveButtonBack"
 const accountPos1 = "accountAside"
 const accountPos2 = "accountAside showAccount"
 const accountPos3 = "accountAside hideAccount"
-
-
 
 const handleButton=(buttonPos) => {
   if ( buttonPos === buttonMove1 ) {
@@ -38,10 +36,13 @@ const handleButton=(buttonPos) => {
     setButtonText("hide account");
     setAsidePos(accountPos2);
   } else {
-    setButtonPos(buttonPosition0);
+    setButtonPos(buttonPos0);
     setAsidePos(accountPos2)
   }
 }
+
+
+
 
 return (
    <>

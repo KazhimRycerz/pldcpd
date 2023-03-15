@@ -7,33 +7,32 @@ import swal from "sweetalert";
 
 function LoginForm() {
   //const { loggedIn, setLoggedIn } = useContext(SectionsContext);
-  const { setButtonPos } = useContext(SectionsContext)
+  const { setButtonPos, navigate } = useContext(SectionsContext)
   const [isLoading, setIsLoading] = useState(false);
   const {
     setIsAuth,
     //setStepOne,
   } = useContext(SectionsContext);
-const { navigate } = useContext(SectionsContext)
   const formEl = useRef(null);
   const usernameEL = useRef(null);
   const passwordEl = useRef(null);
-
   const getUserData = async (respData) => {
     const axiosResp = await axiosConfig.get(
       `http://localhost:4000/user/${respData}`
-    );
-    /* const defSearch = axiosResp.data.location.toLowerCase();
-    return defSearch; */
-  };
+      );
+      /* const defSearch = axiosResp.data.location.toLowerCase();
+      return defSearch; */
+    };
 
   const handleSuccessfulLogin = async (respData) => {
     localStorage.setItem("defSearch", await getUserData(respData.userId));
     setIsAuth(true);
     localStorage.setItem("userName", respData.userName);
     localStorage.setItem("userId", respData.userId);
-    /* setLoggedIn("true"); */
+    /* setLoggedIn(true); */
     setButtonPos("showBut");
-    window.history.back();
+    //window.history.back();
+    navigate(-1);
     //navigate("/home");
   };
 
@@ -76,8 +75,6 @@ const { navigate } = useContext(SectionsContext)
   return (
     <main className="LoginForm">
 
-
-
       <>
         <h2>anmelden</h2>
         <form ref={formEl} method="post" onSubmit={submitHandler}>
@@ -113,7 +110,7 @@ const { navigate } = useContext(SectionsContext)
         </Link>
       </div>
 
-      {isLoading && <p>Lade - bitte warten...</p>}
+      {isLoading && <p id="ladeInfo">Lade - bitte warten...</p>}
     </main>
   );
 }

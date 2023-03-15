@@ -19,11 +19,19 @@
    text-align:center;
    line-height: 55px;
    vertical-align: bottom;
+   &.buttonZeroPosition {
+    right:calc(10% - 10px);
+    transform: translateY(33px) rotate(-90deg);
+   }
+   &.buttonFirstPosition {
+    right:calc(10% - 33px);
+    transform: translateY(33px) rotate(-90deg);
+   }
    &.showBut {
      right:calc(10% - 33px);//ex44
      transition: 0.5s ease-in-out;
      vertical-align:bottom;
-     line-height: 55px;
+     //line-height: 55px;
     }
    &.hideBut {
     right:calc(10% - 10px);//ex24

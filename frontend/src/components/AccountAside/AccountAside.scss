@@ -19,6 +19,14 @@
    text-align: center;
    line-height: 15px;
    z-index: 0;
+   &.buttonZeroPosition {
+    right:calc(10% - 10px);
+    transform: translateY(33px) rotate(-90deg);
+   }
+   &.buttonFirstPosition {
+    right:calc(10% - 33px);
+    transform: translateY(33px) rotate(-90deg);
+   }
    &.showBut {
     right:calc(10% - 33px);
     transition: 0.5s ease-in-out;
@@ -28,7 +36,7 @@
     right:calc(10% - 10px);
     transition: 0.5s ease-in-out;
     line-height: 15px;
-    }   
+    }
    &.moveButton {animation: moveButton 1s 0s ease-in-out forwards}
    &.moveButtonBack {animation: moveButtonBack 1s 0s ease-in-out forwards}
    &.moveButtonBackToStart {animation: moveButtonBackToStart 1.5s ease-in-out forwards}
