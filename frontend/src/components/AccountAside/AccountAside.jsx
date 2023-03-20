@@ -1,14 +1,16 @@
 import './AccountAside.scss'
 import { Link } from 'react-router-dom'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import JoachimRitter from '../../images/Joachim_privat.jpg'
 import { SectionsContext } from '../../context/SectionsContext.js'
+import axiosConfig from "../../util/axiosConfig";
 
 const AccountAside = () => {
-  const { asidePos, setAsidePos } = useContext(SectionsContext);
-  const { buttonPos, setButtonPos } = useContext(SectionsContext);
+  const {isAuth, userData, setUserData, asidePos, setAsidePos, buttonPos, setButtonPos } = useContext(SectionsContext);
   const [buttonText, setButtonText] = useState("hide  account");
-//const { isAuth } = useContext(SectionsContext);
+  const [knowledgeData, setKnowledgeData] = useState("")
+  const userId = localStorage.getItem("userId");
+
 
 const buttonPos0 = "buttonZeroPosition" 
 const buttonMove1 = "showBut" 
@@ -41,6 +43,19 @@ const handleButton=(buttonPos) => {
   }
 }
 
+const getUserData = async () => {
+  const axiosResp = await axiosConfig.get(
+    `http://localhost:4000/user/${userId}`
+  );
+  const data = axiosResp.data;
+  const knowlData = axiosResp.data.contactData.professionalStatus;
+  setUserData(data);
+  setKnowledgeData(knowlData)
+ };
+
+  useEffect(() => {
+    getUserData();
+  });
 
 
 
@@ -55,16 +70,16 @@ return (
                
       <aside id="homeAsideAccount" className = {asidePos} >
         <img src={JoachimRitter} alt="Joachim Ritter privat" />
-        <p><strong>Hallo, Joachim Ritter </strong><br />
-        Journalist <br />Karrierelevel <br />--- <span> IV </span> ---<br />Project Lighting Designer</p> <br />
+        <p><strong>Hallo, {userData.firstName} </strong><br />
+        Journalist <br />Karrierelevel <br />--- <span> {knowledgeData.myCStatus} </span> ---<br />{knowledgeData.careerPathStatus}</p> <br />
               
         <div id="home_data">
           <p> Ihr persönlicher Wissensstatus</p>
           <div>
-            <div>myKF <p id="myKF">myKF</p></div>
-            <div>myLF <p id="myLF">myLF</p></div>
-            <div>myPEDh <p id="myPED">myPEDh</p></div>
-            <div>myPEXh <p id="myPEX">myPEXh</p></div>
+            <div>myKF <p id="myKF">{knowledgeData.myKF}</p></div>
+            <div>myLF <p id="myLF">{knowledgeData.myLF}</p></div>
+            <div>myPEDh <p id="myPED">{knowledgeData.myPEDh}</p></div>
+            <div>myPEXh <p id="myPEX">{knowledgeData.myPEXh}</p></div>
           </div>
           <div>
             <div><p id="maKF">maKF</p>maKF</div>

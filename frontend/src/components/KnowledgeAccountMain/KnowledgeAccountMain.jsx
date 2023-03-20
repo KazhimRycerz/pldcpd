@@ -23,7 +23,8 @@ const  KnowledgeAccountMain = ()=>{
     const data = axiosResp.data;
     const knowlData = axiosResp.data.contactData.professionalStatus;
     setUserData(data);
-    setKnowledgeData(knowlData)
+    setKnowledgeData(knowlData);
+    
    };
    console.log(userData)
    console.log(knowledgeData)
@@ -31,6 +32,23 @@ const  KnowledgeAccountMain = ()=>{
     useEffect(() => {
       getUserData();
     });
+
+    /* const getMarketKnowledgeData = async () => {
+      const axiosResp = await axiosConfig.get(
+        `http://localhost:4000/marketknowledge`
+      );
+      const marketData = axiosResp.data;
+      const knowlData = axiosResp.data.contactData.professionalStatus;
+      //setMarketData(marketData);
+      //setMarketKnowledgeData(knowlData);
+      
+     };
+     console.log(userData)
+     console.log(knowledgeData)
+  
+      useEffect(() => {
+        getUserData();
+      }); */
 
    return (
       <main>
@@ -67,16 +85,18 @@ const  KnowledgeAccountMain = ()=>{
                   <div>
                      <div>
                         <p>CPD-aktiv seit</p>
-                        <output id="my_start"> 01.11.20
+                        <output id="my_start"> {knowledgeData.cpdActiveSince}
                         </output>
                      </div>
                      <div>
                         <p>beruflich aktiv seit </p>
-                        <output id="my_active"> 01.06.11
+                        <output id="my_active"> {knowledgeData.professionalSince}
                         </output>
                      </div>
                      <div>
-                        <p></p>
+                     <p>letztes Update </p>
+                        <output id="my_active"> {knowledgeData.updatedOn}
+                        </output>
                      </div>
                      
                   </div>

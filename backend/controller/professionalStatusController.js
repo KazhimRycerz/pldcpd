@@ -4,6 +4,8 @@ export const getMaKnowledgeData = async (req, res) => {
     try {
     const maKnowledgeStatus = await ProfessionalStatusModel.find()
       //.populate("NNData");
+
+      
         res.status(200).json(maKnowledgeStatus)
     } catch (error) {
         console.log(error)

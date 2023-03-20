@@ -62,17 +62,17 @@ const professionalStatusSchema = mongoose.Schema({
    cpdActiveSince:{
       type: Date,
       immutable: true,
-      default: ()=> new Date(), 
+      default: ()=> new Date().toISOString().slice(0,10), 
    },
    professionalSince:{
       type: Date,
       immutable: true,
-      default: ()=> new Date(), 
+      default: ()=> new Date().toISOString().slice(0,10), 
    },
    createdOn:{
       type: Date,
       immutable: true,
-      default: ()=> new Date(), 
+      default: ()=> new Date().toISOString().slice(0,10), 
    },
    updatedOn: Date
 })
@@ -82,7 +82,7 @@ professionalStatusSchema.pre('save', function(next) {
    // Diese Callback-Function wird jedes mal VOR dem Aufruf von .save() 
    // ausgeführt
    console.log('mongoose save() oder updateOne() aufgerufen');
-   this.updatedOn = new Date();
+   this.updatedOn = new Date().toISOString().slice(0,10);
    next(); // jetzt wird save aufgerufen
 })
 
@@ -90,7 +90,7 @@ professionalStatusSchema.pre(['findOneAndUpdate', 'updateOne'], function(next){
    // Diese Callback-Function wird jedes mal VOR dem Aufruf von .findOneAndUpdate() 
    // und updateOne() ausgeführt
    console.debug('mongoose findOneAndUpdate oder updateOne aufgerufen');
-   this.set({ updatedOn: new Date() }); 
+   this.set({ updatedOn: new Date().toISOString().slice(0,10) }); 
    next(); // ohne next würde save() niemals ausgeführt werden
  } );
 

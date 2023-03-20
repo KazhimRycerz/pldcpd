@@ -5,20 +5,20 @@
   //display: none; 
    display: inline-block;
    position: fixed;
+   top: 155px;
    right:calc(10% - 10px);
    transform: translateY(33px) rotate(-90deg); 
-   z-index: 0;
    color: $cpdblue;
    background-color: $button-color;
    box-shadow: $btnshadow;
-   width: 65px;
+   width: 70px;
    height: 40px;
    border: 1px solid grey;
    border-radius: 10px;
-   top: 155px;
    text-align:center;
    line-height: 55px;
    vertical-align: bottom;
+   z-index: 0;
    &.buttonZeroPosition {
     right:calc(10% - 10px);
     transform: translateY(33px) rotate(-90deg);
