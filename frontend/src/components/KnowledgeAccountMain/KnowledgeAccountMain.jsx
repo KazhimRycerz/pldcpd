@@ -7,8 +7,12 @@ import axiosConfig from "../../util/axiosConfig";
 
 
 const  KnowledgeAccountMain = ()=>{
-   const { userData, setUserData } = useContext(SectionsContext);
+   const {userData, setUserData, isAuth, buttonPos, setButtonPos, asidePos, setAsidePos, gotoPage, setGotoPage, navigate, logout} = useContext(SectionsContext);
    const [knowledgeData, setKnowledgeData] = useState("")
+   setGotoPage("/KnowledgeAccount")
+   if (isAuth && gotoPage==="/home") {setButtonPos("showBut"); setAsidePos("accountAside") //ok
+} else {setButtonPos(buttonPos); setAsidePos(asidePos)
+}
 
    const userId = localStorage.getItem("userId");
 

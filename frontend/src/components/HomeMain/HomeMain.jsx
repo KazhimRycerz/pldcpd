@@ -26,8 +26,8 @@ const HomeMain = () => {
 
   const { isAuth, gotoPage, setGotoPage, navigate, buttonPos, setButtonPos, asidePos, setAsidePos, } = useContext(SectionsContext);
   setGotoPage("/home");
-  if (isAuth && buttonPos === "showBut moveButton" && asidePos === "accountAside showAccount") {setButtonPos("showBut"); setAsidePos("accountAside") //ok
-} else if (isAuth && buttonPos === "showBut") {setButtonPos("showBut") //ok
+  if (isAuth && gotoPage==="/KnowledgeAccount") {setButtonPos("showBut"); setAsidePos("accountAside") //ok
+} else {setButtonPos(buttonPos); setAsidePos (asidePos)
 }
 
   return (

@@ -194,26 +194,28 @@ const Header = () => {
             </NavLink>
               ) : (
               <NavLink
-                to="/login"
+                //to="/login"
                 onClick={() => {
                   swal("Du musst registriert und angemeldet sein, um deinen Account sehen zu können.", {
                     buttons: {
-                      login: "yes, please login!",
-                      backtomain: "no, go back to main"}
+                      login: "ja, bitte einloggen!",
+                      backtomain: "nein, zurück zur Hauptseite"}
                   })
                   .then ((value)=>{
                     switch(value) {
                       case "login":
+                        setGotoPage("/KnowledgeAccount")
                         navigate("/login")
                         break;
                       case "backtomain":
+                        setShowMenue(!showMenue)
                         navigate("/home")
                         break;
                       default:
                         swal("Got away safely!");
                     }
                   })
-                  setGotoPage("/KnowledgeAccount");
+                  //setGotoPage("/KnowledgeAccount");
                   navigate(gotoPage);
                 }}
               >
