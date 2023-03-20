@@ -1,17 +1,14 @@
 import "./Header.scss";
-import { NavLink, Link, useNavigate } from "react-router-dom";
+import { NavLink, Link} from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import pldcpd from "../../images/pldcpd.png";
 import { SectionsContext } from "../../context/SectionsContext.js";
+import swal from "sweetalert"
 
 const Header = () => {
   const [showMenue, setShowMenue] = useState(false);
   //const { loggedIn } = useContext(SectionsContext);
-  const { buttonPos, setButtonPos } = useContext(SectionsContext);
-  const { asidePos, setAsidePos } = useContext(SectionsContext);
-  const { isAuth } = useContext(SectionsContext);
-  const { logout } = useContext(SectionsContext);
-  const { navigate } = useContext(SectionsContext);
+  const {isAuth, buttonPos, setButtonPos, asidePos, setAsidePos, gotoPage, setGotoPage, navigate, logout} = useContext(SectionsContext);
 
   useEffect(() => {
   console.log("buttonPosition:", buttonPos)
@@ -38,9 +35,9 @@ const Header = () => {
     }
   }
 
-  const manageLinkToKnowledgeAccount =()=>{
+  /* const manageLinkToKnowledgeAccount =()=>{
     !isAuth && navigate("/login")
-  } 
+  }  */
 
   return (
     <>
@@ -148,13 +145,12 @@ const Header = () => {
                 <span className="C">C</span> clients
               </NavLink>
             </li>
-            <li onClick={manageLinkToKnowledgeAccount}>
+            <li onClick={()=>{
+                  !isAuth && navigate("/login")
+                }}>
             <NavLink to="/KnowledgeAccount" className="closebtn">
                 <span className="C">C</span> your CPD account
               </NavLink>
-              {/* {isAuth && <NavLink to="/KnowledgeAccount" className="closebtn">
-                <span className="C">C</span> your CPD account
-              </NavLink>} */}
             </li>
             <li>
               <NavLink to="/404" className="closebtn">
@@ -189,9 +185,41 @@ const Header = () => {
               </NavLink>
             </li>
             <li>
-            {isAuth && <NavLink to="/KnowledgeAccount" className="closebtn">
+            {/* {isAuth && <NavLink to="/KnowledgeAccount" className="closebtn">
                 <span className="C">C</span> your CPD account
-              </NavLink>} 
+              </NavLink>} */} 
+              {isAuth ? (
+            <NavLink to="/KnowledgeAccount">
+              <span className="C">C</span> your CPD account
+            </NavLink>
+              ) : (
+              <NavLink
+                to="/login"
+                onClick={() => {
+                  swal("Du musst registriert und angemeldet sein, um deinen Account sehen zu können.", {
+                    buttons: {
+                      login: "yes, please login!",
+                      backtomain: "no, go back to main"}
+                  })
+                  .then ((value)=>{
+                    switch(value) {
+                      case "login":
+                        navigate("/login")
+                        break;
+                      case "backtomain":
+                        navigate("/home")
+                        break;
+                      default:
+                        swal("Got away safely!");
+                    }
+                  })
+                  setGotoPage("/KnowledgeAccount");
+                  navigate(gotoPage);
+                }}
+              >
+                <span className="C">C</span> your CPD account
+              </NavLink>
+            )}
             </li>
             <li>
               <NavLink to="/home" className="closebtn">

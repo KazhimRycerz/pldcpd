@@ -28,8 +28,6 @@ const  KnowledgeAccountMain = ()=>{
       getUserData();
     });
 
-
-
    return (
       <main>
             <section id="Gruß_account">

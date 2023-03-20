@@ -7,12 +7,8 @@ import swal from "sweetalert";
 
 function LoginForm() {
   //const { loggedIn, setLoggedIn } = useContext(SectionsContext);
-  const { setButtonPos, navigate } = useContext(SectionsContext)
+  const { setButtonPos, navigate, gotoPage, setIsAuth } = useContext(SectionsContext)
   const [isLoading, setIsLoading] = useState(false);
-  const {
-    setIsAuth,
-    //setStepOne,
-  } = useContext(SectionsContext);
   const formEl = useRef(null);
   const usernameEL = useRef(null);
   const passwordEl = useRef(null);
@@ -32,7 +28,8 @@ function LoginForm() {
     /* setLoggedIn(true); */
     setButtonPos("showBut");
     //window.history.back();
-    navigate(-1);
+    //navigate(-1);
+    navigate(gotoPage)
     //navigate("/home");
   };
 

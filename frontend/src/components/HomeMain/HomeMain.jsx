@@ -18,8 +18,18 @@ import Sonnenuntergang from "../../images/Sonnenuntergang.jpg"
 import unsplash from "../../images/unsplash.jpg"
 //import { AccountButtonProvider } from "../../context/AccountButtonContext.js";
 import LightingEffect from "../LightingEffect/LightingEffect.jsx"
+import { useContext, useState, useEffect } from "react";
+import { SectionsContext } from "../../context/SectionsContext.js";
+
 
 const HomeMain = () => {
+
+  const { isAuth, gotoPage, setGotoPage, navigate, buttonPos, setButtonPos, asidePos, setAsidePos, } = useContext(SectionsContext);
+  setGotoPage("/home");
+  if (isAuth && buttonPos === "showBut moveButton" && asidePos === "accountAside showAccount") {setButtonPos("showBut"); setAsidePos("accountAside") //ok
+} else if (isAuth && buttonPos === "showBut") {setButtonPos("showBut") //ok
+}
+
   return (
     <main> {/* Styling in global */}
       <section id="Gruß_main">

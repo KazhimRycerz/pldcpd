@@ -22,6 +22,7 @@ const SectionsProvider = ({ children }) => {
   const [asidePos, setAsidePos] = useState("accountAside");
   //const [loggedIn, setLoggedIn] = useState("true");
   const [userData, setUserData] = useState({});
+  const [gotoPage, setGotoPage] = useState("/home")
 
 
   const logout = () => {
@@ -43,6 +44,8 @@ const SectionsProvider = ({ children }) => {
       value={{
         isAuth,
         logout,
+        gotoPage, 
+        setGotoPage,
         setIsAuth,
         buttonPos, 
         navigate,
