@@ -30,8 +30,6 @@ const SectionsProvider = ({ children }) => {
     setIsAuth(false);   
     axiosConfig.post("/user/logout").then((res) => {
       console.log(res.data);
-      setUserData({})
-      setMarketData({})
     });
     swal({
       title: `Sie haben sich erfolgreich abgemeldet`,

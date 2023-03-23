@@ -45,7 +45,7 @@ const handleButton=(buttonPos) => {
   }
 }
 
-const getUserData = (async () => {
+const getUserData = async () => {
   const axiosResp = await axiosConfig.get(
     `http://localhost:4000/user/${userId}`
   );
@@ -53,21 +53,24 @@ const getUserData = (async () => {
   const persKnowlData = axiosResp.data.contactData.professionalStatus;
   setUserData(data);
   setKnowledgeData(persKnowlData)
- })();
+ };
   
-const getMarketKnowledgeData = (async () => {
+ 
+const getMarketKnowledgeData = async () => {
   const axiosResp = await axiosConfig.get(
     `http://localhost:4000/professionalStatus`
     );
       const marketData = axiosResp.data;
     //setMarketKnowledgeData(marketData);
     setMarketData(marketData)
-  })();
-  //console.log(marketKnowledgeData)
+  };
   console.log(marketData)
+  console.log(userData)
+  console.log(knowledgeData)
   
-  /* getMarketKnowledgeData();
-  getUserData(); */
+  getMarketKnowledgeData();
+  getUserData();
+ 
 
   /* useEffect(() => {
       getMarketKnowledgeData();
