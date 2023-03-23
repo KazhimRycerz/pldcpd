@@ -7,8 +7,10 @@ import axiosConfig from "../../util/axiosConfig";
 
 
 const  KnowledgeAccountMain = ()=>{
-   const {userData, setUserData, isAuth, buttonPos, setButtonPos, asidePos, setAsidePos, gotoPage, setGotoPage, navigate, logout} = useContext(SectionsContext);
+   const {userData, setUserData, marketData, setMarketData, isAuth, buttonPos, setButtonPos, asidePos, setAsidePos, gotoPage, setGotoPage } = useContext(SectionsContext);
    const [knowledgeData, setKnowledgeData] = useState("")
+   const [marketKnowledgeData, setMarketKnowledgeData] = useState("")
+   
    setGotoPage("/KnowledgeAccount")
    if (isAuth && gotoPage==="/home") {setButtonPos("showBut"); setAsidePos("accountAside") //ok
 } else {setButtonPos(buttonPos); setAsidePos(asidePos)
@@ -16,39 +18,47 @@ const  KnowledgeAccountMain = ()=>{
 
    const userId = localStorage.getItem("userId");
 
-   const getUserData = async () => {
+   //let idForData = ""
+
+   const getUserData = (async () => {
     const axiosResp = await axiosConfig.get(
       `http://localhost:4000/user/${userId}`
     );
     const data = axiosResp.data;
-    const knowlData = axiosResp.data.contactData.professionalStatus;
+    const persKnowlData = axiosResp.data.contactData.professionalStatus;
     setUserData(data);
-    setKnowledgeData(knowlData);
-    
-   };
-   console.log(userData)
+    setKnowledgeData(persKnowlData);
+    //idForData = knowledgeData.firstName
+   })();   
+   //console.log(idForData)
    console.log(knowledgeData)
-
-    useEffect(() => {
-      getUserData();
-    });
+   
+   
+   const getMarketKnowledgeData = (async () => {
+      const axiosResp = await axiosConfig.get(
+        `http://localhost:4000/professionalStatus`
+        );
+          const marketData = axiosResp.data;
+        //setMarketKnowledgeData(marketData);
+        setMarketData(marketData)
+      })();
 
     /* const getMarketKnowledgeData = async () => {
       const axiosResp = await axiosConfig.get(
-        `http://localhost:4000/marketknowledge`
+        `http://localhost:4000/professionalStatus`
       );
       const marketData = axiosResp.data;
-      const knowlData = axiosResp.data.contactData.professionalStatus;
-      //setMarketData(marketData);
-      //setMarketKnowledgeData(knowlData);
-      
-     };
-     console.log(userData)
-     console.log(knowledgeData)
-  
-      useEffect(() => {
-        getUserData();
+      setMarketKnowledgeData(marketData);
+     }; */
+     
+     /* getMarketKnowledgeData();
+     getUserData() */
+
+     /* useEffect(() => {
+        getMarketKnowledgeData();
+        getUserData()
       }); */
+
 
    return (
       <main>
@@ -126,7 +136,7 @@ const  KnowledgeAccountMain = ()=>{
                      </div>
                      <div className="account_data_box">
                         <output className="account_pers_data" id="myKF">{knowledgeData.myKF}</output>
-                        <output className="account_market_data" id="maKF">maKF</output>
+                        <output className="account_market_data" id="maKF">{marketData.maKF}</output>
                      </div>
                   </div>
 
@@ -137,7 +147,7 @@ const  KnowledgeAccountMain = ()=>{
                      </div>
                      <div className="account_data_box">
                         <output className="account_pers_data" id="myLF">{knowledgeData.myLF}</output>
-                        <output className="account_market_data" id="maLF">maLF</output>
+                        <output className="account_market_data" id="maLF">{marketData.maLF}</output>
                      </div>
                   </div>
 
@@ -148,7 +158,7 @@ const  KnowledgeAccountMain = ()=>{
                      </div>
                      <div className="account_data_box">
                         <output className="account_pers_data" id="myPEX">{knowledgeData.myPEXh}</output>
-                        <output className="account_market_data" id="maPEX">maPEX</output>
+                        <output className="account_market_data" id="maPEX">{marketData.maPEXh}</output>
                      </div>
                   </div>
 
@@ -159,7 +169,7 @@ const  KnowledgeAccountMain = ()=>{
                      </div>
                      <div className="account_data_box">
                         <output className="account_pers_data" id="myPED">{knowledgeData.myPEDh}</output>
-                        <output className="account_market_data" id="maPED">maPED</output>
+                        <output className="account_market_data" id="maPED">{marketData.maPEDh}</output>
                      </div>
                   </div>
 
@@ -170,18 +180,18 @@ const  KnowledgeAccountMain = ()=>{
                      </div>
                      <div className="account_data_box">
                         <output className="account_pers_data" id="myLP">{knowledgeData.myLP}</output>
-                        <output className="account_market_data" id="maLP">maLP</output>
+                        <output className="account_market_data" id="maLP">{marketData.maLP}</output>
                      </div>
                   </div>
 
                   <div className="account_2">
                      <div>
-                        <h2>LP</h2>
-                        <p>Learning<br />Points</p>
+                        <h2>LC</h2>
+                        <p>LitCoins<br />Points</p>
                      </div>
                      <div className="account_data_box">
-                        <output className="account_pers_data" id="myLP">{knowledgeData.myLP}</output>
-                        <output className="account_market_data" id="maLP">maLP</output>
+                        <output className="account_pers_data" id="myLP">{knowledgeData.myLC}</output>
+                        <output className="account_market_data" id="maLP">{marketData.maLC}</output>
                      </div>
                   </div>
                </div>

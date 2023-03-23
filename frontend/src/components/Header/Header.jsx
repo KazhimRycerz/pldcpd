@@ -10,11 +10,11 @@ const Header = () => {
   //const { loggedIn } = useContext(SectionsContext);
   const {isAuth, buttonPos, setButtonPos, asidePos, setAsidePos, gotoPage, setGotoPage, navigate, logout} = useContext(SectionsContext);
 
-  useEffect(() => {
+ /*  useEffect(() => {
   console.log("buttonPosition:", buttonPos)
   console.log("asidePos:", asidePos)
   console.log("isAuth", isAuth)
-  })
+  }) */
 
 
   const manageLoginButton =()=> {
@@ -90,8 +90,7 @@ const Header = () => {
             <li
             id="showregister">
               {!isAuth ? <Link to="/register"> register 
-              <span className="C">C</span> </Link>: <span></span>}
-              
+              <span className="C">C</span> </Link> : <span></span>}
             </li>
             <li
               id="showlogin"
@@ -100,10 +99,12 @@ const Header = () => {
               {isAuth ? <span> log me out </span> : <Link to="/login"> login </Link>}
               <span className="C">C</span>
             </li>
-            <li className={isAuth ? "" : "user"}>
-              <Link to="/KnowledgeAccount">
-                logged in as {localStorage.userName} <span className="C">C</span>
-            </Link>
+            <li >
+              {isAuth ?<Link to="/KnowledgeAccount">
+                logged in as {localStorage.userName} <span className="C">C</span> 
+                </Link> 
+              :
+                <span></span>}
             </li>
           </ul>
         </div>

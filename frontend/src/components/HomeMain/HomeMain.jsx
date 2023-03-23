@@ -16,15 +16,14 @@ import Egon_Zitter_7 from "../../images/Egon_Zitter_7.jpg"
 import Egon_Zitter_8_Libellen from "../../images/Egon_Zitter_8_Libellen.jpg"
 import Sonnenuntergang from "../../images/Sonnenuntergang.jpg"
 import unsplash from "../../images/unsplash.jpg"
-//import { AccountButtonProvider } from "../../context/AccountButtonContext.js";
 import LightingEffect from "../LightingEffect/LightingEffect.jsx"
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import { SectionsContext } from "../../context/SectionsContext.js";
 
 
 const HomeMain = () => {
 
-  const { isAuth, gotoPage, setGotoPage, navigate, buttonPos, setButtonPos, asidePos, setAsidePos, } = useContext(SectionsContext);
+  const { isAuth, gotoPage, setGotoPage, buttonPos, setButtonPos, asidePos, setAsidePos } = useContext(SectionsContext);
   setGotoPage("/home");
   if (isAuth && gotoPage==="/KnowledgeAccount") {setButtonPos("showBut"); setAsidePos("accountAside") //ok
 } else {setButtonPos(buttonPos); setAsidePos (asidePos)

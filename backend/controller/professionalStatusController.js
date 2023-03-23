@@ -4,9 +4,60 @@ export const getMaKnowledgeData = async (req, res) => {
     try {
     const maKnowledgeStatus = await ProfessionalStatusModel.find()
       //.populate("NNData");
+      const maKFArray = [];
+        for (let i=0; i < maKnowledgeStatus.length; i++) {
+          maKFArray.push(maKnowledgeStatus[i].myKF)
+        }
+      const maKFAverage = maKFArray.reduce((acc, val) => acc+val,0)/maKnowledgeStatus.length;
+      const maKF = Number(maKFAverage.toFixed(0))
 
+      const maLFArray = [];
+        for (let i=0; i < maKnowledgeStatus.length; i++) {
+          maLFArray.push(maKnowledgeStatus[i].myLF)
+        }
+      const maLFAverage = maLFArray.reduce((acc, val) => acc+val,0)/maKnowledgeStatus.length;
+      const maLF = Number(maLFAverage.toFixed(0))
+
+      const maPEDhArray = [];
+        for (let i=0; i < maKnowledgeStatus.length; i++) {
+          maPEDhArray.push(maKnowledgeStatus[i].myPEDh)
+        }
+      const maPEDhAverage = maPEDhArray.reduce((acc, val) => acc+val,0)/maKnowledgeStatus.length;
+      const maPEDh = Number(maPEDhAverage.toFixed(0))
+
+      const maPEXhArray = [];
+        for (let i=0; i < maKnowledgeStatus.length; i++) {
+          maPEXhArray.push(maKnowledgeStatus[i].myPEXh)
+        }
+      const maPEXhAverage = maPEXhArray.reduce((acc, val) => acc+val,0)/maKnowledgeStatus.length;
+      const maPEXh = Number(maPEXhAverage.toFixed(0))
+
+      const maLPArray = [];
+        for (let i=0; i < maKnowledgeStatus.length; i++) {
+          maLPArray.push(maKnowledgeStatus[i].myLP)
+        }
+      const maLPAverage = maLPArray.reduce((acc, val) => acc+val,0)/maKnowledgeStatus.length;
+      const maLP = Number(maLPAverage.toFixed(0))
+
+      const maLCArray = [];
+        for (let i=0; i < maKnowledgeStatus.length; i++) {
+          maLCArray.push(maKnowledgeStatus[i].myLC)
+        }
+      const maLCAverage = maLCArray.reduce((acc, val) => acc+val,0)/maKnowledgeStatus.length;
+      const maLC = Number(maLCAverage.toFixed(0))
+
+
+      const maData = {
+        "maKF": maKF, 
+        "maLF": maLF,
+        "maPEDh": maPEDh,
+        "maPEXh": maPEXh,
+        "maLP": maLP,
+        "maLC": maLC
+      }
       
-        res.status(200).json(maKnowledgeStatus)
+        //res.status(200).json(maKnowledgeStatus)
+        res.status(200).json(maData)
     } catch (error) {
         console.log(error)
         res.status(400).send(error.message)

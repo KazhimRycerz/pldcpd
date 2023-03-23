@@ -33,7 +33,6 @@ main {
       #account_1_data {
         display: flex;
         flex-flow: row wrap;
-        //flex-grow:2;
         padding: 10px;
         width: 100%;
         height: auto;
@@ -47,7 +46,7 @@ main {
           padding: 15px;
           width: 47%;
           height: 120px;
-          background-color: $first-color;
+          background-color: $fourth-color;
           border-radius: $radiussmall;
           box-shadow: $boxshadow;
           position: relative;
@@ -72,9 +71,9 @@ main {
               width: 50%;
               padding: 5px;
               //border: solid;
-              border-radius: $radiussmall;
-              color: $cpdred;
-              background-color: $fourth-color;
+              border-radius: $radiusxsmall;
+              color: $secondary-color;
+              background-color: $third-color;
               opacity: 1;
             }
           }
@@ -172,6 +171,7 @@ main {
     div > h2 {
       font-family: $guthaben;
       background-color: $cpdblue;
+      color: white;
       width: 75px;
       
     }

@@ -9,11 +9,11 @@ import isAuth from "../middleware/is-auth.js";
 const router = Router();
 
 router.route("/")
-   .post(addMyKnowledgeData);
+   .post(addMyKnowledgeData)
+   .get(getMaKnowledgeData)
 router.route("/:id")
    .patch(/* isAuth,  */updateMyKnowledgeData)
    .get(/* isAuth, */ getMyKnowledgeData)
-router.route("/marketknowledge")
-   .get(getMaKnowledgeData);
+//router.route("/marketknowledge")
 export default router
 

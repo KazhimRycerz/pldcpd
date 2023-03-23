@@ -20,8 +20,8 @@ const SectionsProvider = ({ children }) => {
   });
   const [buttonPos, setButtonPos] = useState(isAuth ? "showBut" : "buttonZeroPosition");
   const [asidePos, setAsidePos] = useState("accountAside");
-  //const [loggedIn, setLoggedIn] = useState("true");
   const [userData, setUserData] = useState({});
+  const [marketData, setMarketData] = useState({});
   const [gotoPage, setGotoPage] = useState("/home")
 
 
@@ -30,6 +30,8 @@ const SectionsProvider = ({ children }) => {
     setIsAuth(false);   
     axiosConfig.post("/user/logout").then((res) => {
       console.log(res.data);
+      setUserData({})
+      setMarketData({})
     });
     swal({
       title: `Sie haben sich erfolgreich abgemeldet`,
@@ -54,6 +56,8 @@ const SectionsProvider = ({ children }) => {
         //setEventLogin,
         userData,
         setUserData,
+        marketData, 
+        setMarketData,
         asidePos, 
         setAsidePos,
         /* loggedIn, 

@@ -43,9 +43,7 @@
   box-shadow: $boxshadow;
   margin: 0 auto;
   transition: width 1s ease-in, padding 1s ease-in;
- 
 }
-
 
 .LoginForm form label > input {
   display: flex;
@@ -118,10 +116,6 @@
   text-align: center;
   transition: font-size 1s ease-in;
   margin: 1rem auto;
-  p{
-    padding: 10px;
-    margin: 0px;
-  }
 }
 
 #toRegisterButton {
@@ -139,7 +133,7 @@
 }
 #toRegisterButton:hover {
   background-color: $cpdblue;
-    color: $first-color;
+  color: $first-color;
 }
 #ladeInfo {
   text-align: center;
