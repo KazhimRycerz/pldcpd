@@ -12,14 +12,28 @@ const contactSchema = mongoose.Schema({
       type: String,
       default: "",
    },
-   titel:{
+   professionalTitle:{
       type: String,
       default:"",
    },
+   salutation: {
+      type: String,
+      default: "",
+      enum: ["Herr", "Frau", "Mr.", "Mrs", ""]
+    },
+    gender: {
+      type: String,
+      default: "",
+      enum: ["female", "male", "intersex", "trans", "non-conforming", "personal", "eunuch", ""]
+    },
    appendix: {
       type: String,
       default:"",
    },
+    origin: {
+      type: String,
+      default: "",
+    },
    /* address: {
       type: addressSchema,
       required: false,

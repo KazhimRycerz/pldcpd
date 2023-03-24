@@ -1,7 +1,7 @@
 import './PersonalAccount.scss'
-import Header from "../../components/Header/Header.js";
-import Footer from "../../components/Footer/Footer.js";
-import PersonalAccountMain from "../../components/PersonalAccountMain/PersonalAccountMain.js"
+import Header from "../../components/Header/Header.jsx";
+import Footer from "../../components/Footer/Footer.jsx";
+import PersonalAccountMain from "../../components/PersonalAccountMain/PersonalAccountMain.jsx"
 
 
 

@@ -6,7 +6,7 @@ const router = Router()
 router
 .get("/list", getAllContacts )
 .get("/", getAllContacts )
-.post("/register", registerContact )
+.post("/add", registerContact )
 .patch("/:id", updateContact)
 .get("/:id", getContact);
 

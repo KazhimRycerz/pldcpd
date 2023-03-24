@@ -1,23 +1,52 @@
-import mongoose from 'mongoose';
-import * as dotenv from 'dotenv'
-import express from 'express'
-//import "dotenv/config"
-//import cors from 'cors'
-import app from './app.js';
+import express from 'express';
+import connectMongoose from "./util/connectMogoose.js";
+import  { unkownHandler, errorHandler } from './middleware/middelware.js';
+import indexRouter from './routes/indexRoutes.js';
+import userRouter from './routes/userRoutes.js';
+import contactsRouter from './routes/contactsRoutes.js';
+import careerRouter from './routes/careerRoutes.js';
+import companiesRouter from './routes/companiesRoutes.js';
+import professionalStatusRouter from './routes/professionalStatusRoutes.js';
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import expressFileUpload from "express-fileupload";
 
-dotenv.config()
 
-const connectDB = async () =>{
-    try {
-        await mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.qcyipp2.mongodb.net/${process.env.MONGO_DB_NAME}?retryWrites=true&w=majority`)   
-        console.log("Connected to user in Mongo Atlas)")
-    } catch (error) {
-        console.error(error)
-    }
-}
+const server = express();
+const port = process.env.PORT || 4000;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-connectDB()
+server.use(express.json(), cookieParser());
+server.use(
+  cors({
+    origin: "http://localhost:3000", // Der Create React App Port
+    credentials: true, // Cookies zulassen
+  })
+);
+server.use(express.static("public"));
+server.use(expressFileUpload({createParentPath: true,}));
 
-app.listen(process.env.PORT, () => {
-    console.log(`Server is listening on port ${process.env.PORT}`)
-})
+server.use("/professionalStatus", professionalStatusRouter)
+server.use("/contacts",  contactsRouter)
+server.use("/careers",  careerRouter)
+server.use("/companies",  companiesRouter)
+server.use("/home", indexRouter)
+server.use("/", indexRouter)
+server.use("/user", userRouter);
+server.use(unkownHandler)
+server.use(errorHandler) 
+
+
+if(await connectMongoose() ) {
+   server.listen(port, ()=> {
+     console.log("listening to port ", port);
+   })
+ }
+ 
+//export default server
+
+
+

@@ -5,25 +5,33 @@
   //display: none; 
    display: inline-block;
    position: fixed;
+   top: 155px;
    right:calc(10% - 10px);
    transform: translateY(33px) rotate(-90deg); 
-   z-index: 0;
    color: $cpdblue;
    background-color: $button-color;
    box-shadow: $btnshadow;
-   width: 65px;
+   width: 70px;
    height: 40px;
    border: 1px solid grey;
    border-radius: 10px;
-   top: 155px;
    text-align:center;
    line-height: 55px;
    vertical-align: bottom;
+   z-index: 0;
+   &.buttonZeroPosition {
+    right:calc(10% - 10px);
+    transform: translateY(33px) rotate(-90deg);
+   }
+   &.buttonFirstPosition {
+    right:calc(10% - 33px);
+    transform: translateY(33px) rotate(-90deg);
+   }
    &.showBut {
      right:calc(10% - 33px);//ex44
      transition: 0.5s ease-in-out;
      vertical-align:bottom;
-     line-height: 55px;
+     //line-height: 55px;
     }
    &.hideBut {
     right:calc(10% - 10px);//ex24
@@ -52,7 +60,7 @@
     100% {transform:  translateY(33px) rotate(-90deg);z-index:0;  right:calc(10% - 10px)}
   } 
 
-#account_aside_account {
+#infoAsideAccount {
   display: block;
   transform: translateX(-120%) scale(90%);
   z-index: -1;
@@ -75,7 +83,7 @@
     width: 100%;
     place-items: center;
     margin: 10px 0 10px 0;
-    .floating-stack {
+    #floating-stack {
       background: $first-color;
       height: 380px;
       width: 100%;

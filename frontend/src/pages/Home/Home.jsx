@@ -1,17 +1,19 @@
 //import { NavLink } from 'react-router-dom'
-import "./Home.scss";
-import Header from "../../components/Header/Header.js";
-import AccountAside from "../../components/AccountAside/AccountAside.js";
-import Footer from "../../components/Footer/Footer.js";
-import HomeMain from "../../components/HomeMain/HomeMain.js";
+//import "./Home.scss";
+import Header from "../../components/Header/Header.jsx";
+import AccountAside from "../../components/AccountAside/AccountAside.jsx";
+import Footer from "../../components/Footer/Footer.jsx";
+import HomeMain from "../../components/HomeMain/HomeMain.jsx";
+import TurningElements from "../../components/TurningElements/Turningselements.jsx"
 
 const Home = () => {
   return (
     <>
-        <Header />
-        <AccountAside />
-        <HomeMain />
-        <Footer />
+      {/* <TurningElements /> */}
+      <Header />
+      <AccountAside />
+      <HomeMain />
+      <Footer />
     </>
   );
 };

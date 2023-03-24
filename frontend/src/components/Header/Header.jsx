@@ -1,19 +1,43 @@
 import "./Header.scss";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link} from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import pldcpd from "../../images/pldcpd.png";
 import { SectionsContext } from "../../context/SectionsContext.js";
+import swal from "sweetalert"
 
 const Header = () => {
   const [showMenue, setShowMenue] = useState(false);
-  const { loggedIn, setLoggedIn } = useContext(SectionsContext);
-  const { buttonPos, setButtonPos } = useContext(SectionsContext);
-  const { showAccount, setShowAccount } = useContext(SectionsContext);
-  useEffect(() => {
-  console.log("loggedIn:", loggedIn);
+  //const { loggedIn } = useContext(SectionsContext);
+  const {isAuth, buttonPos, setButtonPos, asidePos, setAsidePos, gotoPage, setGotoPage, navigate, logout} = useContext(SectionsContext);
+
+ /*  useEffect(() => {
   console.log("buttonPosition:", buttonPos)
-  console.log("AccountPosition:", showAccount)
-  })
+  console.log("asidePos:", asidePos)
+  console.log("isAuth", isAuth)
+  }) */
+
+
+  const manageLoginButton =()=> {
+    isAuth && logout()
+    !isAuth && asidePos === "accountAside showAccount"
+      ? setAsidePos("accountAside hideAccount")
+      : setAsidePos("accountAside");
+
+    if (!isAuth && buttonPos === "") {setButtonPos("showBut") //ok
+    } else if (isAuth && buttonPos === "showBut") {setButtonPos("hideBut") //ok
+    } else if (!isAuth && buttonPos === "hideBut") {setButtonPos("showBut")
+    } else if (isAuth && buttonPos === "showBut moveButton") {setButtonPos("moveButtonBackToStart")
+    } else if (!isAuth && buttonPos === "moveButtonBackToStart") {setButtonPos("showBut")
+    //  } else if (isAuth && buttonPos === "moveButtonBackToStart") {setButtonPos("showBut")
+    } else if (isAuth && buttonPos === "showBut moveButtonBack") {setButtonPos("hideBut")
+    } else if (!isAuth && buttonPos === "hideBut moveButton") {setButtonPos("hideBut")
+    } else {setButtonPos("") 
+    }
+  }
+
+  /* const manageLinkToKnowledgeAccount =()=>{
+    !isAuth && navigate("/login")
+  }  */
 
   return (
     <>
@@ -27,33 +51,33 @@ const Header = () => {
             </button>
             <ul id="dropdown-content">
               <li>
-                <Link to="/home">
+                <NavLink to="/home">
                   <span className="C">C</span> about
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link to="/abouttheprofession">
+                <NavLink to="/abouttheprofession">
                   <span className="C">C</span> my Profession
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link to="/aboutpldcpd">
+                <NavLink to="/aboutpldcpd">
                   <span className="C">C</span> PLDCPD
-                </Link>
+                </NavLink>
               </li>
               <li>
-                <Link to="/aboutrycerz">
+                <NavLink to="/aboutrycerz">
                   <span className="C">C</span> RYCERZ
-                </Link>
+                </NavLink>
               </li>
             </ul>
           </div>
         </nav>
 
         <div className="text_header">
-          <Link to="/home">
+          <NavLink to="/home">
             <img className="image_header" src={pldcpd} alt="" />
-          </Link>
+          </NavLink>
 
           <p>
             Plattform for Continuing <br />
@@ -63,40 +87,24 @@ const Header = () => {
 
         <div id="header_myaccount">
           <ul>
-            <li>
-              <Link to="/RegisterLogin"> register </Link>
-              <span className="C">C</span>
+            <li
+            id="showregister">
+              {!isAuth ? <Link to="/register"> register 
+              <span className="C">C</span> </Link> : <span></span>}
             </li>
             <li
               id="showlogin"
-              onClick={() => {
-                setLoggedIn(!loggedIn);
-              
-                loggedIn && showAccount === "showAccount"
-                  ? setShowAccount("hideAccount")
-                  : setShowAccount("");
-                
-                    /* if (!loggedIn) {location.reload
-             }  else */if (!loggedIn && buttonPos === "") {setButtonPos("showBut") //ok
-                } else if (loggedIn && buttonPos === "showBut") {setButtonPos("hideBut") //ok
-                } else if (!loggedIn && buttonPos === "hideBut") {setButtonPos("showBut")
-                } else if (loggedIn && buttonPos === "showBut moveButton") {setButtonPos("moveButtonBackToStart")
-                } else if (!loggedIn && buttonPos === "moveButtonBackToStart") {setButtonPos("showBut")
-               /*  } else if (loggedIn && buttonPos === "moveButtonBackToStart") {setButtonPos("showBut") */
-                } else if (loggedIn && buttonPos === "showBut moveButtonBack") {setButtonPos("hideBut")
-                } else if (!loggedIn && buttonPos === "hideBut moveButton") {setButtonPos("hideBut")
-                } else {setButtonPos("") 
-                }
-              }}
+              onClick={manageLoginButton}
             >
-              {loggedIn ? "log me out" : "log me in"}{" "}
+              {isAuth ? <span> log me out </span> : <Link to="/login"> login </Link>}
               <span className="C">C</span>
             </li>
-            <li className={loggedIn ? "" : "user"}>
-              <Link to="/RegisterLogin">
-                {" "}
-                logged in as Joachim Ritter <span className="C">C</span>
-              </Link>
+            <li >
+              {isAuth ?<Link to="/KnowledgeAccount">
+                logged in as {localStorage.userName} <span className="C">C</span> 
+                </Link> 
+              :
+                <span></span>}
             </li>
           </ul>
         </div>
@@ -138,8 +146,10 @@ const Header = () => {
                 <span className="C">C</span> clients
               </NavLink>
             </li>
-            <li>
-              <NavLink to="/KnowledgeAccount" className="closebtn">
+            <li onClick={()=>{
+                  !isAuth && navigate("/login")
+                }}>
+            <NavLink to="/KnowledgeAccount" className="closebtn">
                 <span className="C">C</span> your CPD account
               </NavLink>
             </li>
@@ -176,9 +186,43 @@ const Header = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/KnowledgeAccount" className="closebtn">
+            {/* {isAuth && <NavLink to="/KnowledgeAccount" className="closebtn">
+                <span className="C">C</span> your CPD account
+              </NavLink>} */} 
+              {isAuth ? (
+            <NavLink to="/KnowledgeAccount">
+              <span className="C">C</span> your CPD account
+            </NavLink>
+              ) : (
+              <NavLink
+                //to="/login"
+                onClick={() => {
+                  swal("Du musst registriert und angemeldet sein, um deinen Account sehen zu können.", {
+                    buttons: {
+                      login: "ja, bitte einloggen!",
+                      backtomain: "nein, zurück zur Hauptseite"}
+                  })
+                  .then ((value)=>{
+                    switch(value) {
+                      case "login":
+                        setGotoPage("/KnowledgeAccount")
+                        navigate("/login")
+                        break;
+                      case "backtomain":
+                        setShowMenue(!showMenue)
+                        navigate("/home")
+                        break;
+                      default:
+                        swal("Got away safely!");
+                    }
+                  })
+                  //setGotoPage("/KnowledgeAccount");
+                  navigate(gotoPage);
+                }}
+              >
                 <span className="C">C</span> your CPD account
               </NavLink>
+            )}
             </li>
             <li>
               <NavLink to="/home" className="closebtn">
@@ -212,9 +256,9 @@ const Header = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/KnowledgeAccount" className="closebtn">
+            {isAuth && <NavLink to="/KnowledgeAccount" className="closebtn">
                 <span className="C">C</span> your CPD account
-              </NavLink>
+              </NavLink>}
             </li>
             <li>
               <NavLink to="/home" className="closebtn">
@@ -248,9 +292,9 @@ const Header = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/KnowledgeAccount" className="closebtn">
+            {isAuth && <NavLink to="/KnowledgeAccount" className="closebtn">
                 <span className="C">C</span> your CPD account
-              </NavLink>
+              </NavLink>}
             </li>
             <li>
               <NavLink to="/home" className="closebtn">
@@ -284,9 +328,9 @@ const Header = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/KnowledgeAccount" className="closebtn">
+            {isAuth && <NavLink to="/KnowledgeAccount" className="closebtn">
                 <span className="C">C</span> your CPD account
-              </NavLink>
+              </NavLink>}
             </li>
             <li>
               <NavLink to="/home" className="closebtn">

@@ -54,6 +54,7 @@ const TurningElements = () => {
       <img src={drehmoment2} id="r19" className="rotate" alt="" />
       <img src={drehmoment2} id="r20" className="rotate" alt="" />
       <img src={drehmoment2} id="r21" className="rotate" alt="" />
+      <img src={drehmoment2} id="r22" className="rotate" alt="" />
     </div>
   );
 };

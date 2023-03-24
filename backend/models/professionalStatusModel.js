@@ -1,55 +1,63 @@
 import mongoose from 'mongoose';
 
 const professionalStatusSchema = mongoose.Schema({
-   activated: {
+   active: {
       type:Boolean,
       default: true
    },
    careerPathStatus: {
       type: String,
-      default: "0_no_level",
-      enum: ["0_no level",
-      "1_Student", 
-      "2_Newly Qualified Lighting Designer", 
-      "3_Junior Lighting Designer", 
-      "4_Project Lighting Designer", 
-      "5_Senior Lighting Designer", 
-      "6_Associate Lighting Designer", 
-      "7_Principal lighting designer / practice owner", 
-      "8_Master", 
-      "9_Authoriesd expert", 
-      "10_Educator", 
-      "11_Educator and Researcher", 
-      "12_Journalist / Promoter"]
+      default: "no level",
+      enum: ["no level",
+      "Student", 
+      "Newly Qualified Lighting Designer", 
+      "Junior Lighting Designer", 
+      "Project Lighting Designer", 
+      "Senior Lighting Designer", 
+      "Associate Lighting Designer", 
+      "Principal lighting designer / practice owner", 
+      "Master Lighting Designer", 
+      "Authorised expert", 
+      "Educator", 
+      "Educator and Researcher", 
+      "Journalist / Promoter"],
+      require: true
    },   
    myKF: {
       type: Number,
-      default: 0
+      default: 0,
+      require: true
    },
    myLF: {
       type: Number,
-      default: 0
+      default: 0,
+      require: true
    },
    myPEDh: {
       type: Number,
-      default: 0
+      default: 0,
+      require: true
    },
    myPEXh: {
       type: Number,
-      default: 0
+      default: 0,
+      require: true
    },
    myLP: {
       type: Number,
-      default: 0
+      default: 0,
+      require: true
    },
    myLC: {
       type: Number,
-      default: 0
+      default: 0,
+      require: true
    },
    myCStatus: {
       type: Number,
       default: 0,
-      enum: [1, 2, 3,4,5,6,7,8,9,10]
+      enum: [0,1,2,3,4,5,6,7,8,9,10,11,12],
+      require: true
    },
    cpdActiveSince:{
       type: Date,
@@ -82,7 +90,7 @@ professionalStatusSchema.pre(['findOneAndUpdate', 'updateOne'], function(next){
    // Diese Callback-Function wird jedes mal VOR dem Aufruf von .findOneAndUpdate() 
    // und updateOne() ausgeführt
    console.debug('mongoose findOneAndUpdate oder updateOne aufgerufen');
-   this.set({ updatedOn: new Date() }); 
+   this.set({ updatedOn: new Date()}); 
    next(); // ohne next würde save() niemals ausgeführt werden
  } );
 

@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 async function connectMongoose() {
 
-  const _pwd = process.env.MONGO_PASSWORD; // Unterstrich (_) soll betonen, dass es sich sozusagen um eine "private" VAriable handelt
+  const _pwd = process.env.MONGO_PASSWORD;
   const _user = process.env.MONGO_USER;
   const _database = process.env.MONGO_DB_NAME;
   const _cluster = process.env.MONGO_DB_CLUSTER;

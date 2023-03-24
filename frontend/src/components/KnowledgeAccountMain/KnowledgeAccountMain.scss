@@ -33,7 +33,6 @@ main {
       #account_1_data {
         display: flex;
         flex-flow: row wrap;
-        //flex-grow:2;
         padding: 10px;
         width: 100%;
         height: auto;
@@ -47,7 +46,7 @@ main {
           padding: 15px;
           width: 47%;
           height: 120px;
-          background-color: $first-color;
+          background-color: $fourth-color;
           border-radius: $radiussmall;
           box-shadow: $boxshadow;
           position: relative;
@@ -66,14 +65,15 @@ main {
             output {
               line-height: 1rem;
               font-size: $small;
+              font-weight: 700;
               text-align: center;
               vertical-align: middle;
               width: 50%;
               padding: 5px;
               //border: solid;
-              border-radius: $radiussmall;
-              color: $first-color;
-              background-color: $cpdblue;
+              border-radius: $radiusxsmall;
+              color: $secondary-color;
+              background-color: $third-color;
               opacity: 1;
             }
           }
@@ -141,7 +141,7 @@ main {
   border-left: 3px dotted $cpdred;
   border-right: 3px dotted $cpdred;
   border-radius: 20px;
-  /*background-color: RGB(221, 155, 55, 0.2);*/
+  //background-color: RGB(221, 155, 55, 0.2);
   height: auto;
   > p {
     margin-left: 10px;
@@ -160,9 +160,10 @@ main {
     display: flex;
     flex: row nowrap;
     justify-content: space-between;
+    gap: 50px;
     margin-top: 30px;
     padding: 10px;
-    background-color: $first-color;
+    background-color: $fourth-color;
     border-radius: $radiussmall;
     box-shadow: $boxshadow;
     height: 80px;
@@ -170,8 +171,9 @@ main {
     div > h2 {
       font-family: $guthaben;
       background-color: $cpdblue;
-      opacity: 1;
+      color: white;
       width: 75px;
+      
     }
     div:first-child {
       position: relative;
@@ -186,30 +188,30 @@ main {
   }
 }
 
-.account_2 > div > h2 {
-  padding: 5px;
-  font-family: $calli;
-  font-weight: bold;
-  background-color: $third-color;
-  font-size: 30px;
-  text-align: center;
-  color: white;
-  width: 60px;
-  height: 90px;
-  line-height: 180%;
-  border-radius: $radiussmall;
-  position: relative;
-  top: -10px;
-}
-
-.account_2 > div > p {
-  padding-left: 4px;
-  margin-top: -40px;
-  font-family: $primary-font;
-  font-size: 10px;
-  text-align: center;
-  color: white;
-  position: relative;
+.account_2 {
+   h2 {
+    padding: 5px;
+    font-weight: bold;
+    //background-color: $third-color;
+    font-size: 30px;
+    text-align: center;
+    color: white;
+    width: 60px;
+    height: 90px;
+    line-height: 180%;
+    border-radius: $radiussmall;
+    position: relative;
+    top: -10px;
+  }
+   p {
+    padding-left: 4px;
+    margin-top: -40px;
+    font-family: $primary-font;
+    font-size: 10px;
+    text-align: center;
+    color: white;
+    position: relative;
+  }
 }
 
 .account_data_box {
@@ -219,7 +221,8 @@ main {
   gap: 0px;
   .account_pers_data {
     display: block;
-    background-color: $fourth-color;
+    color: $secondary-color;
+    background-color: $third-color;
     font-family: $primary-font;
     font-weight: bold;
     box-shadow: none;
@@ -230,7 +233,6 @@ main {
     border: none;
     border-radius: $radiusxsmall;
     font-size: $xlarge;
-    color: black;
     padding: 2px;
     margin-left: 10px;
   }
@@ -238,12 +240,11 @@ main {
     display: block;
     background-color: none;
     box-shadow: none;
-    text-align: center;
     width: 70px;
     border: 1px solid $third-color;
     border-radius: 5px;
     font-size: $small;
-    color: black;
+    color: $third-color;
     padding: 0px;
     text-align: center;
     justify-content: center;

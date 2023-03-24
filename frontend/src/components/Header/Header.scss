@@ -76,7 +76,13 @@
        }
      }
    }
- }
+  }
+  #header_myaccount ul {
+   display: flex;
+   flex-flow: column nowrap;
+   justify-content: baseline;
+   height: auto;
+  }
    
  @keyframes navpresenter {
  0%  {opacity: 0;}
@@ -311,7 +317,7 @@
          }
        }
      }
-     &.showNav {
+     &.showNav{
        top: 100px;
        transition: 0.3s ease-in-out;
      }

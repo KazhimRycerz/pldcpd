@@ -1,5 +1,5 @@
-import Header from '../../components/Header/Header.js'
-import Footer from '../../components/Footer/Footer.js'
+import Header from '../../components/Header/Header.jsx'
+import Footer from '../../components/Footer/Footer.jsx'
 import './Page404.scss'
 
 const Page404 = () => {

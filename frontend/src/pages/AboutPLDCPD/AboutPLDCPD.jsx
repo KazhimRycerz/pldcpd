@@ -1,6 +1,6 @@
-import Header from '../../components/Header/Header.js'
-import Footer from '../../components/Footer/Footer.js'
-//import AboutPLDCPDMain from '../../components/AboutPLDCPDMain/AboutPLDCPDMain.js'
+import Header from '../../components/Header/Header.jsx'
+import Footer from '../../components/Footer/Footer.jsx'
+//import AboutPLDCPDMain from '../../components/AboutPLDCPDMain/AboutPLDCPDMain.jsx'
 import './AboutPLDCPD.scss'
 
 const AboutPLDCPD = () => {
