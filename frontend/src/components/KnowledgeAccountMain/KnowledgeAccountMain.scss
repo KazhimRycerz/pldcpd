@@ -3,6 +3,9 @@
 main {
   //margin-top: -40px;
   //height: auto;
+  .colorYellow{
+    color: $secondary-color;
+  }
 
   section {
     width: 80%;
@@ -15,13 +18,25 @@ main {
   }
 
   #Gruß_account {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
     //border: solid black;
     width: 80%;
     margin: 20px auto;
+    position: relative;
+    top: 00px;
     h1 {
+      display: inline-block;
       padding-top: 50px;
       font-family: $primary-font-bold;
       font-size: $xxlarge;
+    }
+    img {
+      width: 100px;
+      
+
+      
     }
   }
     #account_1 {
@@ -80,7 +95,8 @@ main {
           #account_1_p {
             font-size: 1.5rem;
             width: 100%;
-            text-align: center
+            text-align: center;
+            color: $third-color;
           }
         }
       }

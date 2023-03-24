@@ -24,7 +24,7 @@ const Footer = () => {
        <div>
          <div>
            <ul>
-             <li>Imprint</li>
+           <li><Link to="/impressum">Imprint</Link></li>
              <li>Privacy policy</li>
              <li>NN</li>
              <li>sdlkfhj </li>
@@ -38,7 +38,7 @@ const Footer = () => {
          </div>
          <div>
            <ul>
-             <li>Imprint</li>
+           <li><Link to="/impressum">Imprint</Link></li>
              <li>Privacy policy</li>
              <li>NN</li>
              <li>sdlkfhj </li>
@@ -52,7 +52,7 @@ const Footer = () => {
          </div>
          <div>
            <ul>
-             <li>Imprint</li>
+           <li><Link to="/impressum">Imprint</Link></li>
              <li>Privacy policy</li>
              <li>NN</li>
              <li>sdlkfhj </li>
@@ -80,9 +80,12 @@ const Footer = () => {
          </div>
          <div>
            <ul>
-             <li>Imprint</li>
+           <li><Link to="/impressum">Imprint</Link></li>
              <li>Privacy policy</li>
              <li>NN</li>
+             <li></li>
+             <li></li>
+             <li></li>
            </ul>      
          </div>
        </div>

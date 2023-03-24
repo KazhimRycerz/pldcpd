@@ -9,6 +9,7 @@ import PersonalAccount from "./pages/PersonalAccount/PersonalAccount.jsx";
 import CareerPlanning from "./pages/CareerPlanning/CareerPlanning.jsx";
 import Login from "./pages/LoginPage/Login.jsx";
 import Register from "./pages/RegisterPage/Register.jsx";
+import Impressum from "./pages/Impressum/Impressum.jsx";
 import UserProfile from "./pages/UserProfile/UserProfile.jsx";
 import AboutTheProfession from "./pages/AboutTheProfession/AboutTheProfession.jsx";
 import AboutRycerz from "./pages/AboutRycerz/AboutRycerz.jsx";
@@ -44,6 +45,7 @@ function App() {
           <Route path="/abouttheprofession" element={<AboutTheProfession />} />
           <Route path="/aboutrycerz" element={<AboutRycerz />} />
           <Route path="/aboutpldcpd" element={<AboutPLDCPD />} />
+          <Route path="/impressum" element={<Impressum />} />
           <Route path="/listoflearningopprortunities" element={<ListOfLearningOpportunities />} />
           <Route path="/sandbox" element={<Sandbox />} />
           {/* <Route path="/community" element={<Community />} /> */}

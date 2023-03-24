@@ -37,11 +37,12 @@ footer {
      justify-content: center;
      gap: 60px;
      margin: 20px 0 0 0 ;
-     ul {
+     > ul {
        display: flex;
        flex-flow: column wrap;
        font-size: $normal;
        width: 100%;
-     }
-   }
+      }
+    }
+   
  }

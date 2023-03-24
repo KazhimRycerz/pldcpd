@@ -1,14 +1,17 @@
 import './KnowledgeAccountMain.scss'
+import JoachimRitter from '../../images/Joachim_privat.jpg'
 //import { useNavigate, useParams } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import { SectionsContext } from "../../context/SectionsContext.js";
 //import axiosInstance from "../../util/axiosConfig";
 import axiosConfig from "../../util/axiosConfig";
+import Moment from "moment"
 
 
 const  KnowledgeAccountMain = ()=>{
    const {userData, setUserData, marketData, setMarketData, isAuth, buttonPos, setButtonPos, asidePos, setAsidePos, gotoPage, setGotoPage } = useContext(SectionsContext);
    const [knowledgeData, setKnowledgeData] = useState("")
+   const [contactData, setContactData] = useState("")
    const [marketKnowledgeData, setMarketKnowledgeData] = useState("")
    
    setGotoPage("/KnowledgeAccount")
@@ -26,8 +29,10 @@ const  KnowledgeAccountMain = ()=>{
     );
     const data = axiosResp.data;
     const persKnowlData = axiosResp.data.contactData.professionalStatus;
+    const contactData = axiosResp.data.contactData;
     setUserData(data);
     setKnowledgeData(persKnowlData);
+    setContactData(contactData);
     //idForData = knowledgeData.firstName
    })();   
    //console.log(idForData)
@@ -71,8 +76,8 @@ const  KnowledgeAccountMain = ()=>{
                <div id="account_1_data">
                   <div>
                      <div> 
-                        <p>username:</p> 
-                        <output id="fullName">{userData.userName}</output>
+                        <p>Name:</p> 
+                        <output id="fullName">{contactData.firstName} {contactData.lastName}</output>
                      </div>
                      <div>
                         <p>profession:</p> 
@@ -86,7 +91,7 @@ const  KnowledgeAccountMain = ()=>{
                   <div>
                      <div>
                         <p>Karrierelevel</p>
-                        <output id="myCL"> {knowledgeData.myCStatus}</output>
+                        <output id="myCL"> {knowledgeData.myCStatus} von 9</output>
                      </div>
                      <div><p></p></div>
                         <div><p id="account_1_p">{knowledgeData.careerPathStatus}</p></div>
@@ -95,17 +100,17 @@ const  KnowledgeAccountMain = ()=>{
                   <div>
                      <div>
                         <p>CPD-aktiv seit</p>
-                        <output id="my_start"> {knowledgeData.cpdActiveSince}
+                        <output id="my_start"> {Moment(knowledgeData.cpdActiveSince).format("DD.MM.YYYY")}
                         </output>
                      </div>
                      <div>
                         <p>beruflich aktiv seit </p>
-                        <output id="my_active"> {knowledgeData.professionalSince}
+                        <output id="my_active"> {Moment(knowledgeData.professionalSince).format("DD.MM.YYYY")}
                         </output>
                      </div>
                      <div>
                      <p>letztes Update </p>
-                        <output id="my_active"> {knowledgeData.updatedOn}
+                        <output id="my_active"> {Moment(knowledgeData.updatedOn).format("DD.MM.YYYY")}
                         </output>
                      </div>
                      
@@ -114,7 +119,7 @@ const  KnowledgeAccountMain = ()=>{
                   <div>
                      <div>
                         <p>Ihr Guthaben</p>
-                        <output className="account_Box" id="myLCoins"> myLC <span id="LC"> LC</span>
+                        <output className="account_Box" id="myLCoins"> {knowledgeData.myLC} <span className="C colorYellow"> LC</span>
                         </output>
                      </div>
                      <div><p></p></div>

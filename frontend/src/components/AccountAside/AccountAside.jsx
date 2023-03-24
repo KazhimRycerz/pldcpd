@@ -114,7 +114,7 @@ return (
         <p>Ihr aktuelles <span className="LitCoin">L</span><span className="Calli">it</span><span className="LitCoin">C</span><span className="Calli">oin</span> Guthaben:</p>
         <div id="aside_gutbox">
           <p id="aside_guthaben"></p> 
-          <p className="LC">LC</p>
+          <p className="LC">{knowledgeData.myLC} </p>
         </div>
     
         <p>Ihre gesamte Übesicht Ihres Kontos können Sie <Link to="/KnowledgeAccount">hier</Link> aufrufen. <Link className="C"

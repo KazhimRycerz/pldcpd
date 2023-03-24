@@ -1,4 +1,5 @@
 import "./Header.scss";
+import JoachimRitter from '../../images/Joachim_privat.jpg'
 import { NavLink, Link} from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import pldcpd from "../../images/pldcpd.png";
@@ -35,6 +36,9 @@ const Header = () => {
     }
   }
 
+  /* const closingNav =()=>{
+    setShowMenue("hideNav")
+  } */
   /* const manageLinkToKnowledgeAccount =()=>{
     !isAuth && navigate("/login")
   }  */

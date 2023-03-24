@@ -1,0 +1,24 @@
+@import "../../scss/global.scss";
+
+#impressumMain {
+  width: 60%;
+  margin: 0 auto;
+  //  box-shadow: 10px 10px 10px red, -10px -10px 10px red;
+}
+
+#impressum {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  margin: 50px; 
+  box-shadow: $boxshadow;
+  border-radius: 10px;
+  width: 80%;
+  margin: 50px auto;
+  padding: 30px;
+  gap:20px;
+div{
+  padding: 0px;
+}
+  
+}
