@@ -36,9 +36,9 @@ const Header = () => {
     }
   }
 
-  /* const closingNav =()=>{
+  const closingNav =()=>{
     setShowMenue("hideNav")
-  } */
+  }
   /* const manageLinkToKnowledgeAccount =()=>{
     !isAuth && navigate("/login")
   }  */
@@ -124,7 +124,7 @@ const Header = () => {
         </div>
       </header>
 
-      <nav id="navmain" className={showMenue ? "showNav" : " hideNav"}>
+      <nav /* onMouseLeave={this.closingNav()} */ id="navmain" className={showMenue ? "showNav" : " hideNav"}>
         <div>
           <ul>
             <p>
