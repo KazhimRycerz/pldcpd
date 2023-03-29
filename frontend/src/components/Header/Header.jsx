@@ -1,7 +1,7 @@
 import "./Header.scss";
 import JoachimRitter from '../../images/Joachim_privat.jpg'
 import { NavLink, Link} from "react-router-dom";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState} from "react";
 import pldcpd from "../../images/pldcpd.png";
 import { SectionsContext } from "../../context/SectionsContext.js";
 import swal from "sweetalert"

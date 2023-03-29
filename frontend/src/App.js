@@ -1,6 +1,5 @@
 import "./scss/App.scss";
-import React, { useContext, useEffect } from "react";
-import { SectionsContext } from "./context/SectionsContext.js";
+import React, { useEffect } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AutoLogout } from "./util/AutoLogout.js";
 import Home from "./pages/Home/Home.jsx";

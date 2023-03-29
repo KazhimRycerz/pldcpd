@@ -9,10 +9,10 @@ import "./UserProfilMain.scss";
 export default function UserProfilMain() {
   const { logout, userData, setUserData } = useContext(SectionsContext);
 
-  const [showMyEvents, setShowMyEvents] = useState(false);
-  const [watchedEvents, setWatchedEvents] = useState(false);
+  //const [showMyEvents, setShowMyEvents] = useState(false);
+  //const [watchedEvents, setWatchedEvents] = useState(false);
   const [userDetails, setUserDetails] = useState(false);
-  const [bookedEvents, setBookedEvents] = useState(false);
+  //const [bookedEvents, setBookedEvents] = useState(false);
   const [myEvents, setMyEvents] = useState(null)
   const [myBooked, setMyBooked] = useState(null)
   const [myWatched, setMyWatched] = useState(null)

@@ -10,59 +10,45 @@ import Moment from "moment"
 
 const  KnowledgeAccountMain = ()=>{
    const {userData, setUserData, marketData, setMarketData, isAuth, buttonPos, setButtonPos, asidePos, setAsidePos, gotoPage, setGotoPage } = useContext(SectionsContext);
-   const [knowledgeData, setKnowledgeData] = useState("")
-   const [contactData, setContactData] = useState("")
-   const [marketKnowledgeData, setMarketKnowledgeData] = useState("")
-   
+  /*  const [userData, setUserData] = useState({}) */
+   const [knowledgeData, setKnowledgeData] = useState({})
+   const [contactData, setContactData] = useState({})
+   const userId = localStorage.getItem("userId");
+
    setGotoPage("/KnowledgeAccount")
    if (isAuth && gotoPage==="/home") {setButtonPos("showBut"); setAsidePos("accountAside") //ok
-} else {setButtonPos(buttonPos); setAsidePos(asidePos)
-}
-
-   const userId = localStorage.getItem("userId");
+   } else {setButtonPos(buttonPos); setAsidePos(asidePos)
+   }
 
    //let idForData = ""
 
-   const getUserData = (async () => {
-    const axiosResp = await axiosConfig.get(
-      `http://localhost:4000/user/${userId}`
-    );
-    const data = axiosResp.data;
-    const persKnowlData = axiosResp.data.contactData.professionalStatus;
-    const contactData = axiosResp.data.contactData;
-    setUserData(data);
-    setKnowledgeData(persKnowlData);
-    setContactData(contactData);
-    //idForData = knowledgeData.firstName
-   })();   
-   //console.log(idForData)
-   console.log(knowledgeData)
+   const getUserData = async () => {
+      const axiosResp = await axiosConfig.get(
+        `http://localhost:4000/user/${userId}`
+      );
+      const data = axiosResp.data;
+      const contactData = axiosResp.data.contactData;
+      const persKnowlData = axiosResp.data.contactData.professionalStatus;
+      setUserData(data);
+      setContactData(contactData);
+      setKnowledgeData(persKnowlData)
+     };
+   //console.log(knowledgeData)
    
    
-   const getMarketKnowledgeData = (async () => {
+   const getMarketKnowledgeData = async () => {
       const axiosResp = await axiosConfig.get(
         `http://localhost:4000/professionalStatus`
         );
           const marketData = axiosResp.data;
         //setMarketKnowledgeData(marketData);
         setMarketData(marketData)
-      })();
+      };
 
-    /* const getMarketKnowledgeData = async () => {
-      const axiosResp = await axiosConfig.get(
-        `http://localhost:4000/professionalStatus`
-      );
-      const marketData = axiosResp.data;
-      setMarketKnowledgeData(marketData);
-     }; */
-     
-     /* getMarketKnowledgeData();
-     getUserData() */
-
-     /* useEffect(() => {
-        getMarketKnowledgeData();
+     useEffect(() => {
+        getMarketKnowledgeData()
         getUserData()
-      }); */
+      }, []);
 
 
    return (
@@ -81,7 +67,7 @@ const  KnowledgeAccountMain = ()=>{
                      </div>
                      <div>
                         <p>profession:</p> 
-                        <output id="profession"> Lighting Designer</output>
+                        <output id="profession">{knowledgeData.profession}</output>
                      </div>
                         <div><p>current company:</p>
                         <output id="company">VIA-Design</output>

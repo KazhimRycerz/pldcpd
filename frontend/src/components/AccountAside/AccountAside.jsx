@@ -7,9 +7,10 @@ import axiosConfig from "../../util/axiosConfig";
 
 const AccountAside = () => {
   const {isAuth, userData, setUserData, marketData, setMarketData, asidePos, setAsidePos, buttonPos, setButtonPos, navigate  } = useContext(SectionsContext);
+  /* const [userData, setUserData] = useState({}) */
+  const [knowledgeData, setKnowledgeData] = useState({})
+  const [contactData, setContactData] = useState({})
   const [buttonText, setButtonText] = useState("hide  account");
-  const [knowledgeData, setKnowledgeData] = useState("")
-  //const [marketKnowledgeData, setMarketKnowledgeData] = useState("")
   const userId = localStorage.getItem("userId");
 
 
@@ -21,7 +22,7 @@ const buttonMove3 = "showBut moveButtonBack"
 //const buttonMove5 = "moveButtonBackToStart"
 //isAuth ? setButtonPos("showBut") : setButtonPos("");
 
-const accountPos1 = "accountAside"
+//const accountPos1 = "accountAside"
 const accountPos2 = "accountAside showAccount"
 const accountPos3 = "accountAside hideAccount"
 
@@ -50,8 +51,10 @@ const getUserData = async () => {
     `http://localhost:4000/user/${userId}`
   );
   const data = axiosResp.data;
+  const contactData = axiosResp.data.contactData;
   const persKnowlData = axiosResp.data.contactData.professionalStatus;
   setUserData(data);
+  setContactData(contactData);
   setKnowledgeData(persKnowlData)
  };
   
@@ -68,14 +71,10 @@ const getMarketKnowledgeData = async () => {
   console.log(userData)
   console.log(knowledgeData)
   
-  getMarketKnowledgeData();
-  getUserData();
- 
-
-  /* useEffect(() => {
+  useEffect((props) => {
       getMarketKnowledgeData();
       getUserData();
-  }); */
+  }, []);
 
 
 return (
@@ -89,7 +88,7 @@ return (
                
       <aside id="homeAsideAccount" className = {asidePos} >
         <img src={JoachimRitter} alt="Joachim Ritter privat" />
-        <p><strong>Hallo, {userData.firstName} </strong><br />
+        <p><strong>Hallo, {contactData.firstName} </strong><br />
         Journalist <br />Karrierelevel <br />--- <span> {knowledgeData.myCStatus} </span> ---<br />{knowledgeData.careerPathStatus}</p> <br />
               
         <div id="home_data">

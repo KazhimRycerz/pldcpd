@@ -1,10 +1,8 @@
 import './AccountInfoAside.scss'
-import { Link } from 'react-router-dom'
 import React, { useContext, useState, useEffect } from 'react'
 import { SectionsContext } from '../../context/SectionsContext.js'
 
 const AccountAside = () => {
-const { isAuth } = useContext(SectionsContext);
 const {asidePos, setAsidePos} = useContext(SectionsContext);
 const {buttonPos, setButtonPos} = useContext(SectionsContext)
 const [buttonText, setButtonText] = useState("show info")
@@ -13,10 +11,10 @@ const buttonPos0 = "buttonZeroPosition"
 const buttonMove1 = "showBut" 
 const buttonMove2 = "showBut moveButton" 
 const buttonMove3 = "showBut moveButtonBack" 
-const buttonMove4 = "hideBut"
-const buttonMove5 = "moveButtonBackToStart"
+//const buttonMove4 = "hideBut"
+//const buttonMove5 = "moveButtonBackToStart"
 
-const accountPos1 = "accountAside"
+//const accountPos1 = "accountAside"
 const accountPos2 = "accountAside showAccount"
 const accountPos3 = "accountAside hideAccount" 
 
@@ -26,7 +24,7 @@ useEffect((buttonPos) => {
     setButtonText("hide Info");
   } else {setButtonText("show Info")
 }
-})
+},[buttonPos])
 
 const handleButton=(buttonPos) => {
   if ( buttonPos === buttonMove1 ) {

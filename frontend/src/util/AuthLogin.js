@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import Cookies from "js-cookie";
 import { SectionsContext } from "../context/SectionsContext.js";
 import Login from "../pages/LoginPage/Login.jsx";
-import UserProfile from "../routes/UserProfile/UserProfile.jsx";
+import UserProfile from "../pages/UserProfile/UserProfile.jsx";
 
 function AuthLogin() {
   const { isAuth, setIsAuth, setAllSectFalse, setIsHome } =

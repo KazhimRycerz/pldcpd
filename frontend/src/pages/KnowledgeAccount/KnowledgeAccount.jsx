@@ -4,7 +4,7 @@ import Footer from "../../components/Footer/Footer.jsx";
 import KnowledgeAccountMain from "../../components/KnowledgeAccountMain/KnowledgeAccountMain.jsx";
 import AccountAside from "../../components/AccountInfoAside/AccountInfoAside.jsx";
 //import { useNavigate } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { SectionsContext } from "../../context/SectionsContext.js";
 
 const KnowledgeAccount = () => {

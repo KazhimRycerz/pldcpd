@@ -1,5 +1,5 @@
 import React, { useState, useRef, useContext } from "react";
-import { Navigate, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import axiosConfig from "../../util/axiosConfig.js";
 import { SectionsContext } from "../../context/SectionsContext.js";
 import "./RegisterForm.scss";
@@ -21,7 +21,7 @@ export default function RegisterForm() {
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [hasRegistered, setHasRegistered] = useState(false);
-  const { isAuth, setIsAuth, eventLogin, backToEvent, interestedEvent } =
+  const { setIsAuth } =
     useContext(SectionsContext);
 
   const [stepOne, setStepOne] = useState(true);
