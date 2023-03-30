@@ -1,9 +1,16 @@
 import mongoose from 'mongoose';
+import levelChecker from '../middleware/levelManager.js'
 
 const professionalStatusSchema = mongoose.Schema({
    active: {
       type:Boolean,
       default: true
+   },
+   myCStatus: {
+      type: Number,
+      default: 0,
+      enum: [0,1,2,3,4,5,6,7,8,9,10,11,12],
+      require: true
    },
    careerPathStatus: {
       type: String,
@@ -43,7 +50,7 @@ const professionalStatusSchema = mongoose.Schema({
       default: 0,
       require: true
    },
-   myLP: {
+   myPA: {
       type: Number,
       default: 0,
       require: true
@@ -51,12 +58,6 @@ const professionalStatusSchema = mongoose.Schema({
    myLC: {
       type: Number,
       default: 0,
-      require: true
-   },
-   myCStatus: {
-      type: Number,
-      default: 0,
-      enum: [0,1,2,3,4,5,6,7,8,9,10,11,12],
       require: true
    },
    cpdActiveSince:{
@@ -81,8 +82,9 @@ const professionalStatusSchema = mongoose.Schema({
 professionalStatusSchema.pre('save', function(next) {
    // Diese Callback-Function wird jedes mal VOR dem Aufruf von .save() 
    // ausgeführt
-   console.log('mongoose save() oder updateOne() aufgerufen');
+   console.log('mongoose save() aufgerufen');
    this.updatedOn = new Date();
+   levelChecker(this.myCStatus, this.careerPathStatus)
    next(); // jetzt wird save aufgerufen
 })
 
@@ -91,6 +93,7 @@ professionalStatusSchema.pre(['findOneAndUpdate', 'updateOne'], function(next){
    // und updateOne() ausgeführt
    console.debug('mongoose findOneAndUpdate oder updateOne aufgerufen');
    this.set({ updatedOn: new Date()}); 
+   levelChecker(this.myCStatus, this.careerPathStatus)
    next(); // ohne next würde save() niemals ausgeführt werden
  } );
 

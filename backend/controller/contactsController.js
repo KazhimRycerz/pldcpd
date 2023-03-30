@@ -42,7 +42,7 @@ export const getContact = async (req, res) => {
   }
 
 
-export const registerContact = async (req, res) => {
+export const addContact = async (req, res) => {
     try {
     const newContact = await ContactModel.create(req.body)
     //const person = await PersonModel.find()

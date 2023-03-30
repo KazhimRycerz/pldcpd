@@ -341,7 +341,9 @@ const Header = () => {
           </ul>
         </div>
         <div id="navPromo">
+          <NavLink to="/register" id="nlPromo">
           <p>direct registration</p>
+          </NavLink>
         </div>
       </nav>
     </>

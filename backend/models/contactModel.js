@@ -39,22 +39,24 @@ const contactSchema = mongoose.Schema({
       required: false,
       default:""
    }, */
+   currentCompany: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'company',
+      default: ""
+    }],
    professionalStatus: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'professionalStatus',
-      default: ""
+      default: ""   
       },
    careerPath: [{
       type: mongoose.Schema.Types.ObjectId,
-      ref: "career",
-      default: ""
+      ref: 'career',
+      default: []
     }],
    dateOfBirth: {
-      type: Date/*,
-       validate: {
-         validator: (userInput) => Number.isInteger(userInput),
-         message: (userInput) => `${userInput.value} ist keine ganze Zahl.`
-        } */
+      type: Date,
+      default: ""
    },
 
    createdOn:{

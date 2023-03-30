@@ -88,11 +88,9 @@ return (
                 Gleichzeit
               </dd>
 
-              <dt>LP</dt>
+              <dt>PA</dt>
               <dd>
-                <h3>LearningPoints</h3>Hier werden alle beruflichen Erfahrungen gelistet und berücksichtig. Die zeit
-                ihrer beruflichen Aktivitäten wird mit 10% addiert. Der PEX Wert verliert pro Jahr 10% an Wert.
-                Gleichzeit
+                <h3>Professional Activity</h3>Hier werden alle sonstigen beruflichen Aktivitäten gelistet wie Engagement in Verbänden, gewonnene Awards, Vorträge, Artikel u.a.
               </dd>
 
               <dt id="LC_only">LC</dt>

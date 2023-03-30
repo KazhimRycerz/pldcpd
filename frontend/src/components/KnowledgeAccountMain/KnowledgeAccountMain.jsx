@@ -69,7 +69,8 @@ const  KnowledgeAccountMain = ()=>{
                         <p>profession:</p> 
                         <output id="profession">{knowledgeData.profession}</output>
                      </div>
-                        <div><p>current company:</p>
+                     <div>
+                        <p>current company:</p>
                         <output id="company">VIA-Design</output>
                      </div>
                   </div>
@@ -166,12 +167,12 @@ const  KnowledgeAccountMain = ()=>{
 
                   <div className="account_2">
                      <div>
-                        <h2>LP</h2>
-                        <p>Learning<br />Points</p>
+                        <h2>PA</h2>
+                        <p>Professional<br />Activity</p>
                      </div>
                      <div className="account_data_box">
-                        <output className="account_pers_data" id="myLP">{knowledgeData.myLP}</output>
-                        <output className="account_market_data" id="maLP">{marketData.maLP}</output>
+                        <output className="account_pers_data" id="myPA">{knowledgeData.myPA}</output>
+                        <output className="account_market_data" id="maPA">{marketData.maPA}</output>
                      </div>
                   </div>
 

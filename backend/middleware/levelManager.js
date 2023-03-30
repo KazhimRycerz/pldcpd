@@ -6,7 +6,7 @@ import ProfessionalStatus from "../models/professionalStatusModel.js"
  * @param {express.Response} res
  */
 
-export const levelDefiner =(myCStatus, careerPathStatus)=>{
+const levelChecker =(myCStatus, careerPathStatus)=>{
      if (myCStatus === 0) {careerPathStatus="no level"}
 else if (myCStatus === 1) {careerPathStatus="Student"}
 else if (myCStatus === 2) {careerPathStatus="Newly Qualified Lighting Designer"}
@@ -21,5 +21,7 @@ else if (myCStatus === 10) {careerPathStatus="Educator"}
 else if (myCStatus === 11) {careerPathStatus="Educator and Researcher"}
 else if (myCStatus === 12) {careerPathStatus="Journalist / Promoter"}
 else {careerPathStatus="no level"}
+console.log(myCStatus, careerPathStatus)
+return(careerPathStatus)
 }
-return levelDefiner
+ export default levelChecker

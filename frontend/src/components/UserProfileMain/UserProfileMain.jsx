@@ -64,9 +64,9 @@ export default function UserProfilMain() {
     <div id="UserProfile">
       <h2>
         dieses ist die aktuelle Seite zur Bearbeitung
-        {userData.gender === "female" && <img src="oma.svg" />}
+        {/* {userData.gender === "female" && <img src="oma.svg" />}
         {userData.gender === "male" && <img src="opa.svg" />}Willkommen{" "}
-        {userData.gender === "diverse"}
+        {userData.gender === "diverse"} */}
       </h2>
       {/* <div>
         <Search />

@@ -334,21 +334,25 @@
        background-position: center 300px;
        padding: 40px;
        height: 180px;
-       p {
-        text-align: center;
-        vertical-align: top;
+       #nlPromo {
+         text-align: center;
+         vertical-align: top;
          color: white;
          border-top: white dotted;
          //border-bottom: white dotted;
          border-radius: 70%;
-         aspect-ratio: 1;
-         width: 54%;
+         //aspect-ratio: 1;
          height: 100%;
+         width: 54%;
          padding: 100px 0 30px 0;
-       }
-       &:hover {
+         text-decoration-line: none;
+         p:hover {
+           text-shadow: 0px 2px 10px;
+         }
+        }
+       /* &:hover {
         //filter: brightness(0.5);
-        background-image: url(../../images/Sonnenuntergang_dark.jpg);
-       }
+        //background-image: url(../../images/Sonnenuntergang_dark.jpg);
+       } */
      }
    }

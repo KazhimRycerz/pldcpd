@@ -1,4 +1,5 @@
 import ProfessionalStatusModel from '../models/professionalStatusModel.js'
+import levelChecker from '../middleware/levelManager.js'
 
 export const getMaKnowledgeData = async (req, res) => {
     try {
@@ -32,12 +33,12 @@ export const getMaKnowledgeData = async (req, res) => {
       const maPEXhAverage = maPEXhArray.reduce((acc, val) => acc+val,0)/maKnowledgeStatus.length;
       const maPEXh = Number(maPEXhAverage.toFixed(0))
 
-      const maLPArray = [];
+      const maPAArray = [];
         for (let i=0; i < maKnowledgeStatus.length; i++) {
-          maLPArray.push(maKnowledgeStatus[i].myLP)
+          maPAArray.push(maKnowledgeStatus[i].myPA)
         }
-      const maLPAverage = maLPArray.reduce((acc, val) => acc+val,0)/maKnowledgeStatus.length;
-      const maLP = Number(maLPAverage.toFixed(0))
+      const maPAAverage = maPAArray.reduce((acc, val) => acc+val,0)/maKnowledgeStatus.length;
+      const maPA = Number(maPAAverage.toFixed(0))
 
       const maLCArray = [];
         for (let i=0; i < maKnowledgeStatus.length; i++) {
@@ -52,7 +53,7 @@ export const getMaKnowledgeData = async (req, res) => {
         "maLF": maLF,
         "maPEDh": maPEDh,
         "maPEXh": maPEXh,
-        "maLP": maLP,
+        "maPA": maPA,
         "maLC": maLC
       }
       
@@ -70,6 +71,12 @@ export const getMyKnowledgeData = async (req, res) => {
     try {
       const myKFData = await ProfessionalStatusModel
         .findById(myKDId);
+        /* const myCStatus = myKFData.myCStatus;
+        const careerPathStatus = myKFData.careerPathStatus;
+        myKFData.careerPathStatus = await levelChecker(myCStatus, careerPathStatus)
+        
+        console.log("meinStatus:", myCStatus,"career:", careerPathStatus) */
+        
   
        /*const myKFIdPopulated = await KnowledgeModel
         .findById(myKDId)
@@ -93,6 +100,7 @@ export const getMyKnowledgeData = async (req, res) => {
 export const addMyKnowledgeData = async (req, res) => {
     try {
     const newKData = await ProfessionalStatusModel.create(req.body)
+
     res.send(`Data created and saved. ID:${newKData._id}`)
     } catch (error) {
         console.log(error)
