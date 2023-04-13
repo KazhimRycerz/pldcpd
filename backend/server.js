@@ -5,6 +5,7 @@ import indexRouter from './routes/indexRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import contactsRouter from './routes/contactsRoutes.js';
 import careerRouter from './routes/careerRoutes.js';
+import coursesRouter from './routes/coursesRoutes.js';
 import companiesRouter from './routes/companiesRoutes.js';
 import professionalStatusRouter from './routes/professionalStatusRoutes.js';
 import path from "node:path";
@@ -29,13 +30,14 @@ server.use(
 server.use(express.static("public"));
 server.use(expressFileUpload({createParentPath: true,}));
 
-server.use("/professionalStatus", professionalStatusRouter)
+server.use("/home", indexRouter)
+server.use("/user", userRouter);
 server.use("/contacts",  contactsRouter)
 server.use("/careers",  careerRouter)
+server.use("/professionalStatus", professionalStatusRouter)
 server.use("/companies",  companiesRouter)
-server.use("/home", indexRouter)
+server.use("/courses", coursesRouter)
 server.use("/", indexRouter)
-server.use("/user", userRouter);
 server.use(unkownHandler)
 server.use(errorHandler) 
 

@@ -67,7 +67,8 @@ const companySchema = mongoose.Schema({
       ref: "contact",
       default: "63ea64b974720450742a2dd0",
    }
-})
+});
+companySchema.set('strictQuery', true);
 
 // MONGOOSE MIDDLEWARE
 companySchema.pre('save', function(next) {

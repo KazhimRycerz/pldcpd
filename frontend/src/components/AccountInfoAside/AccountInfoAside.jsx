@@ -62,7 +62,7 @@ return (
               <dd>
                 <h3>Knowledge Factor</h3>Der Knowledge Factor definiert Ihren Wissensstand. Er setzt sich zusammen aus
                 Ihre Ausbildungsbasis (PED - Professional Education), Ihrer Berufspraxis (PEX - Berufserfahrung) und
-                Ihrer aktiven Weiterbildungsaktivität (LP - Learning Points). Ihr Knowledge Factor verliert ohne
+                Ihrer aktiven Weiterbildungsaktivität (LP - Professional Learning Points). Ihr Knowledge Factor verliert ohne
                 Weiterbildung an Wert. Sie bauen Ihren KF auf durch Ihre berufliche Praxis und zusätzliche
                 Weiterbildung.
               </dd>
@@ -88,9 +88,16 @@ return (
                 Gleichzeit
               </dd>
 
+              <dt>LP</dt>
+              <dd>
+                <h3>Learning Points</h3>Hier werden alle CPD-Maßnahmen gelistet.
+                wie Engagement in Verbänden, gewonnene Awards, Vorträge, Artikel u.a.
+              </dd>
+
               <dt>PA</dt>
               <dd>
-                <h3>Professional Activity</h3>Hier werden alle sonstigen beruflichen Aktivitäten gelistet wie Engagement in Verbänden, gewonnene Awards, Vorträge, Artikel u.a.
+                <h3>Professional Activity</h3>Hier werden alle berufständischen Aktivitäten bewertet,
+                wie Engagement in Verbänden, gewonnene Awards, Vorträge, Autorenschaft u.a.
               </dd>
 
               <dt id="LC_only">LC</dt>

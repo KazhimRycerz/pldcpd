@@ -40,12 +40,12 @@ export const getMaKnowledgeData = async (req, res) => {
       const maPAAverage = maPAArray.reduce((acc, val) => acc+val,0)/maKnowledgeStatus.length;
       const maPA = Number(maPAAverage.toFixed(0))
 
-      const maLCArray = [];
+      const maLPArray = [];
         for (let i=0; i < maKnowledgeStatus.length; i++) {
-          maLCArray.push(maKnowledgeStatus[i].myLC)
+          maLPArray.push(maKnowledgeStatus[i].myLP)
         }
-      const maLCAverage = maLCArray.reduce((acc, val) => acc+val,0)/maKnowledgeStatus.length;
-      const maLC = Number(maLCAverage.toFixed(0))
+      const maLPAverage = maLPArray.reduce((acc, val) => acc+val,0)/maKnowledgeStatus.length;
+      const maLP = Number(maLPAverage.toFixed(0))
 
 
       const maData = {
@@ -54,7 +54,7 @@ export const getMaKnowledgeData = async (req, res) => {
         "maPEDh": maPEDh,
         "maPEXh": maPEXh,
         "maPA": maPA,
-        "maLC": maLC
+        "maLP": maLP
       }
       
         //res.status(200).json(maKnowledgeStatus)

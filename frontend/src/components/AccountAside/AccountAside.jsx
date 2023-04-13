@@ -22,9 +22,10 @@ const buttonMove3 = "showBut moveButtonBack"
 //const buttonMove5 = "moveButtonBackToStart"
 //isAuth ? setButtonPos("showBut") : setButtonPos("");
 
-//const accountPos1 = "accountAside"
+const accountPos1 = "accountAside"
 const accountPos2 = "accountAside showAccount"
 const accountPos3 = "accountAside hideAccount"
+
 
 const handleButton=(buttonPos) => {
   if (!isAuth) {navigate("/home")
@@ -42,7 +43,7 @@ const handleButton=(buttonPos) => {
     setAsidePos(accountPos2);
   } else {
     setButtonPos(buttonPos0);
-    setAsidePos(accountPos2)
+    setAsidePos(accountPos1)
   }
 }
 
@@ -67,9 +68,9 @@ const getMarketKnowledgeData = async () => {
     //setMarketKnowledgeData(marketData);
     setMarketData(marketData)
   };
-  console.log(marketData)
-  console.log(userData)
-  console.log(knowledgeData)
+    //console.log(marketData)
+    //console.log(userData)
+    //console.log(knowledgeData)
   
   useEffect((props) => {
       getMarketKnowledgeData();

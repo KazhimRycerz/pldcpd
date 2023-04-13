@@ -2,10 +2,10 @@
 @import "./reset/reset.scss";
 @import "./variables/variables.scss";
 
+
 body {
   margin: 0 auto;
   background-color: $cpdblue;
-  //background-color: rgb(80, 0,0);
   background-size: 100%;
   background-repeat:repeat-y;
   background-attachment: fixed;
@@ -14,14 +14,14 @@ body {
   letter-spacing: 0px;
   margin-top:150px;
   overflow-x: hidden; 
-  height: auto;  
+  height: auto; 
 }
 
-Header {
+/* header {
   position: fixed;
-   top: 0px;
-   left: 0px; 
-} 
+  top: 0px;
+  left: 0px;
+} */ 
   
 main {
   //display: none;
@@ -34,10 +34,10 @@ main {
   border:2px solid $first-color;
 }
     
-Footer {
+/* Footer {
   position: relative;
   bottom: 0px;  
-}
+} */
 
 .logo_cpd {
   width: 8%;

@@ -147,55 +147,13 @@ const Header = () => {
                 <span className="C">C</span> clients
               </NavLink>
             </li>
-            <li onClick={()=>{
-                  !isAuth && navigate("/login")
-                }}>
-            <NavLink to="/KnowledgeAccount" className="closebtn">
-                <span className="C">C</span> your CPD account
-              </NavLink>
-            </li>
             <li>
-              <NavLink to="/404" className="closebtn">
-                <span className="C">C</span> contact
-              </NavLink>
-            </li>
-            {/* <img src="./images/finger-print-outline.svg" alt="" /> */}
-          </ul>
-          <ul>
-            <p>
-              overview <br />
-              of topics{" "}
-            </p>
-            <li>
-              <NavLink to="/home" className="closebtn">
-                <span className="C">C</span> home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/home" className="closebtn">
-                <span className="C">C</span> learning
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/home" className="closebtn">
-                <span className="C">C</span> services
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/home" className="closebtn">
-                <span className="C">C</span> clients
-              </NavLink>
-            </li>
-            <li>
-            {/* {isAuth && <NavLink to="/KnowledgeAccount" className="closebtn">
-                <span className="C">C</span> your CPD account
-              </NavLink>} */} 
               {isAuth ? (
-            <NavLink to="/KnowledgeAccount">
+            <NavLink to="/KnowledgeAccount" style={{color: "red"}}>
               <span className="C">C</span> your CPD account
             </NavLink>
               ) : (
-              <NavLink
+              <NavLink style={{color: "red"}}
                 //to="/login"
                 onClick={() => {
                   swal("Du musst registriert und angemeldet sein, um deinen Account sehen zu können.", {
@@ -224,6 +182,38 @@ const Header = () => {
                 <span className="C">C</span> your CPD account
               </NavLink>
             )}
+            </li>
+            <li>
+              <NavLink to="/404" className="closebtn">
+                <span className="C">C</span> contact
+              </NavLink>
+            </li>
+            {/* <img src="./images/finger-print-outline.svg" alt="" /> */}
+          </ul>
+          <ul>
+            <p>
+              overview <br />
+              of topics{" "}
+            </p>
+            <li>
+              <NavLink to="/coursepage" className="closebtn" style={{color: "red"}}>
+                <span className="C">C</span> courses on offer
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/home" className="closebtn">
+                <span className="C">C</span> learning
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/home" className="closebtn">
+                <span className="C">C</span> services
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/home" className="closebtn">
+                <span className="C">C</span> clients
+              </NavLink>
             </li>
             <li>
               <NavLink to="/home" className="closebtn">

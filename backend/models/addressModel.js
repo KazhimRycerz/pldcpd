@@ -28,7 +28,8 @@ const addressSchema = mongoose.Schema({
       default: ()=> new Date(), 
    },
    updatedOn: Date
-})
+});
+addressSchema.set('strictQuery', true);
 
 // MONGOOSE MIDDLEWARE
 addressSchema.pre('save', function(next) {

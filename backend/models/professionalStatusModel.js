@@ -50,6 +50,11 @@ const professionalStatusSchema = mongoose.Schema({
       default: 0,
       require: true
    },
+   myLP: {
+      type: Number,
+      default: 0,
+      require: true
+   },
    myPA: {
       type: Number,
       default: 0,
@@ -76,7 +81,8 @@ const professionalStatusSchema = mongoose.Schema({
       default: ()=> new Date(), 
    },
    updatedOn: Date
-})
+});
+professionalStatusSchema.set('strictQuery', true);
 
 // MONGOOSE MIDDLEWARE
 professionalStatusSchema.pre('save', function(next) {

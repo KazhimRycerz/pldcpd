@@ -6,6 +6,8 @@ import Home from "./pages/Home/Home.jsx";
 import KnowledgeAccount from "./pages/KnowledgeAccount/KnowledgeAccount.jsx";
 import PersonalAccount from "./pages/PersonalAccount/PersonalAccount.jsx";
 import CareerPlanning from "./pages/CareerPlanning/CareerPlanning.jsx";
+import CourseList from "./pages/CourseList/CourseList.jsx";
+import CoursePage from "./pages/CoursePage/CoursePage.jsx";
 import Login from "./pages/LoginPage/Login.jsx";
 import Register from "./pages/RegisterPage/Register.jsx";
 import Impressum from "./pages/Impressum/Impressum.jsx";
@@ -13,7 +15,6 @@ import UserProfile from "./pages/UserProfile/UserProfile.jsx";
 import AboutTheProfession from "./pages/AboutTheProfession/AboutTheProfession.jsx";
 import AboutRycerz from "./pages/AboutRycerz/AboutRycerz.jsx";
 import AboutPLDCPD from "./pages/AboutPLDCPD/AboutPLDCPD.jsx";
-import ListOfLearningOpportunities from "./pages/LearningOpportunities/LearningOpportunities.jsx";
 import Page404 from "./pages/Page404/Page404.jsx";
 import Sandbox from "./pages/Sandbox/Sandbox.jsx";
 
@@ -45,7 +46,8 @@ function App() {
           <Route path="/aboutrycerz" element={<AboutRycerz />} />
           <Route path="/aboutpldcpd" element={<AboutPLDCPD />} />
           <Route path="/impressum" element={<Impressum />} />
-          <Route path="/listoflearningopprortunities" element={<ListOfLearningOpportunities />} />
+          <Route path="/coursepage" element={<CoursePage />} />
+          <Route path="/courselist" element={<CourseList />} />
           <Route path="/sandbox" element={<Sandbox />} />
           {/* <Route path="/community" element={<Community />} /> */}
           {/* <Route path="/registerlogin" element={<RegisterLogin />} /> */}

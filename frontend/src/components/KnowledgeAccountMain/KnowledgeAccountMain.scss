@@ -34,73 +34,72 @@ main {
     }
     img {
       width: 100px;
-      
-
-      
     }
   }
-    #account_1 {
-      display: block;
-      margin-top: 20px;
-      border-right: 3px dotted $cpdred;
-      border-left: 3px dotted $cpdred;
-      border-radius: 20px;
-      #account_1_data {
+
+  #account_1 {
+    display: block;
+    margin-top: 20px;
+    border-right: 3px dotted $cpdred;
+    border-left: 3px dotted $cpdred;
+    border-radius: 20px;
+    #account_1_data {
+      display: flex;
+      flex-flow: row wrap;
+      padding: 10px;
+      width: 100%;
+      height: auto;
+      //border: solid;
+      //justify-content: space-around;
+      > div {
         display: flex;
-        flex-flow: row wrap;
-        padding: 10px;
-        width: 100%;
-        height: auto;
-        //justify-content: space-around;
+        flex-flow: column nowrap;
+        justify-content: space-evenly;
+        gap: 5px;
+        margin: 10px auto;
+        padding: 15px;
+        width: 45%;
+        height: 120px;
+        background-color: $fourth-color;
+        border-radius: $radiussmall;
+        box-shadow: $boxshadow;
+        position: relative;
         > div {
           display: flex;
-          flex-flow: column nowrap;
-          justify-content: space-evenly;
-          gap: 5px;
-          margin: 10px;
-          padding: 15px;
-          width: 47%;
-          height: 120px;
-          background-color: $fourth-color;
-          border-radius: $radiussmall;
-          box-shadow: $boxshadow;
-          position: relative;
-          > div {
-            display: flex;
-            flex-flow: row nowrap;
-            justify-content: space-between;
-            p {
-              line-height: 1rem;
-              font-size: $small;
-              font-family: $primary-font;
-              width: 50%;
-              padding: 5px;
-              //border: solid;
-            }
-            output {
-              line-height: 1rem;
-              font-size: $small;
-              font-weight: 700;
-              text-align: center;
-              vertical-align: middle;
-              width: 50%;
-              padding: 5px;
-              //border: solid;
-              border-radius: $radiusxsmall;
-              color: $secondary-color;
-              background-color: $third-color;
-              opacity: 1;
-            }
+          flex-flow: row nowrap;
+          justify-content: space-between;
+          p {
+            line-height: 1rem;
+            font-size: $small;
+            font-family: $primary-font;
+            width: 50%;
+            padding: 5px;
+            //border: solid;
           }
-          #account_1_p {
-            font-size: 1.5rem;
-            width: 100%;
+          output {
+            line-height: 1rem;
+            font-size: $normal;
+            font-weight: 700;
             text-align: center;
-            color: $third-color;
+            vertical-align: middle;
+            width: 50%;
+            padding: 5px;
+            //border: solid;
+            border-radius: $radiusxsmall;
+            color: $secondary-color;
+            background-color: $third-color;
+            opacity: 1;
           }
+        }
+        #account_1_p {
+          font-size: 1.5rem;
+          width: 100%;
+          text-align: center;
+          color: $third-color;
         }
       }
     }
+  }
 
   /* .account_Box {
     position: absolute;
@@ -166,30 +165,30 @@ main {
 #account_2_data {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   gap: 10px;
   margin-top: 0px;
   width: 100%;
   padding: 20px;
   .account_2 {
-    width: 32%;
     display: flex;
     flex: row nowrap;
     justify-content: space-between;
-    gap: 50px;
+    gap:30px;
     margin-top: 30px;
     padding: 10px;
+    width: 30%;
     background-color: $fourth-color;
     border-radius: $radiussmall;
     box-shadow: $boxshadow;
     height: 80px;
     position: relative;
+    //border: solid;
     div > h2 {
       font-family: $guthaben;
       background-color: $cpdblue;
       color: white;
-      width: 75px;
-      
+      width: 75px; 
     }
     div:first-child {
       position: relative;
@@ -234,7 +233,10 @@ main {
   display: flex;
   flex-flow: column;
   justify-content: space-between;
+  
   gap: 0px;
+  //border: solid;
+  //margin: 0 auto;
   .account_pers_data {
     display: block;
     color: $secondary-color;
@@ -244,19 +246,21 @@ main {
     box-shadow: none;
     text-align: center;
     line-height: 25px;
-    width: 70px;
+    width: 75%;
+    min-width: 70px;
     height: 30px;
     border: none;
     border-radius: $radiusxsmall;
     font-size: $xlarge;
     padding: 2px;
-    margin-left: 10px;
+    margin: 0 auto;
   }
   .account_market_data {
     display: block;
     background-color: none;
     box-shadow: none;
-    width: 70px;
+    width: 75%;
+    min-width: 70px;
     border: 1px solid $third-color;
     border-radius: 5px;
     font-size: $small;
@@ -264,8 +268,7 @@ main {
     padding: 0px;
     text-align: center;
     justify-content: center;
-    margin-top: 0;
-    margin-left: 10px;
+    margin: 0 auto;
   }
 }
 

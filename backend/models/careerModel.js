@@ -59,7 +59,8 @@ const careerSchema = mongoose.Schema({
       default: ()=> new Date(), 
    },
    updatedOn: Date
-})
+});
+careerSchema.set('strictQuery', true);
 
 // MONGOOSE MIDDLEWARE
 careerSchema.pre('save', function(next) {

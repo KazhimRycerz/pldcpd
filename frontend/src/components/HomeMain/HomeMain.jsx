@@ -1,23 +1,9 @@
 import "./HomeMain.scss";
 import { Link } from "react-router-dom";
-import Level_4_SLD from "../../images/Level_4_SLD.jpg"
+//import Level_4_SLD from "../../images/Level_4_SLD.jpg"
 import C from "../../images/C.png"
-import level_1_SLD from "../../images/Level_1_SLD.jpg"
-import level_2_NQLD from "../../images/Level_2_NQLD.jpg"
-import level_3_JLD from "../../images/Level_3_JLD.jpg"
-import level_4_SLD from "../../images/Level_4_SLD.jpg"
-import level_5_senior from "../../images/level_5_senior.jpg"
-import level_6_associate from "../../images/level_6_associate.jpg"
-import level_7_principal from "../../images/level_7_principal.jpg"
-import level_8_master from "../../images/level_8_master.jpg"
-import level_9_authorised_expert from "../../images/level_9_authorised_expert.jpg"
-import vulkan from "../../images/Vulkan.gif"
-import Egon_Zitter_7 from "../../images/Egon_Zitter_7.jpg"
-import Egon_Zitter_8_Libellen from "../../images/Egon_Zitter_8_Libellen.jpg"
-import Sonnenuntergang from "../../images/Sonnenuntergang.jpg"
-import unsplash from "../../images/unsplash.jpg"
 import LightingEffect from "../LightingEffect/LightingEffect.jsx"
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { SectionsContext } from "../../context/SectionsContext.js";
 
 
@@ -25,9 +11,20 @@ const HomeMain = () => {
 
   const { isAuth, gotoPage, setGotoPage, buttonPos, setButtonPos, asidePos, setAsidePos } = useContext(SectionsContext);
   setGotoPage("/home");
-  if (isAuth && gotoPage==="/KnowledgeAccount") {setButtonPos("showBut"); setAsidePos("accountAside") //ok
+
+const buttonPosCheck = ()=>{
+  if /* (isAuth && gotoPage ==="/KnowledgeAccount") {setButtonPos("showBut"); setAsidePos("accountAside")
+} else if */ (isAuth) {setButtonPos("showBut"); setAsidePos ("accountAside")
+}}
+
+  /* if (isAuth && gotoPage ==="/KnowledgeAccount") {setButtonPos("showBut"); setAsidePos("accountAside") //ok
 } else {setButtonPos(buttonPos); setAsidePos (asidePos)
-}
+} */
+
+useEffect(() => {
+  buttonPosCheck()
+}, []);
+
 
   return (
     <main> {/* Styling in global */}
@@ -43,15 +40,14 @@ const HomeMain = () => {
           Hinweise auf neue Themen und Learnmöglichkeiten und welchen Abschluss{" "}
           <Link to="/careerplanning">
             <i className="fa-solid fa-graduation-cap"></i>
-          </Link>{" "}
+          </Link>
           Sie erzielen können. <Link to="/abouttheprofession"> More </Link>
         </p>
       </section>
 
         <section id="C1">
           <article id="C1A1">
-            {<img src={Level_4_SLD} alt="" />}
-            {/* <img src={import('../../images/Level_4_SLD.jpg')} alt=""/> */}
+            {<img src={require('../../images/Level_4_SLD.jpg')} alt="" />}
             <h3>Professionalität</h3>
             <p>
               Sie wollen ein anerkannter Lichtdesigner werden? Dann sind Sie
@@ -108,7 +104,7 @@ const HomeMain = () => {
             </p>
             <Link to="/abouttheprofession"> More </Link>
             <br />
-            <img src={level_5_senior} alt=""/>
+            {<img src={require('../../images/level_5_senior.jpg')} alt="" />}
             <Link to="/planningyourcareer">
             <img src={C} alt=""/>
             </Link>
@@ -134,34 +130,32 @@ const HomeMain = () => {
           <div id="lb_1_angebote">
             <div>
               <h5>
-                {" "}
                 Themenbereich
                 <br />
-                Lichtdesign{" "}
+                Lichtdesign
               </h5>
               <p>
                 Für aktuelle Angebote folge hier
-                <Link className="C" to="/pldcpd_account">
+                <Link to="/pldcpd_account" className="C">
                   C
                 </Link>
               </p>
-              <img src={vulkan} alt="" />
+              {<img src={require('../../images/Vulkan.gif')} alt="" />} 
             </div>
 
             <div>
               <h5>
-                {" "}
                 Themenbereich <br />
                 Lichttechnik
               </h5>
               <p>
                 {" "}
                 Für aktuelle Angebote folge hier{" "}
-                <Link className="C" to="latestlearningoffers">
+                <Link to="latestlearningoffers" className="C" >
                   C
                 </Link>
               </p>
-              <img src={Egon_Zitter_7} alt="" />
+              {<img src={require('../../images/Egon_Zitter_7.jpg')} alt="" />} 
             </div>
 
             <div>
@@ -176,7 +170,7 @@ const HomeMain = () => {
                   C
                 </Link>
               </p>
-              <img src={Egon_Zitter_8_Libellen} alt="" />
+              {<img src={require('../../images/Egon_Zitter_8_Libellen.jpg')} alt="" />}
             </div>
 
             <div>
@@ -191,7 +185,7 @@ const HomeMain = () => {
                   C
                 </Link>
               </p>
-              <img src={Sonnenuntergang} alt="" />
+              {<img src={require('../../images/Sonnenuntergang.jpg')} alt="" />}
             </div>
 
             <div>
@@ -200,13 +194,12 @@ const HomeMain = () => {
                 Meinung
               </h5>
               <p>
-                {" "}
                 Für aktuelle Angebote folge hier{" "}
                 <Link className="C" to="/latestlearningoffers">
                   C
                 </Link>
               </p>
-              <img src={unsplash} alt="" />
+              {<img src={require('../../images/unsplash.jpg')} alt="" />}
             </div>
           </div>
         </section>
@@ -216,7 +209,7 @@ const HomeMain = () => {
       
         <section id="Promoter_1">
           <div>
-            <p>Lightingdesign at it's best!</p>
+            <p>lighting design at its best!</p>
           </div>
         </section>
 
@@ -240,7 +233,7 @@ const HomeMain = () => {
           <div id="infobox_table">
             <div id="info_1_1">
               <div>
-                <h2>Lernangebote</h2>
+                <h3>Lernangebote</h3>
                 <label htmlFor="Filter">Sortiert nach</label>
                 <select name="Filter" id="Filter">
                   <option value="Themenfeld">Themenfeld</option>
@@ -377,8 +370,8 @@ const HomeMain = () => {
             </div>
 
             <div id="info_1_2">
-              <img src={Egon_Zitter_7} alt="" />
-              <h2>Special II</h2>
+              {<img src={require('../../images/Egon_Zitter_7.jpg')} alt="" />}
+              <h3>Special II</h3>
               <p>
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. In
                 officiis alias impedit, incidunt recusandae fugiat, eos quia
@@ -414,8 +407,8 @@ const HomeMain = () => {
               <h3>Themenbereich Design</h3>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Expedita nostrum voluptatibus, reiciendis!{" "}
-                <img src={vulkan} alt="" /> Dolorum nisi aspernatur unde
+                Expedita nostrum voluptatibus, reiciendis!
+                {<img src={require('../../images/Vulkan.gif')} alt="" />} Dolorum nisi aspernatur unde
                 est, magnam excepturi possimus.pariatur molestias accusamus
                 recusandae minima cum, animi, sapiente rem iste earum ipsum aut
                 ratione. Ad maiores corrupti magnam deleniti molestias aperiam
@@ -521,7 +514,7 @@ const HomeMain = () => {
                   Jahen definiert.
                 </p>
               </div>
-              <img src={level_1_SLD}alt="" />
+              {<img src={require('../../images/Level_1_SLD.jpg')} alt="" />}
             </div>
 
             <div id="learning_5_2">
@@ -534,7 +527,7 @@ const HomeMain = () => {
                   deleniti animi doloribus illum.
                 </p>
               </div>
-              <img src={level_2_NQLD}alt="" />
+              {<img src={require('../../images/Level_2_NQLD.jpg')} alt="" />}
             </div>
 
             <div id="learning_5_3">
@@ -547,7 +540,7 @@ const HomeMain = () => {
                   deleniti animi doloribus illum.
                 </p>
               </div>
-              <img src={level_3_JLD}alt="" />
+              {<img src={require('../../images/Level_3_JLD.jpg')} alt="" />}
             </div>
 
             <div id="learning_5_4">
@@ -560,7 +553,7 @@ const HomeMain = () => {
                   deleniti animi doloribus illum.
                 </p>
               </div>
-              <img src={level_4_SLD}alt="" />
+              {<img src={require('../../images/Level_4_SLD.jpg')} alt="" />}
             </div>
 
             <div id="learning_5_5">
@@ -573,12 +566,11 @@ const HomeMain = () => {
                   deleniti animi doloribus illum.
                 </p>
               </div>
-              <img src={level_5_senior}alt="" />
+              {<img src={require('../../images/level_5_senior.jpg')} alt="" />}
             </div>
 
             <div id="learning_5_6">
               <div>
-                {" "}
                 <p>Professional Level VI</p> <h3>Associate Designer</h3>
                 <p>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -586,7 +578,8 @@ const HomeMain = () => {
                   deleniti animi doloribus illum.
                 </p>
               </div>
-              <img src={level_6_associate}alt="" />
+              {<img src={require('../../images/level_6_associate.jpg')} alt="" />}
+
             </div>
 
             <div id="learning_5_7">
@@ -599,7 +592,7 @@ const HomeMain = () => {
                   deleniti animi doloribus illum.
                 </p>
               </div>
-              <img src={level_7_principal} alt="" />
+              {<img src={require('../../images/level_7_principal.jpg')} alt="" />}
             </div>
 
             <div id="learning_5_8">
@@ -612,7 +605,7 @@ const HomeMain = () => {
                   deleniti animi doloribus illum.
                 </p>
               </div>
-              <img src={level_8_master} alt="" />
+              {<img src={require('../../images/level_8_master.jpg')} alt="" />}
             </div>
 
             <div id="learning_5_9">
@@ -625,7 +618,7 @@ const HomeMain = () => {
                   deleniti animi doloribus illum.
                 </p>
               </div>
-              <img src={level_9_authorised_expert} alt="" />
+              {<img src={require('../../images/level_9_authorised_expert.jpg')} alt="" />}
             </div>
           </div>
         </section>

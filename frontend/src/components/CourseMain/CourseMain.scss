@@ -1,0 +1,102 @@
+@import "../../scss/global.scss";
+
+#courseMain {
+  min-height: 60vh;
+  margin-top: 100px;
+  background-color: $first-color;
+}
+#courseHead{
+  width: 80%;
+  margin: 50px auto;
+}
+#courseArticle {
+  border-radius: $radiussmall;
+  width: 80%;
+  margin: 0px auto 50px;
+  background-color: $fourth-color;
+  padding: 30px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content:space-between;
+  box-shadow: $boxshadow;
+  gap: 20px;
+  
+  div {
+    /* display: flex;
+    flex-flow: column nowrap;
+    flex-basis: 1;
+    justify-content: space-between; */
+    //border: solid;
+    border-radius: $radiussmall;
+    //width: 30%;
+    flex-grow: 1;
+    p{
+      background-color: $third-color;
+      border-bottom: solid;
+      line-height: 50px;
+      margin: 0px;
+      border-radius: 10px 10px 0 0 ;
+      padding:0 0 0 20px;
+      font-size: $small;
+      color: $secondary-color;
+    }
+    output {
+      display: inline-block;
+      font-size: $xlarge;
+      padding: 20px;
+      width: 100%;
+      background-color: $first-color;  
+      color: $cpdblue;
+      text-align:left; 
+      border-radius: 0 0 10px 10px;   
+    }
+    
+    #courseContent{ 
+      //max-height: 200px;
+      font-size: $normal;
+      flex-grow: 2;
+      div {
+        //width: 50%;
+      }
+      #contentImages{
+        width: 100%;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        gap: 20px;
+        margin-top: 20px;  
+        flex-shrink: 2;  
+      }
+      
+    }
+    #buttonBox{
+      background-color: $first-color;
+      border-radius: 0 0 10px 10px;
+      display: flex;
+      #buttonLernliste {
+        //display: space-around;
+        width: 60%;
+        max-width: 150px;
+        margin: 10px auto;
+        font-size: $small;
+        padding: 0.75rem 1.5rem;
+        background-color: $first-color;
+        color: $cpdblue;
+        //border: 2px solid var(--dark-green-color);
+        box-shadow: $btnshadow;
+        border-radius: $radiussmall;
+        text-decoration: none;
+      }
+      #buttonLernliste:hover {
+        background-color: $cpdblue;
+        color: $first-color;
+      }
+    } 
+  }
+  .punkte {
+    text-align:center;
+  }
+  
+
+}
+ 

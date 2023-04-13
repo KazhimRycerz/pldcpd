@@ -65,7 +65,8 @@ const contactSchema = mongoose.Schema({
       default: ()=> new Date(), 
    },
    updatedOn: Date
-})
+});
+contactSchema.set('strictQuery', true);
 
 // MONGOOSE MIDDLEWARE
 contactSchema.pre('save', function(next) {

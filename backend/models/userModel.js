@@ -58,6 +58,7 @@ const userSchema = mongoose.Schema({
   },
   updatedAt: Date 
 });
+userSchema.set('strictQuery', true);
 
 // MONGOOSE MIDDLEWARE (pre hook)
 userSchema.pre(['save'], function(next) {
