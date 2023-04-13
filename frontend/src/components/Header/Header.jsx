@@ -17,8 +17,7 @@ const Header = () => {
   console.log("isAuth", isAuth)
   }) */
 
-
-  const manageLoginButton =()=> {
+  const manageAccountButton =()=> {
     isAuth && logout()
     !isAuth && asidePos === "accountAside showAccount"
       ? setAsidePos("accountAside hideAccount")
@@ -95,7 +94,7 @@ const Header = () => {
             </li>
             <li
               id="showlogin"
-              onClick={manageLoginButton}
+              onClick={manageAccountButton}
             >
               {isAuth ? <span> log me out </span> : <Link to="/login"> login </Link>}
               <span className="C">C</span>

@@ -8,6 +8,7 @@
 #courseHead{
   width: 80%;
   margin: 50px auto;
+  font-family: $primary-font-bold;
 }
 #courseArticle {
   border-radius: $radiussmall;
@@ -31,13 +32,13 @@
     //width: 30%;
     flex-grow: 1;
     p{
-      background-color: $third-color;
       border-bottom: solid;
       line-height: 50px;
       margin: 0px;
       border-radius: 10px 10px 0 0 ;
       padding:0 0 0 20px;
       font-size: $small;
+      background-color: $cpdblue;
       color: $secondary-color;
     }
     output {

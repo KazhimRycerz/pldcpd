@@ -9,8 +9,9 @@ import Moment from "moment"
 
 const CourseMain = () => {
 
-  const { isAuth, gotoPage, setGotoPage, buttonPos, setButtonPos, asidePos, setAsidePos  } = useContext(SectionsContext);
+  const { isAuth, setGotoPage, setButtonPos, setAsidePos  } = useContext(SectionsContext);
   const [courseData, setCourseData] = useState({})
+  setGotoPage("/coursepage")
   
   const buttonPosCheck = ()=>{
   if /* (isAuth && gotoPage ==="/KnowledgeAccount") {setButtonPos("showBut"); setAsidePos("accountAside")
@@ -37,7 +38,7 @@ useEffect(() => {
 
   return (
     <main id="courseMain"> {/* Styling in global */}
-    <h2 id="courseHead">Thema und Beschreibung</h2>
+    <h2 id="courseHead">Kursinhalt und Beschreibung</h2>
       <article id="courseArticle">
         <div className="courseBoxes"> 
             <p>Kursname</p> 
