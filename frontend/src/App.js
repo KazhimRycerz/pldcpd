@@ -6,7 +6,7 @@ import Home from "./pages/Home/Home.jsx";
 import KnowledgeAccount from "./pages/KnowledgeAccount/KnowledgeAccount.jsx";
 import PersonalAccount from "./pages/PersonalAccount/PersonalAccount.jsx";
 import CareerPlanning from "./pages/CareerPlanning/CareerPlanning.jsx";
-import CourseList from "./pages/CourseList/CourseList.jsx";
+import CourseListPage from "./pages/CourseListPage/CourseListPage.jsx";
 import CoursePage from "./pages/CoursePage/CoursePage.jsx";
 import Login from "./pages/LoginPage/Login.jsx";
 import Register from "./pages/RegisterPage/Register.jsx";
@@ -19,8 +19,7 @@ import Page404 from "./pages/Page404/Page404.jsx";
 import Sandbox from "./pages/Sandbox/Sandbox.jsx";
 
 function App() {
-  //const { isAuth } = useContext(SectionsContext);
-  
+    
   let location = useLocation();
 
   useEffect(() => {
@@ -42,15 +41,15 @@ function App() {
           <Route path="/knowledgeaccount" element={<KnowledgeAccount />} />
           <Route path="/personalaccount" element={<PersonalAccount />} />
           <Route path="/careerplanning" element={<CareerPlanning />} />
+          <Route path="/coursepage" element={<CoursePage />} />
+          <Route path="/courselistpage" element={<CourseListPage />} />
+          <Route path="/sandbox" element={<Sandbox />} />
+          {/* <Route path="/community" element={<Community />} /> */}
+          {/* <Route path="/registerlogin" element={<RegisterLogin />} /> */}
           <Route path="/abouttheprofession" element={<AboutTheProfession />} />
           <Route path="/aboutrycerz" element={<AboutRycerz />} />
           <Route path="/aboutpldcpd" element={<AboutPLDCPD />} />
           <Route path="/impressum" element={<Impressum />} />
-          <Route path="/coursepage" element={<CoursePage />} />
-          <Route path="/courselist" element={<CourseList />} />
-          <Route path="/sandbox" element={<Sandbox />} />
-          {/* <Route path="/community" element={<Community />} /> */}
-          {/* <Route path="/registerlogin" element={<RegisterLogin />} /> */}
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/userprofile" element={<UserProfile />} />

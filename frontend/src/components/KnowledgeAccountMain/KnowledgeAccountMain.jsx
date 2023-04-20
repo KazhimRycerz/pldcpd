@@ -15,44 +15,44 @@ const  KnowledgeAccountMain = ()=>{
    const [contactData, setContactData] = useState({})
    const userId = localStorage.getItem("userId");
 
-   setGotoPage("/KnowledgeAccount")
    
    const buttonPosCheck =()=>{
-   if (isAuth && gotoPage==="/home") {setButtonPos("showBut"); setAsidePos("accountAside") //ok
+      if (isAuth && gotoPage==="/home") {setButtonPos("showBut"); setAsidePos("accountAside") //ok
    } else {setButtonPos(buttonPos); setAsidePos(asidePos)
    }}
-
+   
    //let idForData = ""
 
    const getUserData = async () => {
       const axiosResp = await axiosConfig.get(
-        `http://localhost:4000/user/${userId}`
-      );
-      const data = axiosResp.data;
-      const contactData = axiosResp.data.contactData;
-      const persKnowlData = axiosResp.data.contactData.professionalStatus;
-      setUserData(data);
-      setContactData(contactData);
-      setKnowledgeData(persKnowlData)
-     };
-   //console.log(knowledgeData)
-   
-   
-   const getMarketKnowledgeData = async () => {
-      const axiosResp = await axiosConfig.get(
-        `http://localhost:4000/professionalStatus`
-        );
-          const marketData = axiosResp.data;
-        //setMarketKnowledgeData(marketData);
-        setMarketData(marketData)
+         `http://localhost:4000/user/${userId}`
+         );
+         const data = axiosResp.data;
+         const contactData = axiosResp.data.contactData;
+         const persKnowlData = axiosResp.data.contactData.professionalStatus;
+         setUserData(data);
+         setContactData(contactData);
+         setKnowledgeData(persKnowlData)
       };
-
-     useEffect(() => {
-        getMarketKnowledgeData()
-        getUserData()
-        buttonPosCheck()
-      }, []);
-
+      //console.log(knowledgeData)
+      
+      
+      const getMarketKnowledgeData = async () => {
+         const axiosResp = await axiosConfig.get(
+            `http://localhost:4000/professionalStatus`
+            );
+            const marketData = axiosResp.data;
+            //setMarketKnowledgeData(marketData);
+            setMarketData(marketData)
+         };
+         
+         useEffect(() => {
+            setGotoPage("/KnowledgeAccount")
+            getMarketKnowledgeData()
+            getUserData()
+            buttonPosCheck()
+         }, []);
+         
 
    return (
       <main>

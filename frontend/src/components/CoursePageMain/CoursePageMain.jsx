@@ -1,5 +1,5 @@
-import "./CourseMain.scss";
-import { Link } from "react-router-dom";
+import "./CoursePageMain.scss";
+import { Link, useParams } from "react-router-dom";
 //import C from "../../images/C.png"
 import { useContext, useState, useEffect } from "react";
 import { SectionsContext } from "../../context/SectionsContext.js";
@@ -14,11 +14,8 @@ const CourseMain = () => {
   setGotoPage("/coursepage")
   
   const buttonPosCheck = ()=>{
-  if /* (isAuth && gotoPage ==="/KnowledgeAccount") {setButtonPos("showBut"); setAsidePos("accountAside")
-} else if */ (isAuth) {setButtonPos("showBut"); setAsidePos ("accountAside")
+  if (isAuth) {setButtonPos("showBut"); setAsidePos ("accountAside")
 }}
-//console.log("buttonPos:", buttonPos, "AsidePos:", asidePos)
-
 
 const searchCourseData = async (course_id) => {
   //const courseID = course_id
@@ -34,7 +31,7 @@ const searchCourseData = async (course_id) => {
 useEffect(() => {
   searchCourseData();
   buttonPosCheck()
-}, []);
+});
 
   return (
     <main id="courseMain"> {/* Styling in global */}

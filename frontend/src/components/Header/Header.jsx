@@ -196,12 +196,12 @@ const Header = () => {
             </p>
             <li>
               <NavLink to="/coursepage" className="closebtn" style={{color: "red"}}>
-                <span className="C">C</span> courses on offer
+                <span className="C">C</span> single course
               </NavLink>
             </li>
             <li>
-              <NavLink to="/home" className="closebtn">
-                <span className="C">C</span> learning
+            <NavLink to="/courselistpage" className="closebtn" style={{color: "red"}}>
+                <span className="C">C</span> listed courses on offer
               </NavLink>
             </li>
             <li>

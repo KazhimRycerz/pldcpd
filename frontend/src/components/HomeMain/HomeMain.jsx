@@ -10,18 +10,13 @@ import { SectionsContext } from "../../context/SectionsContext.js";
 const HomeMain = () => {
 
   const { isAuth, gotoPage, setGotoPage, buttonPos, setButtonPos, asidePos, setAsidePos } = useContext(SectionsContext);
-  setGotoPage("/home");
-
-const buttonPosCheck = ()=>{
-  if /* (isAuth && gotoPage ==="/KnowledgeAccount") {setButtonPos("showBut"); setAsidePos("accountAside")
-} else if */ (isAuth) {setButtonPos("showBut"); setAsidePos ("accountAside")
+  
+  const buttonPosCheck = ()=>{
+    if (isAuth) {setButtonPos("showBut"); setAsidePos ("accountAside")
 }}
 
-  /* if (isAuth && gotoPage ==="/KnowledgeAccount") {setButtonPos("showBut"); setAsidePos("accountAside") //ok
-} else {setButtonPos(buttonPos); setAsidePos (asidePos)
-} */
-
 useEffect(() => {
+  setGotoPage("/home");
   buttonPosCheck()
 }, []);
 
@@ -255,7 +250,6 @@ useEffect(() => {
                     <col width="15%" />
                   </colgroup>
                 <thead>
-
                   <tr>
                     <th>Datum</th>
                     <th>

@@ -1,0 +1,24 @@
+.time-bar-container {
+    height: 30px;
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 15px;
+    position: relative;
+  }
+  
+  .time-bar {
+    height: 30px;
+    background-color: #007bff;
+    border-radius: 15px;
+    transition: width 0.5s ease-in-out;
+  }
+  
+  .time-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+  }

@@ -1,6 +1,8 @@
 import "dotenv/config";
 import mongoose from "mongoose";
 
+mongoose.set('strictQuery', true);
+
 async function connectMongoose() {
 
   const _pwd = process.env.MONGO_PASSWORD;
