@@ -8,6 +8,7 @@ Header {
   font-family: $primary-font;
   display: flex;
   justify-content: space-between;
+  //justify-content: flex-end;
   align-items: center;
   flex-wrap: nowrap;
   width: 100%;
@@ -150,7 +151,7 @@ Header {
        display: flex;
        flex-flow: column nowrap;
        justify-content: center;
-       align-items: end;
+       //align-items: end; caused Fehlermeldung on prefixer
        gap: 0px;
        li {
          list-style-type: none;
