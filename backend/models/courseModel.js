@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import ContactModel from './contactModel.js';
 
 const courseSchema = mongoose.Schema({
    topic: {
@@ -6,11 +7,13 @@ const courseSchema = mongoose.Schema({
       default: "",
       required: true,
    },
-   author: [{
+   author: [
+      {
       type: mongoose.Schema.Types.ObjectId,
       ref: "contact",
-      default: "",
-   }],
+      default: [],
+      }
+   ],
    courseType: {
       type: String,
       default: "",

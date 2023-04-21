@@ -11,6 +11,16 @@
     margin: 50px auto;
     font-family: $primary-font-bold;
   }
+
+  form {
+    select{
+      background-color: $cpdblue;
+      color: $secondary-color;
+      border: none;
+      text-align: left;
+    }
+  }
+
   #tableCourseList {
     border-radius: 10px;
     font-size: $small;

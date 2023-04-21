@@ -11,6 +11,7 @@ const CourseListMain = () => {
 
 const { isAuth, setGotoPage, setButtonPos, setAsidePos  } = useContext(SectionsContext);
 const [coursesData, setCoursesData] = useState([])
+const [authorsData, setAuthorsData] = useState([])
 
 const buttonPosCheck = ()=>{
   if (isAuth) {setButtonPos("showBut"); setAsidePos ("accountAside")
@@ -18,17 +19,21 @@ const buttonPosCheck = ()=>{
 };
 
 const searchCourseListData = async () => {
+
   try {
     const axiosResp = await axiosConfig.get(`http://localhost:4000/courses`);
     const fetchedData = await axiosResp.data;
-    //const authorsForCourse = await fetchedData.author
-    //console.log(authorsForCourse)
+    const authors = await axiosResp.data.author;
+    const authorsForCourse = fetchedData.map(({ author }) => author);
+    setAuthorsData(authorsForCourse)  
+    console.log("AuthorsData:", authorsForCourse)
+    console.log("Authors:", authors)
     setCoursesData(fetchedData)
   } catch (error) {
     console.log(error);
   }
 };
-console.log(coursesData)
+//console.log(coursesData)
 
 
 
@@ -41,7 +46,28 @@ useEffect(() => {
   return (
     <main id="courseListMain"> {/* MainStyling in global */}
       <h2 id="courseListHead">Übersicht aller aktuellen Kursangebote</h2>
-      <table id="tableCourseList">
+      {/* <form className="filterThemenfeld">
+        <div>
+          <input
+              type="text"
+              name="search"
+              placeholder="Themenfeld"
+              id="search"
+              //ref={searchInputRef}
+          />
+        </div>
+        <div>
+          <input
+              type="text"
+              name="search"
+              placeholder="Kursart"
+              id="search"
+              //ref={searchInputRef}
+              />
+        </div>
+      </form> */}
+      <form>
+        <table id="tableCourseList">
           <colgroup>
             <col width="10%" />
             <col width="5%" />
@@ -58,25 +84,68 @@ useEffect(() => {
           <thead>
             <tr>
               <th>Thema</th>
-              <th>Autor/Referent</th>
-              <th>Themenfeld</th>
-              <th>Kursart</th>
-              <th>Kursstart</th>
-              <th>Kursende</th>
-              <th>CPD Wert</th>
-              <th>CPD Wert plus</th>
-              <th>ab Level</th>
+              <th><select name="Filter" id="Filter">
+                  <option value="Themenfeld">Autor/Referent</option>
+                  <option value="Art">Art</option>
+                  <option value="Datum">Datum</option>
+                  <option value="Level">Level</option>
+                </select></th>
+              <th><select name="Filter" id="Filter">
+                  <option value="Themenfeld">Themenfeld</option>
+                  <option value="Art">Art</option>
+                  <option value="Datum">Datum</option>
+                  <option value="Level">Level</option>
+                </select></th>
+              <th><select name="Filter" id="Filter">
+                  <option value="Themenfeld">Kursart</option>
+                  <option value="Art">Art</option>
+                  <option value="Datum">Datum</option>
+                  <option value="Level">Level</option>
+                </select>
+                </th>
+              <th><select name="Filter" id="Filter">
+                  <option value="Themenfeld">Kursstart</option>
+                  <option value="Art">Art</option>
+                  <option value="Datum">Datum</option>
+                  <option value="Level">Level</option>
+                </select></th>
+              <th><select name="Filter" id="Filter">
+                  <option value="Themenfeld">Kursende</option>
+                  <option value="Art">Art</option>
+                  <option value="Datum">Datum</option>
+                  <option value="Level">Level</option>
+                </select></th>
+              <th><select name="Filter" id="Filter">
+                  <option value="Themenfeld">CPD</option>
+                  <option value="Art">Art</option>
+                  <option value="Datum">Datum</option>
+                  <option value="Level">Level</option>
+                </select></th>
+              <th>CPD plus</th>
+              <th><select name="Filter" id="Filter">
+                  <option value="Themenfeld">Level</option>
+                  <option value="Art">Art</option>
+                  <option value="Datum">Datum</option>
+                  <option value="Level">Level</option>
+                </select></th>
               <th>Link zum Anbieter</th>
               <th>mehr Infos</th>
             </tr>
-          </thead>
-                   
-          {<tbody>
+          </thead>         
+          <tbody>
             {coursesData.map((course, index)=>{
               return(
                 <tr key={index}>
                   <td>{course.topic}</td>
-                  <td>{}</td>
+                  <td>
+                    {authorsData.length > 0 && authorsData.map((author, index) => {
+                      return (
+                        <div key={index}>
+                          <p>"test"{author.firstName} {author.lastName}</p>
+                        </div>
+                      );
+                    })}
+                  </td>
                   <td>{course.topicField}</td>
                   <td>{course.courseType}</td>
                   <td>{Moment(course.startDateOfCourse).format("DD.MM.YYYY")}</td>
@@ -91,9 +160,10 @@ useEffect(() => {
                 }
               )
             }
-          </tbody>}
+          </tbody>
         </table>  
-        <Countdown  targetDate={new Date("2023-04-30T00:00:00.000Z").getTime()} />
+      </form>
+      <Countdown  targetDate={new Date("2023-04-30T00:00:00.000Z").getTime()} />
 
     </main>
   );

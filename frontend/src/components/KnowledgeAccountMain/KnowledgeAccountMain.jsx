@@ -27,10 +27,10 @@ const  KnowledgeAccountMain = ()=>{
       const axiosResp = await axiosConfig.get(
          `http://localhost:4000/user/${userId}`
          );
-         const data = axiosResp.data;
+         const userData = axiosResp.data;
          const contactData = axiosResp.data.contactData;
          const persKnowlData = axiosResp.data.contactData.professionalStatus;
-         setUserData(data);
+         setUserData(userData);
          setContactData(contactData);
          setKnowledgeData(persKnowlData)
       };
