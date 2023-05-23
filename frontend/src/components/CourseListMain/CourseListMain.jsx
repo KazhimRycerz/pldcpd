@@ -19,23 +19,17 @@ const buttonPosCheck = ()=>{
 };
 
 const searchCourseListData = async () => {
-
   try {
     const axiosResp = await axiosConfig.get(`http://localhost:4000/courses`);
     const fetchedData = await axiosResp.data;
-    const authors = await axiosResp.data.author;
     const authorsForCourse = fetchedData.map(({ author }) => author);
     setAuthorsData(authorsForCourse)  
-    console.log("AuthorsData:", authorsForCourse)
-    console.log("Authors:", authors)
+    //console.log("AuthorsData:", authorsForCourse)
     setCoursesData(fetchedData)
   } catch (error) {
     console.log(error);
   }
 };
-//console.log(coursesData)
-
-
 
 useEffect(() => {
   setGotoPage("/courselistpage")
@@ -138,13 +132,12 @@ useEffect(() => {
                 <tr key={index}>
                   <td>{course.topic}</td>
                   <td>
-                    {authorsData.length > 0 && authorsData.map((author, index) => {
-                      return (
-                        <div key={index}>
-                          <p>"test"{author.firstName} {author.lastName}</p>
-                        </div>
-                      );
-                    })}
+                    {authorsData[index].map((author, index) => (
+                      <li key={index}>
+                        {author.firstName} {author.lastName}
+                      </li>
+                      )
+                    )}
                   </td>
                   <td>{course.topicField}</td>
                   <td>{course.courseType}</td>
