@@ -9,7 +9,7 @@ import { SectionsContext } from "../../context/SectionsContext.js";
 
 const HomeMain = () => {
 
-  const { isAuth, gotoPage, setGotoPage, buttonPos, setButtonPos, asidePos, setAsidePos } = useContext(SectionsContext);
+  const { isAuth, gotoPage, setGotoPage, setButtonPos, setAsidePos } = useContext(SectionsContext);
   
     const buttonPosCheck = ()=>{
       if (isAuth) {setButtonPos("showBut"); setAsidePos ("accountAside")

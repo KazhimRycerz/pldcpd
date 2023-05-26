@@ -32,7 +32,7 @@ const CourseMain = () => {
 useEffect(() => {
   searchCourseData(cID);
   buttonPosCheck();
-});
+}, []);
 
   return (
     <main id="courseMain"> {/* Styling in global */}

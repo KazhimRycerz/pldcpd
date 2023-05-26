@@ -8,7 +8,7 @@ import Moment from "moment";
 import Countdown from "../Countdown/Countdown.jsx";
 
 const CourseListMain = () => {
-  const { isAuth, setGotoPage, setButtonPos, setAsidePos  } = useContext(SectionsContext);
+  const { isAuth, setGotoPage, setButtonPos, asidePos, setAsidePos  } = useContext(SectionsContext);
   const [coursesData, setCoursesData] = useState([])
   const [authorsData, setAuthorsData] = useState([])
     
@@ -34,8 +34,8 @@ const searchCourseListData = async () => {
 useEffect(() => {
   setGotoPage("/courselistpage")
   searchCourseListData();
-  buttonPosCheck();
-});
+  buttonPosCheck()
+}, []);
 
   return (
     <main id="courseListMain"> {/* MainStyling in global */}
