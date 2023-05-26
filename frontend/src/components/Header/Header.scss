@@ -85,6 +85,8 @@ Header {
    flex-flow: column nowrap;
    justify-content: baseline;
    height: auto;
+   align-items: end;
+   cursor: pointer;
   }
    
  @keyframes navpresenter {

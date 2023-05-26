@@ -1,36 +1,34 @@
 import "./CoursePageMain.scss";
-import { Link, useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 //import C from "../../images/C.png"
 import { useContext, useState, useEffect } from "react";
 import { SectionsContext } from "../../context/SectionsContext.js";
 import axiosConfig from "../../util/axiosConfig";
 import Moment from "moment"
 
-
 const CourseMain = () => {
-
-  const { isAuth, setGotoPage, setButtonPos, setAsidePos  } = useContext(SectionsContext);
+  const location = useLocation();
+  console.log(location);
+  const { cID } = location.state;
+  console.log(cID);
+  const { isAuth, setGotoPage, setButtonPos, setAsidePos } = useContext(SectionsContext);
   const [courseData, setCourseData] = useState({})
+  const buttonPosCheck = ()=>{
+    if (isAuth) {setButtonPos("showBut"); setAsidePos ("accountAside")
+  }}
   setGotoPage("/coursepage")
   
-  const buttonPosCheck = ()=>{
-  if (isAuth) {setButtonPos("showBut"); setAsidePos ("accountAside")
-}}
-
-const searchCourseData = async (course_id) => {
-  //const courseID = course_id
-  const courseID = "642c3afc82c7307308c4e725"
+  const searchCourseData = async (id) => {
+  const courseID = id
   const axiosResp = await axiosConfig
   .get(`http://localhost:4000/courses/${courseID}`);
   const courseData = axiosResp.data;
   setCourseData(courseData)
 };
-//console.log(courseData)
-
 
 useEffect(() => {
-  searchCourseData();
-  buttonPosCheck()
+  searchCourseData(cID);
+  buttonPosCheck();
 });
 
   return (

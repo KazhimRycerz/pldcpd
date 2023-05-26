@@ -19,6 +19,7 @@
    text-align: center;
    line-height: 15px;
    z-index: 0;
+   cursor: pointer;
    &.buttonZeroPosition {
     right:calc(10% - 10px);
     transform: translateY(33px) rotate(-90deg);
