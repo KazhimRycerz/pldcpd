@@ -1,5 +1,5 @@
 import "./CoursePageMain.scss";
-import { useParams, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 //import C from "../../images/C.png"
 import { useContext, useState, useEffect } from "react";
 import { SectionsContext } from "../../context/SectionsContext.js";
@@ -7,11 +7,10 @@ import axiosConfig from "../../util/axiosConfig";
 import Moment from "moment"
 
 const CourseMain = () => {
-  const location = useLocation();
-  console.log(location);
-  const { cID } = location.state;
+  const { state } = useLocation();
+  const  cID  = state;
   console.log(cID);
-  const { isAuth, setGotoPage, setButtonPos, setAsidePos } = useContext(SectionsContext);
+  const { isAuth, setGotoPage, setButtonPos, setAsidePos, navigate } = useContext(SectionsContext);
   const [courseData, setCourseData] = useState({})
   const buttonPosCheck = ()=>{
     if (isAuth) {setButtonPos("showBut"); setAsidePos ("accountAside")
@@ -26,6 +25,10 @@ const CourseMain = () => {
   setCourseData(courseData)
 };
 
+  const zurückZurListe = () => {
+    navigate("/courselistpage")
+  }
+
 useEffect(() => {
   searchCourseData(cID);
   buttonPosCheck();
@@ -33,7 +36,10 @@ useEffect(() => {
 
   return (
     <main id="courseMain"> {/* Styling in global */}
-    <h2 id="courseHead">Kursinhalt und Beschreibung</h2>
+      <div id="headBox">
+        <h2 id="courseHead">Kursinhalt und Beschreibung</h2>
+        <button onClick={zurückZurListe} className="buttonBasics" id="returnOnCoursePage">zurück zur Übersicht</button>
+      </div>
       <article id="courseArticle">
         <div className="courseBoxes"> 
             <p>Kursname</p> 
@@ -63,7 +69,7 @@ useEffect(() => {
             <p>Kursstart</p> 
             <output id="courseStart" >{Moment(courseData.startDateOfCourse).format("DD.MM.YYYY")}</output>
         </div> 
-         <div> 
+          <div> 
             <p>Kursende</p> 
             <output id="courseEnd" >{Moment(courseData.endOfCourse).format("DD.MM.YYYY")}</output>
         </div>
@@ -76,11 +82,10 @@ useEffect(() => {
             <output id="courseBasicPoints" className="punkte">{courseData.cpdBasicPoints}</output>
         </div>
         <div><p>dieses Thema auf meine Lernliste setzen!</p>
-          <div id="buttonBox"><button id="buttonLernliste">list</button></div>
+          <div id="buttonBox"><button  id="buttonLernliste">add to my learniglist</button></div>
           </div>
-       
       </article>
-        
+      
     </main>
   );
 };

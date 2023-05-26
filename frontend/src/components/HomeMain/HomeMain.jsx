@@ -11,9 +11,10 @@ const HomeMain = () => {
 
   const { isAuth, gotoPage, setGotoPage, buttonPos, setButtonPos, asidePos, setAsidePos } = useContext(SectionsContext);
   
-  const buttonPosCheck = ()=>{
-    if (isAuth) {setButtonPos("showBut"); setAsidePos ("accountAside")
-}}
+    const buttonPosCheck = ()=>{
+      if (isAuth) {setButtonPos("showBut"); setAsidePos ("accountAside")
+  }
+}
 
 useEffect(() => {
   setGotoPage("/home");

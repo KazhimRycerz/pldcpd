@@ -1,5 +1,5 @@
 import "./CourseListMain.scss";
-import { Route, Link, useParams, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 //import C from "../../images/C.png"
 import { useContext, useState, useEffect } from "react";
 import { SectionsContext } from "../../context/SectionsContext.js";
@@ -15,7 +15,7 @@ const CourseListMain = () => {
   const buttonPosCheck = ()=>{
     if (isAuth) {setButtonPos("showBut"); setAsidePos ("accountAside")
   }
-};
+}
 
 const searchCourseListData = async () => {
   try {
@@ -30,12 +30,12 @@ const searchCourseListData = async () => {
     console.log(error);
   }
 };
-setGotoPage("/courselistpage")
 
 useEffect(() => {
+  setGotoPage("/courselistpage")
   searchCourseListData();
   buttonPosCheck();
-}, []);
+});
 
   return (
     <main id="courseListMain"> {/* MainStyling in global */}
@@ -106,11 +106,8 @@ useEffect(() => {
               return(
                 <tr key={index}>
                   <td className="larger">
-                    <Link to={{ 
-                      pathname: '/coursepage/',
-                      state: course._id
-                      }} id="topicLink">
-                      {course._id}{course.topic}
+                    <Link to="/coursepage" state= {course._id} id="topicLink">
+                    {course.topic}
                     </Link>
                   </td>
                   <td className="larger">
@@ -129,7 +126,7 @@ useEffect(() => {
                   <td>{course.cpdAdditionalPoints}</td>
                   <td>{course.professionalLevel}</td>
                   <td><a href={course.linkToProvider} target="_blank" rel="noopener noreferrer">{course.linkToProvider}</a></td>
-                  <td><Link to={course.linkToProvider} className="C">C</Link></td>
+                  <td><Link to="/coursepage" state= {course._id} className="C">C</Link></td>
                   </tr>
                   )
                 }
