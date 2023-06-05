@@ -9,7 +9,7 @@ const AboutPLDCPD = () => {
       <Header />
       <main id="AboutPLDCPD">
         <h1 id="digitaleBaustelle">
-          This is the buildingsite for information on the purpose of your personal CPD.
+          This is the building site for information on the purpose of your personal CPD.
         </h1>
       </main>
       <Footer />

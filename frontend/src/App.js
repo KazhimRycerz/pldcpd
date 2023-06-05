@@ -8,6 +8,7 @@ import PersonalAccount from "./pages/PersonalAccount/PersonalAccount.jsx";
 import CareerPlanning from "./pages/CareerPlanning/CareerPlanning.jsx";
 import CourseListPage from "./pages/CourseListPage/CourseListPage.jsx";
 import CoursePage from "./pages/CoursePage/CoursePage.jsx";
+import AuthorsPage from "./pages/AuthorsPage/AuthorsPage.jsx";
 import Login from "./pages/LoginPage/Login.jsx";
 import Register from "./pages/RegisterPage/Register.jsx";
 import Impressum from "./pages/Impressum/Impressum.jsx";
@@ -43,6 +44,7 @@ function App() {
           <Route path="/careerplanning" element={<CareerPlanning />} />
           <Route path="/coursepage" element={<CoursePage />} />
           <Route path="/courselistpage" element={<CourseListPage />} />
+          <Route path="/authorspage" element={<AuthorsPage />} />
           <Route path="/sandbox" element={<Sandbox />} />
           {/* <Route path="/community" element={<Community />} /> */}
           {/* <Route path="/registerlogin" element={<RegisterLogin />} /> */}

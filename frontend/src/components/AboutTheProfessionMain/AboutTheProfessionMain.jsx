@@ -1,191 +1,78 @@
-import './AboutTheProfessionMain.scss'
+import "./AboutTheProfessionMain.scss";
+import { Link } from "react-router-dom";
+//import Level_4_SLD from "../../images/Level_4_SLD.jpg"
+import C from "../../images/C.png"
+//import LightingEffect from "../LightingEffect/LightingEffect.jsx"
+import { useContext, useEffect } from "react";
+import { SectionsContext } from "../../context/SectionsContext.js";
 
-const  AboutTheProfessionMain = ()=>{
 
-   return (
-      <main>
-         <div id="Content">
+const AboutTheProfessionMain = () => {
 
-            <section id="Gruß_account">
-               <h1> Ihre Fachwissen im Überblick</h1>
-            </section>
-
-            <section id="account_1">
-               <h3> Ihre Karrieredaten</h3>
-               <div id="account_1_data">
-               <div>
-                  <output id="fullName">Joachim Ritter</output>
-                  <output id="profession"> Lighting Designer</output>
-                  <output id="company">VIA-Design</output>
-               </div>
-
-               <div>
-                  <p>Karrierelevel</p>
-                  <output className="account_Box" id="myCL"> IV</output>
-                  <output id="account_1_p">Project Lighting Designer</output>
-               </div>
-
-               <div>
-                  
-                  <p>CPD-aktiv seit</p>
-                  <output className="account_box_dates" id="my_start"> 01.11.20
-                  </output>
-                  <p>beruflich aktiv seit </p>
-                  <output className="account_box_dates" id="my_active"> 01.06.11
-                  </output>
-                  
-               </div>
-
-               <div>
-                  <p>Ihr Guthaben</p>
-                  <output className="account_Box" id="myLCoins"> myLC <strong id="LC"> LC</strong>
-                  </output>
-                  <p>Ihr Guthaben</p>
-               </div>
-
-               </div>
-            </section>
-
-            <section id="account_2">
-               <h3> Ihre persönlichen Werte Ihres Fachwissens</h3>
-               <p> Die unteren Zahlen zeigen Ihnen die Durchschnittswerte im internationalen Lichtdesignermarkt aller
-               Teilnehmer an.</p>
-
-               <div id="account_2_data">
-
-               <div className="account_2">
-                  <div>
-                     <h2>KF</h2>
-                     <p>Knowledge<br />Factor</p>
-                  </div>
-                  <div className="account_data_box">
-                     <output className="account_pers_data" id="myKF">myKF</output>
-                     <output className="account_market_data" id="maKF">maKF</output>
-                  </div>
-               </div>
-
-               <div className="account_2">
-                  <div>
-                     <h2>LF</h2>
-                     <p>Learning<br />Factor</p>
-                  </div>
-                  <div className="account_data_box">
-                     <output className="account_pers_data" id="myLF">myLF</output>
-                     <output className="account_market_data" id="maLF">maLF</output>
-                  </div>
-               </div>
-
-               <div className="account_2">
-                  <div>
-                     <h2>PEX</h2>
-                     <p>Professional<br />Experience</p>
-                  </div>
-                  <div className="account_data_box">
-                     <output className="account_pers_data" id="myPEX">myPEX</output>
-                     <output className="account_market_data" id="maPEX">maPEX</output>
-                  </div>
-               </div>
-
-               <div className="account_2">
-                  <div>
-                     <h2>PED</h2>
-                     <p>Professional<br />Education</p>
-                  </div>
-                  <div className="account_data_box">
-                     <output className="account_pers_data" id="myPED">myPED</output>
-                     <output className="account_market_data" id="maPED">maPED</output>
-                  </div>
-               </div>
-
-               <div className="account_2">
-                  <div>
-                     <h2>LP</h2>
-                     <p>Learning<br />Points</p>
-                  </div>
-                  <div className="account_data_box">
-                     <output className="account_pers_data" id="myLP">myLP</output>
-                     <output className="account_market_data" id="maLP">maLP</output>
-                  </div>
-               </div>
-               </div>
-
-            </section>
-
-            <section id="account_3">
-
-               <h3> Ihre persönlichen Daten</h3>
-               <div id="account_3_data">
-
-               <div className="account_3">
-                  <p>Joachim Ritter<br />
-                     Geburtsdatum <br /><br />
-                     Anrede
-                  </p>
-               </div>
-
-               <div className="account_3">
-                  <p>Ihre E-Mail <br />Ihre Mobilnummer
-                     <br />Firma</p>
-               </div>
-
-               <div className="account_3">
-                  <p>Ihr Anmeldename<br />Ihr Password<br />
-                  </p>
-               </div>
-
-            </div>
-
-            </section>
-
-            <section id="account_4">
-
-               <h3> Ihre Abrechnungsdaten</h3>
-               <div id="account_4_data">
-
-               <div className="account_4">
-                  <p>Joachim Ritter<br />
-                     Marienfelder Str. 18 <br />33330 Gütersloh<br />Deutschland
-                  </p>
-               </div>
-
-               <div className="account_4">
-                  <p>Ihr <br />derzeit angestellt bei<br />angstellt
-                  </p>
-               </div>
-
-               <div className="account_4">
-                  <p>Ihr <span className="LitCoin">L</span>it<span className="LitCoin">C</span>oin <br />Guthaben</p>
-                  <div id="account_4_Box"> 250 <span className="LC"> LC</span> </div>
-                  
-               </div>
-               </div>
-            </section>
-
-            <section id="account_5">
-               <h3> Ihre Abrechnungsdaten</h3>
-               <div>
-               <div className="account_5">
-                  <p>Joachim Ritter<br />
-                     Marienfelder Str. 18 <br />33330 Gütersloh<br />Deutschland
-                  </p>
-               </div>
-
-               <div className="account_5">
-                  <p>Ihr <br />derzeit angestellt bei<br />angstellt
-                  </p>
-               </div>
-
-               <div className="account_5">
-                  <p>Ihr <span className="LitCoin">L</span>it<span className="LitCoin">C</span>oin <br />Guthaben</p>
-                  <div id="account_5_Box"> <p>250 <span className="LC"> LC</span></p>
-                  </div>
-               </div>
-               </div>
-            </section>
-            
-         </div>
-      </main>
-      )
+  const { isAuth, setGotoPage, setButtonPos, setAsidePos } = useContext(SectionsContext);
+  const buttonPosCheck = ()=>{
+    if (isAuth) {setButtonPos("showBut"); setAsidePos ("accountAside")
+  }
 }
 
-export default AboutTheProfessionMain
+useEffect(() => {
+  buttonPosCheck(SectionsContext)
+});
+
+
+  return (
+    <main> {/* Styling in global */}
+
+      <section id="profession_main">
+        <h1 id="lichtdesigner_h1">
+          Der/die Lichtdesigner/in: <br />Ein moderner Beruf mit historischen Wurzeln
+        </h1>
+      </section>
+              
+      <section className="derLichtdesigner">
+        <div className="infobox_intro">
+          <h2> Was ist ein Lichtdesigner? </h2>
+          <div>
+            <p>Ein Lichtdesigner ist ein Fachmann oder Künstler, der sich mit der Gestaltung und Umsetzung von Beleuchtungskonzepten in verschiedenen Bereichen beschäftigt. Ihr Hauptaugenmerk liegt auf der kreativen Nutzung von Licht, um eine bestimmte Atmosphäre zu schaffen, die Stimmung zu verstärken oder eine bestimmte Botschaft zu vermitteln.</p>
+            <p>Lichtdesigner arbeiten in einer Vielzahl von Bereichen, darunter Theater, Film, Fernsehen, Konzerte, Events, Architektur und Innenraumgestaltung. unser Fokus liegt auf dem Bereich der Architektur, also der Gestaltung von Räumen und deren Funktion. Sie arbeiten eng mit Regisseuren, Bühnenbildnern, Kameraleuten und anderen Mitgliedern des Produktionsteams zusammen, um die gewünschte Lichtstimmung zu erreichen.</p>
+            <p>Die Aufgaben eines Lichtdesigners umfassen die Entwicklung von Beleuchtungskonzepten, das Erstellen von Lichtplänen, die Auswahl und Positionierung von Lichtquellen, die Steuerung und Programmierung von Lichttechnik, die Anpassung von Lichtfarben und Intensitäten sowie die Berücksichtigung von Sicherheitsaspekten und Vorschriften.</p>
+            <p>Ein guter Lichtdesigner verfügt über ein Verständnis für die ästhetischen und emotionalen Auswirkungen von Licht und ist in der Lage, technisches Fachwissen mit kreativen Fähigkeiten zu verbinden. Sie müssen über Kenntnisse in Beleuchtungstechnik, Lichtsteuerungssystemen und elektrischen Grundlagen verfügen. Darüber hinaus ist es wichtig, Trends in der Lichttechnik und neue Technologien zu verfolgen, um innovative Lösungen anbieten zu können.</p>
+          </div>
+        </div>
+      </section>
+
+        <Link to="/home">
+          <img className="Trenner" src={C} alt="" />
+        </Link>
+      
+        <section id="Promoter_1">
+          <div>
+            <p>lighting design at its best!</p>
+          </div>
+        </section>
+
+        <Link to="/home">
+          <img className="Trenner" src={C} alt="" />
+        </Link>
+
+      <section className="derLichtdesigner">
+        <div className="infobox_intro">
+          <h2> Wie ist der Beruf des Lichtdesigners entstanden? </h2>
+          <div>
+            <p>Der Beruf des Lichtdesigners hat sich im Laufe der Zeit entwickelt und ist eng mit den Entwicklungen in den Bereichen Theater, Bühnenproduktion und Architektur verbunden. Hier ist eine grobe Chronologie der Entstehung des Berufs:</p>
+  
+            <p>Frühes Theater: In der Antike und im Mittelalter wurde die Beleuchtung in Theatern hauptsächlich durch offenes Tageslicht oder einfache Öllampen realisiert. Die Beleuchtung hatte in erster Linie die Funktion, die Schauspieler sichtbar zu machen. Ein spezialisierter Beruf des Lichtdesigners existierte zu dieser Zeit noch nicht.</p>
+  
+            <p>Einführung von Gaslicht: Im 19. Jahrhundert wurde Gaslicht in Theatern eingeführt. Dies ermöglichte erstmals eine gewisse Kontrolle über die Helligkeit und Farbe des Lichts. Gaslichtoperatoren waren verantwortlich für die Bedienung der Gaslampen und die Anpassung der Beleuchtung während der Vorstellungen. Obwohl sie noch keine umfassenden Lichtdesigner waren, legten sie den Grundstein für die Entwicklung des Berufs.
+            </p>
+            <p>Erfindung der elektrischen Beleuchtung: Mit der Erfindung der Glühbirne und der Einführung der elektrischen Beleuchtung Ende des 19. Jahrhunderts wurden neue Möglichkeiten für die Lichtgestaltung geschaffen. Die steuerbare und flexible Natur der elektrischen Beleuchtung eröffnete neue kreative Wege, um die Stimmung und Atmosphäre in Theateraufführungen und anderen Veranstaltungen zu beeinflussen.</p>
+            <p>Entwicklung des Bühnenbilds: Im 20. Jahrhundert gewann das Bühnenbild an Bedeutung, und die Beleuchtung wurde zu einem integralen Bestandteil der Inszenierung. Kreative Köpfe wie Adolphe Appia und später Richard Pilbrow erkannten die Bedeutung der Beleuchtung als gestalterisches Element und trugen zur Weiterentwicklung des Lichtdesigns bei.</p>
+            <p>Technologische Fortschritte: Mit dem Aufkommen von Computern und digitaler Technologie in den letzten Jahrzehnten hat sich das Lichtdesign erneut sprunghaft weiterentwickelt. Lichtdesigner können jetzt komplexe Lichtshows programmieren und steuern, bei denen sie Lichtfarben, -bewegungen und -effekte präzise kontrollieren können.</p>
+            <p>Heutzutage ist der Beruf des Lichtdesigners in vielen Bereichen etabliert, darunter Theater, Konzerte, Architektur, Events und Filmproduktion. Lichtdesigner arbeiten mit einer Vielzahl von Beleuchtungstechnologien und -systemen, um spektakuläre visuelle Erlebnisse zu schaffen und die gewünschten Stimmungen zu erzeugen.</p>
+          </div>
+        </div>
+      </section>  
+    </main>
+  );
+};
+export default AboutTheProfessionMain;

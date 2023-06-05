@@ -1,5 +1,5 @@
 import "./Header.scss";
-import JoachimRitter from '../../images/Joachim_privat.jpg'
+//import JoachimRitter from '../../images/Joachim_privat.jpg'
 import { NavLink, Link} from "react-router-dom";
 import { useContext, useState} from "react";
 import pldcpd from "../../images/pldcpd.png";
@@ -121,7 +121,7 @@ const Header = () => {
       </header>
 
       <nav onMouseLeave={(event)=>{setShowMenue(!showMenue)}}  id="navmain" className={showMenue ? "showNav" : " hideNav"}>
-        <div>
+        <div id="listOfFields">
           <ul>
             <p>
               main <br /> items

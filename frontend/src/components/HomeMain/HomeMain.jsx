@@ -9,11 +9,11 @@ import { SectionsContext } from "../../context/SectionsContext.js";
 
 const HomeMain = () => {
 
-  const { isAuth, gotoPage, setGotoPage, setButtonPos, setAsidePos } = useContext(SectionsContext);
+  const { isAuth, setGotoPage, setButtonPos, setAsidePos } = useContext(SectionsContext);
   
-    const buttonPosCheck = ()=>{
-      if (isAuth) {setButtonPos("showBut"); setAsidePos ("accountAside")
-  }
+  const buttonPosCheck = ()=>{
+    if (isAuth) {setButtonPos("showBut"); setAsidePos ("accountAside")
+    }
 }
 
 useEffect(() => {
@@ -215,13 +215,11 @@ useEffect(() => {
 
         <section id="learningbox_2">
           <div className="infobox_intro">
-            <h2> Aktuelle Lernangebote </h2>
+            <h2> Neuste Lernangebote </h2>
             <p>
-              Hier können sie über die neusten Angebote zur Weiterbildung
-              erfahren. Klicken Sie <Link to="/latestlearningoffers">hier</Link> und schauen Sie
-              im Detail, was zur Weiterbildung angeboten wird.
+              Dies ist eine Liste über die neusten Angebote. Klicken Sie <Link to="/courselistpage">hier</Link> um eine Gesmtübersicht aller Angebot zu sehen.
             </p>
-            <Link to="/#">
+            <Link to="/courselistpage">
               <img src={C} alt="" className="logo_cpd" />
             </Link>
           </div>

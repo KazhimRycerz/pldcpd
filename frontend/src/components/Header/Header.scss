@@ -85,7 +85,7 @@ Header {
    flex-flow: column nowrap;
    justify-content: baseline;
    height: auto;
-   align-items: end;
+   align-items: flex-end;
    cursor: pointer;
   }
    
@@ -203,8 +203,7 @@ Header {
        transition: 0.3s ease-in-out;
      }
  
-     span::before,
-     span::after {
+     span::before, span::after {
        content: '';
      }
  
@@ -253,9 +252,12 @@ Header {
          opacity: 0;
          width: 0;
        }
-     }
+      }
     }
  
+
+// Großes Menue beginnt hier
+
    #navmain {
      position: fixed;
      top: -500px;
@@ -267,12 +269,13 @@ Header {
      padding-top: 50px;
      padding-bottom: 30px;
      box-shadow: $boxshadowbottom;
-     padding-top: 20px;
-     
-     div {
-       display: flex;
-       flex-flow: row nowrap;
-       justify-content: center;
+     padding-top: 20px; 
+    
+    div {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: center;
+      align-items: flex-Start;
        width: 80%;
        margin: 0 auto 0px;
        gap: 20px;

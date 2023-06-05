@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import ProfessionalStatusModel from './professionalStatusModel.js';
 import CareerModel from './careerModel.js';
+import AuthorModel from './authorModel.js';
 
 
 const contactSchema = mongoose.Schema({
@@ -48,12 +49,17 @@ const contactSchema = mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'professionalStatus',
       default: ""   
-      },
+   },
    careerPath: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: 'career',
       default: []
     }],
+    authorsData: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'author',
+      default: ""
+    },
    dateOfBirth: {
       type: Date,
       default: ""

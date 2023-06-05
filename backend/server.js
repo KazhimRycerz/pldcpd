@@ -4,6 +4,7 @@ import  { unkownHandler, errorHandler } from './middleware/middelware.js';
 import indexRouter from './routes/indexRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import contactsRouter from './routes/contactsRoutes.js';
+import authorsRouter from './routes/authorsRoutes.js';
 import careerRouter from './routes/careerRoutes.js';
 import coursesRouter from './routes/coursesRoutes.js';
 import companiesRouter from './routes/companiesRoutes.js';
@@ -33,6 +34,7 @@ server.use(expressFileUpload({createParentPath: true,}));
 server.use("/home", indexRouter)
 server.use("/user", userRouter);
 server.use("/contacts",  contactsRouter)
+server.use("/authors",  authorsRouter)
 server.use("/careers",  careerRouter)
 server.use("/professionalStatus", professionalStatusRouter)
 server.use("/companies",  companiesRouter)

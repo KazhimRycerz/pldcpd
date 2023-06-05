@@ -5,72 +5,86 @@
   min-height: 60vh;
   margin-top: 100px;
   background-color: $first-color;
-
+  
   #courseListHead{
     width: 80%;
     margin: 50px auto;
     font-family: $primary-font-bold;
   }
-
+  
   form {
-    select{
+    width: 90%;
+    margin: 0 auto;    
+    /* select{
       background-color: $cpdblue;
       color: $secondary-color;
-      border: none;
+      border: solid;
       text-align: left;
-    }
-  }
-
-  #tableCourseList {
-    border-radius: 10px;
-    font-size: $small;
-    float: left;
-    margin: 0px;
-    height: 30px;
-    width:95%;
-    margin: 0px 2.5%;
-    text-align: center;
-    border: solid;
+    } */
+    border-left: dotted;
+    border-right: dotted;
+    border-width: 3px;
     border-radius: $radiussmall;
-    border-collapse: collapse;
+  }
+  
+  #tableCourseList {
+    font-size: $small;
+    margin: 0 auto;
+    font-size: $small;
+    padding: 5px;
+    //text-align: center;
+    /* border-width: 1rem;
+    border-left: dotted;
+    border-right: dotted;
+    border-width: 3px;
+    border-radius: $radiussmall; */
+    //border-collapse: collapse;
     th {
       margin: 5px;
-      padding-left:5px;
+      padding:5px;
       color: $secondary-color;
       background-color: $cpdblue;
       text-align: left;
+      //border-radius: 0 10px 0 10px;
       select {
         background-color: $cpdblue;
         color: $secondary-color;
         border: none;
       }
+      
     }
+    th:first-child {
+      border-radius: 10px 0 0 0;
+    }
+    th:last-child {
+      border-radius: 0 10px 0 0;
+    }
+
     tr, td{
       padding:5px 5px;
       text-align: left;
       list-style-type: none;
       vertical-align: top;
-      background: linear-gradient($cpdblue-10, $cpdred-30 );
+      background: linear-gradient($first-color, $fourth-color );
     }
-    /* tr:nth-child(even) {
-      background-color: $third-color-o;
-      
-    } */
-    /* tr:hover {
-      background-color: $secondary-color;
-    } */ 
-    #topicLink{
+    tr:last-child td:first-child {
+      border-radius: 0 0 0 10px;
+    }
+    tr:last-child td:last-child {
+      border-radius: 0 0 10px 0;
+    }
+    #topicLink, #authorsLink{
       text-decoration-line: none;
-      color: black;
+      color: $cpdblue;
     }
     
     .larger:hover {
-      background-color: $cpdblue;
+      background: $cpdblue;
       color: $secondary-color;
       width: 20%;
       cursor: pointer;
-      border-radius:10px 0 10px 0;
-      #topicLink{
+      //border-radius:10px 0 10px 0;
+      #topicLink, #authorsLink{
         color: $secondary-color;
         font-size: 16px;
       }
@@ -80,11 +94,18 @@
       color: white;
       padding: 3px;
       font-size: 16px;
+      #authorsLink:hover {
+        color: white;
+      }
+      #author:hover::before{
+         content: '> ';
+         font-weight: 700;
+       }
     }
-    #author:hover::before{
-       content: '--> ';
-       font-weight: 700;
-     }
+    #infoLink {
+      text-align: center;
+      margin: 0 auto;
+    }
   }
 }
  

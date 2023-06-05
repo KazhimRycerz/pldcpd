@@ -1,0 +1,101 @@
+@import "../../scss/global.scss";
+
+
+main >div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  //border: solid;
+  width: 80%;
+  margin: 0 auto;
+  
+  .buttonBasics {
+    vertical-align: middle;
+    width: 150px;
+    max-width: 150px;
+    height: 45px;
+    margin: 0px auto;
+    font-size: $xsmall;
+    //padding: 0.5rem 0.5rem;
+    vertical-align: middle;
+    background-color: $first-color;
+    color: $cpdblue;
+    //border: 2px solid var(--dark-green-color);
+    box-shadow: $btnshadow;
+    border-radius: $radiussmall;
+    text-decoration: none;
+  }
+  .buttonBasics:hover {
+    background-color: $cpdblue;
+    color: $first-color;
+  }
+}
+
+#authorsArticle {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content:flex-start;
+  border-left: dotted;
+  border-right: dotted;
+  border-radius: $radiussmall;
+  border-width: 3px;
+  border-color: $cpdred;
+  width: 80%;
+  margin: 0px auto;
+  //background-color: $fourth-color;
+  padding: 30px;
+  //box-shadow: $boxshadow;
+  gap: 20px;
+  
+  div {
+    display: flex;
+    flex-flow: column nowrap;
+    border-radius: $radiussmall;
+    flex-grow: 1;
+
+    >p{
+      display: inline;
+     /*  border-left: dotted;
+      border-right: dotted; */
+      border-radius: 10px;
+      line-height: 50px;
+      margin: 0px;
+      padding: 0px 0px;
+      font-size: 1.3rem;
+      font-family:$primary-font-bold;
+      //background-color: $cpdblue;
+      color: $cpdblue;
+    }
+    .output {
+      display: block;
+      font-size: $normal;
+      padding: 10px;
+      border-radius: 10px;
+      /* border-left: dotted;
+      border-right: dotted;
+      border-width: 10px;
+      border-color: black; */
+      background-color: $fourth-color;  
+      box-shadow: $boxshadow;
+      color: $cpdblue;
+      text-align:left; 
+    }
+    #authorVitae {
+      font-size: $normal;
+      line-height: 2rem;  
+      padding: 20px;
+    }
+    #authorUpdate {
+      max-width: 220px;
+    }
+  }
+  #fieldsOfExpertise{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content:flex-start;
+    list-style: none;
+  }
+}
+
+
+ 

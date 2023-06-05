@@ -9,9 +9,10 @@ import Moment from "moment"
 const CourseMain = () => {
   const { state } = useLocation();
   const  cID  = state;
-  console.log(cID);
+  //console.log(cID);
   const { isAuth, setGotoPage, setButtonPos, setAsidePos, navigate } = useContext(SectionsContext);
   const [courseData, setCourseData] = useState({})
+  const [authorsData, setAuthorsData] = useState([])
   const buttonPosCheck = ()=>{
     if (isAuth) {setButtonPos("showBut"); setAsidePos ("accountAside")
   }}
@@ -22,11 +23,15 @@ const CourseMain = () => {
   const axiosResp = await axiosConfig
   .get(`http://localhost:4000/courses/${courseID}`);
   const courseData = axiosResp.data;
-  setCourseData(courseData)
+  const authorsForCourse = courseData.author;
+  setAuthorsData(authorsForCourse)
+  setCourseData(courseData);
+  console.log(courseData.author); 
+  console.log(authorsForCourse); 
 };
 
   const zurückZurListe = () => {
-    navigate("/courselistpage")
+    navigate(-1)
   }
 
 useEffect(() => {
@@ -38,54 +43,73 @@ useEffect(() => {
     <main id="courseMain"> {/* Styling in global */}
       <div id="headBox">
         <h2 id="courseHead">Kursinhalt und Beschreibung</h2>
-        <button onClick={zurückZurListe} className="buttonBasics" id="returnOnCoursePage">zurück zur Übersicht</button>
+        <button onClick={zurückZurListe} className="buttonBasics" id="returnToCoursePage">zurück zur Übersicht</button>
       </div>
       <article id="courseArticle">
         <div className="courseBoxes"> 
             <p>Kursname</p> 
-            <output id="courseTopic">{courseData.topic}</output>
+            <div className="output" id="courseTopic">{courseData.topic}</div>
+        </div>
+        <div className="courseBoxes"> 
+            <p>Autoren</p> 
+            <div className="output" id="courseHead">
+              {authorsData.map((author, index) => (
+                <li key={index} id="author">
+                  <Link to="/authorspage" state= {author._id} id="authorsLink">
+                  {author.professionalTitle}{author.professionalTitle && " "}{author.firstName} {author.lastName}{author.appendix && " "}{author.appendix}{/* {authorsData[index]>0 ? "" : ","}  */}
+                  </Link>
+                </li>
+                ))
+              }
+            </div>
         </div>
         <div> 
             <p>Kursart</p> 
-            <output id="courseAuthor">{courseData.courseType}</output>
+            <div className="output" id="courseField">{courseData.courseType}</div>
         </div>
         <div> 
             <p>Themenbereich</p> 
-            <output id="coursetopicField">{courseData.topicField}</output>
+            <span className="output" id="coursetopicField">{courseData.topicField}</span>
         </div>
         <div> 
             <p>Inhalt</p> 
-            <output id="courseContent">
+            <div className="output" id="courseContent">
               <div>{courseData.courseContent}</div>
               <div id="contentImages">
                 <img src={require('../../images/level_5_senior.jpg')} alt="" />
                 <img src={require('../../images/level_5_senior.jpg')} alt="" />
                 <img src={require('../../images/level_5_senior.jpg')} alt="" />
               </div>
-            </output>
+            </div>
             
         </div>
         <div> 
             <p>Kursstart</p> 
-            <output id="courseStart" >{Moment(courseData.startDateOfCourse).format("DD.MM.YYYY")}</output>
+            <div className="output" id="courseStart" >{Moment(courseData.startDateOfCourse).format("DD.MM.YYYY")}</div>
         </div> 
           <div> 
             <p>Kursende</p> 
-            <output id="courseEnd" >{Moment(courseData.endOfCourse).format("DD.MM.YYYY")}</output>
+            <span className="output" id="courseEnd" >{Moment(courseData.endOfCourse).format("DD.MM.YYYY")}</span>
         </div>
         <div> 
             <p>CPD-Punkte</p> 
-            <output id="courseAdditionalPoints" className="punkte">{courseData.cpdAdditionalPoints}</output>
+            <div className="output punkte" id="courseAdditionalPoints" >{courseData.cpdBasicPoints}</div>
         </div>
         <div> 
             <p>CPD-plusPunkte</p> 
-            <output id="courseBasicPoints" className="punkte">{courseData.cpdBasicPoints}</output>
+            <div className="output punkte" id="courseBasicPoints" >{courseData.cpdAdditionalPoints}</div>
         </div>
-        <div><p>dieses Thema auf meine Lernliste setzen!</p>
-          <div id="buttonBox"><button  id="buttonLernliste">add to my learniglist</button></div>
-          </div>
+        <div> 
+            <p>Kursanbieter</p> 
+            <div className="output" id="courseProvider" ><a href={courseData.linkToProvider} target="_blank" rel="noopener noreferrer">{courseData.linkToProvider}</a></div>
+        </div>
+        {/* <p>dieses Thema auf meine Lernliste setzen!</p> */}
+          
       </article>
-      
+        <div id="buttonBottom">
+          <h2></h2>
+          <button className="buttonBasics" /* id="buttonLernListe" */>auf meine Lernliste</button>
+        </div>   
     </main>
   );
 };

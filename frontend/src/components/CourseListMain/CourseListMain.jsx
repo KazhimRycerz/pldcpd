@@ -8,7 +8,7 @@ import Moment from "moment";
 import Countdown from "../Countdown/Countdown.jsx";
 
 const CourseListMain = () => {
-  const { isAuth, setGotoPage, setButtonPos, asidePos, setAsidePos  } = useContext(SectionsContext);
+  const { isAuth, setGotoPage, setButtonPos, setAsidePos  } = useContext(SectionsContext);
   const [coursesData, setCoursesData] = useState([])
   const [authorsData, setAuthorsData] = useState([])
     
@@ -40,51 +40,52 @@ useEffect(() => {
   return (
     <main id="courseListMain"> {/* MainStyling in global */}
       <h2 id="courseListHead">Übersicht aller aktuellen Kursangebote</h2>
-      
+      <form>
         <table id="tableCourseList">
-          <colgroup>
+          {/* <colgroup>
             <col width="10%" />
             <col width="5%" />
+            <col width="7%" />
             <col width="10%" />
-            <col width="10%" />
-            <col width="10%" />
-            <col width="10%" />
+            <col width="5%" />
+            <col width="5%" />
             <col width="2%" />
             <col width="2%" />
             <col width="2%" />
             <col width="10%" />
             <col width="1%" />
-          </colgroup>
+          </colgroup> */}
           <thead>
             <tr>
               <th>Thema</th>
               <th><select name="Filter" id="Filter">
-                  <option value="Themenfeld">Autor/Referent</option>
+                  <option value="">Autor/Referent</option>
                   <option value="Art">Art</option>
                   <option value="Datum">Datum</option>
                   <option value="Level">Level</option>
                 </select></th>
               <th><select name="Filter" id="Filter">
-                  <option value="Themenfeld">Themenfeld</option>
-                  <option value="Art">Art</option>
-                  <option value="Datum">Datum</option>
-                  <option value="Level">Level</option>
+                  <option value="">Themenfeld</option>
+                  <option value="Lichtdesign">Lichtdesign</option>
+                  <option value="Lichttechnik">Lichttechnik</option>
+                  <option value="Plnungspraxis">Plnungspraxis</option>
+                  <option value="Masterplanung">Masterplanung</option>
                 </select></th>
               <th><select name="Filter" id="Filter">
-                  <option value="Themenfeld">Kursart</option>
+                  <option value="">Kursart</option>
                   <option value="Art">Art</option>
                   <option value="Datum">Datum</option>
                   <option value="Level">Level</option>
                 </select>
                 </th>
               <th><select name="Filter" id="Filter">
-                  <option value="Themenfeld">Kursstart</option>
+                  <option value="">Kursstart</option>
                   <option value="Art">Art</option>
                   <option value="Datum">Datum</option>
                   <option value="Level">Level</option>
                 </select></th>
               <th><select name="Filter" id="Filter">
-                  <option value="Themenfeld">Kursende</option>
+                  <option value="">Kursende</option>
                   <option value="Art">Art</option>
                   <option value="Datum">Datum</option>
                   <option value="Level">Level</option>
@@ -93,9 +94,16 @@ useEffect(() => {
               <th>CPD plus</th>
               <th><select name="Filter" id="Filter">
                   <option value="">level</option>
-                  <option value="qualified">qualified</option>
-                  <option value="student">student</option>
-                  <option value="master">master</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
                 </select></th>
               <th>Link zum Anbieter</th>
               <th>mehr Infos</th>
@@ -113,7 +121,9 @@ useEffect(() => {
                   <td className="larger">
                     {authorsData[index].map((author, innerIndex) => (
                       <li key={innerIndex} id="author">
-                        {author.professionalTitle}{author.professionalTitle && " "}{author.firstName} {author.lastName}{author.appendix && " "}{author.appendix}{/* {authorsData[index]>0 ? "" : ","}  */}
+                        <Link to="/authorspage" state= {author._id} id="authorsLink">
+                        {author.professionalTitle}{author.professionalTitle && " "}{author.firstName} {author.lastName}{author.appendix && ", "}{author.appendix}{/* {authorsData[index]>0 ? "" : ","}  */}
+                        </Link>
                       </li>
                       )
                     )}
@@ -126,15 +136,16 @@ useEffect(() => {
                   <td>{course.cpdAdditionalPoints}</td>
                   <td>{course.professionalLevel}</td>
                   <td><a href={course.linkToProvider} target="_blank" rel="noopener noreferrer">{course.linkToProvider}</a></td>
-                  <td><Link to="/coursepage" state= {course._id} className="C">C</Link></td>
+                  <td><Link to="/coursepage" state= {course._id} className="C" id="infoLink"><p>C</p></Link></td>
                   </tr>
                   )
                 }
               )
             }
-          </tbody>
-        </table>  
-      
+            </tbody>
+          </table>  
+        
+      </form>
       <Countdown  targetDate={new Date("2023-04-30T00:00:00.000Z").getTime()} />
 
     </main>
