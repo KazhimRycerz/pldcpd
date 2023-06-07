@@ -34,6 +34,7 @@ img[src*="c.png"] {
     left: 2vw;
     transition: 0.5s ease-in-out;
     top: 30px;
+    margin-left: 20vw;
     /* text-shadow: 5px 5px 30px $first-color; */
   }
 }
@@ -52,6 +53,70 @@ img[src*="c.png"] {
     font-size: $large;
   }
 }
+
+#career {
+  display: flex;
+  flex-flow: row nowrap;
+  border-top: 3px dotted $cpdred;
+  border-bottom: 3px dotted $cpdred;
+  padding-bottom: 20px;
+  padding: 20px;
+  border-radius: 20px;
+  font-size: $normal;
+  width: 80%;
+  margin: 60px auto;
+  //border: solid;
+  #careerLadder {
+  //border: solid;
+    >ul{
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-around;
+      margin-bottom: 20px;
+      list-style-type: none;
+      li{
+        text-decoration: none;
+        :hover {
+          color: $cpdred;
+          text-shadow: $text-shadow;
+        }
+      }
+    }
+    >div {
+      //display: flex;
+      border-left: 3px dotted $cpdred;
+      border-right: 3px dotted $cpdred;
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 20px;
+      margin-left: 0px;
+
+      h2{
+        width: 25%;
+      }
+      h3{
+        //border: solid;
+        margin: 0px;
+      }
+      >div {
+        display: flex;
+        flex-flow:row;
+        gap: 10px;
+        margin: 20px 0;
+      }
+      img {
+        width: 50%;
+        //display: inline;
+      }
+      ul{
+        li {
+          list-style-type: none;
+        }
+      }
+    }
+}
+}
+
  
  #Promoter_1 {
     width: calc(100% + 4px);
@@ -91,6 +156,7 @@ img[src*="c.png"] {
         margin: 0 auto;
       }
    }
+
  } 
 
 

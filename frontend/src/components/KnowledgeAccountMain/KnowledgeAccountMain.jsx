@@ -20,8 +20,6 @@ const  KnowledgeAccountMain = ()=>{
       if (isAuth && gotoPage==="/home") {setButtonPos("showBut"); setAsidePos("accountAside") //ok
    } else {setButtonPos(buttonPos); setAsidePos(asidePos)
    }}
-   
-   //let idForData = ""
 
    const getUserData = async () => {
       const axiosResp = await axiosConfig.get(
@@ -37,21 +35,21 @@ const  KnowledgeAccountMain = ()=>{
       //console.log(knowledgeData)
       
       
-      const getMarketKnowledgeData = async () => {
-         const axiosResp = await axiosConfig.get(
-            `http://localhost:4000/professionalStatus`
-            );
-            const marketData = axiosResp.data;
-            //setMarketKnowledgeData(marketData);
-            setMarketData(marketData)
-         };
-         
-         useEffect(() => {
-            setGotoPage("/KnowledgeAccount")
-            getMarketKnowledgeData()
-            getUserData()
-            buttonPosCheck()
-         }, []);
+   const getMarketKnowledgeData = async () => {
+      const axiosResp = await axiosConfig.get(
+         `http://localhost:4000/professionalStatus`
+         );
+         const marketData = axiosResp.data;
+         //setMarketKnowledgeData(marketData);
+         setMarketData(marketData)
+      };
+      
+      useEffect(() => {
+         setGotoPage("/KnowledgeAccount")
+         getMarketKnowledgeData()
+         getUserData()
+         buttonPosCheck()
+      }, []);
          
 
    return (
@@ -61,19 +59,20 @@ const  KnowledgeAccountMain = ()=>{
          </section>
 
          <section id="account_1">
-            <h3> Ihre Karrierestatus</h3>
+            <h3> Ihre Karrierestatus, {contactData.firstName} {contactData.lastName}</h3>
             <div id="account_1_data">
                <div>
                   <div> 
-                     <p>Name:</p> 
-                     <output id="fullName">{contactData.firstName} {contactData.lastName}</output>
+                     <p></p>
+                     {/* <p>Name:</p> 
+                     <output id="fullName">{contactData.firstName} {contactData.lastName}</output> */}
                   </div>
                   <div>
-                     <p>profession:</p> 
+                     <p>Berufsbezeichnung:</p> 
                      <output id="profession">{knowledgeData.profession}</output>
                   </div>
                   <div>
-                     <p>current company:</p>
+                     <p>aktuelle Firma:</p>
                      <output id="company">VIA-Design</output>
                   </div>
                </div>
@@ -197,24 +196,24 @@ const  KnowledgeAccountMain = ()=>{
             <h3> Ihre persönlichen Daten</h3>
             <div id="account_3_data">
 
-            <div className="account_3">
-               <p>Joachim Ritter<br />
-                  Geburtsdatum <br /><br />
-                  Anrede
-               </p>
-            </div>
+               <div className="account_3">
+                  <p>Joachim Ritter<br />
+                     Geburtsdatum <br /><br />
+                     Anrede
+                  </p>
+               </div>
 
-            <div className="account_3">
-               <p>Ihre E-Mail <br />Ihre Mobilnummer
-                  <br />Firma</p>
-            </div>
+               <div className="account_3">
+                  <p>Ihre E-Mail <br />Ihre Mobilnummer
+                     <br />Firma</p>
+               </div>
 
-            <div className="account_3">
-               <p>Ihr Anmeldename<br />Ihr Password<br />
-               </p>
-            </div>
+               <div className="account_3">
+                  <p>Ihr Anmeldename<br />Ihr Password<br />
+                  </p>
+               </div>
 
-         </div>
+            </div>
 
          </section>
 
@@ -245,22 +244,20 @@ const  KnowledgeAccountMain = ()=>{
          <section id="account_5">
             <h3> Ihre Abrechnungsdaten</h3>
             <div>
-            <div className="account_5">
-               <p>Joachim Ritter<br />
-                  Marienfelder Str. 18 <br />33330 Gütersloh<br />Deutschland
-               </p>
-            </div>
-
-            <div className="account_5">
-               <p>Ihr <br />derzeit angestellt bei<br />angstellt
-               </p>
-            </div>
-
-            <div className="account_5">
-               <p>Ihr <span className="LitCoin">L</span>it<span className="LitCoin">C</span>oin <br />Guthaben</p>
-               <div id="account_5_Box"> <p>250 <span className="LC"> LC</span></p>
+               <div className="account_5">
+                  <p>Joachim Ritter<br />
+                     Marienfelder Str. 18 <br />33330 Gütersloh<br />Deutschland
+                  </p>
                </div>
-            </div>
+               <div className="account_5">
+                  <p>Ihr <br />derzeit angestellt bei<br />angstellt
+                  </p>
+               </div>
+               <div className="account_5">
+                  <p>Ihr <span className="LitCoin">L</span>it<span className="LitCoin">C</span>oin <br />Guthaben</p>
+                  <div id="account_5_Box"> <p>250 <span className="LC"> LC</span></p>
+                  </div>
+               </div>
             </div>
          </section>
             

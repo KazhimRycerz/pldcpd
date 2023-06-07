@@ -1,14 +1,12 @@
-import "./HomeMain.scss";
-//import { Link } from "react-router-dom";
-//import Level_4_SLD from "../../images/Level_4_SLD.jpg"
+import "./CareerPlanningMain.scss";
+import { Link } from "react-router-dom";
 import C from "../../images/C.png"
 import LightingEffect from "../LightingEffect/LightingEffect.jsx"
 import { useContext, useEffect } from "react";
 import { SectionsContext } from "../../context/SectionsContext.js";
-import { HashLink as Link } from 'react-router-hash-link';
 
 
-const HomeMain = () => {
+const CareerPlanning = () => {
 
   const { isAuth, setGotoPage, setButtonPos, setAsidePos } = useContext(SectionsContext);
   
@@ -27,6 +25,7 @@ useEffect(() => {
     <main> {/* Styling in global */}
       <section id="Gruß_main">
         <h1 id="Gruß_main_h1">
+          {" "}
           Ihre persönliche Berufsplanung im Lichtdesign
         </h1>
         <p id="Gruß_main_p">
@@ -491,7 +490,7 @@ useEffect(() => {
               Karrierelevel. Klicken Sie und schauen Sie im Detail, was
               angeboten wird.
             </p>
-            <Link to="/abouttheprofession#career">
+            <Link to="/home">
               <img src={C} alt="" className="logo_cpd" />
             </Link>
           </div>
@@ -507,7 +506,7 @@ useEffect(() => {
                   Jahen definiert.
                 </p>
               </div>
-              <img src={require('../../images/Level_1_SLD.jpg')} alt="" />
+              {<img src={require('../../images/Level_1_SLD.jpg')} alt="" />}
             </div>
 
             <div id="learning_5_2">
@@ -623,4 +622,4 @@ useEffect(() => {
     </main>
   );
 };
-export default HomeMain;
+export default CareerPlanning;

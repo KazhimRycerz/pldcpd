@@ -144,6 +144,9 @@ Header {
  }
  
  #header_myaccount {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
    background-color: transparent;
    width: 15vw;
    height: auto;

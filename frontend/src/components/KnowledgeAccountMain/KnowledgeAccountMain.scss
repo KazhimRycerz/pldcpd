@@ -7,16 +7,6 @@ main {
     color: $secondary-color;
   }
 
-  section {
-    width: 80%;
-    margin: 0 auto;
-    h3 {
-      font-family: $primary-font-bold;
-      margin: 10px;
-      padding-top: 10px;
-    }
-  }
-
   #Gruß_account {
     display: flex;
     flex-flow: row nowrap;
@@ -36,6 +26,17 @@ main {
       width: 100px;
     }
   }
+
+  section {
+    width: 80%;
+    margin: 0 auto;
+    h3 {
+      font-family: $primary-font-bold;
+      margin: 10px;
+      padding-top: 10px;
+    }
+  }
+
 
   #account_1 {
     display: block;
@@ -101,20 +102,6 @@ main {
     }
   }
 
-  /* .account_Box {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-family: $primary-font-bold;
-    font-size: $normal;
-    width: 120px;
-    height: 30px;
-    border-radius: $radiussmall;
-    padding: 7px;
-    text-align: center;
-    background-color: $fourth-color;
-  } */
-
 #account_1_data > div:nth-of-child(2) {
   display: flex;
   flex: 1 auto 1;
@@ -156,7 +143,6 @@ main {
   border-left: 3px dotted $cpdred;
   border-right: 3px dotted $cpdred;
   border-radius: 20px;
-  //background-color: RGB(221, 155, 55, 0.2);
   height: auto;
   > p {
     margin-left: 10px;
@@ -166,74 +152,71 @@ main {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
-  gap: 10px;
-  margin-top: 0px;
+  //align-content: flex-start;
+  gap: 30px;
+  margin-top: 10px;
   width: 100%;
   padding: 20px;
+  //border: solid;
   .account_2 {
     display: flex;
     flex: row nowrap;
     justify-content: space-between;
-    gap:30px;
-    margin-top: 30px;
+    gap:10px;
+    //margin: 30px 30px 0 30px;
     padding: 10px;
-    width: 30%;
+    width: auto;
+    min-width: 45%;
     background-color: $fourth-color;
     border-radius: $radiussmall;
     box-shadow: $boxshadow;
     height: 80px;
     position: relative;
     //border: solid;
-    div > h2 {
-      font-family: $guthaben;
-      background-color: $cpdblue;
-      color: white;
-      width: 75px; 
-    }
     div:first-child {
       position: relative;
       top: -20px;
-    }
-    > div:last-child {
+      left: 10px;
+      background-color: $cpdblue;
+      >h2 {
+        font-family: $guthaben;
+        font-weight: bold;
+        font-size: 30px;
+        text-align: center;
+        color: white;
+        padding: 5px;
+        width: 70px;
+        height: 90px;
+        position: relative;
+        top: -10px;
+        line-height: 180%;
+        border-radius: $radiussmall;
+        background-color: $cpdblue;
+      }
+      >p {
+        padding-left: 4px;
+        margin-top: -40px;
+        font-family: $primary-font;
+        font-size: 10px;
+        text-align: center;
+        color: white;
+        position: relative;
+        background-color: $cpdblue;
+      }
+    }    
+    div:last-child {
       position: relative;
       right: 0px;
       width: 50%;
       margin: 0 auto;
+      //border: solid;
     }
   }
 }
-
-.account_2 {
-   h2 {
-    padding: 5px;
-    font-weight: bold;
-    //background-color: $third-color;
-    font-size: 30px;
-    text-align: center;
-    color: white;
-    width: 60px;
-    height: 90px;
-    line-height: 180%;
-    border-radius: $radiussmall;
-    position: relative;
-    top: -10px;
-  }
-   p {
-    padding-left: 4px;
-    margin-top: -40px;
-    font-family: $primary-font;
-    font-size: 10px;
-    text-align: center;
-    color: white;
-    position: relative;
-  }
-}
-
 .account_data_box {
   display: flex;
   flex-flow: column;
   justify-content: space-between;
-  
   gap: 0px;
   //border: solid;
   //margin: 0 auto;
@@ -246,7 +229,7 @@ main {
     box-shadow: none;
     text-align: center;
     line-height: 25px;
-    width: 75%;
+    width: 50%;
     min-width: 70px;
     height: 30px;
     border: none;
@@ -259,8 +242,8 @@ main {
     display: block;
     background-color: none;
     box-shadow: none;
-    width: 75%;
-    min-width: 70px;
+    width: auto;
+    min-width: 50%;
     border: 1px solid $third-color;
     border-radius: 5px;
     font-size: $small;
@@ -280,14 +263,14 @@ main {
   border-radius: 20px;
   #account_3_data {
     display: flex;
-    margin-top: 0px;
+    margin: 0 30px;
     .account_3 {
       margin: 10px;
       margin-top: 0px;
       padding: 10px;
       width: 33%;
       height: 80px;
-      background-color: $first-color;
+      background-color: $fourth-color;
       border-radius: $radiussmall;
       box-shadow: $boxshadow;
       p {
@@ -306,7 +289,7 @@ main {
   border-radius: 20px;
   #account_4_data {
     display: flex;
-    margin-top: 0px;
+    margin: 0 30px;
   }
   .account_4 {
     display: flex;
@@ -318,7 +301,7 @@ main {
     padding-top: 0px;
     width: 33%;
     height: 80px;
-    background-color: $first-color;
+    background-color: $fourth-color;
     border-radius: $radiussmall;
     box-shadow: $boxshadow;
   }
@@ -360,7 +343,7 @@ main {
   }
   > div {
     display: flex;
-    margin-top: 0px;
+    margin: 0 30px;
   }
 }
 
@@ -371,9 +354,10 @@ main {
   padding-top: 0px;
   width: 33%;
   height: 80px;
-  background-color: $first-color;
+  background-color: $fourth-color;
   border-radius: $radiussmall;
   box-shadow: $boxshadow;
+  border:solid $cpdblue-50;
 }
 
 #account_5_Box {
@@ -396,3 +380,12 @@ main {
 }
 
 }
+@media (max-width: $phone){
+  .account_2 {
+    width: 100%;
+  }
+  section {
+    width: 100%;
+  }
+}
+ 

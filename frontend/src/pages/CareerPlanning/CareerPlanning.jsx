@@ -1,5 +1,6 @@
 import Header from '../../components/Header/Header.jsx'
 import Footer from '../../components/Footer/Footer.jsx'
+import CareerPlanningMain from '../../components/CareerPlanningMain/CareerPlanningMain.jsx'
 import './CareerPlanning.scss'
 
 const CareerPlanning = () => {
@@ -8,9 +9,10 @@ const CareerPlanning = () => {
       <Header />
       <main id="CareerPlanningMain">
         <h1 id="digitaleBaustelle">
-          This is the buildingsite for your personal careerplanning.
+          This will be the buildingsite for your personal careerplanning.
         </h1>
       </main>
+      <CareerPlanningMain />
       <Footer />
     </>
   )

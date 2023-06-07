@@ -7,21 +7,30 @@ import { SectionsContext } from "../../context/SectionsContext.js";
 import swal from "sweetalert"
 
 const Header = () => {
-  const [showMenue, setShowMenue] = useState(false);
   //const { loggedIn } = useContext(SectionsContext);
   const {isAuth, buttonPos, setButtonPos, asidePos, setAsidePos, gotoPage, setGotoPage, navigate, logout} = useContext(SectionsContext);
-
- /*  useEffect(() => {
-  console.log("buttonPosition:", buttonPos)
-  console.log("asidePos:", asidePos)
-  console.log("isAuth", isAuth)
+  const [showMenue, setShowMenue] = useState(false);
+  const [btnOpen, setBtnOpen] = useState(false);
+  const [selectedOptionAccount, setSelectedOptionAccount] = useState('');
+  
+  const toggleDropdown =()=>{
+    setBtnOpen(!btnOpen);
+  };
+  const handleOptionSelect = (option) => {
+    navigate(option);
+    /* setBtnOpen(false); */
+  };
+  
+  /*  useEffect(() => {
+    console.log("buttonPosition:", buttonPos)
+    console.log("asidePos:", asidePos)
+    console.log("isAuth", isAuth)
   }) */
-
   const manageAccountButton =()=> {
     isAuth && logout()
     !isAuth && asidePos === "accountAside showAccount"
-      ? setAsidePos("accountAside hideAccount")
-      : setAsidePos("accountAside");
+    ? setAsidePos("accountAside hideAccount")
+    : setAsidePos("accountAside");
 
     if (!isAuth && buttonPos === "") {setButtonPos("showBut") //ok
     } else if (isAuth && buttonPos === "showBut") {setButtonPos("hideBut") //ok
@@ -100,12 +109,26 @@ const Header = () => {
               <span className="C">C</span>
             </li>
             <li >
-              {isAuth ?<Link to="/KnowledgeAccount">
+              {isAuth ? <Link to="/KnowledgeAccount">
                 logged in as {localStorage.userName} <span className="C">C</span> 
                 </Link> 
               :
                 <span></span>}
             </li>
+            
+            {/* {isAuth ?
+              <li id="dropBtnAccount" onClick={toggleDropdown}>
+                logged in as {localStorage.userName} <span className="C">C</span>
+              </li>
+              :
+              <span></span>}
+              {btnOpen && (
+                <ul id="dropdownAccount">
+                  <li onClick={() => handleOptionSelect("/KnowledgeAccount")}>KnowledgeAccount <span className="C">C</span></li>
+                  <li onClick={() => handleOptionSelect("/KnowledgeAccount")}>Personal Data</li>
+                  <li onClick={() => handleOptionSelect("/KnowledgeAccount")}>Money</li>
+                </ul>
+              )}      */}       
           </ul>
         </div>
 
