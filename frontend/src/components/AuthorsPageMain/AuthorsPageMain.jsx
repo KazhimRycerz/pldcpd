@@ -9,11 +9,12 @@ import Moment from "moment"
 const AuthorMain = () => {
   const { state } = useLocation();
   const  aID  = state;
-  console.log(aID);
-  const { isAuth, setButtonPos, setAsidePos, navigate } = useContext(SectionsContext);
+  //console.log(aID);
+  const { isAuth, buttonPos, setButtonPos, setAsidePos, navigate } = useContext(SectionsContext);
   const [authorsData, setAuthorsData] = useState({})
   const [authorsDetails, setAuthorsDetails] = useState({})
   const [authorsExpertise, setAuthorsExpertise] = useState([])
+  
   const buttonPosCheck = ()=>{
     if (isAuth) {setButtonPos("showBut"); setAsidePos ("accountAside")
   }}
@@ -28,8 +29,8 @@ const AuthorMain = () => {
   setAuthorsData(authorsData)
   setAuthorsDetails(authorsDetails)
   setAuthorsExpertise(authorsExpertise)
-  console.log(authorsDetails)
-  console.log(authorsExpertise)
+  //console.log(authorsDetails)
+  //console.log(authorsExpertise)
 };
 
 const zurückZurListe = () => {
@@ -38,11 +39,11 @@ const zurückZurListe = () => {
 
 useEffect(() => {
   searchAuthorsData(aID);
-  buttonPosCheck();
-}, []);
+  //buttonPosCheck(buttonPos);
+}, [/* buttonPos, */ aID]);
 
   return (
-    <main id="courseMain"> {/* Styling in global */}
+    <main id="authorsPageMain"> {/* Styling in global */}
       <div id="headBox">
         <h2 id="courseHead">Autoren Info</h2>
         <button onClick={zurückZurListe} className="buttonBasics" >zurück zur Übersicht</button>
@@ -51,7 +52,7 @@ useEffect(() => {
       <article id="authorsArticle">
         <div className="courseBoxes"> 
             <p>Autorenname</p> 
-            <div className="output" className="output" id="courseTopic">{authorsData.professionalTitle} {authorsData.firstName} {authorsData.lastName} {authorsData.appendix}</div>
+            <div className="output" id="courseTopic">{authorsData.professionalTitle} {authorsData.firstName} {authorsData.lastName} {authorsData.appendix}</div>
         </div>
         {/* <div className="courseBoxes"> 
             <p>Autorenname</p> 
@@ -66,7 +67,7 @@ useEffect(() => {
             <output id="authorExpertise">{authorsDetails.fieldsOfExpertise}</output>
         </div> */}
         <div>
-          <p>Themen</p> 
+          <p>Expertise</p> 
             <div className="output" id="fieldsOfExpertise">
               {authorsExpertise.map((field, index) => (
                   <li key={index} id="authorsExpertise">
@@ -81,10 +82,10 @@ useEffect(() => {
             <p>letzte Aktualisierung</p> 
             <div className="output" id="authorUpdate" >{Moment(authorsDetails.updatedOn).format("DD.MM.YYYY")}</div>
         </div> 
-        <div> 
+        {/* <div> 
             <p></p> 
-            <div> </div>
-        </div> 
+            <div id="authorUpdate"> </div>
+        </div> */}
         {/* <div> 
           <p>andere Themenvorschläge von diesem Autoren</p> 
           <output id="courseEnd" >{Moment(courseData.endOfCourse).format("DD.MM.YYYY")}</output>

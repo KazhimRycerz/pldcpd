@@ -62,19 +62,18 @@ const  KnowledgeAccountMain = ()=>{
             <h3> Ihre Karrierestatus, {contactData.firstName} {contactData.lastName}</h3>
             <div id="account_1_data">
                <div>
-                  <div> 
-                     <p></p>
-                     {/* <p>Name:</p> 
-                     <output id="fullName">{contactData.firstName} {contactData.lastName}</output> */}
-                  </div>
                   <div>
-                     <p>Berufsbezeichnung:</p> 
+                     <p>Ihr Beruf:</p> 
                      <output id="profession">{knowledgeData.profession}</output>
                   </div>
                   <div>
                      <p>aktuelle Firma:</p>
                      <output id="company">VIA-Design</output>
                   </div>
+                  {/* <div> 
+                     <p>Name:</p> 
+                     <output id="fullName">{contactData.firstName} {contactData.lastName}</output>
+                  </div> */}
                </div>
 
                <div>
@@ -88,13 +87,13 @@ const  KnowledgeAccountMain = ()=>{
 
                <div>
                   <div>
-                     <p>CPD-aktiv seit</p>
-                     <output id="my_start"> {Moment(knowledgeData.cpdActiveSince).format("DD.MM.YYYY")}
+                     <p>beruflich aktiv seit </p>
+                     <output id="my_active"> {Moment(knowledgeData.professionalSince).format("DD.MM.YYYY")}
                      </output>
                   </div>
                   <div>
-                     <p>beruflich aktiv seit </p>
-                     <output id="my_active"> {Moment(knowledgeData.professionalSince).format("DD.MM.YYYY")}
+                     <p>CPD-aktiv seit</p>
+                     <output id="my_start"> {Moment(knowledgeData.cpdActiveSince).format("DD.MM.YYYY")}
                      </output>
                   </div>
                   <div>

@@ -8,7 +8,6 @@ Header {
   font-family: $primary-font;
   display: flex;
   justify-content: space-between;
-  //justify-content: flex-end;
   align-items: center;
   flex-wrap: nowrap;
   width: 100%;
@@ -80,105 +79,92 @@ Header {
      }
    }
   }
-  #header_myaccount ul {
-   display: flex;
-   flex-flow: column nowrap;
-   justify-content: baseline;
-   height: auto;
-   align-items: flex-end;
-   cursor: pointer;
+  @keyframes navpresenter {
+    0%  {opacity: 0;}
+    100% {opacity: 1;}
   }
-   
- @keyframes navpresenter {
- 0%  {opacity: 0;}
- 100% {opacity: 1;}
- }
-   
- #dropdown:hover #dropdown-content {
-   opacity: 1;
-   width: auto;
-   li:nth-child(2){
-     opacity: 0;
-     animation: navpresenter 1s forwards; 
-     animation-fill-mode: both;
-   }
-   li:nth-child(3){
-     opacity: 0;
-     animation: navpresenter 2s  forwards;
-   }
-   li:nth-child(4){
-     opacity: 0;
-     animation: navpresenter 3s  forwards;
-   }
-   li a:hover {
-     color: $cpdred;
-     text-shadow: 1px 1px 20px $cpdred;
-   }
- }
- #dropbtn p::after {
-   content: "";
-   width: 10px;
-   height: 10px;
- }
- #dropdown:hover #dropbtn {
-   display: none;
-   opacity: 0;
- }
- 
- .image_header {
-     height:30px;
-   }
-   
- .text_header {
-   position: relative;
-   display: flex;
-   align-items: center;
-   gap: 10px;
-   flex-wrap: nowrap;
-   margin-top: 0px;
-   margin-left: 15%;
-   font-size: $small;
-   text-decoration: none;
-   vertical-align: top;
-   line-height: 1.2;
- }
- 
- #header_myaccount {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: flex-start;
-   background-color: transparent;
-   width: 15vw;
-   height: auto;
-   margin-right: 10vw;
-   font-size: $small;
-     ul {
-       display: flex;
-       flex-flow: column nowrap;
-       justify-content: center;
-       //align-items: end; caused Fehlermeldung on prefixer
-       gap: 0px;
-       li {
-         list-style-type: none;
-         a {
-           text-decoration:none;
-           color: black;
-         }
-       }
-       li:hover{
-         text-decoration:none;
-         color: $cpdred;
-         text-shadow: $text-shadow;
-       }
-     }  
-     .user{
-       //display: none;
-       visibility: hidden;
-     }  
+  
+  #dropdown:hover #dropdown-content {
+    opacity: 1;
+    width: auto;
+    li:nth-child(2){
+      opacity: 0;
+      animation: navpresenter 1s forwards; 
+      animation-fill-mode: both;
     }
-    #imgHeader{
-     width: 50px;
+    li:nth-child(3){
+      opacity: 0;
+      animation: navpresenter 2s  forwards;
     }
+    li:nth-child(4){
+      opacity: 0;
+      animation: navpresenter 3s  forwards;
+    }
+    li a:hover {
+      color: $cpdred;
+      text-shadow: 1px 1px 20px $cpdred;
+    }
+  }
+  #dropbtn p::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+  }
+  #dropdown:hover #dropbtn {
+    display: none;
+    opacity: 0;
+  }
+  
+  .image_header {
+    height:30px;
+  }
+  
+  .text_header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: nowrap;
+    margin-top: 0px;
+    margin-left: 15%;
+    font-size: $small;
+    text-decoration: none;
+    vertical-align: top;
+    line-height: 1.2;
+  }
+  
+  #header_myaccount {
+    margin-right: 10vw;
+    font-size: $small;
+    //border: solid;
+    ul {
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: flex-start;
+      align-content:flex-start;
+      align-items: flex-end;
+      height: auto;
+      cursor: pointer;
+      li {
+        list-style-type: none;
+        a {
+          text-decoration:none;
+          color: black;
+        }
+      }
+      li:hover{
+        color: $cpdred;
+        text-shadow: $text-shadow;
+      }
+    }  
+    .user{
+      //display: none;
+      visibility: hidden;
+      #imgHeader{
+        width: 50px;
+      }
+    }  
+  }
  
  #burger_button {
      cursor: pointer;
@@ -268,7 +254,7 @@ Header {
      height: 500px;
      margin: 0 auto;
      background: $first-color;
-     z-index: 10;
+     z-index: 11;
      padding-top: 50px;
      padding-bottom: 30px;
      box-shadow: $boxshadowbottom;

@@ -24,14 +24,15 @@
     border-left: dotted;
     border-right: dotted;
     border-width: 3px;
-    border-radius: $radiussmall;
+    border-radius: $radiuslarge;
+    border-color: $cpdred;
   }
   
   #tableCourseList {
     font-size: $small;
     margin: 0 auto;
     font-size: $small;
-    padding: 5px;
+    padding: 10px;
     //text-align: center;
     /* border-width: 1rem;
     border-left: dotted;
@@ -79,7 +80,7 @@
     }
     
     .larger:hover {
-      background: $cpdblue;
+      background: $cpdred;
       color: $secondary-color;
       width: 20%;
       cursor: pointer;
@@ -89,6 +90,11 @@
         font-size: 16px;
       }
     }
+    #author:hover:before{
+       content: 'C ';
+       font-family: VIA-Verlag;
+       vertical-Align: -1px;
+     }
     #author:hover {
       //background-color: $cpdblue;
       color: white;
@@ -97,10 +103,6 @@
       #authorsLink:hover {
         color: white;
       }
-      #author:hover::before{
-         content: '> ';
-         font-weight: 700;
-       }
     }
     #infoLink {
       text-align: center;

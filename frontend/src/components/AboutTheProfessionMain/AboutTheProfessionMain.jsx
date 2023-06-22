@@ -3,22 +3,27 @@ import "./AboutTheProfessionMain.scss";
 //import Level_4_SLD from "../../images/Level_4_SLD.jpg"
 import C from "../../images/C.png"
 //import LightingEffect from "../LightingEffect/LightingEffect.jsx"
-import { useContext, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import { SectionsContext } from "../../context/SectionsContext.js";
 import { HashLink as Link } from 'react-router-hash-link';
 
 
 const AboutTheProfessionMain = () => {
-
+  
   const { isAuth, setGotoPage, setButtonPos, setAsidePos } = useContext(SectionsContext);
+  const [btnOpen, setBtnOpen] = useState(false);
   const buttonPosCheck = ()=>{
     if (isAuth) {setButtonPos("showBut"); setAsidePos ("accountAside")
+    }
   }
-}
 
-useEffect(() => {
-  buttonPosCheck(SectionsContext)
-}, []);
+  const toggleDropdown =()=>{
+    setBtnOpen(!btnOpen);
+  };
+
+  useEffect(() => {
+    buttonPosCheck(SectionsContext)
+  }, []);
 
 
   return (
@@ -66,7 +71,7 @@ useEffect(() => {
             <p>Erfindung der elektrischen Beleuchtung: Mit der Erfindung der Glühbirne und der Einführung der elektrischen Beleuchtung Ende des 19. Jahrhunderts wurden neue Möglichkeiten für die Lichtgestaltung geschaffen. Die steuerbare und flexible Natur der elektrischen Beleuchtung eröffnete neue kreative Wege, um die Stimmung und Atmosphäre in Theateraufführungen und anderen Veranstaltungen zu beeinflussen.</p>
             <p>Entwicklung des Bühnenbilds: Im 20. Jahrhundert gewann das Bühnenbild an Bedeutung, und die Beleuchtung wurde zu einem integralen Bestandteil der Inszenierung. Kreative Köpfe wie Adolphe Appia und später Richard Pilbrow erkannten die Bedeutung der Beleuchtung als gestalterisches Element und trugen zur Weiterentwicklung des Lichtdesigns bei.</p>
             <p>Technologische Fortschritte: Mit dem Aufkommen von Computern und digitaler Technologie in den letzten Jahrzehnten hat sich das Lichtdesign erneut sprunghaft weiterentwickelt. Lichtdesigner können jetzt komplexe Lichtshows programmieren und steuern, bei denen sie Lichtfarben, -bewegungen und -effekte präzise kontrollieren können.</p>
-            <p>Heutzutage ist der Beruf des Lichtdesigners in vielen Bereichen etabliert, darunter Theater, Konzerte, Architektur, Events und Filmproduktion. Lichtdesigner arbeiten mit einer Vielzahl von Beleuchtungstechnologien und -systemen, um spektakuläre visuelle Erlebnisse zu schaffen und die gewünschten Stimmungen zu erzeugen.</p>
+            <p>Heutzutage ist der Beruf des Lichtdesigners in vielen Bereichen etabliert, darunter Theater, Konzerte, Events und Filmproduktion. Die Architektur bildet seit den 90er Jahren des letzten Jahrhundert eine eigenständigen starken Bereich. Lichtdesigner arbeiten mit einer Vielzahl von Beleuchtungstechnologien und -systemen, um spektakuläre visuelle Erlebnisse zu schaffen und die gewünschten Stimmungen zu erzeugen. Doch Lichtdesign bedeutet auch nichtvisuelle Effekte für Mensch, Tier und Natur zu ermöglichen.</p>
           </div>
         </div>
       </section> 
@@ -76,17 +81,33 @@ useEffect(() => {
           <h2> Lichtdesigner - <br />Wissen und Themen <br />auf der Karriereleiter </h2>
           
           <div id="careerLadder"> 
+            {/* <ul>
+              <li><Link to="/abouttheprofession#levelI"> <span className="C">C</span> Level I</Link></li>
+              <li><Link to="/abouttheprofession#levelII"> <span className="C">C</span> Level II</Link></li>
+              <li><Link to="/abouttheprofession#levelIII"> <span className="C">C</span> Level III</Link></li>
+              <li><Link to="/abouttheprofession#levelIV"> <span className="C">C</span> Level IV</Link></li>
+              <li><Link to="/abouttheprofession#levelV"> <span className="C">C</span> Level V</Link></li>
+              <li><Link to="/abouttheprofession#levelVI"> <span className="C">C</span> Level VI</Link></li>
+              <li><Link to="/abouttheprofession#levelVII"> <span className="C">C</span> Level VII</Link></li>
+              <li><Link to="/abouttheprofession#levelVIII"> <span className="C">C</span> Level VIII</Link></li>
+              <li><Link to="/abouttheprofession#levelIX"> <span className="C">C</span> Level IX</Link></li>
+            </ul> */}
+            <span className="C">C</span>
+            <span onMouseOver={toggleDropdown}>Auswahl Level I bis IX</span>
+            {btnOpen && (
             <ul>
-              <li><Link to="/abouttheprofession#levelI"> Level I</Link></li>
-              <li><Link to="/abouttheprofession#levelII"> Level II</Link></li>
-              <li><Link to="/abouttheprofession#levelIII"> Level III</Link></li>
-              <li><Link to="/abouttheprofession#levelIV"> Level IV</Link></li>
-              <li><Link to="/abouttheprofession#levelV"> Level V</Link></li>
-              <li><Link to="/abouttheprofession#levelVI"> Level VI</Link></li>
-              <li><Link to="/abouttheprofession#levelVII"> Level VII</Link></li>
-              <li><Link to="/abouttheprofession#levelVIII"> Level VIII</Link></li>
-              <li><Link to="/abouttheprofession#levelIX"> Level IX</Link></li>
+              <li><Link to="/abouttheprofession#levelI"> <span className="C">C</span> Level I</Link></li>
+              <li><Link to="/abouttheprofession#levelII"> <span className="C">C</span> Level II</Link></li>
+              <li><Link to="/abouttheprofession#levelIII"> <span className="C">C</span> Level III</Link></li>
+              <li><Link to="/abouttheprofession#levelIV"> <span className="C">C</span> Level IV</Link></li>
+              <li><Link to="/abouttheprofession#levelV"> <span className="C">C</span> Level V</Link></li>
+              <li><Link to="/abouttheprofession#levelVI"> <span className="C">C</span> Level VI</Link></li>
+              <li><Link to="/abouttheprofession#levelVII"> <span className="C">C</span> Level VII</Link></li>
+              <li><Link to="/abouttheprofession#levelVIII"> <span className="C">C</span> Level VIII</Link></li>
+              <li><Link to="/abouttheprofession#levelIX"> <span className="C">C</span> Level IX</Link></li>
             </ul>
+            )}
+
             <div id="levelI"> 
               <h3> Level I - Student in lighting design<br />(Bachelor, Master – 3 to 5 years) </h3>
               <div>

@@ -15,7 +15,7 @@ export const AutoLogout = /* async */ () => {
     /* await */ axiosConfig.post("/user/logout");
     localStorage.clear();
     swal({
-      title: "Du wurdest automatisch abgemeldet.",
+      title: "Sie wurden automatisch abgemeldet.",
       icon: "warning",
       dangerMode: true,
     }).then(() => {

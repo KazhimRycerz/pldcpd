@@ -68,18 +68,27 @@ img[src*="c.png"] {
   //border: solid;
   #careerLadder {
   //border: solid;
+  margin: 0 auto 20px;
     >ul{
       display: flex;
-      flex-flow: row nowrap;
+      flex-flow: row;
       justify-content: space-around;
       margin-bottom: 20px;
       list-style-type: none;
-      li{
+      li >*{
         text-decoration: none;
-        :hover {
-          color: $cpdred;
-          text-shadow: $text-shadow;
-        }
+        color: black;
+        font-size:$small;
+      }
+      /* li:before{
+         content: "C";
+         font-family: $calli;
+         color: $cpdred;
+         font-size: $normal;
+       } */
+      li:hover {
+        color: $cpdred;
+        text-shadow: $text-shadow;
       }
     }
     >div {
@@ -90,7 +99,6 @@ img[src*="c.png"] {
       padding: 20px;
       margin-bottom: 20px;
       margin-left: 0px;
-
       h2{
         width: 25%;
       }
@@ -106,9 +114,12 @@ img[src*="c.png"] {
       }
       img {
         width: 50%;
+        max-width: 300px;
         //display: inline;
+        object-fit: contain;
       }
       ul{
+        width: 55%;
         li {
           list-style-type: none;
         }

@@ -1,52 +1,49 @@
 import "./Header.scss";
 //import JoachimRitter from '../../images/Joachim_privat.jpg'
 import { NavLink, Link} from "react-router-dom";
-import { useContext, useState} from "react";
+import { useContext, useState, useEffect} from "react";
 import pldcpd from "../../images/pldcpd.png";
 import { SectionsContext } from "../../context/SectionsContext.js";
 import swal from "sweetalert"
 
 const Header = () => {
   //const { loggedIn } = useContext(SectionsContext);
-  const {isAuth, buttonPos, setButtonPos, asidePos, setAsidePos, gotoPage, setGotoPage, navigate, logout} = useContext(SectionsContext);
+  const { isAuth, buttonPos, setButtonPos, asidePos, setAsidePos, gotoPage, setGotoPage, navigate, logout } = useContext(SectionsContext);
   const [showMenue, setShowMenue] = useState(false);
-  const [btnOpen, setBtnOpen] = useState(false);
-  const [selectedOptionAccount, setSelectedOptionAccount] = useState('');
+  //const [btnOpen, setBtnOpen] = useState(false);
+  //const [selectedOptionAccount, setSelectedOptionAccount] = useState('');
   
-  const toggleDropdown =()=>{
+  /* const toggleDropdown =()=>{
     setBtnOpen(!btnOpen);
   };
   const handleOptionSelect = (option) => {
     navigate(option);
-    /* setBtnOpen(false); */
-  };
+    //setBtnOpen(false);
+  }; */
   
-  /*  useEffect(() => {
-    console.log("buttonPosition:", buttonPos)
-    console.log("asidePos:", asidePos)
-    console.log("isAuth", isAuth)
-  }) */
   const manageAccountButton =()=> {
     isAuth && logout()
     !isAuth && asidePos === "accountAside showAccount"
     ? setAsidePos("accountAside hideAccount")
     : setAsidePos("accountAside");
-
-    if (!isAuth && buttonPos === "") {setButtonPos("showBut") //ok
-    } else if (isAuth && buttonPos === "showBut") {setButtonPos("hideBut") //ok
+    
+           if (!isAuth && buttonPos === "") {setButtonPos("showBut") //ok
     } else if (!isAuth && buttonPos === "hideBut") {setButtonPos("showBut")
-    } else if (isAuth && buttonPos === "showBut moveButton") {setButtonPos("moveButtonBackToStart")
-    } else if (!isAuth && buttonPos === "moveButtonBackToStart") {setButtonPos("showBut")
-    //  } else if (isAuth && buttonPos === "moveButtonBackToStart") {setButtonPos("showBut")
-    } else if (isAuth && buttonPos === "showBut moveButtonBack") {setButtonPos("hideBut")
+    } else if (!isAuth && buttonPos === "showBut") {setButtonPos("hideBut")
+    } else if (!isAuth && buttonPos === "showBut moveButtonBack") {setButtonPos("hideBut")
     } else if (!isAuth && buttonPos === "hideBut moveButton") {setButtonPos("hideBut")
-    } else {setButtonPos("") 
+    } else if (!isAuth && buttonPos === "moveButtonBackToStart") {setButtonPos("showBut")
+    } else if (isAuth && buttonPos === "showBut") {setButtonPos("hideBut") //ok
+    } else if (isAuth && buttonPos === "showBut moveButton") {setButtonPos("moveButtonBackToStart")
+    } else if (isAuth && buttonPos === "showBut moveButtonBack") {setButtonPos("hideBut")
+    } else {setButtonPos("buttonZeroPosition") 
     }
-  }
+    }
 
-  /* const manageLinkToKnowledgeAccount =()=>{
-    !isAuth && navigate("/login")
-  }  */
+    /* useEffect(() => {
+    console.log("buttonPosition:", buttonPos)
+    console.log("asidePos:", asidePos)
+    }, []) */
 
   return (
     <>
@@ -125,10 +122,11 @@ const Header = () => {
               {btnOpen && (
                 <ul id="dropdownAccount">
                   <li onClick={() => handleOptionSelect("/KnowledgeAccount")}>KnowledgeAccount <span className="C">C</span></li>
-                  <li onClick={() => handleOptionSelect("/KnowledgeAccount")}>Personal Data</li>
-                  <li onClick={() => handleOptionSelect("/KnowledgeAccount")}>Money</li>
+                  <li onClick={() => handleOptionSelect("/KnowledgeAccount")}>Personal Data<span className="C">C</span></li>
+                  <li onClick={() => handleOptionSelect("/KnowledgeAccount")}>Money<span className="C">C</span></li>
+                  <li >test</li>
                 </ul>
-              )}      */}       
+              )} */}            
           </ul>
         </div>
 
@@ -155,7 +153,7 @@ const Header = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/abouttheprofession" className="closebtn">
+              <NavLink to="/abouttheprofession" style={{color: "red"}} className="closebtn">
                 <span className="C">C</span> the profession
               </NavLink>
             </li>

@@ -4,6 +4,7 @@ import Header from "../../components/Header/Header.jsx";
 import AccountAside from "../../components/AccountAside/AccountAside.jsx";
 import Footer from "../../components/Footer/Footer.jsx";
 import HomeMain from "../../components/HomeMain/HomeMain.jsx";
+//import Slider from "../../components/Slider/Slider.jsx"
 
 const Home = () => {
   return (

@@ -1,101 +1,116 @@
 @import "../../scss/global.scss";
 
-
-main >div {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  //border: solid;
-  width: 80%;
-  margin: 0 auto;
-  
-  .buttonBasics {
-    vertical-align: middle;
-    width: 150px;
-    max-width: 150px;
-    height: 45px;
-    margin: 0px auto;
-    font-size: $xsmall;
-    //padding: 0.5rem 0.5rem;
-    vertical-align: middle;
-    background-color: $first-color;
-    color: $cpdblue;
-    //border: 2px solid var(--dark-green-color);
-    box-shadow: $btnshadow;
-    border-radius: $radiussmall;
-    text-decoration: none;
-  }
-  .buttonBasics:hover {
-    background-color: $cpdblue;
-    color: $first-color;
-  }
-}
-
-#authorsArticle {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content:flex-start;
-  border-left: dotted;
-  border-right: dotted;
-  border-radius: $radiussmall;
-  border-width: 3px;
-  border-color: $cpdred;
-  width: 80%;
-  margin: 0px auto;
-  //background-color: $fourth-color;
-  padding: 30px;
-  //box-shadow: $boxshadow;
-  gap: 20px;
-  
-  div {
+#authorsPageMain {
+  position: relative;
+  min-height: 60vh;
+  margin-top: 100px;
+  background-color: $first-color;
+  //background-color: $cpdblue;
+  //border-color: $cpdred;
+  >div {
     display: flex;
-    flex-flow: column nowrap;
-    border-radius: $radiussmall;
-    flex-grow: 1;
-
-    >p{
+    justify-content: space-between;
+    align-items: center;
+    //border: solid;
+    width: 80%;
+    margin: 20px auto;
+    h2{
       display: inline;
-     /*  border-left: dotted;
-      border-right: dotted; */
-      border-radius: 10px;
-      line-height: 50px;
-      margin: 0px;
-      padding: 0px 0px;
-      font-size: 1.3rem;
-      font-family:$primary-font-bold;
-      //background-color: $cpdblue;
+      color: $first-color;
       color: $cpdblue;
+      width: 80%;
+      margin: 10px 30px ;
+      font-family: $primary-font-bold;
+      //border: solid;
     }
-    .output {
-      display: block;
-      font-size: $normal;
-      padding: 10px;
-      border-radius: 10px;
-      /* border-left: dotted;
-      border-right: dotted;
-      border-width: 10px;
-      border-color: black; */
-      background-color: $fourth-color;  
-      box-shadow: $boxshadow;
+    
+    .buttonBasics {
+      vertical-align: middle;
+      width: 60%;
+      height: 40px;
+      max-width: 150px;
+      margin: 0px ;
+      font-size: $xsmall;
+      padding: 0.5rem 0.5rem;
+      background-color: $first-color;
+      background-color: $cpdred;
       color: $cpdblue;
-      text-align:left; 
+      color: $first-color;
+      box-shadow: $btnshadow;
+      border-radius: $radiussmall;
+      text-decoration: none;
     }
-    #authorVitae {
-      font-size: $normal;
-      line-height: 2rem;  
-      padding: 20px;
-    }
-    #authorUpdate {
-      max-width: 220px;
+    .buttonBasics:hover {
+      background-color: $cpdred;
+      background-color: $cpdblue;
+      color: $first-color;
     }
   }
-  #fieldsOfExpertise{
+
+  #authorsArticle {
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: row wrap;
     justify-content:flex-start;
-    list-style: none;
+    column-gap: 20px;
+    width: 80%;
+    margin: 0px auto;
+    padding: 20px;
+    border-left: dotted;
+    border-right: dotted;
+    border-radius: $radiuslarge;
+    border-width: 3px;
+    border-color: $first-color;
+    border-color: $cpdred;
+    
+    div {
+      display: flex;
+      flex-flow: column nowrap;
+      border-radius: $radiussmall;
+      flex-shrink: 1;
+      margin-bottom: 10px;
+      //box-shadow: $boxshadow;
+      >p{
+        line-height: 0px; 
+        margin: 0px 0 0px 0;
+        padding: 20px;
+        color: $cpdblue;
+        font-size: $normal;
+        font-family:$primary-font;
+        background-color: $first-color;
+        background-color: $fourth-color;
+        background: linear-gradient($first-color, $fourth-color );
+        border-radius: 10px 10px 0 0 ;  
+        border: solid;
+        border-bottom: none;
+        border-color: $cpdred; 
+      }
+      .output {
+        font-size: $normal;
+        padding: 10px 20px;
+        width: 100%;
+        color: $cpdblue;
+        text-align:left; 
+        border-radius: 0 0 10px 10px; 
+        background-color: $first-color;  
+        border-color: $cpdred;
+        border: solid; 
+        //box-shadow: $boxshadow;
+      }
+      #authorVitae {
+        font-size: $normal;
+        line-height: 2rem;  
+      }
+      #authorUpdate {
+        max-width: 220px;
+      }
+    }
+    #fieldsOfExpertise{
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content:flex-start;
+      list-style: none;
+    }
   }
 }
-
 
  

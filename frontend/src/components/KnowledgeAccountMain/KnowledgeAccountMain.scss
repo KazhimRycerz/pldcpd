@@ -32,7 +32,7 @@ main {
     margin: 0 auto;
     h3 {
       font-family: $primary-font-bold;
-      margin: 10px;
+      margin: 0 30px ;
       padding-top: 10px;
     }
   }
@@ -47,6 +47,7 @@ main {
     #account_1_data {
       display: flex;
       flex-flow: row wrap;
+      gap: 20px 0;
       padding: 10px;
       width: 100%;
       height: auto;
@@ -55,40 +56,42 @@ main {
       > div {
         display: flex;
         flex-flow: column nowrap;
-        justify-content: space-evenly;
-        gap: 5px;
-        margin: 10px auto;
+        justify-content: flex-start;
+        gap: 10px;
+        margin: 10px auto 0;
         padding: 15px;
-        width: 45%;
-        height: 120px;
+        width: auto;
+        min-width: 45%;
+        height: auto;
         background-color: $fourth-color;
         border-radius: $radiussmall;
         box-shadow: $boxshadow;
-        position: relative;
         > div {
           display: flex;
           flex-flow: row nowrap;
           justify-content: space-between;
           p {
-            line-height: 1rem;
+            //line-height: 1rem;
             font-size: $small;
             font-family: $primary-font;
             width: 50%;
+            vertical-align: middle;
+            min-height: 30px;
             padding: 5px;
             //border: solid;
           }
           output {
-            line-height: 1rem;
+            line-height: 30px;
             font-size: $normal;
-            font-weight: 700;
             text-align: center;
-            vertical-align: middle;
+            //padding: 5px;
             width: 50%;
-            padding: 5px;
+            height: 30px;
             //border: solid;
             border-radius: $radiusxsmall;
             color: $secondary-color;
             background-color: $third-color;
+            background-color: $cpdred;
             opacity: 1;
           }
         }
@@ -145,7 +148,7 @@ main {
   border-radius: 20px;
   height: auto;
   > p {
-    margin-left: 10px;
+    margin: 0px 0px 30px 30px;
   }
 }
 #account_2_data {
@@ -153,10 +156,10 @@ main {
   flex-flow: row wrap;
   justify-content: space-around;
   //align-content: flex-start;
-  gap: 30px;
+  gap: 30px 0px;
   margin-top: 10px;
   width: 100%;
-  padding: 20px;
+  padding: 10px;
   //border: solid;
   .account_2 {
     display: flex;
@@ -208,7 +211,7 @@ main {
       position: relative;
       right: 0px;
       width: 50%;
-      margin: 0 auto;
+      //margin: 0 auto;
       //border: solid;
     }
   }
@@ -229,7 +232,7 @@ main {
     box-shadow: none;
     text-align: center;
     line-height: 25px;
-    width: 50%;
+    width: 100%;
     min-width: 70px;
     height: 30px;
     border: none;
@@ -243,7 +246,7 @@ main {
     background-color: none;
     box-shadow: none;
     width: auto;
-    min-width: 50%;
+    min-width: 100%;
     border: 1px solid $third-color;
     border-radius: 5px;
     font-size: $small;
@@ -263,10 +266,10 @@ main {
   border-radius: 20px;
   #account_3_data {
     display: flex;
-    margin: 0 30px;
+    margin: 0 20px;
     .account_3 {
       margin: 10px;
-      margin-top: 0px;
+      margin-top: 30px;
       padding: 10px;
       width: 33%;
       height: 80px;
@@ -289,14 +292,14 @@ main {
   border-radius: 20px;
   #account_4_data {
     display: flex;
-    margin: 0 30px;
+    margin: 0 20px;
   }
   .account_4 {
     display: flex;
     flex: row nowrap;
     justify-content: space-between;
     margin: 10px;
-    margin-top: 0px;
+    margin-top: 30px;
     padding: 10px;
     padding-top: 0px;
     width: 33%;
@@ -343,13 +346,13 @@ main {
   }
   > div {
     display: flex;
-    margin: 0 30px;
+    margin: 0 20px;
   }
 }
 
 .account_5 {
   margin: 10px;
-  margin-top: 0px;
+  margin-top: 30px;
   padding: 10px;
   padding-top: 0px;
   width: 33%;
@@ -357,7 +360,7 @@ main {
   background-color: $fourth-color;
   border-radius: $radiussmall;
   box-shadow: $boxshadow;
-  border:solid $cpdblue-50;
+  //border: solid $cpdblue-50;
 }
 
 #account_5_Box {

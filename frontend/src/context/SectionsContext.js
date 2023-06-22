@@ -23,19 +23,25 @@ const SectionsProvider = ({ children }) => {
   const [userData, setUserData] = useState({});
   const [marketData, setMarketData] = useState({});
   const [gotoPage, setGotoPage] = useState("/home")
-
+  const [accessRights, setAccessRights] = useState(1)
+  // Seite AccessLevel 0 = Zugang für jedermann
+  // Seite AccessLevel 1 = Zugang für zahlende Kunden
+  // Seite AccessLevel 2 = Zugang für Admin
+  // Seite AccessLevel 3 = Zugang für Admin
+  // Seite AccessLevel 4 = Zugang für Admin
+  // Seite AccessLevel 5 = Zugang für WedevAadmin
 
   const logout = () => {
     localStorage.clear();
-    setIsAuth(false);   
+    setIsAuth(false);  
     axiosConfig.post("/user/logout").then((res) => {
-      console.log(res.data);
+      //console.log(res.data);
     });
     swal({
       title: `Sie haben sich erfolgreich abgemeldet`,
       icon: "success",
     });
-    navigate("/home");
+    gotoPage === "/KnowledgeAccount" && navigate("/home");
   };
 
 
@@ -47,6 +53,8 @@ const SectionsProvider = ({ children }) => {
         gotoPage, 
         setGotoPage,
         setIsAuth,
+        accessRights, 
+        setAccessRights,
         buttonPos, 
         navigate,
         setButtonPos,
@@ -58,8 +66,6 @@ const SectionsProvider = ({ children }) => {
         setMarketData,
         asidePos, 
         setAsidePos,
-        /* loggedIn, 
-        setLoggedIn */
       }}
     >
       {children}

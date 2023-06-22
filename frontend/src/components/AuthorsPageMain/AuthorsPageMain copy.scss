@@ -1,0 +1,111 @@
+@import "../../scss/global.scss";
+
+#authorsPageMain {
+  position: relative;
+  min-height: 60vh;
+  margin-top: 100px;
+  background-color: $first-color;
+  >div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    //border: solid;
+    width: 80%;
+    margin: 0 auto;
+    h2{
+      display: inline;
+      //border: solid;
+      width: 80%;
+      margin: 50px 0 ;
+      font-family: $primary-font-bold;
+    }
+    
+    .buttonBasics {
+      vertical-align: middle;
+      width: 60%;
+      height: 40px;
+      max-width: 150px;
+      margin: 0px ;
+      font-size: $xsmall;
+      padding: 0.5rem 0.5rem;
+      background-color: $first-color;
+      color: $cpdblue;
+      box-shadow: $btnshadow;
+      border-radius: $radiussmall;
+      text-decoration: none;
+    }
+    .buttonBasics:hover {
+      background-color: $cpdblue;
+      color: $first-color;
+    }
+  }
+}
+
+#authorsArticle {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content:flex-start;
+  border-left: dotted;
+  border-right: dotted;
+  border-radius: $radiussmall;
+  border-width: 3px;
+  border-color: $cpdred;
+  width: 80%;
+  margin: 0px auto;
+  //background-color: $fourth-color;
+  padding: 30px;
+  //box-shadow: $boxshadow;
+  gap: 20px;
+  
+  div {
+    display: flex;
+    flex-flow: column nowrap;
+    border-radius: $radiussmall;
+    flex-grow: 1;
+    margin-bottom: 10px;
+    >p{
+      display: inline;
+     /*  border-left: dotted;
+      border-right: dotted; */
+      border-radius: 10px 10px 0 0 ;  
+      line-height: 0px; 
+      margin: 0px 0 0px 0;
+      padding:20px 10px ;
+      font-size: 1.2rem;
+      font-family:$primary-font-bold;
+      background-color: $third-color;
+      color: white;
+    }
+    .output {
+      display: inline-block;
+      font-size: $normal;
+      padding: 10px 10px;
+      width: 100%;
+      background-color: $fourth-color;  
+      color: $cpdblue;
+      text-align:left; 
+      /* border-left: dotted;
+      border-right: dotted;
+      border-radius: 10px; */
+      border-radius: 0 0 10px 10px; 
+      box-shadow: $boxshadow; 
+    }
+    #authorVitae {
+      font-size: $normal;
+      line-height: 2rem;  
+      padding: 20px;
+    }
+    #authorUpdate {
+      max-width: 220px;
+    }
+  }
+  #fieldsOfExpertise{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content:flex-start;
+    list-style: none;
+  }
+}
+
+
+ 

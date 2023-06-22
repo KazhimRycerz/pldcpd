@@ -48,7 +48,7 @@ function LoginForm() {
         if (axiosResp.data.error) {
           swal({
             title: "Benutzername-Passwort-Kombination nicht korrekt",
-            text: "Nochmal versuchen?",
+            text: "Bitte versuchen Sie es nochmal?",
           });
           return;
         }

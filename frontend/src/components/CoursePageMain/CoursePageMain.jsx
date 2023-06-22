@@ -33,7 +33,7 @@ const CourseMain = () => {
   const zurückZurListe = () => {
     navigate(-1)
   }
-
+  
 useEffect(() => {
   searchCourseData(cID);
   buttonPosCheck();
@@ -45,13 +45,14 @@ useEffect(() => {
         <h2 id="courseHead">Kursinhalt und Beschreibung</h2>
         <button onClick={zurückZurListe} className="buttonBasics" id="returnToCoursePage">zurück zur Übersicht</button>
       </div>
+      
       <article id="courseArticle">
-        <div className="courseBoxes"> 
-            <p>Kursname</p> 
+        <div className="courseBoxes" id="boxAutor"> 
+            <p>Kursthema</p> 
             <div className="output" id="courseTopic">{courseData.topic}</div>
         </div>
         <div className="courseBoxes"> 
-            <p>Autoren</p> 
+              <p>Autoren</p> 
             <div className="output" id="courseHead">
               {authorsData.map((author, index) => (
                 <li key={index} id="author">
@@ -69,9 +70,9 @@ useEffect(() => {
         </div>
         <div> 
             <p>Themenbereich</p> 
-            <span className="output" id="coursetopicField">{courseData.topicField}</span>
+            <div className="output" id="courseTopicField">{courseData.topicField}</div>
         </div>
-        <div> 
+        <div id="courseInhalt"> 
             <p>Inhalt</p> 
             <div className="output" id="courseContent">
               <div>{courseData.courseContent}</div>
@@ -83,25 +84,29 @@ useEffect(() => {
             </div>
             
         </div>
-        <div> 
+        <div className="boxGroup">
+          <div> 
             <p>Kursstart</p> 
             <div className="output" id="courseStart" >{Moment(courseData.startDateOfCourse).format("DD.MM.YYYY")}</div>
-        </div> 
+          </div> 
           <div> 
             <p>Kursende</p> 
-            <span className="output" id="courseEnd" >{Moment(courseData.endOfCourse).format("DD.MM.YYYY")}</span>
+            <div className="output" id="courseEnd" >{Moment(courseData.endOfCourse).format("DD.MM.YYYY")}</div>
+          </div>
         </div>
-        <div> 
+        <div className="boxGroup">
+          <div> 
             <p>CPD-Punkte</p> 
             <div className="output punkte" id="courseAdditionalPoints" >{courseData.cpdBasicPoints}</div>
-        </div>
-        <div> 
-            <p>CPD-plusPunkte</p> 
+          </div>
+          <div> 
+            <p>CPD-plusPu</p> 
             <div className="output punkte" id="courseBasicPoints" >{courseData.cpdAdditionalPoints}</div>
+          </div>
         </div>
         <div> 
-            <p>Kursanbieter</p> 
-            <div className="output" id="courseProvider" ><a href={courseData.linkToProvider} target="_blank" rel="noopener noreferrer">{courseData.linkToProvider}</a></div>
+          <p>Kursanbieter</p> 
+          <div className="output" id="courseProvider" ><a href={courseData.linkToProvider} target="_blank" rel="noopener noreferrer">{courseData.linkToProvider}</a></div>
         </div>
         {/* <p>dieses Thema auf meine Lernliste setzen!</p> */}
           

@@ -18,32 +18,35 @@ const buttonMove3 = "showBut moveButtonBack"
 const accountPos2 = "accountAside showAccount"
 const accountPos3 = "accountAside hideAccount" 
 
-useEffect((buttonPos) => {
-  //!isAuth && (setButtonPos(buttonMove4))
-  if (buttonPos === buttonMove2) {
-    setButtonText("hide Info");
-  } else {setButtonText("show Info")
-}
-},[buttonPos])
 
 const handleButton=(buttonPos) => {
+
   if ( buttonPos === buttonMove1 ) {
     setButtonPos(buttonMove2);
-    setButtonText("hide account");
     setAsidePos(accountPos2);
+    setButtonText("hide info");
   } else if( buttonPos === buttonMove2) {
     setButtonPos(buttonMove3 );
-    setButtonText("show account");
+    setButtonText("show info");
     setAsidePos(accountPos3);
   } else if( buttonPos === buttonMove3) {
     setButtonPos(buttonMove2 );
-    setButtonText("hide account");
     setAsidePos(accountPos2);
+    setButtonText("hide info");
   } else {
     setButtonPos(buttonPos0);
     setAsidePos(accountPos2)
   }
 }
+
+/* useEffect((buttonPos) => {
+  //!isAuth && (setButtonPos(buttonMove4))
+  if (buttonPos === buttonMove2) {
+    setButtonText("hide Info");
+  } else {
+    return}
+  
+},[buttonPos]) */
 
 return (
    < >

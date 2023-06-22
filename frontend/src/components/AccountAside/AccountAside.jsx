@@ -6,7 +6,7 @@ import { SectionsContext } from '../../context/SectionsContext.js'
 import axiosConfig from "../../util/axiosConfig";
 
 const AccountAside = () => {
-  const {isAuth, userData, setUserData, marketData, setMarketData, asidePos, setAsidePos, buttonPos, setButtonPos, navigate  } = useContext(SectionsContext);
+  const { isAuth, userData, setUserData, marketData, setMarketData, asidePos, setAsidePos, buttonPos, setButtonPos, navigate } = useContext(SectionsContext);
   /* const [userData, setUserData] = useState({}) */
   const [knowledgeData, setKnowledgeData] = useState({})
   const [contactData, setContactData] = useState({})
@@ -75,6 +75,7 @@ const getMarketKnowledgeData = async () => {
   useEffect((props) => {
       getMarketKnowledgeData();
       getUserData();
+      //console.log("buttonPosition:", buttonPos)
   }, []);
 
 
