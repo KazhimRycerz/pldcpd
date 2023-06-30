@@ -96,19 +96,23 @@ useEffect(() => {
         </div>
         <div className="boxGroup">
           <div> 
-            <p>CPD-Punkte</p> 
-            <div className="output punkte" id="courseAdditionalPoints" >{courseData.cpdBasicPoints}</div>
+            <p>CPD-Wert</p> 
+            <div className="output" id="courseAdditionalPoints" >{courseData.cpdBasicPoints} CPD-Punkte</div>
           </div>
           <div> 
-            <p>CPD-plusPu</p> 
-            <div className="output punkte" id="courseBasicPoints" >{courseData.cpdAdditionalPoints}</div>
+            <p>CPD-plus-Punkte</p> 
+            <div className="output" id="courseBasicPoints" >{courseData.cpdAdditionalPoints} CPD-Punkte</div>
           </div>
+        </div>
+        <div> 
+          <p>Professional Level</p> 
+          <div className="output" id="professionalLevel" ><div>{courseData.professionalLevel}</div></div>
         </div>
         <div> 
           <p>Kursanbieter</p> 
           <div className="output" id="courseProvider" ><a href={courseData.linkToProvider} target="_blank" rel="noopener noreferrer">{courseData.linkToProvider}</a></div>
         </div>
-        {/* <p>dieses Thema auf meine Lernliste setzen!</p> */}
+
           
       </article>
         <div id="buttonBottom">

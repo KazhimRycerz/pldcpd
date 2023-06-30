@@ -7,9 +7,11 @@
   background-color: $first-color;
   
   #courseListHead{
-    width: 80%;
-    margin: 50px auto;
+    width: 90%;
+    margin: 50px 60px;
+    padding-left: 20px;
     font-family: $primary-font-bold;
+    //border: solid;
   }
   
   form {
@@ -79,30 +81,37 @@
       color: $cpdblue;
     }
     
-    .larger:hover {
+    /* .larger:hover {
       background: $cpdred;
       color: $secondary-color;
+      box-shadow: $btnshadow;
+      border-radius: 3px;
       width: 20%;
+      padding:0px;
       cursor: pointer;
       //border-radius:10px 0 10px 0;
       #topicLink, #authorsLink{
         color: $secondary-color;
         font-size: 16px;
       }
-    }
-    #author:hover:before{
+    } */
+    #author:hover:before, #topic:hover:before{
        content: 'C ';
        font-family: VIA-Verlag;
        vertical-Align: -1px;
      }
-    #author:hover {
-      //background-color: $cpdblue;
-      color: white;
-      padding: 3px;
+    #author:hover, #topic:hover {
+      background-color: $first-color;
+      color: $cpdred;
+      padding: 5px;
+      margin-left: -5px;
+      width: calc(100% + 10px);
       font-size: 16px;
-      #authorsLink:hover {
-        color: white;
-      }
+      box-shadow: $btnshadowsmall;
+      border-radius: 7px;
+      /* #authorsLink:hover {
+        //color: $cpdred;
+      } */
     }
     #infoLink {
       text-align: center;

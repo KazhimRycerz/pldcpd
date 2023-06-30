@@ -55,7 +55,7 @@ const  KnowledgeAccountMain = ()=>{
    return (
       <main>
          <section id="Gruß_account">
-            <h1> Ihre Fachwissen im Überblick</h1>
+            <h2> Ihre Fachwissen im Überblick</h2>
          </section>
 
          <section id="account_1">

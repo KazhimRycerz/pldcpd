@@ -69,26 +69,34 @@ img[src*="c.png"] {
   #careerLadder {
   //border: solid;
   margin: 0 auto 20px;
-    >ul{
-      display: flex;
-      flex-flow: row;
-      justify-content: space-around;
-      margin-bottom: 20px;
-      list-style-type: none;
-      li >*{
-        text-decoration: none;
-        color: black;
-        font-size:$small;
-      }
-      /* li:before{
-         content: "C";
-         font-family: $calli;
-         color: $cpdred;
-         font-size: $normal;
-       } */
-      li:hover {
-        color: $cpdred;
-        text-shadow: $text-shadow;
+    >div {
+      >h3 {
+      margin-bottom: 70px;
+      
+        >ul{
+          display: flex;
+          flex-flow: row wrap;
+          justify-content: flex-start;
+          column-gap: 20px;
+          list-style-type: none;
+          width: 100%;
+          li >*{
+            text-decoration: none;
+            color: black;
+            font-size:$small;
+          }
+          li:before{
+            content: "C";
+            font-family: $calli;
+            color: $cpdred;
+            font-size: calc($normal + 2px);
+            vertical-align: -3px;
+          }
+          li:hover {
+            color: $cpdred;
+            text-shadow: $text-shadow;
+          }
+        }
       }
     }
     >div {
@@ -99,6 +107,7 @@ img[src*="c.png"] {
       padding: 20px;
       margin-bottom: 20px;
       margin-left: 0px;
+      
       h2{
         width: 25%;
       }
@@ -125,7 +134,7 @@ img[src*="c.png"] {
         }
       }
     }
-}
+  }
 }
 
  

@@ -37,16 +37,18 @@
       font-size: $xsmall;
       padding: 0.5rem 0.5rem;
       background-color: $first-color;
-      background-color: $cpdred;
+      //background-color: $cpdred;
+      //background-color: $cpdblue;
       color: $cpdblue;
-      color: $first-color;
-      box-shadow: $btnshadow;
+      //color: $first-color;
+      box-shadow: $btnshadowsmall;
       border-radius: $radiussmall;
       text-decoration: none;
+      border: none;
     }
     .buttonBasics:hover {
-      background-color: $cpdred;
       background-color: $cpdblue;
+      //background-color: $cpdred;
       color: $first-color;
     }
     #returnOnCoursePage {
@@ -115,7 +117,7 @@
       >p{
         line-height: 0px; 
         margin: 0px 0 0px 0;
-        padding: 20px;
+        padding: 10px 20px;
         color: $cpdblue;
         font-size: $normal;
         font-family:$primary-font;
@@ -152,35 +154,26 @@
         }
       }
       
-      #courseHead:hover {
-        background-color: $third-color;
-        background-color: $cpdred;
-        color: $first-color;
-        border-color: $cpdblue;
-        #author{
-          list-style-type: none;
-          color: $first-color;
-          #authorsLink{
-            text-decoration-line: none;
-            color: white;
-          }
-        }
-      }
-      
-      #author:hover {
-        //background-color: $cpdblue;
-        padding: 3px;
-        //font-weight: 700;
-        #authorsLink:hover {
-          color: $first-color;
-        }
-      }
       #author:hover:before{
         content: 'C ';
         font-family: VIA-Verlag;
         font-size: $large;
-        color: $first-color;
+        color: $cpdred;
         vertical-align: -2px;
+      }
+      #author:hover {
+        //background-color: $cpdblue;
+        padding: 3px;
+        //font-weight: 700;
+        border-radius: 5px;
+        box-shadow: $btnshadow;
+        position: relative;
+        left: -20px;
+        padding-right: 20px;
+        width: calc(100% + 40px);
+        #authorsLink:hover {
+          color: $cpdred;
+        }
       }
       #courseField, #courseTopicField{
         flex-basis: 100%;
@@ -196,11 +189,14 @@
           justify-content: flex-start;
           gap: 10px;
           margin-top: 0px;  
-          flex-grow: 3;  
         }
       }
-      .punkte {
-        text-align: center;
+      /* .punkte {
+        text-align: left;
+      } */
+      #professionalLevel {
+        display: inline;
+        padding-bottom: 0;
       }
     }
   } 

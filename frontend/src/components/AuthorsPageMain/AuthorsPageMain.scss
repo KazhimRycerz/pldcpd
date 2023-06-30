@@ -33,18 +33,22 @@
       font-size: $xsmall;
       padding: 0.5rem 0.5rem;
       background-color: $first-color;
-      background-color: $cpdred;
+      //background-color: $cpdred;
       color: $cpdblue;
-      color: $first-color;
+      //color: $first-color;
       box-shadow: $btnshadow;
       border-radius: $radiussmall;
       text-decoration: none;
+      border: none;
     }
     .buttonBasics:hover {
-      background-color: $cpdred;
+      //background-color: $cpdred;
       background-color: $cpdblue;
       color: $first-color;
     }
+    /* .buttonBasics:focus {
+      background-color: $cpdred;
+    } */
   }
 
   #authorsArticle {
@@ -72,7 +76,7 @@
       >p{
         line-height: 0px; 
         margin: 0px 0 0px 0;
-        padding: 20px;
+        padding: 10px 20px;
         color: $cpdblue;
         font-size: $normal;
         font-family:$primary-font;

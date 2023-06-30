@@ -6,19 +6,14 @@ import LightingEffect from "../LightingEffect/LightingEffect.jsx"
 import { useContext, useEffect } from "react";
 import { SectionsContext } from "../../context/SectionsContext.js";
 import { HashLink as Link } from 'react-router-hash-link';
-//import AccountAside from "../AccountAside/AccountAside";
-
 
 const HomeMain = () => {
 
   const { isAuth, setGotoPage, setButtonPos, asidePos, setAsidePos } = useContext(SectionsContext);
-  
   const buttonPosCheck = ()=>{
     if (isAuth) {setButtonPos("showBut"); setAsidePos("accountAside")
     }
   }
-
-  
 
 useEffect(() => {
   setGotoPage("/home");

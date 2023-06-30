@@ -49,7 +49,7 @@ const handleButton=(buttonPos) => {
 },[buttonPos]) */
 
 return (
-   < >
+   <>
       <button type="button" 
         onClick ={()=>handleButton(buttonPos)}
         id="buttonShowInfo"

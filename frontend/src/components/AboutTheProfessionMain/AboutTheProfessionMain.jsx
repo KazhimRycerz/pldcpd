@@ -17,8 +17,11 @@ const AboutTheProfessionMain = () => {
     }
   }
 
-  const toggleDropdown =()=>{
-    setBtnOpen(!btnOpen);
+  const openDropdown =()=>{
+    setBtnOpen(true);
+  };
+  const closeDropdown =()=>{
+    setBtnOpen(false);
   };
 
   useEffect(() => {
@@ -81,32 +84,23 @@ const AboutTheProfessionMain = () => {
           <h2> Lichtdesigner - <br />Wissen und Themen <br />auf der Karriereleiter </h2>
           
           <div id="careerLadder"> 
-            {/* <ul>
-              <li><Link to="/abouttheprofession#levelI"> <span className="C">C</span> Level I</Link></li>
-              <li><Link to="/abouttheprofession#levelII"> <span className="C">C</span> Level II</Link></li>
-              <li><Link to="/abouttheprofession#levelIII"> <span className="C">C</span> Level III</Link></li>
-              <li><Link to="/abouttheprofession#levelIV"> <span className="C">C</span> Level IV</Link></li>
-              <li><Link to="/abouttheprofession#levelV"> <span className="C">C</span> Level V</Link></li>
-              <li><Link to="/abouttheprofession#levelVI"> <span className="C">C</span> Level VI</Link></li>
-              <li><Link to="/abouttheprofession#levelVII"> <span className="C">C</span> Level VII</Link></li>
-              <li><Link to="/abouttheprofession#levelVIII"> <span className="C">C</span> Level VIII</Link></li>
-              <li><Link to="/abouttheprofession#levelIX"> <span className="C">C</span> Level IX</Link></li>
-            </ul> */}
-            <span className="C">C</span>
-            <span onMouseOver={toggleDropdown}>Auswahl Level I bis IX</span>
-            {btnOpen && (
-            <ul>
-              <li><Link to="/abouttheprofession#levelI"> <span className="C">C</span> Level I</Link></li>
-              <li><Link to="/abouttheprofession#levelII"> <span className="C">C</span> Level II</Link></li>
-              <li><Link to="/abouttheprofession#levelIII"> <span className="C">C</span> Level III</Link></li>
-              <li><Link to="/abouttheprofession#levelIV"> <span className="C">C</span> Level IV</Link></li>
-              <li><Link to="/abouttheprofession#levelV"> <span className="C">C</span> Level V</Link></li>
-              <li><Link to="/abouttheprofession#levelVI"> <span className="C">C</span> Level VI</Link></li>
-              <li><Link to="/abouttheprofession#levelVII"> <span className="C">C</span> Level VII</Link></li>
-              <li><Link to="/abouttheprofession#levelVIII"> <span className="C">C</span> Level VIII</Link></li>
-              <li><Link to="/abouttheprofession#levelIX"> <span className="C">C</span> Level IX</Link></li>
-            </ul>
-            )}
+            <div onMouseLeave={closeDropdown}>
+              <h3 onMouseOver={openDropdown} onClick={closeDropdown}>  <span className="C">C</span> Auswahl Level I bis IX
+              {btnOpen && (
+              <ul>
+                <li><Link to="/abouttheprofession#levelI">  Level I</Link></li>
+                <li><Link to="/abouttheprofession#levelII">  Level II</Link></li>
+                <li><Link to="/abouttheprofession#levelIII">  Level III</Link></li>
+                <li><Link to="/abouttheprofession#levelIV">  Level IV</Link></li>
+                <li><Link to="/abouttheprofession#levelV">  Level V</Link></li>
+                <li><Link to="/abouttheprofession#levelVI">  Level VI</Link></li>
+                <li><Link to="/abouttheprofession#levelVII">  Level VII</Link></li>
+                <li><Link to="/abouttheprofession#levelVIII">  Level VIII</Link></li>
+                <li><Link to="/abouttheprofession#levelIX">  Level IX</Link></li>
+              </ul>
+              )}
+              </h3>
+            </div>
 
             <div id="levelI"> 
               <h3> Level I - Student in lighting design<br />(Bachelor, Master – 3 to 5 years) </h3>
@@ -213,7 +207,7 @@ const AboutTheProfessionMain = () => {
                 </div>
             </div>
             <div id="levelVIII">
-              <h3> Level VIII - Master lighting designer <br />(10 years minimum)</h3>
+              <h3> Level VIII - Master lighting designer <br />(25 years experience minimum)</h3>
                 <div>
                   <ul>
                     <li> <span className="C">C</span> Latest technical lighting knowledge</li>

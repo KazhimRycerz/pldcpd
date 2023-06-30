@@ -26,8 +26,8 @@ body {
 main {
   //display: none;
   width: 80%;
-  //max-width: 1280px;
-  margin: 0 10%;
+  max-width: 1280px;
+  margin: 0 auto;
   z-index: 5;
   position: relative;
   border-radius: 20px;
@@ -118,20 +118,6 @@ main {
   background-color: $first-color;
   box-shadow: $btnshadow;
 }
-    
-/*Content --> nicht mehr relevant*/
-
-/* #Content {
-  width: 80%;
-  margin: 0px auto;  
-  z-index: 2;
-} */
-
-/* @media (max-width: $desktop){
-  #Content {
-    width: 100%;
-  }
-} */
     
 @media (max-width: $tablet){
   body {

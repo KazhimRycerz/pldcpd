@@ -19,6 +19,7 @@
    line-height: 55px;
    vertical-align: bottom;
    z-index: 0;
+   cursor: pointer;
    &.buttonZeroPosition {
     right:calc(10% - 10px);
     transform: translateY(33px) rotate(-90deg);
@@ -28,13 +29,12 @@
     transform: translateY(33px) rotate(-90deg);
    }
    &.showBut {
-     right:calc(10% - 33px);//ex44
+     right:calc(10% - 33px);
      transition: 0.5s ease-in-out;
      vertical-align:bottom;
-     //line-height: 55px;
     }
    &.hideBut {
-    right:calc(10% - 10px);//ex24
+    right:calc(10% - 10px);
     transition: 0.5s ease-in-out;  
     line-height: 15px;
   }
@@ -44,15 +44,14 @@
   }
   
   @keyframes moveButton {
-    0%  {transform:  translateY(33px) rotate(-90deg); z-index:0; right:calc(10% - 33px)}//44px
-    //50% {line-height:55px}
+    0%  {transform:  translateY(33px) rotate(-90deg); z-index:0; right:calc(10% - 33px)}
     90%  {z-index: 0}
     100% {transform:  rotate(0deg);z-index: 10; right: 33px;line-height: 15px}
   }  
   @keyframes moveButtonBack {
     0%  {transform: rotate(0deg);z-index:10;right: 33px;line-height: 15px} 
     50% {z-index: 0}
-    100% {transform:  translateY(33px) rotate(-90deg);z-index:0;  right:calc(10% - 33px)}
+    100% {transform:  translateY(33px) rotate(-90deg);z-index:0;  right:calc(10% - 33px);line-height: 55px}
     } 
   @keyframes moveButtonBackToStart {
     0%  {transform: rotate(0deg);z-index:10;right: 33px;}
@@ -64,6 +63,9 @@
   display: block;
   transform: translateX(-120%) scale(90%);
   z-index: -1;
+  position: fixed;
+  top: 180px;
+  right: 0;
   opacity: 0; 
   background-color: $first-color;
   box-shadow: $boxshadow;
@@ -73,9 +75,6 @@
   padding: 10px;
   padding-left: 00px;
   margin-right: 20px;
-  position: fixed;
-  top: 180px;
-  right: 0;
   font-size: $small;
   border-radius: 5px;
   .account_container {
@@ -188,3 +187,46 @@
      transition: 0.5s ease-in-out;
   }
  }
+ @media (min-width: 1600px){
+  #buttonShowInfo {
+    display: block; 
+   //display: inline-block;
+   position: fixed;
+   top: 155px;
+   left: calc(100% - ((100% - 1280px) / 2) - 36px);
+   }
+   @keyframes moveButton {
+    0%  {transform:  translateY(33px) rotate(-90deg); z-index:0; left: calc(100% - ((100% - 1280px) / 2) - 36px);line-height: 15px}
+    90%  {z-index: 0;}
+    100% {transform: rotate(0deg);z-index: 10; left: calc(100% - ((100% - 1280px) / 2) + 36px);line-height: 55px;}
+  }
+  @keyframes moveButtonBack {
+    0%  {transform: rotate(0deg);z-index:10;left: calc(100% - ((100% - 1280px) / 2) + 36px);line-height: 55px} 
+    50% {z-index: 0;}
+    100% {transform:  translateY(33px) rotate(-90deg); right:calc(10% - 33px);line-height: 15px}
+    }
+  @keyframes moveButtonBackToStart {
+    0%  {transform: rotate(0deg);z-index:10;left: calc(100% - ((100% - 1280px) / 2) + 36px);line-height: 15px}
+    50% {z-index: 0;}
+    100% {transform:  translateY(33px) rotate(-90deg);z-index:0;left: calc(100% - ((100% - 1280px) / 2) - 65px);line-height: 55px} 
+  }
+
+  .accountAside {
+    left: calc(100% - ((100% - 1280px) / 2) - 100px);
+  }
+
+  @keyframes show_home_aside {
+    0%  {opacity:0; display: none;}
+    1%  {transform: translateX(-120%) scale(90%); display: block; z-index: -1;opacity: 1;display: block;}
+    30% {z-index:1; display: block;}
+    60% {transform: translateX(60%) scale(90%); display: block;}
+    100% {transform: translateX(0%) scale(100%); z-index:9; display: block; opacity: 1}
+    }
+ @keyframes hide_home_aside {
+   0%  {transform: translateX(0%) scale(100%);z-index:9; opacity: 1}
+   30% {transform: translateX(60%) scale(90%) }
+   60% {z-index:1}
+   99% {transform: translateX(-120%) scale(90%); z-index: -1; opacity: 1}
+   100% {transform: translateX(-120%) scale(90%); z-index: -1; opacity: 0; display: none;}
+   }
+  }

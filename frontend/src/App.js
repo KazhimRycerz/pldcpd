@@ -13,6 +13,7 @@ import Login from "./pages/LoginPage/Login.jsx";
 import Register from "./pages/RegisterPage/Register.jsx";
 import Impressum from "./pages/Impressum/Impressum.jsx";
 import UserProfile from "./pages/UserProfile/UserProfile.jsx";
+import UserUpdate from "./pages/UserUpdate/UserUpdate.jsx";
 import AboutTheProfession from "./pages/AboutTheProfession/AboutTheProfession.jsx";
 import AboutRycerz from "./pages/AboutRycerz/AboutRycerz.jsx";
 import AboutPLDCPD from "./pages/AboutPLDCPD/AboutPLDCPD.jsx";
@@ -55,6 +56,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/userprofile" element={<UserProfile />} />
+          <Route path="/userupdate" element={<UserUpdate />} />
           <Route path="/*" element={<Page404 />} />
           </Routes>
       {/* </Router> */}

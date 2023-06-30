@@ -114,9 +114,11 @@ useEffect(() => {
               return(
                 <tr key={index}>
                   <td className="larger">
-                    <Link to="/coursepage" state= {course._id} id="topicLink">
-                    {course.topic}
-                    </Link>
+                    <li id="topic">
+                      <Link to="/coursepage" state= {course._id} id="topicLink">
+                      {course.topic}
+                      </Link>
+                    </li>
                   </td>
                   <td className="larger">
                     {authorsData[index].map((author, innerIndex) => (

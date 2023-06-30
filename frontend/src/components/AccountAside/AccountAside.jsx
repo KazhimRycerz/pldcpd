@@ -6,7 +6,7 @@ import { SectionsContext } from '../../context/SectionsContext.js'
 import axiosConfig from "../../util/axiosConfig";
 
 const AccountAside = () => {
-  const { isAuth, userData, setUserData, marketData, setMarketData, asidePos, setAsidePos, buttonPos, setButtonPos, navigate } = useContext(SectionsContext);
+  const { isAuth, setUserData, marketData, setMarketData, asidePos, setAsidePos, buttonPos, setButtonPos, navigate } = useContext(SectionsContext);
   /* const [userData, setUserData] = useState({}) */
   const [knowledgeData, setKnowledgeData] = useState({})
   const [contactData, setContactData] = useState({})
@@ -28,6 +28,7 @@ const accountPos3 = "accountAside hideAccount"
 
 
 const handleButton=(buttonPos) => {
+  console.log("buttonPosition:", buttonPos)
   if (!isAuth) {navigate("/home")
   } else if ( buttonPos === buttonMove1 ) {
     setButtonPos(buttonMove2);
@@ -75,7 +76,7 @@ const getMarketKnowledgeData = async () => {
   useEffect((props) => {
       getMarketKnowledgeData();
       getUserData();
-      //console.log("buttonPosition:", buttonPos)
+      /* console.log("buttonPosition:", buttonPos) */
   }, []);
 
 

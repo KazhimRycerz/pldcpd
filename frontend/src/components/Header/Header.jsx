@@ -10,16 +10,26 @@ const Header = () => {
   //const { loggedIn } = useContext(SectionsContext);
   const { isAuth, buttonPos, setButtonPos, asidePos, setAsidePos, gotoPage, setGotoPage, navigate, logout } = useContext(SectionsContext);
   const [showMenue, setShowMenue] = useState(false);
-  //const [btnOpen, setBtnOpen] = useState(false);
-  //const [selectedOptionAccount, setSelectedOptionAccount] = useState('');
+  const [accountListShow, setAccountListShow] = useState("");
+  const [isToggled, setIsToggled] = useState (false)
+  const [selectedOptionAccount, setSelectedOptionAccount] = useState('');
   
-  /* const toggleDropdown =()=>{
-    setBtnOpen(!btnOpen);
+  /*  const showDropdown =()=>{
+    setAccountListShow("showAccountList");
   };
+  const hideDropdown =()=>{
+    setAccountListShow("hideAccountList");
+  }; */
+
+  const handleToggle =()=>{
+    setIsToggled(!isToggled)
+    isToggled === true ? setAccountListShow("showAccountList"):setAccountListShow("hideAccountList");
+  }
+
   const handleOptionSelect = (option) => {
     navigate(option);
     //setBtnOpen(false);
-  }; */
+  };
   
   const manageAccountButton =()=> {
     isAuth && logout()
@@ -105,28 +115,20 @@ const Header = () => {
               {isAuth ? <span> log me out </span> : <Link to="/login"> login </Link>}
               <span className="C">C</span>
             </li>
-            <li >
+            {/* <li >
               {isAuth ? <Link to="/KnowledgeAccount">
                 logged in as {localStorage.userName} <span className="C">C</span> 
                 </Link> 
               :
                 <span></span>}
-            </li>
+            </li> */}
             
-            {/* {isAuth ?
-              <li id="dropBtnAccount" onClick={toggleDropdown}>
+            {isAuth ?
+              <li id="dropBtnAccount" onMouseEnter={handleToggle} onClick={handleToggle}>
                 logged in as {localStorage.userName} <span className="C">C</span>
               </li>
               :
               <span></span>}
-              {btnOpen && (
-                <ul id="dropdownAccount">
-                  <li onClick={() => handleOptionSelect("/KnowledgeAccount")}>KnowledgeAccount <span className="C">C</span></li>
-                  <li onClick={() => handleOptionSelect("/KnowledgeAccount")}>Personal Data<span className="C">C</span></li>
-                  <li onClick={() => handleOptionSelect("/KnowledgeAccount")}>Money<span className="C">C</span></li>
-                  <li >test</li>
-                </ul>
-              )} */}            
           </ul>
         </div>
 
@@ -136,7 +138,7 @@ const Header = () => {
           onClick={() => {
             setShowMenue(!showMenue);
           }}
-        >
+          >
           <span></span>
         </div>
       </header>
@@ -169,37 +171,73 @@ const Header = () => {
             </li>
             <li>
               {isAuth ? (
-            <NavLink to="/KnowledgeAccount" style={{color: "red"}}>
+                <NavLink to="/KnowledgeAccount" style={{color: "red"}}>
               <span className="C">C</span> your CPD account
             </NavLink>
               ) : (
-              <NavLink style={{color: "red"}}
+                <NavLink style={{color: "red"}}
                 //to="/login"
                 onClick={() => {
                   swal("Du musst registriert und angemeldet sein, um deinen Account sehen zu können.", {
                     buttons: {
                       login: "ja, bitte einloggen!",
                       backtomain: "nein, zurück zur Hauptseite"}
-                  })
-                  .then ((value)=>{
-                    switch(value) {
-                      case "login":
-                        setGotoPage("/KnowledgeAccount")
-                        navigate("/login")
-                        break;
+                    })
+                    .then ((value)=>{
+                      switch(value) {
+                        case "login":
+                          setGotoPage("/KnowledgeAccount")
+                          navigate("/login")
+                          break;
+                          case "backtomain":
+                            setShowMenue(!showMenue)
+                            navigate("/home")
+                            break;
+                            default:
+                              swal("Got away safely!");
+                            }
+                          })
+                          //setGotoPage("/KnowledgeAccount");
+                          navigate(gotoPage);
+                        }}
+                        >
+                <span className="C">C</span> your CPD account
+              </NavLink>
+            )}
+            </li>
+            <li>
+              {isAuth ? (
+                <NavLink to="/userupdate" style={{color: "red"}}>
+              <span className="C">C</span> change your User Data
+            </NavLink>
+              ) : (
+                <NavLink style={{color: "red"}}
+                //to="/login"
+                onClick={() => {
+                  swal("Du musst registriert und angemeldet sein, um deinen Account sehen zu können.", {
+                    buttons: {
+                      login: "ja, bitte einloggen!",
+                      backtomain: "nein, zurück zur Hauptseite"}
+                    })
+                    .then ((value)=>{
+                      switch(value) {
+                        case "login":
+                          setGotoPage("/userupdate")
+                          navigate("/login")
+                          break;
                       case "backtomain":
                         setShowMenue(!showMenue)
                         navigate("/home")
                         break;
-                      default:
-                        swal("Got away safely!");
-                    }
-                  })
-                  //setGotoPage("/KnowledgeAccount");
-                  navigate(gotoPage);
-                }}
-              >
-                <span className="C">C</span> your CPD account
+                        default:
+                          swal("Got away safely!");
+                        }
+                      })
+                      //setGotoPage("/KnowledgeAccount");
+                      navigate(gotoPage);
+                    }}
+                    >
+                <span className="C">C</span> change your Userdata
               </NavLink>
             )}
             </li>
@@ -356,6 +394,15 @@ const Header = () => {
           </NavLink>
         </div>
       </nav>
+
+      {isAuth && (
+          <ul id="dropdownAccount" className={accountListShow} onMouseLeave={handleToggle}>
+            <li onClick={() => handleOptionSelect("/KnowledgeAccount")}>Knowledge Status <span className="C">C</span></li>
+            <li onClick={() => handleOptionSelect("/KnowledgeAccount")}>Personal Data <span className="C">C</span></li>
+            <li onClick={() => handleOptionSelect("/KnowledgeAccount")}>Money: your budget <span className="C">C</span></li>
+          <p>rufen sie hier Ihre persönliche Daten auf!</p>
+          </ul>
+      )}            
     </>
   );
 };
