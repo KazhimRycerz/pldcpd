@@ -3,14 +3,15 @@
 
 footer {
   position: relative;
-  bottom: 0px;  
+  //position: sticky;
+  //bottom: -300px;  
   background-color:$first-color;
   padding: 10px 0 10px 0;
-  width:100vw;
+  width:100%;
   height: 120px;
   height:fit-content;
   font-size: 12px;
-  margin-top: 50px;
+  margin-top: 50px ;
   z-index: 10;
   p {
     text-align: center;
@@ -35,21 +36,48 @@ footer {
     }
   }
  
-   div {
+   >div {
      display: flex;
-     flex-flow: row nowrap;
+     flex-flow: row wrap;
      justify-content: center;
-     gap: 60px;
-     margin: 20px 0 0 0 ;
-     > ul {
+     gap: 50px;
+     width: 80%;
+     max-width: 1280px;
+     margin: 20px auto ;
+     border-left: dotted 3px $cpdred;
+     border-right: dotted 3px $cpdred;
+     border-radius: 30px;
+     padding: 20px 0;
+     div > ul {
        display: flex;
        flex-flow: column wrap;
-       font-size: $normal;
+       justify-content: flex-start;
+       font-size: $small;
        width: 100%;
-       li *{
-        text-decoration: none;
-        color: black;
-        cursor: url("../../images/C.png")
+       gap: 0;
+       //border: solid;
+       li {
+        //border: solid;
+        padding-left: 10px;
+         a{
+           text-decoration: none;
+           color: black;
+           //cursor: url("../../images/C.png");
+          }
+          &::before{
+            content: "C ";
+            font-family: $calli;
+            color: $cpdred;
+            font-size: calc($normal + 2px);
+            vertical-align: -1.5px; 
+          }
+      }
+       li:first-child {
+        font-size: $normal;
+        border-left: dotted 2px;
+        border-right: dotted 2px;
+        border-radius: 10px;
+        padding: 3px;
        }
       }
     }

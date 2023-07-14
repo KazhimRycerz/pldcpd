@@ -39,7 +39,8 @@ useEffect(() => {
         </p>
       </section>
 
-        <section id="C1">
+      <section id="C1">
+        <div>
           <article id="C1A1">
             {<img src={require('../../images/Level_4_SLD.jpg')} alt="" />}
             <h3>Professionalität</h3>
@@ -56,36 +57,38 @@ useEffect(() => {
               More <img src={C} alt=""/>
             </Link>
           </article>
+        </div>
 
-          <div id="C1Center">
-            <article id="C1A2">
-              <h3>Themen und Lernmittel</h3>
-              <p>
-                Brauchen sie Hinweise auf neue Themen und Lernmittel?
-                Empfehlungen finden Sie
-              </p>{" "}
-              <Link to="/abouttheprofession">
-                hier
-                <img src={C} alt=""/>
-              </Link>
-            </article>
+        <div id="C1Center">
+          <article id="C1A2">
+            <h3>Themen und Lernmittel</h3>
+            <p>
+              Brauchen sie Hinweise auf neue Themen und Lernmittel?
+              Empfehlungen finden Sie
+            </p>{" "}
+            <Link to="/abouttheprofession">
+              hier
+              <img src={C} alt=""/>
+            </Link>
+          </article>
 
-            <article id="C1A3">
-              <h3>Teil einer Community</h3>
-              <p>
-                Wollen sie ein Teil der Community sein? Kennen Sie schon das
-                neue Netzwerk für Lichtdesigner? Dann sollten Sie mal
-              <Link to="/abouttheprofession">
-              {" "}hier{" "}
-              </Link>
-              schauen
-              </p>
-              <Link to="/abouttheprofession">
-                <img src={C} alt=""/>
-              </Link>
-            </article>
-          </div>
+          <article id="C1A3">
+            <h3>Teil einer Community</h3>
+            <p>
+              Wollen sie ein Teil der Community sein? Kennen Sie schon das
+              neue Netzwerk für Lichtdesigner? Dann sollten Sie mal
+            <Link to="/abouttheprofession">
+            {" "}hier{" "}
+            </Link>
+            schauen
+            </p>
+            <Link to="/abouttheprofession">
+              <img src={C} alt=""/>
+            </Link>
+          </article>
+        </div>
 
+        <div>
           <article id="C1A4">
             <h3>Ihre Karriere nach Plan</h3>
             <p>
@@ -103,516 +106,518 @@ useEffect(() => {
             <img src={C} alt=""/>
             </Link>
           </article>
-        </section>
+        </div>
+      </section>
 
-        <section id="lightingEffect" ><LightingEffect /></section>
+      <section id="lightingEffect" ><LightingEffect /></section>
         
-        <section id="learningbox_1">
-          <div className="infobox_intro">
-            <h2> Aktuelle Lernangebote </h2>
-            <p>
-              Hier können sie über die neusten Angebote zur Weiterbildung
-              erfahren. Klicken Sie <Link to="/#">hier</Link> und schauen Sie
-              im Detail, was zur weiterbildung angeboten wird.
-            </p>
-            <Link to="/#">
-              <img src={C} alt="" className="logo_cpd" />
-            </Link>
-          </div>
+      <section id="learningbox_1">
+        <div className="infobox_intro">
+          <h2> Aktuelle Lernangebote </h2>
+          <p>
+            Hier können sie über die neusten Angebote zur Weiterbildung
+            erfahren. Klicken Sie <Link to="/#">hier</Link> und schauen Sie
+            im Detail, was zur weiterbildung angeboten wird.
+          </p>
+          <Link to="/#">
+            <img src={C} alt="" className="logo_cpd" />
+          </Link>
+        </div>
 
 
-          <div id="lb_1_angebote">
-            <div>
-              <h5>
-                Themenbereich
-                <br />
-                Lichtdesign
-              </h5>
-              <p>
-                Für aktuelle Angebote folge hier
-                <Link to="/pldcpd_account" className="C">
-                  C
-                </Link>
-              </p>
-              {<img src={require('../../images/Vulkan.gif')} alt="" />} 
-            </div>
-
-            <div>
-              <h5>
-                Themenbereich <br />
-                Lichttechnik
-              </h5>
-              <p>
-                {" "}
-                Für aktuelle Angebote folge hier{" "}
-                <Link to="latestlearningoffers" className="C" >
-                  C
-                </Link>
-              </p>
-              {<img src={require('../../images/Egon_Zitter_7.jpg')} alt="" />} 
-            </div>
-
-            <div>
-              <h5>
-                {" "}
-                Themenbereich <br />
-                Berufspraxis
-              </h5>
-              <p>
-                Für aktuelle Angebote folge hier{" "}
-                <Link className="C" to="/latestlearningoffers">
-                  C
-                </Link>
-              </p>
-              {<img src={require('../../images/Egon_Zitter_8_Libellen.jpg')} alt="" />}
-            </div>
-
-            <div>
-              <h5>
-                Themenbereich <br />
-                Tageslicht
-              </h5>
-              <p>
-                {" "}
-                Für aktuelle Angebote folge hier{" "}
-                <Link className="C" to="/latestlearningoffers">
-                  C
-                </Link>
-              </p>
-              {<img src={require('../../images/Sonnenuntergang.jpg')} alt="" />}
-            </div>
-
-            <div>
-              <h5>
-                Themenbereich <br />
-                Meinung
-              </h5>
-              <p>
-                Für aktuelle Angebote folge hier{" "}
-                <Link className="C" to="/latestlearningoffers">
-                  C
-                </Link>
-              </p>
-              {<img src={require('../../images/unsplash.jpg')} alt="" />}
-            </div>
-          </div>
-        </section>
-        <Link to="/home">
-          <img className="Trenner" src={C} alt="" />
-        </Link>
-      
-        <section id="Promoter_1">
+        <div id="lb_1_angebote">
           <div>
-            <p>lighting design at its best!</p>
-          </div>
-        </section>
-
-        <Link to="/home">
-          <img className="Trenner" src={C} alt="" />
-        </Link>
-
-        <section id="learningbox_2">
-          <div className="infobox_intro">
-            <h2> Neuste Lernangebote </h2>
-            <p>
-              Dies ist eine Liste über die neusten Angebote. Klicken Sie <Link to="/courselistpage">hier</Link> um eine Gesmtübersicht aller Angebot zu sehen.
-            </p>
-            <Link to="/courselistpage">
-              <img src={C} alt="" className="logo_cpd" />
-            </Link>
-          </div>
-
-          <div id="infobox_table">
-            <div id="info_1_1">
-              <div>
-                <h3>Lernangebote</h3>
-                <label htmlFor="Filter">Sortiert nach</label>
-                <select name="Filter" id="Filter">
-                  <option value="Themenfeld">Themenfeld</option>
-                  <option value="Art">Art</option>
-                  <option value="Datum">Datum</option>
-                  <option value="Level">Level</option>
-                </select>
-                <br />
-              </div>
-
-              <table>
-                  <colgroup>
-                    <col width="10%" />
-                    <col width="30%" />
-                    <col width="20%" />
-                    <col width="10%" />
-                    <col width="10%" />
-                    <col width="15%" />
-                    <col width="15%" />
-                  </colgroup>
-                <thead>
-                  <tr>
-                    <th>Datum</th>
-                    <th>
-                      <strong>Thema</strong>
-                    </th>
-                    <th>Referent/Autor</th>
-                    <th>Themenfeld</th>
-                    <th>Level</th>
-                    <th>Art</th>
-                    <th>Link</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>20.10.2021</td>
-                    <td id="titel">Die neue Art des Lichtdesigns in der Architektur</td>
-                    <td>Kazhim Rycerz / Kazhal Akbari</td>
-                    <td>Design</td>
-                    <td>4-5</td>
-                    <td>Artikel</td>
-                    <td>
-                      <Link to="/https://pld-m.com" target="_blank" className="C">C</Link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>20.10.2021</td>
-                    <td>Li-Fi - Intelligente Netzwerke</td>
-                    <td>Kazhim Rycerz / Kazhal Akbari</td>
-                    <td>Design</td>
-                    <td>2-5</td>
-                    <td>Onlineseminar</td>
-                    <td>
-                      <Link to="/https://pld-m.com" target="_blank" className="C">C</Link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>20.10.2021</td>
-                    <td>Wie ein Büro aufgebaut wird</td>
-                    <td>Kazhim Rycerz / Kazhal Akbari</td>
-                    <td>Berufspraxis</td>
-                    <td>6</td>
-                    <td>Life-Seminar</td>
-                    <td>
-                    <Link to="/https://pld-m.com" target="_blank" className="C">C</Link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>20.10.2021</td>
-                    <td>Die neue Art des Lichtdesigns in der Architektur</td>
-                    <td>Kazhim Rycerz / Kazhal Akbari</td>
-                    <td>Design</td>
-                    <td>4-5</td>
-                    <td>Artikel</td>
-                    <td>
-                    <Link to="/https://pld-m.com" target="_blank" className="C">C</Link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>20.10.2021</td>
-                    <td>Die neue Art des Lichtdesigns in der Architektur</td>
-                    <td>Kazhim Rycerz / Kazhal Akbari</td>
-                    <td>Design</td>
-                    <td>4-5</td>
-                    <td>Artikel</td>
-                    <td>
-                    <Link to="/https://pld-m.com" target="_blank" className="C">C</Link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>20.10.2021</td>
-                    <td>Die neue Art des Lichtdesigns in der Architektur</td>
-                    <td>Peter Andres</td>
-                    <td>Design</td>
-                    <td>4-5</td>
-                    <td>Artikel</td>
-                    <td>
-                    <Link to="/https://pld-m.com" target="_blank" className="C">C</Link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>20.10.2021</td>
-                    <td>Die neue Art des Lichtdesigns in der Architektur</td>
-                    <td>Joachim Ritter</td>
-                    <td>Beruf</td>
-                    <td>4-5</td>
-                    <td>Artikel</td>
-                    <td>
-                    <Link to="/https://pld-m.com" target="_blank" className="C">C</Link>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>20.10.2021</td>
-                    <td>Die neue Art des Lichtdesigns in der Architektur</td>
-                    <td>Kazhim Rycerz / Kazhal Akbari</td>
-                    <td>Design</td>
-                    <td>4-5</td>
-                    <td>Artikel</td>
-                    <td>
-                    <Link to="/https://pld-m.com" target="_blank" className="C">C</Link>
-                    </td>
-                  </tr>
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <td>5</td>
-                    <td>20</td>
-                  </tr>
-                </tfoot>
-              </table>
+            <h5>
+              Themenbereich
               <br />
-              <br />
-            </div>
-
-            <div id="info_1_2">
-              {<img src={require('../../images/Egon_Zitter_7.jpg')} alt="" />}
-              <h3>Special II</h3>
-              <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. In
-                officiis alias impedit, incidunt recusandae fugiat, eos quia
-                atque voluptatem, veritatis. Magni ab architecto blanditiis
-                aperiam ullam illum rerum accusamus maxime, aliquid, vel
-                laudantium dignissimos, cupiditate ratione sapiente amet labore
-                dolores! Saepe officiis magni similique non corporis accusamus
-                ex reprehenderit, expedita aliquid vero? Rem, rerum culpa?
-                Nostrum, libero cum excepturi quis ab voluptatem sunt dolores
-                non ratione maxime.
-              </p>
-            </div>
-          </div>
-        </section>
-        
-        <Link to="/home">
-          <img className="Trenner" src={C} alt="" />{" "}
-        </Link>
-
-        <section id="infobox_2">
-          <div className="infobox_intro">
-            <h2> Aktuelle Lernangebote sortiert nach Themenbereiche</h2>
+              Lichtdesign
+            </h5>
             <p>
-              Hier können sie die neusten Angebote zur Weiterbildung sehen.
-              Klicken Sie und schauen Sie im Detail, was angeboten wird.
+              Für aktuelle Angebote folge hier
+              <Link to="/pldcpd_account" className="C">
+                C
+              </Link>
             </p>
-            <Link to="/home">
-              <img src={C} alt="" className="logo_cpd" />
-            </Link>
+            {<img src={require('../../images/Vulkan.gif')} alt="" />} 
           </div>
-          <div id="ib_2_angebote">
-            <div id="box1">
-              <h3>Themenbereich Design</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Expedita nostrum voluptatibus, reiciendis!
-                {<img src={require('../../images/Vulkan.gif')} alt="" />} Dolorum nisi aspernatur unde
-                est, magnam excepturi possimus.pariatur molestias accusamus
-                recusandae minima cum, animi, sapiente rem iste earum ipsum aut
-                ratione. Ad maiores corrupti magnam deleniti molestias aperiam
-                quas saepe repellendus architecto, perferendis consectetur est
-                quae, fuga adipisci ullam fugit doloribus recusandae maxime
-                reprehenderit.
-              </p>
-            </div>
 
-            <div id="box2">
-              <h3>Box 2</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Impedit perferendis velit tenetur asperiores at animi repellat
-                accusamus, culpa soluta cumque eos tempore dolor veritatis quod
-                veniam omnis ea consequatur mollitia excepturi labore? Deleniti
-                officiis molestiae aut consectetur earum aperiam! Saepe.
-              </p>
-            </div>
-
-            <div id="box3">
-              <h3>Box 3</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas
-                tenetur molestiae natus ullam eos qui aperiam, minus officiis
-                cumque corporis quia sit veritatis soluta neque, velit magnam
-                tempora. Excepturi reiciendis quae, in quos, magnam totam
-                laborum veritatis dolorum, omnis aspernatur quasi, dolores iste
-                ipsam vitae veniam fugit alias ratione aliquam. Nulla optio
-                praesentium repellat, vel, nam eligendi possimus pariatur
-                dolorem?
-              </p>
-            </div>
-
-            <div id="box4">
-              <h3>Box 4</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Sapiente vero, repudiandae debitis fugiat atque itaque
-                repellendus hic, recusandae placeat quidem.
-              </p>
-            </div>
-
-            <div id="box5">
-              <h3>Box 5</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum
-                saepe quisquam numquam adipisci tempore magni quasi distinctio
-                eaque quod necessitatibus officiis pariatur perspiciatis,
-                doloribus debitis culpa nisi dolorum esse porro nobis ut nulla,
-                minima ipsa dolores aliquid tempora. Voluptas, eum.
-              </p>
-            </div>
-
-            <div id="box6">
-              <h3>Box 6</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Dolorem harum obcaecati iusto quibusdam dicta ratione fugit a
-                animi sequi odio!
-              </p>
-            </div>
-
-            <div id="box7">
-              <h3>Box 7</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Dolorem harum obcaecati iusto quibusdam dicta ratione fugit a
-                animi sequi odio!
-              </p>
-            </div>
-          </div>
-        </section>
-     
-        <img className="Trenner" src={C} alt="" />{" "}
-        <Link to="/home"></Link>
-      
-        <section id="learningbox_5">
-          <div className="infobox_intro">
-            <h2>
+          <div>
+            <h5>
+              Themenbereich <br />
+              Lichttechnik
+            </h5>
+            <p>
               {" "}
-              Lernen nach Karrierelevel - Angebote und Themen nach Ihrer
-              Berufserfahrung
-            </h2>
-            <p>
-              Hier erhalten Sie Vorschläge zur Weiterbildung in Ihrem
-              Karrierelevel. Klicken Sie und schauen Sie im Detail, was
-              angeboten wird.
+              Für aktuelle Angebote folge hier{" "}
+              <Link to="latestlearningoffers" className="C" >
+                C
+              </Link>
             </p>
-            <Link to="/abouttheprofession#career">
-              <img src={C} alt="" className="logo_cpd" />
-            </Link>
+            {<img src={require('../../images/Egon_Zitter_7.jpg')} alt="" />} 
           </div>
 
-          <div id="karrierebox">
-            <div id="learning_5_1">
-              <div>
-                <p>Professional Level I</p>
-                <h3>Student</h3>
-                <p>
-                  Dieses Level ist für Einsteiger, die noch kein Vorwissen zum
-                  Thema Lichtdesign mitbringen. Diese Phase ist mit ein bis zwei
-                  Jahen definiert.
-                </p>
-              </div>
-              <img src={require('../../images/Level_1_SLD.jpg')} alt="" />
-            </div>
-
-            <div id="learning_5_2">
-              <div>
-                <p> Professional Level II</p>
-                <h3>Newly qualified</h3>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Recusandae a voluptate omnis praesentium nemo officiis aut
-                  deleniti animi doloribus illum.
-                </p>
-              </div>
-              {<img src={require('../../images/Level_2_NQLD.jpg')} alt="" />}
-            </div>
-
-            <div id="learning_5_3">
-              <div>
-                <p>Professional Level III</p>
-                <h3>Junior Designer</h3>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Recusandae a voluptate omnis praesentium nemo officiis aut
-                  deleniti animi doloribus illum.
-                </p>
-              </div>
-              {<img src={require('../../images/Level_3_JLD.jpg')} alt="" />}
-            </div>
-
-            <div id="learning_5_4">
-              <div>
-                {" "}
-                <p>Professional Level IV</p> <h3>Project Designer</h3>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Recusandae a voluptate omnis praesentium nemo officiis aut
-                  deleniti animi doloribus illum.
-                </p>
-              </div>
-              {<img src={require('../../images/Level_4_SLD.jpg')} alt="" />}
-            </div>
-
-            <div id="learning_5_5">
-              <div>
-                {" "}
-                <p>Professional Level V</p> <h3>Senior Designer</h3>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Recusandae a voluptate omnis praesentium nemo officiis aut
-                  deleniti animi doloribus illum.
-                </p>
-              </div>
-              {<img src={require('../../images/level_5_senior.jpg')} alt="" />}
-            </div>
-
-            <div id="learning_5_6">
-              <div>
-                <p>Professional Level VI</p> <h3>Associate Designer</h3>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Recusandae a voluptate omnis praesentium nemo officiis aut
-                  deleniti animi doloribus illum.
-                </p>
-              </div>
-              {<img src={require('../../images/level_6_associate.jpg')} alt="" />}
-
-            </div>
-
-            <div id="learning_5_7">
-              <div>
-                {" "}
-                <p>Professional Level VII</p> <h3>Principal Designer</h3>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Recusandae a voluptate omnis praesentium nemo officiis aut
-                  deleniti animi doloribus illum.
-                </p>
-              </div>
-              {<img src={require('../../images/level_7_principal.jpg')} alt="" />}
-            </div>
-
-            <div id="learning_5_8">
-              <div>
-                {" "}
-                <p>Professional Level VIII</p> <h3>Master Designer</h3>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Recusandae a voluptate omnis praesentium nemo officiis aut
-                  deleniti animi doloribus illum.
-                </p>
-              </div>
-              {<img src={require('../../images/level_8_master.jpg')} alt="" />}
-            </div>
-
-            <div id="learning_5_9">
-              <div>
-                {" "}
-                <p>Professional Level IX</p> <h3>Authorized Expert</h3>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Recusandae a voluptate omnis praesentium nemo officiis aut
-                  deleniti animi doloribus illum.
-                </p>
-              </div>
-              {<img src={require('../../images/level_9_authorised_expert.jpg')} alt="" />}
-            </div>
+          <div>
+            <h5>
+              {" "}
+              Themenbereich <br />
+              Berufspraxis
+            </h5>
+            <p>
+              Für aktuelle Angebote folge hier{" "}
+              <Link className="C" to="/latestlearningoffers">
+                C
+              </Link>
+            </p>
+            {<img src={require('../../images/Egon_Zitter_8_Libellen.jpg')} alt="" />}
           </div>
-        </section>
+
+          <div>
+            <h5>
+              Themenbereich <br />
+              Tageslicht
+            </h5>
+            <p>
+              {" "}
+              Für aktuelle Angebote folge hier{" "}
+              <Link className="C" to="/latestlearningoffers">
+                C
+              </Link>
+            </p>
+            {<img src={require('../../images/Sonnenuntergang.jpg')} alt="" />}
+          </div>
+
+          <div>
+            <h5>
+              Themenbereich <br />
+              Meinung
+            </h5>
+            <p>
+              Für aktuelle Angebote folge hier{" "}
+              <Link className="C" to="/latestlearningoffers">
+                C
+              </Link>
+            </p>
+            {<img src={require('../../images/unsplash.jpg')} alt="" />}
+          </div>
+        </div>
+      </section>
+      
+      <Link to="/home">
+        <img className="Trenner" src={C} alt="" />
+      </Link>
+      
+      <section id="Promoter_1">
+        <div>
+          <p>lighting design at its best!</p>
+        </div>
+      </section>
+
+      <Link to="/home">
+        <img className="Trenner" src={C} alt="" />
+      </Link>
+
+      <section id="learningbox_2">
+        <div className="infobox_intro">
+          <h2> Neuste Lernangebote </h2>
+          <p>
+            Dies ist eine Liste über die neusten Angebote. Klicken Sie <Link to="/courselistpage">hier</Link> um eine Gesmtübersicht aller Angebot zu sehen.
+          </p>
+          <Link to="/courselistpage">
+            <img src={C} alt="" className="logo_cpd" />
+          </Link>
+        </div>
+
+        <div id="infobox_table">
+          <div id="info_1_1">
+            <div>
+              <h3>Lernangebote</h3>
+              <label htmlFor="Filter">Sortiert nach</label>
+              <select name="Filter" id="Filter">
+                <option value="Themenfeld">Themenfeld</option>
+                <option value="Art">Art</option>
+                <option value="Datum">Datum</option>
+                <option value="Level">Level</option>
+              </select>
+              <br />
+            </div>
+
+            <table>
+                <colgroup>
+                  <col width="10%" />
+                  <col width="30%" />
+                  <col width="20%" />
+                  <col width="10%" />
+                  <col width="10%" />
+                  <col width="15%" />
+                  <col width="15%" />
+                </colgroup>
+              <thead>
+                <tr>
+                  <th>Datum</th>
+                  <th>
+                    <strong>Thema</strong>
+                  </th>
+                  <th>Referent/Autor</th>
+                  <th>Themenfeld</th>
+                  <th>Level</th>
+                  <th>Art</th>
+                  <th>Link</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>20.10.2021</td>
+                  <td id="titel">Die neue Art des Lichtdesigns in der Architektur</td>
+                  <td>Kazhim Rycerz / Kazhal Akbari</td>
+                  <td>Design</td>
+                  <td>4-5</td>
+                  <td>Artikel</td>
+                  <td>
+                    <Link to="/https://pld-m.com" target="_blank" className="C">C</Link>
+                  </td>
+                </tr>
+                <tr>
+                  <td>20.10.2021</td>
+                  <td>Li-Fi - Intelligente Netzwerke</td>
+                  <td>Kazhim Rycerz / Kazhal Akbari</td>
+                  <td>Design</td>
+                  <td>2-5</td>
+                  <td>Onlineseminar</td>
+                  <td>
+                    <Link to="/https://pld-m.com" target="_blank" className="C">C</Link>
+                  </td>
+                </tr>
+                <tr>
+                  <td>20.10.2021</td>
+                  <td>Wie ein Büro aufgebaut wird</td>
+                  <td>Kazhim Rycerz / Kazhal Akbari</td>
+                  <td>Berufspraxis</td>
+                  <td>6</td>
+                  <td>Life-Seminar</td>
+                  <td>
+                  <Link to="/https://pld-m.com" target="_blank" className="C">C</Link>
+                  </td>
+                </tr>
+                <tr>
+                  <td>20.10.2021</td>
+                  <td>Die neue Art des Lichtdesigns in der Architektur</td>
+                  <td>Kazhim Rycerz / Kazhal Akbari</td>
+                  <td>Design</td>
+                  <td>4-5</td>
+                  <td>Artikel</td>
+                  <td>
+                  <Link to="/https://pld-m.com" target="_blank" className="C">C</Link>
+                  </td>
+                </tr>
+                <tr>
+                  <td>20.10.2021</td>
+                  <td>Die neue Art des Lichtdesigns in der Architektur</td>
+                  <td>Kazhim Rycerz / Kazhal Akbari</td>
+                  <td>Design</td>
+                  <td>4-5</td>
+                  <td>Artikel</td>
+                  <td>
+                  <Link to="/https://pld-m.com" target="_blank" className="C">C</Link>
+                  </td>
+                </tr>
+                <tr>
+                  <td>20.10.2021</td>
+                  <td>Die neue Art des Lichtdesigns in der Architektur</td>
+                  <td>Peter Andres</td>
+                  <td>Design</td>
+                  <td>4-5</td>
+                  <td>Artikel</td>
+                  <td>
+                  <Link to="/https://pld-m.com" target="_blank" className="C">C</Link>
+                  </td>
+                </tr>
+                <tr>
+                  <td>20.10.2021</td>
+                  <td>Die neue Art des Lichtdesigns in der Architektur</td>
+                  <td>Joachim Ritter</td>
+                  <td>Beruf</td>
+                  <td>4-5</td>
+                  <td>Artikel</td>
+                  <td>
+                  <Link to="/https://pld-m.com" target="_blank" className="C">C</Link>
+                  </td>
+                </tr>
+                <tr>
+                  <td>20.10.2021</td>
+                  <td>Die neue Art des Lichtdesigns in der Architektur</td>
+                  <td>Kazhim Rycerz / Kazhal Akbari</td>
+                  <td>Design</td>
+                  <td>4-5</td>
+                  <td>Artikel</td>
+                  <td>
+                  <Link to="/https://pld-m.com" target="_blank" className="C">C</Link>
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td>5</td>
+                  <td>20</td>
+                </tr>
+              </tfoot>
+            </table>
+            <br />
+            <br />
+          </div>
+
+          <div id="info_1_2">
+            {<img src={require('../../images/Egon_Zitter_7.jpg')} alt="" />}
+            <h3>Special II</h3>
+            <p>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. In
+              officiis alias impedit, incidunt recusandae fugiat, eos quia
+              atque voluptatem, veritatis. Magni ab architecto blanditiis
+              aperiam ullam illum rerum accusamus maxime, aliquid, vel
+              laudantium dignissimos, cupiditate ratione sapiente amet labore
+              dolores! Saepe officiis magni similique non corporis accusamus
+              ex reprehenderit, expedita aliquid vero? Rem, rerum culpa?
+              Nostrum, libero cum excepturi quis ab voluptatem sunt dolores
+              non ratione maxime.
+            </p>
+          </div>
+        </div>
+      </section>
+      
+      <Link to="/home">
+        <img className="Trenner" src={C} alt="" />{" "}
+      </Link>
+
+      <section id="infobox_2">
+        <div className="infobox_intro">
+          <h2> Aktuelle Lernangebote sortiert nach Themenbereiche</h2>
+          <p>
+            Hier können sie die neusten Angebote zur Weiterbildung sehen.
+            Klicken Sie und schauen Sie im Detail, was angeboten wird.
+          </p>
+          <Link to="/home">
+            <img src={C} alt="" className="logo_cpd" />
+          </Link>
+        </div>
+        <div id="ib_2_angebote">
+          <div id="box1">
+            <h3>Themenbereich Design</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Expedita nostrum voluptatibus, reiciendis!
+              {<img src={require('../../images/Vulkan.gif')} alt="" />} Dolorum nisi aspernatur unde
+              est, magnam excepturi possimus.pariatur molestias accusamus
+              recusandae minima cum, animi, sapiente rem iste earum ipsum aut
+              ratione. Ad maiores corrupti magnam deleniti molestias aperiam
+              quas saepe repellendus architecto, perferendis consectetur est
+              quae, fuga adipisci ullam fugit doloribus recusandae maxime
+              reprehenderit.
+            </p>
+          </div>
+
+          <div id="box2">
+            <h3>Box 2</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Impedit perferendis velit tenetur asperiores at animi repellat
+              accusamus, culpa soluta cumque eos tempore dolor veritatis quod
+              veniam omnis ea consequatur mollitia excepturi labore? Deleniti
+              officiis molestiae aut consectetur earum aperiam! Saepe.
+            </p>
+          </div>
+
+          <div id="box3">
+            <h3>Box 3</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quas
+              tenetur molestiae natus ullam eos qui aperiam, minus officiis
+              cumque corporis quia sit veritatis soluta neque, velit magnam
+              tempora. Excepturi reiciendis quae, in quos, magnam totam
+              laborum veritatis dolorum, omnis aspernatur quasi, dolores iste
+              ipsam vitae veniam fugit alias ratione aliquam. Nulla optio
+              praesentium repellat, vel, nam eligendi possimus pariatur
+              dolorem?
+            </p>
+          </div>
+
+          <div id="box4">
+            <h3>Box 4</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Sapiente vero, repudiandae debitis fugiat atque itaque
+              repellendus hic, recusandae placeat quidem.
+            </p>
+          </div>
+
+          <div id="box5">
+            <h3>Box 5</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum
+              saepe quisquam numquam adipisci tempore magni quasi distinctio
+              eaque quod necessitatibus officiis pariatur perspiciatis,
+              doloribus debitis culpa nisi dolorum esse porro nobis ut nulla,
+              minima ipsa dolores aliquid tempora. Voluptas, eum.
+            </p>
+          </div>
+
+          <div id="box6">
+            <h3>Box 6</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Dolorem harum obcaecati iusto quibusdam dicta ratione fugit a
+              animi sequi odio!
+            </p>
+          </div>
+
+          <div id="box7">
+            <h3>Box 7</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Dolorem harum obcaecati iusto quibusdam dicta ratione fugit a
+              animi sequi odio!
+            </p>
+          </div>
+        </div>
+      </section>
+    
+      <img className="Trenner" src={C} alt="" />{" "}
+      <Link to="/home"></Link>
+      
+      <section id="learningbox_5">
+        <div className="infobox_intro">
+          <h2>
+            {" "}
+            Lernen nach Karrierelevel - Angebote und Themen nach Ihrer
+            Berufserfahrung
+          </h2>
+          <p>
+            Hier erhalten Sie Vorschläge zur Weiterbildung in Ihrem
+            Karrierelevel. Klicken Sie und schauen Sie im Detail, was
+            angeboten wird.
+          </p>
+          <Link to="/abouttheprofession#career">
+            <img src={C} alt="" className="logo_cpd" />
+          </Link>
+        </div>
+
+        <div id="karrierebox">
+          <div id="learning_5_1">
+            <div>
+              <p>Professional Level I</p>
+              <h3>Student</h3>
+              <p>
+                Dieses Level ist für Einsteiger, die noch kein Vorwissen zum
+                Thema Lichtdesign mitbringen. Diese Phase ist mit ein bis zwei
+                Jahen definiert.
+              </p>
+            </div>
+            <img src={require('../../images/Level_1_SLD.jpg')} alt="" />
+          </div>
+
+          <div id="learning_5_2">
+            <div>
+              <p> Professional Level II</p>
+              <h3>Newly qualified</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Recusandae a voluptate omnis praesentium nemo officiis aut
+                deleniti animi doloribus illum.
+              </p>
+            </div>
+            {<img src={require('../../images/Level_2_NQLD.jpg')} alt="" />}
+          </div>
+
+          <div id="learning_5_3">
+            <div>
+              <p>Professional Level III</p>
+              <h3>Junior Designer</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Recusandae a voluptate omnis praesentium nemo officiis aut
+                deleniti animi doloribus illum.
+              </p>
+            </div>
+            {<img src={require('../../images/Level_3_JLD.jpg')} alt="" />}
+          </div>
+
+          <div id="learning_5_4">
+            <div>
+              {" "}
+              <p>Professional Level IV</p> <h3>Project Designer</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Recusandae a voluptate omnis praesentium nemo officiis aut
+                deleniti animi doloribus illum.
+              </p>
+            </div>
+            {<img src={require('../../images/Level_4_SLD.jpg')} alt="" />}
+          </div>
+
+          <div id="learning_5_5">
+            <div>
+              {" "}
+              <p>Professional Level V</p> <h3>Senior Designer</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Recusandae a voluptate omnis praesentium nemo officiis aut
+                deleniti animi doloribus illum.
+              </p>
+            </div>
+            {<img src={require('../../images/level_5_senior.jpg')} alt="" />}
+          </div>
+
+          <div id="learning_5_6">
+            <div>
+              <p>Professional Level VI</p> <h3>Associate Designer</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Recusandae a voluptate omnis praesentium nemo officiis aut
+                deleniti animi doloribus illum.
+              </p>
+            </div>
+            {<img src={require('../../images/level_6_associate.jpg')} alt="" />}
+
+          </div>
+
+          <div id="learning_5_7">
+            <div>
+              {" "}
+              <p>Professional Level VII</p> <h3>Principal Designer</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Recusandae a voluptate omnis praesentium nemo officiis aut
+                deleniti animi doloribus illum.
+              </p>
+            </div>
+            {<img src={require('../../images/level_7_principal.jpg')} alt="" />}
+          </div>
+
+          <div id="learning_5_8">
+            <div>
+              {" "}
+              <p>Professional Level VIII</p> <h3>Master Designer</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Recusandae a voluptate omnis praesentium nemo officiis aut
+                deleniti animi doloribus illum.
+              </p>
+            </div>
+            {<img src={require('../../images/level_8_master.jpg')} alt="" />}
+          </div>
+
+          <div id="learning_5_9">
+            <div>
+              {" "}
+              <p>Professional Level IX</p> <h3>Authorized Expert</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Recusandae a voluptate omnis praesentium nemo officiis aut
+                deleniti animi doloribus illum.
+              </p>
+            </div>
+            {<img src={require('../../images/level_9_authorised_expert.jpg')} alt="" />}
+          </div>
+        </div>
+      </section>
         <br />
         <br />
        

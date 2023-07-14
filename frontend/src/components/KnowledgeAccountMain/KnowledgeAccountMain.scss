@@ -63,6 +63,8 @@ main {
         min-width: 45%;
         height: auto;
         background-color: $fourth-color;
+       /*  border-right: dotted $cpdred 2px;
+        border-left: dotted $cpdred 2px; */
         border-radius: $radiussmall;
         box-shadow: $boxshadow;
         > div {
@@ -79,7 +81,7 @@ main {
             padding: 5px;
             //border: solid;
           }
-          output {
+          .output {
             line-height: 30px;
             font-size: $normal;
             text-align: center;
@@ -225,7 +227,7 @@ main {
   .account_pers_data {
     display: block;
     color: $secondary-color;
-    background-color: $third-color;
+    background-color: $cpdred;
     font-family: $primary-font;
     font-weight: bold;
     box-shadow: none;
@@ -244,8 +246,8 @@ main {
     display: block;
     background-color: none;
     box-shadow: none;
-    width: auto;
-    min-width: 100%;
+    width: 50%;
+    //min-width: 100%;
     border: 1px solid $third-color;
     border-radius: 5px;
     font-size: $small;

@@ -3,6 +3,7 @@ import "./Header.scss";
 import { NavLink, Link} from "react-router-dom";
 import { useContext, useState, useEffect} from "react";
 import pldcpd from "../../images/pldcpd.png";
+import CLogo from "../../images/C.png"
 import { SectionsContext } from "../../context/SectionsContext.js";
 import swal from "sweetalert"
 
@@ -12,7 +13,7 @@ const Header = () => {
   const [showMenue, setShowMenue] = useState(false);
   const [accountListShow, setAccountListShow] = useState("");
   const [isToggled, setIsToggled] = useState (false)
-  const [selectedOptionAccount, setSelectedOptionAccount] = useState('');
+  //const [selectedOptionAccount, setSelectedOptionAccount] = useState('');
   
   /*  const showDropdown =()=>{
     setAccountListShow("showAccountList");
@@ -23,12 +24,11 @@ const Header = () => {
 
   const handleToggle =()=>{
     setIsToggled(!isToggled)
-    isToggled === true ? setAccountListShow("showAccountList"):setAccountListShow("hideAccountList");
+    isToggled === true ? setAccountListShow("showAccountList") : setAccountListShow("hideAccountList");
   }
 
   const handleOptionSelect = (option) => {
     navigate(option);
-    //setBtnOpen(false);
   };
   
   const manageAccountButton =()=> {
@@ -57,81 +57,97 @@ const Header = () => {
 
   return (
     <>
-      <header className="header">
-        <nav className="navheader">
-          <div id="dropdown">
-            <button id="dropbtn">
-              <p>
-                <span className="C">C</span> about
-              </p>
-            </button>
-            <ul id="dropdown-content">
-              <li>
-                <NavLink to="/home">
-                  <span className="C">C</span> about
-                </NavLink>
+      <header >
+        <div id="headerBox">
+          <nav id="navheader">
+            <div id="dropdown">
+              <button id="dropbtn">
+                <p>
+                 about
+                </p>
+              </button>
+              <ul id="dropdown-content">
+                <li>
+                  <NavLink to="/home">
+                 about
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/abouttheprofession">
+                 my Profession
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/aboutpldcpd">
+                 PLDCPD
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/aboutrycerz">
+                 RYCERZ
+                  </NavLink>
+                </li>
+              </ul>
+            </div>
+          </nav>
+  
+          <div id="text_header">
+            <NavLink to="/home">
+              <img className="image_header" id="ClogolongHeader" src={pldcpd} alt="" />
+            </NavLink>
+            {/* <NavLink to="/home">
+              <img id="ClogoHeader" src={CLogo} alt="" />
+            </NavLink> */}
+  
+            <p>
+              Plattform for Continuing <br />
+              Professional Development
+            </p>
+          </div>
+  
+          <div id="header_myaccount">
+            <ul>
+              <li
+              id="showregister">
+                {!isAuth && <Link to="/register"> register 
+                <span className="C">C</span> </Link> }
               </li>
-              <li>
-                <NavLink to="/abouttheprofession">
-                  <span className="C">C</span> my Profession
-                </NavLink>
+              <li
+                id="showlogin"
+                onClick={manageAccountButton}
+              >
+                {isAuth ? <div> log me out <span className="C">C</span></div> : <Link to="/login"> login <span className="C">C</span></Link>}
+                
               </li>
-              <li>
-                <NavLink to="/aboutpldcpd">
-                  <span className="C">C</span> PLDCPD
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/aboutrycerz">
-                  <span className="C">C</span> RYCERZ
-                </NavLink>
-              </li>
+              {/* <li >
+                {isAuth ? <Link to="/KnowledgeAccount">
+                  logged in as {localStorage.userName} <span className="C">C</span> 
+                  </Link> 
+                :
+                  <span></span>}
+              </li> */}
+              
+              {isAuth ?
+                <li id="dropBtnAccount" onMouseEnter={handleToggle} onClick={handleToggle}>
+                  logged in as {localStorage.userName} <span className="C">C</span>
+                </li>
+                :
+                <span></span>}
             </ul>
           </div>
-        </nav>
-
-        <div className="text_header">
-          <NavLink to="/home">
-            <img className="image_header" src={pldcpd} alt="" />
-          </NavLink>
-
-          <p>
-            Plattform for Continuing <br />
-            Professional Development
-          </p>
         </div>
+      </header>
 
-        <div id="header_myaccount">
-          <ul>
-            <li
-            id="showregister">
-              {!isAuth ? <Link to="/register"> register 
-              <span className="C">C</span> </Link> : <span></span>}
-            </li>
-            <li
-              id="showlogin"
-              onClick={manageAccountButton}
-            >
-              {isAuth ? <span> log me out </span> : <Link to="/login"> login </Link>}
-              <span className="C">C</span>
-            </li>
-            {/* <li >
-              {isAuth ? <Link to="/KnowledgeAccount">
-                logged in as {localStorage.userName} <span className="C">C</span> 
-                </Link> 
-              :
-                <span></span>}
-            </li> */}
-            
-            {isAuth ?
-              <li id="dropBtnAccount" onMouseEnter={handleToggle} onClick={handleToggle}>
-                logged in as {localStorage.userName} <span className="C">C</span>
-              </li>
-              :
-              <span></span>}
+  {isAuth && (
+          <ul id="dropdownAccount" className={accountListShow} onMouseLeave={handleToggle}>
+            <li onClick={() => handleOptionSelect("/KnowledgeAccount")}>Knowledge Status <span className="C">C</span></li>
+            <li onClick={() => handleOptionSelect("/KnowledgeAccount")}>Personal Data <span className="C">C</span></li>
+            <li onClick={() => handleOptionSelect("/KnowledgeAccount")}>Money: your budget <span className="C">C</span></li>
+            <li onClick={() => handleOptionSelect("/userupdate")}>change your personal data <span className="C">C</span></li>
+          <p>rufen sie hier Ihre persönliche Daten auf!</p>
           </ul>
-        </div>
-
+      )}    
+      
         <div
           id="burger_button"
           className={showMenue ? "changeBurger" : ""}
@@ -141,7 +157,6 @@ const Header = () => {
           >
           <span></span>
         </div>
-      </header>
 
       <nav onMouseLeave={(event)=>{setShowMenue(!showMenue)}}  id="navmain" className={showMenue ? "showNav" : " hideNav"}>
         <div id="listOfFields">
@@ -395,14 +410,7 @@ const Header = () => {
         </div>
       </nav>
 
-      {isAuth && (
-          <ul id="dropdownAccount" className={accountListShow} onMouseLeave={handleToggle}>
-            <li onClick={() => handleOptionSelect("/KnowledgeAccount")}>Knowledge Status <span className="C">C</span></li>
-            <li onClick={() => handleOptionSelect("/KnowledgeAccount")}>Personal Data <span className="C">C</span></li>
-            <li onClick={() => handleOptionSelect("/KnowledgeAccount")}>Money: your budget <span className="C">C</span></li>
-          <p>rufen sie hier Ihre persönliche Daten auf!</p>
-          </ul>
-      )}            
+              
     </>
   );
 };

@@ -69,6 +69,10 @@ img[src*="c.png"] {
   font-size: $normal;
   transition: 1.5s ease-in-out;
   //border: solid;
+  >*{
+    flex-basis:100%;
+    flex-shrink: 20%;
+  }
   h3 {
     font-family: $primary-font-bold;
     margin: 0px;
@@ -86,16 +90,15 @@ img[src*="c.png"] {
   }
   
   #C1A1, #C1A4 {
-    //flex-basis: 2;
-    width: 35%;
-    margin: 0 0px 0 0px;
+    width: 100%;
+    margin: 0 0 0 0;
     border-left: 3px dotted $cpdred;
     border-right: 3px dotted $cpdred;
     border-radius: 20px;
     padding: 20px;
   }
   #C1A1 {
-    margin-left: 0px;
+    margin-left: 0;
     margin-right: 0;
   }
   #C1Center {
@@ -106,14 +109,12 @@ img[src*="c.png"] {
     justify-content: flex-start;
     gap: 2rem;
     align-items: center;
-    position: relative;
-    //left: -30px;
     margin: 0px auto;
     padding: 20px 0 20px 0;
     //border: solid;
     
     #C1A2, #C1A3 {
-      width: 200px;
+      width: 90%;
       height: auto;
       margin: 20px 0px;
       border-top: 3px dotted $cpdred;
@@ -123,10 +124,10 @@ img[src*="c.png"] {
       position: relative;
     }
     #C1A2 {
-      margin-left: -30px;
+      left: -5%;
     }
     #C1A3 {
-      right: -20px;
+      right: -5%;
       align-self: bottom;
     }
   }
@@ -355,6 +356,10 @@ img[src*="c.png"] {
     p {
       font-size: $normal;
     }
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
   }
  }  
   
@@ -513,8 +518,7 @@ img[src*="c.png"] {
  }   
 
  @media (max-width: $desktop){
-  p {font-size: $small;
-  }
+  //p {font-size: $small}
   #Gruß_main {
       h1 {
         font-size: 40px;
@@ -530,15 +534,51 @@ img[src*="c.png"] {
  
  @media (max-width: $tablet){
   #Gruß_main {
-      h1 {
+    
+      #Gruß_main_h1 {
         font-size: 40px;
+        width: 100%;
+        display: block;
+        position: relative;
+        left:0;
+        padding: 10px;
+        //border: solid;
       };
-      p {
-      font-size: 18px;
-      line-height: 26px;
-      width: 40%
+      #Gruß_main_p {
+        font-size: 18px;
+        line-height: 26px;
+        width: auto;
+        display: block;
+        position: relative;
+        right: 0;
+        left:0;
+        padding: 10px;
+        //border: solid;
+      }
+  }
+  #C1{
+    display:flex;
+    flex-flow: column nowrap;
+    width: auto; 
+    height: auto;
+    gap: 0px;
+    margin: 60px auto;
+    font-size: $normal;
+    transition: 1.5s ease-in-out;
+    //border: solid;
+    >* {
+      //border: solid;
+      width: 80%;
+      margin: 0 auto;
+      flex-basis: auto;
+      #C1A2, #C1A3 {
+        width: 100%;
+        margin: 0px;
+        //border: solid;
+      }
     }
   }
+
 }
  
  

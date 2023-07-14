@@ -202,23 +202,24 @@
 
  @media (max-width: $tablet){
   #buttonShowAccount {
-     z-index: 0;
-     transform: translateY(-25px) rotate(0deg); 
-/* 
-    &.showBut {
+     /* z-index: 0;
+     transform: translateY(-25px) rotate(0deg); */ 
+     display: none;
+  /*   &.showBut {
       right:calc(10% - 33px);//ex44
       transition: 0.5s ease-in-out;
     }
     &.hideBut {
       right:calc(10% - 10px);//ex24
       transition: 0.5s ease-in-out;
-    } */
+    */
   }
-  .hideBut {
+  /* .hideBut, .showBut {
     transform: translateY(-25px) rotate(0deg) translateY(33px);
-    top:20%;//ex24
+    top:20%;
      transition: 0.5s ease-in-out;
-  }
+     display: none;
+  } */
   
  }
 
@@ -229,21 +230,22 @@
    position: fixed;
    top: 155px;
    left: calc(100% - ((100% - 1280px) / 2) - 36px);
+   line-height: 15px;
    }
    @keyframes moveButton {
-    0%  {transform:  translateY(33px) rotate(-90deg); z-index:0; left: calc(100% - ((100% - 1280px) / 2) - 36px);line-height: 15px}
+    0%  {transform:  translateY(33px) rotate(-90deg); z-index:0; left: calc(100% - ((100% - 1280px) / 2) - 33px);line-height: 15px}
     90%  {z-index: 0;}
-    100% {transform: rotate(0deg);z-index: 10; left: calc(100% - ((100% - 1280px) / 2) + 36px);line-height: 15px;}
+    100% {transform: rotate(0deg);z-index: 10; left: calc(100% - ((100% - 1280px) / 2) + 60px);line-height: 15px;}
   }
   @keyframes moveButtonBack {
-    0%  {transform: rotate(0deg);z-index:10;left: calc(100% - ((100% - 1280px) / 2) + 36px);line-height: 15px} 
+    0%  {transform: rotate(0deg);z-index:10;left: calc(100% - ((100% - 1280px) / 2) + 60px);line-height: 15px} 
     50% {z-index: 0;}
     100% {transform:  translateY(33px) rotate(-90deg); right:calc(10% - 33px);line-height: 15px}
     }
   @keyframes moveButtonBackToStart {
-    0%  {transform: rotate(0deg);z-index:10;left: calc(100% - ((100% - 1280px) / 2) + 36px);line-height: 15px}
+    0%  {transform: rotate(0deg);z-index:10;left: calc(100% - ((100% - 1280px) / 2) + 60px);line-height: 15px}
     50% {z-index: 0;}
-    100% {transform:  translateY(33px) rotate(-90deg);z-index:0;left: calc(100% - ((100% - 1280px) / 2) - 65px);line-height: 15px} 
+    100% {transform:  translateY(33px) rotate(-90deg);z-index:0;left: calc(100% - ((100% - 1280px) / 2) - 60px);line-height: 15px} 
   }
 
   .accountAside {

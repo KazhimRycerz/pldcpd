@@ -1,122 +1,128 @@
 //@import '../../scss/global.scss';
 
 #drehmoment {
+  max-width: 1600px;
   img {
   //display: none;
   position: fixed;
   opacity: 1;
   width: 15vw; 
   max-width: 200px;
-  aspect-ratio: 1;
+  //aspect-ratio: 1;
   z-index: -1;
   animation: rotate 25s infinite linear;
   }
 
   #r1 {
-    left: 22vw;
-    top: 0px;
+    //left: 22vw;
+    left: 25%;
+    //left: calc(50% - 25%);
+    top: 50px;
     animation-duration: 20.5s;
   } 
   #r2 {
-    left: 66vw;
-    top: 0px;
+    //left: 66vw;
+    left: 60%;
+    //left: calc(50% + 10%);
+    top: 50px;
     animation-duration: 22.5s;
   }
   #r3 {
-    left: -2.5vw;
-    left: -2.5%;
-    top: 150px;
+    //left: -2.5vw;
+    left: calc(10% - 12.5%);
+    top: 200px;
     animation-duration: 24s;
   }
   #r4 {
     left:43.5vw;
-    top: 150px;
+    top: 200px;
     animation-duration: 26s;
   }
   #r5 {
-    left: 87.5vw;
-    top: 150px;
+    //left: 87.5vw;
+    right: calc(10% - 12.5%);
+    top: 200px;
     animation-duration: 22s;
   }
   #r6 {
-    left: 22vw;
-    top: 300px;
+    left: 25%;
+    top: 350px;
   } 
   #r7 {
     left: 66vw;
-    top: 300px;
+    top: 350px;
     animation-duration: 22.5s;
   }
   #r8 {
     left: -2.5vw;
-    top: 450px;
+    top: 500px;
     animation-duration: 25.6s;
   }
   #r9 {
     left:43.5vw;
-    top: 450px;
+    top: 500px;
     animation-duration: 25.6s;
   }
   #r10 {
-    left: 87.5vw;
-    top: 450px;
+    right: calc(10% - 12.5%);
+    top: 500px;
     animation-duration: 24.5s;
   }
   #r11 {
-    left: 22vw;
-    top: 600px;
+    left: 25%;
+    top: 650px;
   } 
   #r12 {
     left: 66vw;
-    top: 600px;
+    top: 650px;
     animation-duration: 22.5s;
   }
   #r13 {
     left: -2.5vw;
-    top: 750px;
+    top: 800px;
     animation-duration: 25.6s;
   }
   #r14 {
     left:43.5vw;
-    top: 750px;
+    top: 800px;
     animation-duration: 25.6s;
   }
   #r15 {
-    left: 87.5vw;
-    top: 750px;
+    right: calc(10% - 12.5%);
+    top: 800px;
     animation-duration: 24.5s;
   }
   #r16 {
-    left: 22vw;
-    top: 900px;
+    left: 25%;
+    top: 950px;
   } 
   #r17 {
     left: 66vw;
-    top: 900px;
+    top: 950px;
     animation-duration: 22.5s;
   }
   #r18 {
     left: -2.5vw;
-    top: 1050px;
+    top: 1100px;
     animation-duration: 25.6s;
   }
    #r19 {
     left:43.5vw;
-    top: 1050px;
+    top: 1100px;
     animation-duration: 25.6s;
   }
   #r20 {
-    left: 87.5vw;
-    top: 1050px;
+    right: calc(10% - 12.5%);
+    top: 1100px;
     animation-duration: 24.5s;
   }
   #r21 {
-    left: 22vw;
-    top: 1200px;
+    left: 25%;
+    top: 1250px;
   } 
   #r22 {
     left: 66vw;
-    top: 1200px;
+    top: 1250px;
     animation-duration: 22.5s;
   }
 }
@@ -129,5 +135,118 @@
  100% {
    transform: rotate(360deg)
  }
+}
+
+ @media (min-width: 1600px){
+  #r1 {
+    //left: 22vw;
+    //left: calc((100% - 1280px /2) + 320px);
+    left: calc((100% - 1280px) / 2);
+    top: 50px;
+    animation-duration: 20.5s;
+  } 
+  #r2 {
+    left: 66vw;
+    top: 50px;
+    animation-duration: 22.5s;
+  }
+  #r3 {
+    //left: -2.5vw;
+    left: -3.0vw;
+    //left: calc((100vw - 1280px) / 2)
+    top: 200px;
+    //background-color: white;;
+  }
+  #r4 {
+    left:43.5vw;
+    top: 200px;
+    animation-duration: 26s;
+  }
+  #r5 {
+    left: 89.5vw;
+    top: 200px;
+    animation-duration: 22s;
+  }
+  #r6 {
+    left: 22vw;
+    top: 350px;
+  } 
+  #r7 {
+    left: 66vw;
+    top: 350px;
+    animation-duration: 22.5s;
+  }
+  #r8 {
+    left: -2.5vw;
+    top: 500px;
+    animation-duration: 25.6s;
+  }
+  #r9 {
+    left:43.5vw;
+    top: 500px;
+    animation-duration: 25.6s;
+  }
+  #r10 {
+    left: 89.5vw;
+    top: 500px;
+    animation-duration: 24.5s;
+  }
+  #r11 {
+    left: 22vw;
+    top: 650px;
+  } 
+  #r12 {
+    left: 66vw;
+    top: 650px;
+    animation-duration: 22.5s;
+  }
+  #r13 {
+    left: -2.5vw;
+    top: 800px;
+    animation-duration: 25.6s;
+  }
+  #r14 {
+    left:43.5vw;
+    top: 800px;
+    animation-duration: 25.6s;
+  }
+  #r15 {
+    left: 89.5vw;
+    top: 800px;
+    animation-duration: 24.5s;
+  }
+  #r16 {
+    left: 22vw;
+    top: 950px;
+  } 
+  #r17 {
+    left: 66vw;
+    top: 950px;
+    animation-duration: 22.5s;
+  }
+  #r18 {
+    left: -2.5vw;
+    top: 1100px;
+    animation-duration: 25.6s;
+  }
+   #r19 {
+    left:43.5vw;
+    top: 1100px;
+    animation-duration: 25.6s;
+  }
+  #r20 {
+    left: 89.5vw;
+    top: 1100px;
+    animation-duration: 24.5s;
+  }
+  #r21 {
+    left: 22vw;
+    top: 1250px;
+  } 
+  #r22 {
+    left: 66vw;
+    top: 1250px;
+    animation-duration: 22.5s;
+  }
 }
 

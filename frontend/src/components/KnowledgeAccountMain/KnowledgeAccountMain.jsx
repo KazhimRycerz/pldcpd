@@ -64,11 +64,11 @@ const  KnowledgeAccountMain = ()=>{
                <div>
                   <div>
                      <p>Ihr Beruf:</p> 
-                     <output id="profession">{knowledgeData.profession}</output>
+                     <div className="output" id="profession">{knowledgeData.profession}</div>
                   </div>
                   <div>
                      <p>aktuelle Firma:</p>
-                     <output id="company">VIA-Design</output>
+                     <div className="output" id="company">VIA-Design</div>
                   </div>
                   {/* <div> 
                      <p>Name:</p> 
@@ -79,7 +79,7 @@ const  KnowledgeAccountMain = ()=>{
                <div>
                   <div>
                      <p>Karrierelevel</p>
-                     <output id="myCL"> {knowledgeData.myCStatus} von 9</output>
+                     <div className="output" id="myCL"> {knowledgeData.myCStatus} von 9</div>
                   </div>
                   <div><p></p></div>
                      <div><p id="account_1_p">{knowledgeData.careerPathStatus}</p></div>
@@ -88,26 +88,26 @@ const  KnowledgeAccountMain = ()=>{
                <div>
                   <div>
                      <p>beruflich aktiv seit </p>
-                     <output id="my_active"> {Moment(knowledgeData.professionalSince).format("DD.MM.YYYY")}
-                     </output>
+                     <div className="output" id="my_active"> {Moment(knowledgeData.professionalSince).format("DD.MM.YYYY")}
+                     </div>
                   </div>
                   <div>
                      <p>CPD-aktiv seit</p>
-                     <output id="my_start"> {Moment(knowledgeData.cpdActiveSince).format("DD.MM.YYYY")}
-                     </output>
+                     <div className="output" id="my_start"> {Moment(knowledgeData.cpdActiveSince).format("DD.MM.YYYY")}
+                     </div>
                   </div>
                   <div>
                   <p>letztes Update </p>
-                     <output id="my_active"> {Moment(knowledgeData.updatedOn).format("DD.MM.YYYY")}
-                     </output>
+                     <div className="output" id="my_active"> {Moment(knowledgeData.updatedOn).format("DD.MM.YYYY")}
+                     </div>
                   </div>
                </div>
 
                <div>
                   <div>
                      <p>Ihr Guthaben</p>
-                     <output className="account_Box" id="myLCoins"> {knowledgeData.myLC} <span className="C colorYellow"> LC</span>
-                     </output>
+                     <div className="output account_Box" id="myLCoins"> {knowledgeData.myLC} <span className="C colorYellow"> LC</span>
+                     </div>
                   </div>
                   <div><p></p></div>
                   <div><p></p></div>
@@ -116,7 +116,7 @@ const  KnowledgeAccountMain = ()=>{
          </section>
 
          <section id="account_2">
-            <h3> Ihre persönlichen Werte Ihres Fachwissens</h3>
+            <h3> Ihr persönliches Fachwissen</h3>
             <p> Die unteren Zahlen zeigen Ihnen die Durchschnittswerte im internationalen Lichtdesignermarkt aller
             Teilnehmer an.</p>
 

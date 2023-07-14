@@ -28,7 +28,7 @@ const accountPos3 = "accountAside hideAccount"
 
 
 const handleButton=(buttonPos) => {
-  console.log("buttonPosition:", buttonPos)
+  //console.log("buttonPosition:", buttonPos)
   if (!isAuth) {navigate("/home")
   } else if ( buttonPos === buttonMove1 ) {
     setButtonPos(buttonMove2);
@@ -74,8 +74,8 @@ const getMarketKnowledgeData = async () => {
     //console.log(knowledgeData)
   
   useEffect((props) => {
-      getMarketKnowledgeData();
-      getUserData();
+      isAuth && getMarketKnowledgeData();
+      isAuth && getUserData();
       /* console.log("buttonPosition:", buttonPos) */
   }, []);
 

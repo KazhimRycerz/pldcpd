@@ -21,6 +21,7 @@ const SectionsProvider = ({ children }) => {
   const [buttonPos, setButtonPos] = useState(isAuth ? "showBut" : "buttonZeroPosition");
   const [asidePos, setAsidePos] = useState("accountAside");
   const [userData, setUserData] = useState({});
+  const [contactData, setContactData] = useState({});
   const [marketData, setMarketData] = useState({});
   const [gotoPage, setGotoPage] = useState("/home")
   const [accessRights, setAccessRights] = useState(1)

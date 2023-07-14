@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import { SectionsContext } from "../../context/SectionsContext.js";
-import { EditOutlined, SaveOutlined } from "@ant-design/icons";
+import { EditOutlined, SaveOutlined, CancleOutlined } from "@ant-design/icons";
 import axiosConfig from "../../util/axiosConfig";
 import swal from "sweetalert";
 import "./UserUpdateMain.scss";
 
 export default function UpdateUser() {
   const { userData, setUserData, navigate } = useContext(SectionsContext);
+  const [contactData, setContactData] = useState({});
   const userId = localStorage.getItem("userId");
 
   const [refreshData, setRefreshData] = useState({});
@@ -58,11 +59,13 @@ export default function UpdateUser() {
         `http://localhost:4000/user/${userId}`
       );
       const userData = axiosResp.data;
-      const contactData = userData.contactData;
-      setUserData(contactData);
+      //const contactDetails = userData.contactData;
+      setUserData(userData);
+      //setContactData(contactDetails);
     };
     getUserById();
     console.log(userData)
+    //console.log(contactData)
   };
   useEffect(() => {
     getUserData();
@@ -201,7 +204,7 @@ export default function UpdateUser() {
                               userName: userName,
                               firstName: userData.firstName,
                               lastName: userData.lastName,
-                              email: userData.email
+                              email: userData.eMail
                             };
                             updateUser(data);
                           } else {
@@ -257,10 +260,10 @@ export default function UpdateUser() {
                             userName: userData.userName,
                             firstName: firstName,
                             lastName: userData.lastName,
-                            gender: userData.gender,
-                            disabilities: userData.disabilities,
-                            email: userData.email,
-                            location: userData.location,
+                            //gender: userData.gender,
+                            //disabilities: userData.disabilities,
+                            email: userData.eMail,
+                            //location: userData.location,
                           };
                           updateUser(data);
                         } else {
@@ -316,10 +319,10 @@ export default function UpdateUser() {
                               userName: userData.userName,
                               firstName: userData.firstName,
                               lastName: lastName,
-                              gender: userData.gender,
-                              disabilities: userData.disabilities,
-                              email: userData.email,
-                              location: userData.location,
+                              //gender: userData.gender,
+                              //disabilities: userData.disabilities,
+                              email: userData.eMail,
+                              //location: userData.location,
                             };
                             updateUser(data);
                           } else {
@@ -402,11 +405,11 @@ export default function UpdateUser() {
             <span className="col1">Email: </span>
             <span className="col2">
               {!editEmail ? (
-                <span>{userData.email}</span>
+                <span>{userData.eMail}</span>
               ) : (
                 <input
                   type="text"
-                  defaultValue={userData.email}
+                  defaultValue={userData.eMail}
                   onChange={(e) => setEmail(e.target.value)}
                 />
               )}
@@ -439,10 +442,10 @@ export default function UpdateUser() {
                               userName: userData.userName,
                               firstName: userData.firstName,
                               lastName: userData.lastName,
-                              gender: userData.gender,
-                              disabilities: userData.disabilities,
+                              //gender: userData.gender,
+                              //disabilities: userData.disabilities,
                               email: email,
-                              location: userData.location,
+                              //location: userData.location,
                             };
                             updateUser(data);
                           } else {
@@ -462,7 +465,7 @@ export default function UpdateUser() {
             <span className="col2">
             {!editPassword ? (
               <button
-                className="button-dark-green col1"
+                className="buttonBasics"
                 onClick={() => {
                   setEditPassword(true);
                   setEditInputName("Passwort");
@@ -498,10 +501,10 @@ export default function UpdateUser() {
                             userName: userData.userName,
                             firstName: userData.firstName,
                             lastName: userData.lastName,
-                            gender: userData.gender,
-                            disabilities: userData.disabilities,
-                            email: userData.email,
-                            location: userData.location,
+                            //gender: userData.gender,
+                            //disabilities: userData.disabilities,
+                            email: userData.eMail,
+                            //location: userData.location,
                             password: password,
                           };
                           updateUserPassword(data);
@@ -514,13 +517,14 @@ export default function UpdateUser() {
                     getUserData();
                   }}
                 />
-              )}
+                )}
+                
             </span>
           </li>
-          <button onClick={() => navigate("/profile")} className="button-green">
+        </ul> 
+          <button onClick={() => navigate(-1)} className="buttonBasics" >
             Fertig
           </button>
-        </ul> 
       </div>
     </main>
   ); 

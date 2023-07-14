@@ -38,26 +38,26 @@
     transition: 0.5s ease-in-out;  
     line-height: 15px;
   }
-   &.moveButton {animation: moveButton 1s 0s ease-in-out forwards}
-   &.moveButtonBack {animation: moveButtonBack 1s 0s ease-in-out forwards}
-   &.moveButtonBackToStart {animation: moveButtonBackToStart 1.5s ease-in-out forwards}
+   &.moveButton {animation: moveButtonA 1s 0s ease-in-out forwards}
+   &.moveButtonBack {animation: moveButtonBackA 1s 0s ease-in-out forwards}
+   &.moveButtonBackToStart {animation: moveButtonBackToStartA 1.5s ease-in-out forwards}
   }
   
-  @keyframes moveButton {
-    0%  {transform:  translateY(33px) rotate(-90deg); z-index:0; right:calc(10% - 33px)}
+  @keyframes moveButtonA {
+    0%  {transform:  translateY(33px) rotate(-90deg); z-index:0; right:calc(10% - 33px);line-height: 55px}
     90%  {z-index: 0}
     100% {transform:  rotate(0deg);z-index: 10; right: 33px;line-height: 15px}
   }  
-  @keyframes moveButtonBack {
+  @keyframes moveButtonBackA {
     0%  {transform: rotate(0deg);z-index:10;right: 33px;line-height: 15px} 
     50% {z-index: 0}
-    100% {transform:  translateY(33px) rotate(-90deg);z-index:0;  right:calc(10% - 33px);line-height: 55px}
+    100% {transform:  translateY(33px) rotate(-90deg);z-index:0;right:calc(10% - 33px);line-height: 55px}
     } 
-  @keyframes moveButtonBackToStart {
+  /* @keyframes moveButtonBackToStartA {
     0%  {transform: rotate(0deg);z-index:10;right: 33px;}
     50% {z-index: 0;}
     100% {transform:  translateY(33px) rotate(-90deg);z-index:0;  right:calc(10% - 10px)}
-  } 
+  } */ 
 
 #infoAsideAccount {
   display: block;
@@ -152,7 +152,7 @@
   &.hideAccount {animation: hide_home_aside 2s ease-in-out forwards}
 }  
  
-  @keyframes show_home_aside {
+  /* @keyframes show_home_aside {
     0%  {opacity:0; display: none;}
     1%  {transform: translateX(-120%) scale(90%); display: block; z-index: -1;opacity: 1;display: block;}
     30% {z-index:1; display: block;}
@@ -165,7 +165,7 @@
    60% {z-index:1}
    99% {transform: translateX(-120%) scale(90%); z-index: -1; opacity: 1}
    100% {transform: translateX(-120%) scale(90%); z-index: -1; opacity: 0; display: none;}
-   }
+   } */
  
  @media (max-width: $tablet){
   #buttonShowAccount {
@@ -195,21 +195,21 @@
    top: 155px;
    left: calc(100% - ((100% - 1280px) / 2) - 36px);
    }
-   @keyframes moveButton {
-    0%  {transform:  translateY(33px) rotate(-90deg); z-index:0; left: calc(100% - ((100% - 1280px) / 2) - 36px);line-height: 15px}
+   @keyframes moveButtonA {
+    0%  {transform:  translateY(33px) rotate(-90deg); z-index:0; left: calc(100% - ((100% - 1280px) / 2) - 36px);line-height: 55px}
     90%  {z-index: 0;}
-    100% {transform: rotate(0deg);z-index: 10; left: calc(100% - ((100% - 1280px) / 2) + 36px);line-height: 55px;}
+    100% {transform: rotate(0deg);z-index: 10; left: calc(100% - ((100% - 1280px) / 2) + 33px);line-height: 15px;}
   }
-  @keyframes moveButtonBack {
-    0%  {transform: rotate(0deg);z-index:10;left: calc(100% - ((100% - 1280px) / 2) + 36px);line-height: 55px} 
+  @keyframes moveButtonBackA {
+    0%  {transform: rotate(0deg);z-index:10;left: calc(100% - ((100% - 1280px) / 2) + 33px);line-height: 15px} 
     50% {z-index: 0;}
-    100% {transform:  translateY(33px) rotate(-90deg); right:calc(10% - 33px);line-height: 15px}
+    100% {transform:  translateY(33px) rotate(-90deg); right:calc(10% - 33px);line-height: 55px}
     }
-  @keyframes moveButtonBackToStart {
-    0%  {transform: rotate(0deg);z-index:10;left: calc(100% - ((100% - 1280px) / 2) + 36px);line-height: 15px}
+  /* @keyframes moveButtonBackToStartA {
+    0%  {transform: rotate(0deg);z-index:10;left: calc(100% - ((100% - 1280px) / 2) + 33px);line-height: 15px}
     50% {z-index: 0;}
     100% {transform:  translateY(33px) rotate(-90deg);z-index:0;left: calc(100% - ((100% - 1280px) / 2) - 65px);line-height: 55px} 
-  }
+  } */
 
   .accountAside {
     left: calc(100% - ((100% - 1280px) / 2) - 100px);

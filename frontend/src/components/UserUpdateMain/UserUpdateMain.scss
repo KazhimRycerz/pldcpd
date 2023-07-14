@@ -1,11 +1,24 @@
+@import "../../scss/global.scss";
+
 .UpdateUser {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 3rem;
   transition: gap 1s ease-in;
+
   h2{
-    margin: 30px auto;
+    font-size: $small;
+    text-align: center;
+    padding: 2.25rem 0 1rem 0;
+    margin: 2rem auto 1.5rem;
+    color: $cpdblue;
+    border-radius:  20px 20px 0 0 ;
+    //background-color: $cpdred-50;
+    transition: font-size 1s ease-in;
+  }
+  >button {
+    margin-bottom: 30px;
   }
 }
 
@@ -25,19 +38,19 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 0.25rem;
-  width: 90%;
-  background-color: var(--beige-transparent-color);
-  border-radius: 2rem;
+  width: 80%;
+  background-color: $first-color;
+  border-radius: $large;
   padding: 1.5rem 0rem 2rem 1rem;
-  box-shadow: 0 0 1rem var(--dark-color);
+  box-shadow: $boxshadow;
   transition: width 1s ease-in, font-size 1s ease-in;
-}
+  li {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 35% 60%;
+    gap: 1rem;
+  }
 
-.UpdateUser ul li {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 35% 60%;
-  gap: 1rem;
 }
 
 .UpdateUser .col2 {
@@ -61,13 +74,13 @@
 
 .UpdateUser .col2 input,
 .UpdateUser .col2 select {
-  font-size: 1.75rem;
-  color: var(--dark-green-color);
+  font-size: 1.2rem;
+  color: $cpdred;
   border-radius: 0.5rem;
   border-color: var(--dark-green-color) var(--middle-green-color)
     var(--middle-green-color) var(--dark-green-color);
-  background-color: var(--beige-transparent-color);
-  padding-left: 0.5rem;
+  background-color: white;
+  padding: 0.25rem;
 }
 
 .UpdateUser .col2 select {
@@ -184,12 +197,12 @@
   }
 
   .UpdateUser ul {
-    width: 900px;
-    font-size: 2rem;
+    width: 80%;
+    font-size: 1.2rem;
   }
 
   .UpdateUser .save-icon,
   .UpdateUser .edit-icon {
-    font-size: 3rem;
+    font-size: 1.5rem;
   }
 }

@@ -102,6 +102,32 @@ main {
   display:block;
 }
 
+.buttonBasics {
+  vertical-align: middle;
+  width: 60%;
+  height: 40px;
+  max-width: 150px;
+  margin: 0px ;
+  font-size: $xsmall;
+  padding: 0.5rem 0.5rem;
+  background-color: $first-color;
+  //background-color: $cpdred;
+  color: $cpdblue;
+  //color: $first-color;
+  box-shadow: $btnshadow;
+  border-radius: $radiussmall;
+  text-decoration: none;
+  border: none;
+}
+.buttonBasics:hover {
+  //background-color: $cpdred;
+  background-color: $cpdblue;
+  color: $first-color;
+}
+/* .buttonBasics:focus {
+  background-color: $cpdred;
+} */
+
 .swal-title {
   color: $cpdblue;
 }
@@ -127,7 +153,7 @@ main {
     display: none;
   }
   main {
-    width: 100vw;
+    width: 100%;
     margin: 0 0;
   }
   

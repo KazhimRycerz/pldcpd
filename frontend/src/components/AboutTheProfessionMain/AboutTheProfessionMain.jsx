@@ -33,9 +33,9 @@ const AboutTheProfessionMain = () => {
     <main> {/* Styling in global */}
 
       <section id="profession_main">
-        <h1 id="lichtdesigner_h1">
+        <h2 id="lichtdesigner_h2">
           Der/die Lichtdesigner/in: <br />Ein moderner Beruf mit historischen Wurzeln
-        </h1>
+        </h2>
       </section>
               
       <section className="derLichtdesigner">

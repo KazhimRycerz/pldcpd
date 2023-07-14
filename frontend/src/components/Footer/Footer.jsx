@@ -8,7 +8,8 @@ const Footer = () => {
          <p>
          Rycerz Media <br />
          Marienfelder Str. 18<br />
-         33330 Gütersloh</p>
+         33330 Gütersloh
+         </p>
    
        <ul>
          <li><Link to="https://twitter.com/RitterJoachim/" target="_blank"><ion-icon name="logo-twitter"></ion-icon></Link></li>
@@ -24,44 +25,32 @@ const Footer = () => {
        <div>
          <div>
            <ul>
-           <li><Link to="/impressum"><span className="C">C</span> Imprint</Link></li>
-             <li>Privacy policy</li>
+           <li><Link to="/impressum"> Imprint</Link></li>
+             <li><a>Privacy policy</a></li>
              <li>NN</li>
              <li>sdlkfhj </li>
              <li>sd glkdfjg</li>
              <li> eoirtu </li>
-             <li> aeöglkhj</li>
-             <li></li>
-             <li></li>
-             <li></li>
            </ul>      
          </div>
          <div>
            <ul>
-           <li><Link to="/impressum"><span className="C">C</span> Imprint</Link></li>
+           <li><Link to="/impressum"> Imprint</Link></li>
              <li>Privacy policy</li>
              <li>NN</li>
              <li>sdlkfhj </li>
              <li>sd glkdfjg</li>
              <li> eoirtu </li>
              <li> aeöglkhj</li>
-             <li></li>
-             <li></li>
-             <li></li>
            </ul>      
          </div>
          <div>
            <ul>
-           <li><Link to="/impressum"><span className="C">C</span> Imprint</Link></li>
+           <li><Link to="/impressum"> Imprint</Link></li>
              <li>Privacy policy</li>
              <li>NN</li>
              <li>sdlkfhj </li>
              <li>sd glkdfjg</li>
-             <li> eoirtu </li>
-             <li> aeöglkhj</li>
-             <li></li>
-             <li></li>
-             <li></li>
            </ul>      
          </div>
          <div>
@@ -73,14 +62,12 @@ const Footer = () => {
              <li>sd glkdfjg</li>
              <li> eoirtu </li>
              <li> aeöglkhj</li>
-             <li></li>
-             <li></li>
-             <li></li>
+             <li> aeöglkhj</li>
            </ul>      
          </div>
          <div>
            <ul>
-           <li><Link to="/impressum"><span className="C">C</span> Imprint</Link></li>
+           <li><Link to="/impressum"> Imprint</Link></li>
              <li>Privacy policy</li>
              <li>NN</li>
              <li>f</li>

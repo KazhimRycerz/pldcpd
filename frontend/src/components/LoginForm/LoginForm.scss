@@ -10,17 +10,16 @@
   background-color: $first-color;
   border: none;
   font-family: $primary-font;
-}
-
-.LoginForm > h2 {
-  font-size: $small;
-  text-align: center;
-  padding: 2.25rem 0 1rem 0;
-  margin: 2rem auto 1.5rem;
-  color: $cpdblue;
-  border-radius:  20px 20px 0 0 ;
-  //background-color: $cpdred-50;
-  transition: font-size 1s ease-in;
+    h2 {
+    font-size: $small;
+    text-align: center;
+    padding: 2.25rem 0 1rem 0;
+    margin: 2rem auto 1.5rem;
+    color: $cpdblue;
+    border-radius:  20px 20px 0 0 ;
+    //background-color: $cpdred-50;
+    transition: font-size 1s ease-in;
+  }
 }
 
 .LoginForm > h2:last-of-type {
