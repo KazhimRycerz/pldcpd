@@ -10,6 +10,7 @@ import CourseListPage from "./pages/CourseListPage/CourseListPage.jsx";
 import CoursePage from "./pages/CoursePage/CoursePage.jsx";
 import AuthorsPage from "./pages/AuthorsPage/AuthorsPage.jsx";
 import Login from "./pages/LoginPage/Login.jsx";
+import ContactUs from "./pages/ContactUs/ContactUs.jsx";
 import Register from "./pages/RegisterPage/Register.jsx";
 import Impressum from "./pages/Impressum/Impressum.jsx";
 import UserProfile from "./pages/UserProfile/UserProfile.jsx";
@@ -55,6 +56,7 @@ function App() {
           <Route path="/impressum" element={<Impressum />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/emailus" element={<ContactUs />} />
           <Route path="/userprofile" element={<UserProfile />} />
           <Route path="/userupdate" element={<UserUpdate />} />
           <Route path="/*" element={<Page404 />} />
