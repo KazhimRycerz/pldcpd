@@ -257,8 +257,13 @@ const Header = () => {
             )}
             </li>
             <li>
+              <NavLink to="/emailus" className="closebtn" style={{color: "red"}}>
+                <span className="C">C</span> e-mail us 
+              </NavLink>
+            </li>
+            <li>
               <NavLink to="/404" className="closebtn">
-                <span className="C">C</span> contact
+                <span className="C">C</span> contact us 
               </NavLink>
             </li>
             {/* <img src="./images/finger-print-outline.svg" alt="" /> */}
