@@ -2,9 +2,83 @@
 
 #contactUsMain{
     min-height: 600px;
-    #eMailForm{
     width: 80%;
-    margin: 0 auto;
+    margin: 25vh auto 150px;
+    //border: solid 2px white;
+    box-shadow: $cpdblue 0px 0px 100px 50px inset, 0px 0px 15px 0px white;
+    >div {
+        //border: solid;
+        width: 60%;
+        margin: 0 auto;
     }
+    h2 {
+        display:block;
+        margin: 50px auto;
+        margin-right: 0;
+        padding: 20px;
+        width:fit-content;
+        position: relative;
+        right: 0%;
+        font-size: $small;
+        text-align: center;
+        color: $cpdblue;
+        border-left: dotted 3px $cpdred;
+        border-right: dotted 3px $cpdred;
+        border-radius:  20px ;
+        //background-color: $cpdred-50;
+        //transition: font-size 1s ease-in;
+      }
+    
+     #eMailForm{
+        display: flex;
+        flex-flow: column nowrap;
+        gap: 20px;
+        width: 60%;
+        margin: 0 auto ;
+        //padding: 20px;
+        //border: solid;
+        div{
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: flex-end;
+            gap: 20px;
+            //border: solid;
+            label {
+                padding-left: 20px;
+                flex-basis: 40%;
+                margin-left: 20px;
+                align-items: flex-start;
+            }   
+            input, textarea {
+                border: solid 2px;
+                padding: 10px;
+                border-radius: 10px;
+                width: 25%;
+                flex-basis: 75%;
+                background-color: white;
+                resize: none;
+            }
+            input:focus, textarea:focus {
+                background-color: $cpdblue-10;
+                background-color: white;
+                border-color: $cpdred;
+                color: $cpdred;
+                ::placeholder {
+                    color: $cpdred;
+                }
+            }        
+        }
+        div:last-child{
+            margin-bottom: 40px;
+        }
+        #emailStatus {
+            color: $first-color;
+            //color: $cpdred;
+            text-align: right;
+            font-size: $xlarge;
+            margin-bottom: 40px;
+        }
+    }
+
 }
 

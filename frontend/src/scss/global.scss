@@ -30,9 +30,12 @@ main {
   margin: 0 auto;
   z-index: 5;
   position: relative;
+  border: solid white 2px;
   border-radius: 20px;
   background-color: $first-color;
   border:2px solid $first-color;
+  
+  //box-shadow:0px 0px 15px 5px white;
 }
     
 /* Footer {
@@ -121,8 +124,8 @@ main {
 }
 .buttonBasics:hover {
   //background-color: $cpdred;
-  background-color: $cpdblue;
-  color: $first-color;
+  background-color: $cpdblue-10;
+  //color: $first-color;
 }
 /* .buttonBasics:focus {
   background-color: $cpdred;

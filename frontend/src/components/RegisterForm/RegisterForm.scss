@@ -4,24 +4,28 @@
 .RegisterForm {
   border-radius: $radiuslarge;
   width: 80%;
-  max-width: 800px;
+  max-width: 1280px;
   height: 500px;
   margin: 25vh auto;
+  //background-color: $cpdred;
   background-color: $first-color;
-  border: none;
   font-family: $primary-font;
   vertical-align: middle;
+  //border: none;
+  box-shadow: $cpdblue 0px 0px 100px 50px inset, 0px 0px 15px 0px white;
 }
 
 .RegisterForm h2 {
-  font-size: $small;
-  text-align: center;
-  padding: 1.25rem 1rem;
-  margin-bottom: 1.5rem;
-  color: $cpdblue;
-  border-radius:  20px 20px 0 0 ;
-  //background-color: $cpdred-50;
-  transition: font-size 1s ease-in;
+    display: block;
+    margin: 50px auto 20px;
+    padding: 20px;
+    width:fit-content;
+    font-size: $small;
+    text-align: center;
+    color: $cpdblue;
+    border-left: dotted 3px $cpdred;
+    border-right: dotted 3px $cpdred;
+    border-radius:  20px ;
 }
 
 .RegisterForm form {
@@ -30,30 +34,9 @@
   align-items: center;
   justify-content: space-around;
   font-size: 1rem;
-  margin: 2rem;
+  margin: 0 auto;
 
 }
-
-.RegisterForm > div:last-child {
-  display: flex;
-  //flex-direction: column;
-  //align-items: flex-start;
-  //gap: 1rem;
-  //margin-left: 10%;
-  border-radius: 0 0 10px 10px;
-  transition: box-shadow 500ms ease-in;
-  //background-color: $cpdred-50;
-}
-
-/* .RegisterForm > div:last-child > .button-beige {
-  box-shadow: $btnshadow;
-  background-color: $cpdblue;
-  transition: box-shadow 500ms ease-in;
-}
-
-.RegisterForm > div:last-child > .button-beige:hover {
-  box-shadow: 0 0 2rem var(--beige-color);
-} */
 
 #stepOne,
 #stepTwo,
@@ -82,10 +65,9 @@
 #stepOne > label {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items:flex-start;
   justify-content: space-between;
   width: 100%;
-  transition: font-size 1s ease-in, width 1s ease-in, margin-left 1s ease-in;
 }
 
 #stepThree > label {
@@ -181,24 +163,32 @@
   visibility: visible;
 }
 
-#bereitsRegistriert {
-  margin: 20px auto;
+#registerButtons{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  width: 60%;
+  margin: 20px  auto;
+  gap: 20px;
+  //border: solid;
+
+}
+button {
   font-size: $small;
   padding: 0.75rem 1.5rem;
   background-color: $first-color;
+  a {
   color: $cpdblue;
-  //border: 2px solid var(--dark-green-color);
-  box-shadow: $btnshadow;
   border-radius: $radiussmall;
   text-decoration: none;
   cursor: pointer;
-  transition: font-weight 500ms ease-in, font-size 1s ease-in, padding 1s ease-in, color 500ms ease-in, background-color 500ms ease-in;
+  }
 }
 
-#bereitsRegistriert:hover {
-  background-color: $cpdblue;
-    color: $first-color;
-}
+/* #bereitsRegistriert:hover {
+  background-color: $cpdblue-10;
+    //color: $first-color;
+} */
 
 
 

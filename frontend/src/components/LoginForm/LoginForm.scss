@@ -1,142 +1,112 @@
 @import "../../scss/global.scss";
 
 
-.LoginForm {
+#loginMain {
   border-radius: $radiuslarge;
   width: 80%;
-  max-width: 800px;
-  height: 500px;
+  max-width: 1280px;
+  min-height: 500px;
   margin: 25vh auto;
   background-color: $first-color;
-  border: none;
+  box-shadow: $cpdblue 0px 0px 100px 50px inset, 0px 0px 15px 5px white;
+  border: solid 2px white;
   font-family: $primary-font;
-    h2 {
+  padding-top: 20px;
+  h2 {
+    display: block;
+    margin: 30px auto;
+    padding: 20px;
+    width:fit-content;
     font-size: $small;
     text-align: center;
-    padding: 2.25rem 0 1rem 0;
-    margin: 2rem auto 1.5rem;
     color: $cpdblue;
-    border-radius:  20px 20px 0 0 ;
-    //background-color: $cpdred-50;
-    transition: font-size 1s ease-in;
+    border-left: dotted 3px $cpdred;
+    border-right: dotted 3px $cpdred;
+    border-radius:  20px ;
+    }
+  #loginForm {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    //align-items: center;
+    gap: 20px;
+    width: 60%;
+    padding: 1.5rem 1rem;
+    border-radius: 10px;
+    box-shadow: $boxshadow;
+    //background-color: $first-color;
+    margin: 0 auto;
+    //border: solid;
+    div{
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: flex-end;
+      gap: 20px;
+      //border: solid;
+      label {
+        //padding-left: 20px;
+        flex-basis: 40%;
+        //margin-left: 20px;
+        align-items: flex-start;
+      }
+      input {
+        border: solid 2px;
+        padding: 10px;
+        border-radius: 10px;
+        //width: 25%;
+        flex-basis: 65%;
+        background-color: white;
+        //margin-right: 20px;
+        &:focus {
+          color: $cpdred;
+          &::placeholder {
+            color: $cpdred;
+          }
+        }
+      }
+      #loginButton {
+        max-width: 150px;
+        color: $cpdblue;
+        padding: 5px;
+        border-radius: 10px;
+        padding: 10px;
+        :active{
+          border: solid 5px;
+        }
+      }
+    }
+  }
+
+  #toRegisterButton {
+    display: block;
+    //width: fit-content;
+    margin: 1rem auto 3rem;
+    //border: solid;
+    a {
+    background-color: none;
+    color: $cpdblue;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    }
+  }
+  
+  #ladeInfo {
+    text-align: center;
+    color: $first-color;
+    margin-bottom: 30px;
   }
 }
 
-.LoginForm > h2:last-of-type {
-  font-size: $small;
-  margin-top: 2rem;
-  margin-bottom: 0;
-  padding: 0;
-  transition: margin-top 1s ease-in;
-}
-
-.LoginForm form {
-  //background-color: var(--beige-transparent-color);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  width: 60%;
-  padding: 1.5rem 1rem;
-  border-radius: 10px;
-  box-shadow: $boxshadow;
-  margin: 0 auto;
-  transition: width 1s ease-in, padding 1s ease-in;
-}
-
-.LoginForm form label > input {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  align-items: center; 
-  width: 60%;
-  height: 2rem;
-  background-color: white;
-  //border-color: var(--middle-green-color);
-  border-radius: 10px;
-  font-size: 1rem;
-  padding-left: 0.5rem;
-  transition: font-size 1s ease-in;
-  text-align: left;
-}
-
-.LoginForm form > input {
-  margin-top: 2rem;
-  max-width: 100%;
-}
-
-.LoginForm form label > input:focus {
+#loginForm label > input:focus {
   //background-color: var(--beige-color);
   //outline: 3px solid var(--middle-green-color);
 }
 
-.LoginForm form label > input::placeholder {
+/* #loginForm label > input::placeholder {
   color: $cpdred;
-}
+} */
 
-.LoginForm label {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  vertical-align: middle;
-  font-weight: bold;
-  font-size:1rem;
-  margin-top: 1rem;
-  /* transition: font-size 1s ease-in;
-  transition: margin-left 1s ease-in;
-  transition: width 1s ease-in; */
-  width: 80%;
-  text-align:left;
-  //vertical-align: middle;;
-  //border: solid;
-}
-
-.LoginForm label:last-of-type {
-  margin-top: 1rem;
-}
-
-.loginButton {
-  color: $first-color;
-  background-color: $cpdblue;
-  padding: 5px;
-  border-radius: 10px;
-  box-shadow: $btnshadow;
-  border: 2px;
-  padding: 10px;
-}
-.loginButton:hover {
-  background-color: $first-color;
-  color: $cpdblue;
-}
-
-#toRegister {
-  display: flex;
-  flex-flow: column nowrap;
-  text-align: center;
-  transition: font-size 1s ease-in;
-  margin: 1rem auto;
-}
-
-#toRegisterButton {
-  margin: 0px auto 20px;
-  font-size: $small;
-  padding: 0.75rem 1.5rem;
-  background-color: $first-color;
-  color: $cpdblue;
-  //border: 2px solid var(--dark-green-color);
-  box-shadow: $btnshadow;
-  border-radius: $radiussmall;
-  text-decoration: none;
-  cursor: pointer;
-  transition: font-weight 500ms ease-in, font-size 1s ease-in, padding 1s ease-in, color 500ms ease-in, background-color 500ms ease-in;
-}
-#toRegisterButton:hover {
-  background-color: $cpdblue;
-  color: $first-color;
-}
-#ladeInfo {
-  text-align: center;
-}
 
 /* @media screen and (max-width: 767px) {
   .LoginForm > h2 {

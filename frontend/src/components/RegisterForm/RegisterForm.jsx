@@ -66,7 +66,7 @@ export default function RegisterForm() {
       userName: userName,
       firstName: firstName,
       lastName: lastName,
-      gender: genderRadio,
+      /* gender: genderRadio, */
       eMail: eMail,
       password: password,
       /* location: location, */
@@ -233,9 +233,14 @@ export default function RegisterForm() {
           </p>
         ) : null}
         {(stepTwo || stepThree) && <ResetBtn props={props} />}
-        <NavLink to={"/login"} className="" id="bereitsRegistriert">
-          bereits registriert
-        </NavLink>
+        <div id="registerButtons">
+          <button className="buttonBasics" id="bereitsRegistriert">
+            <NavLink to={"/login"}> zum Login</NavLink>
+          </button>
+          <button className="buttonBasics" id="registriertAbbrechen">
+            <NavLink to={"/home"}>abbrechen und zurück</NavLink>
+          </button>
+        </div>
       </div>
     </main>
   );

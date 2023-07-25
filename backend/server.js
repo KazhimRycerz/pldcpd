@@ -7,6 +7,7 @@ import contactsRouter from './routes/contactsRoutes.js';
 import authorsRouter from './routes/authorsRoutes.js';
 import careerRouter from './routes/careerRoutes.js';
 import coursesRouter from './routes/coursesRoutes.js';
+import emailRouter from './routes/emailRoutes.js';
 import companiesRouter from './routes/companiesRoutes.js';
 import professionalStatusRouter from './routes/professionalStatusRoutes.js';
 import path from "node:path";
@@ -14,6 +15,7 @@ import { fileURLToPath } from "node:url";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import expressFileUpload from "express-fileupload";
+//import nodemailer from "nodemailer";
 
 
 const server = express();
@@ -39,6 +41,7 @@ server.use("/careers",  careerRouter)
 server.use("/professionalStatus", professionalStatusRouter)
 server.use("/companies",  companiesRouter)
 server.use("/courses", coursesRouter)
+server.use("/email", emailRouter)
 server.use("/", indexRouter)
 server.use(unkownHandler)
 server.use(errorHandler) 

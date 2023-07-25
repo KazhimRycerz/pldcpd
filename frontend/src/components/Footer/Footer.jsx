@@ -1,10 +1,26 @@
 import './Footer.scss'
 import { Link } from 'react-router-dom'
+import React, { useState } from "react";
 
 const Footer = () => {
 
+  const [footerSize, setFooterSize] = useState("150px")
+
+const handleFooterHeight = () => {
+  const elem = document.getElementById("footerHeight");    
+    if ({footerSize} === "150px") {
+      setFooterSize("fit-content");
+      elem.style.bottom = 0;
+    } else {
+      setFooterSize("150px");
+      elem.style.bottom = "-250px";
+    }
+}
+
+
    return(
-   <footer>
+   <footer id="footerHeight" style={{height: {footerSize}}}>
+    <button onClick={handleFooterHeight} >open footer</button>
          <p>
          Rycerz Media <br />
          Marienfelder Str. 18<br />

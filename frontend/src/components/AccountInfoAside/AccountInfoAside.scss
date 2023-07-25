@@ -8,15 +8,18 @@
    top: 155px;
    right:calc(10% - 10px);
    transform: translateY(33px) rotate(-90deg); 
-   color: $cpdblue;
-   background-color: $button-color;
-   box-shadow: $btnshadow;
-   width: 70px;
-   height: 40px;
+   color: $first-color;
+   background-color: $cpdblue;
+   box-shadow: $btnshadowsmall;
+   width: 75px;
+   height: 42px;
    border: 1px solid grey;
    border-radius: 10px;
+   padding: 0 0 0 0;
    text-align:center;
-   line-height: 55px;
+   font-size: $small;
+   font-family: $primary-font;
+   line-height: 60px;
    vertical-align: bottom;
    z-index: 0;
    cursor: pointer;
@@ -25,13 +28,14 @@
     transform: translateY(33px) rotate(-90deg);
    }
    &.buttonFirstPosition {
-    right:calc(10% - 33px);
+    right:calc(10% - 36px);
     transform: translateY(33px) rotate(-90deg);
    }
    &.showBut {
-     right:calc(10% - 33px);
+     right:calc(10% - 36px);
      transition: 0.5s ease-in-out;
-     vertical-align:bottom;
+     //vertical-align:bottom;
+     line-height: 15px;
     }
    &.hideBut {
     right:calc(10% - 10px);
@@ -44,14 +48,15 @@
   }
   
   @keyframes moveButtonA {
-    0%  {transform:  translateY(33px) rotate(-90deg); z-index:0; right:calc(10% - 33px);line-height: 55px}
-    90%  {z-index: 0}
-    100% {transform:  rotate(0deg);z-index: 10; right: 33px;line-height: 15px}
+    0%  {transform:  translateY(33px) rotate(-90deg); z-index:0; right:calc(10% - 36px);line-height: 60px;color: $first-color; background-color:$cpdblue}
+    90%  {z-index: 0;background-color: $first-color; color:$cpdblue}
+    100% {transform:  rotate(0deg);z-index: 10; right: 33px;line-height: 15px;background-color: $first-color; color: $cpdblue}
   }  
   @keyframes moveButtonBackA {
-    0%  {transform: rotate(0deg);z-index:10;right: 33px;line-height: 15px} 
+    0%  {transform: rotate(0deg);z-index:10;right: 33px;line-height: 15px;background-color: $first-color; color: $cpdblue} 
     50% {z-index: 0}
-    100% {transform:  translateY(33px) rotate(-90deg);z-index:0;right:calc(10% - 33px);line-height: 55px}
+    90% {color: $first-color; background-color:$cpdblue}
+    100% {transform:  translateY(33px) rotate(-90deg);z-index:0;right:calc(10% - 36px);line-height: 60px;}
     } 
   /* @keyframes moveButtonBackToStartA {
     0%  {transform: rotate(0deg);z-index:10;right: 33px;}
@@ -193,17 +198,18 @@
    //display: inline-block;
    position: fixed;
    top: 155px;
-   left: calc(100% - ((100% - 1280px) / 2) - 36px);
+   left: calc(100% - ((100% - 1280px) / 2) - 39px);
    }
    @keyframes moveButtonA {
-    0%  {transform:  translateY(33px) rotate(-90deg); z-index:0; left: calc(100% - ((100% - 1280px) / 2) - 36px);line-height: 55px}
-    90%  {z-index: 0;}
-    100% {transform: rotate(0deg);z-index: 10; left: calc(100% - ((100% - 1280px) / 2) + 33px);line-height: 15px;}
+    0%  {transform:  translateY(33px) rotate(-90deg); z-index:0; left: calc(100% - ((100% - 1280px) / 2) - 39px);line-height: 55px}
+    90%  {z-index: 0;background-color: $first-color; color: $cpdblue}
+    100% {transform: rotate(0deg);z-index: 10; left: calc(100% - ((100% - 1280px) / 2) + 60px);line-height: 15px;background-color: $first-color; color: $cpdblue}
   }
   @keyframes moveButtonBackA {
-    0%  {transform: rotate(0deg);z-index:10;left: calc(100% - ((100% - 1280px) / 2) + 33px);line-height: 15px} 
+    0%  {transform: rotate(0deg);z-index:10;left: calc(100% - ((100% - 1280px) / 2) + 60px);line-height: 15px;background-color: $first-color; color: $cpdblue} 
     50% {z-index: 0;}
-    100% {transform:  translateY(33px) rotate(-90deg); right:calc(10% - 33px);line-height: 55px}
+    90%  {color: $first-color; background-color: $cpdblue}
+    100% {transform:  translateY(33px) rotate(-90deg); left: calc(100% - ((100% - 1280px) / 2) - 39px);line-height: 55px}
     }
   /* @keyframes moveButtonBackToStartA {
     0%  {transform: rotate(0deg);z-index:10;left: calc(100% - ((100% - 1280px) / 2) + 33px);line-height: 15px}

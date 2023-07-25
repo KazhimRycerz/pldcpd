@@ -13,7 +13,7 @@ header {
   z-index: 95;
   margin: 0 auto;
   
-  #headerBox {
+  #headerFrame {
     //border: solid;
     display: flex;
     justify-content: space-between;
@@ -159,74 +159,97 @@ header {
       display: none;
      }
    }
-
-
 }
 
-  
-  #header_myaccount {
+#header_myaccount {
+  font-size: $small;
+  //border: solid;
+  height: auto;
+  align-self: baseline;
+  //border: solid;
+
+  ul {
+    margin-top: 20px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: flex-end;
+    height: auto;
+    //background-color: $first-color;
+    cursor: pointer;
+    li {
+      list-style-type: none;
+      align-content: flex-start;
+      a {
+        text-decoration:none;
+        color: black;
+      }
+    }
+    li:hover{
+      color: $cpdred;
+      text-shadow: $text-shadow;
+    }
+  }  
+  .user{
+    //display: none;
+    visibility: hidden;
+    #imgHeader{
+      width: 50px;
+    }
+  }  
+}
+
+#dropDownAccountBackground{
+  position: fixed;
+  top: 0px;
+  background-color: $first-color;
+  margin-top: -220px;
+  padding: 40px 0;
+  box-shadow: $boxshadow;
+  z-index:12;
+  height: 200px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  &.showAccountList{
+    top: 300px;
+    transition: 0.5s ease-in-out;
+  }
+  &.hideAccountList {
+    top: -220px;
+    transition: 0.5s ease-in-out;
+  }
+  >div {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    gap: 2vw;
+    //align-self: flex-end;
+    width: fit-content;
+    height: fit-content;
+    //max-height: 150px;
+    //margin: 20px auto;
+    max-width: 1280px;
+    margin-right: 10%;
+    padding: 10px 60px;
+    background-color: $first-color;
+    //box-shadow: $boxshadow;
+    //opacity: 0.5;
+    border-left: dotted 3px;
+    border-right: dotted 3px;
+    border-radius: 20px;
+  ul{
+    //background-color: $first-color;
+    padding: 0;
+    width: auto;
+    //flex-basis: 50%;
+    height: auto;
+    //border-radius: 10px;
+    z-index:1;
     font-size: $small;
     //border: solid;
-    height: auto;
-    align-self: baseline;
-    /* *{
-      border: solid;
-    } */
-    ul {
-      margin-top: 20px;
-      display: flex;
-      flex-flow: column nowrap;
-      justify-content: flex-start;
-      align-content: flex-start;
-      align-items: flex-end;
-      height: auto;
-      //background-color: $first-color;
-      cursor: pointer;
-      li {
-        list-style-type: none;
-        align-content: flex-start;
-        a {
-          text-decoration:none;
-          color: black;
-        }
-      }
-      li:hover{
-        color: $cpdred;
-        text-shadow: $text-shadow;
-      }
-    }  
-    .user{
-      //display: none;
-      visibility: hidden;
-      #imgHeader{
-        width: 50px;
-      }
-    }  
-  }
   
-  #dropdownAccount{
-    
-    position: fixed;
-    background-color: $first-color;
-    margin-top: -200px;
-    padding: 40px 0;
-    right: 10%;
-    top: 10px;
-    height: auto;
-    border-radius: 10px;
-    z-index:12;
-    font-size: $small;
-    box-shadow: $boxshadow;
-    //border: solid  3px;
-    
-    &.showAccountList{
-      top: 280px;
-      transition: 0.5s ease-in-out;
-    }
-    &.hideAccountList {
-      top: -200px;
-      transition: 0.5s ease-in-out;
-    }
     li{
       padding: 0  10px;
       align-items: flex-end;
@@ -234,19 +257,41 @@ header {
       text-align:end;
       list-style-type: none;
       border-radius: 10px;
+      a{
+        text-decoration: none;
+        color: $cpdblue;
+      }
       &:hover {
         color: $cpdred;
         text-shadow: $text-shadow;
         cursor: pointer;
       }
-    }
-    p {
-      margin-top: 10px;
-      padding: 5px;
-      width: 150px;
-      text-align: center;
+      &:after {
+        content: " C";
+            font-family: $calli;
+            color: $cpdred;
+            font-size: calc($normal + 1px);
+            vertical-align: -3px;
+      }
     }
   }
+  }
+  p {
+   //margin-top: 10px;
+    //margin-left: 0px;
+    padding: 20px;
+    height: auto;
+    width: 200px;
+    text-align: center;
+    //line-height:100px;
+    /* border-left: dotted 3px;
+    border-right: dotted 3px;
+    border-radius: 20px; */
+    //border: solid;
+  
+  }
+}
+
 #burger_button {
     cursor: pointer;
     height: 35px;
@@ -440,7 +485,11 @@ header {
   #burger_button {
     left: calc((100% - 1280px) / 2 - 60px)
   }
+  #dropDownAccountBackground div {
+    margin-right: calc((100% - 1280px) / 2);
+    //margin-right: 10%;
   }
+}
 
 @media (max-width: $tablet){
     #text_header {
@@ -454,7 +503,7 @@ header {
     #header_myaccount{
      
     }
-    #headerBox {
+    #headerFrame {
       width: 100%;
       //border: solid;
       *{
@@ -483,5 +532,6 @@ header {
       color: black;
       z-index: 98;
     }
+    
   }
   

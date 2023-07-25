@@ -26,7 +26,7 @@ const handleButton=(buttonPos) => {
     setAsidePos(accountPos2);
     setButtonText("hide info");
   } else if( buttonPos === buttonMove2) {
-    setButtonPos(buttonMove3 );
+    setButtonPos(buttonMove3);
     setButtonText("show info");
     setAsidePos(accountPos3);
   } else if( buttonPos === buttonMove3) {

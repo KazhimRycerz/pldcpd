@@ -21,6 +21,7 @@
     "express-validator": "^6.15.0",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.6.2",
+    "nodemailer": "^6.9.3",
     "nodemon": "^2.0.22",
     "serve-index": "^1.9.1",
     "uuid": "^9.0.0"

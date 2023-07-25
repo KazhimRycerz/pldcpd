@@ -8,30 +8,26 @@ import { SectionsContext } from "../../context/SectionsContext.js";
 import swal from "sweetalert"
 
 const Header = () => {
-  //const { loggedIn } = useContext(SectionsContext);
   const { isAuth, buttonPos, setButtonPos, asidePos, setAsidePos, gotoPage, setGotoPage, navigate, logout } = useContext(SectionsContext);
   const [showMenue, setShowMenue] = useState(false);
-  const [accountListShow, setAccountListShow] = useState("");
-  const [isToggled, setIsToggled] = useState (false)
-  //const [selectedOptionAccount, setSelectedOptionAccount] = useState('');
+  const [accountListShow, setAccountListShow] = useState("hideAccountList");
+  //const [isToggled, setIsToggled] = useState (false)
   
-  /*  const showDropdown =()=>{
-    setAccountListShow("showAccountList");
-  };
-  const hideDropdown =()=>{
-    setAccountListShow("hideAccountList");
-  }; */
-
-  const handleToggle =()=>{
-    setIsToggled(!isToggled)
-    isToggled === true ? setAccountListShow("showAccountList") : setAccountListShow("hideAccountList");
+  const handleDropdownAccount =()=>{
+    showMenue === true && setShowMenue(false)
+    if (accountListShow === "hideAccountList" ) {
+      setAccountListShow("showAccountList")
+    } else {setAccountListShow("hideAccountList")}
+    /* setIsToggled(!isToggled)
+    console.log(isToggled)
+    isToggled === true ? setAccountListShow("showAccountList") : setAccountListShow("hideAccountList"); */
   }
 
-  const handleOptionSelect = (option) => {
+  /* const handleOptionSelect = (option) => {
     navigate(option);
-  };
+  }; */
   
-  const manageAccountButton =()=> {
+  const handleAccountButton =()=> {
     isAuth && logout()
     !isAuth && asidePos === "accountAside showAccount"
     ? setAsidePos("accountAside hideAccount")
@@ -58,7 +54,7 @@ const Header = () => {
   return (
     <>
       <header >
-        <div id="headerBox">
+        <div id="headerFrame">
           <nav id="navheader">
             <div id="dropdown">
               <button id="dropbtn">
@@ -114,7 +110,7 @@ const Header = () => {
               </li>
               <li
                 id="showlogin"
-                onClick={manageAccountButton}
+                onClick={handleAccountButton}
               >
                 {isAuth ? <div> log me out <span className="C">C</span></div> : <Link to="/login"> login <span className="C">C</span></Link>}
                 
@@ -127,32 +123,41 @@ const Header = () => {
                   <span></span>}
               </li> */}
               
-              {isAuth ?
-                <li id="dropBtnAccount" onMouseEnter={handleToggle} onClick={handleToggle}>
+              {isAuth &&
+                <li id="dropBtnAccount" 
+                /* onMouseEnter={()=> { handleDropdownAccount()}} */ 
+                onClick={()=> { handleDropdownAccount()}}>
                   logged in as {localStorage.userName} <span className="C">C</span>
                 </li>
-                :
-                <span></span>}
+                /* :
+                <span></span> */}
             </ul>
           </div>
         </div>
       </header>
 
   {isAuth && (
-          <ul id="dropdownAccount" className={accountListShow} onMouseLeave={handleToggle}>
-            <li onClick={() => handleOptionSelect("/KnowledgeAccount")}>Knowledge Status <span className="C">C</span></li>
-            <li onClick={() => handleOptionSelect("/KnowledgeAccount")}>Personal Data <span className="C">C</span></li>
-            <li onClick={() => handleOptionSelect("/KnowledgeAccount")}>Money: your budget <span className="C">C</span></li>
-            <li onClick={() => handleOptionSelect("/userupdate")}>change your personal data <span className="C">C</span></li>
-          <p>rufen sie hier Ihre persönliche Daten auf!</p>
-          </ul>
+          <div id="dropDownAccountBackground" className={accountListShow} onMouseLeave={()=> { handleDropdownAccount()}}>
+            <div>
+              <p>rufen sie hier Ihre persönliche Daten auf!</p>
+              <ul id="dropDownAccount" /* className={accountListShow} */ >
+                <li ><NavLink to="/KnowledgeAccount" className="closebtn">Knowledge Status</NavLink></li>
+                <li ><NavLink to="/KnowledgeAccount" className="closebtn">Personal Data</NavLink></li>
+                <li ><NavLink to="/KnowledgeAccount" className="closebtn">Money: your budget</NavLink></li>
+                <li ><NavLink to="/userupdate" className="closebtn">change your personal data</NavLink></li>
+                {/* <li onClick={() => handleOptionSelect("/KnowledgeAccount")}>Personal Data</li>
+                <li onClick={() => handleOptionSelect("/KnowledgeAccount")}>Money: your budget</li>
+                <li onClick={() => handleOptionSelect("/userupdate")}>change your personal data</li> */}
+              </ul>
+            </div>
+          </div>
       )}    
       
         <div
           id="burger_button"
           className={showMenue ? "changeBurger" : ""}
-          onClick={() => {
-            setShowMenue(!showMenue);
+          onClick={()=> {
+            setShowMenue(!showMenue);!showMenue & accountListShow === "showAccountList"  && setAccountListShow("hideAccountList");
           }}
           >
           <span></span>

@@ -6,7 +6,7 @@ import "./LoginForm.scss";
 import swal from "sweetalert";
 
 function LoginForm() {
-  const { setButtonPos, navigate, gotoPage, setIsAuth } = useContext(SectionsContext)
+  const { setButtonPos, navigate, gotoPage, isAuth, setIsAuth, setGotoPage, logout} = useContext(SectionsContext)
   const [isLoading, setIsLoading] = useState(false);
   const formEl = useRef(null);
   const usernameEL = useRef(null);
@@ -30,6 +30,34 @@ function LoginForm() {
     navigate(gotoPage)
     //navigate("/home");
   };
+
+  const logoutHandler = () => {
+    swal(`Du bist aktuell als ${localStorage.userName} angemeldet. Möchtest du dich ausloggen oder als ein anderer Nutzer anmelden oder zurück?`, {
+      buttons: {
+        abmelden: "ja, bitte ausloggen!",
+        neuanmelden:"ja, bitte als anderer Nutzer einloggen!",
+        backtomain: "nein, nur zurück"}
+      })
+      .then ((value)=>{
+        switch(value) {
+          case "abmelden":
+            logout()
+            setButtonPos("")
+            navigate("/home")
+            break;
+            case "neuanmelden":
+            logout()
+            setButtonPos("")
+            navigate("/login")
+            break;
+          case "backtomain":
+            navigate(-1)
+            break;
+            default:
+              swal("Got away safely!");
+            }
+            })
+          }
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -68,13 +96,12 @@ function LoginForm() {
   };
 
   return (
-    <main className="LoginForm">
-
-      <>
-        <h2>anmelden</h2>
-        <form ref={formEl} method="post" onSubmit={submitHandler}>
-          <label htmlFor="username">
-            Benutzername:
+    <main id="loginMain">
+      <h2 id="loginH2">anmelden</h2>
+      {!isAuth ?
+        (<form id="loginForm" ref={formEl} method="post" onSubmit={submitHandler}>
+          <div>
+            <label htmlFor="username">Benutzername:</label>
             <input
               type="text"
               name="username"
@@ -82,9 +109,9 @@ function LoginForm() {
               ref={usernameEL}
               placeholder="dein Benutzername"
             />
-          </label>
-          <label htmlFor="password">
-            Passwort:
+          </div>
+          <div>
+            <label htmlFor="password">Passwort:</label>
             <input
               type="password"
               name="password"
@@ -92,18 +119,20 @@ function LoginForm() {
               ref={passwordEl}
               placeholder="dein Passwort"
             />
-          </label>
-          <input className="loginButton" type="submit" value="Daten senden" />
-        </form>
-      </>
-      
+          </div>
+          <div>
+            <button className="buttonBasics" id="loginButton" type="submit" value="Daten senden">Daten senden
+            </button>
+          </div>
+        </form>):(
+        <div>{logoutHandler()}</div> 
+        )
+      }
 
       <h2>Sie haben noch kein Konto? Dann können Sie sich hier als neuer User</h2>
-      <div id="toRegister">
-        <Link to={"/register"} id="toRegisterButton">
-          registrieren
-        </Link>
-      </div>
+      <button className="buttonBasics" id="toRegisterButton">
+        <Link to={"/register"}>registrieren</Link>
+      </button>
 
       {isLoading && <p id="ladeInfo">Lade - bitte warten...</p>}
     </main>
