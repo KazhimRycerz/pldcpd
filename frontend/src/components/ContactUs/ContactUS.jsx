@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import "./ContactUs.scss";
 //import { Axios } from "axios";
 import axiosConfig from "../../util/axiosConfig";
+import Swal from "sweetalert2"
 
 
 export default function EMailUs() {
   
-  const [to, setTo] = useState("jritter@via-internet.com");
+  //const [to, setTo] = useState("jritter@via-internet.com");
   const [emailSubject, setEmailSubject] = useState("");
   const [emailBody, setEmailBody] = useState("");
   const [firstNameSender, setFirstNameSender] = useState("");
@@ -94,8 +95,7 @@ export default function EMailUs() {
     
   return (
     <main id="contactUsMain">
-      <div><h2>contact form for any questions, comments or suggestions...</h2></div>
-      
+      <h2>contact form for any questions, comments or suggestions...</h2>
         <form id="eMailForm" onSubmit={handleSubmit}>
           {/* <input
             type="text"

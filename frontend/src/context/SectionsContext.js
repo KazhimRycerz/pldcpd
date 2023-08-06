@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 import axiosConfig from "../util/axiosConfig.js";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
-import swal from "sweetalert";
+import Swal from "sweetalert2";
 
 const SectionsContext = createContext();
 
@@ -38,7 +38,7 @@ const SectionsProvider = ({ children }) => {
     axiosConfig.post("/user/logout").then((res) => {
       //console.log(res.data);
     });
-    swal({
+    Swal.fire({
       title: `Sie haben sich erfolgreich abgemeldet`,
       icon: "success",
     });

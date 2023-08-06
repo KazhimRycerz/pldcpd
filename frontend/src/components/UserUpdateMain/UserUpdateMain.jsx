@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { SectionsContext } from "../../context/SectionsContext.js";
 import { EditOutlined, SaveOutlined, CancleOutlined } from "@ant-design/icons";
 import axiosConfig from "../../util/axiosConfig";
-import swal from "sweetalert";
+import Swal from "sweetalert2";
 import "./UserUpdateMain.scss";
 
 export default function UpdateUser() {
@@ -108,7 +108,7 @@ export default function UpdateUser() {
         data
       );
       setRefreshData(axiosResp.data);
-      swal({
+      Swal.fire.fire({
         title: `${editInputName} erfolgreich geändert!!`,
         icon: "success",
       });
@@ -120,7 +120,7 @@ export default function UpdateUser() {
       setEditPassword(false);
       
     } catch (error) {
-      swal({
+      Swal.fire({
         title: "Da ist ein Fehler aufgetreten.",
         text: errorMessage,
         icon: "error",
@@ -141,14 +141,14 @@ export default function UpdateUser() {
         data
       );
       setRefreshData(axiosResp.data);
-      swal({
+      Swal.fire({
         title: `${editInputName} erfolgreich geändert!!`,
         icon: "success",
       });
       refreshData ? getUserData() : getUserData();
       setEditPassword(false);
     } catch (error) {
-      swal({
+      Swal.fire({
         title: "Da ist ein Fehler aufgetreten.",
         text: errorMessage,
         icon: "error",
@@ -159,8 +159,8 @@ export default function UpdateUser() {
   };
 
   return (
-    <main>
-      <div className="UpdateUser">
+    <main id="updateMain">
+      <div id="UpdateUser">
         <h2>Benutzerdaten Aktualisieren</h2>
          <ul>
           <li>
@@ -189,10 +189,10 @@ export default function UpdateUser() {
                     className="save-icon"
                     onClick={() => {
                       if (!userName) {
-                        swal({ title: "Benutzername unverändert!" });
+                        Swal.fire({ title: "Benutzername unverändert!" });
                         setEditUserName(false);
                       } else {
-                        swal({
+                        Swal.fire({
                           title: "Benutzername ändern?",
                           text: userName,
                           icon: "warning",
@@ -208,7 +208,7 @@ export default function UpdateUser() {
                             };
                             updateUser(data);
                           } else {
-                            swal({ title: "Benutzername ändern abgebrochen." });
+                            Swal.fire({ title: "Benutzername ändern abgebrochen." });
                             setEditUserName(false);
                           }
                         });
@@ -245,10 +245,10 @@ export default function UpdateUser() {
                 className="save-icon"
                   onClick={() => {
                     if (!firstName) {
-                      swal({ title: "Vorname unverändert!" });
+                      Swal.fire({ title: "Vorname unverändert!" });
                       setEditFirstName(false);
                     } else {
-                      swal({
+                      Swal.fire({
                         title: "Vorname ändern?",
                         text: firstName,
                         icon: "warning",
@@ -267,7 +267,7 @@ export default function UpdateUser() {
                           };
                           updateUser(data);
                         } else {
-                          swal({ title: "Vorname ändern abgebrochen." });
+                          Swal.fire({ title: "Vorname ändern abgebrochen." });
                           setEditFirstName(false);
                         }
                       });
@@ -304,10 +304,10 @@ export default function UpdateUser() {
                     className="save-icon"
                     onClick={() => {
                       if (!lastName) {
-                        swal({ title: "Nachname unverändert!" });
+                        Swal.fire({ title: "Nachname unverändert!" });
                         setEditLastName(false);
                       } else {
-                        swal({
+                        Swal.fire({
                           title: "Nachname ändern?",
                           text: lastName,
                           icon: "warning",
@@ -326,7 +326,7 @@ export default function UpdateUser() {
                             };
                             updateUser(data);
                           } else {
-                            swal({ title: "Nachname ändern abgebrochen." });
+                            Swal.fire({ title: "Nachname ändern abgebrochen." });
                             setEditLastName(false);
                           }
                         });
@@ -364,10 +364,10 @@ export default function UpdateUser() {
                     className="save-icon"
                     onClick={() => {
                       if (!location) {
-                        swal({ title: "Wohnort unverändert!" });
+                        Swal.fire({ title: "Wohnort unverändert!" });
                         setEditLocation(false);
                       } else {
-                        swal({
+                        Swal.fire({
                           title: "Wohnort ändern?",
                           text: location,
                           icon: "warning",
@@ -390,7 +390,7 @@ export default function UpdateUser() {
                               location.toLowerCase()
                             );
                           } else {
-                            swal({ title: "Wohnort ändern abgebrochen." });
+                            Swal.fire({ title: "Wohnort ändern abgebrochen." });
                             setEditLocation(false);
                           }
                         });
@@ -427,10 +427,10 @@ export default function UpdateUser() {
                     className="save-icon"
                     onClick={() => {
                       if (!email) {
-                        swal({ title: "Email unverändert!" });
+                        Swal.fire({ title: "Email unverändert!" });
                         setEditEmail(false);
                       } else {
-                        swal({
+                        Swal.fire({
                           title: "Email ändern?",
                           text: email,
                           icon: "warning",
@@ -449,7 +449,7 @@ export default function UpdateUser() {
                             };
                             updateUser(data);
                           } else {
-                            swal({ title: "Email ändern abgebrochen." });
+                            Swal.fire({ title: "Email ändern abgebrochen." });
                             setEditEmail(false);
                           }
                         });
@@ -487,10 +487,10 @@ export default function UpdateUser() {
                   className="save-icon"
                   onClick={() => {
                     if (!password) {
-                      swal({ title: "Passwort unverändert!" });
+                      Swal.fire({ title: "Passwort unverändert!" });
                       setEditPassword(false);
                     } else {
-                      swal({
+                      Swal.fire({
                         title: "Passwort ändern?",
                         icon: "warning",
                         buttons: ["Nein, nicht ändern!", "Ja, ändern!"],
@@ -509,7 +509,7 @@ export default function UpdateUser() {
                           };
                           updateUserPassword(data);
                         } else {
-                          swal({ title: "Passwort ändern abgebrochen." });
+                          Swal.fire({ title: "Passwort ändern abgebrochen." });
                           setEditPassword(false);
                         }
                       });

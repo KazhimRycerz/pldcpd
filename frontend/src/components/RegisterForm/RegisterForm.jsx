@@ -15,7 +15,7 @@ import {
   SubmitBtn,
   ResetBtn,
 } from "../NextBtnRegister/NextBtnRegister.jsx"; 
-import swal from "sweetalert";
+import Swal from "sweetalert2";
 
 export default function RegisterForm() {
   const [isError, setIsError] = useState(false);
@@ -66,7 +66,7 @@ export default function RegisterForm() {
       userName: userName,
       firstName: firstName,
       lastName: lastName,
-      /* gender: genderRadio, */
+      gender: genderRadio,
       eMail: eMail,
       password: password,
       /* location: location, */
@@ -87,12 +87,12 @@ export default function RegisterForm() {
     } catch (error) {
       for (const err of error.response.data.errors) {
         if (err.msg === "Invalid value" && err.param === "email") {
-          swal({
-            title: "Tragen Sie eine valide Email Adresse",
+          Swal.fire({
+            title: "Tragen Sie eine valide Email Adresse ein",
           });
           break;
         } else if (err.msg === "Invalid value" && err.param === "password") {
-          swal({
+          Swal.fire({
             title: "Passwort ist ein Pflichtfeld! ",
             text: "Ihr Passwort muss mindestens 8 Zeichen lang sein und eine Zahl, einen Groß- und einen Kleinbuchstaben enthalten.",
           });

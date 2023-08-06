@@ -3,7 +3,7 @@ import axiosConfig from "../../util/axiosConfig.js";
 import { SectionsContext } from "../../context/SectionsContext.js";
 import { Link } from "react-router-dom";
 import "./LoginForm.scss";
-import swal from "sweetalert";
+import Swal from "sweetalert2";
 
 function LoginForm() {
   const { setButtonPos, navigate, gotoPage, isAuth, setIsAuth, setGotoPage, logout} = useContext(SectionsContext)
@@ -32,7 +32,8 @@ function LoginForm() {
   };
 
   const logoutHandler = () => {
-    swal(`Du bist aktuell als ${localStorage.userName} angemeldet. Möchtest du dich ausloggen oder als ein anderer Nutzer anmelden oder zurück?`, {
+    Swal.fire(`Du bist aktuell als ${localStorage.userName} angemeldet. Möchtest du dich ausloggen oder als ein anderer Nutzer anmelden oder zurück?`, {
+      text: `Du bist aktuell als ${localStorage.userName} angemeldet. Möchtest du dich ausloggen oder als ein anderer Nutzer anmelden oder zurück?`,
       buttons: {
         abmelden: "ja, bitte ausloggen!",
         neuanmelden:"ja, bitte als anderer Nutzer einloggen!",
@@ -54,7 +55,7 @@ function LoginForm() {
             navigate(-1)
             break;
             default:
-              swal("Got away safely!");
+              Swal.fire("Got away safely!");
             }
             })
           }
@@ -74,7 +75,7 @@ function LoginForm() {
         setIsLoading(false);
 
         if (axiosResp.data.error) {
-          swal({
+          Swal.fire({
             title: "Benutzername-Passwort-Kombination nicht korrekt",
             text: "Bitte versuchen Sie es nochmal?",
           });
@@ -86,7 +87,7 @@ function LoginForm() {
         return;
       }
     } else {
-      swal({
+      Swal.fire({
         title: "Bitte tragen Sie Ihren Benutzername und Passwort ein",
         button: "OK",
       });
@@ -97,7 +98,7 @@ function LoginForm() {
 
   return (
     <main id="loginMain">
-      <h2 id="loginH2">anmelden</h2>
+      <h2 id="loginh2">anmelden</h2>
       {!isAuth ?
         (<form id="loginForm" ref={formEl} method="post" onSubmit={submitHandler}>
           <div>

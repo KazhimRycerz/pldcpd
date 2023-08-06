@@ -9,7 +9,7 @@ import Moment from "moment"
 
 
 const  KnowledgeAccountMain = ()=>{
-   const {userData, setUserData, marketData, setMarketData, isAuth, buttonPos, setButtonPos, asidePos, setAsidePos, gotoPage, setGotoPage } = useContext(SectionsContext);
+   const { userData, setUserData, marketData, setMarketData, isAuth, buttonPos, setButtonPos, asidePos, setAsidePos, gotoPage, setGotoPage } = useContext(SectionsContext);
   /*  const [userData, setUserData] = useState({}) */
    const [knowledgeData, setKnowledgeData] = useState({})
    const [contactData, setContactData] = useState({})

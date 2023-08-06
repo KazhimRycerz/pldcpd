@@ -131,9 +131,21 @@ main {
   background-color: $cpdred;
 } */
 
-.swal-title {
-  color: $cpdblue;
+.swal-html{
+border-radius: 20px;
+background: blue;
 }
+
+.swal-text {
+  color: $cpdblue;
+  border-left: dotted 2px $cpdred;
+  border-right: dotted 2px $cpdred;
+  border-radius: 10px;
+  width: fit-content;
+  margin: 0 auto;
+  font-size: $normal;
+}
+
 .swal-button,
 .swal-button--confirm {
   color: $first-color;

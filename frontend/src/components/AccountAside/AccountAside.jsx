@@ -1,6 +1,6 @@
 import './AccountAside.scss'
 import { Link } from 'react-router-dom'
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState, useEffect, useCallback } from 'react'
 import JoachimRitter from '../../images/Joachim_privat.jpg'
 import { SectionsContext } from '../../context/SectionsContext.js'
 import axiosConfig from "../../util/axiosConfig";
@@ -14,7 +14,7 @@ const AccountAside = () => {
   const userId = localStorage.getItem("userId");
 
 
-const buttonPos0 = "buttonZeroPosition" 
+const initialButtonPos = "buttonZeroPosition" 
 const buttonMove1 = "showBut" 
 const buttonMove2 = "showBut moveButton" 
 const buttonMove3 = "showBut moveButtonBack" 
@@ -43,32 +43,34 @@ const handleButton=(buttonPos) => {
     setButtonText("hide account");
     setAsidePos(accountPos2);
   } else {
-    setButtonPos(buttonPos0);
+    setButtonPos(initialButtonPos);
     setAsidePos(accountPos1)
   }
 }
 
-const getUserData = async () => {
+const getUserData = useCallback(async () => {
   const axiosResp = await axiosConfig.get(
     `http://localhost:4000/user/${userId}`
   );
   const data = axiosResp.data;
-  const contactData = axiosResp.data.contactData;
-  const persKnowlData = axiosResp.data.contactData.professionalStatus;
+  const contactData = data.contactData;
+  const persKnowlData = contactData.professionalStatus;
+  /* const testdata = contactData.professionalStatus;
+  console.log(testdata) */
+  //console.log(data.contactData.professionalStatus);
   setUserData(data);
   setContactData(contactData);
   setKnowledgeData(persKnowlData)
- };
+ }, [setUserData, setContactData, setKnowledgeData]);
   
  
-const getMarketKnowledgeData = async () => {
+const getMarketKnowledgeData = useCallback(async () => {
   const axiosResp = await axiosConfig.get(
     `http://localhost:4000/professionalStatus`
     );
       const marketData = axiosResp.data;
-    //setMarketKnowledgeData(marketData);
     setMarketData(marketData)
-  };
+  }, [setMarketData]);
     //console.log(marketData)
     //console.log(userData)
     //console.log(knowledgeData)
@@ -77,7 +79,7 @@ const getMarketKnowledgeData = async () => {
       isAuth && getMarketKnowledgeData();
       isAuth && getUserData();
       /* console.log("buttonPosition:", buttonPos) */
-  }, []);
+  }, [isAuth, getMarketKnowledgeData, getUserData ]);
 
 
 return (

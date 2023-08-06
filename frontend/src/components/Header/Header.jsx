@@ -1,9 +1,9 @@
 import "./Header.scss";
 //import JoachimRitter from '../../images/Joachim_privat.jpg'
 import { NavLink, Link} from "react-router-dom";
-import { useContext, useState, useEffect} from "react";
+import { useContext, useState } from "react";
 import pldcpd from "../../images/pldcpd.png";
-import CLogo from "../../images/C.png"
+//import CLogo from "../../images/C.png"
 import { SectionsContext } from "../../context/SectionsContext.js";
 import swal from "sweetalert"
 
@@ -145,6 +145,7 @@ const Header = () => {
                 <li ><NavLink to="/KnowledgeAccount" className="closebtn">Personal Data</NavLink></li>
                 <li ><NavLink to="/KnowledgeAccount" className="closebtn">Money: your budget</NavLink></li>
                 <li ><NavLink to="/userupdate" className="closebtn">change your personal data</NavLink></li>
+                <li className="closebtn" onClick={handleAccountButton}>logout</li>
                 {/* <li onClick={() => handleOptionSelect("/KnowledgeAccount")}>Personal Data</li>
                 <li onClick={() => handleOptionSelect("/KnowledgeAccount")}>Money: your budget</li>
                 <li onClick={() => handleOptionSelect("/userupdate")}>change your personal data</li> */}
@@ -228,13 +229,15 @@ const Header = () => {
             <li>
               {isAuth ? (
                 <NavLink to="/userupdate" style={{color: "red"}}>
-              <span className="C">C</span> change your User Data
+              <span className="C">C</span> persönliche Daten ändern
             </NavLink>
               ) : (
                 <NavLink style={{color: "red"}}
                 //to="/login"
                 onClick={() => {
-                  swal("Du musst registriert und angemeldet sein, um deinen Account sehen zu können.", {
+                  swal( {
+                    title:"Message",
+                    text:"Du musst angemeldet sein, um deine Accountdaten ändern zu können. willst du dich einloggen?",
                     buttons: {
                       login: "ja, bitte einloggen!",
                       backtomain: "nein, zurück zur Hauptseite"}

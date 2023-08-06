@@ -48,7 +48,7 @@ function NextBtnToStepTwo({ props }) {
   };
   
   return (
-    <span className="weiterButton" onClick={validateInput} id="nextBtnToStepTwo">
+    <span className="buttonBasics" onClick={validateInput} id="nextBtnToStepTwo">
       weiter
     </span>
   );

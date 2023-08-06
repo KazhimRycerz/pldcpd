@@ -3,19 +3,19 @@ import "./AboutTheProfessionMain.scss";
 //import Level_4_SLD from "../../images/Level_4_SLD.jpg"
 import C from "../../images/C.png"
 //import LightingEffect from "../LightingEffect/LightingEffect.jsx"
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useCallback } from "react";
 import { SectionsContext } from "../../context/SectionsContext.js";
 import { HashLink as Link } from 'react-router-hash-link';
 
 
 const AboutTheProfessionMain = () => {
   
-  const { isAuth, setGotoPage, setButtonPos, setAsidePos } = useContext(SectionsContext);
+  const { isAuth, setButtonPos, setAsidePos } = useContext(SectionsContext);
   const [btnOpen, setBtnOpen] = useState(false);
-  const buttonPosCheck = ()=>{
+  const buttonPosCheck = useCallback(() => {
     if (isAuth) {setButtonPos("showBut"); setAsidePos ("accountAside")
     }
-  }
+  }, [setAsidePos, setButtonPos, isAuth]);
 
   const openDropdown =()=>{
     setBtnOpen(true);
@@ -25,8 +25,8 @@ const AboutTheProfessionMain = () => {
   };
 
   useEffect(() => {
-    buttonPosCheck(SectionsContext)
-  }, []);
+    buttonPosCheck()
+  }, [buttonPosCheck]);
 
 
   return (

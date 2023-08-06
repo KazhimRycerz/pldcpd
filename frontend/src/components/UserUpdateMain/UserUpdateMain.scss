@@ -1,37 +1,47 @@
 @import "../../scss/global.scss";
 
-.UpdateUser {
+#updateMain {
+  width: 80%;
+  max-width: 1280px;
+  min-height: 600px;
+  margin: 25vh auto;
+  box-shadow: $cpdblue 0px 0px 100px 50px inset, 0px 0px 15px 5px white;
+}
+
+#UpdateUser {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 60%;
+  margin: 0 auto;
   gap: 3rem;
-  transition: gap 1s ease-in;
 
   h2{
+    display: block;
+    margin: 50px auto;
+    padding: 20px;
+    width:fit-content;
     font-size: $small;
     text-align: center;
-    padding: 2.25rem 0 1rem 0;
-    margin: 2rem auto 1.5rem;
     color: $cpdblue;
-    border-radius:  20px 20px 0 0 ;
-    //background-color: $cpdred-50;
-    transition: font-size 1s ease-in;
+    border-left: dotted 3px $cpdred;
+    border-right: dotted 3px $cpdred;
+    border-radius:  20px ;
   }
   >button {
     margin-bottom: 30px;
   }
 }
 
-.UpdateUser h1 {
+#UpdateUser h1 {
   font-size: 3rem;
   width: 100%;
   text-align: center;
   color: var(--beige-color);
   background-color: var(--dark-transparent-color);
-  transition: font-size 1s ease-in;
 }
 
-.UpdateUser ul {
+#UpdateUser ul {
   font-size: 1.75rem;
   list-style-type: none;
   display: flex;
@@ -53,27 +63,27 @@
 
 }
 
-.UpdateUser .col2 {
+#UpdateUser .col2 {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 1rem;
 }
 
-.UpdateUser ul li span .button-dark-green {
+#UpdateUser ul li span .button-dark-green {
   font-size: 1.75rem;
   padding: 0.25rem 1rem;
 }
 
-.UpdateUser ul > .button-green {
+#UpdateUser ul > .button-green {
   margin: 1.5rem auto 0 auto;
   font-size: 2.5rem;
   padding: 0.5rem 1.5rem;
   transition: font-size 1s ease-in;
 }
 
-.UpdateUser .col2 input,
-.UpdateUser .col2 select {
+#UpdateUser .col2 input,
+#UpdateUser .col2 select {
   font-size: 1.2rem;
   color: $cpdred;
   border-radius: 0.5rem;
@@ -83,41 +93,41 @@
   padding: 0.25rem;
 }
 
-.UpdateUser .col2 select {
+#UpdateUser .col2 select {
   border-width: 2px;
   //font-family: "Poppins";
 }
 
-.UpdateUser .col2 select option:checked,
-.UpdateUser .col2 select option:hover {
+#UpdateUser .col2 select option:checked,
+#UpdateUser .col2 select option:hover {
   background-color: var(--middle-green-color);
   color: var(--beige-color);
 }
 
-.UpdateUser .col2 input:focus,
-.UpdateUser .col2 select:focus {
+#UpdateUser .col2 input:focus,
+#UpdateUser .col2 select:focus {
   background-color: var(--beige-color);
   outline: 3px solid var(--middle-green-color);
 }
 
-.UpdateUser .save-icon,
-.UpdateUser .edit-icon {
+#UpdateUser .save-icon,
+#UpdateUser .edit-icon {
   color: var(--middle-green-color);
   text-align: start;
   font-size: 2.25rem;
   transition: font-size 1s ease-in;
 }
 
-.UpdateUser .save-icon:after {
+#UpdateUser .save-icon:after {
   content: "Speichern";
 }
 
-.UpdateUser .edit-icon:after {
+#UpdateUser .edit-icon:after {
   content: "Ändern";
 }
 
-.UpdateUser .save-icon:after,
-.UpdateUser .edit-icon:after {
+#UpdateUser .save-icon:after,
+#UpdateUser .edit-icon:after {
   color: var(--beige-color);
   text-shadow: 0 0 0.25rem var(--middle-green-color);
   font-weight: bold;
@@ -129,28 +139,28 @@
   transition: opacity 1s ease-in-out;
 }
 
-.UpdateUser .save-icon:hover::after,
-.UpdateUser .edit-icon:hover::after {
+#UpdateUser .save-icon:hover::after,
+#UpdateUser .edit-icon:hover::after {
   opacity: 1;
   visibility: visible;
 }
 
 @media screen and (max-width: 767px) {
-  .UpdateUser {
+  #UpdateUser {
     gap: 1rem;
   }
 
-  .UpdateUser h1 {
+  #UpdateUser h1 {
     font-size: 2rem;
   }
 
-  .UpdateUser ul {
+  #UpdateUser ul {
     width: 95%;
     padding-left: 0.5rem;
     font-size: 1.5rem;
     gap: 1.5rem;
   }
-  .UpdateUser ul li {
+  #UpdateUser ul li {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -160,49 +170,49 @@
     flex-wrap: wrap;
   }
 
-  .UpdateUser .col2 {
+  #UpdateUser .col2 {
     width: 100%;
     justify-content: center;
     align-items: center;
   }
 
-  .UpdateUser .col2 span:first-child {
+  #UpdateUser .col2 span:first-child {
     width: 100%;
     max-width: max-content;
     overflow: auto;
     text-align: center;
   }
 
-  .UpdateUser .col2 span:last-child {
+  #UpdateUser .col2 span:last-child {
     width: 1em;
   }
 
-  .UpdateUser .col2 input,
-  .UpdateUser .col2 select {
+  #UpdateUser .col2 input,
+  #UpdateUser .col2 select {
     width: 250px;
   }
 
-  .UpdateUser .col1 {
+  #UpdateUser .col1 {
     font-weight: bold;
   }
 
-  .UpdateUser ul > .button-green {
+  #UpdateUser ul > .button-green {
     font-size: 2rem;
   }
 }
 
 @media screen and (min-width: 1024px) {
-  .UpdateUser h1 {
+  #UpdateUser h1 {
     font-size: 4rem;
   }
 
-  .UpdateUser ul {
+  #UpdateUser ul {
     width: 80%;
     font-size: 1.2rem;
   }
 
-  .UpdateUser .save-icon,
-  .UpdateUser .edit-icon {
+  #UpdateUser .save-icon,
+  #UpdateUser .edit-icon {
     font-size: 1.5rem;
   }
 }

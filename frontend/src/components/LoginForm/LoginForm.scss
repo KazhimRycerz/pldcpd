@@ -1,20 +1,16 @@
 @import "../../scss/global.scss";
 
-
-#loginMain {
-  border-radius: $radiuslarge;
+#loginMain{
   width: 80%;
   max-width: 1280px;
-  min-height: 500px;
+  min-height: 600px;
   margin: 25vh auto;
-  background-color: $first-color;
   box-shadow: $cpdblue 0px 0px 100px 50px inset, 0px 0px 15px 5px white;
-  border: solid 2px white;
-  font-family: $primary-font;
-  padding-top: 20px;
+  //border: solid 2px white;
+  //font-family: $primary-font;
   h2 {
     display: block;
-    margin: 30px auto;
+    margin: 50px auto;
     padding: 20px;
     width:fit-content;
     font-size: $small;
@@ -27,15 +23,14 @@
   #loginForm {
     display: flex;
     flex-flow: column nowrap;
-    justify-content: space-around;
-    //align-items: center;
+    //justify-content: space-around;
     gap: 20px;
-    width: 60%;
-    padding: 1.5rem 1rem;
-    border-radius: 10px;
-    box-shadow: $boxshadow;
-    //background-color: $first-color;
     margin: 0 auto;
+    padding: 1.5rem 1rem;
+    width: 40%;
+    border-radius: $radiussmall;
+    box-shadow: $boxshadow;
+    background-color: $first-color;
     //border: solid;
     div{
       display: flex;
@@ -56,7 +51,6 @@
         //width: 25%;
         flex-basis: 65%;
         background-color: white;
-        //margin-right: 20px;
         &:focus {
           color: $cpdred;
           &::placeholder {
@@ -98,62 +92,3 @@
   }
 }
 
-#loginForm label > input:focus {
-  //background-color: var(--beige-color);
-  //outline: 3px solid var(--middle-green-color);
-}
-
-/* #loginForm label > input::placeholder {
-  color: $cpdred;
-} */
-
-
-/* @media screen and (max-width: 767px) {
-  .LoginForm > h2 {
-    font-size: 2rem;
-  }
-
-  .LoginForm > h2:last-of-type{
-    margin-top: 1.5rem;
-  }
-
-  .LoginForm form,
-  .toRegister {
-    width: 95%;
-    padding: 0.5rem;
-  }
-
-  .LoginForm form label {
-    font-size: 1.5rem;
-    margin-left: 2rem;
-    width: 100%;
-  }
-
-  .LoginForm form label > input {
-    max-width: 80%;
-  }
-
-  .LoginForm form {
-    align-items: flex-start;
-  }
-
-  .LoginForm form > input {
-    margin: 1.5rem auto;
-  }
-
-  .toRegister {
-    font-size: $small;
-  }
-  
-  .LoginForm form label > input {
-    font-size: 1.5rem;
-  }
-}
-
-@media screen and (min-width:1024px){
-  .LoginForm form,
-  .toRegister{
-    width: 900px;
-  }  
-}
- */
