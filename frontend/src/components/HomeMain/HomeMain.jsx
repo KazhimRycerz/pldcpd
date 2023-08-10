@@ -8,21 +8,21 @@ import { SectionsContext } from "../../context/SectionsContext.js";
 import { HashLink as Link } from 'react-router-hash-link';
 
 const HomeMain = () => {
-
-  const { isAuth, setGotoPage, setButtonPos, asidePos, setAsidePos } = useContext(SectionsContext);
+  const { isAuth, setGotoPage, setButtonPos, setAsidePos } = useContext(SectionsContext);
   const buttonPosCheck = ()=>{
     if (isAuth) {setButtonPos("showBut"); setAsidePos("accountAside")
+    } else {setButtonPos("")
     }
   }
-
-useEffect(() => {
+  
+  useEffect(() => {
   setGotoPage("/home");
   buttonPosCheck();
 }, []);
 
 
   return (
-    <main> {/* Styling in global */}
+    <main id="homeMain"> {/* Styling in global */}
       <section id="Gruß_main">
         <h1 id="Gruß_main_h1">
           Ihre persönliche Berufsplanung im Lichtdesign

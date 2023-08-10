@@ -1,8 +1,9 @@
 @import "../../scss/global.scss";
 
-main {
+#accountMain {
   //margin-top: -40px;
   //height: auto;
+  box-shadow: $cpdblue 0px 0px 100px 50px inset, 0px 0px 15px 5px white;
   .colorYellow{
     color: $secondary-color;
   }
@@ -93,6 +94,7 @@ main {
             color: $secondary-color;
             background-color: $third-color;
             background-color: $cpdred;
+            background-color: $cpdblue;
             opacity: 1;
           }
         }
@@ -227,7 +229,7 @@ main {
   .account_pers_data {
     display: block;
     color: $secondary-color;
-    background-color: $cpdred;
+    background-color: $cpdblue;
     font-family: $primary-font;
     font-weight: bold;
     box-shadow: none;
@@ -347,7 +349,7 @@ main {
   }
   > div {
     display: flex;
-    margin: 0 20px;
+    margin: 0 20px 100px;
   }
 }
 

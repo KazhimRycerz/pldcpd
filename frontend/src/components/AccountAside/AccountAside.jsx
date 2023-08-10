@@ -61,7 +61,7 @@ const getUserData = useCallback(async () => {
   setUserData(data);
   setContactData(contactData);
   setKnowledgeData(persKnowlData)
- }, [setUserData, setContactData, setKnowledgeData]);
+ }, [setUserData, setContactData, setKnowledgeData, userId]);
   
  
 const getMarketKnowledgeData = useCallback(async () => {

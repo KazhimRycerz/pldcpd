@@ -1,8 +1,9 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import axiosConfig from "../util/axiosConfig.js";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+const userId = localStorage.getItem("userId");
 
 const SectionsContext = createContext();
 
@@ -22,6 +23,7 @@ const SectionsProvider = ({ children }) => {
   const [asidePos, setAsidePos] = useState("accountAside");
   const [userData, setUserData] = useState({});
   const [contactData, setContactData] = useState({});
+  const [knowledgeData, setKnowledgeData] = useState({});
   const [marketData, setMarketData] = useState({});
   const [gotoPage, setGotoPage] = useState("/home")
   const [accessRights, setAccessRights] = useState(1)
@@ -45,6 +47,24 @@ const SectionsProvider = ({ children }) => {
     gotoPage === "/KnowledgeAccount" && navigate("/home");
   };
 
+  /* const getUserData = async () => {
+    const axiosResp = await axiosConfig.get(
+       `http://localhost:4000/user/${userId}`
+       );
+       const userData = axiosResp.data;
+       const contactData = axiosResp.data.contactData;
+       const persKnowledgeData = axiosResp.data.contactData.professionalStatus;
+       setUserData(userData);
+       setContactData(contactData);
+       setKnowledgeData(persKnowledgeData);
+       console.log(userData)
+       console.log(contactData)
+       console.log(knowledgeData)
+    };
+    useEffect(() => {
+      getMarketKnowledgeData()
+      getUserData();
+   }, []); */
 
   return (
     <SectionsContext.Provider

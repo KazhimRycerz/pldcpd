@@ -53,7 +53,7 @@ const  KnowledgeAccountMain = ()=>{
          
 
    return (
-      <main>
+      <main id="accountMain">
          <section id="Gruß_account">
             <h2> Ihre Fachwissen im Überblick</h2>
          </section>

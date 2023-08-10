@@ -1,26 +1,31 @@
 import axiosConfig from "./axiosConfig.js";
 import Cookies from "js-cookie";
-import swal from "sweetalert";
+import Swal from "sweetalert2";
 //import { useLocation } from "react-router-dom";
-import { SectionsContext } from "../context/SectionsContext.js";
 import { useContext } from "react";
+import { SectionsContext } from "../context/SectionsContext.js";
 
 
-export const AutoLogout = /* async */ () => {
-  const { navigate } = useContext(SectionsContext);
+export const AutoLogout = async () => {
+  const { navigate, setButtonPos } = useContext(SectionsContext);
   const isLoggedToken = Cookies.get("isLogged");
-  const expiresInMs = isLoggedToken - new Date().getTime();
+  const expiresInMs = 10;
   const localItems = localStorage.getItem("userId");
-  if ((!isLoggedToken && localItems) || (expiresInMs <= 0 && localItems)) {
-    /* await */ axiosConfig.post("/user/logout");
+
+  if ((!isLoggedToken && localItems) || (expiresInMs <= 100)) {
+    await axiosConfig.post("/user/logout");
     localStorage.clear();
-    swal({
+    setButtonPos("buttonZeroPosition");
+    Swal.fire({
       title: "Sie wurden automatisch abgemeldet.",
       icon: "warning",
-      dangerMode: true,
+      showCloseButton: true,
+      //dangerMode: true,
     }).then(() => {
+
       navigate("/home");
     });
   }
 };
+
 

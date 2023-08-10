@@ -32,7 +32,7 @@ function LoginForm() {
   };
 
   const logoutHandler = () => {
-    Swal.fire(`Du bist aktuell als ${localStorage.userName} angemeldet. Möchtest du dich ausloggen oder als ein anderer Nutzer anmelden oder zurück?`, {
+    Swal.fire(/* `Du bist aktuell als ${localStorage.userName} angemeldet. Möchtest du dich ausloggen oder als ein anderer Nutzer anmelden oder zurück?`,  */{
       text: `Du bist aktuell als ${localStorage.userName} angemeldet. Möchtest du dich ausloggen oder als ein anderer Nutzer anmelden oder zurück?`,
       buttons: {
         abmelden: "ja, bitte ausloggen!",
