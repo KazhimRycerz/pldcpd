@@ -1,5 +1,5 @@
 import './AccountInfoAside.scss'
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState } from 'react'
 import { SectionsContext } from '../../context/SectionsContext.js'
 
 const AccountAside = () => {
@@ -7,7 +7,7 @@ const {asidePos, setAsidePos} = useContext(SectionsContext);
 const {buttonPos, setButtonPos} = useContext(SectionsContext)
 const [buttonText, setButtonText] = useState("show info")
 
-const buttonPos0 = "buttonZeroPosition" 
+const initialButtonPos = "buttonZeroPosition" 
 const buttonMove1 = "showBut" 
 const buttonMove2 = "showBut moveButton" 
 const buttonMove3 = "showBut moveButtonBack" 
@@ -34,7 +34,7 @@ const handleButton=(buttonPos) => {
     setAsidePos(accountPos2);
     setButtonText("hide info");
   } else {
-    setButtonPos(buttonPos0);
+    setButtonPos(initialButtonPos);
     setAsidePos(accountPos2)
   }
 }

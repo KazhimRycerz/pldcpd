@@ -192,47 +192,51 @@
      transition: 0.5s ease-in-out;
   }
  }
- @media (min-width: 1600px){
-  #buttonShowInfo {
-    display: block; 
-   //display: inline-block;
-   position: fixed;
-   top: 155px;
-   left: calc(100% - ((100% - 1280px) / 2) - 39px);
-   }
-   @keyframes moveButtonA {
-    0%  {transform:  translateY(33px) rotate(-90deg); z-index:0; left: calc(100% - ((100% - 1280px) / 2) - 39px);line-height: 55px}
-    90%  {z-index: 0;background-color: $first-color; color: $cpdblue}
-    100% {transform: rotate(0deg);z-index: 10; left: calc(100% - ((100% - 1280px) / 2) + 60px);line-height: 15px;background-color: $first-color; color: $cpdblue}
-  }
-  @keyframes moveButtonBackA {
-    0%  {transform: rotate(0deg);z-index:10;left: calc(100% - ((100% - 1280px) / 2) + 60px);line-height: 15px;background-color: $first-color; color: $cpdblue} 
-    50% {z-index: 0;}
-    90%  {color: $first-color; background-color: $cpdblue}
-    100% {transform:  translateY(33px) rotate(-90deg); left: calc(100% - ((100% - 1280px) / 2) - 39px);line-height: 55px}
-    }
-  /* @keyframes moveButtonBackToStartA {
-    0%  {transform: rotate(0deg);z-index:10;left: calc(100% - ((100% - 1280px) / 2) + 33px);line-height: 15px}
-    50% {z-index: 0;}
-    100% {transform:  translateY(33px) rotate(-90deg);z-index:0;left: calc(100% - ((100% - 1280px) / 2) - 65px);line-height: 55px} 
-  } */
 
-  .accountAside {
-    left: calc(100% - ((100% - 1280px) / 2) - 100px);
-  }
-
-  @keyframes show_home_aside {
-    0%  {opacity:0; display: none;}
-    1%  {transform: translateX(-120%) scale(90%); display: block; z-index: -1;opacity: 1;display: block;}
-    30% {z-index:1; display: block;}
-    60% {transform: translateX(60%) scale(90%); display: block;}
-    100% {transform: translateX(0%) scale(100%); z-index:9; display: block; opacity: 1}
-    }
- @keyframes hide_home_aside {
-   0%  {transform: translateX(0%) scale(100%);z-index:9; opacity: 1}
-   30% {transform: translateX(60%) scale(90%) }
-   60% {z-index:1}
-   99% {transform: translateX(-120%) scale(90%); z-index: -1; opacity: 1}
-   100% {transform: translateX(-120%) scale(90%); z-index: -1; opacity: 0; display: none;}
+@media (min-width: 1600px){
+#buttonShowInfo {
+  display: block; 
+  //display: inline-block;
+  position: fixed;
+  top: 155px;
+  left: calc(100% - ((100% - 1280px) / 2) - 39px);
+  &.hideBut {
+    left: calc(100% - ((100% - 1280px) / 2) - 60px);
    }
   }
+  @keyframes moveButtonA {
+  0%  {transform:  translateY(33px) rotate(-90deg); z-index:0; left: calc(100% - ((100% - 1280px) / 2) - 39px);line-height: 55px}
+  90%  {z-index: 0;background-color: $first-color; color: $cpdblue}
+  100% {transform: rotate(0deg);z-index: 10; left: calc(100% - ((100% - 1280px) / 2) + 60px);line-height: 15px;background-color: $first-color; color: $cpdblue}
+}
+@keyframes moveButtonBackA {
+  0%  {transform: rotate(0deg);z-index:10;left: calc(100% - ((100% - 1280px) / 2) + 60px);line-height: 15px;background-color: $first-color; color: $cpdblue} 
+  50% {z-index: 0;}
+  90%  {color: $first-color; background-color: $cpdblue}
+  100% {transform:  translateY(33px) rotate(-90deg); left: calc(100% - ((100% - 1280px) / 2) - 39px);line-height: 55px}
+  }
+/* @keyframes moveButtonBackToStartA {
+  0%  {transform: rotate(0deg);z-index:10;left: calc(100% - ((100% - 1280px) / 2) + 33px);line-height: 15px}
+  50% {z-index: 0;}
+  100% {transform:  translateY(33px) rotate(-90deg);z-index:0;left: calc(100% - ((100% - 1280px) / 2) - 65px);line-height: 55px} 
+} */
+
+.accountAside {
+  left: calc(100% - ((100% - 1280px) / 2) - 100px);
+}
+
+@keyframes show_home_aside {
+  0%  {opacity:0; display: none;}
+  1%  {transform: translateX(-120%) scale(90%); display: block; z-index: -1;opacity: 1;display: block;}
+  30% {z-index:1; display: block;}
+  60% {transform: translateX(60%) scale(90%); display: block;}
+  100% {transform: translateX(0%) scale(100%); z-index:9; display: block; opacity: 1}
+  }
+@keyframes hide_home_aside {
+  0%  {transform: translateX(0%) scale(100%);z-index:9; opacity: 1}
+  30% {transform: translateX(60%) scale(90%) }
+  60% {z-index:1}
+  99% {transform: translateX(-120%) scale(90%); z-index: -1; opacity: 1}
+  100% {transform: translateX(-120%) scale(90%); z-index: -1; opacity: 0; display: none;}
+  }
+}

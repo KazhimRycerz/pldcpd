@@ -3,9 +3,10 @@ import axiosConfig from "../util/axiosConfig.js";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-const userId = localStorage.getItem("userId");
+
 
 const SectionsContext = createContext();
+const userId = localStorage.getItem("userId");
 
 const SectionsProvider = ({ children }) => {
   const navigate = useNavigate();
@@ -40,11 +41,12 @@ const SectionsProvider = ({ children }) => {
     axiosConfig.post("/user/logout").then((res) => {
       //console.log(res.data);
     });
+    gotoPage === "/KnowledgeAccount" && navigate("/home");
     Swal.fire({
       title: `Sie haben sich erfolgreich abgemeldet`,
       icon: "success",
-    });
-    gotoPage === "/KnowledgeAccount" && navigate("/home");
+      timer: 5000,
+    })
   };
 
   /* const getUserData = async () => {
@@ -61,8 +63,9 @@ const SectionsProvider = ({ children }) => {
        console.log(contactData)
        console.log(knowledgeData)
     };
+
     useEffect(() => {
-      getMarketKnowledgeData()
+      getMarketKnowledgeData() 
       getUserData();
    }, []); */
 

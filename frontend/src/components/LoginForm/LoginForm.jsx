@@ -6,7 +6,7 @@ import "./LoginForm.scss";
 import Swal from "sweetalert2";
 
 function LoginForm() {
-  const { setButtonPos, navigate, gotoPage, isAuth, setIsAuth, setGotoPage, logout} = useContext(SectionsContext)
+  const { setButtonPos, navigate, gotoPage, isAuth, setIsAuth, logout} = useContext(SectionsContext)
   const [isLoading, setIsLoading] = useState(false);
   const formEl = useRef(null);
   const usernameEL = useRef(null);

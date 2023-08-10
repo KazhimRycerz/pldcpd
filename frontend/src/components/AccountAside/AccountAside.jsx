@@ -78,7 +78,6 @@ const getMarketKnowledgeData = useCallback(async () => {
   useEffect((props) => {
       isAuth && getMarketKnowledgeData();
       isAuth && getUserData();
-      /* console.log("buttonPosition:", buttonPos) */
   }, [isAuth, getMarketKnowledgeData, getUserData ]);
 
 

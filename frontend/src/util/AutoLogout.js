@@ -7,22 +7,20 @@ import { SectionsContext } from "../context/SectionsContext.js";
 
 
 export const AutoLogout = async () => {
-  const { navigate, setButtonPos } = useContext(SectionsContext);
+  const { navigate } = useContext(SectionsContext);
   const isLoggedToken = Cookies.get("isLogged");
-  const expiresInMs = 10;
+  const expiresInMs = isLoggedToken - new Date().getTime();
   const localItems = localStorage.getItem("userId");
 
-  if ((!isLoggedToken && localItems) || (expiresInMs <= 100)) {
+  if ((!isLoggedToken && localItems) || (expiresInMs <= 0 && localItems)) {
     await axiosConfig.post("/user/logout");
     localStorage.clear();
-    setButtonPos("buttonZeroPosition");
     Swal.fire({
       title: "Sie wurden automatisch abgemeldet.",
       icon: "warning",
-      showCloseButton: true,
+      //showCloseButton: true,
       //dangerMode: true,
     }).then(() => {
-
       navigate("/home");
     });
   }
