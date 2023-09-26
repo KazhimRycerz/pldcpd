@@ -1,5 +1,4 @@
 import drehmoment2 from "../../images/drehmoment2.png";
-//import drehmoment1 from "../../images/finger-print-outline.svg";
 import "./TurningElements.scss";
 import { useEffect } from "react";
 
@@ -31,31 +30,35 @@ const TurningElements = () => {
       document.removeEventListener("mouseover", stopRotate);
     };
   },/*  [] */);
+
+
   return (
-    <div id="drehmoment" >
-      <img src={drehmoment2} id="r1" className="rotate" alt="" />
-      <img src={drehmoment2} id="r2" className="rotate" alt="" />
-      <img src={drehmoment2} id="r3" className="rotate" alt="" />
-      <img src={drehmoment2} id="r4" className="rotate" alt="" />
-      <img src={drehmoment2} id="r5" className="rotate" alt="" />
-      <img src={drehmoment2} id="r6" className="rotate" alt="" />
-      <img src={drehmoment2} id="r7" className="rotate" alt="" />
-      <img src={drehmoment2} id="r8" className="rotate" alt="" />
-      <img src={drehmoment2} id="r9" className="rotate" alt="" />
-      <img src={drehmoment2} id="r10" className="rotate" alt="" />
-      <img src={drehmoment2} id="r11" className="rotate" alt="" />
-      <img src={drehmoment2} id="r12" className="rotate" alt="" />
-      <img src={drehmoment2} id="r13" className="rotate" alt="" />
-      <img src={drehmoment2} id="r14" className="rotate" alt="" />
-      <img src={drehmoment2} id="r15" className="rotate" alt="" />
-      <img src={drehmoment2} id="r16" className="rotate" alt="" />
-      <img src={drehmoment2} id="r17" className="rotate" alt="" />
-      <img src={drehmoment2} id="r18" className="rotate" alt="" />
-      <img src={drehmoment2} id="r19" className="rotate" alt="" />
-      <img src={drehmoment2} id="r20" className="rotate" alt="" />
-      <img src={drehmoment2} id="r21" className="rotate" alt="" />
-      <img src={drehmoment2} id="r22" className="rotate" alt="" />
-    </div>
+    <>
+      <div id="drehmoment" >
+        <img src={drehmoment2} id="r1" className="rotate" alt="1" />
+        <img src={drehmoment2} id="r2" className="rotate" alt="2" />
+        <img src={drehmoment2} id="r3" className="rotate" alt="3" />
+        <img src={drehmoment2} id="r4" className="rotate" alt="4" />
+        <img src={drehmoment2} id="r5" className="rotate" alt="5" />
+        <img src={drehmoment2} id="r6" className="rotate" alt="6" />
+        <img src={drehmoment2} id="r7" className="rotate" alt="7" />
+        <img src={drehmoment2} id="r8" className="rotate" alt="" />
+        <img src={drehmoment2} id="r9" className="rotate" alt="" />
+        <img src={drehmoment2} id="r10" className="rotate" alt="" />
+        <img src={drehmoment2} id="r11" className="rotate" alt="" />
+        <img src={drehmoment2} id="r12" className="rotate" alt="" />
+        <img src={drehmoment2} id="r13" className="rotate" alt="" />
+        <img src={drehmoment2} id="r14" className="rotate" alt="" />
+        <img src={drehmoment2} id="r15" className="rotate" alt="" />
+        <img src={drehmoment2} id="r16" className="rotate" alt="" />
+        <img src={drehmoment2} id="r17" className="rotate" alt="" />
+        <img src={drehmoment2} id="r18" className="rotate" alt="" />
+        <img src={drehmoment2} id="r19" className="rotate" alt="" />
+        <img src={drehmoment2} id="r20" className="rotate" alt="" />
+        <img src={drehmoment2} id="r21" className="rotate" alt="" />
+        <img src={drehmoment2} id="r22" className="rotate" alt="" />
+      </div>
+    </>
   );
 };
 

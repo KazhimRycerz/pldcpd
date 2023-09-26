@@ -42,6 +42,7 @@ const SectionsProvider = ({ children }) => {
       //console.log(res.data);
     });
     gotoPage === "/KnowledgeAccount" && navigate("/home");
+    gotoPage === "/userupdate" && navigate("/home");
     Swal.fire({
       title: `Sie haben sich erfolgreich abgemeldet`,
       icon: "success",

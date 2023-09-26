@@ -1,6 +1,6 @@
 import React from "react";
 import axiosConfig from "../../util/axiosConfig";
-import swal from "sweetalert";
+import Swal from "sweetalert2";
 import "./NextBtnRegister.scss"
 
 function NextBtnToStepTwo({ props }) {
@@ -21,35 +21,32 @@ function NextBtnToStepTwo({ props }) {
     }
 
     if (props.userName.length === 0) {
-      swal({ title: "Benutzername", text: " ist ein Pflichtfeld." });
+      Swal.fire({ title: "Benutzername", text: " ist ein Pflichtfeld." });
     } else if (userExists) {
-      swal({
+      Swal.fire({
         title: `Benutzername "${userExists}"`,
         text: " ist bereits vergeben.",
-      });
+      })
     } else if (
       props.userName.length > 20 ||
       (props.userName.length < 4 && props.userName.length > 0)
     ) {
-      swal({
+      Swal.fire({
         title: "Benutzername",
-        text: " muss mindestens 4 Zeichen und maximal 20 Zeichen lang sein.",
-      });
+        text: " muss mindestens 4 Zeichen und maximal 20 Zeichen lang sein." })
     } else if (props.firstName.length === 0) {
-      swal({ title: "Vorname", text: " ist ein Pflichtfeld." });
+      Swal.fire({ title: "Vorname", text: " ist ein Pflichtfeld." })
     } else if (props.lastName.length === 0) {
-      swal({ title: "Nachname", text: " ist ein Pflichtfeld." });
-    } /* else if (props.location.length === 0) {
-      swal({ title: "Wohnort", text: " ist ein Pflichtfeld." });
-    } */ else {
+      Swal.fire({ title: "Nachname", text: " ist ein Pflichtfeld." });
+    } else {
       props.setOne(false);
       props.setTwo(true);
     }
   };
   
   return (
-    <span className="buttonBasics" onClick={validateInput} id="nextBtnToStepTwo">
-      weiter
+    <span className="buttonBasics weiterButton" onClick={validateInput} id="nextBtnToTwo">
+      weiter >>
     </span>
   );
 }
@@ -58,25 +55,18 @@ function NextBtnToStepTwo({ props }) {
 
 const NextBtnToThree = ({ props }) => {
   const setThreeTrue = () => {
-    /* if (props.disabilities.length > 250) {
-      swal({
-        title:
-          "Sie haben den maximal Anzahl Zeichen bei Eventuelle Einschränkungen überschritten",
-        text: "max 250 Zeichen",
-      });
-    } else { */
       props.setTwo(false);
       props.setThree(true);
-    /* } */
   };
   return (
-    <span className="weiterButton" onClick={setThreeTrue} id="nextBtnToThree">
-      weiter
+    <span className="buttonBasics weiterButton" onClick={setThreeTrue} id="nextBtnToThree">
+      weiter >>
     </span>
   );
 };
 
 const SubmitBtn = ({submitHandler, props }) => {
+  
   const validateDataStepThree = async (e) => {
     e.preventDefault();
     const validateEmail = async () => {
@@ -93,9 +83,9 @@ const SubmitBtn = ({submitHandler, props }) => {
     }
 
     if (emailExists) {
-      swal({
+      Swal.fire({
         title: "E-Mail Adresse bereits vergeben",
-        text: "Probieren Sie andere E-Mail",
+        text: "probieren Sie andere E-Mail",
       });
     } else {
       submitHandler();
@@ -105,10 +95,10 @@ const SubmitBtn = ({submitHandler, props }) => {
   return (
     <input
       onClick={validateDataStepThree}
-      className="weiterButton"
       type="submit"
-      value="registrieren"
-      id="submitBtn"
+      value="daten Senden"
+      className="buttonBasics"
+      id="submitBtnRegister"
     />
   );
 };
@@ -129,7 +119,7 @@ const ResetBtn = ({ props }) => {
   };
   
   return (
-    <span onClick={resetAll} className="button-beige resetBtn">
+    <span onClick={resetAll} className="buttonBasics resetButton">
       Reset
     </span>
   );

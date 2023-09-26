@@ -5,13 +5,13 @@ export default function GenderRadioBtn({ props, gender }) {
   const genderLabelValue = (gender) => {
     switch (gender) {
       case "female":
-        return "Weiblich";
+        return "weiblich";
         //break;
       case "male":
-        return "Männlich";
+        return "männlich";
         //break;
       case "diverse":
-        return "Nicht binär";
+        return "nicht binär";
         //break;
       default:
         return "keine Angabe";
@@ -20,7 +20,7 @@ export default function GenderRadioBtn({ props, gender }) {
 
   return (
     <>
-      <label htmlFor={gender} className={gender===props.genderRadio?"button-dark-green":"button-beige"}>
+      <label htmlFor={gender} className={gender===props.genderRadio?"buttonRadio":"buttonBasics"}>
         <input
           onClick={(e) => props.setGenderRadio(e.target.value)}
           type="radio"

@@ -17,6 +17,11 @@ const userSchema = mongoose.Schema({
     default: "",
     unique: true
   },
+  gender: {
+    type: String,
+    default: "none",
+    enum:["male", "female", "diverse", "none"]
+  },
   eMail: {
     type: String,
     required: true,
@@ -37,9 +42,9 @@ const userSchema = mongoose.Schema({
     default: ""
   },
   accessRights: [{
-    type: Number,
+    type: Array,
     enum: [0,1,2,3,4,5],
-    default:1
+    default:[0]
   }],
   active: {
     type: Boolean,

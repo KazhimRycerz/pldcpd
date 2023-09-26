@@ -1,12 +1,12 @@
 @import "../../scss/global.scss";
 
 
-.RegisterForm {
+#registerMain{
   border-radius: $radiuslarge;
   width: 80%;
   max-width: 1280px;
-  height: 500px;
-  margin: 25vh auto;
+  min-height: 600px;
+  margin: 250px auto 0;
   //background-color: $cpdred;
   background-color: $first-color;
   font-family: $primary-font;
@@ -15,9 +15,9 @@
   box-shadow: $cpdblue 0px 0px 100px 50px inset, 0px 0px 15px 0px white;
 }
 
-.RegisterForm h2 {
+#registerMain h2 {
     display: block;
-    margin: 50px auto 20px;
+    margin: 50px auto;
     padding: 20px;
     width:fit-content;
     font-size: $small;
@@ -28,7 +28,7 @@
     border-radius:  20px ;
 }
 
-.RegisterForm form {
+#registerMain form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,6 +36,7 @@
   font-size: 1rem;
   margin: 0 auto;
   width: 40%;
+  min-width: 400px;
   //border: solid;
 
 }
@@ -43,46 +44,97 @@
 #stepOne,
 #stepTwo,
 #stepThree {
-  background-color: $first-color;
   display: flex;
-  flex-direction: column;
+  flex-flow: column nowrap;
   align-items: center;
-  gap: 0.5rem;
+  gap: 20px;
   width: 100%;
   padding: 1.5rem 1rem;
   border-radius: $radiussmall;
   box-shadow: $boxshadow;
   transition: width 1s ease-in;
+  background-color: $first-color;
+  //border: solid;
+  div{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    gap: 0px;
+    width: 100%;
+    //border: solid;
+    label {
+      //padding-left: 20px;
+      flex-basis: 40%;
+      //margin-left: 20px;
+      align-items: flex-start;
+      //border: solid;
+    }
+    input {
+      border: solid 2px;
+      padding: 10px;
+      height: 35px;
+      border-radius: 10px;
+      //width: 25%;
+      flex-basis: 60%;
+      background-color: white;
+      &:focus {
+        color: $cpdred;
+        &::placeholder {
+          color: $cpdred;
+        }
+      }
+    }
+  }
 }
 
 #stepTwo {
-  gap: 1.5rem;
+  
+  h4 {
+    display: block;
+    padding: 20px;
+    width:fit-content;
+    font-size: $small;
+    text-align: center;
+    color: $cpdblue;
+    border-left: dotted 3px $cpdred;
+    border-right: dotted 3px $cpdred;
+    border-radius:  20px ;
+  }
+  #radioGenderButtons{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 10px;
+    line-height: 25px;
+    text-align: center;
+    width: 60%;
+    //border: solid;
+  }
+  #buttonBoxStepTwo, #buttonBoxStepThree{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    gap:20px;
+    border-top: solid;
+    padding-top: 10px;
+  }
 }
 
-.RegisterForm .gender > h3 {
-  margin-bottom: 1rem;
-  text-align: center;
-}
 
-#stepOne > label {
+/* #stepOne div > label {
   display: flex;
   flex-wrap: wrap;
   align-items:flex-start;
   justify-content: space-between;
   width: 100%;
-}
-
-#stepThree > label {
-  transition: font-size 1s ease-in, width 1s ease-in, margin-left 1s ease-in;
-}
-
-/* .RegisterForm .disabilities {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  //border: solid;
 } */
 
-.RegisterForm sup {
+/* #stepThree > label {
+  transition: font-size 1s ease-in, width 1s ease-in, margin-left 1s ease-in;
+} */
+
+#registerMain sup {
   color: var(--middle-green-color);
   font-weight: bold;
 }
@@ -165,19 +217,32 @@
   visibility: visible;
 }
 
+#textKonto{
+  display: block;
+  margin: 30px auto 0px;
+  padding: 0px;
+  width:30%;
+  font-size: $small;
+  text-align: center;
+  color: $cpdblue;
+  //border-left: dotted 3px $cpdred;
+  //border-right: dotted 3px $cpdred;
+  border-radius:  20px;
+  //border: solid;
+}
 
-#registerButtons{
+#registerButtonBox{
   display: flex;
   flex-flow: row nowrap;
-  justify-content: flex-end;
+  justify-content:center;
   width: 40%;
-  margin: 20px  auto;
+  margin: 20px auto;
   gap: 20px;
   //border: solid;
 
 }
 button {
-  font-size: $small;
+  //font-size: $small;
   padding: 0.75rem 1.5rem;
   background-color: $first-color;
   a {
@@ -186,6 +251,15 @@ button {
   text-decoration: none;
   cursor: pointer;
   }
+}
+#footerInForm p{
+  width:fit-content;
+  margin: 0 auto;
+  //border: solid;
+  text-align:center;
+  
+    margin-top: 20px;
+  
 }
 
 /* #bereitsRegistriert:hover {

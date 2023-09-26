@@ -5,7 +5,8 @@ import { useContext, useState } from "react";
 import pldcpd from "../../images/pldcpd.png";
 //import CLogo from "../../images/C.png"
 import { SectionsContext } from "../../context/SectionsContext.js";
-import swal from "sweetalert"
+import Swal from "sweetalert2"
+//import swal from "sweetalert"
 
 const Header = () => {
   const { isAuth, buttonPos, setButtonPos, asidePos, setAsidePos, gotoPage, setGotoPage, navigate, logout } = useContext(SectionsContext);
@@ -23,16 +24,14 @@ const Header = () => {
     isToggled === true ? setAccountListShow("showAccountList") : setAccountListShow("hideAccountList"); */
   }
 
-  /* const handleOptionSelect = (option) => {
-    navigate(option);
-  }; */
   
   const handleAccountButton =()=> {
     isAuth && logout()
     !isAuth && asidePos === "accountAside showAccount"
     ? setAsidePos("accountAside hideAccount")
     : setAsidePos("accountAside");
-    
+
+    console.log("buttonPosition:", buttonPos, "isAuth", isAuth)
            if (!isAuth && buttonPos === "") {setButtonPos("showBut") //ok
     } else if (!isAuth && buttonPos === "hideBut") {setButtonPos("showBut")
     } else if (!isAuth && buttonPos === "showBut") {setButtonPos("hideBut")
@@ -138,8 +137,8 @@ const Header = () => {
 
   {isAuth && (
           <div id="dropDownAccountBackground" className={accountListShow} onMouseLeave={()=> { handleDropdownAccount()}}>
+            <p>rufen sie hier Ihre persönliche Daten auf!</p>
             <div>
-              <p>rufen sie hier Ihre persönliche Daten auf!</p>
               <ul id="dropDownAccount" /* className={accountListShow} */ >
                 <li ><NavLink to="/KnowledgeAccount" className="closebtn">Knowledge Status</NavLink></li>
                 <li ><NavLink to="/KnowledgeAccount" className="closebtn">Personal Data</NavLink></li>
@@ -196,34 +195,34 @@ const Header = () => {
               <span className="C">C</span> your CPD account
             </NavLink>
               ) : (
-                <NavLink style={{color: "red"}}
-                //to="/login"
-                onClick={() => {
-                  swal("Du musst registriert und angemeldet sein, um deinen Account sehen zu können.", {
-                    buttons: {
-                      login: "ja, bitte einloggen!",
-                      backtomain: "nein, zurück zur Hauptseite"}
-                    })
-                    .then ((value)=>{
-                      switch(value) {
-                        case "login":
-                          setGotoPage("/KnowledgeAccount")
-                          navigate("/login")
-                          break;
-                          case "backtomain":
-                            setShowMenue(!showMenue)
-                            navigate("/home")
-                            break;
-                            default:
-                              swal("Got away safely!");
-                            }
-                          })
-                          //setGotoPage("/KnowledgeAccount");
-                          navigate(gotoPage);
-                        }}
-                        >
-                <span className="C">C</span> your CPD account
-              </NavLink>
+                <NavLink
+  style={{ color: 'red' }}
+  onClick={(e) => {
+    e.preventDefault(); // Prevent the default navigation behavior
+
+    Swal.fire({
+      title: 'Hinweis',
+      text: 'Du musst registriert und angemeldet sein, um deinen Account sehen zu können.',
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonText: 'Ja, bitte einloggen!',
+      cancelButtonText: 'Nein, zurück zur Hauptseite'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setGotoPage('/KnowledgeAccount');
+        navigate('/login');
+      } else if (result.isDismissed) {
+        setShowMenue(!showMenue);
+        navigate('/home');
+      } else {
+        Swal.fire('Got away safely!', '', 'success');
+      }
+    });
+  }}
+  to="#"
+>
+  <span className="C">C</span> your CPD account
+</NavLink>
             )}
             </li>
             <li>
@@ -232,36 +231,35 @@ const Header = () => {
               <span className="C">C</span> persönliche Daten ändern
             </NavLink>
               ) : (
-                <NavLink style={{color: "red"}}
-                //to="/login"
-                onClick={() => {
-                  swal( {
-                    title:"Message",
-                    text:"Du musst angemeldet sein, um deine Accountdaten ändern zu können. willst du dich einloggen?",
-                    buttons: {
-                      login: "ja, bitte einloggen!",
-                      backtomain: "nein, zurück zur Hauptseite"}
-                    })
-                    .then ((value)=>{
-                      switch(value) {
-                        case "login":
-                          setGotoPage("/userupdate")
-                          navigate("/login")
-                          break;
-                      case "backtomain":
-                        setShowMenue(!showMenue)
-                        navigate("/home")
-                        break;
-                        default:
-                          swal("Got away safely!");
-                        }
-                      })
-                      //setGotoPage("/KnowledgeAccount");
-                      navigate(gotoPage);
-                    }}
-                    >
-                <span className="C">C</span> change your Userdata
-              </NavLink>
+                <NavLink
+  style={{ color: 'red' }}
+  onClick={(e) => {
+    e.preventDefault(); // Prevent the default navigation behavior
+
+    Swal.fire({
+      title: 'Message',
+      text: 'Du musst angemeldet sein, um deine Accountdaten ändern zu können. Willst du dich einloggen?',
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonText: 'Ja, bitte einloggen!',
+      cancelButtonText: 'Nein, zurück zur Hauptseite'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setGotoPage('/userupdate');
+        navigate('/login');
+      } else if (result.isDismissed) {
+        setShowMenue(!showMenue);
+        navigate('/home');
+      } else {
+        Swal.fire('Got away safely!', '', 'success');
+      }
+      //navigate(gotoPage);
+    });
+  }}
+  to="#"
+>
+  <span className="C">C</span> change your Userdata
+</NavLink>
             )}
             </li>
             <li>
@@ -281,11 +279,11 @@ const Header = () => {
               overview <br />
               of topics{" "}
             </p>
-            <li>
+            {/* <li>
               <NavLink to="/coursepage" className="closebtn" style={{color: "red"}}>
                 <span className="C">C</span> single course
               </NavLink>
-            </li>
+            </li> */}
             <li>
             <NavLink to="/courselistpage" className="closebtn" style={{color: "red"}}>
                 <span className="C">C</span> listed courses on offer

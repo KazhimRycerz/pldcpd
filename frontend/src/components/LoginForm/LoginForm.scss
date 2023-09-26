@@ -4,7 +4,7 @@
   width: 80%;
   max-width: 1280px;
   min-height: 600px;
-  margin: 25vh auto;
+  margin: 250px auto 0;
   box-shadow: $cpdblue 0px 0px 100px 50px inset, 0px 0px 15px 5px white;
   //border: solid 2px white;
   //font-family: $primary-font;
@@ -28,6 +28,7 @@
     margin: 0 auto;
     padding: 1.5rem 1rem;
     width: 40%;
+    min-width: 400px;
     border-radius: $radiussmall;
     box-shadow: $boxshadow;
     background-color: $first-color;
@@ -36,7 +37,7 @@
       display: flex;
       flex-flow: row nowrap;
       justify-content: flex-end;
-      gap: 20px;
+      gap: 0px;
       //border: solid;
       label {
         //padding-left: 20px;
@@ -46,10 +47,11 @@
       }
       input {
         border: solid 2px;
+        height: 35px;
         padding: 10px;
         border-radius: 10px;
         //width: 25%;
-        flex-basis: 65%;
+        flex-basis: 60%;
         background-color: white;
         &:focus {
           color: $cpdred;
@@ -71,10 +73,32 @@
     }
   }
 
+  #buttonInside{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    width: 40%;
+    min-width: 400px;
+    margin: 20px auto;
+    //border: solid;
+  }
+  #textKeinKonto{
+    display: block;
+    margin: 30px auto 0px;
+    padding: 0px;
+    width:30%;
+    font-size: $small;
+    text-align: center;
+    color: $cpdblue;
+    //border-left: dotted 3px $cpdred;
+    //border-right: dotted 3px $cpdred;
+    border-radius:  20px;
+    //border: solid;
+  }
   #toRegisterButton {
     display: block;
     //width: fit-content;
-    margin: 1rem auto 3rem;
+    //margin: 1rem auto 3rem;
     //border: solid;
     a {
     background-color: none;
@@ -87,7 +111,7 @@
   
   #ladeInfo {
     text-align: center;
-    color: $first-color;
+    color: $cpdblue;
     margin-bottom: 30px;
   }
 }

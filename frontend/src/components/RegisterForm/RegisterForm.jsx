@@ -16,13 +16,13 @@ import {
   ResetBtn,
 } from "../NextBtnRegister/NextBtnRegister.jsx"; 
 import Swal from "sweetalert2";
+import swal from "sweetalert";
 
 export default function RegisterForm() {
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [hasRegistered, setHasRegistered] = useState(false);
-  const { setIsAuth } =
-    useContext(SectionsContext);
+  const { setIsAuth, navigate } = useContext(SectionsContext);
 
   const [stepOne, setStepOne] = useState(true);
   const [stepTwo, setStepTwo] = useState(false);
@@ -35,7 +35,7 @@ export default function RegisterForm() {
   const [genderRadio, setGenderRadio] = useState("none");
   const [eMail, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [location, setLocation] = useState("");
+  //const [location, setLocation] = useState("");
 
   const props = {
     userName: userName,
@@ -44,8 +44,8 @@ export default function RegisterForm() {
     setFirstName: setFirstName,
     lastName: lastName,
     setLastName: setLastName,
-    location: location,
-    setLocation: setLocation,
+    /* location: location,
+    setLocation: setLocation, */
     genderRadio: genderRadio,
     setGenderRadio: setGenderRadio,
     password: password,
@@ -128,85 +128,89 @@ export default function RegisterForm() {
     localStorage.setItem("userId", respData.userId);
   };
 
+  const confirmRegistration = () => {
+    Swal.fire({
+      title: `Sie haben sich erfolgreich als ${userName} registriert. Möchten Sie sich nun anmelden?`,
+      icon: 'success',
+      showCancelButton: true,
+      confirmButtonText: 'Ja, bitte einloggen!',
+      cancelButtonText: 'Nein, zurück zur Hauptseite'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate('/login');
+      } else if (result.isDismissed) {
+        navigate('/home');
+      } else {
+        Swal.fire('Alles gut!', '', 'success');
+      }
+    });
+  };
+  
+
   return (
-    <main className="RegisterForm">
+    <main id="registerMain">
       <h2>registrieren</h2>
       <form ref={formEl} method="POST" action="/user">
         {stepOne && (
           <>
             <div id="stepOne">
-              <label htmlFor="userName">
-                <div>
-                  Benutzername:<sup id="infoUsername">*</sup>
-                </div>
+              <div>
+                <label htmlFor="userName">Benutzername:
+                <sup id="infoUsername">*</sup>
+                </label>
                 <TextInput labelValue="userName" stateFunc={setUserName} />
-              </label>
-              <label htmlFor="firstName">
-                <div>
-                  Vorname:
-                  <sup
-                    id="infoFirstName"
-                    hover-text="Pflichtfeld: Ihren Vornamen"
-                  >
-                    *
-                  </sup>
-                </div>
+              </div>
+              <div>
+                <label htmlFor="firstName">Vorname:
+                <sup id="infoFirstName" hover-text="Pflichtfeld: Ihren Vornamen">*</sup>
+                </label>
                 <TextInput labelValue="firstName" stateFunc={setFirstName} />
-              </label>
-              <label htmlFor="lastName">
-                <div>
-                  Nachname:<sup id="infoLastName">*</sup>
-                </div>
+              </div>
+              <div>
+                <label htmlFor="lastName">Nachname:
+                <sup id="infoLastName">*</sup>
+                </label>
                 <TextInput labelValue="lastName" stateFunc={setLastName} />
-              </label>
+              </div>
               {/* <label htmlFor="location">
                 <div>
                   Wohnort:<sup id="infoLocation">*</sup>
                 </div>
                 <TextInput labelValue="location" stateFunc={setLocation} />
               </label> */}
-              <NextBtnToStepTwo props={props} />
+              <div><NextBtnToStepTwo props={props} /></div>
             </div>
           </>
         )}
         {stepTwo && (
           <div id="stepTwo">
-            <div className="gender">
-              <h3>Geschlecht:</h3>
-              <div className="radio">
+            <p>Geschlecht</p>
+              <div id="radioGenderButtons">
                 <GenderRadioBtn gender="female" props={props} />
                 <GenderRadioBtn gender="male" props={props} />
                 <GenderRadioBtn gender="diverse" props={props} />
                 <GenderRadioBtn gender="none" props={props} />
               </div>
+            <div id="buttonBoxStepTwo">
+              <ResetBtn props={props} />
+              <NextBtnToThree props={props} />
             </div>
-            {/* <div className="disabilities">
-              <label htmlFor="disabilities">
-                <h3>Eventuelle Einschränkung</h3>
-              </label>
-              <TextInput
-                labelValue="disabilities"
-                stateFunc={setDisabilities}
-              />
-            </div> */}
-            <NextBtnToThree props={props} />
           </div>
         )}
         {stepThree && (
           <div id="stepThree">
-            <label htmlFor="email">
-              <div>
-                E-Mail Adresse:<sup id="infoEmail">*</sup>
-              </div>
-              <MailInput labelValue="email" stateFunc={setEmail} />
-            </label>
-            <label htmlFor="password">
-              <div>
-                Passwort:<sup id="infoPsw">*</sup>
-              </div>
+            <div>
+              <label htmlFor="email">E-Mail Adresse:<sup id="infoEmail">*</sup></label>
+                <MailInput labelValue="email" stateFunc={setEmail} />
+            </div>
+            <div>
+              <label htmlFor="password"> Passwort:<sup id="infoPsw">*</sup></label>
               <PasswordInput labelValue="password" stateFunc={setPassword} />
-            </label>
-            <SubmitBtn props={props} submitHandler={submitHandler} />
+            </div>
+            <div id="buttonBoxStepThree">
+              <ResetBtn props={props} />
+              <SubmitBtn props={props} submitHandler={submitHandler} />
+            </div>
           </div>
         )}
       </form>
@@ -217,9 +221,12 @@ export default function RegisterForm() {
           </p>
         )}
         {hasRegistered && (
-          <p>
-            <strong>Sie haben sich erfolgreich registriert.</strong>
-          </p>
+        <>
+          <>{confirmRegistration()}</>
+            {/* <p>
+              <strong>Sie haben sich erfolgreich registriert.</strong>
+            </p> */}
+        </>
         )}
 
         {/* {isAuth && eventLogin && <Navigate to="/event-form" replace={true} />}
@@ -229,16 +236,17 @@ export default function RegisterForm() {
         {isAuth && !eventLogin && !backToEvent && <Navigate to="/profile" />}*/}
         {isLoading ? (
           <p>
-            <strong>Lade – bitte warten...</strong>
+            <strong>Daten weren geladen – bitte einen Moment warten...</strong>
           </p>
         ) : null}
-        {(stepTwo || stepThree) && <ResetBtn props={props} />}
-        <div id="registerButtons">
+        {/* {(stepTwo || stepThree) && <ResetBtn props={props} />} */}
+        <p id="textKonto">Sie sind schon registriert? <br />Dann können Sie sich hier einloggen oder zurück zur Hauptseite</p>
+        <div id="registerButtonBox">
           <button className="buttonBasics" id="bereitsRegistriert">
             <NavLink to={"/login"}> zum Login</NavLink>
           </button>
           <button className="buttonBasics" id="registriertAbbrechen">
-            <NavLink to={"/home"}>abbrechen und zurück</NavLink>
+            <NavLink to={"/home"}>Home</NavLink>
           </button>
         </div>
       </div>

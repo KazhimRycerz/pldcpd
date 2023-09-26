@@ -3,9 +3,9 @@
 .RegisterForm input[type="text"],
 .RegisterForm input[type="password"], 
 .RegisterForm input[type="email"]{
-  width: 250px;
+  width: 50%;
   height: 2.0rem;
-  background-color: $first-color;
+  background-color: white;
   //border-color: var(--middle-green-color);
   border-radius: $radiussmall;
   font-size: $small;

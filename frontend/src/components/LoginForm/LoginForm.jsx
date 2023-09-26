@@ -4,6 +4,7 @@ import { SectionsContext } from "../../context/SectionsContext.js";
 import { Link } from "react-router-dom";
 import "./LoginForm.scss";
 import Swal from "sweetalert2";
+import swal from "sweetalert";
 
 function LoginForm() {
   const { setButtonPos, navigate, gotoPage, isAuth, setIsAuth, logout} = useContext(SectionsContext)
@@ -32,12 +33,47 @@ function LoginForm() {
   };
 
   const logoutHandler = () => {
-    Swal.fire(/* `Du bist aktuell als ${localStorage.userName} angemeldet. Möchtest du dich ausloggen oder als ein anderer Nutzer anmelden oder zurück?`,  */{
+    Swal.fire({
+      title: `Du bist aktuell als ${localStorage.userName} angemeldet. Möchtest du dich ausloggen oder als ein anderer Nutzer anmelden oder den Vorgang abbrechen?`,
+      icon: "info",
+      iconColor: "red",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "ausloggen",
+      denyButtonText: "bitte als anderer Nutzer einloggen!",
+      cancelButtonText: "abbrechen",
+      allowOutsideClick: false,
+      customClass: {
+        /* confirmButton: 'buttonBasics',
+        cancelButton: 'buttonBasics', 
+        denyButton: 'buttonBasics',*/
+        popup: 'containerBox',
+        actions: 'actionButtons'
+      },
+      buttonsStyling: false,
+    })
+    .then((result) => {
+      if (result.isConfirmed) {
+        logout();
+        setButtonPos("");
+        navigate("/home");
+      } else if (result.isDenied) {
+        logout();
+        setButtonPos("");
+        navigate("/login");
+      } else if (result.isDismissed) {
+        navigate(-1);
+      } else {
+        Swal.fire("Got away safely!");
+      }
+    });
+    /* swal({
       text: `Du bist aktuell als ${localStorage.userName} angemeldet. Möchtest du dich ausloggen oder als ein anderer Nutzer anmelden oder zurück?`,
       buttons: {
         abmelden: "ja, bitte ausloggen!",
         neuanmelden:"ja, bitte als anderer Nutzer einloggen!",
-        backtomain: "nein, nur zurück"}
+        backtomain: "nein, nur zurück",
+        andere: "Ich weiß nicht"      }
       })
       .then ((value)=>{
         switch(value) {
@@ -46,7 +82,7 @@ function LoginForm() {
             setButtonPos("")
             navigate("/home")
             break;
-            case "neuanmelden":
+          case "neuanmelden":
             logout()
             setButtonPos("")
             navigate("/login")
@@ -54,11 +90,11 @@ function LoginForm() {
           case "backtomain":
             navigate(-1)
             break;
-            default:
-              Swal.fire("Got away safely!");
+          default:
+              swal("Got away safely!");
             }
-            })
-          }
+      }) */
+    }
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -130,12 +166,14 @@ function LoginForm() {
         )
       }
 
-      <h2>Sie haben noch kein Konto? Dann können Sie sich hier als neuer User</h2>
-      <button className="buttonBasics" id="toRegisterButton">
-        <Link to={"/register"}>registrieren</Link>
-      </button>
+      <p id="textKeinKonto">Sie haben noch kein Konto? Dann können Sie sich hier als neuer User</p>
+      <div id="buttonInside">
+        <button className="buttonBasics" id="toRegisterButton">
+          <Link to={"/register"}>registrieren</Link>
+        </button>
+      </div>
 
-      {isLoading && <p id="ladeInfo">Lade - bitte warten...</p>}
+      {isLoading && <p id="ladeInfo">Ihre Daten werden geladen - bitte warten...</p>}
     </main>
   );
 }

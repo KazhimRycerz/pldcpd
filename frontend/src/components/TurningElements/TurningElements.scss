@@ -1,7 +1,7 @@
 //@import '../../scss/global.scss';
 
 #drehmoment {
-  max-width: 1600px;
+  //max-width: 1600px;
   img {
   //display: none;
   position: fixed;
@@ -16,22 +16,24 @@
   #r1 {
     //left: 22vw;
     left: 25%;
-    //left: calc(50% - 25%);
+    left: calc(33vw - (15vw / 2));
     top: 50px;
     animation-duration: 20.5s;
+    //border: solid white;
   } 
   #r2 {
     //left: 66vw;
-    left: 60%;
-    //left: calc(50% + 10%);
+    left: calc(50% + 10%);
     top: 50px;
     animation-duration: 22.5s;
   }
   #r3 {
     //left: -2.5vw;
     left: calc(10% - 12.5%);
+    //left: calc(10vw + (15vw / 2) );
     top: 200px;
     animation-duration: 24s;
+    //border: solid white;
   }
   #r4 {
     left:43.5vw;
@@ -139,9 +141,8 @@
 
  @media (min-width: 1600px){
   #r1 {
-    //left: 22vw;
-    //left: calc((100% - 1280px /2) + 320px);
-    left: calc((100% - 1280px) / 2);
+    //left: calc((100% - 1280px) / 2);
+    left: 33vw;
     top: 50px;
     animation-duration: 20.5s;
   } 
@@ -153,7 +154,7 @@
   #r3 {
     //left: -2.5vw;
     left: -3.0vw;
-    //left: calc((100vw - 1280px) / 2)
+    left: calc((100vw - 1280px) / 2);
     top: 200px;
     //background-color: white;;
   }

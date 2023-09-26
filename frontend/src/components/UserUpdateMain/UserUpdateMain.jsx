@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import "./UserUpdateMain.scss";
 
 export default function UpdateUser() {
-  const { userData, setUserData, navigate } = useContext(SectionsContext);
+  const { userData, setUserData, navigate, gotoPage, setGotoPage } = useContext(SectionsContext);
   const [contactData, setContactData] = useState({});
   const userId = localStorage.getItem("userId");
 
@@ -68,6 +68,7 @@ export default function UpdateUser() {
     //console.log(contactData)
   };
   useEffect(() => {
+    setGotoPage("/userupdate")
     getUserData();
   }, []);
 

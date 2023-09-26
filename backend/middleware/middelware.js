@@ -6,5 +6,5 @@ export const unkownHandler = (req, res, next)=> {
 //Error
 export const errorHandler = (err, req, res, next)=> {
     console.error("Error")
-    res.status(500).send("Sorry, ein interner Fehler")
+    res.status(500).send("Sorry, ein interner Fehler. Sie tragen keine Schuld...")
 }

@@ -112,7 +112,7 @@ main {
   max-width: 150px;
   margin: 0px ;
   font-size: $xsmall;
-  padding: 0.5rem 0.5rem;
+  padding: 10px;
   background-color: $first-color;
   //background-color: $cpdred;
   color: $cpdblue;
@@ -158,6 +158,41 @@ background: blue;
   color: $cpdblue;
   background-color: $first-color;
   box-shadow: $btnshadow;
+}
+
+.swal2-deny, .swal2-cancel, .swal2-confirm{
+  width: 80%;
+  height: 40px;
+  max-width: 200px;
+  margin: 10px ;
+  font-size: $xsmall;
+  padding: 10px;
+  background-color: $first-color;
+  color: $cpdblue;
+  box-shadow: $btnshadow;
+  border-radius: $radiussmall;
+  text-decoration: none;
+  border: none; 
+  &:hover{
+    background-color: $cpdblue-10;
+  }
+}
+
+/* .containerBox{
+  background: aqua;
+} */
+.containerBox{
+  background: white;
+  border-radius: $small;
+  border: solid 3px $cpdblue;
+  box-shadow: $boxshadow;
+}
+
+.actionButtons{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  gap: 0px;
 }
     
 @media (max-width: $tablet){

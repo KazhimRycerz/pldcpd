@@ -50,16 +50,16 @@
   @keyframes moveButton {
     0%  {transform:  translateY(33px) rotate(-90deg); z-index:0; right:calc(10% - 36px);line-height: 15px;color: $first-color; background-color:$cpdblue}
     90%  {z-index: 0;background-color: $first-color; color: $cpdblue}
-    100% {transform: rotate(0deg);z-index: 10; right: 33px;line-height: 15px;background-color: $first-color; color: $cpdblue}
+    100% {transform: rotate(0deg);z-index: 10; right: 30px;line-height: 15px;background-color: $first-color; color: $cpdblue}
   }
   @keyframes moveButtonBack {
-    0%  {transform: rotate(0deg);z-index:10;right: 33px;line-height: 15px; background-color: $first-color; color:$cpdblue} 
+    0%  {transform: rotate(0deg);z-index:10;right: 30px;line-height: 15px; background-color: $first-color; color:$cpdblue} 
     50% {z-index: 0;}
     90% {color: $first-color; background-color:$cpdblue}
     100% {transform:  translateY(33px) rotate(-90deg); right:calc(10% - 36px);line-height: 15px}
     }
   @keyframes moveButtonBackToStart {
-    0%  {transform: rotate(0deg);z-index:10;right: 33px;line-height: 15px; background-color: $first-color; color: $cpdblue}
+    0%  {transform: rotate(0deg);z-index:10;right: 30px;line-height: 15px; background-color: $first-color; color: $cpdblue}
     50% {z-index: 0;}
     90% {color: $first-color; background-color:$cpdblue}
     100% {transform:  translateY(33px) rotate(-90deg);z-index:0;right:calc(10% - 10px);line-height: 15px} 
@@ -234,6 +234,7 @@
     }
   &.hideBut {
     left: calc(100% - ((100% - 1280px) / 2) - 60px);
+    transition: 0.5s ease-in-out;
    }
 }
   @keyframes moveButton {
@@ -252,7 +253,7 @@
     50% {z-index: 0;}
     100% {transform:  translateY(33px) rotate(-90deg);z-index:0;left: calc(100% - ((100% - 1280px) / 2) - 60px);line-height: 15px} 
   }
-
+  
   .accountAside {
     left: calc(100% - ((100% - 1280px) / 2) - 100px);
   }

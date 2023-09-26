@@ -9,6 +9,7 @@ export const createUser = async (req, res) => {
       userName: req.body.userName,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
+      gender: req.body.gender,
       eMail: req.body.eMail,
       contactData: req.body.collectedData,
       password: hashedSaltyPassword,
