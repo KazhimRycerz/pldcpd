@@ -56,18 +56,26 @@ const SectionsProvider = ({ children }) => {
        );
        const userData = axiosResp.data;
        const contactData = axiosResp.data.contactData;
-       const persKnowledgeData = axiosResp.data.contactData.professionalStatus;
-       setUserData(userData);
-       setContactData(contactData);
-       setKnowledgeData(persKnowledgeData);
-       console.log(userData)
-       console.log(contactData)
-       console.log(knowledgeData)
+       const contactKnowledgeData = axiosResp.data.contactData.professionalStatus;
+        setUserData(userData);
+        setContactData(contactData);
+        setKnowledgeData(contactKnowledgeData)
+       //console.log(userData)
+       //console.log(contactData)
+       //console.log(contactKnowledgeData)
     };
 
+    const getMarketKnowledgeData = async () => {
+      const axiosResp = await axiosConfig.get(
+         `http://localhost:4000/professionalStatus`
+         );
+         const marketData = axiosResp.data;
+         setMarketData(marketData)
+      };
+
     useEffect(() => {
-      getMarketKnowledgeData() 
-      getUserData();
+      isAuth && getMarketKnowledgeData();
+      isAuth && getUserData();
    }, []); */
 
   return (
@@ -87,6 +95,10 @@ const SectionsProvider = ({ children }) => {
         //setEventLogin,
         userData,
         setUserData,
+        contactData, 
+        setContactData,
+        knowledgeData, 
+        setKnowledgeData,
         marketData, 
         setMarketData,
         asidePos, 

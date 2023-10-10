@@ -22,7 +22,7 @@ const AuthorMain = () => {
   const searchAuthorsData = async (id) => {
   const userID = id
   const axiosResp = await axiosConfig
-  .get(`http://localhost:4000/contacts/${userID}`);
+  .get(`http://localhost:4000/authorsinfo/${userID}`);
   const authorsData = axiosResp.data;
   const authorsDetails = axiosResp.data.authorsData;
   const authorsExpertise = axiosResp.data.authorsData.fieldsOfExpertise;
@@ -69,12 +69,18 @@ useEffect(() => {
         <div>
           <p>Expertise</p> 
             <div className="output" id="fieldsOfExpertise">
-              {authorsExpertise.map((field, index) => (
-                  <li key={index} id="authorsExpertise">
-                    <span className="C">C</span> {field}
-                  </li>
-                ))
-              }
+              <ul>
+                {authorsExpertise && authorsExpertise.length > 0 ? 
+                  (authorsExpertise.map((field, index) => (
+                    <li key={index} id="authorsExpertise">
+                      <span className="C">C</span> {field}
+                    </li>
+                    ))
+                  ) : (
+                    <li>No fields of expertise defined.</li>
+                    )
+                }
+              </ul>
               </div>
         </div>
 

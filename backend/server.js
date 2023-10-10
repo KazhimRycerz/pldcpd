@@ -5,6 +5,7 @@ import indexRouter from './routes/indexRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import contactsRouter from './routes/contactsRoutes.js';
 import authorsRouter from './routes/authorsRoutes.js';
+import authorsInfoRouter from './routes/authorsInfoRoutes.js';
 import careerRouter from './routes/careerRoutes.js';
 import coursesRouter from './routes/coursesRoutes.js';
 import emailRouter from './routes/emailRoutes.js';
@@ -37,6 +38,7 @@ server.use("/home", indexRouter)
 server.use("/user", userRouter);
 server.use("/contacts",  contactsRouter)
 server.use("/authors",  authorsRouter)
+server.use("/authorsinfo",  authorsInfoRouter)
 server.use("/careers",  careerRouter)
 server.use("/professionalStatus", professionalStatusRouter)
 server.use("/companies",  companiesRouter)

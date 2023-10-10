@@ -1,0 +1,35 @@
+@import "../../scss/global.scss";
+
+#uploadImageMain {
+    width: 80%;
+    margin: 0 auto;
+    border: solid;
+    padding: 30px;
+    /* display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around; */
+    #test2 {
+        vertical-align: middle;
+        width: 30%;
+        height: 40px;
+        max-width: 150px;
+        margin: 0px ;
+        font-size: $xsmall;
+        padding: 10px;
+        background-color: $first-color;
+        color: $cpdblue;
+        box-shadow: $btnshadow;
+        border-radius: $radiussmall;
+        text-decoration: none;
+        border: none;        
+    }
+    #file-upload-button{
+        margin: 10px;
+        border: none;
+        background-color: transparent;
+        p{
+            border: none;
+        }
+    }
+
+}

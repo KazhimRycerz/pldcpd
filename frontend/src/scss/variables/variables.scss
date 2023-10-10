@@ -31,6 +31,7 @@ $btnshadowsmall: 0px 0px 5px 2px $third-color inset, 0px 0px 3px 1px grey,  -2px
 $rshadow: 3px 3px black, -3px -3px black, 3px -3px black, -3px 3px black;
 $hovershadow:3px;
 $text-shadow: 1px 1px 20px $cpdred;
+$mainshadow: $cpdblue 0px 0px 100px 50px inset, 0px 0px 15px 5px white;
 
 //backgroundcolours
 $grad: linear-gradient($third-color-o, $cpdred-o) fixed;

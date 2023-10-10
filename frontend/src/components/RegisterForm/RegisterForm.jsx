@@ -4,6 +4,7 @@ import axiosConfig from "../../util/axiosConfig.js";
 import { SectionsContext } from "../../context/SectionsContext.js";
 import "./RegisterForm.scss";
 import GenderRadioBtn from "../Gender/GenderRadioBtn.jsx";
+import ImageUpload from '../../components/ImageUpload/ImageUpload.jsx'
 import {
   TextInput,
   MailInput,
@@ -16,7 +17,7 @@ import {
   ResetBtn,
 } from "../NextBtnRegister/NextBtnRegister.jsx"; 
 import Swal from "sweetalert2";
-import swal from "sweetalert";
+//import swal from "sweetalert";
 
 export default function RegisterForm() {
   const [isError, setIsError] = useState(false);
@@ -33,6 +34,7 @@ export default function RegisterForm() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [genderRadio, setGenderRadio] = useState("none");
+  const [userImage, setUserImage] = useState("");
   const [eMail, setEmail] = useState("");
   const [password, setPassword] = useState("");
   //const [location, setLocation] = useState("");
@@ -44,10 +46,10 @@ export default function RegisterForm() {
     setFirstName: setFirstName,
     lastName: lastName,
     setLastName: setLastName,
-    /* location: location,
-    setLocation: setLocation, */
     genderRadio: genderRadio,
     setGenderRadio: setGenderRadio,
+    userImage: userImage,
+    setUserImage: setUserImage,
     password: password,
     setPassword: setPassword,
     eMail: eMail,
@@ -67,6 +69,7 @@ export default function RegisterForm() {
       firstName: firstName,
       lastName: lastName,
       gender: genderRadio,
+      userImage: userImage,
       eMail: eMail,
       password: password,
       /* location: location, */
@@ -107,22 +110,22 @@ export default function RegisterForm() {
     }
     setIsError(false);
     setHasRegistered(true);
-    logIn(data);
+    //logIn(data);
   };
 
   const logIn = async (data) => {
     try {
       const axiosResp = await axiosConfig.post("/user/login", data);
       console.log("successful logged in");
-      handleSuccessfulLogin(axiosResp.data, data.location);
+      handleSuccessfulLogin(axiosResp.data/* , data.location */);
     } catch (error) {
       console.log("Fehler beim login", error);
     }
   };
 
   const handleSuccessfulLogin = (respData, location) => {
-    const locationLowercase = location.toLowerCase(); 
-    localStorage.setItem("defSearch", locationLowercase);
+    /* const locationLowercase = location.toLowerCase(); 
+    localStorage.setItem("defSearch", locationLowercase); */
     setIsAuth(true);
     localStorage.setItem("userName", respData.userName);
     localStorage.setItem("userId", respData.userId);
@@ -130,14 +133,15 @@ export default function RegisterForm() {
 
   const confirmRegistration = () => {
     Swal.fire({
-      title: `Sie haben sich erfolgreich als ${userName} registriert. Möchten Sie sich nun anmelden?`,
+      title: `Sie haben sich erfolgreich als ${userName} registriert. Möchten Sie sich nun anmelden, um weitere Daten einzugeben?`,
       icon: 'success',
       showCancelButton: true,
-      confirmButtonText: 'Ja, bitte einloggen!',
-      cancelButtonText: 'Nein, zurück zur Hauptseite'
+      confirmButtonText: 'Ja, bitte nun einloggen!',
+      cancelButtonText: 'Nein, zur Main'
     }).then((result) => {
       if (result.isConfirmed) {
         navigate('/login');
+        //logIn(data)
       } else if (result.isDismissed) {
         navigate('/home');
       } else {
@@ -191,6 +195,8 @@ export default function RegisterForm() {
                 <GenderRadioBtn gender="diverse" props={props} />
                 <GenderRadioBtn gender="none" props={props} />
               </div>
+              <p>Bild hochladen</p>
+              <ImageUpload labelValue="userImage" stateFunc={setUserImage}/>
             <div id="buttonBoxStepTwo">
               <ResetBtn props={props} />
               <NextBtnToThree props={props} />
@@ -221,12 +227,9 @@ export default function RegisterForm() {
           </p>
         )}
         {hasRegistered && (
-        <>
-          <>{confirmRegistration()}</>
-            {/* <p>
-              <strong>Sie haben sich erfolgreich registriert.</strong>
-            </p> */}
-        </>
+          <>
+          {confirmRegistration()}
+          </>
         )}
 
         {/* {isAuth && eventLogin && <Navigate to="/event-form" replace={true} />}

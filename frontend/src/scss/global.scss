@@ -27,7 +27,8 @@ main {
   //display: none;
   width: 80%;
   max-width: 1280px;
-  margin: 0 auto;
+  margin: 0 auto 50px;
+  //margin-bottom: 50px;
   z-index: 5;
   position: relative;
   border: solid white 2px;
@@ -114,16 +115,13 @@ main {
   font-size: $xsmall;
   padding: 10px;
   background-color: $first-color;
-  //background-color: $cpdred;
   color: $cpdblue;
-  //color: $first-color;
   box-shadow: $btnshadow;
   border-radius: $radiussmall;
   text-decoration: none;
   border: none;
 }
 .buttonBasics:hover {
-  //background-color: $cpdred;
   background-color: $cpdblue-10;
   //color: $first-color;
 }

@@ -5,9 +5,8 @@
   min-height: 60vh;
   margin-top: 100px;
   background-color: $first-color;
-  //background-color: $cpdblue;
+  //background-color: $secondary-color;
   //border-color: $cpdred;
-  //opacity: 0.9;
   //max-width: 1200px;
   
    >div {
@@ -28,29 +27,6 @@
       //border: solid;
     }
     
-    .buttonBasics {
-      vertical-align: middle;
-      width: 60%;
-      height: 40px;
-      max-width: 150px;
-      margin: 0px ;
-      font-size: $xsmall;
-      padding: 0.5rem 0.5rem;
-      background-color: $first-color;
-      //background-color: $cpdred;
-      //background-color: $cpdblue;
-      color: $cpdblue;
-      //color: $first-color;
-      box-shadow: $btnshadowsmall;
-      border-radius: $radiussmall;
-      text-decoration: none;
-      border: none;
-    }
-    .buttonBasics:hover {
-      background-color: $cpdblue;
-      //background-color: $cpdred;
-      color: $first-color;
-    }
     #returnOnCoursePage {
       display: inline; 
       height: 60px;
@@ -116,8 +92,8 @@
       }
       >p{
         line-height: 0px; 
-        margin: 0px 0 0px 0;
-        padding: 10px 20px;
+        margin: 0;
+        padding: 15px 20px 10px 20px;
         color: $first-color;
         font-size: $normal;
         font-family:$primary-font;
@@ -133,7 +109,8 @@
         font-size: $normal;
         padding: 10px 20px;
         width: 100%;
-        background-color: $first-color;  
+        background-color: $first-color; 
+        background-color: $fourth-color;  
         color: $cpdblue;
         text-align:left; 
         border-radius: 0 0 10px 10px; 
@@ -181,7 +158,6 @@
       #courseContent{ 
         font-size: $normal; 
         line-height: 2rem;  
-        
         #contentImages{
           width: 100%;
           display: flex;
@@ -189,6 +165,9 @@
           justify-content: flex-start;
           gap: 10px;
           margin-top: 0px;  
+          img{
+            flex-basis: auto;
+          }
         }
       }
       /* .punkte {
@@ -201,4 +180,10 @@
     }
   } 
   
+
+  @media (max-width: $tablet){
+    .boxGroup {
+      flex-flow: column nowrap;
+    }
+  }
 }

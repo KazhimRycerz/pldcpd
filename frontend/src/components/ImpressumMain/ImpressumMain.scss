@@ -3,10 +3,11 @@
 #impressumMain {
   width: 60%;
   height: 500px;
-  margin: 25vh auto;
-  //  box-shadow: 10px 10px 10px red, -10px -10px 10px red;
-  background-color: $cpdblue;
-  border-color: $cpdred;
+  min-height: 50vh;
+  margin: 25vh auto 15vh;
+  background-color: $first-color;
+  //border-color: $cpdred;
+  box-shadow: $mainshadow;
 }
 
 #impressum {
@@ -17,7 +18,7 @@
   top: 20%; 
   //box-shadow: $boxshadow;
   border-radius: 10px;
-  color: $first-color;
+  color: $cpdblue;
   width: 80%;
   height: auto;
   min-height: 60%;

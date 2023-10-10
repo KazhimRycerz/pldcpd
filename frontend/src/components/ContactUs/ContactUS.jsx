@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { SectionsContext } from "../../context/SectionsContext.js";
 import "./ContactUs.scss";
 //import { Axios } from "axios";
 import axiosConfig from "../../util/axiosConfig";
@@ -6,6 +7,9 @@ import Swal from "sweetalert2"
 
 
 export default function EMailUs() {
+
+  const { userData, setUserData, contactData, isAuth, gotoPage, setGotoPage } = useContext(SectionsContext);
+  const userId = localStorage.getItem("userId");
   
   //const [to, setTo] = useState("jritter@via-internet.com");
   const [emailSubject, setEmailSubject] = useState("");
@@ -14,6 +18,18 @@ export default function EMailUs() {
   const [lastNameSender, setLastNameSender] = useState("");
   const [emailSender, setEmailSender] = useState("");
   const [status, setStatus] = useState('');
+  
+  const takeUserData = async ()=>{
+    const axiosResp = await axiosConfig.get(
+      `http://localhost:4000/user/${userId}`
+      );
+      const userData = axiosResp.data;
+    console.log(userData)
+    setFirstNameSender(userData.firstName)
+    setLastNameSender(userData.lastName)
+    setEmailSender(userData.eMail)
+  };
+  
   
   const resizeHandler = (e)=> {
     // Reset field height
@@ -30,11 +46,12 @@ export default function EMailUs() {
   }
   
   const resetHandler = () => {
+    isAuth && takeUserData();
     setEmailSubject("")
     setEmailBody("")
-    setFirstNameSender("")
-    setLastNameSender("")
-    setEmailSender("")
+    !isAuth && setFirstNameSender("")
+    !isAuth && setLastNameSender("")
+    !isAuth && setEmailSender("")
     setStatus("");
     const elem = document.getElementById("contactBody");
     elem.style.height = "inherit";
@@ -85,16 +102,33 @@ export default function EMailUs() {
       //console.log(axiosResp)
       setStatus(response);
       resetHandler();
+      Swal.fire({
+        title: 'Bestätigung',
+        text: 'Ihre E-Mail wurde erfolgreich ausgeliefert',
+        icon: 'info',
+        timer: 3000,
+        //showCancelButton: true,
+      });
     } catch (error) {
       console.error(status, error);
+      Swal.fire({
+        title: 'Hinweis',
+        text: 'Ihre E-Mail konnte nicht ausgeliefert werden',
+        icon: 'alert',
+        //showCancelButton: true,
+      });
       setStatus('E-Mail konnte nicht versendet werden.');
     }
   };
     
-
+  useEffect(() => {
+    isAuth ? takeUserData() : resetHandler()
+    setGotoPage("/emailus")
+ }, []);
     
   return (
-    <main id="contactUsMain">
+    <main id="contactUsMain" >
+
       <h2>contact form for any questions, comments or suggestions...</h2>
         <form id="eMailForm" onSubmit={handleSubmit}>
           {/* <input
@@ -160,17 +194,18 @@ export default function EMailUs() {
           <div>
             <button 
               className="buttonBasics" 
-              type="submit" 
-              value="Send">send!
-            </button>
-            <button 
-              className="buttonBasics" 
               onClick={resetHandler}
               type="reset" 
               value="Reset">reset!
             </button>
+            <button 
+              className="buttonBasics" 
+              type="submit" 
+              value="Send">send!
+            </button>
           </div>
-          {status && <p id="emailStatus">{status}</p>}
+          {/* {status && <p id="emailStatus">{status}</p>} */}      
+          
         </form>
       
     </main>

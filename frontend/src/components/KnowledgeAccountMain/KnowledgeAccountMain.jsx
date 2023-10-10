@@ -1,5 +1,5 @@
 import './KnowledgeAccountMain.scss'
-import JoachimRitter from '../../images/Joachim_privat.jpg'
+import JoachimRitter from '../../../src/images/Joachim_privat.jpg'
 //import { useNavigate, useParams } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import { SectionsContext } from "../../context/SectionsContext.js";
@@ -9,10 +9,12 @@ import Moment from "moment"
 
 
 const  KnowledgeAccountMain = ()=>{
-   const { userData, setUserData, marketData, setMarketData, isAuth, buttonPos, setButtonPos, asidePos, setAsidePos, gotoPage, setGotoPage } = useContext(SectionsContext);
+   const { userData, setUserData, contactData, setContactData, marketData, setMarketData,  knowledgeData, setKnowledgeData, isAuth, buttonPos, setButtonPos, asidePos, setAsidePos, gotoPage, setGotoPage } = useContext(SectionsContext);
   /*  const [userData, setUserData] = useState({}) */
-   const [knowledgeData, setKnowledgeData] = useState({})
-   const [contactData, setContactData] = useState({})
+   //const [knowledgeData, setKnowledgeData] = useState({})
+   //const [contactData, setContactData] = useState({})
+   const [userImg, setUserImg] = useState("")
+   const [authorsData, setAuthorsData] = useState({})
    const userId = localStorage.getItem("userId");
 
    
@@ -27,12 +29,15 @@ const  KnowledgeAccountMain = ()=>{
          );
          const userData = axiosResp.data;
          const contactData = axiosResp.data.contactData;
-         const persKnowlData = axiosResp.data.contactData.professionalStatus;
+         const contactKnowledgeData = axiosResp.data.contactData.professionalStatus;
+         const authorsData = axiosResp.data.contactData.authorsData;
          setUserData(userData);
          setContactData(contactData);
-         setKnowledgeData(persKnowlData)
+         setKnowledgeData(contactKnowledgeData);
+         setUserImg(userData.userImage);
+         setAuthorsData(authorsData)
       };
-      //console.log(knowledgeData)
+      //console.log(authorsData)
       
       
    const getMarketKnowledgeData = async () => {
@@ -40,7 +45,6 @@ const  KnowledgeAccountMain = ()=>{
          `http://localhost:4000/professionalStatus`
          );
          const marketData = axiosResp.data;
-         //setMarketKnowledgeData(marketData);
          setMarketData(marketData)
       };
       
@@ -59,7 +63,10 @@ const  KnowledgeAccountMain = ()=>{
          </section>
 
          <section id="account_1">
-            <h3> Ihre Karrierestatus, {contactData.firstName} {contactData.lastName}</h3>
+            <div>
+               <h3> Ihre Karrierestatus, {contactData.firstName} {contactData.lastName}</h3>
+               <img src={userImg} id="imgKnowledgeAccount" alt="Joachim Ritter privat" />
+            </div>
             <div id="account_1_data">
                <div>
                   <div>
@@ -192,19 +199,52 @@ const  KnowledgeAccountMain = ()=>{
 
          <section id="account_3">
 
-            <h3> Ihre persönlichen Daten</h3>
+         <div>
+               <h3> Ihre persönlichen Daten</h3>
+               <p /* onClick={} */>
+                  <span className="C">C </span> 
+                  Daten jetzt aktualisieren
+               </p> 
+            </div>
             <div id="account_3_data">
-
                <div className="account_3">
-                  <p>Joachim Ritter<br />
-                     Geburtsdatum <br /><br />
-                     Anrede
-                  </p>
+                  <div>
+                     <p>Name</p> 
+                     <div className="output">{contactData.firstName} {contactData.lastName}</div>
+                  </div>
+                  <div>
+                     <p>Geburtsdatum</p>
+                     <div >{Moment(contactData.dateOfBirth).format("DD.MM.YYYY")}</div>
+                  </div>
                </div>
 
                <div className="account_3">
-                  <p>Ihre E-Mail <br />Ihre Mobilnummer
-                     <br />Firma</p>
+                  <div>
+                     <p>E-Mail</p> 
+                     <div className="output">{userData.eMail}</div>
+                  </div>
+                  <div>
+                     <p>Mobil</p> 
+                     <div className="output">{userData.eMail}</div>
+                  </div>
+                  <div>
+                     <p>Firma</p> 
+                     <div className="output">{userData.eMail}</div>
+                  </div>
+               </div>
+               <div className="account_3">
+                  <div>
+                     <p>E-Mail</p> 
+                     <div className="output">{userData.eMail}</div>
+                  </div>
+                  <div>
+                     <p>Mobil</p> 
+                     <div className="output">{userData.eMail}</div>
+                  </div>
+                  <div>
+                     <p>Firma</p> 
+                     <div className="output">{userData.eMail}</div>
+                  </div>
                </div>
 
                <div className="account_3">
@@ -217,49 +257,82 @@ const  KnowledgeAccountMain = ()=>{
          </section>
 
          <section id="account_4">
-
-            <h3> Ihre Abrechnungsdaten</h3>
-            <div id="account_4_data">
-
-            <div className="account_4">
-               <p>Joachim Ritter<br />
-                  Marienfelder Str. 18 <br />33330 Gütersloh<br />Deutschland
-               </p>
-            </div>
-
-            <div className="account_4">
-               <p>Ihr <br />derzeit angestellt bei<br />angstellt
-               </p>
-            </div>
-
-            <div className="account_4">
-               <p>Ihr <span className="LitCoin">L</span>it<span className="LitCoin">C</span>oin <br />Guthaben</p>
-               <div id="account_4_Box"> 250 <span className="LC"> LC</span> </div>
-               
-            </div>
-            </div>
-         </section>
-
-         <section id="account_5">
-            <h3> Ihre Abrechnungsdaten</h3>
             <div>
-               <div className="account_5">
+               <h3> Ihre Abrechnungsdaten</h3>
+               <p /* onClick={} */>
+                  <span className="C">C </span> 
+                  Daten jetzt aktualisieren
+               </p> 
+            </div>
+            <div id="account_4_data">
+               <div className="account_4">
                   <p>Joachim Ritter<br />
                      Marienfelder Str. 18 <br />33330 Gütersloh<br />Deutschland
                   </p>
                </div>
-               <div className="account_5">
+               <div className="account_4">
                   <p>Ihr <br />derzeit angestellt bei<br />angstellt
                   </p>
                </div>
-               <div className="account_5">
+               <div className="account_4">
                   <p>Ihr <span className="LitCoin">L</span>it<span className="LitCoin">C</span>oin <br />Guthaben</p>
-                  <div id="account_5_Box"> <p>250 <span className="LC"> LC</span></p>
-                  </div>
+                  <div id="account_4_Box"> 250 <span className="LC"> LC</span> </div>  
                </div>
             </div>
          </section>
-            
+       
+         {authorsData ?
+            (<section id="account_5">
+               <div>
+                  <h3> Autoreninfo</h3>
+                  <p /* onClick={} */>
+                  <span className="C">C </span> 
+                  Daten jetzt aktualisieren
+                  </p> 
+               </div>
+               <div id="account_5_data">
+                  <div className="account_5" id="account_5_data_1">
+                     <div>
+                        <p>CV</p> 
+                        <div className="output">{authorsData.careerSummary}</div>
+                     </div>
+                  </div>
+                  <div className="account_5" id="account_5_data_2">
+                     <div>
+                        <p>Expertisen</p> 
+                        <div className="output">
+                        <ul>
+                           {authorsData.fieldsOfExpertise && authorsData.fieldsOfExpertise.length > 0 ? (
+                           authorsData.fieldsOfExpertise.map((field, index) => (
+                              <li key={index}>
+                                 <span className="C">C</span> {field}
+                              </li>
+                           ))
+                           ) : (
+                           <li>No expertise available.</li>
+                           )}
+                        </ul>
+                        </div>
+                     </div>
+                  </div>
+                  <div className="account_5" id="account_5_data_3">
+                     <div>
+                        <p>letztes Update </p> 
+                        <div className="output">{Moment(authorsData.updatedOn).format("DD.MM.YYYY")}
+                        </div>
+                     </div> 
+                  </div>
+                  
+               </div>
+                
+            </section>) :
+            (<section id="account_5">
+               <h3> Aktuell keine Autorendaten vorhanden. </h3>
+               <p><span className="C">C</span> Daten eingeben</p>
+               <button className="buttonBasics">Daten eingeben</button>
+            </section>)
+         }
+
       </main>
 )
 }

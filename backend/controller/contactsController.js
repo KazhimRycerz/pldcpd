@@ -5,7 +5,7 @@ export const getAllContacts = async (req, res) => {
     const contact = await ContactModel.find()
       .populate("professionalStatus")
       .populate("careerPath")
-      .populate("author");
+      .populate("authorsData");
         res.status(200).json(contact)
     } catch (error) {
         console.log(error)
@@ -63,6 +63,34 @@ export const updateContact = async (req, res) => {
         const contact = await ContactModel.findOneAndUpdate(contactId, req.body);
   
       res.json(contact)
+    } catch (error) {
+      res.send(error.message)
+    }
+  
+  }
+
+  export const getAuthorsInfo = async (req, res) => {
+
+    const contactId = req.params.id;
+    try {
+      const contact = await ContactModel
+        .findById(contactId);
+  
+      const contactPopulated = await ContactModel
+        .findById(contactId)
+        .populate("authorsData");
+
+      console.log("contact.userName", contact.userName); 
+    // hier kann ich auf das virtuelle Feld "firstName" zugreifen
+    // obwohl dieses nicht in der Datenbank exisitert 
+    // (deswegen bezeichnet man es als virtuell)
+      
+      console.log("contact", contact); 
+      // hier wird das virtuelle Feld nicht angezeigt,
+      // da ich es nicht explizit mit dem . Operator auswähle
+  
+      res.json(contactPopulated);   
+     
     } catch (error) {
       res.send(error.message)
     }

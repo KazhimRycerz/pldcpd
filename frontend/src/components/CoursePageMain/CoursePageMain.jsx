@@ -43,7 +43,7 @@ useEffect(() => {
     <main id="courseMain"> {/* Styling in global */}
       <div id="headBox">
         <h2 id="courseHead">Kursinhalt und Beschreibung</h2>
-        <button onClick={zurückZurListe} className="buttonBasics" id="returnToCoursePage">zurück zur Übersicht</button>
+        <button onClick={zurückZurListe} className="buttonBasics" /* id="returnToCoursePage" */>zurück zur Übersicht</button>
       </div>
       
       <article id="courseArticle">

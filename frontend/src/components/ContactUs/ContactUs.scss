@@ -4,8 +4,9 @@
     width: 80%;
     max-width: 1280px;
     min-height: 600px;
-    margin: 25vh auto;
-    box-shadow: $cpdblue 0px 0px 100px 50px inset, 0px 0px 15px 5px white;
+    min-height: 75vh;
+    margin: 100px auto 50px;
+    box-shadow: $mainshadow;
     //border: solid 2px white;
         h2 {
             display: block;

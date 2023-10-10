@@ -43,8 +43,8 @@
     }
     .buttonBasics:hover {
       //background-color: $cpdred;
-      background-color: $cpdblue;
-      color: $first-color;
+      background-color: $cpdblue-10;
+      //color: $first-color;
     }
     /* .buttonBasics:focus {
       background-color: $cpdred;
@@ -75,8 +75,8 @@
       //box-shadow: $boxshadow;
       >p{
         line-height: 0px; 
-        margin: 0px 0 0px 0;
-        padding: 10px 20px;
+        margin: 0 0 0 0;
+        padding: 15px 20px 10px 20px;
         color: $first-color;
         font-size: $normal;
         font-family:$primary-font;
@@ -94,7 +94,8 @@
         color: $cpdblue;
         text-align:left; 
         border-radius: 0 0 10px 10px; 
-        background-color: $first-color;  
+        background-color: $first-color; 
+        background-color: $fourth-color;
         border-color: $cpdred;
         border: solid; 
         //box-shadow: $boxshadow;
@@ -107,7 +108,7 @@
         max-width: 220px;
       }
     }
-    #fieldsOfExpertise{
+    #fieldsOfExpertise ul{
       display: flex;
       flex-flow: column nowrap;
       justify-content:flex-start;

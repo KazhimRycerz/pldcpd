@@ -2,20 +2,21 @@ import mongoose from 'mongoose';
 import ProfessionalStatusModel from './professionalStatusModel.js';
 import CareerModel from './careerModel.js';
 import AuthorModel from './authorModel.js';
+import CompanyModel from './companyModel.js';
 
 
 const contactSchema = mongoose.Schema({
    firstName: {
       type: String,
-      default: "",
+      default: ""
    },
    lastName: {
       type: String,
-      default: "",
+      default: ""
    },
    professionalTitle:{
       type: String,
-      default:"",
+      default:""
    },
    salutation: {
       type: String,
@@ -29,11 +30,11 @@ const contactSchema = mongoose.Schema({
     },
    appendix: {
       type: String,
-      default:"",
+      default:""
    },
     origin: {
       type: String,
-      default: "",
+      default: ""
     },
    /* address: {
       type: addressSchema,
@@ -43,28 +44,27 @@ const contactSchema = mongoose.Schema({
    currentCompany: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: 'company',
-      default: ""
+      default: null
     }],
    professionalStatus: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'professionalStatus',
-      default: ""   
+      default: null   
    },
    careerPath: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: 'career',
-      default: []
+      default: null
     }],
     authorsData: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'author',
-      default: ""
+      default: null
     },
    dateOfBirth: {
       type: Date,
       default: ""
    },
-
    createdOn:{
       type: Date,
       immutable: true,
@@ -78,7 +78,7 @@ contactSchema.set('strictQuery', true);
 contactSchema.pre('save', function(next) {
    // Diese Callback-Function wird jedes mal VOR dem Aufruf von .save() 
    // ausgeführt
-   console.log('mongoose save() aufgerufen');
+   //console.log('mongoose save() aufgerufen');
    this.updatedAt = new Date();
    next(); // jetzt wird save aufgerufen
 })

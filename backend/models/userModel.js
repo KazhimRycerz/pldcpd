@@ -54,7 +54,7 @@ const userSchema = mongoose.Schema({
   contactData: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'contact',
-    default: ""
+    default: null
     },
   createdAt: {
     type: Date,

@@ -1,21 +1,19 @@
 @import "../../scss/global.scss";
 
 
-.weiterButton, .resetButton {
+.weiterButton, .resetButton, .submitButtonRegister {
     margin-top: 0px;
-    padding-top: 20px;
-    //line-height: 25px;
+    //padding-top: 20px;
+    line-height: 20px;
     text-align: center;
-    //font-size: $xsmall;
-    //border: solid;
 }
 
 #submitBtnRegister {
     //margin-top: 1.5rem;
-    background-color: $first-color;
-    padding: 0.5rem 1.5rem;
-    text-align: center;
-    //font-size: $small;
+    //background-color: $first-color;
+    //padding: 0.5rem 1.5rem;
+    //text-align: center;
+    font-size: $xsmall;
 } 
 /* .weiterButton {
     font-size: $small;
@@ -37,34 +35,8 @@
     font-weight: bolder;
   } */
   
-  /* .button-dark-green {
-    font-size: 2rem;
-    padding: 0.75rem 1.5rem;
-    background-color: var(--dark-green-color);
-    color: var(--beige-color);
-    border: 2px solid var(--beige-color);
-    box-shadow: none;
-    border-radius: 1rem;
-    text-decoration: none;
-    cursor: pointer;
-    transition: font-weight 500ms ease-in, font-size 1s ease-in,
-      padding 1s ease-in, color 500ms ease-in, background-color 500ms ease-in;
-  }
   
-  .button-dark-green:hover {
-    background-color: var(--middle-green-color);
-    color: var(--dark-green-color);
-  } */
   
-  /* .button-beige {
-    font-size: $normal;
-    padding: 0.75rem 1.5rem;
-    background-color: $first-color;
-    color: $cpdblue;
-    border: 1px solid $cpdblue;
-    box-shadow: none;
-    border-radius: 1rem;
-    text-decoration: none;
-    cursor: pointer;
-    transition: font-weight 500ms ease-in, font-size 1s ease-in, padding 1s ease-in, color 500ms ease-in, background-color 500ms ease-in;
-  } */
+  
+  
+ 

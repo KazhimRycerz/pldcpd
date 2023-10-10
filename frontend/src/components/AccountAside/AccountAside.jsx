@@ -1,15 +1,15 @@
 import './AccountAside.scss'
 import { Link } from 'react-router-dom'
 import React, { useContext, useState, useEffect, useCallback } from 'react'
-import JoachimRitter from '../../images/Joachim_privat.jpg'
+import JoachimRitter from '../../../src/images/Joachim_privat.jpg'
 import { SectionsContext } from '../../context/SectionsContext.js'
 import axiosConfig from "../../util/axiosConfig";
 
 const AccountAside = () => {
-  const { isAuth, setUserData, marketData, setMarketData, asidePos, setAsidePos, buttonPos, setButtonPos, navigate } = useContext(SectionsContext);
-  /* const [userData, setUserData] = useState({}) */
+  const { isAuth, userData, setUserData, contactData, setContactData, marketData, setMarketData, knowledgeData, setKnowledgeData, asidePos, setAsidePos, buttonPos, setButtonPos, navigate } = useContext(SectionsContext);
+  /* const [userData, setUserData] = useState({}) 
   const [knowledgeData, setKnowledgeData] = useState({})
-  const [contactData, setContactData] = useState({})
+  const [contactData, setContactData] = useState({})*/
   const [buttonText, setButtonText] = useState("hide  account");
   const userId = localStorage.getItem("userId");
 
@@ -54,13 +54,10 @@ const getUserData = useCallback(async () => {
   );
   const data = axiosResp.data;
   const contactData = data.contactData;
-  const persKnowlData = contactData.professionalStatus;
-  /* const testdata = contactData.professionalStatus;
-  console.log(testdata) */
-  //console.log(data.contactData.professionalStatus);
+  const contactKnowledgeData = contactData.professionalStatus;
   setUserData(data);
   setContactData(contactData);
-  setKnowledgeData(persKnowlData)
+  setKnowledgeData(contactKnowledgeData)
  }, [setUserData, setContactData, setKnowledgeData, userId]);
   
  
@@ -74,6 +71,7 @@ const getMarketKnowledgeData = useCallback(async () => {
     //console.log(marketData)
     //console.log(userData)
     //console.log(knowledgeData)
+    console.log(userData.userImage)
   
   useEffect(() => {
       isAuth && getMarketKnowledgeData();
@@ -91,9 +89,9 @@ return (
       </button>
                
       <aside id="homeAsideAccount" className = {asidePos} >
-        <img src={JoachimRitter} alt="Joachim Ritter privat" />
+        <img src= {userData.userImage} alt="Joachim Ritter privat" />
         <p><strong>Hallo, {contactData.firstName} </strong><br />
-        Journalist <br />Karrierelevel <br />--- <span> {knowledgeData.myCStatus} </span> ---<br />{knowledgeData.careerPathStatus}</p> <br />
+        {knowledgeData.profession} <br />Karrierelevel <br />--- <span> {knowledgeData.myCStatus} </span> ---<br />{knowledgeData.careerPathStatus}</p> <br />
               
         <div id="home_data">
           <p> Ihr persönlicher Wissensstatus</p>

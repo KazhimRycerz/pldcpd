@@ -1,7 +1,7 @@
 import "./Header.scss";
 //import JoachimRitter from '../../images/Joachim_privat.jpg'
 import { NavLink, Link} from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import pldcpd from "../../images/pldcpd.png";
 //import CLogo from "../../images/C.png"
 import { SectionsContext } from "../../context/SectionsContext.js";
@@ -45,9 +45,10 @@ const Header = () => {
     }
     }
 
+    
+
     /* useEffect(() => {
-    console.log("buttonPosition:", buttonPos)
-    console.log("asidePos:", asidePos)
+      
     }, []) */
 
   return (
@@ -379,39 +380,30 @@ const Header = () => {
           </ul>
           <ul>
             <p>
-              learning <br />
-              by latest offers
+              regular <br />
+              items
             </p>
             <li>
-              <NavLink to="/home" className="closebtn">
-                <span className="C">C</span> home
+              <NavLink to="/emailus" className="closebtn" style={{color: "red"}}>
+                <span className="C">C</span> e-mail us 
               </NavLink>
             </li>
             <li>
-              <NavLink to="/home" className="closebtn">
-                <span className="C">C</span> learning
+              <NavLink to="/emailus" className="closebtn">
+                <span className="C">C</span> contact us 
               </NavLink>
             </li>
             <li>
-              <NavLink to="/home" className="closebtn">
-                <span className="C">C</span> services
+              <NavLink to="/404" className="closebtn">
+                <span className="C">C</span> dataprotection 
               </NavLink>
             </li>
             <li>
-              <NavLink to="/home" className="closebtn">
-                <span className="C">C</span> clients
+              <NavLink to="/impressum" className="closebtn">
+                <span className="C">C</span> impressum 
               </NavLink>
             </li>
-            <li>
-            {isAuth && <NavLink to="/KnowledgeAccount" className="closebtn">
-                <span className="C">C</span> your CPD account
-              </NavLink>}
-            </li>
-            <li>
-              <NavLink to="/home" className="closebtn">
-                <span className="C">C</span> contact
-              </NavLink>
-            </li>
+            
           </ul>
         </div>
         <div id="navPromo">

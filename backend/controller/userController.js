@@ -1,4 +1,5 @@
-import UserModel from "../models/UserModel.js";
+import UserModel from "../models/userModel.js";
+import { addContactData, addProfessionalStatus } from "../middleware/addUserData.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
@@ -10,11 +11,14 @@ export const createUser = async (req, res) => {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       gender: req.body.gender,
+      userImage: req.body.userImage,
       eMail: req.body.eMail,
-      contactData: req.body.collectedData,
+      //contactData: req.body.collectedData,
       password: hashedSaltyPassword,
     });
-
+    //console.log(newUserData._id);
+    addContactData(newUserData);
+    addProfessionalStatus(newUserData.ContactData);
     res.status(201).send(newUserData);
   } catch (error) {
     res.status(401).send(error.message);
@@ -77,7 +81,8 @@ export const getUserByID = async (req, res) => {
         path:"contactData",
           populate: [
             "careerPath",
-            "professionalStatus"
+            "professionalStatus",
+            "authorsData"
           ]
         });
 
@@ -95,7 +100,8 @@ export const getUserData = async (req, res) => {
         path:"contactData",
           populate: [
             "careerPath",
-            "professionalStatus"
+            "professionalStatus",
+            "authorsData"
           ]
         });
 

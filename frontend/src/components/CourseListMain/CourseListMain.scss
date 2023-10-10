@@ -2,9 +2,12 @@
 
 
 #courseListMain {
-  min-height: 60vh;
+  min-height: 75vh;
   margin-top: 100px;
+  margin-bottom: 100px;
+  margin: 100px auto 50px;
   background-color: $first-color;
+  box-shadow: $mainshadow;
   
   #courseListHead{
     width: 90%;
@@ -28,6 +31,7 @@
     border-width: 3px;
     border-radius: $radiuslarge;
     border-color: $cpdred;
+    overflow-x:scroll;
   }
   
   #tableCourseList {
@@ -35,6 +39,7 @@
     margin: 0 auto;
     font-size: $small;
     padding: 10px;
+  
     //text-align: center;
     /* border-width: 1rem;
     border-left: dotted;

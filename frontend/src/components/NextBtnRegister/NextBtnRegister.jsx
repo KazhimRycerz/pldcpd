@@ -51,8 +51,6 @@ function NextBtnToStepTwo({ props }) {
   );
 }
 
-
-
 const NextBtnToThree = ({ props }) => {
   const setThreeTrue = () => {
       props.setTwo(false);
@@ -96,8 +94,8 @@ const SubmitBtn = ({submitHandler, props }) => {
     <input
       onClick={validateDataStepThree}
       type="submit"
-      value="daten Senden"
-      className="buttonBasics"
+      value="daten senden"
+      className="buttonBasics submitButtonRegister"
       id="submitBtnRegister"
     />
   );
