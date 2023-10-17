@@ -2,30 +2,108 @@ import "./CourseListMain.scss";
 import { Link } from "react-router-dom";
 //import C from "../../images/C.png"
 import { useContext, useState, useEffect } from "react";
-import { SectionsContext } from "../../context/SectionsContext.js";
+import { SectionsContext } from "../../context/SectionsContext";
 import axiosConfig from "../../util/axiosConfig";
+import baseUrl from "../../util/constants";
 import Moment from "moment";
 import Countdown from "../Countdown/Countdown.jsx";
 
 const CourseListMain = () => {
-  const { isAuth, setGotoPage, setButtonPos, setAsidePos  } = useContext(SectionsContext);
+  const { isAuth, setGotoPage, setButtonPos, setAsidePos, knowledgeData  } = useContext(SectionsContext);
   const [coursesData, setCoursesData] = useState([])
   const [authorsData, setAuthorsData] = useState([])
-    
+  const [languageData, setLanguageData] = useState([])
+  const [listOfThemen, setListOfThemen] = useState([])
+  const [listOfKursart, setListOfKursart] = useState([])
+  const [listOfLanguage, setListOfLanguage] = useState([])
+  //const [items, setItems] = useState([]);
+  const [autorenFilter, setAutorenFilter] = useState('');
+  const [themenFilter, setThemenFilter] = useState("");
+  const [kursartFilter, setKursartFilter] = useState('');
+  const [kursstartFilter, setKursstartFilter] = useState('');
+  const [levelFilter, setLevelFilter] = useState('');
+  const [sprachFilter, setSprachFilter] = useState('');
+
+  const cpdStartDate = knowledgeData && new Date(knowledgeData.cpdActiveSince);
+  console.log(cpdStartDate)
+  
   const buttonPosCheck = ()=>{
     if (isAuth) {setButtonPos("showBut"); setAsidePos ("accountAside")
+    }
   }
+
+/* const handleThemenfeldFilter = (e) => {
+  setThemenfeldFilter(e.target.value);
+}; */
+const handleFilter = (e, setFilterFunc) => {
+setFilterFunc(e.target.value)
 }
+ const resetFilter= () => {
+  setAutorenFilter("")
+  setThemenFilter("")
+  setKursartFilter("")
+  setLevelFilter("")
+  setSprachFilter("")
+ }
 
 const searchCourseListData = async () => {
+  
+    const filterItems = {
+      autor: autorenFilter,
+      themenfeld: themenFilter,
+      kursart: kursartFilter,
+      kursstart: kursstartFilter,
+      level: levelFilter,
+      sprache: sprachFilter,
+    };
+    //console.log(filterItems)
+    
   try {
-    const axiosResp = await axiosConfig.get(`http://localhost:4000/courses`);
-    const fetchedData = await axiosResp.data;
-    const authorsForCourse = fetchedData.map(({ author }) => author);
+    const axiosResp = await axiosConfig.get(`${baseUrl}/courses/courselist`, {params: filterItems}
+    );
+    console.debug("axiosResp.filterItems:", axiosResp.filterItems);
+    const receivedData = await axiosResp.data;
+    const authorsForCourse = receivedData.map(({ author }) => author);
+    const courseLanguage = receivedData.map(({ courseLanguage }) => courseLanguage); 
+    const themenliste = receivedData.map(({topicField }) => topicField);
     setAuthorsData(authorsForCourse)  
-    //console.log("AuthorsData:", authorsForCourse)
-    setCoursesData(fetchedData)
-    //console.log("Info", fetchedData[0]._id)
+    setCoursesData(receivedData)
+    setLanguageData(courseLanguage)
+    //console.log(themenliste)
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const searchListElements = async () => {
+    
+  try {
+    const axiosResp = await axiosConfig.get(`${baseUrl}/courses`);
+    const receivedData = await axiosResp.data;
+
+    const themenListe = receivedData.map(({topicField }) => topicField);
+    const reducedThemenListeSet = new Set(themenListe);
+    const reducedThemenListe = Array.from(reducedThemenListeSet)
+
+    const kursartListe = receivedData.map(({courseType }) => courseType);
+    const reducedKursartListeSet = new Set(kursartListe);
+    const reducedKursartListe = Array.from(reducedKursartListeSet)
+
+    const sprachenListe = receivedData.map(({ courseLanguage }) => courseLanguage); 
+    //const flachesArray = [].concat(...sprachenListe);
+    const doppelflachesArray = [].concat(...([].concat(...sprachenListe)))
+    //Liste von allen Themenfeldern in allen Datensätzen:
+    const reducedLanguageListeSet = new Set(doppelflachesArray);
+    // reduziert, so dass keine Dubletten mehr vorhanden sind:
+    const reducedLanguageListe = Array.from(reducedLanguageListeSet)
+
+    //setListLanguage(courseLanguage)
+    setListOfThemen(reducedThemenListe)
+    setListOfLanguage(reducedLanguageListe)
+    setListOfKursart(reducedKursartListe)
+    /* console.log(sprachenListe)
+    console.log(reducedKursartListe)
+    console.log(reducedLanguageListe) */
   } catch (error) {
     console.log(error);
   }
@@ -35,18 +113,25 @@ useEffect(() => {
   setGotoPage("/courselistpage")
   searchCourseListData();
   buttonPosCheck()
-}, []);
+  searchListElements()
+}, [themenFilter, kursartFilter, autorenFilter, kursstartFilter, levelFilter, sprachFilter]);
 
   return (
     <main id="courseListMain"> {/* MainStyling in global */}
       <h2 id="courseListHead">Übersicht aller aktuellen Kursangebote</h2>
       <form>
+        {/* <p>sie können nch Ihren Bedürfnissen filtern...</p> */}
+        <p onClick={resetFilter}>
+          <span className="C">C </span> 
+          Filter löschen
+        </p>
         <table id="tableCourseList">
-          {/* <colgroup>
+          <colgroup>
+            <col width="10%" />
             <col width="10%" />
             <col width="5%" />
-            <col width="7%" />
-            <col width="10%" />
+            <col width="5%" />
+            <col width="3%" />
             <col width="5%" />
             <col width="5%" />
             <col width="2%" />
@@ -54,45 +139,98 @@ useEffect(() => {
             <col width="2%" />
             <col width="10%" />
             <col width="1%" />
-          </colgroup> */}
+          </colgroup>
           <thead>
             <tr>
               <th>Thema</th>
-              <th><select name="Filter" id="Filter">
+              <th>
+                {/* <input type="text" name="autorenFilter" 
+                value={autorenFilter} 
+                onChange={(e) => handleFilter(e, setAutorenFilter)} 
+                id="autorenFilter"/> */}
+                Autoren
+                {/* <select 
+                name="autorenFilter" 
+                value={autorenFilter} 
+                onChange={(e) => handleFilter(e, setAutorenFilter)} 
+                id="autorenFilter">
                   <option value="">Autor/Referent</option>
-                  <option value="Art">Art</option>
-                  <option value="Datum">Datum</option>
-                  <option value="Level">Level</option>
-                </select></th>
-              <th><select name="Filter" id="Filter">
+                  <option value="Joachim Ritter">Joachim Ritter</option>
+                  <option value="Kazhal Akbari">Kazhal Akbari</option>
+                  <option value="Norbert Wasserfurth">Norbert Wasserfurth</option>
+                </select> */}
+              </th>
+              <th>
+                <select 
+                name="themenFilter" 
+                value={themenFilter} 
+                onChange={(e) => handleFilter(e, setThemenFilter)} id="themenFilter">
                   <option value="">Themenfeld</option>
-                  <option value="Lichtdesign">Lichtdesign</option>
-                  <option value="Lichttechnik">Lichttechnik</option>
-                  <option value="Plnungspraxis">Plnungspraxis</option>
-                  <option value="Masterplanung">Masterplanung</option>
-                </select></th>
-              <th><select name="Filter" id="Filter">
-                  <option value="">Kursart</option>
-                  <option value="Art">Art</option>
-                  <option value="Datum">Datum</option>
-                  <option value="Level">Level</option>
+                  {listOfThemen.map((value, index) => (
+                    <option key={index}>{value}</option>
+                  ))}
+                    {/* <option value="Lichtdesign">Lichtdesign</option>
+                    <option value="Lichttechnik">Lichttechnik</option>
+                    <option value="Planungspraxis">Planungspraxis</option>
+                    <option value="Masterplanung">Masterplanung</option> */}
                 </select>
-                </th>
-              <th><select name="Filter" id="Filter">
+              </th>
+              <th>
+                <select name="kursartFilter" value={kursartFilter} /* onChange={handleKursartFilter}  */onChange={(e) => handleFilter(e, setKursartFilter)} id="kursartFilter">
+                  <option value="">Kursart</option>
+                  {listOfKursart.map((value, index) => (
+                    <option key={index}>{value}</option>
+                  ))}
+                  {/* <option value="LiveSeminar">LiveSeminar</option>
+                  <option value="OnlineSeminar">OnlineSeminar</option>
+                  <option value="Fachbuch">Fachbuch</option>
+                  <option value="Fachartikel">Fachartikel</option> */}
+                </select>
+              </th>
+              <th>
+                <select 
+                name="kursstartFilter" 
+                value={kursstartFilter} 
+                onChange={(e) => handleFilter(e, setKursstartFilter)}
+                id="kursstartFilter">
                   <option value="">Kursstart</option>
                   <option value="Art">Art</option>
                   <option value="Datum">Datum</option>
                   <option value="Level">Level</option>
-                </select></th>
-              <th><select name="Filter" id="Filter">
+                </select>
+              </th>
+              <th>
+                <select name="Filter" id="Filter">
                   <option value="">Kursende</option>
                   <option value="Art">Art</option>
                   <option value="Datum">Datum</option>
                   <option value="Level">Level</option>
-                </select></th>
+                </select>
+              </th>
+              <th>
+                <select 
+                name="sprachFilter" 
+                value={sprachFilter} 
+                onChange={(e) => handleFilter(e, setSprachFilter)} 
+                id="sprachFilter">
+                  <option value="">Sprache</option>
+                  {listOfLanguage.map((value, index) => (
+                    <option key={index}>{value}</option>
+                  ))}
+                  {/* <option value="Lichtdesign">Lichtdesign</option>
+                  <option value="Lichttechnik">Lichttechnik</option>
+                  <option value="Planungspraxis">Planungspraxis</option>
+                  <option value="Masterplanung">Masterplanung</option> */}
+                </select>
+              </th>
               <th>CPD</th>
               <th>CPD plus</th>
-              <th><select name="Filter" id="Filter">
+              <th>
+                <select 
+                name="levelFilter" 
+                onChange={(e) => handleFilter(e, setLevelFilter)}
+                id="levelFilter"
+                title="1 = beginner, 2 = student, 3 = newly qualified lighting designer">
                   <option value="">level</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -108,7 +246,9 @@ useEffect(() => {
               <th>Link zum Anbieter</th>
               <th>mehr Infos</th>
             </tr>
-          </thead>         
+          </thead>    
+          {/* hier beginnt die Liste der gefundenen Datensätze  */}    
+          {coursesData.length >=0 ? (
           <tbody>
             {coursesData.map((course, index)=>{
               return(
@@ -134,6 +274,14 @@ useEffect(() => {
                   <td>{course.courseType}</td>
                   <td>{Moment(course.startDateOfCourse).format("DD.MM.YYYY")}</td>
                   <td>{Moment(course.endDateOfCourse).format("DD.MM.YYYY")}</td>
+                  <td>
+                    {languageData[index].map((courseLanguage, innerIndex) => (
+                      <li key={innerIndex} id="courseLanguage">
+                        {courseLanguage}
+                      </li>
+                      )
+                    )}
+                  </td>
                   <td>{course.cpdBasicPoints}</td>
                   <td>{course.cpdAdditionalPoints}</td>
                   <td>{course.professionalLevel}</td>
@@ -144,11 +292,16 @@ useEffect(() => {
                 }
               )
             }
-            </tbody>
-          </table>  
-        
+          </tbody>) : (
+            <p>keine Angebote vorhanden</p>
+          )}
+        </table>  
+          
       </form>
-      <Countdown  targetDate={new Date("2023-04-30T00:00:00.000Z").getTime()} />
+      {/* <div>
+        <h3>Sie sind CPD-aktiv seit {{cpdStartDate}}</h3>
+      </div> */}
+      {isAuth && knowledgeData && <Countdown  targetDate={cpdStartDate} />}
 
     </main>
   );

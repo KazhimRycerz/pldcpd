@@ -82,7 +82,8 @@ export const getUserByID = async (req, res) => {
           populate: [
             "careerPath",
             "professionalStatus",
-            "authorsData"
+            "authorsData",
+            "currentCompany"
           ]
         });
 
@@ -101,7 +102,8 @@ export const getUserData = async (req, res) => {
           populate: [
             "careerPath",
             "professionalStatus",
-            "authorsData"
+            "authorsData",
+            "currentCompany"
           ]
         });
 

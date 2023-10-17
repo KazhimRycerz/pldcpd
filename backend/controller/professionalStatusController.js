@@ -4,7 +4,6 @@ import levelChecker from '../middleware/levelManager.js'
 export const getMaKnowledgeData = async (req, res) => {
     try {
     const maKnowledgeStatus = await ProfessionalStatusModel.find()
-      //.populate("NNData");
       const maKFArray = [];
         for (let i=0; i < maKnowledgeStatus.length; i++) {
           maKFArray.push(maKnowledgeStatus[i].myKF)

@@ -71,7 +71,7 @@ const getMarketKnowledgeData = useCallback(async () => {
     //console.log(marketData)
     //console.log(userData)
     //console.log(knowledgeData)
-    console.log(userData.userImage)
+    //console.log(userData.userImage)
   
   useEffect(() => {
       isAuth && getMarketKnowledgeData();
@@ -88,7 +88,7 @@ return (
           {buttonText} 
       </button>
                
-      <aside id="homeAsideAccount" className = {asidePos} >
+      {knowledgeData ? (<aside id="homeAsideAccount" className = {asidePos} >
         <img src= {userData.userImage} alt="Joachim Ritter privat" />
         <p><strong>Hallo, {contactData.firstName} </strong><br />
         {knowledgeData.profession} <br />Karrierelevel <br />--- <span> {knowledgeData.myCStatus} </span> ---<br />{knowledgeData.careerPathStatus}</p> <br />
@@ -121,7 +121,34 @@ return (
         <p>Ihre gesamte Übesicht Ihres Kontos können Sie <Link to="/KnowledgeAccount">hier</Link> aufrufen. <Link className="C"
             to="/KnowledgeAccount">C</Link></p>
     
-      </aside>
+      </aside>) : (<aside id="homeAsideAccount" className = {asidePos} >
+      <img src= {userData.userImage} alt="Joachim Ritter privat" />
+        <p><strong>Hallo, {contactData.firstName} </strong><br />
+         <br />Karrierelevel <br />--- <span> </span> ---<br /></p> <br />
+              
+        <div id="home_data">
+          <p> Ihr persönlicher Wissensstatus</p>
+          <div>
+            <div>myKF <p id="myKF">0</p></div>
+            <div>myLF <p id="myLF">0</p></div>
+            <div>myPEDh <p id="myPED">0</p></div>
+            <div>myPEXh <p id="myPEX">0</p></div>
+          </div>
+          <div>
+            <div><p id="maKF">{marketData.maKF}</p>maKF</div>
+            <div><p id="maLF">{marketData.maLF}</p>maLF</div>
+            <div><p id="maPED">{marketData.maPEDh}</p>maPED</div>
+            <div><p id="maPEX">{marketData.maPEXh}</p>maPEX</div>
+          </div>
+          <p> Markt Wissensdurchschnitt</p>
+        </div>    
+        <p>Ihr aktuelles <span className="LitCoin">L</span><span className="Calli">it</span><span className="LitCoin">C</span><span className="Calli">oin</span> Guthaben:</p>
+        <div id="aside_gutbox">
+          <p id="aside_guthaben"></p> 
+          <p className="LC">0 </p>
+        </div>
+        <p>Ihre Wissensdaten wurden noch nicht angelegt. Zum Aktivieren bitte <Link to="/KnowledgeAccount">hier</Link> klicken! </p></aside> )
+      }
    </>
    )
 };

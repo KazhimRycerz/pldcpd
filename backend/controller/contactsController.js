@@ -5,7 +5,8 @@ export const getAllContacts = async (req, res) => {
     const contact = await ContactModel.find()
       .populate("professionalStatus")
       .populate("careerPath")
-      .populate("authorsData");
+      .populate("authorsData")
+      .populate("companyData");
         res.status(200).json(contact)
     } catch (error) {
         console.log(error)
@@ -22,9 +23,18 @@ export const getContact = async (req, res) => {
   
       const contactPopulated = await ContactModel
         .findById(contactId)
-        .populate("professionalStatus")
+        /* .populate("professionalStatus")
         .populate("careerPath")
-        .populate("authorsData");
+        .populate("authorsData")
+        .populate("companyData")
+        .populate("career"); */
+        .populate([
+          "careerPath",
+          "professionalStatus",
+          "authorsData",
+          "currentCompany",
+          "career"
+        ])
 
       console.log("contact.userName", contact.userName); 
     // hier kann ich auf das virtuelle Feld "firstName" zugreifen

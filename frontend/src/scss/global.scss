@@ -110,7 +110,7 @@ main {
   vertical-align: middle;
   width: 60%;
   height: 40px;
-  max-width: 150px;
+  max-width: 120px;
   margin: 0px ;
   font-size: $xsmall;
   padding: 10px;
@@ -124,6 +124,7 @@ main {
 .buttonBasics:hover {
   background-color: $cpdblue-10;
   //color: $first-color;
+  //text-shadow: $text-shadow;
 }
 /* .buttonBasics:focus {
   background-color: $cpdred;

@@ -13,7 +13,7 @@
     align-items: center;
     //border: solid;
     width: 80%;
-    margin: 20px auto;
+    margin: 50px auto 20px;
     h2{
       display: inline;
       color: $first-color;
@@ -23,32 +23,9 @@
       font-family: $primary-font-bold;
       //border: solid;
     }
-    
-    .buttonBasics {
-      vertical-align: middle;
-      width: 60%;
-      height: 40px;
-      max-width: 150px;
-      margin: 0px ;
-      font-size: $xsmall;
-      padding: 0.5rem 0.5rem;
-      background-color: $first-color;
-      //background-color: $cpdred;
-      color: $cpdblue;
-      //color: $first-color;
-      box-shadow: $btnshadow;
-      border-radius: $radiussmall;
-      text-decoration: none;
-      border: none;
+    &:last-child {
+      margin: 20px auto 50px;
     }
-    .buttonBasics:hover {
-      //background-color: $cpdred;
-      background-color: $cpdblue-10;
-      //color: $first-color;
-    }
-    /* .buttonBasics:focus {
-      background-color: $cpdred;
-    } */
   }
 
   #authorsArticle {
@@ -63,25 +40,23 @@
     border-right: dotted;
     border-radius: $radiuslarge;
     border-width: 3px;
-    border-color: $first-color;
     border-color: $cpdred;
     
     div {
       display: flex;
       flex-flow: column nowrap;
       border-radius: $radiussmall;
-      flex-shrink: 1;
       margin-bottom: 10px;
       //box-shadow: $boxshadow;
       >p{
         line-height: 0px; 
         margin: 0 0 0 0;
         padding: 15px 20px 10px 20px;
-        color: $first-color;
         font-size: $normal;
         font-family:$primary-font;
-        //background-color: $fourth-color;
-        background: linear-gradient($first-color, $cpdblue );
+        background-color: $cpdblue;
+        //background: linear-gradient($first-color, $cpdblue );
+        color: $secondary-color;
         border-radius: 10px 10px 0 0 ;  
         border: solid;
         border-bottom: none;
@@ -106,6 +81,12 @@
       }
       #authorUpdate {
         max-width: 220px;
+      }
+      #authorsOffers{
+        flex-basis: 2;
+        //flex-grow: 200px;
+        //flex-shrink: 1;
+        //max-width: 220px;
       }
     }
     #fieldsOfExpertise ul{

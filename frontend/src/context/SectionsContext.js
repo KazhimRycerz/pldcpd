@@ -36,13 +36,14 @@ const SectionsProvider = ({ children }) => {
   // Seite AccessLevel 5 = Zugang für WedevAadmin
 
   const logout = () => {
-    localStorage.clear();
     setIsAuth(false);  
     axiosConfig.post("/user/logout").then((res) => {
       //console.log(res.data);
     });
-    gotoPage === "/KnowledgeAccount" && navigate("/home");
-    gotoPage === "/userupdate" && navigate("/home");
+    localStorage.clear();
+    if (gotoPage === "/KnowledgeAccount") { navigate("/home")
+  } else if (gotoPage === "/userupdate") { navigate("/home")}
+    else {navigate(gotoPage)}
     Swal.fire({
       title: `Sie haben sich erfolgreich abgemeldet`,
       icon: "success",
@@ -50,7 +51,7 @@ const SectionsProvider = ({ children }) => {
     })
   };
 
-  /* const getUserData = async () => {
+  const getUserData = async () => {
     const axiosResp = await axiosConfig.get(
        `http://localhost:4000/user/${userId}`
        );
@@ -76,13 +77,14 @@ const SectionsProvider = ({ children }) => {
     useEffect(() => {
       isAuth && getMarketKnowledgeData();
       isAuth && getUserData();
-   }, []); */
+   }, [isAuth]);
 
   return (
     <SectionsContext.Provider
       value={{
         isAuth,
         logout,
+        /* getUserData, */
         gotoPage, 
         setGotoPage,
         setIsAuth,

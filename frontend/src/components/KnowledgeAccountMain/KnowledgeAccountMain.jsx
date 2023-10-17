@@ -13,8 +13,9 @@ const  KnowledgeAccountMain = ()=>{
   /*  const [userData, setUserData] = useState({}) */
    //const [knowledgeData, setKnowledgeData] = useState({})
    //const [contactData, setContactData] = useState({})
-   const [userImg, setUserImg] = useState("")
+   const [userImg, setUserImg] = useState({JoachimRitter})
    const [authorsData, setAuthorsData] = useState({})
+   const [companyData, setCompanyData] = useState({})
    const userId = localStorage.getItem("userId");
 
    
@@ -31,13 +32,15 @@ const  KnowledgeAccountMain = ()=>{
          const contactData = axiosResp.data.contactData;
          const contactKnowledgeData = axiosResp.data.contactData.professionalStatus;
          const authorsData = axiosResp.data.contactData.authorsData;
+         const companyData = axiosResp.data.contactData.currentCompany;
          setUserData(userData);
          setContactData(contactData);
          setKnowledgeData(contactKnowledgeData);
          setUserImg(userData.userImage);
          setAuthorsData(authorsData)
+         setCompanyData(companyData)
       };
-      //console.log(authorsData)
+      console.log(userImg);
       
       
    const getMarketKnowledgeData = async () => {
@@ -63,49 +66,64 @@ const  KnowledgeAccountMain = ()=>{
          </section>
 
          <section id="account_1">
-            <div>
-               <h3> Ihre Karrierestatus, {contactData.firstName} {contactData.lastName}</h3>
-               <img src={userImg} id="imgKnowledgeAccount" alt="Joachim Ritter privat" />
+            <div className="accountHead" id="account_1_head">
+               <h3> Karrierestatus {contactData.firstName} {contactData.lastName}</h3>
+               <p /* onClick={} */>
+                  <span className="C">C </span> 
+                  Daten hier aktualisieren
+               </p>
+               <img src={JoachimRitter} 
+                id="imgKnowledgeAccount"
+                alt={contactData.firstName}  />
             </div>
             <div id="account_1_data">
                <div>
                   <div>
                      <p>Ihr Beruf:</p> 
-                     <div className="output" id="profession">{knowledgeData.profession}</div>
+                    {/* {knowledgeData ? (<div className="output" id="profession">{knowledgeData.profession}</div>) : (<div className="output" id="profession">(0)</div>)} */}
+                    <div className="output" id="profession">
+                     {knowledgeData ? <p>{knowledgeData.profession}</p> : <p>Ihr Beruf wurde noch nicht aktualisiert</p>}
+                    </div>
                   </div>
                   <div>
                      <p>aktuelle Firma:</p>
-                     <div className="output" id="company">VIA-Design</div>
+                     {knowledgeData ? (<div className="output" id="company"><p>{companyData.companyName}</p> <p>{companyData.city} / {companyData.countryCode}</p> <p>{companyData.homepage}</p></div>) : (<div className="output" id="company"><p>Ihre Firma wurde noch nicht eingegeben</p></div>)}
                   </div>
-                  {/* <div> 
-                     <p>Name:</p> 
-                     <output id="fullName">{contactData.firstName} {contactData.lastName}</output>
+                  {/* <div>
+                     <p>Land/Ort:</p>
+                     <div className="output" id="company">{companyData.city} / {companyData.countryCode} </div>
                   </div> */}
+                  
                </div>
-
                <div>
-                  <div>
-                     <p>Karrierelevel</p>
-                     <div className="output" id="myCL"> {knowledgeData.myCStatus} von 9</div>
-                  </div>
-                  <div><p></p></div>
-                     <div><p id="account_1_p">{knowledgeData.careerPathStatus}</p></div>
+                  <div><p>Karrierelevel</p>
+                     <div className="output" id="myCL"> 
+                        {knowledgeData ? (<p>{knowledgeData.myCStatus} von 9</p>) : (<p>Ihr Datensatz wurde noch nicht angelegt</p>)}
+                     </div> 
+                  </div> 
+                  <div><p></p></div>  
+                     <div>
+                        {knowledgeData ? <p id="account_1_p">{knowledgeData.careerPathStatus}</p> : <p></p>}
+                     </div>
                </div>
 
                <div>
                   <div>
                      <p>beruflich aktiv seit </p>
-                     <div className="output" id="my_active"> {Moment(knowledgeData.professionalSince).format("DD.MM.YYYY")}
+                     <div className="output" id="my_active"> 
+                        {knowledgeData ? <p>{Moment(knowledgeData.professionalSince).format("DD.MM.YYYY")}</p> : <p>Info fehlt</p>}
                      </div>
                   </div>
                   <div>
                      <p>CPD-aktiv seit</p>
-                     <div className="output" id="my_start"> {Moment(knowledgeData.cpdActiveSince).format("DD.MM.YYYY")}
+                      <div className="output" id="my_start"> 
+                      {knowledgeData ? <p>{Moment(knowledgeData.cpdActiveSince).format("DD.MM.YYYY")}</p> : <p>Info fehlt</p>}
                      </div>
                   </div>
                   <div>
                   <p>letztes Update </p>
-                     <div className="output" id="my_active"> {Moment(knowledgeData.updatedOn).format("DD.MM.YYYY")}
+                     <div className="output" id="my_active"> 
+                     {knowledgeData ? <p>{Moment(knowledgeData.updatedOn).format("DD.MM.YYYY")}</p> : <p>Info fehlt</p>}
                      </div>
                   </div>
                </div>
@@ -113,7 +131,8 @@ const  KnowledgeAccountMain = ()=>{
                <div>
                   <div>
                      <p>Ihr Guthaben</p>
-                     <div className="output account_Box" id="myLCoins"> {knowledgeData.myLC} <span className="C colorYellow"> LC</span>
+                     <div className="output account_Box" id="myLCoins"> 
+                      {knowledgeData ? <p>{knowledgeData.myLC}<span className="C colorYellow"> LC</span></p>: <>0<span className="C colorYellow"> LC</span></>} 
                      </div>
                   </div>
                   <div><p></p></div>
@@ -123,7 +142,13 @@ const  KnowledgeAccountMain = ()=>{
          </section>
 
          <section id="account_2">
-            <h3> Ihr persönliches Fachwissen</h3>
+            <div className="accountHead" id="account_2_head">
+               <h3> Ihr persönliches Fachwissen</h3>
+               <p /* onClick={} */>
+               <span className="C">C </span> 
+               Datensatz anlegen
+               </p>
+            </div>
             <p> Die unteren Zahlen zeigen Ihnen die Durchschnittswerte im internationalen Lichtdesignermarkt aller
             Teilnehmer an.</p>
 
@@ -134,7 +159,7 @@ const  KnowledgeAccountMain = ()=>{
                      <p>Knowledge<br />Factor</p>
                   </div>
                   <div className="account_data_box">
-                     <output className="account_pers_data" id="myKF">{knowledgeData.myKF}</output>
+                     {knowledgeData ? <output className="account_pers_data" id="myKF">{knowledgeData.myKF}</output> : <output className="account_pers_data" id="myKF">0</output>}
                      <output className="account_market_data" id="maKF">{marketData.maKF}</output>
                   </div>
                </div>
@@ -145,7 +170,7 @@ const  KnowledgeAccountMain = ()=>{
                      <p>Learning<br />Factor</p>
                   </div>
                   <div className="account_data_box">
-                     <output className="account_pers_data" id="myLF">{knowledgeData.myLF}</output>
+                     {knowledgeData ? <output className="account_pers_data" id="myLF">{knowledgeData.myLF}</output> : <output className="account_pers_data" id="myLF">0</output>}
                      <output className="account_market_data" id="maLF">{marketData.maLF}</output>
                   </div>
                </div>
@@ -156,7 +181,7 @@ const  KnowledgeAccountMain = ()=>{
                      <p>Professional<br />Experience</p>
                   </div>
                   <div className="account_data_box">
-                     <output className="account_pers_data" id="myPEX">{knowledgeData.myPEXh}</output>
+                     {knowledgeData ? <output className="account_pers_data" id="myPEX">{knowledgeData.myPEXh}</output> : <output className="account_pers_data" id="myPEX">0</output>}
                      <output className="account_market_data" id="maPEX">{marketData.maPEXh}</output>
                   </div>
                </div>
@@ -167,7 +192,7 @@ const  KnowledgeAccountMain = ()=>{
                      <p>Professional<br />Education</p>
                   </div>
                   <div className="account_data_box">
-                     <output className="account_pers_data" id="myPED">{knowledgeData.myPEDh}</output>
+                  {knowledgeData ? <output className="account_pers_data" id="myPED">{knowledgeData.myPEDh}</output> : <output className="account_pers_data" id="myPED">0</output>}
                      <output className="account_market_data" id="maPED">{marketData.maPEDh}</output>
                   </div>
                </div>
@@ -178,7 +203,7 @@ const  KnowledgeAccountMain = ()=>{
                      <p>Learning<br />Points</p>
                   </div>
                   <div className="account_data_box">
-                     <output className="account_pers_data" id="myLP">{knowledgeData.myLP}</output>
+                  {knowledgeData ? <output className="account_pers_data" id="myLP">{knowledgeData.myLP}</output> : <output className="account_pers_data" id="myLP">0</output>}
                      <output className="account_market_data" id="maLP">{marketData.maLP}</output>
                   </div>
                </div>
@@ -189,7 +214,7 @@ const  KnowledgeAccountMain = ()=>{
                      <p>Professional<br />Activity</p>
                   </div>
                   <div className="account_data_box">
-                     <output className="account_pers_data" id="myPA">{knowledgeData.myPA}</output>
+                     {knowledgeData ? <output className="account_pers_data" id="myPA">{knowledgeData.myPA}</output> : <output className="account_pers_data" id="myPA">0</output> }
                      <output className="account_market_data" id="maPA">{marketData.maPA}</output>
                   </div>
                </div>
@@ -198,12 +223,11 @@ const  KnowledgeAccountMain = ()=>{
          </section>
 
          <section id="account_3">
-
-         <div>
+            <div className="accountHead">
                <h3> Ihre persönlichen Daten</h3>
                <p /* onClick={} */>
                   <span className="C">C </span> 
-                  Daten jetzt aktualisieren
+               Daten aktualisieren
                </p> 
             </div>
             <div id="account_3_data">
@@ -257,11 +281,11 @@ const  KnowledgeAccountMain = ()=>{
          </section>
 
          <section id="account_4">
-            <div>
+            <div className="accountHead">
                <h3> Ihre Abrechnungsdaten</h3>
                <p /* onClick={} */>
                   <span className="C">C </span> 
-                  Daten jetzt aktualisieren
+                  Daten aktualisieren
                </p> 
             </div>
             <div id="account_4_data">
@@ -283,11 +307,11 @@ const  KnowledgeAccountMain = ()=>{
        
          {authorsData ?
             (<section id="account_5">
-               <div>
+               <div className="accountHead">
                   <h3> Autoreninfo</h3>
                   <p /* onClick={} */>
                   <span className="C">C </span> 
-                  Daten jetzt aktualisieren
+                  Daten aktualisieren
                   </p> 
                </div>
                <div id="account_5_data">
@@ -327,9 +351,10 @@ const  KnowledgeAccountMain = ()=>{
                 
             </section>) :
             (<section id="account_5">
-               <h3> Aktuell keine Autorendaten vorhanden. </h3>
-               <p><span className="C">C</span> Daten eingeben</p>
-               <button className="buttonBasics">Daten eingeben</button>
+               <div className="accountHead">
+                  <h3> Aktuell keine Autorendaten vorhanden. </h3>
+                  <p><span className="C">C</span> Daten eingeben</p>
+               </div>
             </section>)
          }
 

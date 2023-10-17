@@ -5,7 +5,7 @@ import Login from "../pages/LoginPage/Login.jsx";
 import UserProfile from "../pages/UserProfile/UserProfile.jsx";
 
 function AuthLogin() {
-  const { isAuth, setIsAuth, setAllSectFalse, setIsHome } =
+  const { isAuth, setIsAuth } =
     useContext(SectionsContext);
 
   const hasValidToken = () => {

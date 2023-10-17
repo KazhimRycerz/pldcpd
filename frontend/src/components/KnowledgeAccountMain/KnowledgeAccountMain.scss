@@ -4,8 +4,15 @@
   margin-bottom: 50px;
   //height: auto;
   box-shadow: $mainshadow;
-  .colorYellow{
-    color: $secondary-color;
+  
+  section {
+    width: 80%;
+    margin: 0 auto;
+    h3 {
+      font-family: $primary-font-bold;
+      margin: 0 30px ;
+      padding-top: 10px;
+    }
   }
 
   #Gruß_account {
@@ -22,19 +29,47 @@
       font-family: $primary-font-bold;
       font-size: $xxlarge;
     }
-    img {
+    img{
+      width: 10vw;
+      position:relative;
+      left: 0;
+      bottom: 100px;
+      height: 130px;
       width: 100px;
-    }
+      overflow:hidden;
+      //border: solid;
+    } 
   }
-
-  section {
-    width: 80%;
-    margin: 0 auto;
-    h3 {
-      font-family: $primary-font-bold;
-      margin: 0 30px ;
-      padding-top: 10px;
+  .accountHead{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    margin-right: 30px;
+    height: 30px;
+    //border: solid;
+    h3{
+      //border: solid;
     }
+    p{
+      position: relative;
+      bottom: 0;
+      font-size: $small;
+      //border: solid;
+      &:hover {
+        color: $cpdred;
+        text-shadow: $text-shadow;
+      }
+    }
+    img{
+      width: 10vw;
+      position:relative;
+      left: 0;
+      bottom: 100px;
+      height: 130px;
+      width: 100px;
+      overflow:hidden;
+      //border: solid;
+    } 
   }
 
   #account_1 {
@@ -43,17 +78,11 @@
     border-right: 3px dotted $cpdred;
     border-left: 3px dotted $cpdred;
     border-radius: 20px;
-    /* >div:first-child, */ div div div{
-      border: solid;
-      h3{
-        display: inline;
+    
+      div div div{
+        border: solid;
       }
-      img{
-        width: 10vw;
-        position:relative;
-        left: 0;
-      }
-    }
+
     #account_1_data {
       display: flex;
       flex-flow: row wrap;
@@ -61,6 +90,7 @@
       padding: 10px;
       width: 100%;
       height: auto;
+      font-size: $small;
       //border: solid;
       //justify-content: space-around;
       > div {
@@ -70,8 +100,8 @@
         gap: 10px;
         margin: 10px auto 0;
         padding: 15px;
-        width: auto;
-        min-width: 45%;
+        width: 45%;
+        //min-width: 45%;
         height: auto;
         background-color: $fourth-color;
        /*  border-right: dotted $cpdred 2px;
@@ -95,11 +125,11 @@
           }
           .output {
             line-height: 25px;
-            font-size: $normal;
+            font-size: $small;
             text-align: center;
-            //padding: 5px;
-            width: 50%;
-            height: 30px;
+            padding: 0 px;
+            width: 75%;
+            height: auto;
             //border: solid;
             border-radius: $radiusxsmall;
             color: $secondary-color;
@@ -107,7 +137,36 @@
             background-color: $cpdred;
             background-color: $cpdblue;
             opacity: 1;
+            p{
+              //color: white;
+              //border: solid;
+              width: 100%;
+            }
           }
+          #company{
+            display: flex;
+            flex-flow: column nowrap;
+            gap: 0;
+            height: auto;
+            text-align: left;
+            padding: 0;
+            //border: solid yellow;
+            p{
+              display: inline;
+              width: 100%;
+              padding: 0 0 0 5px;
+              margin: 0;
+              height: auto;
+              border-bottom: solid $secondary-color 1px;
+              //border-radius: 3px;
+            }
+          }
+        }
+        #account_1_data > div:nth-of-child(2) {
+          display: flex;
+          flex: 1 auto 1;
+          flex-direction: column;
+          flex-wrap: wrap;
         }
         #account_1_p {
           font-size: 1.5rem;
@@ -117,394 +176,340 @@
         }
       }
     }
-  }
-
-#account_1_data > div:nth-of-child(2) {
-  display: flex;
-  flex: 1 auto 1;
-  flex-direction: column;
-  flex-wrap: wrap;
-}
-.account_box_dates {
-  display: block;
-  position: absolute;
-  font-family: $primary-font-bold;
-  font-size: $xxlarge;
-  letter-spacing: -2px;
-  margin: -50px 100px;
-  margin-right: 0px;
-  width: 120px;
-  border-bottom: 3px solid $first-color;
-  border-radius: $radiussmall;
-  text-align: center;
-  padding: 7px;
-  background-color: $fourth-color;
-}
-
-#my_start {
-  top: 60px;
-  right: 10px;
-  height: 30px;
-}
-#my_active {
-  top: 90px;
-  right: 10px;
-  height: 30px;
-}
-
-/* zweite Datenreihe*/
-
-#account_2 {
-  display: block;
-  margin-top: 20px;
-  border-left: 3px dotted $cpdred;
-  border-right: 3px dotted $cpdred;
-  border-radius: 20px;
-  height: auto;
-  > p {
-    margin: 0px 0px 30px 30px;
-  }
-}
-#account_2_data {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-  //align-content: flex-start;
-  gap: 30px 0px;
-  margin-top: 10px;
-  width: 100%;
-  padding: 10px;
-  //border: solid;
-  .account_2 {
-    display: flex;
-    flex: row nowrap;
-    justify-content: space-between;
-    gap:10px;
-    //margin: 30px 30px 0 30px;
-    padding: 10px;
-    width: auto;
-    min-width: 45%;
-    background-color: $fourth-color;
-    border-radius: $radiussmall;
-    box-shadow: $boxshadow;
-    height: 80px;
-    position: relative;
-    //border: solid;
-    div:first-child {
-      position: relative;
-      top: -20px;
-      left: 10px;
-      background-color: $cpdblue;
-      >h2 {
-        font-family: $guthaben;
-        font-weight: bold;
-        font-size: 30px;
-        text-align: center;
-        color: white;
-        padding: 5px;
-        width: 70px;
-        height: 90px;
-        position: relative;
-        top: -10px;
-        line-height: 180%;
-        border-radius: $radiussmall;
-        background-color: $cpdblue;
-      }
-      >p {
-        padding-left: 4px;
-        margin-top: -40px;
-        font-family: $primary-font;
-        font-size: 10px;
-        text-align: center;
-        color: white;
-        position: relative;
-        background-color: $cpdblue;
-      }
-    }    
-    div:last-child {
-      position: relative;
-      right: 0px;
-      width: 50%;
-      //margin: 0 auto;
-    }
-  }
-}
-.account_data_box {
-  display: flex;
-  flex-flow: column;
-  justify-content: space-between;
-  gap: 0px;
-  //margin: 0 auto;
-  .account_pers_data {
-    display: block;
+  .colorYellow {
     color: $secondary-color;
-    background-color: $cpdblue;
-    font-family: $primary-font;
-    font-weight: bold;
-    box-shadow: none;
-    text-align: center;
-    line-height: 25px;
-    width: 100%;
-    min-width: 70px;
-    height: 30px;
-    border: none;
-    border-radius: $radiusxsmall;
-    font-size: $xlarge;
-    padding: 2px;
-    margin: 0 auto;
-    //border: solid;
   }
-  .account_market_data {
-    display: block;
-    background-color: none;
-    box-shadow: none;
-    width: 50%;
-    //min-width: 100%;
-    border: 1px solid $third-color;
-    border-radius: 5px;
-    font-size: $small;
-    color: $third-color;
-    padding: 0px;
-    text-align: center;
-    justify-content: center;
-    margin: 0 auto;
   }
-}
 
-#account_3 {
-  display: block;
-  margin-top: 20px;
-  border-right: 3px dotted $cpdred;
-  border-left: 3px dotted $cpdred;
-  border-radius: 20px;
-  >div:first-child{
-    display: flex;
-    justify-content: space-between;
-    margin-right: 30px;
-    p{
-      //border: none;
-      font-size: $small;
-      &:hover {
-        color: $cpdred;
-        text-shadow: $text-shadow;
-      }
+  .account_box_dates {
+    display: block;
+    position: absolute;
+    font-family: $primary-font-bold;
+    font-size: $xxlarge;
+    letter-spacing: -2px;
+    margin: -50px 100px;
+    margin-right: 0px;
+    width: 120px;
+    border-bottom: 3px solid $first-color;
+    border-radius: $radiussmall;
+    text-align: center;
+    padding: 7px;
+    background-color: $fourth-color;
+  }
+
+  #my_start {
+    top: 60px;
+    right: 10px;
+    height: 30px;
+  }
+  #my_active {
+    top: 90px;
+    right: 10px;
+    height: 30px;
+  }
+
+  /* zweite Datenreihe*/
+
+  #account_2 {
+    display: block;
+    margin-top: 20px;
+    border-left: 3px dotted $cpdred;
+    border-right: 3px dotted $cpdred;
+    border-radius: 20px;
+    height: auto;
+    
+    > p {
+      margin: 0px 0px 30px 30px;
     }
   }
-  #account_3_data {
+  #account_2_data {
     display: flex;
     flex-flow: row wrap;
-    margin: 0 20px;
-    .account_3 {
+    justify-content: space-around;
+    //align-content: flex-start;
+    gap: 30px 0px;
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    //border: solid;
+    .account_2 {
       display: flex;
-      flex-flow: column nowrap;
-      justify-content: flex-start;
-      gap: 5px;
-      margin: 10px;
+      flex: row nowrap;
+      justify-content: space-between;
+      gap:10px;
+      //margin: 30px 30px 0 30px;
       padding: 10px;
-      flex-basis: 40%;
-      flex-grow: 1;
-      flex-shrink: 2;
-      //width: 33%;
-      height: auto;
+      width: auto;
+      min-width: 45%;
       background-color: $fourth-color;
       border-radius: $radiussmall;
       box-shadow: $boxshadow;
-      >div {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: space-between;
-        padding: 0px;
-        border: solid;
-        >p{
-          width: 25%;
-          line-height: 25px;
-          font-size: $small;
-          padding-left: 5px;
-        }
-        div {
-          margin: 1px;
-          padding: 3px;
-          font-size: $small;
-          background-color: $cpdblue;
-          border-radius: 3px;
-          color: $secondary-color;
-          width: 60%;
+      height: 80px;
+      position: relative;
+      //border: solid;
+      div:first-child {
+        position: relative;
+        top: -20px;
+        left: 10px;
+        background-color: $cpdblue;
+        >h2 {
+          font-family: $guthaben;
+          font-weight: bold;
+          font-size: 30px;
           text-align: center;
+          color: white;
+          padding: 5px;
+          width: 70px;
+          height: 90px;
+          position: relative;
+          top: -10px;
+          line-height: 180%;
+          border-radius: $radiussmall;
+          background-color: $cpdblue;
         }
+        >p {
+          padding-left: 4px;
+          margin-top: -40px;
+          font-family: $primary-font;
+          font-size: 10px;
+          text-align: center;
+          color: white;
+          position: relative;
+          background-color: $cpdblue;
+        }
+      }    
+      div:last-child {
+        position: relative;
+        right: 0px;
+        width: 50%;
+        //margin: 0 auto;
       }
     }
   }
-}
-
-#account_4 {
-  display: block;
-  margin-top: 20px;
-  border-right: 3px dotted $cpdred;
-  border-left: 3px dotted $cpdred;
-  border-radius: 20px;
-  >div:first-child{
+  .account_data_box {
     display: flex;
+    flex-flow: column;
     justify-content: space-between;
-    width: 100%;
-    padding: 0 30px;
-    //border: solid;
-    h3{
-      margin:0;
+    gap: 0px;
+    //margin: 0 auto;
+    border: solid;
+    padding: 1px;
+    .account_pers_data {
+      display: block;
+      color: $secondary-color;
+      background-color: $cpdblue;
+      font-family: $primary-font;
+      font-weight: bold;
+      box-shadow: none;
+      text-align: center;
+      line-height: 25px;
+      width: 100%;
+      min-width: 70px;
+      height: 30px;
+      border: none;
+      border-radius: $radiusxsmall;
+      font-size: $xlarge;
+      padding: 2px;
+      margin: 0 auto;
       //border: solid;
     }
-    p{
-      border: none;
+    .account_market_data {
+      display: block;
+      background-color: none;
+      box-shadow: none;
+      width: 50%;
+      //min-width: 100%;
+      border: 1px solid $third-color;
+      border-radius: 5px;
       font-size: $small;
-      &:hover {
-        color: $cpdred;
-        text-shadow: $text-shadow;
+      color: $third-color;
+      padding: 0px;
+      text-align: center;
+      justify-content: center;
+      margin: 0 auto;
+    }
+  }
+
+  #account_3 {
+    display: block;
+    margin-top: 20px;
+    border-right: 3px dotted $cpdred;
+    border-left: 3px dotted $cpdred;
+    border-radius: 20px;
+    
+    #account_3_data {
+      display: flex;
+      flex-flow: row wrap;
+      margin: 0 20px;
+      .account_3 {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: flex-start;
+        gap: 5px;
+        margin: 10px;
+        padding: 10px;
+        flex-basis: 40%;
+        flex-grow: 1;
+        flex-shrink: 2;
+        //width: 33%;
+        height: auto;
+        background-color: $fourth-color;
+        border-radius: $radiussmall;
+        box-shadow: $boxshadow;
+        >div {
+          display: flex;
+          flex-flow: row wrap;
+          justify-content: space-between;
+          padding: 0px;
+          border: solid;
+          >p{
+            width: 25%;
+            line-height: 25px;
+            font-size: $small;
+            padding-left: 5px;
+          }
+          div {
+            margin: 1px;
+            padding: 3px;
+            font-size: $small;
+            background-color: $cpdblue;
+            border-radius: 3px;
+            color: $secondary-color;
+            width: 60%;
+            text-align: center;
+          }
+        }
       }
     }
   }
-  #account_4_data {
-    display: flex;
-    margin: 0 20px;
+
+  #account_4 {
+    display: block;
+    margin-top: 20px;
+    border-right: 3px dotted $cpdred;
+    border-left: 3px dotted $cpdred;
+    border-radius: 20px;
+    
+    #account_4_data {
+      display: flex;
+      margin: 0 20px;
+    }
+    .account_4 {
+      display: flex;
+      flex: row nowrap;
+      justify-content: space-between;
+      flex-basis: 33%;
+      flex-grow: 1;
+      margin: 10px;
+      padding: 10px;
+      padding-top: 0px;
+      width: 33%;
+      height: 80px;
+      background-color: $fourth-color;
+      border-radius: $radiussmall;
+      box-shadow: $boxshadow;
+    }
+    p {
+      padding: 0px;
+      font-size: 14px;
+      margin: 10px 0 10px 0;
+    }
   }
-  .account_4 {
-    display: flex;
-    flex: row nowrap;
-    justify-content: space-between;
-    flex-basis: 33%;
-    flex-grow: 1;
-    margin: 10px;
-    padding: 10px;
+
+  #account_4_Box {
+    font-weight: bold;
+    font-size: 30px;
+    margin: auto auto;
+    margin-right: 20px;
+    width: 50%;
+    height: 50px;
+    /*border: 2px dotted black;*/
+    border-radius: 10px;
+    text-align: center;
+    align-items: center;
+    background-color: rgb(221, 155, 55, 0.2);
+    p {
+      margin: 0;
+      font-size: 2rem;
+      line-height: 50px;
+    }
+  }
+
+  #account_5 {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 100px;
+    border-right: 3px dotted $cpdred;
+    border-left: 3px dotted $cpdred;
+    border-radius: 20px;
+    
+    #account_5_data {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: flex-start;
+      margin: 0 30px 30px 30px;
+      font-size: $small;
+      gap:20px;
+      div p {
+        line-height: 0px; 
+        margin: 0 0 0 0;
+        padding: 15px 15px 15px 10px;
+        color: $secondary-color;
+        font-size: $small;
+        font-family:$primary-font;
+        background-color: $cpdblue;
+        //background: linear-gradient($first-color, $cpdblue );
+        border-radius: 10px 10px 0 0 ;  
+        //border: solid;
+        border-bottom: none;
+        //border-color: $cpdred; 
+      }
+      div div div {
+        padding: 10px;
+      }
+      #account_5_data_1{
+        width: 66%;
+        flex-basis: 66%;
+        flex-grow: 1;
+      }
+      #account_5_data_2{
+        width: 30%;
+        flex-grow: 2;
+      }
+      #account_5_data_3{
+        //max-height: 100px;
+        flex-grow: 2;
+        max-width: 30%;
+        
+        margin-bottom: 10px;
+        div div{
+          display: flex;
+          flex-flow: column wrap;
+          gap: 10px;
+        }
+      }
+    }
+  }
+
+  .account_5 {
+    margin: 0px;
+    margin-top: 10px;
+    padding: 0px;
     padding-top: 0px;
     width: 33%;
-    height: 80px;
+    height: auto;
     background-color: $fourth-color;
     border-radius: $radiussmall;
     box-shadow: $boxshadow;
-  }
-  p {
-    padding: 0px;
-    font-size: 14px;
-    margin: 10px 0 10px 0;
-  }
+    //border: solid $cpdblue-50;
+    
+    ul {
+      display: flex;
+        flex-flow: column nowrap;
+        justify-content:flex-start;
+        list-style: none;
+    }
 }
-
-#account_4_Box {
-  font-weight: bold;
-  font-size: 30px;
-  margin: auto auto;
-  margin-right: 20px;
-  width: 50%;
-  height: 50px;
-  /*border: 2px dotted black;*/
-  border-radius: 10px;
-  text-align: center;
-  align-items: center;
-  background-color: rgb(221, 155, 55, 0.2);
-  p {
-    margin: 0;
-    font-size: 2rem;
-    line-height: 50px;
-  }
-}
-
-#account_5 {
-  display: block;
-  margin-top: 20px;
-  margin-bottom: 100px;
-  border-right: 3px dotted $cpdred;
-  border-left: 3px dotted $cpdred;
-  border-radius: 20px;
-  >div:first-child{
-    display: flex;
-    justify-content: space-between;
-    margin-right: 30px;
-    p{
-      border: none;
-      font-size: $small;
-      &:hover {
-        color: $cpdred;
-        text-shadow: $text-shadow;
-      }
-    }
-  }
-  *{
-    //border:solid;
-  }
-  button{
-    margin-left: 30px;
-    margin-bottom: 10px;
-    width: auto;
-    display: block;
-  }
-  #account_5_data {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: flex-start;
-    margin: 0 30px 30px 30px;
-    font-size: $small;
-    gap:20px;
-    div p {
-      line-height: 0px; 
-      margin: 0 0 0 0;
-      padding: 15px 15px 15px 10px;
-      color: $secondary-color;
-      font-size: $small;
-      font-family:$primary-font;
-      background-color: $cpdblue;
-      //background: linear-gradient($first-color, $cpdblue );
-      border-radius: 10px 10px 0 0 ;  
-      //border: solid;
-      border-bottom: none;
-      //border-color: $cpdred; 
-    }
-    div div div {
-      padding: 10px;
-    }
-    #account_5_data_1{
-      width: 66%;
-      flex-basis: 66%;
-      flex-grow: 1;
-    }
-    #account_5_data_2{
-      width: 30%;
-      flex-grow: 2;
-    }
-    #account_5_data_3{
-      //max-height: 100px;
-      flex-grow: 2;
-      max-width: 66%;
-      
-      margin-bottom: 20px;
-      div div{
-        display: flex;
-        flex-flow: column wrap;
-        gap: 10px;
-      }
-    }
-  }
-}
-
-.account_5 {
-  margin: 0px;
-  margin-top: 10px;
-  padding: 0px;
-  padding-top: 0px;
-  width: 33%;
-  height: auto;
-  background-color: $fourth-color;
-  border-radius: $radiussmall;
-  box-shadow: $boxshadow;
-  //border: solid $cpdblue-50;
-  
-  ul {
-    display: flex;
-      flex-flow: column nowrap;
-      justify-content:flex-start;
-      list-style: none;
-  }
-}
-
-
-
 }
 @media (max-width: $phone){
   .account_2 {

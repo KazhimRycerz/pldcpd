@@ -41,11 +41,11 @@ const contactSchema = mongoose.Schema({
       required: false,
       default:""
    }, */
-   currentCompany: [{
+   currentCompany: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'company',
       default: null
-    }],
+    },
    professionalStatus: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'professionalStatus',

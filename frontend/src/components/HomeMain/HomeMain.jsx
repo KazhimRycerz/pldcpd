@@ -620,9 +620,6 @@ const HomeMain = () => {
       </section>
         <br />
         <br />
-       
-      {/* <div id="Content">
-      </div> */}
     </main>
   );
 };

@@ -68,40 +68,36 @@ useEffect(() => {
         </div> */}
         <div>
           <p>Expertise</p> 
-            <div className="output" id="fieldsOfExpertise">
-              <ul>
-                {authorsExpertise && authorsExpertise.length > 0 ? 
-                  (authorsExpertise.map((field, index) => (
-                    <li key={index} id="authorsExpertise">
-                      <span className="C">C</span> {field}
-                    </li>
-                    ))
-                  ) : (
-                    <li>No fields of expertise defined.</li>
-                    )
-                }
-              </ul>
-              </div>
+          <div className="output" id="fieldsOfExpertise">
+            <ul>
+              {authorsExpertise && authorsExpertise.length > 0 ? 
+                (authorsExpertise.map((field, index) => (
+                  <li key={index} id="authorsExpertise">
+                    <span className="C">C</span> {field}
+                  </li>
+                  ))
+                ) : (
+                  <li>No fields of expertise defined.</li>
+                  )
+              }
+            </ul>
+          </div>
         </div>
 
         <div> 
             <p>letzte Aktualisierung</p> 
             <div className="output" id="authorUpdate" >{Moment(authorsDetails.updatedOn).format("DD.MM.YYYY")}</div>
         </div> 
-        {/* <div> 
-            <p></p> 
-            <div id="authorUpdate"> </div>
-        </div> */}
-        {/* <div> 
-          <p>andere Themenvorschläge von diesem Autoren</p> 
-          <output id="courseEnd" >{Moment(courseData.endOfCourse).format("DD.MM.YYYY")}</output>
-        </div> */}
-        
+        <div> 
+          <p>weitere Angebote</p> 
+          <div className="output" id="authorsOffers" >hier kommt die Liste anderer Themen hin</div>
+        </div>
       </article>
+
       <div>
-          <h2></h2>
-          <button className="buttonBasics" /* id="buttonLernListe" */>Themenliste Autor</button>
-        </div> 
+        <h2></h2>
+        <button className="buttonBasics">Themenliste Autor</button>
+      </div> 
       
     </main>
   );

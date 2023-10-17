@@ -4,7 +4,7 @@ import { SectionsContext } from "../../context/SectionsContext.js";
 import { Link } from "react-router-dom";
 import "./LoginForm.scss";
 import Swal from "sweetalert2";
-import swal from "sweetalert";
+//import swal from "sweetalert";
 
 function LoginForm() {
   const { setButtonPos, navigate, gotoPage, isAuth, setIsAuth, logout} = useContext(SectionsContext)
@@ -16,8 +16,8 @@ function LoginForm() {
     const axiosResp = await axiosConfig.get(
       `http://localhost:4000/user/${respData}`
       );
-      /* const defSearch = axiosResp.data.location.toLowerCase();
-      return defSearch; */
+      //const defSearch = axiosResp.data.location.toLowerCase();
+      //return defSearch;
     };
 
   const handleSuccessfulLogin = async (respData) => {
@@ -29,7 +29,6 @@ function LoginForm() {
     //window.history.back();
     //navigate(-1);
     navigate(gotoPage)
-    //navigate("/home");
   };
 
   const logoutHandler = () => {
@@ -64,36 +63,10 @@ function LoginForm() {
       } else if (result.isDismissed) {
         navigate(-1);
       } else {
-        Swal.fire("Got away safely!");
+        Swal.fire("Nichts passiert. Got away safely!");
       }
     });
-    /* swal({
-      text: `Du bist aktuell als ${localStorage.userName} angemeldet. Möchtest du dich ausloggen oder als ein anderer Nutzer anmelden oder zurück?`,
-      buttons: {
-        abmelden: "ja, bitte ausloggen!",
-        neuanmelden:"ja, bitte als anderer Nutzer einloggen!",
-        backtomain: "nein, nur zurück",
-        andere: "Ich weiß nicht"      }
-      })
-      .then ((value)=>{
-        switch(value) {
-          case "abmelden":
-            logout()
-            setButtonPos("")
-            navigate("/home")
-            break;
-          case "neuanmelden":
-            logout()
-            setButtonPos("")
-            navigate("/login")
-            break;
-          case "backtomain":
-            navigate(-1)
-            break;
-          default:
-              swal("Got away safely!");
-            }
-      }) */
+    
     }
 
   const submitHandler = async (e) => {

@@ -10,7 +10,7 @@ import { HashLink as Link } from 'react-router-hash-link';
 
 const AboutTheProfessionMain = () => {
   
-  const { isAuth, setButtonPos, setAsidePos } = useContext(SectionsContext);
+  const { isAuth, setButtonPos, setAsidePos, setGotoPage } = useContext(SectionsContext);
   const [btnOpen, setBtnOpen] = useState(false);
   const buttonPosCheck = useCallback(() => {
     if (isAuth) {setButtonPos("showBut"); setAsidePos ("accountAside")
@@ -26,7 +26,8 @@ const AboutTheProfessionMain = () => {
 
   useEffect(() => {
     buttonPosCheck()
-  }, [buttonPosCheck]);
+    setGotoPage("/abouttheprofession")
+  }, [buttonPosCheck, setGotoPage]);
 
 
   return (

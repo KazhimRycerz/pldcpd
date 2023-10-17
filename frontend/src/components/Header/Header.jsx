@@ -12,18 +12,13 @@ const Header = () => {
   const { isAuth, buttonPos, setButtonPos, asidePos, setAsidePos, gotoPage, setGotoPage, navigate, logout } = useContext(SectionsContext);
   const [showMenue, setShowMenue] = useState(false);
   const [accountListShow, setAccountListShow] = useState("hideAccountList");
-  //const [isToggled, setIsToggled] = useState (false)
-  
+    
   const handleDropdownAccount =()=>{
     showMenue === true && setShowMenue(false)
     if (accountListShow === "hideAccountList" ) {
       setAccountListShow("showAccountList")
     } else {setAccountListShow("hideAccountList")}
-    /* setIsToggled(!isToggled)
-    console.log(isToggled)
-    isToggled === true ? setAccountListShow("showAccountList") : setAccountListShow("hideAccountList"); */
   }
-
   
   const handleAccountButton =()=> {
     isAuth && logout()
@@ -31,7 +26,7 @@ const Header = () => {
     ? setAsidePos("accountAside hideAccount")
     : setAsidePos("accountAside");
 
-    console.log("buttonPosition:", buttonPos, "isAuth", isAuth)
+    //console.log("buttonPosition:", buttonPos, "isAuth:", isAuth)
            if (!isAuth && buttonPos === "") {setButtonPos("showBut") //ok
     } else if (!isAuth && buttonPos === "hideBut") {setButtonPos("showBut")
     } else if (!isAuth && buttonPos === "showBut") {setButtonPos("hideBut")

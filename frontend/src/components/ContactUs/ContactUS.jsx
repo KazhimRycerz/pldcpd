@@ -24,10 +24,10 @@ export default function EMailUs() {
       `http://localhost:4000/user/${userId}`
       );
       const userData = axiosResp.data;
-    console.log(userData)
-    setFirstNameSender(userData.firstName)
-    setLastNameSender(userData.lastName)
-    setEmailSender(userData.eMail)
+      //console.log(userData)
+      setFirstNameSender(userData.firstName)
+      setLastNameSender(userData.lastName)
+      setEmailSender(userData.eMail)
   };
   
   
@@ -106,7 +106,7 @@ export default function EMailUs() {
         title: 'Bestätigung',
         text: 'Ihre E-Mail wurde erfolgreich ausgeliefert',
         icon: 'info',
-        timer: 3000,
+        timer: 5000,
         //showCancelButton: true,
       });
     } catch (error) {

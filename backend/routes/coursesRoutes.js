@@ -1,5 +1,5 @@
 import express, { Router } from "express"
-import { getAllCourses, addCourse, updateCourse, getCourse} from '../controller/coursesController.js'
+import { getAllCourses, addCourse, updateCourse, getCourse, getFilteredCourselist} from '../controller/coursesController.js'
 
 
 const router = Router()
@@ -12,6 +12,8 @@ const router = Router()
 router.route("/")
     .get(getAllCourses )
     .post(addCourse);
+router.route("/courselist")
+    .get(getFilteredCourselist )
 router.route("/:id")
     .patch(updateCourse)
     .get(getCourse);

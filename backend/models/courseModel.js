@@ -31,6 +31,11 @@ const courseSchema = mongoose.Schema({
       type:String,
       default: ""
     },
+    courseLanguage: [{
+      type: Array,
+      default: "",
+      enum: ["English", "German", "French", "Italian", "Spanish"]
+    }],
    cpdBasicPoints: {
       type: Number,
       default:"",
