@@ -8,6 +8,7 @@ import PersonalAccount from "./pages/PersonalAccount/PersonalAccount.jsx";
 import CareerPlanning from "./pages/CareerPlanning/CareerPlanning.jsx";
 import CourseListPage from "./pages/CourseListPage/CourseListPage.jsx";
 import CoursePage from "./pages/CoursePage/CoursePage.jsx";
+import CourseAddPage from "./pages/CourseAddPage/CourseAddPage.jsx";
 import AuthorsPage from "./pages/AuthorsPage/AuthorsPage.jsx";
 import Login from "./pages/LoginPage/Login.jsx";
 import ContactUs from "./pages/ContactUs/ContactUs.jsx";
@@ -45,6 +46,7 @@ function App() {
           <Route path="/personalaccount" element={<PersonalAccount />} />
           <Route path="/careerplanning" element={<CareerPlanning />} />
           <Route path="/coursepage" element={<CoursePage />} />
+          <Route path="/courseaddpage" element={<CourseAddPage />} />
           <Route path="/courselistpage" element={<CourseListPage />} />
           <Route path="/authorspage" element={<AuthorsPage />} />
           <Route path="/sandbox" element={<Sandbox />} />

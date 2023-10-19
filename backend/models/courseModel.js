@@ -2,65 +2,73 @@ import mongoose from 'mongoose';
 import ContactModel from './contactModel.js';
 
 const courseSchema = mongoose.Schema({
-   topic: {
+   courseTopic: {
       type: String,
-      default: "",
+      //default: "",
       required: true,
+      validate: {
+         validator: (courseTopic) => courseTopic.length <= 50,
+         message: (courseTopic) =>  `Der Titel ist zu lang. Bitte kürzen`// input beinhaltet die Eingabe des Nutzers
+         }
    },
    author: [
       {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "contact",
-      default: [],
+         type: mongoose.Schema.Types.ObjectId,
+         ref: "contact",
+         default:  [],
+         //required: true,
       }
    ],
-   courseType: {
+   topicField:{
       type: String,
-      default: "",
-      enum: ["Literatur-Fachbuch","Literatur-Fachartikel", "OnlineSeminar", "LifeSeminar", "Workshop", "Vortrag",""],
+      //default: "",
       required: true,
    },
-      courseContent: {
+   courseType: {
       type: String,
-      validate: {
-         validator: (courseContent) => body("courseContent").isLength({ max: 300 }),
-         message: (courseContent) =>  `Die Beschreibung ist zu lang. Bitte kürzen`// input beinhaltet die Eingabe des Nutzers
-       }
+      enum: ["Fachbuch","Fachartikel", "OnlineSeminar", "LifeSeminar", "Workshop", "Vortrag",""],
+      required: true,
+   },
+   courseContent: {
+   type: String,
+   validate: {
+      validator: (courseContent) => courseContent.length <= 500,
+      message: (courseContent) =>  `Die Beschreibung ist zu lang. Bitte kürzen`// input beinhaltet die Eingabe des Nutzers
+      }
    },
    courseImage: {
-      type:String,
-      default: ""
+      type: Array,
+      default: []
     },
     courseLanguage: [{
       type: Array,
-      default: "",
-      enum: ["English", "German", "French", "Italian", "Spanish"]
+      default: [],
+      enum: ["English", "German", "French", "Italian", "Spanish", "Chinese"]
     }],
    cpdBasicPoints: {
       type: Number,
-      default:"",
+      default: 0,
       required: true
    },
    cpdAdditionalPoints: {
       type: Number,
-      default:"",
+      default: 0,
       required: true
-   },
-   topicField:{
-      type: String,
-      default: "",
-      required: true,
    },
    linkToProvider: {
       type: String,
       default:"",
-      required: true,
+      //required: true,
    },
    professionalLevel: {
       type: String,
       required: true,
+      default:"0",
+      //enum:"0",
    },
-   active: Boolean,
+   active: {
+      type:Boolean,
+      default: true},
    createdOn:{
       type: Date,
       immutable: true,
@@ -68,11 +76,11 @@ const courseSchema = mongoose.Schema({
    },
    startDateOfCourse: {
       type: Date,
-      default: "",
+      default: 0,
    },
    endDateOfCourse: {
       type: Date,
-      default: "",
+      default: 0,
    },
    updatedOn: Date,
    updatedBy: {

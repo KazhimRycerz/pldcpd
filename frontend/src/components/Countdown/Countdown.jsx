@@ -40,7 +40,7 @@ import "./Countdown.scss";
         <p>{countdown.months} {countdown.months !== 1 ? "Monate" : "Monat"}</p> 
         <p>{countdown.days} {countdown.days !== 1 ? "Tage" : "Tag"}</p> 
         <p>{countdown.hours} {countdown.hours !== 1 ? "Stunden" : "Stunde"}</p> 
-        <p>{countdown.minutes}m {countdown.seconds}s </p>       
+        <p>{countdown.minutes}:{countdown.seconds} </p>       
       </div>
     </>
   );

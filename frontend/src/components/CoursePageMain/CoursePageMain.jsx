@@ -49,7 +49,7 @@ useEffect(() => {
       <article id="courseArticle">
         <div className="courseBoxes" id="boxAutor"> 
             <p>Kursthema</p> 
-            <div className="output" id="courseTopic">{courseData.topic}</div>
+            <div className="output" id="courseTopic">{courseData.courseTopic}</div>
         </div>
         <div className="courseBoxes"> 
               <p>Autoren</p> 

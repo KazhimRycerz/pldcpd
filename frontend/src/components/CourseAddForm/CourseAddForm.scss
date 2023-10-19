@@ -1,0 +1,80 @@
+@import "../../scss/global.scss";
+
+#courseAddForm{
+  width: 80%;
+  max-width: 1280px;
+  min-height: 600px;
+  margin: 250px auto 0;
+  box-shadow: $cpdblue 0px 0px 100px 50px inset, 0px 0px 15px 5px white;
+  //border: solid 2px white;
+  //font-family: $primary-font;
+  h2 {
+    display: block;
+    margin: 50px auto;
+    padding: 20px;
+    width:fit-content;
+    font-size: $small;
+    text-align: center;
+    color: $cpdblue;
+    border-left: dotted 3px $cpdred;
+    border-right: dotted 3px $cpdred;
+    border-radius:  20px ;
+    }
+  #courseSubmitForm {
+    display: flex;
+    flex-flow: column nowrap;
+    //justify-content: space-around;
+    gap: 10px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem;
+    width: 80%;
+    //min-width: 400px;
+    border-radius: $radiussmall;
+    box-shadow: $boxshadow;
+    background-color: $first-color;
+    //border: solid;
+    div{
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: flex-end;
+      gap: 0px;
+      border: solid;
+      label {
+        //padding-left: 20px;
+        flex-basis: 40%;
+        //margin-left: 20px;
+        align-items: flex-start;
+      }
+      input, textarea {
+        border: solid 2px;
+        height: 35px;
+        padding: 10px;
+        border-radius: 10px;
+        font-family: $primary-font;
+        font-size: $normal;
+        //width: 25%;
+        flex-basis: 60%;
+        background-color: white;
+        &:focus {
+          color: $cpdred;
+          &::placeholder {
+            color: $cpdred;
+          }
+        }
+      }
+      #loginButton {
+        max-width: 150px;
+        color: $cpdblue;
+        padding: 5px;
+        border-radius: 10px;
+        padding: 10px;
+        :active{
+          border: solid 5px;
+        }
+      }
+    }
+  }
+
+  
+}
+

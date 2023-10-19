@@ -47,40 +47,42 @@
     margin-right: 30px;
     height: 30px;
     //border: solid;
-    h3{
-      //border: solid;
-    }
-    p{
-      position: relative;
-      bottom: 0;
-      font-size: $small;
-      //border: solid;
-      &:hover {
-        color: $cpdred;
-        text-shadow: $text-shadow;
-      }
-    }
-    img{
-      width: 10vw;
-      position:relative;
-      left: 0;
-      bottom: 100px;
-      height: 130px;
-      width: 100px;
-      overflow:hidden;
-      //border: solid;
-    } 
   }
-
+  
   #account_1 {
     display: block;
     margin-top: 20px;
     border-right: 3px dotted $cpdred;
     border-left: 3px dotted $cpdred;
     border-radius: 20px;
+    div{
+      h3{
+        //border: solid;
+      }
+      p{
+        position: relative;
+        bottom: 0;
+        font-size: $small;
+        //border: solid;
+        &:hover {
+          color: $cpdred;
+          text-shadow: $text-shadow;
+        }
+      }
+      img{
+        width: 10vw;
+        position:relative;
+        left: 0;
+        bottom: 100px;
+        height: 130px;
+        width: 100px;
+        overflow:hidden;
+        //border: solid;
+      } 
+    }
     
       div div div{
-        border: solid;
+        //border: solid;
       }
 
     #account_1_data {
@@ -112,7 +114,10 @@
           display: flex;
           flex-flow: row nowrap;
           justify-content: space-between;
-          //border: solid;
+          /* border-right: dotted $cpdred;
+          border-left: dotted $cpdred;
+          border-radius: 5px; */
+          border: solid $cpdblue;
           p {
             //line-height: 1rem;
             font-size: $small;
@@ -121,25 +126,23 @@
             vertical-align: middle;
             min-height: 30px;
             padding: 5px;
-            //border: solid;
+            //border: solid 02px;
           }
           .output {
             line-height: 25px;
             font-size: $small;
             text-align: center;
-            padding: 0 px;
+            padding: 0px;
             width: 75%;
             height: auto;
-            //border: solid;
-            border-radius: $radiusxsmall;
+            border: solid black;
+            //border-radius: $radiusxsmall;
             color: $secondary-color;
-            background-color: $third-color;
-            background-color: $cpdred;
             background-color: $cpdblue;
             opacity: 1;
             p{
               //color: white;
-              //border: solid;
+              border: none;
               width: 100%;
             }
           }
@@ -159,7 +162,11 @@
               height: auto;
               border-bottom: solid $secondary-color 1px;
               //border-radius: 3px;
+              &:last-child{
+                border-bottom: none;
+              }
             }
+            
           }
         }
         #account_1_data > div:nth-of-child(2) {
@@ -293,7 +300,7 @@
     gap: 0px;
     //margin: 0 auto;
     border: solid;
-    padding: 1px;
+    padding: 0px;
     .account_pers_data {
       display: block;
       color: $secondary-color;
@@ -307,7 +314,7 @@
       min-width: 70px;
       height: 30px;
       border: none;
-      border-radius: $radiusxsmall;
+      //border-radius: $radiusxsmall;
       font-size: $xlarge;
       padding: 2px;
       margin: 0 auto;
@@ -369,14 +376,16 @@
             padding-left: 5px;
           }
           div {
-            margin: 1px;
+            margin: 0px;
             padding: 3px;
             font-size: $small;
             background-color: $cpdblue;
-            border-radius: 3px;
+            border: none;
+            //border-radius: 3px;
             color: $secondary-color;
             width: 60%;
             text-align: center;
+
           }
         }
       }
@@ -492,7 +501,7 @@
   }
 
   .account_5 {
-    margin: 0px;
+    margin: px;
     margin-top: 10px;
     padding: 0px;
     padding-top: 0px;

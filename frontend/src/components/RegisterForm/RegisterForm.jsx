@@ -78,7 +78,14 @@ export default function RegisterForm() {
     try {
       setHasRegistered(false);
       setIsLoading(true);
-      const axiosResp = await axiosConfig.post("/user", data);
+      const axiosResp = await axiosConfig.post("/user", 
+        data,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       console.debug("axiosResp.data:", axiosResp.data);
       setIsLoading(false);
       if (axiosResp.data.error) {

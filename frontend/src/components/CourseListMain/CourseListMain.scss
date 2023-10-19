@@ -26,14 +26,77 @@
     border-radius: $radiuslarge;
     border-color: $cpdred;
     overflow-x:scroll;
-    p{
-      //border:solid;
-      //display: inline;
-      text-align: right;
-      margin: 10px 20px 0 20px;
-      &:hover {
+    >div{
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content:flex-end;
+      gap: 20px;
+      padding: 0px;
+      width: 85%;
+      margin: 0px auto;
+      height: min-content;
+      //border: solid;
+      ul{
+        display: flex;
+        flex-flow: row nowrap;
+        position: relative;
+        bottom: -03px;
+        list-style-type: none;
+        width: auto;
+        height: min-content;
+       //border: solid;
+        div{
+          display: flex;
+          flex-flow: row nowrap;
+          border: dotted;
+          border-radius:2px;
+          position: relative;
+          bottom: 3px;
+          margin: 0 0 0 5px;
+          li{
+            padding: 2px 5px;
+            min-width: 50px;
+            &:after{
+              content: ",";
+            }
+            &:last-child::after{
+              content: "";
+            }
+          }
+        }
+      }
+      #sortItem {
+        position: relative;
+        top: 0px;
+        background: transparent;
+        margin: 0 0 0 5px;
+        padding: 0 ;
+        font-size: $small;
+        border: dotted;
+        border-radius:2px;
+        height: 25px;
+        &:active{
+          border: none;
+        }
+        &:hover {
+          color: $cpdred;
+          text-shadow: $text-shadow;
+        }
+      }
+      p select{
+        //border:solid;
+        //display: inline;
+        text-align: right;
+        margin: 10px 20px 0 20px;
+        //border: solid;
+        &:hover {
+          color: $cpdred;
+          text-shadow: $text-shadow;
+        }
+      }
+      #filterLöschen:hover {
         color: $cpdred;
-        text-shadow: $text-shadow;
+          text-shadow: $text-shadow;
       }
     }
   }
@@ -43,6 +106,7 @@
     margin: 0 auto;
     font-size: $small;
     padding: 10px;
+    width: 80%;
   
     //text-align: center;
     /* border-width: 1rem;
@@ -109,23 +173,29 @@
        content: 'C ';
        font-family: VIA-Verlag;
        vertical-Align: -1px;
+       text-shadow: $text-shadow;
      }
     #author:hover, #topic:hover {
-      background-color: $first-color;
+      //background-color: $first-color;
       color: $cpdred;
-      padding: 5px;
-      margin-left: -5px;
-      width: calc(100% + 10px);
-      font-size: 16px;
-      box-shadow: $btnshadowsmall;
+      //padding: 5px;
+      //margin-left: -5px;
+      //width: calc(100% + 10px);
+      //font-size: 16px;
+      //box-shadow: $btnshadowsmall;
       border-radius: 7px;
-      /* #authorsLink:hover {
-        //color: $cpdred;
-      } */
+      #authorsLink:hover,#topicLink:hover {
+        color: $cpdred;
+        text-shadow: $text-shadow;
+      }
     }
-    #infoLink {
+    #infoLink, #providerLink {
       text-align: center;
       margin: 0 auto;
+      &:hover {
+        color: $cpdred;
+        text-shadow: $text-shadow;
+      }
     }
   }
 }

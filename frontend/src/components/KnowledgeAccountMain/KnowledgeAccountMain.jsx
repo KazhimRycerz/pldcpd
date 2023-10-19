@@ -79,14 +79,14 @@ const  KnowledgeAccountMain = ()=>{
             <div id="account_1_data">
                <div>
                   <div>
-                     <p>Ihr Beruf:</p> 
+                     <p>Ihr Beruf</p> 
                     {/* {knowledgeData ? (<div className="output" id="profession">{knowledgeData.profession}</div>) : (<div className="output" id="profession">(0)</div>)} */}
                     <div className="output" id="profession">
                      {knowledgeData ? <p>{knowledgeData.profession}</p> : <p>Ihr Beruf wurde noch nicht aktualisiert</p>}
                     </div>
                   </div>
                   <div>
-                     <p>aktuelle Firma:</p>
+                     <p>aktuelle Firma</p>
                      {knowledgeData ? (<div className="output" id="company"><p>{companyData.companyName}</p> <p>{companyData.city} / {companyData.countryCode}</p> <p>{companyData.homepage}</p></div>) : (<div className="output" id="company"><p>Ihre Firma wurde noch nicht eingegeben</p></div>)}
                   </div>
                   {/* <div>
@@ -102,8 +102,10 @@ const  KnowledgeAccountMain = ()=>{
                      </div> 
                   </div> 
                   <div><p></p></div>  
-                     <div>
-                        {knowledgeData ? <p id="account_1_p">{knowledgeData.careerPathStatus}</p> : <p></p>}
+                     <div className="output" id="myCPDStatus">
+                        <div>
+                           {knowledgeData ? <p id="account_1_p">{knowledgeData.careerPathStatus}</p> : <p></p>}
+                        </div>
                      </div>
                </div>
 

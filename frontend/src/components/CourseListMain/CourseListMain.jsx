@@ -8,7 +8,7 @@ import baseUrl from "../../util/constants";
 import Moment from "moment";
 import Countdown from "../Countdown/Countdown.jsx";
 
-const CourseListMain = () => {
+const CourseAddMain = () => {
   const { isAuth, setGotoPage, setButtonPos, setAsidePos, knowledgeData  } = useContext(SectionsContext);
   const [coursesData, setCoursesData] = useState([])
   const [authorsData, setAuthorsData] = useState([])
@@ -24,39 +24,46 @@ const CourseListMain = () => {
   const [levelFilter, setLevelFilter] = useState('');
   const [sprachFilter, setSprachFilter] = useState('');
 
+  const [filterElements,setFilterElements] = useState(["keine"]);
+  const [sortElement, setSortElement] = useState('');
+
   const cpdStartDate = knowledgeData && new Date(knowledgeData.cpdActiveSince);
-  console.log(cpdStartDate)
+  //console.log(cpdStartDate)
   
   const buttonPosCheck = ()=>{
     if (isAuth) {setButtonPos("showBut"); setAsidePos ("accountAside")
     }
-  }
-
-/* const handleThemenfeldFilter = (e) => {
-  setThemenfeldFilter(e.target.value);
-}; */
-const handleFilter = (e, setFilterFunc) => {
-setFilterFunc(e.target.value)
 }
- const resetFilter= () => {
+
+const handleFilter = (e, setFilterFunc) => {
+  setFilterFunc(e.target.value)}
+
+const resetFilter= () => {
   setAutorenFilter("")
   setThemenFilter("")
   setKursartFilter("")
   setLevelFilter("")
   setSprachFilter("")
- }
+  setSortElement("")
+  setFilterElements([])
+}
 
 const searchCourseListData = async () => {
+  const filterItems = {
+    autor: autorenFilter,
+    themenfeld: themenFilter,
+    kursart: kursartFilter,
+    kursstart: kursstartFilter,
+    level: levelFilter,
+    sprache: sprachFilter,
+    sortierung: sortElement,
+  };
   
-    const filterItems = {
-      autor: autorenFilter,
-      themenfeld: themenFilter,
-      kursart: kursartFilter,
-      kursstart: kursstartFilter,
-      level: levelFilter,
-      sprache: sprachFilter,
-    };
-    //console.log(filterItems)
+  const filterList = Object.entries(filterItems)
+    .filter(([key, value]) => value !== "")
+    .map(([key, value]) => key.charAt(0).toUpperCase() + key.slice(1));
+  setFilterElements(filterList)
+  //console.log(filterList);
     
   try {
     const axiosResp = await axiosConfig.get(`${baseUrl}/courses/courselist`, {params: filterItems}
@@ -114,17 +121,33 @@ useEffect(() => {
   searchCourseListData();
   buttonPosCheck()
   searchListElements()
-}, [themenFilter, kursartFilter, autorenFilter, kursstartFilter, levelFilter, sprachFilter]);
+}, [ sortElement, themenFilter, kursartFilter, autorenFilter, kursstartFilter, levelFilter, sprachFilter]);
 
   return (
     <main id="courseListMain"> {/* MainStyling in global */}
       <h2 id="courseListHead">Übersicht aller aktuellen Kursangebote</h2>
       <form>
-        {/* <p>sie können nch Ihren Bedürfnissen filtern...</p> */}
-        <p onClick={resetFilter}>
-          <span className="C">C </span> 
-          Filter löschen
-        </p>
+        <div>
+          {/* <p>sie können nch Ihren Bedürfnissen filtern...</p> */}
+          {/* <p>gesetzte Filter: {filterElements}</p> */}
+          <ul>gesetzte Filter: {filterElements.length >= 1 ? <div>{filterElements.map((value, index) => (
+                    <li key={index}> {value}</li>
+                  ))}</div> : <div><li>ohne Filter</li></div>}
+          </ul>
+          
+          <p>sortiert nach: 
+            <select 
+            name="sortItem"  
+            value={sortElement}
+            onChange={(e) => setSortElement(e.target.value)}
+            id="sortItem">
+              <option value="">nicht sortiert</option>
+              <option value="Kursstart"> <span className="C">C </span> Kursstart</option>
+              <option value="Level"><span className="C">C </span> Level</option>
+            </select></p>
+                            
+          <p id="filterLöschen" onClick={resetFilter}><span className="C">C </span>Filter löschen</p>
+        </div>
         <table id="tableCourseList">
           <colgroup>
             <col width="10%" />
@@ -162,7 +185,7 @@ useEffect(() => {
               </th>
               <th>
                 <select 
-                name="themenFilter" 
+                name="Themenfeld" 
                 value={themenFilter} 
                 onChange={(e) => handleFilter(e, setThemenFilter)} id="themenFilter">
                   <option value="">Themenfeld</option>
@@ -176,7 +199,7 @@ useEffect(() => {
                 </select>
               </th>
               <th>
-                <select name="kursartFilter" value={kursartFilter} /* onChange={handleKursartFilter}  */onChange={(e) => handleFilter(e, setKursartFilter)} id="kursartFilter">
+                <select name="Kursart" value={kursartFilter} /* onChange={handleKursartFilter}  */onChange={(e) => handleFilter(e, setKursartFilter)} id="kursartFilter">
                   <option value="">Kursart</option>
                   {listOfKursart.map((value, index) => (
                     <option key={index}>{value}</option>
@@ -189,7 +212,7 @@ useEffect(() => {
               </th>
               <th>
                 <select 
-                name="kursstartFilter" 
+                name="Kurstart" 
                 value={kursstartFilter} 
                 onChange={(e) => handleFilter(e, setKursstartFilter)}
                 id="kursstartFilter">
@@ -200,7 +223,7 @@ useEffect(() => {
                 </select>
               </th>
               <th>
-                <select name="Filter" id="Filter">
+                <select name="Kursende" id="Filter">
                   <option value="">Kursende</option>
                   <option value="Art">Art</option>
                   <option value="Datum">Datum</option>
@@ -209,7 +232,7 @@ useEffect(() => {
               </th>
               <th>
                 <select 
-                name="sprachFilter" 
+                name="Sprache" 
                 value={sprachFilter} 
                 onChange={(e) => handleFilter(e, setSprachFilter)} 
                 id="sprachFilter">
@@ -227,7 +250,7 @@ useEffect(() => {
               <th>CPD plus</th>
               <th>
                 <select 
-                name="levelFilter" 
+                name="Level" 
                 onChange={(e) => handleFilter(e, setLevelFilter)}
                 id="levelFilter"
                 title="1 = beginner, 2 = student, 3 = newly qualified lighting designer">
@@ -256,7 +279,7 @@ useEffect(() => {
                   <td className="larger">
                     <li id="topic">
                       <Link to="/coursepage" state= {course._id} id="topicLink">
-                      {course.topic}
+                      {course.courseTopic}
                       </Link>
                     </li>
                   </td>
@@ -285,7 +308,7 @@ useEffect(() => {
                   <td>{course.cpdBasicPoints}</td>
                   <td>{course.cpdAdditionalPoints}</td>
                   <td>{course.professionalLevel}</td>
-                  <td><a href={course.linkToProvider} target="_blank" rel="noopener noreferrer">{course.linkToProvider}</a></td>
+                  <td><a href={course.linkToProvider} id="providerLink" target="_blank" rel="noopener noreferrer">{course.linkToProvider}</a></td>
                   <td><Link to="/coursepage" state= {course._id} className="C" id="infoLink"><p>C</p></Link></td>
                   </tr>
                   )
@@ -306,4 +329,5 @@ useEffect(() => {
     </main>
   );
 };
-export default CourseListMain;
+
+export default CourseAddMain;
