@@ -4,7 +4,7 @@
   width: 80%;
   max-width: 1280px;
   min-height: 600px;
-  margin: 250px auto 0;
+  margin: 250px auto 100px;
   box-shadow: $cpdblue 0px 0px 100px 50px inset, 0px 0px 15px 5px white;
   //border: solid 2px white;
   //font-family: $primary-font;
@@ -25,7 +25,7 @@
     flex-flow: column nowrap;
     //justify-content: space-around;
     gap: 10px;
-    margin: 0 auto;
+    margin: 0 auto 100px;
     padding: 1.5rem 1rem;
     width: 80%;
     //min-width: 400px;
@@ -33,34 +33,44 @@
     box-shadow: $boxshadow;
     background-color: $first-color;
     //border: solid;
-    div{
+    >div{
       display: flex;
       flex-flow: row nowrap;
       justify-content: flex-end;
       gap: 0px;
-      border: solid;
+      >div{
+        border: solid;
+      }
       label {
-        //padding-left: 20px;
+        border: solid;
+        padding-left: 10px;
         flex-basis: 40%;
         //margin-left: 20px;
         align-items: flex-start;
       }
+      #autorenSucheLabel{
+        border: none;
+      }
       input, textarea {
-        border: solid 2px;
+        border: solid 1px;
         height: 35px;
         padding: 10px;
-        border-radius: 10px;
+        border-radius: 0px;
         font-family: $primary-font;
         font-size: $normal;
         //width: 25%;
         flex-basis: 60%;
-        background-color: white;
+        background-color: $fourth-color;
         &:focus {
           color: $cpdred;
           &::placeholder {
             color: $cpdred;
           }
         }
+      }
+      textarea{
+        height:fit-content;
+        min-height: 100px;
       }
       #loginButton {
         max-width: 150px;
@@ -69,12 +79,84 @@
         border-radius: 10px;
         padding: 10px;
         :active{
-          border: solid 5px;
+          border: solid 2px;
         }
       }
     }
-  }
-
-  
+    #autorenauswahl, #sprachauswahl{
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: flex-start; 
+      *{
+        //border:solid;
+      }
+      >div:first-child {
+        width: 40%;
+        label{
+          width:100%;
+          //margin-bottom: 20px;
+        }
+        #sucheAutor{
+          margin: 5px 0 0 5px;
+          width: 90%;
+        }
+      }
+      >div:last-child{
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        flex-basis: 60%;
+        border: solid 2px;
+        border-radius: 0px;
+        #kursAutor, #kursSprache{
+          padding: 10px;
+          width: 50%;
+          display: inline;
+          //background-color: $fourth-color;
+        }
+        #authorsAvailableListToSave, #sprachListToSave{
+          width: 50%;
+          list-style-type: none;
+          font-size: $small;
+          display: inline;
+          padding: 10px;
+          overflow: scroll;
+          background-color: $fourth-color;
+        }
+      }
+      #kursSprache{
+        max-width: 50%;
+      }
+    }
+    
+    #buttonBox {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: flex-end;
+      gap: 20px;
+      //border: solid;
+      input{
+        vertical-align: middle;
+        width: 60%;
+        height: 40px;
+        max-width: 120px;
+        margin: 0px ;
+        font-size: $xsmall;
+        padding: 10px;
+        background-color: $first-color;
+        color: $cpdblue;
+        box-shadow: $btnshadow;
+        border-radius: $radiussmall;
+        text-decoration: none;
+        border: none;
+        &:hover {
+          background-color: $cpdblue-10;
+        }
+        &:active {
+          background-color: white;
+        }
+      }
+    }
+  } 
 }
 

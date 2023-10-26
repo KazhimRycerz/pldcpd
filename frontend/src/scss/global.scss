@@ -120,12 +120,14 @@ main {
   border-radius: $radiussmall;
   text-decoration: none;
   border: none;
+  &:hover{
+    background-color: $cpdblue-10;
+  }
+  &:active {
+    background-color: white;
+  }
 }
-.buttonBasics:hover {
-  background-color: $cpdblue-10;
-  //color: $first-color;
-  //text-shadow: $text-shadow;
-}
+
 /* .buttonBasics:focus {
   background-color: $cpdred;
 } */
@@ -176,7 +178,13 @@ background: blue;
     background-color: $cpdblue-10;
   }
 }
+.swal2-popup{
+  background: $first-color;
+  box-shadow: $mainshadow;
+  border-radius: 20px;
+  width: 60%;
 
+}
 /* .containerBox{
   background: aqua;
 } */
@@ -190,7 +198,7 @@ background: blue;
 .actionButtons{
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-around;
+  justify-content: space-between;
   gap: 0px;
 }
     

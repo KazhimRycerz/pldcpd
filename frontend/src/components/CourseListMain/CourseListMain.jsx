@@ -21,6 +21,7 @@ const CourseAddMain = () => {
   const [themenFilter, setThemenFilter] = useState("");
   const [kursartFilter, setKursartFilter] = useState('');
   const [kursstartFilter, setKursstartFilter] = useState('');
+  const [kursendeFilter, setKursendeFilter] = useState('');
   const [levelFilter, setLevelFilter] = useState('');
   const [sprachFilter, setSprachFilter] = useState('');
 
@@ -54,9 +55,11 @@ const searchCourseListData = async () => {
     themenfeld: themenFilter,
     kursart: kursartFilter,
     kursstart: kursstartFilter,
+    kursende: kursendeFilter,
     level: levelFilter,
     sprache: sprachFilter,
     sortierung: sortElement,
+    //active: true,
   };
   
   const filterList = Object.entries(filterItems)
@@ -142,8 +145,8 @@ useEffect(() => {
             onChange={(e) => setSortElement(e.target.value)}
             id="sortItem">
               <option value="">nicht sortiert</option>
-              <option value="Kursstart"> <span className="C">C </span> Kursstart</option>
-              <option value="Level"><span className="C">C </span> Level</option>
+              <option value="Kursstart">Kursstart</option>
+              <option value="Level">Level</option>
             </select></p>
                             
           <p id="filterLöschen" onClick={resetFilter}><span className="C">C </span>Filter löschen</p>

@@ -7,7 +7,7 @@ const courseSchema = mongoose.Schema({
       //default: "",
       required: true,
       validate: {
-         validator: (courseTopic) => courseTopic.length <= 50,
+         validator: (courseTopic) => courseTopic.length <= 100,
          message: (courseTopic) =>  `Der Titel ist zu lang. Bitte kürzen`// input beinhaltet die Eingabe des Nutzers
          }
    },
@@ -15,10 +15,10 @@ const courseSchema = mongoose.Schema({
       {
          type: mongoose.Schema.Types.ObjectId,
          ref: "contact",
-         default:  [],
-         //required: true,
-      }
-   ],
+         /* default:[], */
+         required: true,
+      }]
+   ,
    topicField:{
       type: String,
       //default: "",
@@ -38,13 +38,13 @@ const courseSchema = mongoose.Schema({
    },
    courseImage: {
       type: Array,
-      default: []
+      default: [],
     },
-    courseLanguage: [{
+    courseLanguage: {
       type: Array,
       default: [],
-      enum: ["English", "German", "French", "Italian", "Spanish", "Chinese"]
-    }],
+      //enum: ["English", "German", "French", "Italian", "Spanish", "Chinese"]
+    },
    cpdBasicPoints: {
       type: Number,
       default: 0,
@@ -68,7 +68,8 @@ const courseSchema = mongoose.Schema({
    },
    active: {
       type:Boolean,
-      default: true},
+      default: true
+   },
    createdOn:{
       type: Date,
       immutable: true,
@@ -76,11 +77,11 @@ const courseSchema = mongoose.Schema({
    },
    startDateOfCourse: {
       type: Date,
-      default: 0,
+      default: null,
    },
    endDateOfCourse: {
       type: Date,
-      default: 0,
+      default: null,
    },
    updatedOn: Date,
    updatedBy: {

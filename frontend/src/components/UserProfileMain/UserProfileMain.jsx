@@ -23,7 +23,7 @@ export default function UserProfilMain() {
     const axiosResp = await axiosConfig.get(
       `http://localhost:4000/user/${userId}`
     );
-    const data = axiosResp.data;
+    /* const data = axiosResp.data;
     setUserData(data);
     if (!myEvents && axiosResp.data.myEvents[0]){      
       setMyEvents(axiosResp.data.myEvents)
@@ -33,7 +33,7 @@ export default function UserProfilMain() {
     }
     if (!myWatched && axiosResp.data.watchedEvents[0]){
       setMyWatched(axiosResp.data.watchedEvents)
-    }
+    } */
   };
 
   useEffect(() => {
@@ -353,7 +353,7 @@ export default function UserProfilMain() {
               Zuklappen
             </button>
           )}
-        </div>
+        </div> */}
 
         {userDetails ? (
           <div id="dataUser">
@@ -394,19 +394,22 @@ export default function UserProfilMain() {
               </li>
             </ul>
           </div>
-        ) : null}
-        <div id="vorletztesDiv">
-          <h4>Eigene Veranstaltung Erstellen</h4>
-          <NavLink to={`/event-form`} className="button-green ">
-            Hier
-          </NavLink>
-        </div>
-        <div id="abmelden">
-          <button className="button-green" onClick={logout}>
-            Abmelden
-          </button>
-        </div>
-      </div> */}
+        ) : null
+      }
+
+      <div id="vorletztesDiv">
+        <h4>Eigene Veranstaltung Erstellen</h4>
+        <NavLink to={`/event-form`} className="button-green ">
+          Hier
+        </NavLink>
+      </div>
+      
+      <div id="abmelden">
+        <button className="button-green" onClick={logout}>
+          Abmelden
+        </button>
+      </div>
+      
     </div>
   );
 }

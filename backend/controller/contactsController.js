@@ -6,7 +6,8 @@ export const getAllContacts = async (req, res) => {
       .populate("professionalStatus")
       .populate("careerPath")
       .populate("authorsData")
-      .populate("companyData");
+      .populate("currentCompany")
+      //.populate("companyData");
         res.status(200).json(contact)
     } catch (error) {
         console.log(error)

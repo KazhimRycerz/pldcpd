@@ -6,6 +6,7 @@ import LightingEffect from "../LightingEffect/LightingEffect.jsx"
 import { useContext, useEffect } from "react";
 import { SectionsContext } from "../../context/SectionsContext.js";
 import { HashLink as Link } from 'react-router-hash-link';
+import Clock from '../Clock/Clock.jsx'
 
 const HomeMain = () => {
   const { isAuth, setGotoPage, setButtonPos, setAsidePos } = useContext(SectionsContext);
@@ -618,6 +619,8 @@ const HomeMain = () => {
           </div>
         </div>
       </section>
+
+      {/* <section id="clock" ><Clock /></section> */}
         <br />
         <br />
     </main>

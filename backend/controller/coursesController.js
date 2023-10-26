@@ -38,40 +38,52 @@ export const getCourse = async (req, res) => {
     }
   }
 
-  export const getFilteredCourselist = async (req, res) => {
-    console.log(req.query);
-    
-    try {
-      const { autor, themenfeld, kursart, kursstart, level, sprache, sortierung } = req.query;
-            
-      let query = {}; // Create an empty query
-      let sortItem = "Kursstart"; //
-      // Check if filter query parameters are present, and add them to the query if they exist
-      
-      autor !== "" && (query.courseTopic = autor)
-      themenfeld !== "" && (query.topicField = themenfeld);
-      kursart !== "" && (query.courseType = kursart);
-      level !== "" && (query.professionalLevel = level)
-      sprache !== "" && (query.courseLanguage = sprache)
-      if (sortierung == "Kursstart") {sortItem = "startDateOfCourse"}
-      if (sortierung == "Level") {sortItem = "professionalLevel"}
-      if (Object.keys(query).length === 0) {
-        // Wenn alle Filter auf null gesetzt werden, wird die query auf leer gesetzt
-        query = {};
-      }
-      console.log(query)
-      
-      const filteredCourselist = await CourseModel
-        .find( query )
-        .sort({ [sortItem]: 1 })
-        /* .populate("author"); */
-        .populate(["author","updatedBy"]);
   
-      res.json(filteredCourselist);
-    } catch (error) {
-      res.status(500).json({ error: error.message });
+export const getFilteredCourselist = async (req, res) => {
+  console.log(req.query);
+  
+  try {
+    const { autor, themenfeld, kursart, kursstart, kursende, level, sprache, sortierung, active } = req.query;
+          
+    let query = { active: 'true' };
+    let sortItem = "Kursstart";
+    
+    // Hier wird das aktuelle Datum erstellt
+    const currentDate = new Date();
+    
+    autor !== "" && (query.autor = autor)
+    themenfeld !== "" && (query.topicField = themenfeld);
+    kursart !== "" && (query.courseType = kursart);
+    level !== "" && (query.professionalLevel = level);
+    sprache !== "" && (query.courseLanguage = sprache);
+    
+    if (sortierung === "Kursstart") {
+      sortItem = "startDateOfCourse";
     }
-  };
+    if (sortierung === "Level") {
+      sortItem = "professionalLevel";
+    }
+    
+    if (Object.keys(query).length === 0) {
+      query = { active: 'true' };
+    }
+    
+    // Hier wird der Filter für das Enddatum (endDateOfCourse) hinzugefügt
+    query.endDateOfCourse = { $gt: currentDate };
+    //query.startDateOfCourse = { $gt: currentDate };
+
+    console.log(query);
+    
+    const filteredCourselist = await CourseModel
+      .find(query)
+      .sort({ [sortItem]: 1 })
+      .populate(["author", "updatedBy"]);
+  
+    res.json(filteredCourselist);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
   
 
 
@@ -86,12 +98,16 @@ export const addCourse = async (req, res) => {
       courseContent: req.body.courseContent,
       courseLanguage: req.body.courseLanguage,
       professionalLevel: req.body.professionalLevel,
-      author: req.body.author,
-      //cpdBasicPoints: req.body.cpdBasicPoints,
-      //cpdAdditionalPoints: req.body.cpdAdditionalPoints,
+      cpdBasicPoints: req.body.cpdBasicPoints,
+      cpdAdditionalPoints: req.body.cpdAdditionalPoints,
+      startDateOfCourse: req.body.startDateOfCourse,
+      endDateOfCourse: req.body.endDateOfCourse, 
+      linkToProvider: req.body.provider,
+      active: req.body.active,
       updatedBy: req.body.updatedBy,
     }
       )
+      console.log(newCourse)
     //const person = await PersonModel.find()
     //res.status(200).json(newPerson)
     res.send(`Course has been created and saved. mit der ID:${newCourse._id}`)

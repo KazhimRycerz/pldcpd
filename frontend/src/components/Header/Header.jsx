@@ -85,11 +85,7 @@ const Header = () => {
           <div id="text_header">
             <NavLink to="/home">
               <img className="image_header" id="ClogolongHeader" src={pldcpd} alt="" />
-            </NavLink>
-            {/* <NavLink to="/home">
-              <img id="ClogoHeader" src={CLogo} alt="" />
-            </NavLink> */}
-  
+            </NavLink> 
             <p>
               Plattform for Continuing <br />
               Professional Development
@@ -149,15 +145,15 @@ const Header = () => {
           </div>
       )}    
       
-        <div
-          id="burger_button"
-          className={showMenue ? "changeBurger" : ""}
-          onClick={()=> {
-            setShowMenue(!showMenue);!showMenue & accountListShow === "showAccountList"  && setAccountListShow("hideAccountList");
-          }}
-          >
-          <span></span>
-        </div>
+      <div
+        id="burger_button"
+        className={showMenue ? "changeBurger" : ""}
+        onClick={()=> {
+          setShowMenue(!showMenue);!showMenue & accountListShow === "showAccountList"  && setAccountListShow("hideAccountList");
+        }}
+        >
+        <span></span>
+      </div>
 
       <nav onMouseLeave={(event)=>{setShowMenue(!showMenue)}}  id="navmain" className={showMenue ? "showNav" : " hideNav"}>
         <div id="listOfFields">
@@ -189,74 +185,73 @@ const Header = () => {
               {isAuth ? (
                 <NavLink to="/KnowledgeAccount" style={{color: "red"}}>
               <span className="C">C</span> your CPD account
-            </NavLink>
+              </NavLink>
               ) : (
-                <NavLink
-  style={{ color: 'red' }}
-  onClick={(e) => {
-    e.preventDefault(); // Prevent the default navigation behavior
+              <NavLink
+                style={{ color: 'red' }}
+                onClick={(e) => {
+                  e.preventDefault(); // Prevent the default navigation behavior
 
-    Swal.fire({
-      title: 'Hinweis',
-      text: 'Du musst registriert und angemeldet sein, um deinen Account sehen zu können.',
-      icon: 'info',
-      showCancelButton: true,
-      confirmButtonText: 'Ja, bitte einloggen!',
-      cancelButtonText: 'Nein, zurück zur Hauptseite'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        setGotoPage('/KnowledgeAccount');
-        navigate('/login');
-      } else if (result.isDismissed) {
-        setShowMenue(!showMenue);
-        navigate('/home');
-      } else {
-        Swal.fire('Got away safely!', '', 'success');
-      }
-    });
-  }}
-  to="#"
->
-  <span className="C">C</span> your CPD account
-</NavLink>
-            )}
+                  Swal.fire({
+                    title: 'Hinweis',
+                    text: 'Du musst registriert und angemeldet sein, um deinen Account sehen zu können.',
+                    icon: 'info',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ja, bitte einloggen!',
+                    cancelButtonText: 'Nein, zurück zur Hauptseite'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      setGotoPage('/KnowledgeAccount');
+                      navigate('/login');
+                    } else if (result.isDismissed) {
+                      setShowMenue(!showMenue);
+                      navigate('/home');
+                    } else {
+                      Swal.fire('Got away safely!', '', 'success');
+                    }
+                  });
+                }}
+                to="#"
+              >
+                <span className="C">C</span> your CPD account
+              </NavLink>
+              )}
             </li>
             <li>
               {isAuth ? (
                 <NavLink to="/userupdate" style={{color: "red"}}>
-              <span className="C">C</span> persönliche Daten ändern
-            </NavLink>
-              ) : (
+                  <span className="C">C</span> persönliche Daten ändern
+                </NavLink>
+                ) : (
                 <NavLink
-  style={{ color: 'red' }}
-  onClick={(e) => {
-    e.preventDefault(); // Prevent the default navigation behavior
-
-    Swal.fire({
-      title: 'Message',
-      text: 'Du musst angemeldet sein, um deine Accountdaten ändern zu können. Willst du dich einloggen?',
-      icon: 'info',
-      showCancelButton: true,
-      confirmButtonText: 'Ja, bitte einloggen!',
-      cancelButtonText: 'Nein, zurück zur Hauptseite'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        setGotoPage('/userupdate');
-        navigate('/login');
-      } else if (result.isDismissed) {
-        setShowMenue(!showMenue);
-        navigate('/home');
-      } else {
-        Swal.fire('Got away safely!', '', 'success');
-      }
-      //navigate(gotoPage);
-    });
-  }}
-  to="#"
->
-  <span className="C">C</span> change your Userdata
-</NavLink>
-            )}
+                style={{ color: 'red' }}
+                onClick={(e) => {
+                e.preventDefault(); // Prevent the default navigation behavior
+                  Swal.fire({
+                    title: 'Message',
+                    text: 'Du musst angemeldet sein, um deine Accountdaten ändern zu können. Willst du dich einloggen?',
+                    icon: 'info',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ja, bitte einloggen!',
+                    cancelButtonText: 'Nein, zurück zur Hauptseite'
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                        setGotoPage('/userupdate');
+                        navigate('/login');
+                      } else if (result.isDismissed) {
+                        setShowMenue(!showMenue);
+                        navigate('/home');
+                      } else {
+                        Swal.fire('Got away safely!', '', 'success');
+                      }
+                      //navigate(gotoPage);
+                    });
+                  }}
+                  to="#"
+                >
+                  <span className="C">C</span> change your Userdata
+                </NavLink>
+              )}
             </li>
             <li>
               <NavLink to="/emailus" className="closebtn" style={{color: "red"}}>
@@ -399,6 +394,17 @@ const Header = () => {
               </NavLink>
             </li>
             
+          </ul>
+          <ul>
+            <p>
+              management <br />
+              items
+            </p>
+            <li>
+              <NavLink to="/courseaddpage" className="closebtn" style={{color: "red"}}>
+                <span className="C">C</span> add courses
+              </NavLink>
+            </li>            
           </ul>
         </div>
         <div id="navPromo">
