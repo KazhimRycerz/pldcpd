@@ -6,7 +6,7 @@ import "./NextBtnRegister.scss"
 function NextBtnToStepTwo({ props }) {
   const uniqueUserName = async () => {
     try {
-      const axiosResp = axiosConfig.get(`/user/username/${props.userName}`);
+      const axiosResp = axiosConfig.get(`http://localhost:4000/user/username/${props.userName}`);
       return (await axiosResp).data;
     } catch (error) {
       console.log(error.message);
@@ -24,6 +24,7 @@ function NextBtnToStepTwo({ props }) {
       Swal.fire({ title: "Benutzername", text: " ist ein Pflichtfeld." });
     } else if (userExists) {
       Swal.fire({
+        icon: 'warning',
         title: `Benutzername "${userExists}"`,
         text: " ist bereits vergeben.",
       })
@@ -32,6 +33,7 @@ function NextBtnToStepTwo({ props }) {
       (props.userName.length < 4 && props.userName.length > 0)
     ) {
       Swal.fire({
+        icon: 'info',
         title: "Benutzername",
         text: " muss mindestens 4 Zeichen und maximal 20 Zeichen lang sein." })
     } else if (props.firstName.length === 0) {
@@ -45,11 +47,29 @@ function NextBtnToStepTwo({ props }) {
   };
   
   return (
-    <span className="buttonBasics weiterButton" onClick={validateInput} id="nextBtnToTwo">
-      weiter >>
+    <span 
+    className="buttonBasics" 
+    onClick={validateInput} 
+    id="nextBtnToTwo">
+      weiter {'>>'} 
     </span>
   );
 }
+
+const BackBtnToOne = ({ props }) => {
+  const setOneTrue = () => {
+      props.setTwo(false);
+      props.setOne(true);
+  };
+  return (
+    <button 
+    className="buttonBasics" 
+    onClick={setOneTrue} 
+    id="backBtnToOne">
+      {'<<'} zurück
+    </button>
+  );
+};
 
 const NextBtnToThree = ({ props }) => {
   const setThreeTrue = () => {
@@ -57,14 +77,31 @@ const NextBtnToThree = ({ props }) => {
       props.setThree(true);
   };
   return (
-    <span className="buttonBasics weiterButton" onClick={setThreeTrue} id="nextBtnToThree">
-      weiter >>
-    </span>
+    <button 
+    className="buttonBasics" 
+    onClick={setThreeTrue} 
+    id="nextBtnToThree">
+      weiter {'>>'}
+    </button>
+  );
+};
+
+const BackBtnToTwo = ({ props }) => {
+  const setTwoTrue = () => {
+      props.setTwo(true);
+      props.setThree(false);
+  };
+  return (
+    <button 
+    className="buttonBasics" 
+    onClick={setTwoTrue} 
+    id="backBtnToTwo">
+      {'<<'} zurück
+    </button>
   );
 };
 
 const SubmitBtn = ({submitHandler, props }) => {
-  
   const validateDataStepThree = async (e) => {
     e.preventDefault();
     const validateEmail = async () => {
@@ -91,13 +128,14 @@ const SubmitBtn = ({submitHandler, props }) => {
   };
 
   return (
-    <input
-      onClick={validateDataStepThree}
-      type="submit"
-      value="daten senden"
-      className="buttonBasics submitButtonRegister"
-      id="submitBtnRegister"
-    />
+    <button
+    onClick={validateDataStepThree}
+    type="submit"
+    value="daten senden"
+    className="buttonBasics"
+    id="submitBtnRegister">
+      Daten absenden
+    </button>
   );
 };
 
@@ -117,10 +155,12 @@ const ResetBtn = ({ props }) => {
   };
   
   return (
-    <span onClick={resetAll} className="buttonBasics resetButton">
+    <button 
+    onClick={resetAll} 
+    className="buttonBasics">
       Reset
-    </span>
+    </button>
   );
 };
 
-export { NextBtnToStepTwo, NextBtnToThree, SubmitBtn, ResetBtn };
+export { BackBtnToOne, NextBtnToStepTwo,BackBtnToTwo, NextBtnToThree, SubmitBtn, ResetBtn };

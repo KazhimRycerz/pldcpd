@@ -69,7 +69,7 @@ const searchCourseListData = async () => {
   //console.log(filterList);
     
   try {
-    const axiosResp = await axiosConfig.get(`${baseUrl}/courses/courselist`, {params: filterItems}
+    const axiosResp = await axiosConfig.get("/courses/courselist", {params: filterItems}
     );
     console.debug("axiosResp.filterItems:", axiosResp.filterItems);
     const receivedData = await axiosResp.data;
@@ -88,7 +88,7 @@ const searchCourseListData = async () => {
 const searchListElements = async () => {
     
   try {
-    const axiosResp = await axiosConfig.get(`${baseUrl}/courses`);
+    const axiosResp = await axiosConfig.get("/courses");
     const receivedData = await axiosResp.data;
 
     const themenListe = receivedData.map(({topicField }) => topicField);

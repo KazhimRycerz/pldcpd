@@ -107,7 +107,7 @@ main {
 }
 
 .buttonBasics {
-  vertical-align: middle;
+  //vertical-align: middle;
   width: 60%;
   height: 40px;
   max-width: 120px;
@@ -115,17 +115,28 @@ main {
   font-size: $xsmall;
   padding: 10px;
   background-color: $first-color;
+  background-color: white;
   color: $cpdblue;
   box-shadow: $btnshadow;
   border-radius: $radiussmall;
   text-decoration: none;
   border: none;
+  cursor: pointer;
   &:hover{
     background-color: $cpdblue-10;
   }
   &:active {
-    background-color: white;
+    //background-color: white;
+    box-shadow: $btnshadowpressed;
+    background-color: $first-color;
+    //border: solid 2px;
   }
+  a {
+    color: $cpdblue;
+    border-radius: $radiussmall;
+    text-decoration: none;
+    cursor: pointer;
+    }
 }
 
 /* .buttonBasics:focus {
@@ -166,10 +177,8 @@ background: blue;
   height: 40px;
   max-width: 200px;
   margin: 10px ;
-  font-size: $xsmall;
   padding: 10px;
   background-color: $first-color;
-  color: $cpdblue;
   box-shadow: $btnshadow;
   border-radius: $radiussmall;
   text-decoration: none;
@@ -178,13 +187,34 @@ background: blue;
     background-color: $cpdblue-10;
   }
 }
+.swal2-styled{
+  background-color: $cpdblue-10 !important;
+  box-shadow: $btnshadow !important;
+  width: 120px;
+  border-radius: 10px !important;
+  margin-bottom: 20px !important;
+  color: $cpdblue !important;
+  font-size: $xsmall  !important;
+  &:hover{
+    background-color: $cpdblue-50 !important;
+    color: $first-color !important;
+  }
+  &:active{
+    background-color: $cpdblue !important;
+  }
+}
 .swal2-popup{
   background: $first-color;
-  box-shadow: $mainshadow;
+  box-shadow: $swalshadow;
   border-radius: 20px;
   width: 60%;
-
+  //border: white 5px !important;
 }
+.swal2-title{
+  color: $cpdred;
+  color: $cpdblue;
+}
+
 /* .containerBox{
   background: aqua;
 } */

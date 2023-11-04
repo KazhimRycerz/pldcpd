@@ -26,13 +26,16 @@ Pine Green: #047c74
 
 //shadows
 $boxshadow: 0.1rem 0.5rem 1.0rem ;
+$swalshadow: $cpdblue 0px 0px 50px 20px inset, 0px 0px 15px 5px white;;
 $boxshadowbottom: 2.5rem 0.5rem 2rem;
-$btnshadow: 0px 0px 10px 1px $cpdblue inset, 0px 0px 5px 2px grey,  -2px -2px 5px white inset; 
+$btnshadow: 0px 0px 5px 1px $cpdblue inset, 0px 0px 8px 2px grey,  -2px -2px 5px grey inset; 
+$btnshadowpressed: 0px 0px 5px 1px $cpdblue inset, 0px 0px 8px 2px grey,  -2px -2px 5px grey inset; 
 $btnshadowsmall: 0px 0px 5px 2px $third-color inset, 0px 0px 3px 1px grey,  -2px -2px 3px white inset; 
 $rshadow: 3px 3px black, -3px -3px black, 3px -3px black, -3px 3px black;
 $hovershadow:3px;
 $text-shadow: 1px 1px 20px $cpdred;
 $mainshadow: $cpdblue 0px 0px 100px 50px inset, 0px 0px 15px 5px white;
+$managementshadow: $cpdred 0px 0px 100px 50px inset, 0px 0px 15px 5px white;
 
 //backgroundcolours
 $grad: linear-gradient($third-color-o, $cpdred-o) fixed;

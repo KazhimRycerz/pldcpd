@@ -11,7 +11,9 @@ import {
   PasswordInput,
 } from "../Inputs/Inputs.jsx";
 import {
+  BackBtnToOne,
   NextBtnToStepTwo,
+  BackBtnToTwo,
   NextBtnToThree,
   SubmitBtn,
   ResetBtn,
@@ -64,7 +66,7 @@ export default function RegisterForm() {
 
   const submitHandler = async () => {
     /*  e.preventDefault(); */
-    const data = {
+    const userData = {
       userName: userName,
       firstName: firstName,
       lastName: lastName,
@@ -79,7 +81,7 @@ export default function RegisterForm() {
       setHasRegistered(false);
       setIsLoading(true);
       const axiosResp = await axiosConfig.post("/user", 
-        data,
+        userData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
@@ -166,10 +168,11 @@ export default function RegisterForm() {
           <>
             <div id="stepOne">
               <div>
-                <label htmlFor="userName">Benutzername:
-                <sup id="infoUsername">*</sup>
+                <label 
+                htmlFor="userName">
+                  Benutzername:<sup id="infoUsername">*</sup>
                 </label>
-                <TextInput labelValue="userName" stateFunc={setUserName} />
+                <TextInput labelValue="userName" stateFunc={setUserName}/>
               </div>
               <div>
                 <label htmlFor="firstName">Vorname:
@@ -206,6 +209,7 @@ export default function RegisterForm() {
               <ImageUpload labelValue="userImage" stateFunc={setUserImage}/>
             <div id="buttonBoxStepTwo">
               <ResetBtn props={props} />
+              <BackBtnToOne props={props} />
               <NextBtnToThree props={props} />
             </div>
           </div>
@@ -222,6 +226,7 @@ export default function RegisterForm() {
             </div>
             <div id="buttonBoxStepThree">
               <ResetBtn props={props} />
+              <BackBtnToTwo props={props} />
               <SubmitBtn props={props} submitHandler={submitHandler} />
             </div>
           </div>

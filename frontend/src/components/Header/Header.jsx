@@ -265,7 +265,7 @@ const Header = () => {
             </li>
             {/* <img src="./images/finger-print-outline.svg" alt="" /> */}
           </ul>
-          <ul>
+         <ul>
             <p>
               overview <br />
               of topics{" "}
@@ -395,7 +395,7 @@ const Header = () => {
             </li>
             
           </ul>
-          <ul>
+          {isAuth ? (<ul>
             <p>
               management <br />
               items
@@ -405,7 +405,7 @@ const Header = () => {
                 <span className="C">C</span> add courses
               </NavLink>
             </li>            
-          </ul>
+          </ul>) : null}
         </div>
         <div id="navPromo">
           <NavLink to="/register" id="nlPromo">

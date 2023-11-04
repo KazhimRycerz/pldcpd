@@ -9,6 +9,7 @@
   "dependencies": {
     "@ant-design/icons": "^4.8.0",
     "axios": "^1.3.0",
+    "circular-json": "^0.5.9",
     "gh-pages": "^3.2.3",
     "js-cookie": "^3.0.1",
     "jwt-decode": "^3.1.2",
@@ -19,9 +20,9 @@
     "react-router-hash-link": "^2.4.3",
     "react-scripts": "^5.0.1",
     "sass": "^1.55.0",
-    "static-server": "^2.2.1",
+    "static-server": "^3.0.0",
     "sweetalert": "^2.1.2",
-    "sweetalert2": "^11.7.20",
+    "sweetalert2": "^11.6.13",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

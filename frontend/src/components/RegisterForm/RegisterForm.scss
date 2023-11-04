@@ -110,15 +110,17 @@
     width: 60%;
     //border: solid;
   }
-  #buttonBoxStepTwo, #buttonBoxStepThree{
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-end;
-    gap:20px;
-    border-top: solid;
-    padding-top: 10px;
-  }
 }
+#buttonBoxStepTwo, #buttonBoxStepThree{
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  gap:20px;
+  border-top: solid;
+  padding-top: 10px;
+}
+
 
 
 /* #stepOne div > label {
@@ -230,6 +232,15 @@
   border-radius:  20px;
   //border: solid;
 }
+/* #buttonBoxStepThree{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content:flex-end;
+  width: 40%;
+  margin: 0px auto;
+  gap: 20px;
+  border: solid;
+} */
 
 #registerButtonBox{
   display: flex;
@@ -239,19 +250,8 @@
   margin: 20px auto;
   gap: 20px;
   //border: solid;
+}
 
-}
-button {
-  //font-size: $small;
-  padding: 0.75rem 1.5rem;
-  background-color: $first-color;
-  a {
-  color: $cpdblue;
-  border-radius: $radiussmall;
-  text-decoration: none;
-  cursor: pointer;
-  }
-}
 #footerInForm p{
   width:fit-content;
   margin: 0 auto;

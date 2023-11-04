@@ -42,8 +42,9 @@ const SectionsProvider = ({ children }) => {
     });
     localStorage.clear();
     if (gotoPage === "/KnowledgeAccount") { navigate("/home")
-  } else if (gotoPage === "/userupdate") { navigate("/home")}
-    else {navigate(gotoPage)}
+  } else if (gotoPage === "/userupdate") { navigate("/home")
+  } else if (gotoPage === "/courseaddpage") { navigate("/home")
+  } else {navigate(gotoPage)}
     Swal.fire({
       title: `Sie haben sich erfolgreich abgemeldet`,
       icon: "success",

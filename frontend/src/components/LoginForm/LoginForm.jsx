@@ -25,6 +25,7 @@ function LoginForm() {
     setIsAuth(true);
     localStorage.setItem("userName", respData.userName);
     localStorage.setItem("userId", respData.userId);
+    localStorage.setItem("firstName", respData.firstName);
     setButtonPos("showBut");
     //window.history.back();
     //navigate(-1);

@@ -83,11 +83,14 @@ const courseSchema = mongoose.Schema({
       type: Date,
       default: null,
    },
+   courseDuration: {
+      type: String,
+      default: "",
+   },
    updatedOn: Date,
    updatedBy: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "contact",
-      default: "63ea64b974720450742a2dd0",
+      ref: "user",
    }
 });
 courseSchema.set('strictQuery', true);

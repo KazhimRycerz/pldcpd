@@ -3,7 +3,16 @@ import CourseModel from '../models/courseModel.js'
 export const getAllCourses = async (req, res) => {
     try {
     const course = await CourseModel.find()
-      .populate("author");
+      //.populate("author");
+      .populate(["updatedBy",
+        {path:"author",
+         populate: [
+          "careerPath",
+          "professionalStatus",
+          "authorsData",
+          "currentCompany"
+        ]
+        }]);
         res.status(200).json(course)
     } catch (error) {
         console.log(error)
@@ -17,11 +26,19 @@ export const getCourse = async (req, res) => {
     try {
       const course = await CourseModel
         .findById(courseId)
-        .populate(["author","updatedBy"])
+        .populate(["updatedBy",
+        {path:"author",
+         populate: [
+          "careerPath",
+          "professionalStatus",
+          "authorsData",
+          "currentCompany"
+        ]
+        }]);
   
-      const coursePopulated = await CourseModel
+      /* const coursePopulated = await CourseModel
         .findById(courseId)
-        .populate(["author","updatedBy"])
+        .populate(["author","updatedBy"]) */
 
       //console.log("course.topic", course.topic); 
     // hier kann ich auf das virtuelle Feld "firstName" zugreifen
@@ -118,13 +135,40 @@ export const addCourse = async (req, res) => {
 }
 
 export const updateCourse = async (req, res) => {
-  const courseId = req.params.id;
+  console.log(req.body)
+  const courseId = req.body.courseId;
   try {
-      const course = await CourseModel.findByIdAndUpdate(courseId, req.body, { new: true });
-      res.json(course);
+    const updatedCourse = {
+      courseTopic: req.body.courseTopic,
+      author: req.body.author,
+      topicField: req.body.topicField,
+      courseType: req.body.courseType,
+      courseContent: req.body.courseContent,
+      courseLanguage: req.body.courseLanguage,
+      professionalLevel: req.body.professionalLevel,
+      cpdBasicPoints: req.body.cpdBasicPoints,
+      cpdAdditionalPoints: req.body.cpdAdditionalPoints,
+      startDateOfCourse: req.body.startDateOfCourse,
+      endDateOfCourse: req.body.endDateOfCourse,
+      linkToProvider: req.body.provider,
+      active: req.body.active,
+      updatedBy: req.body.updatedBy,
+    };
+
+    const course = await CourseModel.findByIdAndUpdate(courseId, updatedCourse, { new: true });
+    res.json(course);
   } catch (error) {
       res.send(error.message);
   }
 }
+
+export const deleteCourse = async (req, res) => {
+  try {
+    const deleteCourse = await CourseModel.deleteOne({ _id: courseId });
+    res.status(202).send(deleteCourse);
+  } catch (error) {
+    res.status(404).send(error.message);
+  }
+};
 
 

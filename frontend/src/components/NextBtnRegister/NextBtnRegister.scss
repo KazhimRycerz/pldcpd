@@ -1,41 +1,21 @@
 @import "../../scss/global.scss";
 
 
-.weiterButton, .resetButton, .submitButtonRegister {
+/* .weiterButton, .resetButton, .submitButtonRegister {
     margin-top: 0px;
     //padding-top: 20px;
     line-height: 20px;
     text-align: center;
-}
-
-#submitBtnRegister {
-    //margin-top: 1.5rem;
-    //background-color: $first-color;
-    //padding: 0.5rem 1.5rem;
-    //text-align: center;
-    font-size: $xsmall;
-} 
-/* .weiterButton {
-    font-size: $small;
-    padding: 0.5rem 1.5rem;
-    background-color: $cpdblue;
-    color: $first-color;
-    border: 1px solid var(--dark-green-color);
-    box-shadow: $btnshadow;
-    border-radius: 10px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: font-weight 500ms ease-in, font-size 1s ease-in,
-      padding 1s ease-in, color 500ms ease-in, background-color 500ms ease-in;
-  } */
-  
-  /* .weiterButton:hover {
     background-color: $first-color;
-    color: $cpdblue;
-    font-weight: bolder;
+    &:hover{
+      background-color: $cpdblue-10;
+    }
+    &:active {
+      background-color: white;
+    }
   } */
-  
-  
+
+
   
   
   
