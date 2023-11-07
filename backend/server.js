@@ -8,16 +8,17 @@ import authorsRouter from './routes/authorsRoutes.js';
 import authorsInfoRouter from './routes/authorsInfoRoutes.js';
 import careerRouter from './routes/careerRoutes.js';
 import coursesRouter from './routes/coursesRoutes.js';
+import courseTypesRouter from './routes/courseTypeRoutes.js';
 import emailRouter from './routes/emailRoutes.js';
 import companiesRouter from './routes/companiesRoutes.js';
 import professionalStatusRouter from './routes/professionalStatusRoutes.js';
+
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import expressFileUpload from "express-fileupload";
 //import nodemailer from "nodemailer";
-
 
 const server = express();
 const port = process.env.PORT || 4000;
@@ -43,6 +44,7 @@ server.use("/careers",  careerRouter)
 server.use("/professionalStatus", professionalStatusRouter)
 server.use("/companies",  companiesRouter)
 server.use("/courses", coursesRouter)
+server.use("/coursetypes", courseTypesRouter)
 server.use("/email", emailRouter)
 server.use("/", indexRouter)
 server.use(unkownHandler)

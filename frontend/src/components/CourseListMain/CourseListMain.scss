@@ -123,6 +123,9 @@
       //background: linear-gradient($first-color, $cpdblue );
       text-align: left;
       //border-radius: 0 10px 0 10px;
+      p{
+        padding-left: 5px;
+      }
       select {
         background-color: $cpdblue;
         color: $secondary-color;

@@ -26,7 +26,7 @@ const courseSchema = mongoose.Schema({
    },
    courseType: {
       type: String,
-      enum: ["Fachbuch","Fachartikel", "OnlineSeminar", "LifeSeminar", "Workshop", "Vortrag",""],
+      //enum: ["Fachbuch","Fachartikel", "OnlineSeminar", "LifeSeminar", "Workshop", "Vortrag",""],
       required: true,
    },
    courseContent: {
@@ -61,9 +61,9 @@ const courseSchema = mongoose.Schema({
       //required: true,
    },
    professionalLevel: {
-      type: String,
+      type: Number,
       required: true,
-      default:"0",
+      default: 0,
       //enum:"0",
    },
    active: {

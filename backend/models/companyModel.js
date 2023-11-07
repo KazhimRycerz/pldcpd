@@ -37,6 +37,10 @@ const companySchema = mongoose.Schema({
       type: String,
 
    },
+   cpdProvider: {
+      type: Boolean,
+      default: false,
+   },
    internalClientID: {
       type: String,
       unique: true,

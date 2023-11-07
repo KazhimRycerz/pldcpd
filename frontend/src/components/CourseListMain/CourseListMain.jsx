@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 //import C from "../../images/C.png"
 import { useContext, useState, useEffect } from "react";
 import { SectionsContext } from "../../context/SectionsContext";
+import { ListOfCourseTypes, ListOfLanguages, ListOfTopicFields, ListOfLevel } from "../ListsOfData/ListOfData.jsx";
 import axiosConfig from "../../util/axiosConfig";
 import baseUrl from "../../util/constants";
 import Moment from "moment";
@@ -14,8 +15,8 @@ const CourseAddMain = () => {
   const [authorsData, setAuthorsData] = useState([])
   const [languageData, setLanguageData] = useState([])
   const [listOfThemen, setListOfThemen] = useState([])
-  const [listOfKursart, setListOfKursart] = useState([])
-  const [listOfLanguage, setListOfLanguage] = useState([])
+  //const [listOfKursart, setListOfKursart] = useState([])
+  //const [listOfLanguage, setListOfLanguage] = useState([])
   //const [items, setItems] = useState([]);
   const [autorenFilter, setAutorenFilter] = useState('');
   const [themenFilter, setThemenFilter] = useState("");
@@ -95,9 +96,9 @@ const searchListElements = async () => {
     const reducedThemenListeSet = new Set(themenListe);
     const reducedThemenListe = Array.from(reducedThemenListeSet)
 
-    const kursartListe = receivedData.map(({courseType }) => courseType);
+    /* const kursartListe = receivedData.map(({courseType }) => courseType);
     const reducedKursartListeSet = new Set(kursartListe);
-    const reducedKursartListe = Array.from(reducedKursartListeSet)
+    const reducedKursartListe = Array.from(reducedKursartListeSet) */
 
     const sprachenListe = receivedData.map(({ courseLanguage }) => courseLanguage); 
     //const flachesArray = [].concat(...sprachenListe);
@@ -109,8 +110,8 @@ const searchListElements = async () => {
 
     //setListLanguage(courseLanguage)
     setListOfThemen(reducedThemenListe)
-    setListOfLanguage(reducedLanguageListe)
-    setListOfKursart(reducedKursartListe)
+    //setListOfLanguage(reducedLanguageListe)
+    //setListOfKursart(reducedKursartListe)
     /* console.log(sprachenListe)
     console.log(reducedKursartListe)
     console.log(reducedLanguageListe) */
@@ -187,39 +188,36 @@ useEffect(() => {
                 </select> */}
               </th>
               <th>
+                <p>Themenfeld</p>
                 <select 
                 name="Themenfeld" 
                 value={themenFilter} 
                 onChange={(e) => handleFilter(e, setThemenFilter)} id="themenFilter">
-                  <option value="">Themenfeld</option>
-                  {listOfThemen.map((value, index) => (
+                  <option value="">ungefiltert</option>
+                  {/* {listOfThemen.map((value, index) => (
                     <option key={index}>{value}</option>
-                  ))}
-                    {/* <option value="Lichtdesign">Lichtdesign</option>
-                    <option value="Lichttechnik">Lichttechnik</option>
-                    <option value="Planungspraxis">Planungspraxis</option>
-                    <option value="Masterplanung">Masterplanung</option> */}
+                  ))} */}
+                  < ListOfTopicFields />
                 </select>
               </th>
               <th>
+               <p>Kursart</p>
                 <select name="Kursart" value={kursartFilter} /* onChange={handleKursartFilter}  */onChange={(e) => handleFilter(e, setKursartFilter)} id="kursartFilter">
-                  <option value="">Kursart</option>
-                  {listOfKursart.map((value, index) => (
+                  <option value="">ungefiltert</option>
+                  {/* {listOfKursart.map((value, index) => (
                     <option key={index}>{value}</option>
-                  ))}
-                  {/* <option value="LiveSeminar">LiveSeminar</option>
-                  <option value="OnlineSeminar">OnlineSeminar</option>
-                  <option value="Fachbuch">Fachbuch</option>
-                  <option value="Fachartikel">Fachartikel</option> */}
+                  ))} */}
+                  < ListOfCourseTypes />
                 </select>
               </th>
               <th>
+                <p>Kursstart</p>
                 <select 
                 name="Kurstart" 
                 value={kursstartFilter} 
                 onChange={(e) => handleFilter(e, setKursstartFilter)}
                 id="kursstartFilter">
-                  <option value="">Kursstart</option>
+                  <option value="">ungefiltert</option>
                   <option value="Art">Art</option>
                   <option value="Datum">Datum</option>
                   <option value="Level">Level</option>
@@ -234,19 +232,17 @@ useEffect(() => {
                 </select>
               </th>
               <th>
+                <p>Sprachfilter</p>
                 <select 
                 name="Sprache" 
                 value={sprachFilter} 
                 onChange={(e) => handleFilter(e, setSprachFilter)} 
                 id="sprachFilter">
-                  <option value="">Sprache</option>
-                  {listOfLanguage.map((value, index) => (
+                  <option value="">ungefiltert</option>
+                  {/* {listOfLanguage.map((value, index) => (
                     <option key={index}>{value}</option>
-                  ))}
-                  {/* <option value="Lichtdesign">Lichtdesign</option>
-                  <option value="Lichttechnik">Lichttechnik</option>
-                  <option value="Planungspraxis">Planungspraxis</option>
-                  <option value="Masterplanung">Masterplanung</option> */}
+                  ))} */}
+                  < ListOfLanguages />
                 </select>
               </th>
               <th>CPD</th>
@@ -258,6 +254,7 @@ useEffect(() => {
                 id="levelFilter"
                 title="1 = beginner, 2 = student, 3 = newly qualified lighting designer">
                   <option value="">level</option>
+                  <option value="1">0</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>

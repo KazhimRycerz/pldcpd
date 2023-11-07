@@ -6,6 +6,7 @@ import "./CourseAddForm.scss";
 import { CloseOutlined } from "@ant-design/icons";
 import Moment from "moment"
 import Swal from "sweetalert2";
+import { ListOfCourseTypes, ListOfLanguages, ListOfTopicFields, ListOfLevel } from "../ListsOfData/ListOfData.jsx"
 //import swal from "sweetalert";
 
 const CourseAddForm = () => {
@@ -24,7 +25,7 @@ const CourseAddForm = () => {
 
   const [file, setFile] = useState(null);
   const [removed, setRemoved] = useState(false);
-  const [kursThema, setKursThema] = useState("");
+  const [courseTopic, setCourseTopic] = useState("");
   const [kursAutor, setKursAutor] = useState([]);
   const [themenfeld, setThemenfeld] = useState("");
   const [kursTyp, setKursTyp] = useState("");
@@ -35,7 +36,7 @@ const CourseAddForm = () => {
   const [additionalCPDPoints, setAdditionalCPDPoints] = useState(0);
   const [linkProvider, setLinkProvider] = useState("");
   const [kursstart, setKursstart] = useState(today);
-  const [kursende, setKursende] = useState("");
+  const [kursende, setKursende] = useState(today);
   const [courseDuration, setCourseSurations] = useState("");
   const [listOfAuthors, setListOfAuthors] = useState([]);
   const [kursActivated, setKursActivated] = useState(false);
@@ -54,7 +55,7 @@ const CourseAddForm = () => {
 
   const clearForm = () => {
     setFile(null);
-    setKursThema("");
+    setCourseTopic("");
     setKursAutor([]);
     setThemenfeld("");
     setKursTyp("");
@@ -65,13 +66,13 @@ const CourseAddForm = () => {
     setAdditionalCPDPoints(0);
     setLinkProvider("");
     setKursstart(Moment(today).format("YYYY-MM-DD"));
-    setKursende("");
+    setKursende(Moment(today).format("YYYY-MM-DD"));
     //setDescription("");
     setKursActivated(false);
     setStatusSicherung("gesichert")
   }
 
-  const textArearesizeHandler = (e)=> {
+  const textAreaResizeHandler = (e)=> {
     // Reset field height
     e.target.style.height = 'inherit';
     // Get the computed styles for the element
@@ -97,18 +98,7 @@ const CourseAddForm = () => {
     } */
   };
 
-  const handleFilter = (e) => {
-    const inputValue = e.target.value;
-    const filterName = e.target.name;
-    // Annahme: Du hast State-Variablen wie 'themenFilter' und 'autorenFilter'.
-    // Die Namen der State-Variablen sollten mit den 'name'-Attributen der Input-Elemente übereinstimmen.
-    // Du kannst diese direkt verwenden, ohne die if-else Verzweigung.
-
-    filterName === "sucheThema" && setThemenFilter(inputValue)
-    filterName === "sucheAutor" && setAutorenFilter(inputValue)
-    // Hier kannst du weitere Aktionen basierend auf 'filterName' ausführen, wenn nötig.
-    //console.log(themenFilter);
-}; 
+  
 
   const authorsAvailableList = async () => {
     try {
@@ -156,6 +146,7 @@ const CourseAddForm = () => {
       const updatedAuthors = kursAutor.filter((author) => author !== selectedAuthor);
       setKursAutor(updatedAuthors); // Entfernen des Autors aus dem Array
     }
+    setStatusSicherung("ungesichert")
       //e.target.value = "";
       console.log(kursAutor)
   };
@@ -183,7 +174,7 @@ const CourseAddForm = () => {
     }
   }
 
-  const findCourseToReview = async (e) => {
+  const getCourseToReview = async (e) => {
     try {
       const response = await axiosConfig.get("/courses");
       const receivedData = response.data;
@@ -192,8 +183,9 @@ const CourseAddForm = () => {
       const filteredData = receivedData.filter(entry => entry._id.includes(e.target.value)); 
       // Aktualisiere den Zustand mit den gefilterten Themen
       setData(filteredData)
+      //setStatusSicherung("ungesichert")
       if (filteredData.length > 0) {
-        setKursThema(filteredData[0].courseTopic)
+        setCourseTopic(filteredData[0].courseTopic)
         setKursAutor(filteredData[0].author)
         setKursTyp(filteredData[0].courseType);
         setThemenfeld(filteredData[0].topicField)
@@ -211,7 +203,7 @@ const CourseAddForm = () => {
         setUpdatedOn(filteredData[0].updatedOn)
         setCreatedOn(filteredData[0].createdOn)
       }
-      console.log(data)
+      //console.log(data)
     } catch (error) {
       // Fehlerhandling, z.B. mit einer Benachrichtigung
       Swal.fire({
@@ -239,7 +231,7 @@ const CourseAddForm = () => {
   const validateForm = () => {
     const errors = [];
     // Validierung für das Kurs-Thema
-    if (kursThema.trim() === "") {
+    if (courseTopic.trim() === "") {
       errors.push("Das Kursthema darf nicht leer sein");
     }
     if (kursAutor.length === 0) {
@@ -261,6 +253,12 @@ const CourseAddForm = () => {
     if (kursSprache.length === 0) {
       errors.push("Es wurde noch kein Sprache ausgewählt");
     }
+    if (cpdPoints === "") {
+      errors.push("Das Feld CPDPoints darf nicht leer sein");
+    }
+    if (additionalCPDPoints === "") {
+      errors.push("Das Feld Bonus CPDPoints darf nicht leer sein");
+    }
     if (professionalLevel === "" || isNaN(professionalLevel) || professionalLevel < 0 || professionalLevel > 9) {
       errors.push("Bitte den professionellen Kurslevel zwischen 0 und 9 eingeben.");
     }
@@ -268,6 +266,9 @@ const CourseAddForm = () => {
     if (new Date(kursstart) < dateOfToday) {
       errors.push("Der Kursstart liegt in der Vergangenheit.");
     } */
+    if (kursstart === "" || kursende === "") {
+      errors.push("Die Felder Kursstart und Kursende müssen beide definiert sein");
+    }
     if (new Date(kursstart) > new Date(kursende)) {
       errors.push("Der Kursstart liegt hinter dem Kursende.");
     }
@@ -299,139 +300,206 @@ const CourseAddForm = () => {
     e.preventDefault();
     const isValid = validateForm();
     if (isValid) {
-      // Führe die Aktionen aus, wenn das Formular gültig ist
-      // ...
-      const formData = new FormData(e.target);
-      //console.debug(eventCategory);
-      let imgToSave;
-      if (removed || !file) {
-      imgToSave = null;
-    } else {
-      imgToSave = formData.get("imageUpload");
-    }
-    
-    const courseData = {
-      courseId: courseId,
-      courseTopic: kursThema,
-      author: kursAutor,
-      topicField: themenfeld,
-      courseType: kursTyp,
-      courseContent: kursInhalt,
-      courseLanguage: kursSprache,
-      professionalLevel: professionalLevel,
-      cpdBasicPoints: cpdPoints,
-      cpdAdditionalPoints: additionalCPDPoints,
-      startDateOfCourse: kursstart,
-      endDateOfCourse: kursende,
-      linkToProvider: linkProvider,
-      //courseImage: imgToSave,
-      active: kursActivated,
-      updatedBy: localStorage.getItem("userId"),
-    };
-        
-    try {
-      const response = await axiosConfig.post("/courses", courseData,
-      /* {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      } */
-      );
-      setStatusSicherung("gesichert")
-      //console.log("reponsData", response.data);
-      Swal.fire({
-        title: "Das Kursangebot wurde erfolgreich erstellt!",
-        text: "Was willst du als nächstes tun?",
-        icon: "success",
-        showConfirmButton: true,
-        showCancelButton: true,
-        showDenyButton: true,
-        confirmButtonText: 'Neuer Datensatz',
-        cancelButtonText: 'Datensatz anzeigen',
-        denyButtonText: 'Formular schließen',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          clearForm()
-        } else if (result.isDismissed) {
-          /* clearForm() */
-          setWorkingMode("editMode")
-        } else if (result.isDenied) {
-          navigate("/home")
+        // Führe die Aktionen aus, wenn das Formular gültig ist
+        // ...
+        const formData = new FormData(e.target);
+        //console.debug(eventCategory);
+        let imgToSave;
+        if (removed || !file) {
+        imgToSave = null;
+      } else {
+        imgToSave = formData.get("imageUpload");
+      }
+      
+      const courseData = {
+        courseId,
+        courseTopic,
+        author: kursAutor,
+        topicField: themenfeld,
+        courseType: kursTyp,
+        courseContent: kursInhalt,
+        courseLanguage: kursSprache,
+        professionalLevel,
+        cpdBasicPoints: cpdPoints,
+        cpdAdditionalPoints: additionalCPDPoints,
+        startDateOfCourse: kursstart,
+        endDateOfCourse: kursende,
+        linkProvider,
+        //courseImage: imgToSave,
+        active: kursActivated,
+        updatedBy: localStorage.getItem("userId"),
+      };
+          
+      try {
+        const response = await axiosConfig.post("/courses", courseData,
+        /* {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        } */
+        );
+        setStatusSicherung("gesichert")
+        //console.log("reponsData", response.data);
+        setThemenFilter("");
+        topicsAvailableList();
+        Swal.fire({
+          title: "Das Kursangebot wurde erfolgreich erstellt!",
+          text: "Was willst du als nächstes tun?",
+          icon: "success",
+          showConfirmButton: true,
+          showCancelButton: true,
+          showDenyButton: true,
+          confirmButtonText: 'Neuer Datensatz',
+          cancelButtonText: 'Datensatz anzeigen',
+          denyButtonText: 'Formular schließen',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            clearForm()
+          } else if (result.isDismissed) {
+            setData(response.data)
+            setWorkingMode("editMode")
+
+          } else if (result.isDenied) {
+            navigate("/home")
+          }
+        })
+        } catch (error) {
+          
+          console.error(error);
+          Swal.fire({
+            title: "Es ist ein Fehler aufgetreten. Der Datensatz wurde nicht gespeichert.",
+            icon: "error",
+            confirmButtonText: "OK"
+          });
         }
-      })
-      } catch (error) {
+    }
+  };
+
+  //UpdateFunktion
+  const updateCourse = async (e) => {
+    e.preventDefault();
+    const isValid = validateForm();
+    if (isValid) {
+      const courseData = {
+        courseId,
+        courseTopic,
+        author: kursAutor,
+        topicField: themenfeld,
+        courseType: kursTyp,
+        courseContent: kursInhalt,
+        courseLanguage: kursSprache,
+        professionalLevel,
+        cpdBasicPoints: cpdPoints,
+        cpdAdditionalPoints: additionalCPDPoints,
+        startDateOfCourse: kursstart,
+        endDateOfCourse: kursende,
+        linkToProvider: linkProvider,
+        //courseImage: imgToSave,
+        active: kursActivated,
+        updatedBy: localStorage.getItem("userId"),
+      };
+      try {
         
+        const response = await axiosConfig.patch('/courses/${id}', courseData); 
+        setStatusSicherung("gesichert")
+        setThemenFilter("");
+        topicsAvailableList();
+        Swal.fire({
+          icon: "success",
+          title: "Das Kursangebot wurde erfolgreich korrigiert!",
+          text: "Was willst du als nächstes tun?",
+          showConfirmButton: true,
+          showCancelButton: true,
+          showDenyButton: true,
+          //showFourthButton: true,
+          confirmButtonText: 'Datensatz anlegen',
+          cancelButtonText: 'zurück zum Datensatz',
+          denyButtonText: 'Formular schließen',
+          //fourthButtonText: 'Datensatz bearbeiten',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            clearForm()
+            setWorkingMode("inputMode")
+          } /* else if (result.isFourth) {
+            clearForm()
+            setWorkingMode("editMode")
+          } */ else if (result.isDismissed) {
+            setWorkingMode("editMode")
+          } else if (result.isDenied) {
+            navigate("/home")
+          }
+        })
+        //console.log('Datensatz aktualisiert:', response.data);
+      } catch (error) {
+          
         console.error(error);
         Swal.fire({
-          title: "Es ist ein Fehler aufgetreten. Der Datensatz wurde nicht gespeichert.",
           icon: "error",
+          title: "Es ist ein Fehler aufgetreten. Der veränderte Datensatz wurde nicht gespeichert.",
           confirmButtonText: "OK"
         });
       }
     }
   };
-
-  //UpdateFunktion
-  const updateCourse = async () => {
-    const courseData = {
-      courseId: courseId,
-      courseTopic: kursThema,
-      author: kursAutor,
-      topicField: themenfeld,
-      courseType: kursTyp,
-      courseContent: kursInhalt,
-      courseLanguage: kursSprache,
-      professionalLevel: professionalLevel,
-      cpdBasicPoints: cpdPoints,
-      cpdAdditionalPoints: additionalCPDPoints,
-      startDateOfCourse: kursstart,
-      endDateOfCourse: kursende,
-      linkToProvider: linkProvider,
-      //courseImage: imgToSave,
-      active: kursActivated,
-      updatedBy: localStorage.getItem("userId"),
-    };
-    try {
-      const response = await axiosConfig.patch('/courses/${id}', courseData); 
-      setStatusSicherung("gesichert")
-      Swal.fire({
-        icon: "success",
-        title: "Das Kursangebot wurde erfolgreich korrigiert!",
-        text: "Was willst du als nächstes tun?",
-        showConfirmButton: true,
-        showCancelButton: true,
-        showDenyButton: true,
-        confirmButtonText: 'Datensatz anlegen',
-        cancelButtonText: 'Zurück zum Datensatz',
-        denyButtonText: 'Formular schließen',
-      }).then((result) => {
+  
+  const deleteCourse = async (courseId) => {
+    Swal.fire({
+      icon: "warning",
+      title: 'Soll der Kurs wirklich gelöscht werden?',
+      showDenyButton: true,
+      /* showCancelButton: true, */
+      confirmButtonText: 'löschen ist ok!',
+      denyButtonText: `nein, nicht löschen`,
+      }).then (async (result) => {
         if (result.isConfirmed) {
-          setWorkingMode("inputMode")
-          clearForm()
-        } else if (result.isDismissed) {
-          /* clearForm() */
-          setWorkingMode("editMode")
+          try {
+            const response =  await axiosConfig.delete(`/courses/${courseId}`);
+            setThemenFilter("");
+            topicsAvailableList();
+            setData([]);
+            // Erfolgreich gelöscht
+            Swal.fire({
+              icon: "success",
+              title: "Der Datensatz wurde gelöscht.",
+              confirmButtonText: "OK",
+              timer: 3000,
+            })
+          } catch (error) {
+            console.error(error);
+            Swal.fire({
+              icon: "error",
+              title: "Es ist ein Fehler aufgetreten. Der Datensatz wurde nicht gelöscht.",
+              confirmButtonText: "OK"
+            });
+          }
         } else if (result.isDenied) {
-          navigate("/home")
+          Swal.fire({
+            icon: "info",
+            title: "Abbruch: Der Datensatz wurde nicht gelöscht.",
+            confirmButtonText: "OK", 
+            /* timer: 3000, */
+          })
         }
       })
-      //console.log('Datensatz aktualisiert:', response.data);
+
+    /* try {
+      const response = await axiosConfig.delete(`/courses/${courseId}`);
+      // Erfolgreich gelöscht
+      Swal.fire({
+        icon: "success",
+        title: "Der Datensatz wurde gelöscht.",
+        confirmButtonText: "OK"
+      });
     } catch (error) {
-        
       console.error(error);
       Swal.fire({
         icon: "error",
-        title: "Es ist ein Fehler aufgetreten. Der veränderte Datensatz wurde nicht gespeichert.",
+        title: "Es ist ein Fehler aufgetreten. Der Datensatz wurde nicht gelöscht.",
         confirmButtonText: "OK"
       });
-    }
-  };
+    } */
+  }
   
-  /* const deleteCourse = async (courseId) => {
-    try {
-      const response = await axiosConfig.delete('/courses/${courseId}', courseId);
-    }
-  } */
 
   useEffect(() => {
     setGotoPage("/courseaddpage")
@@ -442,7 +510,7 @@ const CourseAddForm = () => {
   useEffect(() => {
     if (courseId) {
       // Lade den ausgewählten Kurs
-      findCourseToReview({ target: { value: courseId } });
+      getCourseToReview({ target: { value: courseId } });
     }
   }, [courseId])
 
@@ -467,7 +535,7 @@ const CourseAddForm = () => {
     <main id="courseAddForm">
 
       <div id="headBox">
-        <h2 id="courseHead">Eingabe /Bearbeiten von Kursangeboten</h2>
+        <h2 id="courseHead">Eingabe / Bearbeiten von Kursangeboten</h2>
       </div>
       <div id="boxModusWahl">
           <label>
@@ -492,7 +560,6 @@ const CourseAddForm = () => {
           </label>
       </div>
       {workingMode === "editMode" && (
-
           <div id="themensuche">
             <div>
               <label 
@@ -506,14 +573,24 @@ const CourseAddForm = () => {
             value={themenFilter}
             onDoubleClickCapture={(e) => 
               {setThemenFilter("")}}
-            onChange={handleFilter} 
+            /* onChange={handleFilter} */ 
+            onChange={(e) =>
+              {setThemenFilter(e.target.value)}} 
             id="sucheThema" 
             placeholder="Themensuchfilter" 
             //autoComplete="off"
               />
             </div>
-              <select name="themenListe" onChange={findCourseToReview} onClick={findCourseToReview} id="themenListe"> 
-              <option value="no data">Keine Auswahl</option>
+              <select name="themenListe" 
+              onChange={(e) => {
+                getCourseToReview(e);
+                setStatusSicherung("gesichert");
+              }} 
+              /* onClick={getCourseToReview} */ 
+              id="themenListe"> 
+              {themenListe.length > 0 ? 
+              <option value="no data">bitte auswählen</option> : 
+              <option value="no data">kein Treffer - bitte Filter verändern</option>} 
                 {themenListe.map((item, index) => (
                   <option key={index} value={item._id}>{item.Thema}</option>
                 ))} 
@@ -530,22 +607,22 @@ const CourseAddForm = () => {
         >
           {statusSicherung === "ungesichert" ? <p id="änderunsgHinweis">Änderungen wurden noch nicht gesichert</p>: null}
           <div id="kursthemaeingabe">
-            <label htmlFor="kursThema">Kursthema<sup id="kursThemaSup">*</sup></label>
+            <label htmlFor="courseTopic">Kursthema<sup id="courseTopicSup">*</sup></label>
             <input
               type="text"
-              id="kursThema"
-              name="kursThema"
-              value={kursThema}
+              id="courseTopic"
+              name="courseTopic"
+              value={courseTopic}
               placeholder="Wie lautet das Thema?"
               autoComplete="off"
               autoFocus
               onChange={(e) => {
-                setFormErrors({ ...formErrors, kursThema: "" }); // Fehlermeldung zurücksetzen
+                setFormErrors({ ...formErrors, courseTopic: "" }); // Fehlermeldung zurücksetzen
               handleChangeOfData(e);
-              setKursThema(e.target.value);
+              setCourseTopic(e.target.value);
             }}
               />
-              {formErrors.kursThema && <p className="error">{formErrors.kursThema}</p>}
+              {formErrors.courseTopic && <p className="error">{formErrors.courseTopic}</p>}
           </div>   
           <div id="autorenauswahl">
             <div>
@@ -554,7 +631,9 @@ const CourseAddForm = () => {
               type="text" 
               name="sucheAutor" 
               value={autorenFilter}
-              onChange={handleFilter} 
+              /* onChange={handleFilter}  */
+              onChange={(e) =>
+                {setAutorenFilter(e.target.value)}}
               id="sucheAutor" 
               placeholder="Suchfilter" 
               autoComplete="off"
@@ -590,21 +669,22 @@ const CourseAddForm = () => {
             name="kursTyp"
             list="AuswahlKurstyp"
             value={kursTyp}
-            placeholder="Kurstyp aussuchen"
+            placeholder="Kurstyp auswählen"
             autoComplete="off"
             onChange={(e) => {
               handleChangeOfData(e);
               setKursTyp(e.target.value);
             }} 
             />
-            <datalist id="AuswahlKurstyp">
-            <option></option>
+            {/*<datalist id="AuswahlKurstyp">
+             <option></option>
             <option>Fachartikel</option>
             <option>Fachbuch</option>
             <option>LifeSeminar</option>
             <option>OnlineSeminar</option>
-            <option>Workshop</option>
-            </datalist>
+            <option>Workshop</option> 
+            </datalist>*/}
+            <datalist id="AuswahlKurstyp">< ListOfCourseTypes /></datalist>
           </div>
           <div id="themenfeldauswahl">
             <label htmlFor="themenfeld">Themenfeld:<sup id="topicFieldSup">*</sup></label>
@@ -639,7 +719,7 @@ const CourseAddForm = () => {
               //placeholder="Themenfeld"
               onChange={(e) => {
               handleChangeOfData(e);
-              textArearesizeHandler(e)
+              textAreaResizeHandler(e)
               setKursInhalt(e.target.value);
               }} />
           </div>
@@ -692,16 +772,17 @@ const CourseAddForm = () => {
             }} 
             />
             <datalist id="levelOptionen">
-              <option value="0"> beginner </option>
+              {/* <option value="0"> beginner </option>
               <option value="1"> student </option>
               <option value="2"> newly qualified Lighting designer </option>
               <option value="3"> junior lighting designer </option>
               <option value="4"> project lighting designer </option>
               <option value="5"> senior lighting designer </option>
-              <option value="6"> associate lighting designr </option>
+              <option value="6"> associate lighting designer </option>
               <option value="7"> principal lighting designer </option>
               <option value="8"> master in lighting design </option>
-              <option value="9"> authorised lexpert in ighting design </option>
+              <option value="9"> authorised lexpert in lighting design </option> */}
+              < ListOfLevel />
             </datalist>
           </div>
           <div id="cpdbasicpointseingabe">
@@ -716,7 +797,7 @@ const CourseAddForm = () => {
             e.target.value<0 ? setCPDPoints(0) : setCPDPoints(e.target.value);
             }} />
           </div>
-          <div>
+          <div id="cpdadditionalpointseingabe">
             <label htmlFor="cpdAdditionalPoints">Bonus CPDPoints:<sup id="cpdAdditionalPointsSup">*</sup></label>
             <input type= "number"
             id="cpdAdditionalPoints"
@@ -737,16 +818,20 @@ const CourseAddForm = () => {
             value={Moment(kursstart).format("YYYY-MM-DD")}
             //placeholder="Themenfeld"
             onChange={(e) => {
-            handleChangeOfData(e);
-            setKursstart(e.target.value);
-            }} />
+              const selectedDate = e.target.value;
+              handleChangeOfData(e);
+              setKursstart(selectedDate);
+              const nextDay = Moment(selectedDate).format("YYYY-MM-DD");
+              setKursende(nextDay);
+            }}
+            />
           </div>
           <div>
             <label htmlFor="kursende">Kursende:<sup id="kursendeSup">*</sup></label>
             <input type= "date"
             id="kursende"
             name="kursende"
-            value={kursende}
+            value={Moment(kursende).format("YYYY-MM-DD")}
             //placeholder="Themenfeld"
             onChange={(e) => {
             handleChangeOfData(e);
@@ -833,26 +918,26 @@ const CourseAddForm = () => {
         <div id="themenansicht" className={statusSicherung}>
           { statusSicherung === "ungesichert" ? <p id="änderunsgHinweis">Änderungen wurden noch nicht gesichert</p>: null}
           <div id="kurstiteldefinition">
-            <label htmlFor="kursThema">Kursthema</label>
-            {/* {data.length === 1 ? <p id="kursThema">{data[0].courseTopic}</p> : <p></p>} */}
-            {/* <p id="kursThema">{data[0].courseTopic}</p> */}
+            <label htmlFor="courseTopic">Kursthema</label>
+            {/* {data.length === 1 ? <p id="courseTopic">{data[0].courseTopic}</p> : <p></p>} */}
+            {/* <p id="courseTopic">{data[0].courseTopic}</p> */}
             <input
               type="text"
-              id="kursThema"
-              name="kursThema"
-              value={kursThema}
+              id="courseTopic"
+              name="courseTopic"
+              value={courseTopic}
               placeholder="Wie lautet das Thema?"
               autoComplete="off"
               autoFocus
               onDoubleClickCapture={(e) => 
-                {setKursThema("")}}
+                {setCourseTopic("")}}
               onChange={(e) => {
-                setFormErrors({ ...formErrors, kursThema: "" }); // Fehlermeldung zurücksetzen
+                setFormErrors({ ...formErrors, courseTopic: "" }); // Fehlermeldung zurücksetzen
                 handleChangeOfData(e);
-                setKursThema(e.target.value);
+                setCourseTopic(e.target.value);
             }}
               /> 
-              {formErrors.kursThema && <p className="error">{formErrors.kursThema}</p>}
+              {formErrors.courseTopic && <p className="error">{formErrors.courseTopic}</p>}
           </div>
           <div id="autorenauswahl">
               <div>
@@ -861,7 +946,8 @@ const CourseAddForm = () => {
                 type="text" 
                 name="sucheAutor" 
                 value={autorenFilter}
-                onChange={handleFilter} 
+                onChange={(e) =>
+                {setAutorenFilter(e.target.value)}} 
                 id="sucheAutor" 
                 placeholder="Suchfilter" 
                 autoComplete="off"
@@ -870,7 +956,9 @@ const CourseAddForm = () => {
               </div>              
             <div>   
             
-            {<select name="kursAutor" onClick={updateAuthorsList} id="kursAutor" multiple>
+            {<select name="kursAutor" 
+            onClick={updateAuthorsList} 
+            id="kursAutor" multiple>
               {authorsFilter(autorenFilter).map((item, index) => (
                 <option key={index} value={item._id}>
                   {item.Name}
@@ -902,20 +990,22 @@ const CourseAddForm = () => {
             placeholder="Kurstyp aussuchen"
             autoComplete="off"
             onDoubleClickCapture={(e) => 
-              {setKursTyp("")}}
+              {setKursTyp("");
+              setStatusSicherung("ungesichert")}}
             onChange={(e) => {
               handleChangeOfData(e);
               setKursTyp(e.target.value);
             }} 
             />
-            <datalist id="AuswahlKurstyp">
+            {/* <datalist id="AuswahlKurstyp">
             <option></option>
             <option>Fachartikel</option>
             <option>Fachbuch</option>
             <option>LifeSeminar</option>
             <option>OnlineSeminar</option>
             <option>Workshop</option>
-            </datalist>
+            </datalist> */}
+            <datalist id="AuswahlKurstyp">< ListOfCourseTypes /></datalist>
           </div>
           <div id="themenfeldauswahl">
             <label htmlFor="themenfeld">Themenfeld:</label>
@@ -928,7 +1018,8 @@ const CourseAddForm = () => {
             placeholder="Themenfeld aussuchen"
             autoComplete="off"
             onDoubleClickCapture={(e) => 
-              {setThemenfeld("")}}
+              {setThemenfeld("")
+              setStatusSicherung("ungesichert")}}
             onChange={(e) => {
               handleChangeOfData(e);
               setThemenfeld(e.target.value);
@@ -951,11 +1042,11 @@ const CourseAddForm = () => {
               name="kursInhalt"
               value={kursInhalt}
               placeholder="Kursinhalt"
-              /* onDoubleClickCapture={(e) => 
-                {setKursInhalt("")}} */
+              onDoubleClickCapture={(e) => 
+                {setStatusSicherung("ungesichert")}}
               onChange={(e) => {
               handleChangeOfData(e);
-              textArearesizeHandler(e)
+              textAreaResizeHandler(e)
               setKursInhalt(e.target.value);
               }} />
           </div>
@@ -1010,23 +1101,25 @@ const CourseAddForm = () => {
             list="levelOptionen"
             placeholder="professional Level eingeben"
             onDoubleClickCapture={(e) => 
-              {setProfessionalLevel("")}}
+              {setProfessionalLevel("");
+            setStatusSicherung("ungesichert")}}
             onChange={(e) => {
             /* handleChangeOfData(e); */
             setProfessionalLevel(e.target.value);
             }} 
             /> 
             <datalist id="levelOptionen">
-              <option value="0"> beginner </option>
+              {/* <option value="0"> beginner </option>
               <option value="1"> student </option>
               <option value="2"> newly qualified Lighting designer </option>
               <option value="3"> junior lighting designer </option>
               <option value="4"> project lighting designer </option>
               <option value="5"> senior lighting designer </option>
-              <option value="6"> associate lighting designr </option>
+              <option value="6"> associate lighting designer </option>
               <option value="7"> principal lighting designer </option>
               <option value="8"> master in lighting design </option>
-              <option value="9"> authorised lexpert in ighting design </option>
+              <option value="9"> authorised lexpert in lighting design </option> */}
+              < ListOfLevel />
             </datalist>
           </div>
           <div id="cpdBasicPointsAuswahl">
@@ -1038,7 +1131,8 @@ const CourseAddForm = () => {
             value={cpdPoints}
             //placeholder="Themenfeld"
             onDoubleClickCapture={(e) => 
-              {setCPDPoints("")}}
+              {setCPDPoints("");
+              setStatusSicherung("ungesichert")}}
             onChange={(e) => {
             handleChangeOfData(e);
             setCPDPoints(e.target.value);
@@ -1054,7 +1148,8 @@ const CourseAddForm = () => {
             value={additionalCPDPoints}
             //placeholder="Themenfeld"
             onDoubleClickCapture={(e) => 
-              {setAdditionalCPDPoints("")}}
+              { setAdditionalCPDPoints("");
+              setStatusSicherung("ungesichert")}}
             onChange={(e) => {
             handleChangeOfData(e);
             e.target.value<0 ? setAdditionalCPDPoints(0) : setAdditionalCPDPoints(e.target.value);
@@ -1069,7 +1164,8 @@ const CourseAddForm = () => {
             value={Moment(kursstart).format("YYYY-MM-DD")}
             //placeholder="Themenfeld"
             onDoubleClickCapture={(e) => 
-              {setKursstart("")}}
+              {setKursstart("");
+              setStatusSicherung("ungesichert")}}
             onChange={(e) => {
             handleChangeOfData(e);
             setKursstart(e.target.value);
@@ -1084,7 +1180,8 @@ const CourseAddForm = () => {
             value={Moment(kursende).format("YYYY-MM-DD")}
             //placeholder="Themenfeld"
             onDoubleClickCapture={(e) => 
-              {setKursende("")}}
+              {setKursende("");
+              setStatusSicherung("ungesichert")}}
             onChange={(e) => {
             handleChangeOfData(e);
             setKursende(e.target.value);
@@ -1099,7 +1196,8 @@ const CourseAddForm = () => {
               value={linkProvider}
               //placeholder="Themenfeld"
               onDoubleClickCapture={(e) => 
-                {setLinkProvider("")}}
+                {setLinkProvider("");
+                setStatusSicherung("ungesichert")}}
               onChange={(e) => {
               handleChangeOfData(e);
               setLinkProvider(e.target.value);
@@ -1181,8 +1279,8 @@ const CourseAddForm = () => {
             </output>
           </div>
           <div id="buttonBox">
-            {/* <button onClick={deleteCourse(courseId)}>Datensatz löschen</button> */}
-            <button onClick={updateCourse}>Änderungen speichern</button>
+          {data.length === 1 && <button onClick={() => deleteCourse(courseId)}>Datensatz löschen</button>}
+            {statusSicherung === "ungesichert" && <button onClick={updateCourse}>Änderungen speichern</button>}
           </div>
         </div> 
         : 

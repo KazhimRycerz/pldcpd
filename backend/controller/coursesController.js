@@ -122,8 +122,7 @@ export const addCourse = async (req, res) => {
       linkToProvider: req.body.provider,
       active: req.body.active,
       updatedBy: req.body.updatedBy,
-    }
-      )
+    })
       console.log(newCourse)
     //const person = await PersonModel.find()
     //res.status(200).json(newPerson)
@@ -163,11 +162,12 @@ export const updateCourse = async (req, res) => {
 }
 
 export const deleteCourse = async (req, res) => {
+
   try {
-    const deleteCourse = await CourseModel.deleteOne({ _id: courseId });
-    res.status(202).send(deleteCourse);
+    const deleteCourse = await CourseModel.deleteOne({_id: req.params.id});
+    res.status(202).send({ message: "Kurs erfolgreich gelöscht" });
   } catch (error) {
-    res.status(404).send(error.message);
+    res.status(404).send({message: "Fehler, der Kurs konnte nicht gelöscht werden"});
   }
 };
 
