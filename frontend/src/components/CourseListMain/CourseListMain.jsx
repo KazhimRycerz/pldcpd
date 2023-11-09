@@ -86,30 +86,29 @@ const searchCourseListData = async () => {
   }
 };
 
-const searchListElements = async () => {
-    
+const searchListElements = async () => { 
   try {
     const axiosResp = await axiosConfig.get("/courses");
     const receivedData = await axiosResp.data;
 
-    const themenListe = receivedData.map(({topicField }) => topicField);
+    /* const themenListe = receivedData.map(({topicField }) => topicField);
     const reducedThemenListeSet = new Set(themenListe);
-    const reducedThemenListe = Array.from(reducedThemenListeSet)
+    const reducedThemenListe = Array.from(reducedThemenListeSet) */
 
     /* const kursartListe = receivedData.map(({courseType }) => courseType);
     const reducedKursartListeSet = new Set(kursartListe);
     const reducedKursartListe = Array.from(reducedKursartListeSet) */
 
-    const sprachenListe = receivedData.map(({ courseLanguage }) => courseLanguage); 
+    /* const sprachenListe = receivedData.map(({ courseLanguage }) => courseLanguage); 
     //const flachesArray = [].concat(...sprachenListe);
     const doppelflachesArray = [].concat(...([].concat(...sprachenListe)))
     //Liste von allen Themenfeldern in allen Datensätzen:
     const reducedLanguageListeSet = new Set(doppelflachesArray);
     // reduziert, so dass keine Dubletten mehr vorhanden sind:
-    const reducedLanguageListe = Array.from(reducedLanguageListeSet)
+    const reducedLanguageListe = Array.from(reducedLanguageListeSet) */
 
     //setListLanguage(courseLanguage)
-    setListOfThemen(reducedThemenListe)
+    //setListOfThemen(reducedThemenListe)
     //setListOfLanguage(reducedLanguageListe)
     //setListOfKursart(reducedKursartListe)
     /* console.log(sprachenListe)
@@ -124,13 +123,13 @@ useEffect(() => {
   setGotoPage("/courselistpage")
   searchCourseListData();
   buttonPosCheck()
-  searchListElements()
+  //searchListElements()
 }, [ sortElement, themenFilter, kursartFilter, autorenFilter, kursstartFilter, levelFilter, sprachFilter]);
 
   return (
     <main id="courseListMain"> {/* MainStyling in global */}
       <h2 id="courseListHead">Übersicht aller aktuellen Kursangebote</h2>
-      <form>
+      <div id="overviewCourses">
         <div>
           {/* <p>sie können nch Ihren Bedürfnissen filtern...</p> */}
           {/* <p>gesetzte Filter: {filterElements}</p> */}
@@ -176,16 +175,6 @@ useEffect(() => {
                 onChange={(e) => handleFilter(e, setAutorenFilter)} 
                 id="autorenFilter"/> */}
                 Autoren
-                {/* <select 
-                name="autorenFilter" 
-                value={autorenFilter} 
-                onChange={(e) => handleFilter(e, setAutorenFilter)} 
-                id="autorenFilter">
-                  <option value="">Autor/Referent</option>
-                  <option value="Joachim Ritter">Joachim Ritter</option>
-                  <option value="Kazhal Akbari">Kazhal Akbari</option>
-                  <option value="Norbert Wasserfurth">Norbert Wasserfurth</option>
-                </select> */}
               </th>
               <th>
                 <p>Themenfeld</p>
@@ -193,17 +182,14 @@ useEffect(() => {
                 name="Themenfeld" 
                 value={themenFilter} 
                 onChange={(e) => handleFilter(e, setThemenFilter)} id="themenFilter">
-                  <option value="">ungefiltert</option>
-                  {/* {listOfThemen.map((value, index) => (
-                    <option key={index}>{value}</option>
-                  ))} */}
+                  <option value="">ohne Filter</option>
                   < ListOfTopicFields />
                 </select>
               </th>
               <th>
                <p>Kursart</p>
                 <select name="Kursart" value={kursartFilter} /* onChange={handleKursartFilter}  */onChange={(e) => handleFilter(e, setKursartFilter)} id="kursartFilter">
-                  <option value="">ungefiltert</option>
+                  <option value="">ohne Filter</option>
                   {/* {listOfKursart.map((value, index) => (
                     <option key={index}>{value}</option>
                   ))} */}
@@ -217,7 +203,7 @@ useEffect(() => {
                 value={kursstartFilter} 
                 onChange={(e) => handleFilter(e, setKursstartFilter)}
                 id="kursstartFilter">
-                  <option value="">ungefiltert</option>
+                  <option value="">ohne Filter</option>
                   <option value="Art">Art</option>
                   <option value="Datum">Datum</option>
                   <option value="Level">Level</option>
@@ -238,7 +224,7 @@ useEffect(() => {
                 value={sprachFilter} 
                 onChange={(e) => handleFilter(e, setSprachFilter)} 
                 id="sprachFilter">
-                  <option value="">ungefiltert</option>
+                  <option value="">ohne Filter</option>
                   {/* {listOfLanguage.map((value, index) => (
                     <option key={index}>{value}</option>
                   ))} */}
@@ -248,23 +234,14 @@ useEffect(() => {
               <th>CPD</th>
               <th>CPD plus</th>
               <th>
+              <p>Levelfilter</p>
                 <select 
                 name="Level" 
                 onChange={(e) => handleFilter(e, setLevelFilter)}
                 id="levelFilter"
-                title="1 = beginner, 2 = student, 3 = newly qualified lighting designer">
-                  <option value="">level</option>
-                  <option value="1">0</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
+                >
+                  <option value="">ohne Filter</option>
+                  < ListOfLevel />
                 </select></th>
               <th>Link zum Anbieter</th>
               <th>mehr Infos</th>
@@ -320,7 +297,7 @@ useEffect(() => {
           )}
         </table>  
           
-      </form>
+      </div>
       {/* <div>
         <h3>Sie sind CPD-aktiv seit {{cpdStartDate}}</h3>
       </div> */}

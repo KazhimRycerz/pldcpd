@@ -7,26 +7,26 @@ import pldcpd from "../../images/pldcpd.png";
 import { SectionsContext } from "../../context/SectionsContext.js";
 import Swal from "sweetalert2"
 //import swal from "sweetalert"
+import { FehlendeZugangsrechte, RegistriertenRechte } from "../FehlermeldungenSwal/FehlermeldungenSwal.jsx"
 
 const Header = () => {
-  const { isAuth, buttonPos, setButtonPos, asidePos, setAsidePos, gotoPage, setGotoPage, navigate, logout } = useContext(SectionsContext);
+  const { isAuth, buttonPos, setButtonPos, asidePos, setAsidePos, gotoPage, setGotoPage, navigate, logout, accessRights, setAccessRights } = useContext(SectionsContext);
   const [showMenue, setShowMenue] = useState(false);
   const [accountListShow, setAccountListShow] = useState("hideAccountList");
-    
+  
   const handleDropdownAccount =()=>{
     showMenue === true && setShowMenue(false)
     if (accountListShow === "hideAccountList" ) {
       setAccountListShow("showAccountList")
     } else {setAccountListShow("hideAccountList")}
   }
-  
+
   const handleAccountButton =()=> {
     isAuth && logout()
     !isAuth && asidePos === "accountAside showAccount"
     ? setAsidePos("accountAside hideAccount")
     : setAsidePos("accountAside");
 
-    //console.log("buttonPosition:", buttonPos, "isAuth:", isAuth)
            if (!isAuth && buttonPos === "") {setButtonPos("showBut") //ok
     } else if (!isAuth && buttonPos === "hideBut") {setButtonPos("showBut")
     } else if (!isAuth && buttonPos === "showBut") {setButtonPos("hideBut")
@@ -40,11 +40,14 @@ const Header = () => {
     }
     }
 
-    
-
-    /* useEffect(() => {
-      
-    }, []) */
+    const dataUpdate = ()=>{
+      setAccessRights(localStorage.getItem("accessRights"))
+      console.log(accessRights)
+    }
+   
+    useEffect(() => {
+      isAuth && dataUpdate()
+    }, [dataUpdate])
 
   return (
     <>
@@ -103,16 +106,8 @@ const Header = () => {
                 id="showlogin"
                 onClick={handleAccountButton}
               >
-                {isAuth ? <div> log me out <span className="C">C</span></div> : <Link to="/login"> login <span className="C">C</span></Link>}
-                
+                {isAuth ? <div> log me out <span className="C">C</span></div> : <Link to="/login"> login <span className="C">C</span></Link>}  
               </li>
-              {/* <li >
-                {isAuth ? <Link to="/KnowledgeAccount">
-                  logged in as {localStorage.userName} <span className="C">C</span> 
-                  </Link> 
-                :
-                  <span></span>}
-              </li> */}
               
               {isAuth &&
                 <li id="dropBtnAccount" 
@@ -162,12 +157,12 @@ const Header = () => {
               main <br /> items
             </p>
             <li>
-              <NavLink to="/home" className="closebtn">
+              <NavLink to="/home" className="closebtn active">
                 <span className="C">C</span> home
               </NavLink>
             </li>
             <li>
-              <NavLink to="/abouttheprofession" style={{color: "red"}} className="closebtn">
+              <NavLink to="/abouttheprofession" className="closebtn active">
                 <span className="C">C</span> the profession
               </NavLink>
             </li>
@@ -183,20 +178,21 @@ const Header = () => {
             </li>
             <li>
               {isAuth ? (
-                <NavLink to="/KnowledgeAccount" style={{color: "red"}}>
+                <NavLink to="/KnowledgeAccount" className="closebtn active">
               <span className="C">C</span> your CPD account
               </NavLink>
               ) : (
-              <NavLink
-                style={{ color: 'red' }}
+                <NavLink
+                className="closebtn active"
                 onClick={(e) => {
                   e.preventDefault(); // Prevent the default navigation behavior
 
                   Swal.fire({
-                    title: 'Hinweis',
-                    text: 'Du musst registriert und angemeldet sein, um deinen Account sehen zu können.',
+                    //text: 'Hinweis',
+                    title: 'Du musst registriert und angemeldet sein, um deinen Account sehen zu können.',
                     icon: 'info',
                     showCancelButton: true,
+                    showConfirmButton: true,
                     confirmButtonText: 'Ja, bitte einloggen!',
                     cancelButtonText: 'Nein, zurück zur Hauptseite'
                   }).then((result) => {
@@ -212,26 +208,28 @@ const Header = () => {
                   });
                 }}
                 to="#"
-              >
+                >
+                {/* < RegistriertenRechte /> */}
                 <span className="C">C</span> your CPD account
-              </NavLink>
+                </NavLink> 
               )}
             </li>
             <li>
               {isAuth ? (
-                <NavLink to="/userupdate" style={{color: "red"}}>
+                <NavLink to="/userupdate" className="closebtn active">
                   <span className="C">C</span> persönliche Daten ändern
                 </NavLink>
                 ) : (
                 <NavLink
-                style={{ color: 'red' }}
+                className="closebtn active"
                 onClick={(e) => {
                 e.preventDefault(); // Prevent the default navigation behavior
                   Swal.fire({
-                    title: 'Message',
-                    text: 'Du musst angemeldet sein, um deine Accountdaten ändern zu können. Willst du dich einloggen?',
+                    //title: 'Message',
+                    title: 'Du musst angemeldet sein, um deine Accountdaten ändern zu können. Willst du dich einloggen?',
                     icon: 'info',
                     showCancelButton: true,
+                    showConfirmButton: true,
                     confirmButtonText: 'Ja, bitte einloggen!',
                     cancelButtonText: 'Nein, zurück zur Hauptseite'
                     }).then((result) => {
@@ -245,6 +243,7 @@ const Header = () => {
                         Swal.fire('Got away safely!', '', 'success');
                       }
                       //navigate(gotoPage);
+
                     });
                   }}
                   to="#"
@@ -254,12 +253,7 @@ const Header = () => {
               )}
             </li>
             <li>
-              <NavLink to="/emailus" className="closebtn" style={{color: "red"}}>
-                <span className="C">C</span> e-mail us 
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/404" className="closebtn">
+              <NavLink to="/emailus" className="closebtn active">
                 <span className="C">C</span> contact us 
               </NavLink>
             </li>
@@ -276,7 +270,7 @@ const Header = () => {
               </NavLink>
             </li> */}
             <li>
-            <NavLink to="/courselistpage" className="closebtn" style={{color: "red"}}>
+            <NavLink to="/courselistpage" className="closebtn active">
                 <span className="C">C</span> listed courses on offer
               </NavLink>
             </li>
@@ -322,7 +316,7 @@ const Header = () => {
               </NavLink>
             </li>
             <li>
-            {isAuth && <NavLink to="/KnowledgeAccount" className="closebtn">
+            {isAuth && <NavLink to="/KnowledgeAccount" className="closebtn, active">
                 <span className="C">C</span> your CPD account
               </NavLink>}
             </li>
@@ -358,7 +352,7 @@ const Header = () => {
               </NavLink>
             </li>
             <li>
-            {isAuth && <NavLink to="/KnowledgeAccount" className="closebtn">
+            {isAuth && <NavLink to="/KnowledgeAccount" className="closebtn active">
                 <span className="C">C</span> your CPD account
               </NavLink>}
             </li>
@@ -374,12 +368,12 @@ const Header = () => {
               items
             </p>
             <li>
-              <NavLink to="/emailus" className="closebtn" style={{color: "red"}}>
+              <NavLink to="/emailus" className="closebtn active">
                 <span className="C">C</span> e-mail us 
               </NavLink>
             </li>
             <li>
-              <NavLink to="/emailus" className="closebtn">
+              <NavLink to="/emailus" className="closebtn active">
                 <span className="C">C</span> contact us 
               </NavLink>
             </li>
@@ -389,22 +383,22 @@ const Header = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/impressum" className="closebtn">
+              <NavLink to="/impressum" className="closebtn active">
                 <span className="C">C</span> impressum 
               </NavLink>
             </li>
             
           </ul>
-          {isAuth ? (<ul>
+          {isAuth & accessRights.includes(10) || isAuth & accessRights.includes(8)? (<ul>
             <p>
               management <br />
               items
             </p>
-            <li>
-              <NavLink to="/courseaddpage" className="closebtn" style={{color: "red"}}>
+            {accessRights.includes(5) || accessRights.includes(10) || accessRights.includes(9) ? (<li>
+              <NavLink to="/courseaddpage" className="closebtn active" >
                 <span className="C">C</span> add courses
               </NavLink>
-            </li>            
+            </li> ) : (<li><NavLink onClick={ FehlendeZugangsrechte } className="closebtn"><span className="C">C</span> add courses</NavLink></li>)}           
           </ul>) : null}
         </div>
         <div id="navPromo">

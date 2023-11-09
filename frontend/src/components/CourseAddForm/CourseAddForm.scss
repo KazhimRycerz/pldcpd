@@ -23,7 +23,7 @@
       //box-shadow: $boxshadow;
       }
   }
-  #courseSubmitForm, #themenansicht {
+  #courseSubmitForm, #courseEditForm, #courseDisplayForm {
     display: flex;
     flex-flow: column nowrap;
     //justify-content: space-around;
@@ -211,6 +211,23 @@
     #authorsAvailableListToSave{
       width: 100%;
     }
+    #sprachListToSave {
+      display: flex;
+      flex-flow: row wrap;
+      border: solid;
+      gap: 5px;
+      //width: fit-content
+      li{
+        &::after{
+          content:", "
+        }
+        &:last-child{
+          &::after{
+            content:""
+          }
+        }
+      }
+    }
 }
 
 .ungesichert{
@@ -226,4 +243,15 @@
   font-size: $xlarge;
   width: fit-content;
   margin: 0 auto;
+  color: $cpdblue;
+}
+#auswahlThemenfeld option{
+  border: solid !important;
+  background-color: red;
+}
+
+#zugangsRechteInfo h2{
+margin: 300px auto;
+text-align: center;
+//border: solid;
 }

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from "react";
+import React, { useState, useRef, useContext, useEffect } from "react";
 import axiosConfig from "../../util/axiosConfig.js";
 import { SectionsContext } from "../../context/SectionsContext.js";
 import { Link } from "react-router-dom";
@@ -6,27 +6,29 @@ import "./LoginForm.scss";
 import Swal from "sweetalert2";
 //import swal from "sweetalert";
 
-function LoginForm() {
-  const { setButtonPos, navigate, gotoPage, isAuth, setIsAuth, logout} = useContext(SectionsContext)
+const LoginForm = () => {
+  const { setButtonPos, navigate, gotoPage, isAuth, setIsAuth, logout, accessRights, setAccessRights } = useContext(SectionsContext)
   const [isLoading, setIsLoading] = useState(false);
   const formEl = useRef(null);
   const usernameEL = useRef(null);
   const passwordEl = useRef(null);
+  
   const getUserData = async (respData) => {
     const axiosResp = await axiosConfig.get(
-      `http://localhost:4000/user/${respData}`
+      `/user/${respData}`
       );
-      //const defSearch = axiosResp.data.location.toLowerCase();
-      //return defSearch;
     };
 
-  const handleSuccessfulLogin = async (respData) => {
-    localStorage.setItem("defSearch", await getUserData(respData.userId));
+  const handleSuccessfulLogin =  (respData) => {
+    localStorage.setItem("defSearch", getUserData(respData.userId));
     setIsAuth(true);
     localStorage.setItem("userName", respData.userName);
-    localStorage.setItem("userId", respData.userId);
+    localStorage.setItem("userId",  respData.userId);
+    localStorage.setItem("accessRights", respData.accessRights); 
     localStorage.setItem("firstName", respData.firstName);
     setButtonPos("showBut");
+    setAccessRights(localStorage.getItem("accessRights"));
+    console.log(accessRights)
     //window.history.back();
     //navigate(-1);
     navigate(gotoPage)
@@ -40,7 +42,7 @@ function LoginForm() {
       showDenyButton: true,
       showCancelButton: true,
       confirmButtonText: "ausloggen",
-      denyButtonText: "bitte als anderer Nutzer einloggen!",
+      denyButtonText: "als anderen Nutzer einloggen!",
       cancelButtonText: "abbrechen",
       allowOutsideClick: false,
       customClass: {
@@ -105,6 +107,7 @@ function LoginForm() {
 
     formEl.current.reset(); // Alle Felder vom Formular leer machen
   };
+
 
   return (
     <main id="loginMain">

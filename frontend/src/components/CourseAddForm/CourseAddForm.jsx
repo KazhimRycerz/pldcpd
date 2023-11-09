@@ -6,11 +6,12 @@ import "./CourseAddForm.scss";
 import { CloseOutlined } from "@ant-design/icons";
 import Moment from "moment"
 import Swal from "sweetalert2";
-import { ListOfCourseTypes, ListOfLanguages, ListOfTopicFields, ListOfLevel } from "../ListsOfData/ListOfData.jsx"
+import { ListOfCourseTypes, ListOfLanguages, ListOfTopicFields, ListOfLevel } from "../ListsOfData/ListOfData.jsx";
+import { FehlendeZugangsrechte } from "../FehlermeldungenSwal/FehlermeldungenSwal.jsx"
 //import swal from "sweetalert";
 
 const CourseAddForm = () => {
-  const { isAuth, setGotoPage } = useContext(SectionsContext);
+  const { isAuth, setGotoPage, userData, accessRights } = useContext(SectionsContext);
   const { navigate } = useContext(SectionsContext);
 
   const [workingMode, setWorkingMode] = useState("inputMode")
@@ -400,7 +401,7 @@ const CourseAddForm = () => {
       };
       try {
         
-        const response = await axiosConfig.patch('/courses/${id}', courseData); 
+        const response = await axiosConfig.patch("/courses/id", courseData); 
         setStatusSicherung("gesichert")
         setThemenFilter("");
         topicsAvailableList();
@@ -481,30 +482,13 @@ const CourseAddForm = () => {
           })
         }
       })
-
-    /* try {
-      const response = await axiosConfig.delete(`/courses/${courseId}`);
-      // Erfolgreich gelöscht
-      Swal.fire({
-        icon: "success",
-        title: "Der Datensatz wurde gelöscht.",
-        confirmButtonText: "OK"
-      });
-    } catch (error) {
-      console.error(error);
-      Swal.fire({
-        icon: "error",
-        title: "Es ist ein Fehler aufgetreten. Der Datensatz wurde nicht gelöscht.",
-        confirmButtonText: "OK"
-      });
-    } */
   }
   
-
   useEffect(() => {
     setGotoPage("/courseaddpage")
     authorsAvailableList()
     topicsAvailableList()
+   // console.log(accessRights)
   }, [themenFilter]);
   
   useEffect(() => {
@@ -531,9 +515,10 @@ const CourseAddForm = () => {
     return () => clearInterval(interval);
   }, []);
 
-  return (
+  
+  return accessRights.includes(5) || accessRights.includes(10) || accessRights.includes(9) ? (
+  (
     <main id="courseAddForm">
-
       <div id="headBox">
         <h2 id="courseHead">Eingabe / Bearbeiten von Kursangeboten</h2>
       </div>
@@ -605,7 +590,7 @@ const CourseAddForm = () => {
         id="courseSubmitForm" className={statusSicherung}
         onChange={(e)=>{setStatusSicherung("ungesichert")}}
         >
-          {statusSicherung === "ungesichert" ? <p id="änderunsgHinweis">Änderungen wurden noch nicht gesichert</p>: null}
+          {statusSicherung === "ungesichert" ? <p id="änderunsgHinweis">ACHTUNG: Änderungen wurden noch nicht gesichert</p>: null}
           <div id="kursthemaeingabe">
             <label htmlFor="courseTopic">Kursthema<sup id="courseTopicSup">*</sup></label>
             <input
@@ -684,7 +669,9 @@ const CourseAddForm = () => {
             <option>OnlineSeminar</option>
             <option>Workshop</option> 
             </datalist>*/}
-            <datalist id="AuswahlKurstyp">< ListOfCourseTypes /></datalist>
+            <datalist id="AuswahlKurstyp">
+            < ListOfCourseTypes />
+            </datalist>
           </div>
           <div id="themenfeldauswahl">
             <label htmlFor="themenfeld">Themenfeld:<sup id="topicFieldSup">*</sup></label>
@@ -701,12 +688,7 @@ const CourseAddForm = () => {
             }} 
             />
             <datalist id="auswahlThemenfeld">
-              <option>Lichtdesign</option>
-              <option>Lichttechnik</option>
-              <option>Büropraxis</option>
-              <option>Planungspraxis</option>
-              <option>Masterplanung</option>
-              <option>Berufspraxis</option>
+              <ListOfTopicFields />
               </datalist>
           </div>
           <div id="kursinhalteingabe">
@@ -736,18 +718,13 @@ const CourseAddForm = () => {
                 multiple>
                 </input>
                 <datalist id="sprachOptionen">
-                  <option value="Deutsch"> Deutsch </option>
-                  <option value="Englisch"> Englisch </option>
-                  <option value="Französisch"> Französisch </option>
-                  <option value="Italienisch"> Italienisch </option>
-                  <option value="Spanisch"> Spanisch </option>
-                  <option value="Chinesisch"> Chinesisch </option>
+                  < ListOfLanguages />
                 </datalist>
                 {kursSprache.length >= 1 ? (
                 <ul id="sprachListToSave">
                 {kursSprache.map((language, index) => (
                   <li key={index} value={language}>
-                    {language}
+                    {language} 
                   </li>
                 ))}
               </ul>
@@ -772,16 +749,6 @@ const CourseAddForm = () => {
             }} 
             />
             <datalist id="levelOptionen">
-              {/* <option value="0"> beginner </option>
-              <option value="1"> student </option>
-              <option value="2"> newly qualified Lighting designer </option>
-              <option value="3"> junior lighting designer </option>
-              <option value="4"> project lighting designer </option>
-              <option value="5"> senior lighting designer </option>
-              <option value="6"> associate lighting designer </option>
-              <option value="7"> principal lighting designer </option>
-              <option value="8"> master in lighting design </option>
-              <option value="9"> authorised lexpert in lighting design </option> */}
               < ListOfLevel />
             </datalist>
           </div>
@@ -904,7 +871,7 @@ const CourseAddForm = () => {
             id="updatedBy"
             name="updatedBy"
             >
-            {localStorage.getItem("userName")}
+            {userData.firstName} {userData.lastName}
             </output>
           </div>
           {statusSicherung === "ungesichert" ? (<div id="buttonBox">
@@ -912,10 +879,10 @@ const CourseAddForm = () => {
             <button className="buttonBasics" type="reset" onClick={clearForm}>reset Daten</button>
           </div>) : <div>Noch keine Daten eingegeben</div>}
         </form> 
-        ) : (
-          
+
+        ) : (        
         data.length === 1 ?
-        <div id="themenansicht" className={statusSicherung}>
+        <div id="courseDisplayForm" className={statusSicherung}>
           { statusSicherung === "ungesichert" ? <p id="änderunsgHinweis">Änderungen wurden noch nicht gesichert</p>: null}
           <div id="kurstiteldefinition">
             <label htmlFor="courseTopic">Kursthema</label>
@@ -997,14 +964,6 @@ const CourseAddForm = () => {
               setKursTyp(e.target.value);
             }} 
             />
-            {/* <datalist id="AuswahlKurstyp">
-            <option></option>
-            <option>Fachartikel</option>
-            <option>Fachbuch</option>
-            <option>LifeSeminar</option>
-            <option>OnlineSeminar</option>
-            <option>Workshop</option>
-            </datalist> */}
             <datalist id="AuswahlKurstyp">< ListOfCourseTypes /></datalist>
           </div>
           <div id="themenfeldauswahl">
@@ -1026,12 +985,7 @@ const CourseAddForm = () => {
             }} 
             />
             <datalist id="auswahlThemenfeld">
-              <option>Lichtdesign</option>
-              <option>Lichttechnik</option>
-              <option>Büropraxis</option>
-              <option>Planungspraxis</option>
-              <option>Masterplanung</option>
-              <option>Berufspraxis</option>
+              < ListOfTopicFields />
               </datalist>
           </div>
           <div id="kursinhalteinfügen">
@@ -1069,12 +1023,7 @@ const CourseAddForm = () => {
                   multiple>
                   </input>
                   <datalist id="sprachOptionen">
-                    <option value="Deutsch"> Deutsch </option>
-                    <option value="Englisch"> Englisch </option>
-                    <option value="Französisch"> Französisch </option>
-                    <option value="Italienisch"> Italienisch </option>
-                    <option value="Spanisch"> Spanisch </option>
-                    <option value="Chinesisch"> Chinesisch </option>
+                    < ListOfLanguages />
                   </datalist>
                   {kursSprache.length >= 1 ? (
                   <ul id="sprachListToSave">
@@ -1109,16 +1058,6 @@ const CourseAddForm = () => {
             }} 
             /> 
             <datalist id="levelOptionen">
-              {/* <option value="0"> beginner </option>
-              <option value="1"> student </option>
-              <option value="2"> newly qualified Lighting designer </option>
-              <option value="3"> junior lighting designer </option>
-              <option value="4"> project lighting designer </option>
-              <option value="5"> senior lighting designer </option>
-              <option value="6"> associate lighting designer </option>
-              <option value="7"> principal lighting designer </option>
-              <option value="8"> master in lighting design </option>
-              <option value="9"> authorised lexpert in lighting design </option> */}
               < ListOfLevel />
             </datalist>
           </div>
@@ -1237,7 +1176,7 @@ const CourseAddForm = () => {
               <></>
             )}
           </div>
-          <div>
+          <div id="kursactivating">
             <label htmlFor="kursActivated">Kurs aktiv:</label>
             {/* <p id="kursActivated">{data[0].active === true ? "aktiviert" : "nicht aktiv"}</p> */}
             <input type= "checkbox"
@@ -1251,25 +1190,25 @@ const CourseAddForm = () => {
             }} 
             />
           </div>
-          <div>
+          <div id="createdon">
             <label htmlFor="createdOn">Erfasst am:</label>
             {/* <p id="kursActivated">{data[0].active === true ? "aktiviert" : "nicht aktiv"}</p> */}
             <output         
             id="createdOn"
             name="createdOn"
-            >{Moment(createdOn).format("DD.MM.YYYY")}
+            >{Moment(createdOn).format("DD.MMMM.YYYY")}
             </output>
           </div>
-          <div>
+          <div id="updatedon">
             <label htmlFor="updatedOn">Zuletz aktualisiert am:</label>
             {/* <p id="kursActivated">{data[0].active === true ? "aktiviert" : "nicht aktiv"}</p> */}
             <output         
             id="updatedOn"
             name="updatedOn"
-            >{Moment(updatedOn).format("DD.MM.YYYY")}
+            >{Moment(updatedOn).format("DD.MMMM.YYYY")}
             </output>
           </div>
-          <div>
+          <div id="updatedby">
             <label htmlFor="updatedBy">Zuletz aktualisiert von:</label>
             {/* <p id="kursActivated">{data[0].active === true ? "aktiviert" : "nicht aktiv"}</p> */}
             <output         
@@ -1284,11 +1223,19 @@ const CourseAddForm = () => {
           </div>
         </div> 
         : 
-        <div id="themenansicht" >Bitte Datensatz suchen und auswählen</div>
+        <div id="courseEditForm" >Bitte Datensatz suchen und auswählen</div>
         )
       } 
     </main>
   )
+  ) : (
+    <main id="courseAddForm">
+      {/* <div id="zugangsRechteInfo">
+        <h2>sie haben keine Zugangsrechte auf diese Seite</h2>
+      </div> */}
+      < FehlendeZugangsrechte />
+    </main>)
+    //Schlusss Accesslevel
 }
 
 export default CourseAddForm

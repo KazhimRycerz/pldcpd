@@ -3,13 +3,10 @@ import { Link } from 'react-router-dom'
 import React, { useContext, useState, useEffect, useCallback } from 'react'
 import JoachimRitter from '../../../src/images/Joachim_privat.jpg'
 import { SectionsContext } from '../../context/SectionsContext.js'
-import axiosConfig from "../../util/axiosConfig";
+//import axiosConfig from "../../util/axiosConfig";
 
 const AccountAside = () => {
-  const { isAuth, userData, setUserData, contactData, setContactData, marketData, setMarketData, knowledgeData, setKnowledgeData, asidePos, setAsidePos, buttonPos, setButtonPos, navigate } = useContext(SectionsContext);
-  /* const [userData, setUserData] = useState({}) 
-  const [knowledgeData, setKnowledgeData] = useState({})
-  const [contactData, setContactData] = useState({})*/
+  const { isAuth, userData, contactData, marketData, knowledgeData, setKnowledgeData, asidePos, setAsidePos, buttonPos, setButtonPos, navigate } = useContext(SectionsContext);
   const [buttonText, setButtonText] = useState("hide  account");
   const userId = localStorage.getItem("userId");
 
@@ -48,35 +45,26 @@ const handleButton=(buttonPos) => {
   }
 }
 
-const getUserData = useCallback(async () => {
-  const axiosResp = await axiosConfig.get(
-    `http://localhost:4000/user/${userId}`
-  );
-  const data = axiosResp.data;
-  const contactData = data.contactData;
-  const contactKnowledgeData = contactData.professionalStatus;
-  setUserData(data);
-  setContactData(contactData);
-  setKnowledgeData(contactKnowledgeData)
- }, [setUserData, setContactData, setKnowledgeData, userId]);
-  
- 
-const getMarketKnowledgeData = useCallback(async () => {
-  const axiosResp = await axiosConfig.get(
-    `http://localhost:4000/professionalStatus`
-    );
-      const marketData = axiosResp.data;
-    setMarketData(marketData)
-  }, [setMarketData]);
-    //console.log(marketData)
-    //console.log(userData)
-    //console.log(knowledgeData)
-    //console.log(userData.userImage)
-  
-  useEffect(() => {
-      isAuth && getMarketKnowledgeData();
-      isAuth && getUserData();
-    }, [getMarketKnowledgeData, getUserData, isAuth]);
+useEffect(() => {
+  const updateData = async () => {
+    try {
+      const contactKnowledgeData = contactData.professionalStatus;
+      // const authorsData = contactData.authorsData;
+      //const companyData = contactData.currentCompany;
+      setKnowledgeData(contactKnowledgeData);
+      
+    } catch (error) {
+      console.error("Error updating knowledge data:", error);
+      // Handle the error, e.g., show a notification to the user
+    }
+  };
+
+  if (isAuth) {
+    updateData();
+  }
+}, [isAuth, contactData, setKnowledgeData]);
+
+
 
 
 return (

@@ -41,11 +41,9 @@ const userSchema = mongoose.Schema({
     type:String,
     default: ""
   },
-  accessRights: [{
+  accessRights: {
     type: Array,
-    enum: [0,1,2,3,4,5],
-    default:[0]
-  }],
+  },
   active: {
     type: Boolean,
     enum: ["true", "false"],

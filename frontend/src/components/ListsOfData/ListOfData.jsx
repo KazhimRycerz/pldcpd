@@ -4,9 +4,9 @@ import { SectionsContext } from "../../context/SectionsContext.js";
 import Swal from "sweetalert2";
 
 
-const ListOfCourseTypes = () => {
-const { isAuth } = useContext(SectionsContext);
-const [typeList, setTypeList] = useState([])
+  const ListOfCourseTypes = () => {
+  const { isAuth } = useContext(SectionsContext);
+  const [typeList, setTypeList] = useState([])
 
   const getListOfCourseTypes = async () => {
     try {
@@ -36,9 +36,9 @@ const [typeList, setTypeList] = useState([])
         ))}
     </>   
   )
-}
+    }
 
-const ListOfLanguages = () => {
+  const ListOfLanguages = () => {
   const languageList = [
     "Deutsch",
     "Englisch",
@@ -47,7 +47,6 @@ const ListOfLanguages = () => {
     "Spanisch",
     "Chinesisch"
   ];
-    
   /* useEffect(() => {
       console.log(languageList)
     }) */
@@ -60,89 +59,124 @@ const ListOfLanguages = () => {
           ))}
       </>   
     )
-  }
+    } 
 
   const ListOfTopicFields = () => {
-    const topicFieldList = [
-      "Lichtdesign",
-      "Lichttechnik",
-      "Lichtkunst",
-      "Planungspraxis",
-      "Berufspraxis",
-      "Masterplanung",
-    ];
-      
-    /* useEffect(() => {
-        console.log(languageList)
-      }) */
+  const topicFieldList = [
+    "Lichtdesign",
+    "Lichttechnik",
+    "Lichtkunst",
+    "Planungspraxis",
+    "Berufspraxis",
+    "Masterplanung",
+    "Community",
+  ];
+    
+  /* useEffect(() => {
+      console.log(languageList)
+    }) */
+    return (
+      <>   
+          {topicFieldList.map((topicField, index) => (
+            <option key={index} value={topicField}>
+              {topicField}
+            </option>
+          ))}
+      </>   
+    )
+    }
+
+  const ListOfLevel = () => {
+  const levelList = [
+    {
+    value: 0,
+    discription: "beginner"
+    },
+    {
+    value: 1,
+    discription: "student"
+    },
+    {
+    value: 2,
+    discription: "newly qualified Lighting designer"
+    },
+    {
+    value: 3,
+    discription: "junior lighting designer"
+    },
+    {
+    value: 4,
+    discription: "project lighting designer"
+    },
+    {
+    value: 5,
+    discription: "senior lighting designer"
+    },
+    {
+    value: 6,
+    discription: "associate lighting designer"
+    },
+    {
+    value: 7,
+    discription: "principal lighting designer"
+    },
+    {
+    value: 8,
+    discription: "master in lighting design"
+    },
+    {
+    value: 9,
+    discription: "authorised expert in lighting design"
+    },
+  ];
+    
+  /* useEffect(() => {
+      console.log(levelList)
+    }) */
+    return (
+      <>   
+          {levelList.map((level, index) => (
+            <option key={index} value={level.value}>
+              {level.discription}
+            </option>
+          ))}
+      </>   
+    )
+    }
+
+  const ListOfAccessRights = () => {
+    const { isAuth } = useContext(SectionsContext);
+    const [accessList, setAccessList] = useState([])
+    
+      const getListOfAccessRights = async () => {
+        try {
+          const response = await axiosConfig.get("/accessrights");
+          const receivedData = response.data;
+          setAccessList(receivedData);
+          //console.log(receivedData);
+        } catch (error) {
+          Swal.fire({
+            title: "Keine Liste gefunden",
+            icon: "error",
+            confirmButtonText: "OK"
+          });
+        }
+      }
+    
+      useEffect(() => {
+        getListOfAccessRights();
+      }, []);
+    
       return (
         <>   
-            {topicFieldList.map((topicField, index) => (
-              <option key={index} value={topicField}>
-                {topicField}
+            {accessList.map((list, index) => (
+              <option key={index} value={list.type}>
+                {list.type}
               </option>
             ))}
         </>   
       )
     }
 
-    const ListOfLevel = () => {
-      const levelList = [
-        {
-        value: 0,
-        discription: "beginner"
-        },
-        {
-        value: 1,
-        discription: "student"
-        },
-        {
-        value: 2,
-        discription: "newly qualified Lighting designer"
-        },
-        {
-        value: 3,
-        discription: "junior lighting designer"
-        },
-        {
-        value: 4,
-        discription: "project lighting designer"
-        },
-        {
-        value: 5,
-        discription: "senior lighting designer"
-        },
-        {
-        value: 6,
-        discription: "associate lighting designer"
-        },
-        {
-        value: 7,
-        discription: "principal lighting designer"
-        },
-        {
-        value: 8,
-        discription: "master in lighting design"
-        },
-        {
-        value: 9,
-        discription: "authorised expert in lighting design"
-        },
-      ];
-        
-      /* useEffect(() => {
-          console.log(levelList)
-        }) */
-        return (
-          <>   
-              {levelList.map((level, index) => (
-                <option key={index} value={level.value}>
-                  {level.discription}
-                </option>
-              ))}
-          </>   
-        )
-      }
 
-
-export { ListOfCourseTypes, ListOfLanguages, ListOfTopicFields, ListOfLevel }
+export { ListOfCourseTypes, ListOfLanguages, ListOfTopicFields, ListOfLevel, ListOfAccessRights }

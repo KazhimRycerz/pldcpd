@@ -426,7 +426,7 @@ header {
           padding: 8px 8px 0px 0px;
           text-decoration: none;
           font-size: $small;
-          color: black;
+          color: red;
           display: block;
           transition: 0.75s;
           width: max-width;
@@ -434,6 +434,7 @@ header {
           margin-left: 0%;
           /*  border-left: dotted;   
           border-right: dotted; */
+          //border: solid;
           border-radius: 10px; 
           span {
             color: $cpdred;
@@ -481,6 +482,9 @@ header {
     //background-image: url(../../images/Sonnenuntergang_dark.jpg);
     } */
   }
+  .active{
+    color: $cpdred;
+  }
 }
 
 @media (min-width: 1600px){
@@ -513,13 +517,7 @@ header {
       //border: solid;
       *{
       font-size: $xsmall;
-    } 
-    /* #ClogolongHeader {
-      display: none
-    }
-    #ClogoHeader {
-      display:block !important;
-    } */
+      } 
     }
   }
   @media (max-width: 1300px){

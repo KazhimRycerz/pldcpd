@@ -24,7 +24,7 @@ const  KnowledgeAccountMain = ()=>{
    } else {setButtonPos(buttonPos); setAsidePos(asidePos)
    }}
 
-   const getUserData = async () => {
+   /* const getUserData = async () => {
       const axiosResp = await axiosConfig.get(
          `http://localhost:4000/user/${userId}`
          );
@@ -39,24 +39,36 @@ const  KnowledgeAccountMain = ()=>{
          setUserImg(userData.userImage);
          setAuthorsData(authorsData)
          setCompanyData(companyData)
-      };
-      console.log(userImg);
-      
-      
-   const getMarketKnowledgeData = async () => {
+      }; */
+      //console.log(userImg);
+
+      const getProfessionalAccountData = () =>{
+         //const contactDatas = userData.contactData;
+         const contactKnowledgeData = contactData.professionalStatus;
+         const authorsData = contactData.authorsData;
+         const companyData = contactData.currentCompany;
+         //setContactData(contactData);
+         setKnowledgeData(contactKnowledgeData);
+         setUserImg(userData.userImage);
+         setAuthorsData(authorsData)
+         setCompanyData(companyData)
+      }
+            
+   /* const getMarketKnowledgeData = async () => {
       const axiosResp = await axiosConfig.get(
          `http://localhost:4000/professionalStatus`
          );
          const marketData = axiosResp.data;
          setMarketData(marketData)
-      };
+      }; */
       
       useEffect(() => {
-         setGotoPage("/KnowledgeAccount")
-         getMarketKnowledgeData()
-         getUserData()
+         //setGotoPage("/KnowledgeAccount")
+         //getMarketKnowledgeData()
+         //getUserData()
+         isAuth && getProfessionalAccountData()
          buttonPosCheck()
-      }, []);
+      }, [isAuth, getProfessionalAccountData]);
          
 
    return (

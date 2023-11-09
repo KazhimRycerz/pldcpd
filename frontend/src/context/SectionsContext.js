@@ -27,26 +27,25 @@ const SectionsProvider = ({ children }) => {
   const [knowledgeData, setKnowledgeData] = useState({});
   const [marketData, setMarketData] = useState({});
   const [gotoPage, setGotoPage] = useState("/home")
-  const [accessRights, setAccessRights] = useState(1)
-  // Seite AccessLevel 0 = Zugang für jedermann
-  // Seite AccessLevel 1 = Zugang für zahlende Kunden
-  // Seite AccessLevel 2 = Zugang für Admin
-  // Seite AccessLevel 3 = Zugang für Admin
-  // Seite AccessLevel 4 = Zugang für Admin
-  // Seite AccessLevel 5 = Zugang für WedevAadmin
+  const [accessRights, setAccessRights] = useState([0])
 
-  const logout = () => {
-    setIsAuth(false);  
+  const logout = async () => {
+    const logoutName = localStorage.getItem("userName")
+    setIsAuth(false);
     axiosConfig.post("/user/logout").then((res) => {
-      //console.log(res.data);
+      console.log(res.data);
     });
     localStorage.clear();
-    if (gotoPage === "/KnowledgeAccount") { navigate("/home")
+    setAccessRights([0]) 
+    console.log(accessRights)
+    console.log(localStorage)
+    !localStorage.length && navigate("/home")
+    /* if (gotoPage === "/KnowledgeAccount") { navigate("/home")
   } else if (gotoPage === "/userupdate") { navigate("/home")
   } else if (gotoPage === "/courseaddpage") { navigate("/home")
-  } else {navigate(gotoPage)}
+  } else {navigate(gotoPage)} */
     Swal.fire({
-      title: `Sie haben sich erfolgreich abgemeldet`,
+      title: `Sie haben sich erfolgreich abgemeldet, ${logoutName}. Besuchen sie uns bald wieder!`,
       icon: "success",
       timer: 5000,
     })
@@ -54,22 +53,26 @@ const SectionsProvider = ({ children }) => {
 
   const getUserData = async () => {
     const axiosResp = await axiosConfig.get(
-       `http://localhost:4000/user/${userId}`
+       `/user/${userId}`
+       /* `http://localhost:4000/user/${userId}` */
        );
        const userData = axiosResp.data;
        const contactData = axiosResp.data.contactData;
        const contactKnowledgeData = axiosResp.data.contactData.professionalStatus;
+       const accessRights = axiosResp.data.accessRights
         setUserData(userData);
         setContactData(contactData);
         setKnowledgeData(contactKnowledgeData)
-       //console.log(userData)
+        setAccessRights(accessRights)
+       //setAccessRights(userData.accessRights)
+       //console.log(userData.accessRights)
        //console.log(contactData)
        //console.log(contactKnowledgeData)
     };
 
     const getMarketKnowledgeData = async () => {
       const axiosResp = await axiosConfig.get(
-         `http://localhost:4000/professionalStatus`
+         "/professionalStatus"
          );
          const marketData = axiosResp.data;
          setMarketData(marketData)
@@ -78,6 +81,7 @@ const SectionsProvider = ({ children }) => {
     useEffect(() => {
       isAuth && getMarketKnowledgeData();
       isAuth && getUserData();
+      //isAuth && setAccessRights(localStorage.getItem('accessRights'));
    }, [isAuth]);
 
   return (

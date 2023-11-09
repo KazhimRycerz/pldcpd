@@ -64,6 +64,8 @@ export const userLogin = async (req, res) => {
     msg: "successfully logged in",
     userName: loginUser.userName,
     userId: loginUser._id,
+    firstName: loginUser.firstName,
+    accessRights: loginUser.accessRights,
   });
 };
 

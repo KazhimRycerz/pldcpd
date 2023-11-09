@@ -12,6 +12,7 @@ import courseTypesRouter from './routes/courseTypeRoutes.js';
 import emailRouter from './routes/emailRoutes.js';
 import companiesRouter from './routes/companiesRoutes.js';
 import professionalStatusRouter from './routes/professionalStatusRoutes.js';
+import accessRightsRouter from './routes/accessRightsRoutes.js';
 
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -46,6 +47,7 @@ server.use("/companies",  companiesRouter)
 server.use("/courses", coursesRouter)
 server.use("/coursetypes", courseTypesRouter)
 server.use("/email", emailRouter)
+server.use("/accessrights", accessRightsRouter)
 server.use("/", indexRouter)
 server.use(unkownHandler)
 server.use(errorHandler) 
