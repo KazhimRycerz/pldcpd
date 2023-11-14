@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom'
 import React, { useContext, useState, useEffect, useCallback } from 'react'
 import JoachimRitter from '../../../src/images/Joachim_privat.jpg'
 import { SectionsContext } from '../../context/SectionsContext.js'
-//import axiosConfig from "../../util/axiosConfig";
+import axiosConfig from "../../util/axiosConfig";
 
 const AccountAside = () => {
-  const { isAuth, userData, contactData, marketData, knowledgeData, setKnowledgeData, asidePos, setAsidePos, buttonPos, setButtonPos, navigate } = useContext(SectionsContext);
+  const { isAuth, userData, setUserData, contactData, setContactData, marketData, setMarketData, knowledgeData, setKnowledgeData, asidePos, setAsidePos, buttonPos, setButtonPos, navigate } = useContext(SectionsContext);
   const [buttonText, setButtonText] = useState("hide  account");
   const userId = localStorage.getItem("userId");
 
@@ -45,26 +45,32 @@ const handleButton=(buttonPos) => {
   }
 }
 
-useEffect(() => {
-  const updateData = async () => {
-    try {
-      const contactKnowledgeData = contactData.professionalStatus;
-      // const authorsData = contactData.authorsData;
-      //const companyData = contactData.currentCompany;
-      setKnowledgeData(contactKnowledgeData);
-      
-    } catch (error) {
-      console.error("Error updating knowledge data:", error);
-      // Handle the error, e.g., show a notification to the user
-    }
-  };
+const getUserData = async () => {
+      const axiosResp = await axiosConfig.get(
+         `/user/${userId}`
+         );
+         const userData = axiosResp.data;
+         const contactData = axiosResp.data.contactData;
+         const contactKnowledgeData = axiosResp.data.contactData.professionalStatus;
+         const authorsData = axiosResp.data.contactData.authorsData;
+         const companyData = axiosResp.data.contactData.currentCompany;
+         setUserData(userData);
+         setContactData(contactData);
+         setKnowledgeData(contactKnowledgeData);
+      };
 
-  if (isAuth) {
-    updateData();
-  }
-}, [isAuth, contactData, setKnowledgeData]);
-
-
+      const getMarketKnowledgeData = async () => {
+        const axiosResp = await axiosConfig.get(
+          `/professionalStatus`
+          );
+          const marketData = axiosResp.data;
+          setMarketData(marketData)
+        };
+  
+  useEffect(() => {
+  isAuth && getMarketKnowledgeData()
+  isAuth && getUserData()
+}, [isAuth]);
 
 
 return (
@@ -76,7 +82,7 @@ return (
           {buttonText} 
       </button>
                
-      {knowledgeData ? (<aside id="homeAsideAccount" className = {asidePos} >
+      isAuth && {knowledgeData ? (<aside id="homeAsideAccount" className = {asidePos} >
         <img src= {userData.userImage} alt="Joachim Ritter privat" />
         <p><strong>Hallo, {contactData.firstName} </strong><br />
         {knowledgeData.profession} <br />Karrierelevel <br />--- <span> {knowledgeData.myCStatus} </span> ---<br />{knowledgeData.careerPathStatus}</p> <br />
@@ -110,7 +116,7 @@ return (
             to="/KnowledgeAccount">C</Link></p>
     
       </aside>) : (<aside id="homeAsideAccount" className = {asidePos} >
-      <img src= {userData.userImage} alt="Joachim Ritter privat" />
+      {/* <img src= {userData.userImage} alt="Joachim Ritter privat" /> */}
         <p><strong>Hallo, {contactData.firstName} </strong><br />
          <br />Karrierelevel <br />--- <span> </span> ---<br /></p> <br />
               

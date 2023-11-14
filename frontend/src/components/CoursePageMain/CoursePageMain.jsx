@@ -3,47 +3,46 @@ import { Link, useLocation } from "react-router-dom";
 //import C from "../../images/C.png"
 import { useContext, useState, useEffect } from "react";
 import { SectionsContext } from "../../context/SectionsContext.js";
-import axiosConfig from "../../util/axiosConfig";
+import axiosConfig from "../../util/axiosConfig.js";
 import Moment from "moment"
+import { ListOfLevel } from "../ListsOfData/ListOfData.jsx";
 
 const CourseMain = () => {
   const { state } = useLocation();
   const  cID  = state;
-  //console.log(cID);
   const { isAuth, setGotoPage, setButtonPos, setAsidePos, navigate } = useContext(SectionsContext);
   const [courseData, setCourseData] = useState({})
   const [authorsData, setAuthorsData] = useState([])
   const buttonPosCheck = ()=>{
     if (isAuth) {setButtonPos("showBut"); setAsidePos ("accountAside")
   }}
-  setGotoPage("/coursepage")
-  
+  //setGotoPage("/coursepage")
+
   const searchCourseData = async (id) => {
   const courseID = id
-  const axiosResp = await axiosConfig
-  .get(`http://localhost:4000/courses/${courseID}`);
+  const axiosResp = await axiosConfig.get(`/courses/${courseID}`);
   const courseData = axiosResp.data;
   const authorsForCourse = courseData.author;
   setAuthorsData(authorsForCourse)
   setCourseData(courseData);
-  console.log(courseData.author); 
-  console.log(authorsForCourse); 
+  //console.log(courseData.author); 
+  //console.log(authorsForCourse); 
 };
 
-  const zurückZurListe = () => {
-    navigate(-1)
-  }
+  //const zurückZurListe = () => {navigate(-1)}
   
 useEffect(() => {
   searchCourseData(cID);
   buttonPosCheck();
+  console.log(ListOfLevel)
 }, []);
+
 
   return (
     <main id="courseMain"> {/* Styling in global */}
       <div id="headBox">
         <h2 id="courseHead">Kursinhalt und Beschreibung</h2>
-        <button onClick={zurückZurListe} className="buttonBasics" /* id="returnToCoursePage" */>zurück zur Übersicht</button>
+        <button onClick={() => {navigate(-1)}} className="buttonBasics" /* id="returnToCoursePage" */>zurück zur Übersicht</button>
       </div>
       
       <article id="courseArticle">
@@ -106,7 +105,21 @@ useEffect(() => {
         </div>
         <div> 
           <p>Professional Level</p> 
-          <div className="output" id="professionalLevel" ><div>{courseData.professionalLevel}</div></div>
+          <div className="output" id="professionalLevel" >
+            <div>{courseData.professionalLevel} - 
+            {ListOfLevel.find((item) => item.value === courseData.professionalLevel)?.discription} </div>
+          </div>
+        </div>
+        <div> 
+            <p>angebotene Kurssprache</p> 
+            <div className="output" id="courseLanguage">{courseData.courseLanguage}</div>
+            {/* <ul id="courseLanguageList">
+              {courseData.courseLanguage.map((language, index) => (
+                <li key={index} value={language}>
+                  {language}
+                </li>
+              ))}
+            </ul>  */}
         </div>
         <div> 
           <p>Kursanbieter</p> 

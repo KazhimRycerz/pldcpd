@@ -14,7 +14,7 @@ const CourseAddMain = () => {
   const [coursesData, setCoursesData] = useState([])
   const [authorsData, setAuthorsData] = useState([])
   const [languageData, setLanguageData] = useState([])
-  const [listOfThemen, setListOfThemen] = useState([])
+  //const [listOfThemen, setListOfThemen] = useState([])
   //const [listOfKursart, setListOfKursart] = useState([])
   //const [listOfLanguage, setListOfLanguage] = useState([])
   //const [items, setItems] = useState([]);
@@ -183,7 +183,12 @@ useEffect(() => {
                 value={themenFilter} 
                 onChange={(e) => handleFilter(e, setThemenFilter)} id="themenFilter">
                   <option value="">ohne Filter</option>
-                  < ListOfTopicFields />
+                  {/* < ListOfTopicFields /> */}
+                  {ListOfTopicFields.map((topicField, index) => (
+            <option key={index} value={topicField}>
+              {topicField}
+            </option>
+          ))}
                 </select>
               </th>
               <th>
@@ -225,10 +230,11 @@ useEffect(() => {
                 onChange={(e) => handleFilter(e, setSprachFilter)} 
                 id="sprachFilter">
                   <option value="">ohne Filter</option>
-                  {/* {listOfLanguage.map((value, index) => (
-                    <option key={index}>{value}</option>
-                  ))} */}
-                  < ListOfLanguages />
+                  {ListOfLanguages.map((language, index) => (
+            <option key={index} value={language}>
+              {language}
+            </option>
+          ))}
                 </select>
               </th>
               <th>CPD</th>
@@ -241,7 +247,11 @@ useEffect(() => {
                 id="levelFilter"
                 >
                   <option value="">ohne Filter</option>
-                  < ListOfLevel />
+                  {ListOfLevel.map((level, index) => (
+            <option key={index} value={level.value}>
+              {level.discription}
+            </option>
+          ))}
                 </select></th>
               <th>Link zum Anbieter</th>
               <th>mehr Infos</th>
@@ -284,7 +294,7 @@ useEffect(() => {
                   </td>
                   <td>{course.cpdBasicPoints}</td>
                   <td>{course.cpdAdditionalPoints}</td>
-                  <td>{course.professionalLevel}</td>
+                  <td>{course.professionalLevel} - {ListOfLevel.find((item) => item.value === course.professionalLevel)?.discription}</td>
                   <td><a href={course.linkToProvider} id="providerLink" target="_blank" rel="noopener noreferrer">{course.linkToProvider}</a></td>
                   <td><Link to="/coursepage" state= {course._id} className="C" id="infoLink"><p>C</p></Link></td>
                   </tr>

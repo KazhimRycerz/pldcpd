@@ -11,9 +11,8 @@ import { FehlendeZugangsrechte } from "../FehlermeldungenSwal/FehlermeldungenSwa
 //import swal from "sweetalert";
 
 const CourseAddForm = () => {
-  const { isAuth, setGotoPage, userData, accessRights } = useContext(SectionsContext);
-  const { navigate } = useContext(SectionsContext);
-
+  const { isAuth, setGotoPage, userData, accessRights, navigate} = useContext(SectionsContext);
+  
   const [workingMode, setWorkingMode] = useState("inputMode")
   const [formErrors, setFormErrors] = useState({})
   const [data, setData] = useState([])
@@ -688,7 +687,11 @@ const CourseAddForm = () => {
             }} 
             />
             <datalist id="auswahlThemenfeld">
-              <ListOfTopicFields />
+              {ListOfTopicFields.map((topicField, index) => (
+            <option key={index} value={topicField}>
+              {topicField}
+            </option>
+          ))}
               </datalist>
           </div>
           <div id="kursinhalteingabe">
@@ -718,7 +721,12 @@ const CourseAddForm = () => {
                 multiple>
                 </input>
                 <datalist id="sprachOptionen">
-                  < ListOfLanguages />
+                  {/* < ListOfLanguages /> */}
+                  {ListOfLanguages.map((language, index) => (
+            <option key={index} value={language}>
+              {language}
+            </option>
+          ))}
                 </datalist>
                 {kursSprache.length >= 1 ? (
                 <ul id="sprachListToSave">
@@ -741,15 +749,21 @@ const CourseAddForm = () => {
             id="professionalLevel"
             name="professionalLevel"
             value={professionalLevel}
-            list="levelOptionen"
+            list="levelOptions"
             placeholder="professional Level eingeben"
             onChange={(e) => {
             handleChangeOfData(e);
             setProfessionalLevel(e.target.value);
             }} 
+            onDoubleClickCapture={(e) => 
+              setProfessionalLevel("")}
             />
-            <datalist id="levelOptionen">
-              < ListOfLevel />
+            <datalist id="levelOptions">
+             {ListOfLevel.map((level, index) => (
+            <option key={index} value={level.value}>
+              {level.discription}
+            </option>
+          ))}
             </datalist>
           </div>
           <div id="cpdbasicpointseingabe">
@@ -985,7 +999,11 @@ const CourseAddForm = () => {
             }} 
             />
             <datalist id="auswahlThemenfeld">
-              < ListOfTopicFields />
+              {ListOfTopicFields.map((topicField, index) => (
+            <option key={index} value={topicField}>
+              {topicField}
+            </option>
+          ))}
               </datalist>
           </div>
           <div id="kursinhalteinfügen">
@@ -1023,7 +1041,12 @@ const CourseAddForm = () => {
                   multiple>
                   </input>
                   <datalist id="sprachOptionen">
-                    < ListOfLanguages />
+                    {/* < ListOfLanguages /> */}
+                  {ListOfLanguages.map((language, index) => (
+            <option key={index} value={language}>
+              {language}
+            </option>
+          ))}
                   </datalist>
                   {kursSprache.length >= 1 ? (
                   <ul id="sprachListToSave">
@@ -1058,7 +1081,11 @@ const CourseAddForm = () => {
             }} 
             /> 
             <datalist id="levelOptionen">
-              < ListOfLevel />
+              {ListOfLevel.map((level, index) => (
+            <option key={index} value={level.value}>
+             {level.value} - {level.discription}
+            </option>
+          ))}
             </datalist>
           </div>
           <div id="cpdBasicPointsAuswahl">

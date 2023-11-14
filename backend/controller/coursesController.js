@@ -6,12 +6,9 @@ export const getAllCourses = async (req, res) => {
       //.populate("author");
       .populate(["updatedBy",
         {path:"author",
-         populate: [
-          "careerPath",
-          "professionalStatus",
-          "authorsData",
-          "currentCompany"
-        ]
+          populate: [
+            "authorsData"
+          ]
         }]);
         res.status(200).json(course)
     } catch (error) {
@@ -26,15 +23,12 @@ export const getCourse = async (req, res) => {
     try {
       const course = await CourseModel
         .findById(courseId)
-        .populate(["updatedBy",
-        {path:"author",
-         populate: [
-          "careerPath",
-          "professionalStatus",
-          "authorsData",
-          "currentCompany"
-        ]
-        }]);
+        .populate("updatedBy")
+        .populate({
+          path:"author",
+          populate: {
+            path: "authorsData"}
+        });
   
       /* const coursePopulated = await CourseModel
         .findById(courseId)
@@ -49,7 +43,7 @@ export const getCourse = async (req, res) => {
       // hier wird das virtuelle Feld nicht angezeigt,
       // da ich es nicht explizit mit dem . Operator auswähle
   
-      res.json(coursePopulated);    
+      res.json(course);    
     } catch (error) {
       res.send(error.message)
     }

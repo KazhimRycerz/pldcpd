@@ -38,8 +38,7 @@ import Swal from "sweetalert2";
   )
     }
 
-  const ListOfLanguages = () => {
-  const languageList = [
+  const ListOfLanguages = [
     "Deutsch",
     "Englisch",
     "Französisch",
@@ -47,22 +46,9 @@ import Swal from "sweetalert2";
     "Spanisch",
     "Chinesisch"
   ];
-  /* useEffect(() => {
-      console.log(languageList)
-    }) */
-    return (
-      <>   
-          {languageList.map((language, index) => (
-            <option key={index} value={language}>
-              {language}
-            </option>
-          ))}
-      </>   
-    )
-    } 
+  
 
-  const ListOfTopicFields = () => {
-  const topicFieldList = [
+  const ListOfTopicFields = [
     "Lichtdesign",
     "Lichttechnik",
     "Lichtkunst",
@@ -71,23 +57,8 @@ import Swal from "sweetalert2";
     "Masterplanung",
     "Community",
   ];
-    
-  /* useEffect(() => {
-      console.log(languageList)
-    }) */
-    return (
-      <>   
-          {topicFieldList.map((topicField, index) => (
-            <option key={index} value={topicField}>
-              {topicField}
-            </option>
-          ))}
-      </>   
-    )
-    }
 
-  const ListOfLevel = () => {
-  const levelList = [
+  const ListOfLevel = [
     {
     value: 0,
     discription: "beginner"
@@ -130,20 +101,6 @@ import Swal from "sweetalert2";
     },
   ];
     
-  /* useEffect(() => {
-      console.log(levelList)
-    }) */
-    return (
-      <>   
-          {levelList.map((level, index) => (
-            <option key={index} value={level.value}>
-              {level.discription}
-            </option>
-          ))}
-      </>   
-    )
-    }
-
   const ListOfAccessRights = () => {
     const { isAuth } = useContext(SectionsContext);
     const [accessList, setAccessList] = useState([])

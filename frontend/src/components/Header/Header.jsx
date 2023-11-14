@@ -42,7 +42,7 @@ const Header = () => {
 
     const dataUpdate = ()=>{
       setAccessRights(localStorage.getItem("accessRights"))
-      console.log(accessRights)
+      //console.log(accessRights)
     }
    
     useEffect(() => {

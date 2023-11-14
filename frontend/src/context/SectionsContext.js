@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 
 
 const SectionsContext = createContext();
-const userId = localStorage.getItem("userId");
+//const userId = localStorage.getItem("userId");
 
 const SectionsProvider = ({ children }) => {
   const navigate = useNavigate();
@@ -37,8 +37,8 @@ const SectionsProvider = ({ children }) => {
     });
     localStorage.clear();
     setAccessRights([0]) 
-    console.log(accessRights)
-    console.log(localStorage)
+    //console.log(accessRights)
+    //console.log(localStorage)
     !localStorage.length && navigate("/home")
     /* if (gotoPage === "/KnowledgeAccount") { navigate("/home")
   } else if (gotoPage === "/userupdate") { navigate("/home")
@@ -51,10 +51,10 @@ const SectionsProvider = ({ children }) => {
     })
   };
 
-  const getUserData = async () => {
+  /* const getUserData = async () => {
     const axiosResp = await axiosConfig.get(
        `/user/${userId}`
-       /* `http://localhost:4000/user/${userId}` */
+       //`http://localhost:4000/user/${userId}`
        );
        const userData = axiosResp.data;
        const contactData = axiosResp.data.contactData;
@@ -68,20 +68,19 @@ const SectionsProvider = ({ children }) => {
        //console.log(userData.accessRights)
        //console.log(contactData)
        //console.log(contactKnowledgeData)
-    };
+    }; */
 
-    const getMarketKnowledgeData = async () => {
+    /* const getMarketKnowledgeData = async () => {
       const axiosResp = await axiosConfig.get(
          "/professionalStatus"
          );
          const marketData = axiosResp.data;
          setMarketData(marketData)
-      };
+      }; */
 
     useEffect(() => {
-      isAuth && getMarketKnowledgeData();
-      isAuth && getUserData();
-      //isAuth && setAccessRights(localStorage.getItem('accessRights'));
+      //isAuth && getMarketKnowledgeData();
+      //isAuth && getUserData();
    }, [isAuth]);
 
   return (
