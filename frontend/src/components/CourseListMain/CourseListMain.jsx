@@ -10,7 +10,7 @@ import Moment from "moment";
 import Countdown from "../Countdown/Countdown.jsx";
 
 const CourseAddMain = () => {
-  const { isAuth, setGotoPage, setButtonPos, setAsidePos, knowledgeData  } = useContext(SectionsContext);
+  const { isAuth, setGotoPage, setButtonPos, setAsidePos, knowledgeData, accessRights, navigate  } = useContext(SectionsContext);
   const [coursesData, setCoursesData] = useState([])
   const [authorsData, setAuthorsData] = useState([])
   const [languageData, setLanguageData] = useState([])
@@ -25,6 +25,7 @@ const CourseAddMain = () => {
   const [kursendeFilter, setKursendeFilter] = useState('');
   const [levelFilter, setLevelFilter] = useState('');
   const [sprachFilter, setSprachFilter] = useState('');
+  //const [buchungsNoFilter, setBuchungsNoFilter] = useState('');
 
   const [filterElements,setFilterElements] = useState(["keine"]);
   const [sortElement, setSortElement] = useState('');
@@ -46,6 +47,7 @@ const resetFilter= () => {
   setKursartFilter("")
   setLevelFilter("")
   setSprachFilter("")
+  //setBuchungsNoFilter("")
   setSortElement("")
   setFilterElements([])
 }
@@ -124,6 +126,7 @@ useEffect(() => {
   searchCourseListData();
   buttonPosCheck()
   //searchListElements()
+  console.log(accessRights)
 }, [ sortElement, themenFilter, kursartFilter, autorenFilter, kursstartFilter, levelFilter, sprachFilter]);
 
   return (
@@ -262,7 +265,7 @@ useEffect(() => {
           <tbody>
             {coursesData.map((course, index)=>{
               return(
-                <tr key={index}>
+                <tr key={index} >
                   <td className="larger">
                     <li id="topic">
                       <Link to="/coursepage" state= {course._id} id="topicLink">
@@ -297,7 +300,8 @@ useEffect(() => {
                   <td>{course.professionalLevel} - {ListOfLevel.find((item) => item.value === course.professionalLevel)?.discription}</td>
                   <td><a href={course.linkToProvider} id="providerLink" target="_blank" rel="noopener noreferrer">{course.linkToProvider}</a></td>
                   <td><Link to="/coursepage" state= {course._id} className="C" id="infoLink"><p>C</p></Link></td>
-                  </tr>
+                  
+                </tr>
                   )
                 }
               )

@@ -32,7 +32,7 @@ const professionalStatusSchema = mongoose.Schema({
    },   
    myKF: {
       type: Number,
-      default: 0,
+      default: 50,
       require: true
    },
    myLF: {

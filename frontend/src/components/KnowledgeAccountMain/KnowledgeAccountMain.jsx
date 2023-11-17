@@ -1,11 +1,12 @@
 import './KnowledgeAccountMain.scss'
 import JoachimRitter from '../../../src/images/Joachim_privat.jpg'
-//import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import { SectionsContext } from "../../context/SectionsContext.js";
 //import axiosInstance from "../../util/axiosConfig";
 import axiosConfig from "../../util/axiosConfig";
-import Moment from "moment"
+import Moment from "moment";
+import Swal from "sweetalert2";
 
 
 const  KnowledgeAccountMain = ()=>{
@@ -17,56 +18,77 @@ const  KnowledgeAccountMain = ()=>{
    const [authorsData, setAuthorsData] = useState({})
    const [companyData, setCompanyData] = useState({})
    const userId = localStorage.getItem("userId");
-
    
    const buttonPosCheck =()=>{
       if (isAuth && gotoPage==="/home") {setButtonPos("showBut"); setAsidePos("accountAside") //ok
    } else {setButtonPos(buttonPos); setAsidePos(asidePos)
    }}
 
+/* const authorsDataTest = contactData.authorsData
+const companyDataTest = contactData.currentCompany
+console.log(authorsDataTest, companyDataTest) */
+
    const getUserData = async () => {
       const axiosResp = await axiosConfig.get(
          `/user/${userId}`
          );
-         const userData = axiosResp.data;
-         const contactData = axiosResp.data.contactData;
-         const contactKnowledgeData = axiosResp.data.contactData.professionalStatus;
+         //const userData = axiosResp.data;
+         //const contactData = axiosResp.data.contactData;
+         //const contactKnowledgeData = axiosResp.data.contactData.professionalStatus;
          const authorsData = axiosResp.data.contactData.authorsData;
          const companyData = axiosResp.data.contactData.currentCompany;
-         setUserData(userData);
-         setContactData(contactData);
-         setKnowledgeData(contactKnowledgeData);
-         setUserImg(userData.userImage);
+         //setUserData(userData);
+         //setContactData(contactData);
+         //setKnowledgeData(contactKnowledgeData);
+         //setUserImg(userData.userImage);
          setAuthorsData(authorsData)
          setCompanyData(companyData)
       };
       //console.log(userImg);
 
-      /* const getProfessionalAccountData = () =>{
-         //const contactDatas = userData.contactData;
-         const contactKnowledgeData = contactData.professionalStatus;
-         const authorsData = contactData.authorsData;
-         const companyData = contactData.currentCompany;
-         //setContactData(contactData);
-         setKnowledgeData(contactKnowledgeData);
-         setAuthorsData(authorsData)
-         setCompanyData(companyData)
-      } */
             
-   const getMarketKnowledgeData = async () => {
+   /* const getMarketKnowledgeData = async () => {
       const axiosResp = await axiosConfig.get(
          `/professionalStatus`
          );
          const marketData = axiosResp.data;
          setMarketData(marketData)
-      };
-      
-      useEffect(() => {
-         //setGotoPage("/KnowledgeAccount")
-         //isAuth && getProfessionalAccountData()
-         getMarketKnowledgeData()
+      }; */ 
+
+      const addKnowledgeDaten = async () => {
+         //e.preventDefault();       
+         const contactID = contactData._id;
+         
+         try {
+             const response = await axiosConfig.post("/professionalStatus", {contactID});
+             console.log("reponsData", response.data);
+             Swal.fire({
+               title: "Der Knowledgedatensatz wurde erfolgreich erstellt!",
+               icon: "success",
+               showConfirmButton: true,
+               confirmButtonText: 'OK'
+             }).then(() => {
+               getUserData();
+               window.location.reload();
+             })
+             } catch (error) {
+               
+               console.error(error);
+               Swal.fire({
+                 title: "Es ist ein Fehler aufgetreten. Der Datensatz wurde nicht angelegt.",
+                 icon: "error",
+                 confirmButtonText: "OK"
+               });
+             }
+         
+       };
+   
+   useEffect(() => {
+      //setGotoPage("/KnowledgeAccount")
+         //getMarketKnowledgeData()
          getUserData()
          buttonPosCheck()
+         //console.log(contactData)
       }, [isAuth]);
          
 
@@ -98,13 +120,8 @@ const  KnowledgeAccountMain = ()=>{
                   </div>
                   <div>
                      <p>aktuelle Firma</p>
-                     {knowledgeData ? (<div className="output" id="company"><p>{companyData.companyName}</p> <p>{companyData.city} / {companyData.countryCode}</p> <p>{companyData.homepage}</p></div>) : (<div className="output" id="company"><p>Ihre Firma wurde noch nicht eingegeben</p></div>)}
-                  </div>
-                  {/* <div>
-                     <p>Land/Ort:</p>
-                     <div className="output" id="company">{companyData.city} / {companyData.countryCode} </div>
-                  </div> */}
-                  
+                     {companyData ? (<div className="output" id="company"><p>{companyData.companyName}</p> <p>{companyData.city} / {companyData.countryCode}</p> <p>{companyData.homepage}</p></div>) : (<div className="output" id="company"><p>Ihre Firma wurde noch nicht eingegeben</p></div>)}
+                  </div>                  
                </div>
                <div>
                   <div><p>Karrierelevel</p>
@@ -155,15 +172,15 @@ const  KnowledgeAccountMain = ()=>{
          </section>
 
          <section id="account_2">
-            <div className="accountHead" id="account_2_head">
-               <h3> Ihr persönliches Fachwissen</h3>
-               <p /* onClick={} */>
+         <div className="accountHead" id="account_2_head">
+            <h3> Ihr persönliches Fachwissen</h3>
+            {!knowledgeData ? <p onClick={addKnowledgeDaten}>
                <span className="C">C </span> 
                Datensatz anlegen
-               </p>
+            </p> : null}
             </div>
-            <p> Die unteren Zahlen zeigen Ihnen die Durchschnittswerte im internationalen Lichtdesignermarkt aller
-            Teilnehmer an.</p>
+
+            <p> Die unteren Zahlen zeigen Ihnen die Durchschnittswerte im internationalen Lichtdesignermarkt aller Teilnehmer an.</p>
 
             <div id="account_2_data">
                <div className="account_2">

@@ -19,7 +19,7 @@ const AuthorMain = () => {
     if (isAuth) {setButtonPos("showBut"); setAsidePos ("accountAside")
   }}
   
-  const searchAuthorsData = async (id) => {
+  const getAuthorsData = async (id) => {
   const userID = id
   const axiosResp = await axiosConfig
   .get(`http://localhost:4000/authorsinfo/${userID}`);
@@ -38,7 +38,7 @@ const zurückZurListe = () => {
 }
 
 useEffect(() => {
-  searchAuthorsData(aID);
+  getAuthorsData(aID);
   //buttonPosCheck(buttonPos);
 }, [/* buttonPos, */ aID]);
 
@@ -67,7 +67,7 @@ useEffect(() => {
             <output id="authorExpertise">{authorsDetails.fieldsOfExpertise}</output>
         </div> */}
         <div>
-          <p>Expertise</p> 
+          <p>Expertise in Themen</p> 
           <div className="output" id="fieldsOfExpertise">
             <ul>
               {authorsExpertise && authorsExpertise.length > 0 ? 

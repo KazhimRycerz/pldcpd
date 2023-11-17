@@ -67,6 +67,7 @@
         &:hover {
           //color: $cpdred;
           text-shadow: $text-shadow;
+          cursor: pointer;
         }
       }
       img{
@@ -225,9 +226,20 @@
     border-radius: 20px;
     height: auto;
     
+    #account_2_head p{
+      &:hover {
+        //color: $cpdred;
+        text-shadow: $text-shadow;
+        cursor: pointer;
+      }
+    }
+
     > p {
       margin: 0px 0px 30px 30px;
+      
     }
+
+
   }
   #account_2_data {
     display: flex;

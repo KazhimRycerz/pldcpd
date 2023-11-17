@@ -46,6 +46,10 @@ useEffect(() => {
       </div>
       
       <article id="courseArticle">
+        <div className="courseBoxes" id="boxBookingNo"> 
+            <p>Kurs-Code</p> 
+            <div className="output" id="bookingNo">{courseData.bookingNo}</div>
+        </div>
         <div className="courseBoxes" id="boxAutor"> 
             <p>Kursthema</p> 
             <div className="output" id="courseTopic">{courseData.courseTopic}</div>
@@ -71,7 +75,7 @@ useEffect(() => {
             <p>Themenbereich</p> 
             <div className="output" id="courseTopicField">{courseData.topicField}</div>
         </div>
-        <div id="courseInhalt"> 
+        <div id="boxCourseContent"> 
             <p>Inhalt</p> 
             <div className="output" id="courseContent">
               <div>{courseData.courseContent}</div>
@@ -112,24 +116,15 @@ useEffect(() => {
         </div>
         <div> 
             <p>angebotene Kurssprache</p> 
-            <div className="output" id="courseLanguage">{courseData.courseLanguage}</div>
-            {/* <ul id="courseLanguageList">
-              {courseData.courseLanguage.map((language, index) => (
-                <li key={index} value={language}>
-                  {language}
-                </li>
-              ))}
-            </ul>  */}
+            <div className="output" id="courseLanguage">{Array.isArray(courseData.courseLanguage) ? courseData.courseLanguage.join(', ') : ''}</div>
         </div>
         <div> 
           <p>Kursanbieter</p> 
           <div className="output" id="courseProvider" ><a href={courseData.linkToProvider} target="_blank" rel="noopener noreferrer">{courseData.linkToProvider}</a></div>
-        </div>
-
-          
+        </div>   
       </article>
         <div id="buttonBottom">
-          <h2></h2>
+          <h2>Haben Sie Interesse an diesen Kurs?</h2>
           <button className="buttonBasics" /* id="buttonLernListe" */>auf meine Lernliste</button>
         </div>   
     </main>

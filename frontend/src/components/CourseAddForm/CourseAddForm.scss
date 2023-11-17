@@ -11,22 +11,45 @@
   #headBox{
     h2 {
       display: block;
-      margin: 50px auto 20px;
       padding: 20px;
       width:fit-content;
       font-size: $small;
       text-align: center;
       color: $cpdblue;
+      margin: 50px auto 0px;
       border-left: dotted 3px $cpdred;
       border-right: dotted 3px $cpdred;
       border-radius:  20px ;
       //box-shadow: $boxshadow;
       }
+    p{
+      display: block;
+      margin: 0px auto 0px;
+      padding: 0px;
+      width:fit-content;
+      font-size: $small;
+      text-align: center;
+      color: $cpdblue;
+      background-color: transparent;
+      border: none;
+      &:hover {
+        color: $cpdred;
+        text-shadow: 1px 1px 20px $cpdred;
+      }
+      &:before {
+        content: "C ";
+        font-family: $calli;
+        color: $cpdred;
+        font-size: calc($normal + 2px);
+        vertical-align: -3px;
+      }
+      
+      //box-shadow: $boxshadow;
+    }
   }
   #courseSubmitForm, #courseEditForm, #courseDisplayForm {
     display: flex;
     flex-flow: column nowrap;
-    //justify-content: space-around;
     gap: 10px;
     margin: 0 auto 100px;
     padding: 1.5rem 1rem;
@@ -39,23 +62,23 @@
     >div{
       display: flex;
       flex-flow: row nowrap;
-      justify-content: flex-end;
+      justify-content: space-between;
       gap: 0px;
-      >div{
-        border: solid;
+      > div{
+        //border: solid;
       }
       label {
-        border: solid;
-        padding: 5px;
+        //border: solid;
+        padding: 5px 0 0 0;
         flex-basis: 40%;
         //margin-left: 20px;
         align-items: flex-start;
       }
-      #autorenSucheLabel{
+      /* #autorenSucheLabel{
         border: none;
-      }
+      } */
       input, textarea, p, output {
-        border: solid 1px;
+        border: solid 01px;
         height: 35px;
         padding: 10px;
         border-radius: 0px;
@@ -64,6 +87,7 @@
         //width: 25%;
         flex-basis: 60%;
         background-color: $fourth-color;
+        background-color: white;
         &:focus {
           color: $cpdred;
           &::placeholder {
@@ -91,11 +115,11 @@
   #buttonBox {
     display: flex;
     flex-flow: row nowrap;
-    justify-content: flex-end;
+    justify-content: flex-end !important;
     gap: 20px !important;
     margin-top: 5px;
     //border: solid;
-    input, button{
+    input, button, #test{
       vertical-align: middle;
       width: 60%;
       height: 40px;
@@ -166,19 +190,21 @@
     //border:solid;
   }
   >div:first-child,  {
+    display: flex;
+    flex-flow: column nowrap;
     width: 40%;
     label{
       width:100%;
       //margin-bottom: 20px;
     }
     #sucheAutor, #sucheThema {
-      margin: 5px 0 0 5px;
-      width: 90%;
+      margin: 7px 0 0 0px;
+      width: 80%;
+      height: 40px;
       background-color: $fourth-color;
       border: solid 1px;
-      height: 40px;
       font-size: $normal;
-      padding: 10px;
+      padding: 0 0 0 5px;
     }
   }
   >div:last-child{
@@ -186,17 +212,20 @@
     flex-flow: row nowrap;
     justify-content: flex-start;
     flex-basis: 60%;
-    border: solid 2px;
+    border: solid 1px;
     border-radius: 0px;
     #kursAutor {
       padding: 10px;
       width: 50%;
       display: inline;
       max-height: 100px;
-      //background-color: $fourth-color;
+      background-color: $fourth-color;
+      border: none;
     }
     #kursSprache{
       max-width: 50%;
+      background-color: $fourth-color;
+      border: none;
     }
     }
     #authorsListToSave, #sprachListToSave{
@@ -206,7 +235,7 @@
       list-style-type: none;
       padding: 10px;
       overflow: scroll;
-      background-color: $fourth-color;
+      background-color: white;
     }
     #authorsAvailableListToSave{
       width: 100%;
@@ -214,7 +243,7 @@
     #sprachListToSave {
       display: flex;
       flex-flow: row wrap;
-      border: solid;
+      //border: solid;
       gap: 5px;
       //width: fit-content
       li{
@@ -254,4 +283,19 @@
 margin: 300px auto;
 text-align: center;
 //border: solid;
+}
+
+#test{
+  display: flex;
+  flex-flow: row nowrap;
+  border: solid 1px;
+  padding: 0;
+  width: 60%;
+}
+
+ #levelDiscription{
+  max-width: 50%;
+  padding: 10px;
+  background-color: white;
+  
 }

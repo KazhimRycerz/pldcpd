@@ -16,7 +16,7 @@
     //border: solid;
     width: 80%;
     //max-width: 1000px;
-    margin: 20px auto;
+    margin: 40px auto 10px;
     h2{
       display: inline;
       color: $first-color;
@@ -36,7 +36,7 @@
     display: flex;
     flex-flow: row wrap;
     justify-content:flex-start;
-    column-gap: 20px;
+    gap: 10px;
     width: 80%;
     //max-width: 1000px;
     margin: 0px auto;
@@ -55,7 +55,7 @@
       //height: auto;
       //border: solid;
       div{
-        margin-bottom: 10px;
+        margin-bottom: 0px;
         padding: 0;
       }
       div:first-child p{
@@ -84,7 +84,7 @@
       flex-flow: column nowrap;
       border-radius: $radiussmall;
       flex-shrink: 1;
-      margin-bottom: 10px;
+      margin-bottom: 0px;
       min-width: 200px;
       //box-shadow: $boxshadow;
       &#boxAutor{
@@ -93,7 +93,7 @@
       >p{
         line-height: 0px; 
         margin: 0;
-        padding: 15px 20px 10px 20px;
+        padding: 15px 10px ;
         font-size: $normal;
         font-family:$primary-font;
         background-color: $first-color;
@@ -107,7 +107,7 @@
       }
       .output {
         font-size: $normal;
-        padding: 10px 20px;
+        padding: 5px 10px;
         width: 100%;
         background-color: $first-color; 
         background-color: $fourth-color;  
@@ -119,6 +119,10 @@
         //box-shadow: $boxshadow;
       } 
       
+      #boxBookingNo{
+        flex-basis: 4;
+        flex-shrink: 1;
+      }
       #courseTopic{
         flex-basis: 100%;  
       }
@@ -145,9 +149,9 @@
         border-radius: 5px;
         box-shadow: $btnshadow;
         position: relative;
-        left: -20px;
+        left: -10px;
         padding-right: 20px;
-        width: calc(100% + 40px);
+        width: calc(100% + 20px);
         #authorsLink:hover {
           color: $cpdred;
         }
@@ -175,10 +179,14 @@
       } */
       #professionalLevel {
         display: inline;
-        padding-bottom: 0;
+        padding-bottom: 5px;
       }
     }
   } 
+  #buttonBottom{
+    
+    margin: 10px auto 50px;
+  }
   
 
   @media (max-width: $tablet){

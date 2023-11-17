@@ -51,7 +51,8 @@ const SectionsProvider = ({ children }) => {
     })
   };
 
-  /* const getUserData = async () => {
+  const getUserData = async () => {
+    const userId = localStorage.getItem("userId");
     const axiosResp = await axiosConfig.get(
        `/user/${userId}`
        //`http://localhost:4000/user/${userId}`
@@ -64,23 +65,19 @@ const SectionsProvider = ({ children }) => {
         setContactData(contactData);
         setKnowledgeData(contactKnowledgeData)
         setAccessRights(accessRights)
-       //setAccessRights(userData.accessRights)
-       //console.log(userData.accessRights)
-       //console.log(contactData)
-       //console.log(contactKnowledgeData)
-    }; */
+    };
 
-    /* const getMarketKnowledgeData = async () => {
+    const getMarketKnowledgeData = async () => {
       const axiosResp = await axiosConfig.get(
          "/professionalStatus"
          );
          const marketData = axiosResp.data;
          setMarketData(marketData)
-      }; */
+      };
 
     useEffect(() => {
-      //isAuth && getMarketKnowledgeData();
-      //isAuth && getUserData();
+      isAuth && getMarketKnowledgeData();
+      isAuth && getUserData();
    }, [isAuth]);
 
   return (

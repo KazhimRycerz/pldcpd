@@ -6,9 +6,9 @@ import { SectionsContext } from '../../context/SectionsContext.js'
 import axiosConfig from "../../util/axiosConfig";
 
 const AccountAside = () => {
-  const { isAuth, userData, setUserData, contactData, setContactData, marketData, setMarketData, knowledgeData, setKnowledgeData, asidePos, setAsidePos, buttonPos, setButtonPos, navigate } = useContext(SectionsContext);
+  const { isAuth, userData, contactData, marketData, knowledgeData, asidePos, setAsidePos, buttonPos, setButtonPos, navigate } = useContext(SectionsContext);
   const [buttonText, setButtonText] = useState("hide  account");
-  const userId = localStorage.getItem("userId");
+  //const userId = localStorage.getItem("userId");
 
 
 const initialButtonPos = "buttonZeroPosition" 
@@ -45,7 +45,7 @@ const handleButton=(buttonPos) => {
   }
 }
 
-const getUserData = async () => {
+  /* const getUserData = async () => {
       const axiosResp = await axiosConfig.get(
          `/user/${userId}`
          );
@@ -57,20 +57,20 @@ const getUserData = async () => {
          setUserData(userData);
          setContactData(contactData);
          setKnowledgeData(contactKnowledgeData);
-      };
+  }; */
 
-      const getMarketKnowledgeData = async () => {
-        const axiosResp = await axiosConfig.get(
-          `/professionalStatus`
-          );
-          const marketData = axiosResp.data;
-          setMarketData(marketData)
-        };
+  /* const getMarketKnowledgeData = async () => {
+    const axiosResp = await axiosConfig.get(
+      `/professionalStatus`
+      );
+      const marketData = axiosResp.data;
+      setMarketData(marketData)
+    }; */
   
-  useEffect(() => {
-  isAuth && getMarketKnowledgeData()
-  isAuth && getUserData()
-}, [isAuth]);
+  /* useEffect(() => {
+  //isAuth && getMarketKnowledgeData()
+  //isAuth && getUserData()
+}, [isAuth]); */
 
 
 return (

@@ -12,6 +12,11 @@ const companySchema = mongoose.Schema({
       default: "??",
       required: true,
    },
+   countryCode: {
+      type: String,
+      length: 2,
+      //enum: ["DE", "GB", "IT", "US"]
+   },
    city: {
       type: String,
       default: "Unknown",
@@ -28,15 +33,6 @@ const companySchema = mongoose.Schema({
       default: "Unknown",
       required: false,
    },
-   countryCode: {
-      type: String,
-      length: 2,
-      enum: ["DE", "GB", "IT", "US"]
-   },
-   homepage: {
-      type: String,
-
-   },
    cpdProvider: {
       type: Boolean,
       default: false,
@@ -44,15 +40,21 @@ const companySchema = mongoose.Schema({
    internalClientID: {
       type: String,
       unique: true,
+      default: "Unknown",
       required: false
    },
-   branch: String,
-   active: {
-      type: Boolean,
+   branch: {
+      type: String,
+      default: "Unknown",
       default: true,
    },
    ustID: {
-      type: String
+      type: String,
+      default: "Unknown",
+   },
+   homepage: {
+      type: String,
+      default: "Unknown",
    },
    companyEmail: {
       type: String,

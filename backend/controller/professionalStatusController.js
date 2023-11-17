@@ -1,5 +1,12 @@
-import ProfessionalStatusModel from '../models/professionalStatusModel.js'
+import express from "express";
+import ProfessionalStatusModel from '../models/professionalStatusModel.js';
+import ContactModel from "../models/contactModel.js";
 import levelChecker from '../middleware/levelManager.js'
+
+/**
+ * @param {express.Request} req
+ * @param {express.Response} res
+ */
 
 export const getMaKnowledgeData = async (req, res) => {
     try {
@@ -96,16 +103,54 @@ export const getMyKnowledgeData = async (req, res) => {
   }
 //// Hier bitte weiterarbeiten
 
-export const addMyKnowledgeData = async (req, res) => {
+/* export const addMyKnowledgeData = async (req, res) => {
+  console.log(req.body)
     try {
-    const newKData = await ProfessionalStatusModel.create(req.body)
+    const newKData = await ProfessionalStatusModel.create(
+      {myKF: 100,
+      myLC: 50}
+      )
 
     res.send(`Data created and saved. ID:${newKData._id}`)
     } catch (error) {
         console.log(error)
         res.status(409).send(error.message)
     }
-}
+} */
+
+export const addMyKnowledgeData = async (req, res) => {
+  console.log(req.body)
+  
+  try {
+    const newProfessionalStatus = await ProfessionalStatusModel.create({
+      myKF: 100,
+      myLC: 50
+    });
+    
+    if (!newProfessionalStatus || !newProfessionalStatus._id) {
+      return res.status(500).json({ error: "Fehler beim Erstellen des professionellen Status." });
+    }
+    
+    await newProfessionalStatus.save();
+    const contactId = req.body.contactID;
+    const updatedContact = await ContactModel.findOneAndUpdate(
+      { _id: contactId },
+      { $set: {professionalStatus: newProfessionalStatus._id} },
+      { new: true }
+    );
+
+    if (!updatedContact) {
+      return res.status(500).json({ error: "Fehler beim Aktualisieren des Kontakts." });
+    }
+
+    return res.status(200).json({ msg: "Ihr professioneller Status wurde erfolgreich eingerichtet", newProfessionalStatus });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+
+
+
 
 export const updateMyKnowledgeData = async (req, res) => {
 

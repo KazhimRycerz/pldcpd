@@ -54,7 +54,7 @@ export const getFilteredCourselist = async (req, res) => {
   console.log(req.query);
   
   try {
-    const { autor, themenfeld, kursart, kursstart, kursende, level, sprache, sortierung, active } = req.query;
+    const { autor, themenfeld, kursart, kursstart, kursende, level, sprache, sortierung, active, bookingNo } = req.query;
           
     let query = { active: 'true' };
     let sortItem = "Kursstart";
@@ -101,9 +101,11 @@ export const getFilteredCourselist = async (req, res) => {
 export const addCourse = async (req, res) => {
   console.log(req)
     try {
-    const newCourse = await CourseModel.create({
-      courseTopic: req.body.courseTopic,
+    const newCourse = await CourseModel.create(
+      req.body
+      /* courseTopic: req.body.courseTopic,
       author: req.body.author,
+      bookingNo: req.body.bookingNo,
       topicField: req.body.topicField,
       courseType: req.body.courseType,
       courseContent: req.body.courseContent,
@@ -115,12 +117,12 @@ export const addCourse = async (req, res) => {
       endDateOfCourse: req.body.endDateOfCourse, 
       linkToProvider: req.body.provider,
       active: req.body.active,
-      updatedBy: req.body.updatedBy,
-    })
+      updatedBy: req.body.updatedBy, */
+    )
       console.log(newCourse)
-    //const person = await PersonModel.find()
+    
     //res.status(200).json(newPerson)
-    res.send(`Course has been created and saved. mit der ID:${newCourse._id}`)
+    res.json(newCourse/* `Course has been created and saved. mit der ID:${newCourse._id}` */)
     } catch (error) {
         console.log(error)
         res.status(409).send(error.message)
@@ -128,25 +130,10 @@ export const addCourse = async (req, res) => {
 }
 
 export const updateCourse = async (req, res) => {
-  console.log(req.body)
+  //console.log(req.body)
   const courseId = req.body.courseId;
   try {
-    const updatedCourse = {
-      courseTopic: req.body.courseTopic,
-      author: req.body.author,
-      topicField: req.body.topicField,
-      courseType: req.body.courseType,
-      courseContent: req.body.courseContent,
-      courseLanguage: req.body.courseLanguage,
-      professionalLevel: req.body.professionalLevel,
-      cpdBasicPoints: req.body.cpdBasicPoints,
-      cpdAdditionalPoints: req.body.cpdAdditionalPoints,
-      startDateOfCourse: req.body.startDateOfCourse,
-      endDateOfCourse: req.body.endDateOfCourse,
-      linkToProvider: req.body.provider,
-      active: req.body.active,
-      updatedBy: req.body.updatedBy,
-    };
+    const updatedCourse = req.body;
 
     const course = await CourseModel.findByIdAndUpdate(courseId, updatedCourse, { new: true });
     res.json(course);

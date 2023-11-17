@@ -40,14 +40,8 @@ import ProfessionalStatusModel from "../models/professionalStatusModel.js";
 };
 
 export const addProfessionalStatus = async (contactID) => {
+  console.log(contactID)
   try {
-    /* const newContact = new ContactModel({
-      firstName: userData.firstName,
-      lastName: userData.lastName,
-      eMail: userData.eMail
-     }); 
-     await newContact.save(); */
-     console.log(contactID)
    const newProfessionalStatus = await ProfessionalStatusModel.create();
 
    const contactId = contactID
@@ -56,8 +50,6 @@ export const addProfessionalStatus = async (contactID) => {
      {_id:contactId},
      {$set:{professionalStatus: newProfessionalStatus._id}} 
      )
-     /* console.log(newContact._id)
-     console.log(user) */
    return ({ msg: "Ihr professioneller Status wurde eingerichtet", newProfessionalStatus});
  } catch (error) {
    return (error.message);

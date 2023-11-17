@@ -11,6 +11,11 @@ const courseSchema = mongoose.Schema({
          message: (courseTopic) =>  `Der Titel ist zu lang. Bitte kürzen`// input beinhaltet die Eingabe des Nutzers
          }
    },
+   bookingNo: {
+      type: String,
+      default: "tobedecided",
+      //required: true,
+   },
    author: [
       {
          type: mongoose.Schema.Types.ObjectId,
@@ -39,12 +44,22 @@ const courseSchema = mongoose.Schema({
    courseImage: {
       type: Array,
       default: [],
-    },
-    courseLanguage: {
+   },
+   courseLanguage: {
       type: Array,
       default: [],
       //enum: ["English", "German", "French", "Italian", "Spanish", "Chinese"]
-    },
+   },
+   minTeilnehmer: {
+      type: Number,
+      min: 0,
+      default: 0
+   },
+   maxTeilnehmer: {
+      type: Number,
+      min: 0,
+      default: 0
+   },
    cpdBasicPoints: {
       type: Number,
       default: 0,
