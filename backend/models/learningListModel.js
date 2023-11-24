@@ -5,11 +5,6 @@ const learningListSchema = mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: "Course",
     },
-   bookingNo: {
-      type: String,
-      default: "",
-      //required: true,
-   },
    courseActive: {
       type: Boolean,
       required: true,
@@ -21,11 +16,11 @@ const learningListSchema = mongoose.Schema({
       immutable: true,
       default: ()=> new Date(), 
    },
-   startedCourse: {
+   startedCPD: {
       type: Date,
       default: null,
    },
-   finishedCourse: {
+   finishedCPD: {
       type: Date,
       default: null,
    },
@@ -36,7 +31,7 @@ const learningListSchema = mongoose.Schema({
       default: 0,
       required:true
     },
-    numberOfModulesFinished: {
+    numberOfFinishedModules: {
       type: Number,
       min: 0,
       max: 20,

@@ -542,862 +542,859 @@ const CourseAddForm = () => {
   }, []);
 
   
-  return accessRights.includes(5) || accessRights.includes(10) || accessRights.includes(9) ? (
-  (
-    <main id="courseAddForm">
-      <div id="headBox">
-        <h2 id="courseHead">Eingabe / Bearbeiten von Kursangeboten</h2>
-        <p onClick={() => navigate("/home")}>Formular schließen</p>
-      </div>
-      <div id="boxModusWahl">
-          <label>
-            <input
+  return (
+    <>
+      {accessRights.includes(5) || accessRights.includes(10) || accessRights.includes(9) ? (
+        <main id="courseAddForm">
+          <div className="headBox">
+            <h2 id="courseHead">Eingabe / Bearbeiten von Kursangeboten</h2>
+            <p className="closingFunction" onClick={() => navigate("/home")}>Formular schließen</p>
+          </div>
+          <div id="boxModusWahl">
+            <label>
+              <input
               type="radio"
               name="editMode"
               value="editMode"
               checked={workingMode === 'editMode'}
               onChange={workingModeSelect}
-            /> 
-            <span style={{ marginLeft: '5px' }}>Anzeigen und Bearbeiten</span>
-          </label>
-          <label>
-            <input
+              /> 
+              <span style={{ marginLeft: '5px' }}>Anzeigen und Bearbeiten</span>
+            </label>
+            <label>
+              <input
               type="radio"
               name="inputMode"
               value="inputMode"
               checked={workingMode === 'inputMode'}
               onChange={workingModeSelect}
-            />
-            <span style={{ marginLeft: '5px' }}>Neue Kurse erfassen</span>
-          </label>
-      </div>
-      {workingMode === "editMode" && (
-          <div id="themensuche">
-            <div>
-              <label 
-              htmlFor="sucheThema" 
-              id="themenFilterLabel"
-              > Datensatzfinder nach Themen
-              </label>
-            <input 
-            type="text" 
-            name="sucheThema" 
-            value={themenFilter}
-            onDoubleClickCapture={(e) => 
-              {setThemenFilter("")}}
-            /* onChange={handleFilter} */ 
-            onChange={(e) =>
-              {setThemenFilter(e.target.value)}} 
-            id="sucheThema" 
-            placeholder="Themensuchfilter" 
-            //autoComplete="off"
               />
-            </div>
-              <select name="themenListe" 
-              onChange={(e) => {
-                getCourseToReview(e);
-                setStatusSicherung("gesichert");
-              }} 
-              /* onClick={getCourseToReview} */ 
-              id="themenListe"> 
-              {themenListe.length > 0 ? 
-              <option value="no data">bitte auswählen</option> : 
-              <option value="no data">kein Treffer - bitte Filter verändern</option>} 
-                {themenListe.map((item, index) => (
-                  <option key={index} value={item._id}>{item.Thema}</option>
-                ))} 
-              </select> 
+              <span style={{ marginLeft: '5px' }}>Neue Kurse erfassen</span>
+            </label>
           </div>
-        )
-      }
-      {workingMode === 'inputMode' ? (
-        <form
-        onSubmit={handleSubmit}
-        encType="multipart/form-data"
-        id="courseSubmitForm" className={statusSicherung}
-        onChange={(e)=>{setStatusSicherung("ungesichert")}}
-        >
-          {statusSicherung === "ungesichert" ? <p id="änderunsgHinweis">ACHTUNG: Änderungen wurden noch nicht gesichert</p>: null}
-          <div id="kursthemaeingabe">
-            <label htmlFor="courseTopic">Kursthema<sup id="courseTopicSup">*</sup></label>
-            <input
-              type="text"
-              id="courseTopic"
-              name="courseTopic"
-              value={courseTopic}
-              placeholder="Wie lautet das Thema?"
-              autoComplete="off"
-              autoFocus
-              onChange={(e) => {
-                setFormErrors({ ...formErrors, courseTopic: "" }); // Fehlermeldung zurücksetzen
-              handleChangeOfData(e);
-              setCourseTopic(e.target.value);
-            }}
-              />
-              {formErrors.courseTopic && <p className="error">{formErrors.courseTopic}</p>}
-          </div>   
-          <div id="autorenauswahl">
-            <div>
-              <label htmlFor="kursAutor" id="autorenSucheLabel"> Autoren<sup id="autorenSucheSup">*</sup></label>
+          {workingMode === "editMode" && (
+            <div id="themensuche">
+              <div>
+                <label 
+                htmlFor="sucheThema" 
+                id="themenFilterLabel"
+                > Datensatzfinder nach Themen
+                </label>
               <input 
               type="text" 
-              name="sucheAutor" 
-              value={autorenFilter}
-              /* onChange={handleFilter}  */
-              onChange={(e) =>
-                {setAutorenFilter(e.target.value)}}
-              id="sucheAutor" 
-              placeholder="Suchfilter" 
-              autoComplete="off"
-              multiple 
-              /> 
-            </div>             
-            <div>
-              <select name="kursAutor" onClick={updateAuthorsList}id="kursAutor" multiple> 
-                {authorsFilter(autorenFilter).map((item, index) => (
-                  <option key={index} value={item._id}>{item.Name}</option>
-                ))} 
-              </select>  
-
-              {kursAutor.length >= 1 ? (
-              <ul id="authorsListToSave">
-                {kursAutor.map((authorId, index) => (
-                  <li key={index} value={authorId}>
-                    {listOfAuthors.find(author => author._id === authorId)?.Name}
-                  </li>
-                ))}
-              </ul>
-              ) : (
-                <ul id="authorsListToSave">
-                  <li>Auswahl ist leer</li>
-                </ul>
-              )}
-            </div>
-          </div>
-          <div id="kursnummer">
-            <label htmlFor="bookingNo">KursCode<sup id="bookingNoSup">*</sup></label>
-            <input
-              type="text"
-              id="bookingNo"
-              name="bookingNo"
-              value={bookingNo}
-              placeholder="Kursnummer eingeben"
-              autoComplete="off"
-              autoFocus
-              onChange={(e) => {
-                setFormErrors({ ...formErrors, bookingNo: "" }); // Fehlermeldung zurücksetzen
-              handleChangeOfData(e);
-              setBookingNo(e.target.value);
-            }}
-              />
-          </div>
-          <div id="kurstypauswahl">
-            <label htmlFor="kursTyp">Kurstyp:<sup id="courseTypeSup">*</sup></label>
-            <input type= "text"
-            id="kursTyp"
-            name="kursTyp"
-            list="AuswahlKurstyp"
-            value={kursTyp}
-            placeholder="Kurstyp auswählen"
-            autoComplete="off"
-            onChange={(e) => {
-              handleChangeOfData(e);
-              setKursTyp(e.target.value);
-            }} 
-            />
-            <datalist id="AuswahlKurstyp">
-            < ListOfCourseTypes />
-            </datalist>
-          </div>
-          <div id="themenfeldauswahl">
-            <label htmlFor="themenfeld">Themenfeld:<sup id="topicFieldSup">*</sup></label>
-            <input type= "text"
-            id="themenfeld"
-            name="themenfeld"
-            value={themenfeld}
-            list="auswahlThemenfeld"
-            placeholder="Themenfeld aussuchen"
-            autoComplete="off"
-            onChange={(e) => {
-              handleChangeOfData(e);
-              setThemenfeld(e.target.value);
-            }} 
-            />
-            <datalist id="auswahlThemenfeld">
-              {ListOfTopicFields.map((topicField, index) => (
-            <option key={index} value={topicField}>
-              {topicField}
-            </option>
-          ))}
-              </datalist>
-          </div>
-          <div id="kursinhalteingabe">
-            <label htmlFor="kursInhalt">Kursinhalt:<sup id="kursInhaltSup">*</sup></label>
-              <textarea 
-              /* type= "text" */
-              id="kursInhalt"
-              name="kursInhalt"
-              value={kursInhalt}
-              //placeholder="Themenfeld"
-              onChange={(e) => {
-              handleChangeOfData(e);
-              textAreaResizeHandler(e)
-              setKursInhalt(e.target.value);
-              }} />
-          </div>
-          <div id="sprachauswahl">
-            
-              <label htmlFor="kursSprache">Sprache:<sup    id="kursSpracheSup">*</sup></label>
-              <div>
-                <input 
-                list="sprachOptionen"
-                name="kursSprache" 
-                onChange={updateLanguageList}
-                id="kursSprache" 
-                placeholder={kursSprache.length > 0 ? "Sprachen ergänzen oder löschen" : "Sprache auswählen"}
-                multiple>
-                </input>
-                <datalist id="sprachOptionen">
-                  {/* < ListOfLanguages /> */}
-                  {ListOfLanguages.map((language, index) => (
-            <option key={index} value={language}>
-              {language}
-            </option>
-          ))}
-                </datalist>
-                {kursSprache.length >= 1 ? (
-                <ul id="sprachListToSave">
-                  {Array.isArray(kursSprache) ? kursSprache.join(', ') : ''}
-                {/* {kursSprache.map((language, index) => (
-                  <li key={index} value={language}>
-                    {language} 
-                  </li>
-                ))} */}
-              </ul>
-                ) : (
-                  <ul id="sprachListToSave">
-                    <li>Auswahl ist leer</li>
-                  </ul>
-                )}
-              </div>
-          </div>
-          <div id="professionallevelauswahl">
-            <label htmlFor="professionalLevel">Level:<sup id="professionalLevelSup">*</sup></label>
-            <input type= "text"
-            id="professionalLevel"
-            name="professionalLevel"
-            value={professionalLevel}
-            list="levelOptions"
-            placeholder="professional Level eingeben"
-            onChange={(e) => {
-            handleChangeOfData(e);
-            setProfessionalLevel(e.target.value);
-            }} 
-            onDoubleClickCapture={(e) => 
-              setProfessionalLevel("")}
-            />
-            <datalist id="levelOptions">
-             {ListOfLevel.map((level, index) => (
-            <option key={index} value={level.value}>
-              {level.discription}
-            </option>
-          ))}
-            </datalist>
-            {/* <div id="levelDiscription">
-              {ListOfLevel.find((level) => level.value === professionalLevel)?.discription || ''}
-            </div> */}
-          </div>
-          <div id="cpdbasicpointseingabe">
-            <label htmlFor="cpdBasicPoints">CPDPoints:<sup id="cpdBasicPointsSup">*</sup></label>
-            <input type= "number"
-            id="cpdBasicPoints"
-            name="cpdBasicPoints"
-            value={cpdPoints}
-            //placeholder="Themenfeld"
-            onChange={(e) => {
-            handleChangeOfData(e);
-            e.target.value<0 ? setCPDPoints(0) : setCPDPoints(e.target.value);
-            }} />
-          </div>
-          <div id="cpdadditionalpointseingabe">
-            <label htmlFor="cpdAdditionalPoints">Bonus CPDPoints:<sup id="cpdAdditionalPointsSup">*</sup></label>
-            <input type= "number"
-            id="cpdAdditionalPoints"
-            name="cpdAdditionalPoints"
-            value={additionalCPDPoints}
-            //placeholder="Themenfeld"
-            onChange={(e) => {
-            handleChangeOfData(e);
-            setAdditionalCPDPoints(e.target.value);
-            e.target.value<0 ? setAdditionalCPDPoints(0) : setAdditionalCPDPoints(e.target.value);
-            }} />
-          </div>
-          <div id="minTeilnehmereingabe">
-            <label htmlFor="minTeilnehmer">Mindestanzahl Teilnehmer:</label>
-            {/* <p id="cpdAdditionalPoints">{data[0].cpdAdditionalPoints}</p> */}
-            <input type= "number"
-            id="minTeilnehmer"
-            name="minTeilnehmer"
-            value={minTeilnehmer}
-            //placeholder="Themenfeld"
-            onDoubleClickCapture={(e) => 
-              { setMinTeilnehmer("");
-              setStatusSicherung("ungesichert")}}
-            onChange={(e) => {
-            handleChangeOfData(e);
-            setMinTeilnehmer(e.target.value);
-            }} />
-          </div>
-          <div id="maxTeilnehmereingabe">
-            <label htmlFor="maxTeilnehmer">Maximalanzahl Teilnehmer:</label>
-            {/* <p id="cpdAdditionalPoints">{data[0].cpdAdditionalPoints}</p> */}
-            <input type= "number"
-            id="maxTeilnehmer"
-            name="maxTeilnehmer"
-            value={maxTeilnehmer}
-            //placeholder="Themenfeld"
-            onDoubleClickCapture={(e) => 
-              { setMaxTeilnehmer("");
-              setStatusSicherung("ungesichert")}}
-            onChange={(e) => {
-            handleChangeOfData(e);
-            setMaxTeilnehmer(e.target.value);
-            }} />
-          </div>
-          <div id="kursstarteingabe">
-            <label htmlFor="kursstart">Kursstart:<sup id="kursstartSup">*</sup></label>
-            <input type= "date"
-            id="kursstart"
-            name="kursstart"
-            value={Moment(kursstart).format("YYYY-MM-DD")}
-            //placeholder="Themenfeld"
-            onChange={(e) => {
-              const selectedDate = e.target.value;
-              handleChangeOfData(e);
-              setKursstart(selectedDate);
-              const nextDay = Moment(selectedDate).format("YYYY-MM-DD");
-              setKursende(nextDay);
-            }}
-            />
-          </div>
-          <div id="kursendeeingabe">
-            <label htmlFor="kursende">Kursende:<sup id="kursendeSup">*</sup></label>
-            <input type= "date"
-            id="kursende"
-            name="kursende"
-            value={Moment(kursende).format("YYYY-MM-DD")}
-            //placeholder="Themenfeld"
-            onChange={(e) => {
-            handleChangeOfData(e);
-            setKursende(e.target.value);
-            }} />
-          </div>
-          <div id="linkprovidereingabe">
-            <label htmlFor="linkProvider">Anbieter:<sup id="linkProviderSup">*</sup></label>
-              <input type= "url"
-              id="linkProvider"
-              name="linkProvider"
-              value={linkProvider}
-              //placeholder="Themenfeld"
-              onChange={(e) => {
-              handleChangeOfData(e);
-              setLinkProvider(e.target.value);
-              }} />
-          </div>
-          <div id="imageupload">
-            <label htmlFor="imageUpload">
-              Foto hochladen:
-            </label>
-              <input
-                type="file"
-                name="imageUpload"
-                id="imageUpload"
-                onChange={(e) => {
-                  setFile(e.target.files[0]);
-                  setRemoved(false);
-                }}
-              />
-            {file ? (
-              <>
-                <div>
-                  <p>
-                    <span id="file">{file.name}</span>
-                    <CloseOutlined
-                      onClick={() => {
-                        setRemoved(true);
-                        setFile(null);
-                      }}
-                    />
-                  </p>
-                  {/* <label htmlFor="image">
-                    Dateien durchsuchen
-                  </label> */}
-                </div>
-              </>
-            ) : (
-              <></>
-            )}
-          </div>
-          <div id="kursactivated">
-            <label htmlFor="kursActivated">Kurs aktivieren:<sup id="activeSup">*</sup></label>
-            <input type= "checkbox"
-            id="kursActivated"
-            name="kursActivated"
-            checked={kursActivated}
-            //placeholder="Themenfeld"
-            onChange={(e) => {
-            handleChangeOfData(e);
-            setKursActivated(e.target.checked);
-            }} 
-            />
-          </div>
-          <div id="updatedbyeingabe">
-            <label htmlFor="updatedBy">Eingabe als:</label>
-            {/* <p id="kursActivated">{data[0].active === true ? "aktiviert" : "nicht aktiv"}</p> */}
-            <output         
-            id="updatedBy"
-            name="updatedBy"
-            >
-            {userData.firstName} {userData.lastName}
-            </output>
-          </div>
-          {statusSicherung === "ungesichert" ? (<div id="buttonBox">
-            <button className="buttonBasics" type="submit" value="senden" >senden</button>
-            <button className="buttonBasics" type="reset" onClick={clearForm}>reset Daten</button>
-          </div>) : <div>Noch keine Daten eingegeben</div>}
-        </form> 
-
-        ) : (
-                  
-        data.length === 1 ?
-        <div id="courseDisplayForm" className={statusSicherung}>
-          { statusSicherung === "ungesichert" ? <p id="änderunsgHinweis">Änderungen wurden noch nicht gesichert</p>: null}
-          <div id="kurstiteldefinition">
-            <label htmlFor="courseTopic">Kursthema</label>
-            {/* {data.length === 1 ? <p id="courseTopic">{data[0].courseTopic}</p> : <p></p>} */}
-            {/* <p id="courseTopic">{data[0].courseTopic}</p> */}
-            <input
-              type="text"
-              id="courseTopic"
-              name="courseTopic"
-              value={courseTopic}
-              placeholder="Wie lautet das Thema?"
-              autoComplete="off"
-              autoFocus
+              name="sucheThema" 
+              value={themenFilter}
               onDoubleClickCapture={(e) => 
-                {setCourseTopic("")}}
-              onChange={(e) => {
-                setFormErrors({ ...formErrors, courseTopic: "" }); // Fehlermeldung zurücksetzen
-                handleChangeOfData(e);
-                setCourseTopic(e.target.value);
-            }}
-              /> 
-              {formErrors.courseTopic && <p className="error">{formErrors.courseTopic}</p>}
-          </div>
-          <div id="autorenauswahl">
-              <div >
-                <label htmlFor="kursAutor" id="autorenSucheLabel"> Autoren</label>
-                <input 
-                type="text" 
-                name="sucheAutor" 
-                value={autorenFilter}
-                onChange={(e) =>
-                {setAutorenFilter(e.target.value)}} 
-                id="sucheAutor" 
-                placeholder="Suchfilter" 
-                autoComplete="off"
-                multiple 
+                {setThemenFilter("")}}
+              /* onChange={handleFilter} */ 
+              onChange={(e) =>
+                {setThemenFilter(e.target.value)}} 
+              id="sucheThema" 
+              placeholder="Themensuchfilter" 
+              //autoComplete="off"
                 />
-              </div>              
-            <div>   
-            
-            {<select name="kursAutor" 
-            onClick={updateAuthorsList} 
-            id="kursAutor" multiple>
-              {authorsFilter(autorenFilter).map((item, index) => (
-                <option key={index} value={item._id}>
-                  {item.Name}
-                </option>
-              ))}
-            </select>} 
-
-            <ul id="authorsListToSave">
-              {kursAutor.length >= 1 ? (
-                kursAutor.map((authorsId, index) => (
-                  <li key={index} value={authorsId}>
-                    {listOfAuthors.find(author => author._id === authorsId)?.Name}
-                  </li>
-                ))
-              ) : (
-                <li>Auswahl ist leer</li>
-              )}
-            </ul>
-          </div>
-          </div>
-          <div id="bookingnodefinition">
-            <label htmlFor="bookingNo">KursCode:</label>
-            <input
-                type="text"
-                id="bookingNo"
-                name="bookingNo"
-                value={bookingNo}
-                placeholder="KursCode"
-                autoComplete="off"
-                autoFocus
-                onDoubleClickCapture={(e) => 
-                  {setBookingNo("")}}
+              </div>
+                <select name="themenListe" 
                 onChange={(e) => {
-                  setFormErrors({ ...formErrors, bookingNo: "" }); // Fehlermeldung zurücksetzen
+                  getCourseToReview(e);
+                  setStatusSicherung("gesichert");
+                }} 
+                /* onClick={getCourseToReview} */ 
+                id="themenListe"> 
+                {themenListe.length > 0 ? 
+                <option value="no data">bitte auswählen</option> : 
+                <option value="no data">kein Treffer - bitte Filter verändern</option>} 
+                  {themenListe.map((item, index) => (
+                    <option key={index} value={item._id}>{item.Thema}</option>
+                  ))} 
+                </select> 
+            </div>
+          )}
+          {workingMode === 'inputMode' ? (
+            <form
+            onSubmit={handleSubmit}
+            encType="multipart/form-data"
+            id="courseSubmitForm" className={statusSicherung}
+            onChange={(e)=>{setStatusSicherung("ungesichert")}}
+            >
+              {statusSicherung === "ungesichert" ? <p id="änderunsgHinweis">ACHTUNG: Änderungen wurden noch nicht gesichert</p>: null}
+              <div id="kursthemaeingabe">
+                <label htmlFor="courseTopic">Kursthema<sup id="courseTopicSup">*</sup></label>
+                <input
+                  type="text"
+                  id="courseTopic"
+                  name="courseTopic"
+                  value={courseTopic}
+                  placeholder="Wie lautet das Thema?"
+                  autoComplete="off"
+                  autoFocus
+                  onChange={(e) => {
+                    setFormErrors({ ...formErrors, courseTopic: "" }); // Fehlermeldung zurücksetzen
                   handleChangeOfData(e);
-                  setBookingNo(e.target.value);
-              }}
-            />
-          </div>          
-          <div id="kurstypauswahl">
-            <label htmlFor="kursTyp">Kurstyp:</label>
-            {/* <p id="kursTyp">{data[0].courseType}</p> */}
-            <input type= "text"
-            id="kursTyp"
-            name="kursTyp"
-            list="AuswahlKurstyp"
-            value={kursTyp}
-            placeholder="Kurstyp aussuchen"
-            autoComplete="off"
-            onDoubleClickCapture={(e) => 
-              {setKursTyp("");
-              setStatusSicherung("ungesichert")}}
-            onChange={(e) => {
-              handleChangeOfData(e);
-              setKursTyp(e.target.value);
-            }} 
-            />
-            <datalist id="AuswahlKurstyp">< ListOfCourseTypes /></datalist>
-          </div>
-          <div id="themenfeldauswahl">
-            <label htmlFor="themenfeld">Themenfeld:</label>
-            {/* <p id="themenfeld">{data[0].topicField}</p> */}
-            <input type= "text"
-            id="themenfeld"
-            name="themenfeld"
-            value={themenfeld}
-            list="auswahlThemenfeld"
-            placeholder="Themenfeld aussuchen"
-            autoComplete="off"
-            onDoubleClickCapture={(e) => 
-              {setThemenfeld("")
-              setStatusSicherung("ungesichert")}}
-            onChange={(e) => {
-              handleChangeOfData(e);
-              setThemenfeld(e.target.value);
-            }} 
-            />
-            <datalist id="auswahlThemenfeld">
-              {ListOfTopicFields.map((topicField, index) => (
-            <option key={index} value={topicField}>
-              {topicField}
-            </option>
-          ))}
-              </datalist>
-          </div>
-          <div id="kursinhalteinfügen">
-            <label htmlFor="kursInhalt">Kursinhalt:</label>
-            {/* <p id="kursInhalt" style={{height:"fit-content"}}>{data[0].courseContent}</p> */}
-              <textarea 
-              id="kursInhalt"
-              name="kursInhalt"
-              value={kursInhalt}
-              placeholder="Kursinhalt"
-              onLoad={(e)=>{
-                textAreaResizeHandler(e)}}
-              onDoubleClickCapture={(e) => {
-                setStatusSicherung("ungesichert")
-                textAreaResizeHandler(e)
-              }}
-              onChange={(e) => {
-              handleChangeOfData(e);
-              textAreaResizeHandler(e)
-              setKursInhalt(e.target.value);
-              }} />
-          </div>
-          <div id="sprachauswahl">
-              <label htmlFor="kursSprache">Sprache:</label>
-              <div>
-                {/* <ul id="sprachListToSave">
-                  {data[0].courseLanguage.map((language, index) => (
-                    <li key={index} value={language}>
-                    {language} 
-                  </li>
-                ))}
-                </ul> */}
-                    <input 
-                  list="sprachOptionen"
-                  name="kursSprache" 
-                  onChange={(e)=>{
-                    setStatusSicherung("ungesichert")
-                    updateLanguageList(e)
-                  }}
-                  id="kursSprache" 
-                  placeholder={kursSprache.length > 0 ? "Sprachen ergänzen oder löschen" : "Sprache auswählen"}
-                  multiple>
-                  </input>
-                  <datalist id="sprachOptionen">
-                    {/* < ListOfLanguages /> */}
-                  {ListOfLanguages.map((language, index) => (
-            <option key={index} value={language}>
-              {language}
-            </option>
-          ))}
-                  </datalist>
-                  {kursSprache.length >= 1 ? (
-                  <ul id="sprachListToSave">
-                    {Array.isArray(kursSprache) ? kursSprache.join(', ') : ''}
-                  {/* {kursSprache.map((language, index) => (
-                    <li key={index} value={language}>
-                      {language}
-                    </li>
-                  ))} */}
-                </ul>
+                  setCourseTopic(e.target.value);
+                }}
+                  />
+                  {formErrors.courseTopic && <p className="error">{formErrors.courseTopic}</p>}
+              </div>   
+              <div id="autorenauswahl">
+                <div>
+                  <label htmlFor="kursAutor" id="autorenSucheLabel"> Autoren<sup id="autorenSucheSup">*</sup></label>
+                  <input 
+                  type="text" 
+                  name="sucheAutor" 
+                  value={autorenFilter}
+                  /* onChange={handleFilter}  */
+                  onChange={(e) =>
+                    {setAutorenFilter(e.target.value)}}
+                  id="sucheAutor" 
+                  placeholder="Suchfilter" 
+                  autoComplete="off"
+                  multiple 
+                  /> 
+                </div>             
+                <div>
+                  <select name="kursAutor" onClick={updateAuthorsList}id="kursAutor" multiple> 
+                    {authorsFilter(autorenFilter).map((item, index) => (
+                      <option key={index} value={item._id}>{item.Name}</option>
+                    ))} 
+                  </select>  
+
+                  {kursAutor.length >= 1 ? (
+                  <ul id="authorsListToSave">
+                    {kursAutor.map((authorId, index) => (
+                      <li key={index} value={authorId}>
+                        {listOfAuthors.find(author => author._id === authorId)?.Name}
+                      </li>
+                    ))}
+                  </ul>
                   ) : (
-                    <ul id="sprachListToSave">
+                    <ul id="authorsListToSave">
                       <li>Auswahl ist leer</li>
                     </ul>
                   )}
+                </div>
               </div>
-          </div>
-          <div id="levelauswahl">
-            <label htmlFor="professionalLevel">Level:</label>         
-            <div id="test">
-              <input type= "text"
-              id="professionalLevel"
-              name="professionalLevel"
-              value={professionalLevel}
-              list="levelOptionen"
-              placeholder="professional Level eingeben"
-              onDoubleClickCapture={(e) => 
-                {setProfessionalLevel("");
-              setStatusSicherung("ungesichert")}}
-              onChange={(e) => {
-              /* handleChangeOfData(e); */
-              setProfessionalLevel(e.target.value);
-              }} 
-              /> 
-              <datalist id="levelOptionen">
+              <div id="kursnummer">
+                <label htmlFor="bookingNo">KursCode<sup id="bookingNoSup">*</sup></label>
+                <input
+                  type="text"
+                  id="bookingNo"
+                  name="bookingNo"
+                  value={bookingNo}
+                  placeholder="Kursnummer eingeben"
+                  autoComplete="off"
+                  autoFocus
+                  onChange={(e) => {
+                    setFormErrors({ ...formErrors, bookingNo: "" }); // Fehlermeldung zurücksetzen
+                  handleChangeOfData(e);
+                  setBookingNo(e.target.value);
+                }}
+                  />
+              </div>
+              <div id="kurstypauswahl">
+                <label htmlFor="kursTyp">Kurstyp:<sup id="courseTypeSup">*</sup></label>
+                <input type= "text"
+                id="kursTyp"
+                name="kursTyp"
+                list="AuswahlKurstyp"
+                value={kursTyp}
+                placeholder="Kurstyp auswählen"
+                autoComplete="off"
+                onChange={(e) => {
+                  handleChangeOfData(e);
+                  setKursTyp(e.target.value);
+                }} 
+                />
+                <datalist id="AuswahlKurstyp">
+                < ListOfCourseTypes />
+                </datalist>
+              </div>
+              <div id="themenfeldauswahl">
+                <label htmlFor="themenfeld">Themenfeld:<sup id="topicFieldSup">*</sup></label>
+                <input type= "text"
+                id="themenfeld"
+                name="themenfeld"
+                value={themenfeld}
+                list="auswahlThemenfeld"
+                placeholder="Themenfeld aussuchen"
+                autoComplete="off"
+                onChange={(e) => {
+                  handleChangeOfData(e);
+                  setThemenfeld(e.target.value);
+                }} 
+                />
+                <datalist id="auswahlThemenfeld">
+                  {ListOfTopicFields.map((topicField, index) => (
+                <option key={index} value={topicField}>
+                  {topicField}
+                </option>
+              ))}
+                  </datalist>
+              </div>
+              <div id="kursinhalteingabe">
+                <label htmlFor="kursInhalt">Kursinhalt:<sup id="kursInhaltSup">*</sup></label>
+                  <textarea 
+                  /* type= "text" */
+                  id="kursInhalt"
+                  name="kursInhalt"
+                  value={kursInhalt}
+                  //placeholder="Themenfeld"
+                  onChange={(e) => {
+                  handleChangeOfData(e);
+                  textAreaResizeHandler(e)
+                  setKursInhalt(e.target.value);
+                  }} />
+              </div>
+              <div id="sprachauswahl">
+                
+                  <label htmlFor="kursSprache">Sprache:<sup    id="kursSpracheSup">*</sup></label>
+                  <div>
+                    <input 
+                    list="sprachOptionen"
+                    name="kursSprache" 
+                    onChange={updateLanguageList}
+                    id="kursSprache" 
+                    placeholder={kursSprache.length > 0 ? "Sprachen ergänzen oder löschen" : "Sprache auswählen"}
+                    multiple>
+                    </input>
+                    <datalist id="sprachOptionen">
+                      {/* < ListOfLanguages /> */}
+                      {ListOfLanguages.map((language, index) => (
+                <option key={index} value={language}>
+                  {language}
+                </option>
+              ))}
+                    </datalist>
+                    {kursSprache.length >= 1 ? (
+                    <ul id="sprachListToSave">
+                      {Array.isArray(kursSprache) ? kursSprache.join(', ') : ''}
+                    {/* {kursSprache.map((language, index) => (
+                      <li key={index} value={language}>
+                        {language} 
+                      </li>
+                    ))} */}
+                  </ul>
+                    ) : (
+                      <ul id="sprachListToSave">
+                        <li>Auswahl ist leer</li>
+                      </ul>
+                    )}
+                  </div>
+              </div>
+              <div id="professionallevelauswahl">
+                <label htmlFor="professionalLevel">Level:<sup id="professionalLevelSup">*</sup></label>
+                <input type= "text"
+                id="professionalLevel"
+                name="professionalLevel"
+                value={professionalLevel}
+                list="levelOptions"
+                placeholder="professional Level eingeben"
+                onChange={(e) => {
+                handleChangeOfData(e);
+                setProfessionalLevel(e.target.value);
+                }} 
+                onDoubleClickCapture={(e) => 
+                  setProfessionalLevel("")}
+                />
+                <datalist id="levelOptions">
                 {ListOfLevel.map((level, index) => (
                 <option key={index} value={level.value}>
-                  {level.value} - {level.discription}
+                  {level.discription}
                 </option>
-                ))}
-              </datalist>
-              <div id="levelDiscription">
-                {ListOfLevel.find((level) => level.value === professionalLevel)?.discription || ''}
+              ))}
+                </datalist>
+                {/* <div id="levelDiscription">
+                  {ListOfLevel.find((level) => level.value === professionalLevel)?.discription || ''}
+                </div> */}
               </div>
-            </div>
-          </div>
-          <div id="cpdBasicPointsAuswahl">
-            <label htmlFor="cpdBasicPoints">CPDPoints:</label>
-            {/* <p id="cpdBasicPoints">{data[0].cpdBasicPoints}</p> */}
-            <input type= "number"
-            id="cpdBasicPoints"
-            name="cpdBasicPoints"
-            value={cpdPoints}
-            //placeholder="Themenfeld"
-            onDoubleClickCapture={(e) => 
-              {setCPDPoints("");
-              setStatusSicherung("ungesichert")}}
-            onChange={(e) => {
-            handleChangeOfData(e);
-            setCPDPoints(e.target.value);
-            e.target.value<0 ? setCPDPoints(0) : setCPDPoints(e.target.value);
-            }} />
-          </div>
-          <div id="cpdAdditionalPointsAuswahl">
-            <label htmlFor="cpdAdditionalPoints">Bonus CPDPoints:</label>
-            {/* <p id="cpdAdditionalPoints">{data[0].cpdAdditionalPoints}</p> */}
-            <input type= "number"
-            id="cpdAdditionalPoints"
-            name="cpdAdditionalPoints"
-            value={additionalCPDPoints}
-            //placeholder="Themenfeld"
-            onDoubleClickCapture={(e) => 
-              { setAdditionalCPDPoints("");
-              setStatusSicherung("ungesichert")}}
-            onChange={(e) => {
-            handleChangeOfData(e);
-            e.target.value<0 ? setAdditionalCPDPoints(0) : setAdditionalCPDPoints(e.target.value);
-            }} />
-          </div>
-          <div id="minTeilnehmer">
-            <label htmlFor="minTeilnehmer">Mindestanzahl Teilnehmer:</label>
-            {/* <p id="cpdAdditionalPoints">{data[0].cpdAdditionalPoints}</p> */}
-            <input type= "number"
-            id="minTeilnehmer"
-            name="minTeilnehmer"
-            value={minTeilnehmer}
-            //placeholder="Themenfeld"
-            onDoubleClickCapture={(e) => 
-              { setMinTeilnehmer("");
-              setStatusSicherung("ungesichert")}}
-            onChange={(e) => {
-            handleChangeOfData(e);
-            setMinTeilnehmer(e.target.value);
-            }} />
-          </div>
-          <div id="maxTeilnehmer">
-            <label htmlFor="maxTeilnehmer">AMximalanzahl Teilnehmer:</label>
-            {/* <p id="cpdAdditionalPoints">{data[0].cpdAdditionalPoints}</p> */}
-            <input type= "number"
-            id="maxTeilnehmer"
-            name="maxTeilnehmer"
-            value={maxTeilnehmer}
-            //placeholder="Themenfeld"
-            onDoubleClickCapture={(e) => 
-              { setMaxTeilnehmer("");
-              setStatusSicherung("ungesichert")}}
-            onChange={(e) => {
-            handleChangeOfData(e);
-            setMaxTeilnehmer(e.target.value);
-            }} />
-          </div>
-          <div id="kursstartdefinition">
-            <label htmlFor="kursstart">Kursstart:</label>
-            {/* <p id="kursstart">{Moment(data[0].startDateOfCourse).format("DD.MM.YYYY")}</p> */}
-            <input type= "date"
-            id="kursstart"
-            name="kursstart"
-            value={Moment(kursstart).format("YYYY-MM-DD")}
-            //placeholder="Themenfeld"
-            onDoubleClickCapture={(e) => 
-              {setKursstart("");
-              setStatusSicherung("ungesichert")}}
-            onChange={(e) => {
-            handleChangeOfData(e);
-            setKursstart(e.target.value);
-            }} />
-          </div>
-          <div id="kursendedefinition">
-            <label htmlFor="kursende">Kursende:</label>
-            {/* <p id="kursende">{Moment(data[0].endDateOfCourse).format("DD.MM.YYYY")}</p> */}
-            <input type= "date"
-            id="kursende"
-            name="kursende"
-            value={Moment(kursende).format("YYYY-MM-DD")}
-            //placeholder="Themenfeld"
-            onDoubleClickCapture={(e) => 
-              {setKursende("");
-              setStatusSicherung("ungesichert")}}
-            onChange={(e) => {
-            handleChangeOfData(e);
-            setKursende(e.target.value);
-            }} />
-          </div>
-          <div id="providereingabe">
-            <label htmlFor="linkProvider">Anbieter:</label>
-            {/* <p><a id="linkProvider" target="_blank" href='https://${data[0].linkToProvider}'>{data[0].linkToProvider}</a></p> */}
-              <input type= "url"
-              id="linkProvider"
-              name="linkProvider"
-              value={linkProvider}
-              //placeholder="Themenfeld"
-              onDoubleClickCapture={(e) => 
-                {setLinkProvider("");
-                setStatusSicherung("ungesichert")}}
-              onChange={(e) => {
-              handleChangeOfData(e);
-              setLinkProvider(e.target.value);
-              }} />
-          </div>
-          <div id="bilderupload">
-            <label htmlFor="imageUpload">
-              Foto hochladen:
-            </label>
-              <input
-                type="file"
-                name="imageUpload"
-                id="imageUpload"
+              <div id="cpdbasicpointseingabe">
+                <label htmlFor="cpdBasicPoints">CPDPoints:<sup id="cpdBasicPointsSup">*</sup></label>
+                <input type= "number"
+                id="cpdBasicPoints"
+                name="cpdBasicPoints"
+                value={cpdPoints}
+                //placeholder="Themenfeld"
                 onChange={(e) => {
-                  setFile(e.target.files[0]);
-                  setRemoved(false);
+                handleChangeOfData(e);
+                e.target.value<0 ? setCPDPoints(0) : setCPDPoints(e.target.value);
+                }} />
+              </div>
+              <div id="cpdadditionalpointseingabe">
+                <label htmlFor="cpdAdditionalPoints">Bonus CPDPoints:<sup id="cpdAdditionalPointsSup">*</sup></label>
+                <input type= "number"
+                id="cpdAdditionalPoints"
+                name="cpdAdditionalPoints"
+                value={additionalCPDPoints}
+                //placeholder="Themenfeld"
+                onChange={(e) => {
+                handleChangeOfData(e);
+                setAdditionalCPDPoints(e.target.value);
+                e.target.value<0 ? setAdditionalCPDPoints(0) : setAdditionalCPDPoints(e.target.value);
+                }} />
+              </div>
+              <div id="minTeilnehmereingabe">
+                <label htmlFor="minTeilnehmer">Mindestanzahl Teilnehmer:</label>
+                {/* <p id="cpdAdditionalPoints">{data[0].cpdAdditionalPoints}</p> */}
+                <input type= "number"
+                id="minTeilnehmer"
+                name="minTeilnehmer"
+                value={minTeilnehmer}
+                //placeholder="Themenfeld"
+                onDoubleClickCapture={(e) => 
+                  { setMinTeilnehmer("");
+                  setStatusSicherung("ungesichert")}}
+                onChange={(e) => {
+                handleChangeOfData(e);
+                setMinTeilnehmer(e.target.value);
+                }} />
+              </div>
+              <div id="maxTeilnehmereingabe">
+                <label htmlFor="maxTeilnehmer">Maximalanzahl Teilnehmer:</label>
+                {/* <p id="cpdAdditionalPoints">{data[0].cpdAdditionalPoints}</p> */}
+                <input type= "number"
+                id="maxTeilnehmer"
+                name="maxTeilnehmer"
+                value={maxTeilnehmer}
+                //placeholder="Themenfeld"
+                onDoubleClickCapture={(e) => 
+                  { setMaxTeilnehmer("");
+                  setStatusSicherung("ungesichert")}}
+                onChange={(e) => {
+                handleChangeOfData(e);
+                setMaxTeilnehmer(e.target.value);
+                }} />
+              </div>
+              <div id="kursstarteingabe">
+                <label htmlFor="kursstart">Kursstart:<sup id="kursstartSup">*</sup></label>
+                <input type= "date"
+                id="kursstart"
+                name="kursstart"
+                value={Moment(kursstart).format("YYYY-MM-DD")}
+                //placeholder="Themenfeld"
+                onChange={(e) => {
+                  const selectedDate = e.target.value;
+                  handleChangeOfData(e);
+                  setKursstart(selectedDate);
+                  const nextDay = Moment(selectedDate).format("YYYY-MM-DD");
+                  setKursende(nextDay);
                 }}
-              />
-            {file ? (
-              <>
-                <div>
-                  <p>
-                    <span id="file">{file.name}</span>
-                    <CloseOutlined
-                      onClick={() => {
-                        setRemoved(true);
-                        setFile(null);
-                      }}
-                    />
-                  </p>
-                  {/* <label htmlFor="image">
-                    Dateien durchsuchen
-                  </label> */}
-                </div>
-              </>
-            ) : (
-              <></>
-            )}
-          </div>
-          <div id="kursactivating">
-            <label htmlFor="kursActivated">Kurs aktiv:</label>
-            {/* <p id="kursActivated">{data[0].active === true ? "aktiviert" : "nicht aktiv"}</p> */}
-            <input type= "checkbox"
-            id="kursActivated"
-            name="kursActivated"
-            checked={kursActivated}
-            //placeholder="Themenfeld"
-            onChange={(e) => {
-            handleChangeOfData(e);
-            setKursActivated(e.target.checked);
-            }} 
-            />
-          </div>
-          <div id="createdon">
-            <label htmlFor="createdOn">Erfasst am:</label>
-            {/* <p id="kursActivated">{data[0].active === true ? "aktiviert" : "nicht aktiv"}</p> */}
-            <output         
-            id="createdOn"
-            name="createdOn"
-            >{Moment(createdOn).format("DD.MMMM.YYYY")}
-            </output>
-          </div>
-          <div id="updatedon">
-            <label htmlFor="updatedOn">Zuletz aktualisiert am:</label>
-            {/* <p id="kursActivated">{data[0].active === true ? "aktiviert" : "nicht aktiv"}</p> */}
-            <output         
-            id="updatedOn"
-            name="updatedOn"
-            >{Moment(updatedOn).format("DD.MMMM.YYYY")}
-            </output>
-          </div>
-          <div id="updatedby">
-            <label htmlFor="updatedBy">Zuletz aktualisiert von:</label>
-            {/* <p id="kursActivated">{data[0].active === true ? "aktiviert" : "nicht aktiv"}</p> */}
-            <output         
-            id="updatedBy"
-            name="updatedBy"
-            >{updatedBy.firstName} {updatedBy.lastName}
-            </output>
-          </div>
-          <div id="buttonBox">
-          {data.length === 1 && <button onClick={() => deleteCourse(courseId)}>Datensatz löschen</button>}
-            {statusSicherung === "ungesichert" && <button onClick={updateCourse}>Änderungen speichern</button>}
-          </div>
-        </div> 
-        : 
-        <div id="courseEditForm" >Bitte Datensatz suchen und auswählen</div>
-        )
-      } 
-    </main>
-  )
-  ) : (
-    <main id="courseAddForm">
+                />
+              </div>
+              <div id="kursendeeingabe">
+                <label htmlFor="kursende">Kursende:<sup id="kursendeSup">*</sup></label>
+                <input type= "date"
+                id="kursende"
+                name="kursende"
+                value={Moment(kursende).format("YYYY-MM-DD")}
+                //placeholder="Themenfeld"
+                onChange={(e) => {
+                handleChangeOfData(e);
+                setKursende(e.target.value);
+                }} />
+              </div>
+              <div id="linkprovidereingabe">
+                <label htmlFor="linkProvider">Anbieter:<sup id="linkProviderSup">*</sup></label>
+                  <input type= "url"
+                  id="linkProvider"
+                  name="linkProvider"
+                  value={linkProvider}
+                  //placeholder="Themenfeld"
+                  onChange={(e) => {
+                  handleChangeOfData(e);
+                  setLinkProvider(e.target.value);
+                  }} />
+              </div>
+              <div id="imageupload">
+                <label htmlFor="imageUpload">
+                  Foto hochladen:
+                </label>
+                  <input
+                    type="file"
+                    name="imageUpload"
+                    id="imageUpload"
+                    onChange={(e) => {
+                      setFile(e.target.files[0]);
+                      setRemoved(false);
+                    }}
+                  />
+                {file ? (
+                  <>
+                    <div>
+                      <p>
+                        <span id="file">{file.name}</span>
+                        <CloseOutlined
+                          onClick={() => {
+                            setRemoved(true);
+                            setFile(null);
+                          }}
+                        />
+                      </p>
+                      {/* <label htmlFor="image">
+                        Dateien durchsuchen
+                      </label> */}
+                    </div>
+                  </>
+                ) : (
+                  <></>
+                )}
+              </div>
+              <div id="kursactivated">
+                <label htmlFor="kursActivated">Kurs aktivieren:<sup id="activeSup">*</sup></label>
+                <input type= "checkbox"
+                id="kursActivated"
+                name="kursActivated"
+                checked={kursActivated}
+                //placeholder="Themenfeld"
+                onChange={(e) => {
+                handleChangeOfData(e);
+                setKursActivated(e.target.checked);
+                }} 
+                />
+              </div>
+              <div id="updatedbyeingabe">
+                <label htmlFor="updatedBy">Eingabe als:</label>
+                {/* <p id="kursActivated">{data[0].active === true ? "aktiviert" : "nicht aktiv"}</p> */}
+                <output         
+                id="updatedBy"
+                name="updatedBy"
+                >
+                {userData.firstName} {userData.lastName}
+                </output>
+              </div>
+              {statusSicherung === "ungesichert" ? (<div id="buttonBox">
+                <button className="buttonBasics" type="submit" value="senden" >senden</button>
+                <button className="buttonBasics" type="reset" onClick={clearForm}>reset Daten</button>
+              </div>) : <div>Noch keine Daten eingegeben</div>}
+            </form> 
 
-      < FehlendeZugangsrechte />
-    </main>)
-    //Schlusss Accesslevel
+            ) : (         
+            data.length === 1 ?
+            <div id="courseDisplayForm" className={statusSicherung}>
+              { statusSicherung === "ungesichert" ? <p id="änderunsgHinweis">Änderungen wurden noch nicht gesichert</p>: null}
+              <div id="kurstiteldefinition">
+                <label htmlFor="courseTopic">Kursthema</label>
+                {/* {data.length === 1 ? <p id="courseTopic">{data[0].courseTopic}</p> : <p></p>} */}
+                {/* <p id="courseTopic">{data[0].courseTopic}</p> */}
+                <input
+                  type="text"
+                  id="courseTopic"
+                  name="courseTopic"
+                  value={courseTopic}
+                  placeholder="Wie lautet das Thema?"
+                  autoComplete="off"
+                  autoFocus
+                  onDoubleClickCapture={(e) => 
+                    {setCourseTopic("")}}
+                  onChange={(e) => {
+                    setFormErrors({ ...formErrors, courseTopic: "" }); // Fehlermeldung zurücksetzen
+                    handleChangeOfData(e);
+                    setCourseTopic(e.target.value);
+                }}
+                  /> 
+                  {formErrors.courseTopic && <p className="error">{formErrors.courseTopic}</p>}
+              </div>
+              <div id="autorenauswahl">
+                  <div >
+                    <label htmlFor="kursAutor" id="autorenSucheLabel"> Autoren</label>
+                    <input 
+                    type="text" 
+                    name="sucheAutor" 
+                    value={autorenFilter}
+                    onChange={(e) =>
+                    {setAutorenFilter(e.target.value)}} 
+                    id="sucheAutor" 
+                    placeholder="Suchfilter" 
+                    autoComplete="off"
+                    multiple 
+                    />
+                  </div>              
+                <div>   
+                
+                {<select name="kursAutor" 
+                onClick={updateAuthorsList} 
+                id="kursAutor" multiple>
+                  {authorsFilter(autorenFilter).map((item, index) => (
+                    <option key={index} value={item._id}>
+                      {item.Name}
+                    </option>
+                  ))}
+                </select>} 
+
+                <ul id="authorsListToSave">
+                  {kursAutor.length >= 1 ? (
+                    kursAutor.map((authorsId, index) => (
+                      <li key={index} value={authorsId}>
+                        {listOfAuthors.find(author => author._id === authorsId)?.Name}
+                      </li>
+                    ))
+                  ) : (
+                    <li>Auswahl ist leer</li>
+                  )}
+                </ul>
+              </div>
+              </div>
+              <div id="bookingnodefinition">
+                <label htmlFor="bookingNo">KursCode:</label>
+                <input
+                    type="text"
+                    id="bookingNo"
+                    name="bookingNo"
+                    value={bookingNo}
+                    placeholder="KursCode"
+                    autoComplete="off"
+                    autoFocus
+                    onDoubleClickCapture={(e) => 
+                      {setBookingNo("")}}
+                    onChange={(e) => {
+                      setFormErrors({ ...formErrors, bookingNo: "" }); // Fehlermeldung zurücksetzen
+                      handleChangeOfData(e);
+                      setBookingNo(e.target.value);
+                  }}
+                />
+              </div>          
+              <div id="kurstypauswahl">
+                <label htmlFor="kursTyp">Kurstyp:</label>
+                {/* <p id="kursTyp">{data[0].courseType}</p> */}
+                <input type= "text"
+                id="kursTyp"
+                name="kursTyp"
+                list="AuswahlKurstyp"
+                value={kursTyp}
+                placeholder="Kurstyp aussuchen"
+                autoComplete="off"
+                onDoubleClickCapture={(e) => 
+                  {setKursTyp("");
+                  setStatusSicherung("ungesichert")}}
+                onChange={(e) => {
+                  handleChangeOfData(e);
+                  setKursTyp(e.target.value);
+                }} 
+                />
+                <datalist id="AuswahlKurstyp">< ListOfCourseTypes /></datalist>
+              </div>
+              <div id="themenfeldauswahl">
+                <label htmlFor="themenfeld">Themenfeld:</label>
+                {/* <p id="themenfeld">{data[0].topicField}</p> */}
+                <input type= "text"
+                id="themenfeld"
+                name="themenfeld"
+                value={themenfeld}
+                list="auswahlThemenfeld"
+                placeholder="Themenfeld aussuchen"
+                autoComplete="off"
+                onDoubleClickCapture={(e) => 
+                  {setThemenfeld("")
+                  setStatusSicherung("ungesichert")}}
+                onChange={(e) => {
+                  handleChangeOfData(e);
+                  setThemenfeld(e.target.value);
+                }} 
+                />
+                <datalist id="auswahlThemenfeld">
+                  {ListOfTopicFields.map((topicField, index) => (
+                <option key={index} value={topicField}>
+                  {topicField}
+                </option>
+              ))}
+                  </datalist>
+              </div>
+              <div id="kursinhalteinfügen">
+                <label htmlFor="kursInhalt">Kursinhalt:</label>
+                {/* <p id="kursInhalt" style={{height:"fit-content"}}>{data[0].courseContent}</p> */}
+                  <textarea 
+                  id="kursInhalt"
+                  name="kursInhalt"
+                  value={kursInhalt}
+                  placeholder="Kursinhalt"
+                  onLoad={(e)=>{
+                    textAreaResizeHandler(e)}}
+                  onDoubleClickCapture={(e) => {
+                    setStatusSicherung("ungesichert")
+                    textAreaResizeHandler(e)
+                  }}
+                  onChange={(e) => {
+                  handleChangeOfData(e);
+                  textAreaResizeHandler(e)
+                  setKursInhalt(e.target.value);
+                  }} />
+              </div>
+              <div id="sprachauswahl">
+                  <label htmlFor="kursSprache">Sprache:</label>
+                  <div>
+                    {/* <ul id="sprachListToSave">
+                      {data[0].courseLanguage.map((language, index) => (
+                        <li key={index} value={language}>
+                        {language} 
+                      </li>
+                    ))}
+                    </ul> */}
+                        <input 
+                      list="sprachOptionen"
+                      name="kursSprache" 
+                      onChange={(e)=>{
+                        setStatusSicherung("ungesichert")
+                        updateLanguageList(e)
+                      }}
+                      id="kursSprache" 
+                      placeholder={kursSprache.length > 0 ? "Sprachen ergänzen oder löschen" : "Sprache auswählen"}
+                      multiple>
+                      </input>
+                      <datalist id="sprachOptionen">
+                        {/* < ListOfLanguages /> */}
+                      {ListOfLanguages.map((language, index) => (
+                <option key={index} value={language}>
+                  {language}
+                </option>
+              ))}
+                      </datalist>
+                      {kursSprache.length >= 1 ? (
+                      <ul id="sprachListToSave">
+                        {Array.isArray(kursSprache) ? kursSprache.join(', ') : ''}
+                      {/* {kursSprache.map((language, index) => (
+                        <li key={index} value={language}>
+                          {language}
+                        </li>
+                      ))} */}
+                    </ul>
+                      ) : (
+                        <ul id="sprachListToSave">
+                          <li>Auswahl ist leer</li>
+                        </ul>
+                      )}
+                  </div>
+              </div>
+              <div id="levelauswahl">
+                <label htmlFor="professionalLevel">Level:</label>         
+                <div id="test">
+                  <input type= "text"
+                  id="professionalLevel"
+                  name="professionalLevel"
+                  value={professionalLevel}
+                  list="levelOptionen"
+                  placeholder="professional Level eingeben"
+                  onDoubleClickCapture={(e) => 
+                    {setProfessionalLevel("");
+                  setStatusSicherung("ungesichert")}}
+                  onChange={(e) => {
+                  /* handleChangeOfData(e); */
+                  setProfessionalLevel(e.target.value);
+                  }} 
+                  /> 
+                  <datalist id="levelOptionen">
+                    {ListOfLevel.map((level, index) => (
+                    <option key={index} value={level.value}>
+                      {level.value} - {level.discription}
+                    </option>
+                    ))}
+                  </datalist>
+                  <div id="levelDiscription">
+                    {ListOfLevel.find((level) => level.value === professionalLevel)?.discription || ''}
+                  </div>
+                </div>
+              </div>
+              <div id="cpdBasicPointsAuswahl">
+                <label htmlFor="cpdBasicPoints">CPDPoints:</label>
+                {/* <p id="cpdBasicPoints">{data[0].cpdBasicPoints}</p> */}
+                <input type= "number"
+                id="cpdBasicPoints"
+                name="cpdBasicPoints"
+                value={cpdPoints}
+                //placeholder="Themenfeld"
+                onDoubleClickCapture={(e) => 
+                  {setCPDPoints("");
+                  setStatusSicherung("ungesichert")}}
+                onChange={(e) => {
+                handleChangeOfData(e);
+                setCPDPoints(e.target.value);
+                e.target.value<0 ? setCPDPoints(0) : setCPDPoints(e.target.value);
+                }} />
+              </div>
+              <div id="cpdAdditionalPointsAuswahl">
+                <label htmlFor="cpdAdditionalPoints">Bonus CPDPoints:</label>
+                {/* <p id="cpdAdditionalPoints">{data[0].cpdAdditionalPoints}</p> */}
+                <input type= "number"
+                id="cpdAdditionalPoints"
+                name="cpdAdditionalPoints"
+                value={additionalCPDPoints}
+                //placeholder="Themenfeld"
+                onDoubleClickCapture={(e) => 
+                  { setAdditionalCPDPoints("");
+                  setStatusSicherung("ungesichert")}}
+                onChange={(e) => {
+                handleChangeOfData(e);
+                e.target.value<0 ? setAdditionalCPDPoints(0) : setAdditionalCPDPoints(e.target.value);
+                }} />
+              </div>
+              <div id="minTeilnehmer">
+                <label htmlFor="minTeilnehmer">Mindestanzahl Teilnehmer:</label>
+                {/* <p id="cpdAdditionalPoints">{data[0].cpdAdditionalPoints}</p> */}
+                <input type= "number"
+                id="minTeilnehmer"
+                name="minTeilnehmer"
+                value={minTeilnehmer}
+                //placeholder="Themenfeld"
+                onDoubleClickCapture={(e) => 
+                  { setMinTeilnehmer("");
+                  setStatusSicherung("ungesichert")}}
+                onChange={(e) => {
+                handleChangeOfData(e);
+                setMinTeilnehmer(e.target.value);
+                }} />
+              </div>
+              <div id="maxTeilnehmer">
+                <label htmlFor="maxTeilnehmer">AMximalanzahl Teilnehmer:</label>
+                {/* <p id="cpdAdditionalPoints">{data[0].cpdAdditionalPoints}</p> */}
+                <input type= "number"
+                id="maxTeilnehmer"
+                name="maxTeilnehmer"
+                value={maxTeilnehmer}
+                //placeholder="Themenfeld"
+                onDoubleClickCapture={(e) => 
+                  { setMaxTeilnehmer("");
+                  setStatusSicherung("ungesichert")}}
+                onChange={(e) => {
+                handleChangeOfData(e);
+                setMaxTeilnehmer(e.target.value);
+                }} />
+              </div>
+              <div id="kursstartdefinition">
+                <label htmlFor="kursstart">Kursstart:</label>
+                {/* <p id="kursstart">{Moment(data[0].startDateOfCourse).format("DD.MM.YYYY")}</p> */}
+                <input type= "date"
+                id="kursstart"
+                name="kursstart"
+                value={Moment(kursstart).format("YYYY-MM-DD")}
+                //placeholder="Themenfeld"
+                onDoubleClickCapture={(e) => 
+                  {setKursstart("");
+                  setStatusSicherung("ungesichert")}}
+                onChange={(e) => {
+                handleChangeOfData(e);
+                setKursstart(e.target.value);
+                }} />
+              </div>
+              <div id="kursendedefinition">
+                <label htmlFor="kursende">Kursende:</label>
+                {/* <p id="kursende">{Moment(data[0].endDateOfCourse).format("DD.MM.YYYY")}</p> */}
+                <input type= "date"
+                id="kursende"
+                name="kursende"
+                value={Moment(kursende).format("YYYY-MM-DD")}
+                //placeholder="Themenfeld"
+                onDoubleClickCapture={(e) => 
+                  {setKursende("");
+                  setStatusSicherung("ungesichert")}}
+                onChange={(e) => {
+                handleChangeOfData(e);
+                setKursende(e.target.value);
+                }} />
+              </div>
+              <div id="providereingabe">
+                <label htmlFor="linkProvider">Anbieter:</label>
+                {/* <p><a id="linkProvider" target="_blank" href='https://${data[0].linkToProvider}'>{data[0].linkToProvider}</a></p> */}
+                  <input type= "url"
+                  id="linkProvider"
+                  name="linkProvider"
+                  value={linkProvider}
+                  //placeholder="Themenfeld"
+                  onDoubleClickCapture={(e) => 
+                    {setLinkProvider("");
+                    setStatusSicherung("ungesichert")}}
+                  onChange={(e) => {
+                  handleChangeOfData(e);
+                  setLinkProvider(e.target.value);
+                  }} />
+              </div>
+              <div id="bilderupload">
+                <label htmlFor="imageUpload">
+                  Foto hochladen:
+                </label>
+                  <input
+                    type="file"
+                    name="imageUpload"
+                    id="imageUpload"
+                    onChange={(e) => {
+                      setFile(e.target.files[0]);
+                      setRemoved(false);
+                    }}
+                  />
+                {file ? (
+                  <>
+                    <div>
+                      <p>
+                        <span id="file">{file.name}</span>
+                        <CloseOutlined
+                          onClick={() => {
+                            setRemoved(true);
+                            setFile(null);
+                          }}
+                        />
+                      </p>
+                      {/* <label htmlFor="image">
+                        Dateien durchsuchen
+                      </label> */}
+                    </div>
+                  </>
+                ) : (
+                  <></>
+                )}
+              </div>
+              <div id="kursactivating">
+                <label htmlFor="kursActivated">Kurs aktiv:</label>
+                {/* <p id="kursActivated">{data[0].active === true ? "aktiviert" : "nicht aktiv"}</p> */}
+                <input type= "checkbox"
+                id="kursActivated"
+                name="kursActivated"
+                checked={kursActivated}
+                //placeholder="Themenfeld"
+                onChange={(e) => {
+                handleChangeOfData(e);
+                setKursActivated(e.target.checked);
+                }} 
+                />
+              </div>
+              <div id="createdon">
+                <label htmlFor="createdOn">Erfasst am:</label>
+                {/* <p id="kursActivated">{data[0].active === true ? "aktiviert" : "nicht aktiv"}</p> */}
+                <output         
+                id="createdOn"
+                name="createdOn"
+                >{Moment(createdOn).format("DD.MMMM.YYYY")}
+                </output>
+              </div>
+              <div id="updatedon">
+                <label htmlFor="updatedOn">Zuletz aktualisiert am:</label>
+                {/* <p id="kursActivated">{data[0].active === true ? "aktiviert" : "nicht aktiv"}</p> */}
+                <output         
+                id="updatedOn"
+                name="updatedOn"
+                >{Moment(updatedOn).format("DD.MMMM.YYYY")}
+                </output>
+              </div>
+              <div id="updatedby">
+                <label htmlFor="updatedBy">Zuletz aktualisiert von:</label>
+                {/* <p id="kursActivated">{data[0].active === true ? "aktiviert" : "nicht aktiv"}</p> */}
+                <output         
+                id="updatedBy"
+                name="updatedBy"
+                >{updatedBy.firstName} {updatedBy.lastName}
+                </output>
+              </div>
+              <div id="buttonBox">
+              {data.length === 1 && <button onClick={() => deleteCourse(courseId)}>Datensatz löschen</button>}
+                {statusSicherung === "ungesichert" && <button onClick={updateCourse}>Änderungen speichern</button>}
+              </div>
+            </div> 
+            : 
+            <div id="courseEditForm" >Bitte Datensatz suchen und auswählen</div>
+          )} 
+        </main>
+      ) : (
+        <main id="courseAddForm">
+          < FehlendeZugangsrechte />
+        </main>)}
+    </>
+  )
 }
 
 export default CourseAddForm

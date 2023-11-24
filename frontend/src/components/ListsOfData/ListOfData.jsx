@@ -4,10 +4,9 @@ import { SectionsContext } from "../../context/SectionsContext.js";
 import Swal from "sweetalert2";
 
 
-  const ListOfCourseTypes = () => {
+const ListOfCourseTypes = () => {
   const { isAuth } = useContext(SectionsContext);
   const [typeList, setTypeList] = useState([])
-
   const getListOfCourseTypes = async () => {
     try {
       const response = await axiosConfig.get("/coursetypes");
@@ -36,7 +35,95 @@ import Swal from "sweetalert2";
         ))}
     </>   
   )
+}
+
+/* const ListOfCountryCodes = () => {
+  const [filteredData, setFilteredData] = useState([]);
+  const [filterValue, setFilterValue] = useState('');
+
+  useEffect(() => {
+    const getList = async () => {
+      try {
+        if (filterValue.trim() === '') {
+          // Wenn kein Filterwert vorhanden ist, alle Daten abrufen
+          const response = await axiosConfig.get(`/countrycodes`);
+          if (response.status !== 200) {
+            throw new Error('Network response was not ok');
+          }
+          const receivedData = response.data;
+          setFilteredData(receivedData);
+        } else {
+          // Wenn ein Filterwert vorhanden ist, nur gefilterte Daten abrufen
+          const response = await axiosConfig.get(`/countrycodes?filter=${filterValue}`);
+          if (response.status !== 200) {
+            throw new Error('Network response was not ok');
+          }
+          const filteredData = response.data;
+          setFilteredData(filteredData);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    getList();
+  }, [filterValue]);
+
+  return (
+    <>
+      <input
+        type="text"
+        placeholder="Filter by Country"
+        value={filterValue}
+        onChange={e => setFilterValue(e.target.value)}
+      />
+      <datalist id="countryCodeOptions">
+        {filteredData.map((countryList, index) => (
+          <option key={index} value={countryList.kurzCode}>
+            {countryList.landBezeichnung}
+          </option>
+        ))}
+      </datalist>
+    </>
+  );
+}; */
+
+  const ListOfCountryCodes = () => {
+    //const { isAuth } = useContext(SectionsContext);
+    const [countryList, setCountryList] = useState([])
+  
+    const getListOfCountryCodes = async () => {
+      try {
+        const response = await axiosConfig.get("/countrycodes");
+        const receivedData = response.data;
+        setCountryList(receivedData);
+       //console.log(receivedData);
+      } catch (error) {
+        Swal.fire({
+          title: "Keine Liste gefunden",
+          icon: "error",
+          confirmButtonText: "OK"
+        });
+      }
     }
+
+    useEffect(() => {
+      getListOfCountryCodes();
+    }, []);
+
+    return (
+      <>   
+
+          <datalist id="countryCodeOptions">
+            {countryList.map((country, index) => (
+              <option key={index} value={countryList.kurzCode}>
+                {country.landBezeichnung}
+              </option>
+            ))}
+          </datalist>
+      </>   
+    )
+  }
 
   const ListOfLanguages = [
     "Deutsch",
@@ -136,4 +223,4 @@ import Swal from "sweetalert2";
     }
 
 
-export { ListOfCourseTypes, ListOfLanguages, ListOfTopicFields, ListOfLevel, ListOfAccessRights }
+export { ListOfCourseTypes, ListOfLanguages, ListOfTopicFields, ListOfLevel, ListOfAccessRights, ListOfCountryCodes }

@@ -40,14 +40,14 @@ const Header = () => {
     }
     }
 
-    const dataUpdate = ()=>{
-      setAccessRights(localStorage.getItem("accessRights"))
+    /* const dataUpdate = ()=>{
+      setAccessRights(JSON.parse(localStorage.getItem("accessRights")));
       //console.log(accessRights)
-    }
+    } */
    
-    useEffect(() => {
+    /* useEffect(() => {
       isAuth && dataUpdate()
-    }, [dataUpdate])
+    }, [dataUpdate]) */
 
   return (
     <>
@@ -253,8 +253,8 @@ const Header = () => {
               )}
             </li>
             <li>
-              <NavLink to="/emailus" className="closebtn active">
-                <span className="C">C</span> contact us 
+              <NavLink to="/companypage" className="closebtn active">
+                <span className="C">C</span> register company 
               </NavLink>
             </li>
             {/* <img src="./images/finger-print-outline.svg" alt="" /> */}

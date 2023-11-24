@@ -30,20 +30,16 @@ const SectionsProvider = ({ children }) => {
   const [accessRights, setAccessRights] = useState([0])
 
   const logout = async () => {
-    const logoutName = localStorage.getItem("userName")
+    const logoutName = localStorage.getItem("firstName")
     setIsAuth(false);
     axiosConfig.post("/user/logout").then((res) => {
       console.log(res.data);
     });
     localStorage.clear();
     setAccessRights([0]) 
-    //console.log(accessRights)
+    console.log(accessRights, typeof accessRights)
     //console.log(localStorage)
     !localStorage.length && navigate("/home")
-    /* if (gotoPage === "/KnowledgeAccount") { navigate("/home")
-  } else if (gotoPage === "/userupdate") { navigate("/home")
-  } else if (gotoPage === "/courseaddpage") { navigate("/home")
-  } else {navigate(gotoPage)} */
     Swal.fire({
       title: `Sie haben sich erfolgreich abgemeldet, ${logoutName}. Besuchen sie uns bald wieder!`,
       icon: "success",
@@ -64,7 +60,7 @@ const SectionsProvider = ({ children }) => {
         setUserData(userData);
         setContactData(contactData);
         setKnowledgeData(contactKnowledgeData)
-        setAccessRights(accessRights)
+        setAccessRights(accessRights);
     };
 
     const getMarketKnowledgeData = async () => {

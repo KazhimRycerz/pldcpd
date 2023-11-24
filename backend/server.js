@@ -9,6 +9,7 @@ import authorsInfoRouter from './routes/authorsInfoRoutes.js';
 import careerRouter from './routes/careerRoutes.js';
 import coursesRouter from './routes/coursesRoutes.js';
 import courseTypesRouter from './routes/courseTypeRoutes.js';
+import countryCodeRouter from './routes/countryCodeRoutes.js';
 import emailRouter from './routes/emailRoutes.js';
 import companiesRouter from './routes/companiesRoutes.js';
 import professionalStatusRouter from './routes/professionalStatusRoutes.js';
@@ -46,6 +47,7 @@ server.use("/professionalStatus", professionalStatusRouter)
 server.use("/companies",  companiesRouter)
 server.use("/courses", coursesRouter)
 server.use("/coursetypes", courseTypesRouter)
+server.use("/countrycodes", countryCodeRouter)
 server.use("/email", emailRouter)
 server.use("/accessrights", accessRightsRouter)
 server.use("/", indexRouter)

@@ -2,32 +2,41 @@ import mongoose from 'mongoose';
 import ContactModel from './contactModel.js';
 
 const companySchema = mongoose.Schema({
-   companyName: {
+   addressNature: {
       type: String,
-      default: "",
-      required: true,
+      enum: ["private", "business"]
    },
    companyType: {
       type: String,
       default: "??",
       required: true,
    },
-   countryCode: {
+   companyName: {
+      type: String,
+      default: "",
+      required: true,
+   },
+   companyBranch: {
+      type: String,
+      default: "Unknown",
+      default: true,
+   },
+   companyCountryCode: {
       type: String,
       length: 2,
       //enum: ["DE", "GB", "IT", "US"]
    },
-   city: {
+   companyZip:{
       type: String,
       default: "Unknown",
       required: false,
    },
-   zip:{
+   companyCity: {
       type: String,
       default: "Unknown",
       required: false,
    },
-   street: {
+   companyStreet: {
       type: String,
       minLength: 5,
       default: "Unknown",
@@ -37,22 +46,17 @@ const companySchema = mongoose.Schema({
       type: Boolean,
       default: false,
    },
-   internalClientID: {
+   companyClientID: {
       type: String,
       unique: true,
       default: "Unknown",
       required: false
    },
-   branch: {
-      type: String,
-      default: "Unknown",
-      default: true,
-   },
-   ustID: {
+   companyUstID: {
       type: String,
       default: "Unknown",
    },
-   homepage: {
+   companyHomepage: {
       type: String,
       default: "Unknown",
    },
@@ -62,12 +66,17 @@ const companySchema = mongoose.Schema({
       unique: false,
       trim: true
    },
+   CompanyActive: {
+      type: Boolean,
+      default: true,
+   },
    createdOn:{
       type: Date,
       immutable: true,
-      default: ()=> new Date(), 
+      default: () => new Date(), 
    },
    updatedOn: Date,
+
    updatedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "contact",

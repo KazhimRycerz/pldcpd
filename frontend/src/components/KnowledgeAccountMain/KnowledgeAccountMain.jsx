@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
 
 
 const  KnowledgeAccountMain = ()=>{
-   const { userData, setUserData, contactData, setContactData, marketData, setMarketData,  knowledgeData, setKnowledgeData, isAuth, buttonPos, setButtonPos, asidePos, setAsidePos, gotoPage, setGotoPage } = useContext(SectionsContext);
+   const { userData, setUserData, contactData, setContactData, marketData, setMarketData,  knowledgeData, setKnowledgeData, isAuth, buttonPos, setButtonPos, asidePos, setAsidePos, gotoPage, setGotoPage, navigate } = useContext(SectionsContext);
   /*  const [userData, setUserData] = useState({}) */
    //const [knowledgeData, setKnowledgeData] = useState({})
    //const [contactData, setContactData] = useState({})
@@ -94,9 +94,10 @@ console.log(authorsDataTest, companyDataTest) */
 
    return (
       <main id="accountMain">
-         <section id="Gruß_account">
+         <div /* id="Gruß_account"  */className= "headBox">
             <h2> Ihre Fachwissen im Überblick</h2>
-         </section>
+            <p className="closingFunction" onClick={() => navigate("/home")}>Formular schließen</p>
+         </div>
 
          <section id="account_1">
             <div className="accountHead" id="account_1_head">

@@ -138,6 +138,48 @@ main {
     }
 }
 
+.headBox{
+  margin: 20px auto 30px;
+  width: fit-content;
+  //border: solid;
+  h2 {
+    display: block;
+    padding: 20px;
+    width:fit-content;
+    margin: 50px auto 0px;
+    font-size: $small;
+    text-align: center;
+    color: $cpdblue;
+    border-left: dotted 3px $cpdred;
+    border-right: dotted 3px $cpdred;
+    border-radius:  20px ;
+    //box-shadow: $boxshadow;
+    }
+  p{
+    display: block;
+    margin: 0px auto 0px;
+    padding: 0px;
+    width:fit-content;
+    font-size: $small;
+    text-align: center;
+    color: $cpdblue;
+    background-color: transparent;
+    border: none;
+    &:hover {
+      color: $cpdred;
+      text-shadow: 1px 1px 20px $cpdred;
+    }
+    &:before {
+      content: "C ";
+      font-family: $calli;
+      color: $cpdred;
+      font-size: calc($normal + 2px);
+      vertical-align: -3px;
+    }
+    
+    //box-shadow: $boxshadow;
+  }
+}
 /* .buttonBasics:focus {
   background-color: $cpdred;
 } */

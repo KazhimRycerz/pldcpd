@@ -42,7 +42,6 @@ export default function UserProfilMain() {
 
   const findGender = () => {
     let gender;
-
     switch (userData.gender) {
       case "female":
         gender = "weiblich";

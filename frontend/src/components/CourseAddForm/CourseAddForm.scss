@@ -8,7 +8,7 @@
   box-shadow: $managementshadow;
   //border: solid 2px white;
   //font-family: $primary-font;
-  #headBox{
+  .headBox{
     h2 {
       display: block;
       padding: 20px;
@@ -22,7 +22,7 @@
       border-radius:  20px ;
       //box-shadow: $boxshadow;
       }
-    p{
+    .closingFunction{
       display: block;
       margin: 0px auto 0px;
       padding: 0px;
@@ -57,7 +57,7 @@
     //min-width: 400px;
     border-radius: $radiussmall;
     box-shadow: $boxshadow;
-    background-color: $first-color;
+    background-color: $fourth-color;
     //border: solid;
     >div{
       display: flex;

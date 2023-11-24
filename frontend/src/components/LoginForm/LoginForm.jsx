@@ -17,6 +17,7 @@ const LoginForm = () => {
     const axiosResp = await axiosConfig.get(
       `/user/${respData}`
       );
+      //console.log(axiosResp)
     };
 
   const handleSuccessfulLogin =  (respData) => {
@@ -24,11 +25,12 @@ const LoginForm = () => {
     setIsAuth(true);
     localStorage.setItem("userName", respData.userName);
     localStorage.setItem("userId",  respData.userId);
-    localStorage.setItem("accessRights", respData.accessRights); 
+    localStorage.setItem("accessRights", JSON.stringify(respData.accessRights));
     localStorage.setItem("firstName", respData.firstName);
     setButtonPos("showBut");
-    setAccessRights(localStorage.getItem("accessRights"));
-    console.log(accessRights)
+    setAccessRights(JSON.parse(localStorage.getItem("accessRights")));
+    //setAccessRights(respData.accessRights)
+    console.log(accessRights, typeof accessRights, localStorage.getItem("accessRights", respData.accessRights))
     //window.history.back();
     //navigate(-1);
     navigate(gotoPage)

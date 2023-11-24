@@ -36,20 +36,20 @@ const CourseAddMain = () => {
   const buttonPosCheck = ()=>{
     if (isAuth) {setButtonPos("showBut"); setAsidePos ("accountAside")
     }
-}
+  }
 
-const handleFilter = (e, setFilterFunc) => {
-  setFilterFunc(e.target.value)}
+  const handleFilter = (e, setFilterFunc) => {
+    setFilterFunc(e.target.value)}
 
-const resetFilter= () => {
-  setAutorenFilter("")
-  setThemenFilter("")
-  setKursartFilter("")
-  setLevelFilter("")
-  setSprachFilter("")
-  //setBuchungsNoFilter("")
-  setSortElement("")
-  setFilterElements([])
+  const resetFilter= () => {
+    setAutorenFilter("")
+    setThemenFilter("")
+    setKursartFilter("")
+    setLevelFilter("")
+    setSprachFilter("")
+    //setBuchungsNoFilter("")
+    setSortElement("")
+    setFilterElements([])
 }
 
 const searchCourseListData = async () => {
@@ -131,7 +131,10 @@ useEffect(() => {
 
   return (
     <main id="courseListMain"> {/* MainStyling in global */}
-      <h2 id="courseListHead">Übersicht aller aktuellen Kursangebote</h2>
+      <div className="headBox">
+        <h2 /* id="courseListHead" */>Übersicht aller aktuellen Kursangebote</h2>
+        <p className="closingFunction" onClick={() => navigate("/home")}>Formular schließen</p>
+      </div>
       <div id="overviewCourses">
         <div>
           {/* <p>sie können nch Ihren Bedürfnissen filtern...</p> */}

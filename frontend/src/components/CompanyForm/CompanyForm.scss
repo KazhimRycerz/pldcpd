@@ -1,0 +1,348 @@
+@import "../../scss/global.scss";
+
+#companyForm{
+  width: 80%;
+  max-width: 1280px;
+  min-height: 80vh;
+  margin: 00px auto 100px;
+  //box-shadow: $managementshadow;
+  //border: solid 2px white;
+  //font-family: $primary-font;
+  /* .headBox{
+    h2 {
+      display: block;
+      padding: 20px;
+      width:fit-content;
+      font-size: $small;
+      text-align: center;
+      color: $cpdblue;
+      margin: 50px auto 0px;
+      border-left: dotted 3px $cpdred;
+      border-right: dotted 3px $cpdred;
+      border-radius:  20px ;
+      //box-shadow: $boxshadow;
+      }
+    .closingFunction{
+      display: block;
+      margin: 0px auto 0px;
+      padding: 0px;
+      width:fit-content;
+      font-size: $small;
+      text-align: center;
+      color: $cpdblue;
+      background-color: transparent;
+      border: none;
+      &:hover {
+        color: $cpdred;
+        text-shadow: 1px 1px 20px $cpdred;
+      }
+      &:before {
+        content: "C ";
+        font-family: $calli;
+        color: $cpdred;
+        font-size: calc($normal + 2px);
+        vertical-align: -3px;
+      }
+      
+      //box-shadow: $boxshadow;
+    }
+  } */
+  
+  #companySubmitForm, #courseEditForm, #courseDisplayForm {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 10px;
+    margin: 0 auto 100px;
+    padding: 1.5rem 1rem;
+    width: 80%;
+    max-width: 800px;
+    //min-width: 400px;
+    border-radius: $radiussmall;
+    box-shadow: $boxshadow;
+    background-color: $fourth-color;
+    //border: solid;
+    >div{
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      gap: 20%;
+      border: solid;
+      > div{
+        //border: solid 1px;
+        background-color: transparent;
+        width: 20%;
+      }
+      label, #companyNature {
+        //border: solid;
+        padding: 5px 0 0 10px;
+        flex-basis: 20%;
+        //margin-left: 20px;
+        font-size: $normal;
+        align-items: flex-start;
+        border: none;
+        background-color: transparent;
+      }
+      /* #companyNature{
+        border: none;
+        background-color: none;
+        width: 40%;
+      } */
+      input, textarea, p, output {
+        //border: solid 01px;
+        height: 35px;
+        padding: 10px;
+        border-radius: 0px;
+        font-family: $primary-font;
+        font-size: $normal;
+        flex-basis: 60%;
+        //background-color: $fourth-color;
+        background-color: white;
+        &:focus {
+          color: $cpdred;
+          &::placeholder {
+            color: $cpdred;
+          }
+        }
+      }
+
+      #eingabeCompanyNature{
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        gap: 50px;
+        padding: 5px 0 0 10px;
+        //border: solid;
+        width: 60%;
+        background-color: transparent;
+        div {
+          display: flex;
+          flex-flow: column nowrap;
+          border-left: dotted 1px;
+          border-right: dotted 1px;
+          border-radius: 20px;
+          padding: 10px;
+          *{
+            //border: solid;
+            padding: 0;
+            margin: 0;
+            background-color: transparent;
+          }
+
+        }
+      }
+      textarea{
+        height:fit-content;
+        min-height: 100px;
+      }
+      #loginButton {
+        max-width: 150px;
+        color: $cpdblue;
+        padding: 5px;
+        border-radius: 10px;
+        padding: 10px;
+        :active{
+          border: solid 2px;
+        }
+      }
+    }
+  } 
+  
+  #buttonBox {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end !important;
+    gap: 20px !important;
+    margin-top: 5px;
+    border: none !important;
+    input, button{
+      vertical-align: middle;
+      width: 60%;
+      height: 40px;
+      max-width: 120px;
+      margin: 0px ;
+      font-size: $xsmall;
+      padding: 10px;
+      background-color: $first-color;
+      color: $cpdblue;
+      box-shadow: $btnshadow;
+      border-radius: $radiussmall;
+      text-decoration: none;
+      border: none;
+      &:hover {
+        background-color: $cpdblue-10;
+      }
+      &:active {
+        background-color: white;
+      }
+    }
+  }
+}
+
+#boxModusWahl{
+  width: 80%;
+  margin: 0 auto;
+  padding: 10px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 10px;
+  //border: solid;
+}
+
+#themensuche{
+  width: 80%;
+  max-width: 1280px;
+  margin: 0 auto 20px;
+  //margin-bottom: 50px;
+  border-radius: $radiussmall;
+  background-color: $fourth-color;
+  //border: solid white 2px;
+  //border:2px solid $first-color;
+  box-shadow: $boxshadow;
+  padding:10px;
+  div:first-child{
+    width: 40%;
+    label{
+      width:100%;
+      //margin-bottom: 20px;
+    }
+
+  }
+  #themenListe{
+    position: relative;
+    top:25px;
+    height: 40px;
+    width: 60%;
+    padding: 10px;
+  }
+}
+
+
+#autorenauswahl, #sprachauswahl, #themensuche{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start; 
+  max-width: 800px;
+  *{
+    //border:solid;
+  }
+  >div:first-child,  {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 40%;
+    label{
+      width:100%;
+      //margin-bottom: 20px;
+    }
+    #sucheAutor, #sucheThema {
+      margin: 7px 0 0 0px;
+      width: 80%;
+      height: 40px;
+      background-color: $fourth-color;
+      border: solid 1px;
+      font-size: $normal;
+      padding: 0 0 0 5px;
+    }
+  }
+  >div:last-child{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    flex-basis: 60%;
+    border: solid 1px;
+    border-radius: 0px;
+    #kursAutor {
+      padding: 10px;
+      width: 50%;
+      display: inline;
+      max-height: 100px;
+      background-color: $fourth-color;
+      border: none;
+    }
+    #kursSprache{
+      max-width: 50%;
+      background-color: $fourth-color;
+      border: none;
+    }
+    }
+    #authorsListToSave, #sprachListToSave{
+      width: 50%;
+      font-size: $small;
+      display: inline;
+      list-style-type: none;
+      padding: 10px;
+      overflow: scroll;
+      background-color: white;
+    }
+    #authorsAvailableListToSave{
+      width: 100%;
+    }
+    #sprachListToSave {
+      display: flex;
+      flex-flow: row wrap;
+      //border: solid;
+      gap: 5px;
+      //width: fit-content
+      li{
+        &::after{
+          content:", "
+        }
+        &:last-child{
+          &::after{
+            content:""
+          }
+        }
+      }
+    }
+}
+
+.ungesichert{
+ /*  background-color: $cpdred !important; */
+  border: dotted $cpdred 5px
+}
+.gesichert {
+  border: none
+}
+#änderunsgHinweis{
+  position: relative;
+  top: -15px;
+  font-size: $xlarge;
+  width: fit-content;
+  margin: 0 auto;
+  color: $cpdblue;
+}
+#auswahlThemenfeld option{
+  border: solid !important;
+  background-color: red;
+}
+
+#zugangsRechteInfo h2{
+margin: 300px auto;
+text-align: center;
+//border: solid;
+}
+
+#test{
+  display: flex;
+  flex-flow: row nowrap;
+  border: solid 1px;
+  padding: 0;
+  width: 60%;
+}
+
+ #levelDiscription{
+  max-width: 50%;
+  padding: 10px;
+  background-color: white;
+  
+}
+.user{
+  box-shadow: $mainshadow;
+}
+.manager {
+  box-shadow: $managementshadow;
+}
+#cpdProvider{
+  margin: 0;
+}
