@@ -48,7 +48,7 @@ const companySchema = mongoose.Schema({
    },
    companyClientID: {
       type: String,
-      unique: true,
+      unique: false,
       default: "Unknown",
       required: false
    },
@@ -66,7 +66,7 @@ const companySchema = mongoose.Schema({
       unique: false,
       trim: true
    },
-   CompanyActive: {
+   companyActive: {
       type: Boolean,
       default: true,
    },
@@ -80,7 +80,6 @@ const companySchema = mongoose.Schema({
    updatedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "contact",
-      default: "63ea64b974720450742a2dd0",
    }
 });
 companySchema.set('strictQuery', true);

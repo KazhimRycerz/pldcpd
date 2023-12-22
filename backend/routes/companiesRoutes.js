@@ -1,13 +1,16 @@
 import express, { Router } from "express"
-import { getAllCompanies, registerCompany, updateCompany, getCompany} from '../controller/companiesController.js'
+import { deleteCompany, getAllCompanies, registerCompany, updateCompany, getCompany} from '../controller/companiesController.js'
 
 
 const router = Router()
-router
-.get("/list", getAllCompanies )
-.get("/", getAllCompanies )
-.post("/", registerCompany )
-.patch("/:id", updateCompany)
-.get("/:id", getCompany);
+router.route("/")
+   .get(getAllCompanies)
+   .post(registerCompany);
+router.route("/list")
+   .get(getAllCompanies);
+router.route("/:id")
+   .patch(updateCompany)
+   .get(getCompany)
+   .delete(deleteCompany);
 
 export default router

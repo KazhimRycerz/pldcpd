@@ -11,16 +11,12 @@ export const getAllCompanies = async (req, res) => {
 }
 
 export const getCompany = async (req, res) => {
-    const companyId = req.params.id;
-    try {
+  //console.log(req.params.id)
+  const companyId = req.params.id;
+  try {
       const company = await CompanyModel
         .findById(companyId);
-
-      console.log("company.name", company.companyName); 
-    // hier kann ich auf das virtuelle Feld "firstName" zugreifen
-    // obwohl dieses nicht in der Datenbank exisitert 
-    // (deswegen bezeichnet man es als virtuell)
-      
+      //console.log("companyName", company.companyName); 
       res.json(company);   
      
     } catch (error) {
@@ -46,10 +42,20 @@ export const updateCompany = async (req, res) => {
     try {
         const company = await CompanyModel.findOneAndUpdate(companyId, req.body);
   
-      res.json(contact)
+      res.json(company)
     } catch (error) {
       res.send(error.message)
     }
-  
+}
+
+export const deleteCompany = async (req, res) => {
+  const companyId = req.params.companyid;
+  try {
+    const deleteCourse = await CompanyModel.deleteOne({_id: companyId});
+    res.status(202).send({ message: "Firma wurde erfolgreich gelöscht" });
+  } catch (error) {
+    res.status(404).send({message: "Fehler, die Adresse konnte nicht gelöscht werden"});
   }
+};
+  
 

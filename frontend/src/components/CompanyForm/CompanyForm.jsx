@@ -6,7 +6,7 @@ import { CloseOutlined } from "@ant-design/icons";
 import Moment from "moment"
 import Swal from "sweetalert2";
 import { Footer } from "../../components/Footer/Footer.jsx"
-import { ListOfCountryCodes, ListOfCourseTypes, ListOfLanguages, ListOfTopicFields, ListOfLevel } from "../ListsOfData/ListOfData.jsx";
+import { IndustryField, ListOfCompanyType, ListOfCountryCodes, ListOfCourseTypes, ListOfLanguages, ListOfTopicFields, ListOfLevel } from "../ListsOfData/ListOfData.jsx";
 import { FehlendeZugangsrechte } from "../FehlermeldungenSwal/FehlermeldungenSwal.jsx"
 
 const CompanyPage = () => {
@@ -16,9 +16,9 @@ const CompanyPage = () => {
   const [userMode, setUserMode] = useState("user")
   const [formErrors, setFormErrors] = useState({})
   const [data, setData] = useState([])
-  const [autorenFilter, setAutorenFilter] = useState('')
-  const [themenFilter, setThemenFilter] = useState('')
-  const [themenListe, setThemenListe] = useState([])
+  //const [autorenFilter, setAutorenFilter] = useState('')
+  //const [themenFilter, setThemenFilter] = useState('')
+  //const [themenListe, setThemenListe] = useState([])
   const [firmenFilter, setFirmenFilter] = useState('')
   const [firmenListe, setFirmenListe] = useState([])
   const [statusSicherung, setStatusSicherung] = useState("gesichert")
@@ -39,28 +39,7 @@ const CompanyPage = () => {
   const [companyEmail, setCompanyEmail] = useState("")
   const [cpdProvider, setCPDProvider] = useState(false)
   const [companyActive, setCompanyActive] = useState(true)
-    
-  const [file, setFile] = useState(null);
-  const [removed, setRemoved] = useState(false);
-  const [courseTopic, setCourseTopic] = useState("");
-  const [kursAutor, setKursAutor] = useState([]);
-  const [bookingNo, setBookingNo] = useState("")
-  const [themenfeld, setThemenfeld] = useState("");
-  const [kursTyp, setKursTyp] = useState("");
-  const [kursInhalt, setKursInhalt] = useState("");
-  const [professionalLevel, setProfessionalLevel] = useState("");
-  const [kursSprache, setKursSprache] = useState([]);
-  const [cpdPoints, setCPDPoints] = useState(0);
-  const [additionalCPDPoints, setAdditionalCPDPoints] = useState(0);
-  const [linkProvider, setLinkProvider] = useState("");
-  const [minTeilnehmer, setMinTeilnehmer] = useState(0);
-  const [maxTeilnehmer, setMaxTeilnehmer] = useState(0);
-  const [kursstart, setKursstart] = useState(today);
-  const [kursende, setKursende] = useState(today);
-  const [courseDuration, setCourseSurations] = useState("");
-  const [listOfAuthors, setListOfAuthors] = useState([]);
-  const [kursActivated, setKursActivated] = useState(false);
-  const [courseId, setCourseId] = useState("");
+  //const [companyId, setCompanyId]= useState("")
   const [updatedBy, setUpdatedBy] = useState("")
   const [updatedOn, setUpdatedOn] = useState("")
   const [createdOn, setCreatedOn] = useState("")
@@ -72,59 +51,25 @@ const CompanyPage = () => {
     setWorkingMode(e.target.value);
     //console.log(workingMode)
   };
-  
-const clearCompanyForm =() => {
-  setCompanyName("")
-  setAddressNature("")
-  setCompanyType("")
-  setCompanyBranch("")
-  setCompanyCountryCode("")
-  setCompanyZip("")
-  setCompanyCity("")
-  setCompanyStreet("")
-  setCompanyClientID("")
-  setCompanyUstID("")
-  setCompanyHomepage("")
-  setCompanyEmail("")
-  setCPDProvider(false)
-  setCompanyActive(true)
-}
 
   const clearForm = () => {
-    setFile(null);
-    setCourseTopic("");
-    setKursAutor([]);
-    setBookingNo("")
-    setThemenfeld("");
-    setKursTyp("");
-    setKursInhalt("");
-    setKursSprache([]);
-    setProfessionalLevel("");
-    setMinTeilnehmer(0);
-    setMaxTeilnehmer(0);
-    setCPDPoints(0);
-    setAdditionalCPDPoints(0);
-    setKursstart(Moment(today).format("YYYY-MM-DD"));
-    setKursende(Moment(today).format("YYYY-MM-DD"));
-    setLinkProvider("");
-    setCourseSurations("")
-    //setDescription("");
-    setKursActivated(false);
+    setAddressNature("");
+    setCompanyType("");
+    setCompanyBranch("");
+    setCompanyName("");
+    setCompanyStreet("");
+    setCompanyZip("");
+    setCompanyCity("");
+    setCompanyCountryCode("");
+    setCompanyEmail("");
+    setCompanyHomepage("");
+    setCompanyUstID("");
+    setCompanyClientID("");
+    setCompanyActive(true);
+    setCPDProvider(false)
+    setUpdatedBy("");
+    setUpdatedOn(Moment(today).format("YYYY-MM-DD"));
     setStatusSicherung("gesichert")
-  }
-
-  const textAreaResizeHandler = (e)=> {
-    // Reset field height
-    e.target.style.height = 'inherit';
-    // Get the computed styles for the element
-    const computed = window.getComputedStyle(e.target);
-    // Calculate the height
-    const height = parseInt(computed.getPropertyValue('border-top-width'), 10)
-    + parseInt(computed.getPropertyValue('padding-top'), 10)
-    + e.target.scrollHeight
-    + parseInt(computed.getPropertyValue('padding-bottom'), 10)
-    + parseInt(computed.getPropertyValue('border-bottom-width'), 10);
-    e.target.style.height = `${height}px`;
   }
 
   const handleChangeOfData = (event) => {
@@ -138,176 +83,68 @@ const clearCompanyForm =() => {
     } */
   };
 
-  const authorsAvailableList = async () => {
+  const firmenFilteredList = async (e) => {
     try {
-      const response = await axiosConfig.get("/contacts");
-      //console.log("responseData", response.data);
-      const receivedData = response.data;
-      // Filtere die Daten, um nur Einträge mit "authorsData" zu erhalten
-      const filteredData = receivedData.filter(entry => entry.authorsData);
-      // Erstelle ein Array von Objekten mit _id und Name
-      const authorsArray = filteredData.map(entry => ({
-        _id: entry._id,
-        Name: `${entry.firstName} ${entry.lastName}${entry.currentCompany !== null ? `, ${entry.currentCompany.companyName}`: ''}`
-      }));
-      //authorsArray.Name.includes(filter)
-      authorsArray.sort((a, b) => {
-        const nameA = a.Name.toLowerCase();
-        const nameB = b.Name.toLowerCase();
-        if (nameA < nameB) return -1;
-        if (nameA > nameB) return 1;
-        return 0;
-      });
-      setListOfAuthors(authorsArray);
-    } catch (error) {
-      !listOfAuthors && Swal.fire({
-        title: "Keine Autoren gefunden",
-        icon: "error",
-        confirmButtonText: "OK"
-      });
-    }
-  }
-
-  const authorsFilter = (input) => {
-    return listOfAuthors.filter((author) =>
-      author.Name.toLowerCase().includes(input.toLowerCase())
-    );
-  };
-
-  const updateAuthorsList = (e) => {
-    // Hier kannst du den Wert aus dem Eingabefeld hinzufügen oder entfernen
-    const selectedAuthor = e.target.value;
-    if (!kursAutor.includes(selectedAuthor) && selectedAuthor !=="") {
-      setKursAutor([...kursAutor, selectedAuthor])
-    } else {
-      const updatedAuthors = kursAutor.filter((author) => author !== selectedAuthor);
-      setKursAutor(updatedAuthors); // Entfernen des Autors aus dem Array
-    }
-    setStatusSicherung("ungesichert")
-      //e.target.value = "";
-  };
-
-  const topicsAvailableList = async () => {
-    try {
-      const response = await axiosConfig.get("/courses");
-      const receivedData = response.data;
-      // Filtere die Daten basierend auf dem aktuellen Wert von filter
-      const filteredData = receivedData.filter(entry => entry.courseTopic.toLowerCase().includes(themenFilter.toLowerCase()));
-      // Erstelle ein Array von Objekten mit _id und Thema aus den gefilterten Daten
-      const themenArray = filteredData.map(entry => ({
-        _id: entry._id,
-        Thema: entry.courseTopic
-      }));
-      // Aktualisiere den Zustand mit den gefilterten Themen
-      setThemenListe(themenArray);
-    } catch (error) {
-      // Handle den Fehler, z.B. mit einer Benachrichtigung
-      Swal.fire({
-        title: "Fehler beim Abrufen der Themen",
-        icon: "error",
-        confirmButtonText: "OK"
-      });
-    }
-  };
-
-  const getCompanyToReview = async (companyId) => {
-    try {
-      const response = await axiosConfig.get("/companies/${companyId");
+      const response = await axiosConfig.get("/companies");
       const receivedData = response.data;
       // Filtere die Daten basierend auf dem aktuellen Wert von filter
       const filteredData = receivedData.filter(entry => entry.companyName.toLowerCase().includes(firmenFilter.toLowerCase()));
       // Erstelle ein Array von Objekten mit _id und Thema aus den gefilterten Daten
       const firmenArray = filteredData.map(entry => ({
         _id: entry._id,
-        Firma: entry.firmenName
+        Firma: entry.companyName
       }));
       // Aktualisiere den Zustand mit den gefilterten Themen
       setFirmenListe(firmenArray);
     } catch (error) {
       // Handle den Fehler, z.B. mit einer Benachrichtigung
       Swal.fire({
-        title: "Fehler beim Abrufen der Themen",
+        title: "Fehler beim Abrufen der Firmen",
         icon: "error",
         confirmButtonText: "OK"
       });
     }
   };
 
-  const displayCourse = (data) => {
-    setData(data)
-    if (data)
-    {setCourseTopic(data.courseTopic);
-    setKursAutor(data.author);
-    setBookingNo(data.bookingNo)
-    setKursTyp(data.courseType);
-    setThemenfeld(data.topicField)
-    setKursInhalt(data.courseContent);
-    setKursSprache(data.courseLanguage);
-    setProfessionalLevel(data.professionalLevel);
-    setCPDPoints(data.cpdBasicPoints);
-    setAdditionalCPDPoints(data.cpdAdditionalPoints);
-    setKursstart(data.startDateOfCourse);
-    setKursende(data.endDateOfCourse);
-    setLinkProvider(data.linkToProvider);
-    setKursActivated(data.active)
-    setCourseId(data._id)
-    setUpdatedBy(data.updatedBy)
-    setUpdatedOn(data.updatedOn)
-    setCreatedOn(data.createdOn)}
-  };
-
-  const getCourseToReview = async (e) => {
+  const getCompanyToReview = async (e) => {
+    console.log(e.target.value);
     try {
-      const response = await axiosConfig.get("/courses");
-      const receivedData = response.data;
-      // Filtere die Daten basierend auf dem aktuellen Wert von e.target.value
-      //e.target.value ==="no data" && setThemenFilter("xyz")
-      const filteredData = receivedData.filter(entry => entry._id.includes(e.target.value)); 
-      // Aktualisiere den Zustand mit den gefilterten Themen
-      setData(filteredData)
-      //setStatusSicherung("ungesichert")
-      if (filteredData.length > 0) {
-        setCourseTopic(filteredData[0].courseTopic);
-        setKursAutor(filteredData[0].author);
-        setBookingNo(filteredData[0].bookingNo);
-        setKursTyp(filteredData[0].courseType);
-        setThemenfeld(filteredData[0].topicField)
-        setKursInhalt(filteredData[0].courseContent);
-        setKursSprache(filteredData[0].courseLanguage);
-        setProfessionalLevel(filteredData[0].professionalLevel);
-        setCPDPoints(filteredData[0].cpdBasicPoints);
-        setAdditionalCPDPoints(filteredData[0].cpdAdditionalPoints);
-        setKursstart(filteredData[0].startDateOfCourse);
-        setKursende(filteredData[0].endDateOfCourse);
-        setLinkProvider(filteredData[0].linkToProvider);
-        setKursActivated(filteredData[0].active)
-        setCourseId(filteredData[0]._id)
-        setUpdatedBy(filteredData[0].updatedBy)
-        setUpdatedOn(filteredData[0].updatedOn)
-        setCreatedOn(filteredData[0].createdOn)
-      }
-      //console.log(data)
+      const companyId = e.target.value
+     //console.log(companyId);
+      const response = await axiosConfig.get(`/companies/${companyId}`);
+      const receivedData = await response.data;
+      //setData(receivedData)
+      displayCompany(receivedData)
+      receivedData.length === 1 && console.log(receivedData)
     } catch (error) {
-      // Fehlerhandling, z.B. mit einer Benachrichtigung
       Swal.fire({
-        title: "Fehler beim Abrufen der Kurse",
+        title: "Fehler beim Aufrufen der Firma",
         icon: "error",
         confirmButtonText: "OK"
       });
     }
   };
 
-  const updateLanguageList = (e) => {
-  // console.log(kursSprache)
-    const addLanguage = e.target.value;
-    if (!kursSprache.includes(addLanguage)) {
-      setKursSprache([...kursSprache, addLanguage]);
-      // Hinzufügen der Sprache zum Array
-    } else {
-      const updatedSprache = kursSprache.filter((sprache) => sprache !== addLanguage);// Entfernen des Autors aus dem Array
-      setKursSprache(updatedSprache);
+  const displayCompany = async (data) => {
+    if (data) 
+    { setAddressNature(data.addressNature);
+      setCompanyType(data.companyType);
+      setCompanyBranch(data.companyBranch);
+      setCompanyName(data.companyName);
+      setCompanyStreet(data.companyStreet);
+      setCompanyZip(data.companyZip);
+      setCompanyCity(data.companyCity);
+      setCompanyCountryCode(data.companyCountryCode);
+      setCompanyEmail(data.companyEmail);
+      setCompanyHomepage(data.companyHomepage);
+      setCompanyActive(data.companyActive);
+      setCPDProvider(data.cpdProvider);
+      setUpdatedBy(data.updatedBy);
+      setUpdatedOn(data.updatedOn);
+      setCreatedOn(data.createdOn);
+      setCompanyClientID(data.companyClientID)
+      console.log(data.companyName)
     }
-      e.target.value = "";
   };
 
   const validateForm = () => {
@@ -354,7 +191,7 @@ const clearCompanyForm =() => {
   };
 
   //Submitfuktion
-  const handleSubmit = async (e) => {
+  const submitCompany = async (e) => {
     e.preventDefault();
     const isValid = validateForm();
     if (isValid) {
@@ -368,9 +205,9 @@ const clearCompanyForm =() => {
       } */
       
       const companyData = {
-        companyName,
         addressNature,
         companyType,
+        companyName,
         companyBranch,
         companyCountryCode,
         companyZip,
@@ -387,16 +224,9 @@ const clearCompanyForm =() => {
           
       try {
         const response = await axiosConfig.post("/companies", companyData,
-        /* {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        } */
         );
         setStatusSicherung("gesichert")
         //console.log("reponsData", response.data);
-        setThemenFilter("");
-        topicsAvailableList();
         Swal.fire({
           title: "Das Kursangebot wurde erfolgreich erstellt!",
           text: "Was willst du als nächstes tun?",
@@ -411,7 +241,7 @@ const clearCompanyForm =() => {
           if (result.isConfirmed) {
             clearForm()
           } else if (result.isDismissed) {
-            displayCourse(response.data)
+            displayCompany(response.data)
             setWorkingMode("editMode")
 
           } else if (result.isDenied) {
@@ -431,38 +261,34 @@ const clearCompanyForm =() => {
   };
 
   //UpdateFunktion
-  const updateCourse = async (e) => {
+  const updateCompany = async (e) => {
     e.preventDefault();
     const isValid = validateForm();
     if (isValid) {
-      const courseData = {
-        courseId,
-        courseTopic,
-        bookingNo,
-        author: kursAutor,
-        topicField: themenfeld,
-        courseType: kursTyp,
-        courseContent: kursInhalt,
-        courseLanguage: kursSprache,
-        professionalLevel,
-        cpdBasicPoints: cpdPoints,
-        cpdAdditionalPoints: additionalCPDPoints,
-        startDateOfCourse: kursstart,
-        endDateOfCourse: kursende,
-        linkToProvider: linkProvider,
-        //courseImage: imgToSave,
-        active: kursActivated,
+      const companyData = {
+        companyName,
+        addressNature,
+        companyType,
+        companyBranch,
+        companyCountryCode,
+        companyZip,
+        companyCity,
+        companyStreet,
+        companyClientID,
+        companyUstID,
+        companyHomepage,
+        companyEmail,
+        cpdProvider,
+        companyActive,
         updatedBy: localStorage.getItem("userId"),
       };
       try {
         
-        const response = await axiosConfig.patch("/courses/id", courseData); 
+        const response = await axiosConfig.patch("/company/id", companyData); 
         setStatusSicherung("gesichert")
-        setThemenFilter("");
-        topicsAvailableList();
         Swal.fire({
           icon: "success",
-          title: "Das Kursangebot wurde erfolgreich korrigiert!",
+          title: "Das Unternehmen wurde erfolgreich korrigiert!",
           text: "Was willst du als nächstes tun?",
           showConfirmButton: true,
           showCancelButton: true,
@@ -497,11 +323,12 @@ const clearCompanyForm =() => {
       }
     }
   };
-  
-  const deleteCourse = async (courseId) => {
+
+  // Löschfunktion
+  const deleteCompany = async (companyId) => {
     Swal.fire({
       icon: "warning",
-      title: 'Soll der Kurs wirklich gelöscht werden?',
+      title: 'Soll das Untermehmen wirklich gelöscht werden?',
       showDenyButton: true,
       /* showCancelButton: true, */
       confirmButtonText: 'löschen ist ok!',
@@ -509,14 +336,12 @@ const clearCompanyForm =() => {
       }).then (async (result) => {
         if (result.isConfirmed) {
           try {
-            const response =  await axiosConfig.delete(`/courses/${courseId}`);
-            setThemenFilter("");
-            topicsAvailableList();
+            const response =  await axiosConfig.delete(`/companies/${companyId}`);
             setData([]);
             // Erfolgreich gelöscht
             Swal.fire({
               icon: "success",
-              title: "Der Datensatz wurde gelöscht.",
+              title: "Das Unternehmen wurde gelöscht.",
               confirmButtonText: "OK",
               timer: 3000,
             })
@@ -540,31 +365,27 @@ const clearCompanyForm =() => {
   }
   
   useEffect(() => {
-  setGotoPage("/companypage");
-  authorsAvailableList();
-  topicsAvailableList();
+    setGotoPage("/companypage");
+    firmenFilteredList();
+    displayCompany()
 
-  if (courseId) {
-    getCourseToReview({ target: { value: courseId } });
-  }
+    /* if (companyId) {
+      getCompanyToReview({ target: { value: companyId } });
+    } */
 
-  if (data[0] && data[0].author) {
-    setKursAutor(data[0].author.map(author => author._id));
-  }
+    const interval = setInterval(() => {
+      setCurrentDate(new Date());
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [firmenFilter, /* companyId, */ data]);
 
-  const interval = setInterval(() => {
-    setCurrentDate(new Date());
-  }, 1000);
-  return () => clearInterval(interval);
-}, [themenFilter, courseId, data]);
-
-  useEffect(() => {
-    if (isAuth && Array.isArray(accessRights) && accessRights.some(item => item > 1)) {
-      setUserMode("manager");
-    } else {
-      setUserMode("user");
-    }
-    //console.log(userMode, typeof accessRights, (accessRights) )
+    useEffect(() => {
+      if (isAuth && Array.isArray(accessRights) && accessRights.some(item => item > 1)) {
+        setUserMode("manager");
+      } else {
+        setUserMode("user");
+      }
+      //console.log(userMode, typeof accessRights, (accessRights) )
   }, [accessRights, userMode, isAuth]);
 
  /*  useEffect(() => {
@@ -600,7 +421,6 @@ const clearCompanyForm =() => {
     
   return (
     <>
-
       <main id="companyForm" className = {userMode}>
         <div className="headBox"> 
           <h2 id="courseHead">Eingabe / Bearbeiten von Unternehmen</h2>
@@ -629,39 +449,40 @@ const clearCompanyForm =() => {
           </label>
         </div> : <></>}
         {workingMode === "editMode" && (
-          <div id="themensuche">
+          <div id="firmensuche">
             <div>
               <label 
-              htmlFor="sucheThema" 
+              htmlFor="sucheFirma" 
               id="themenFilterLabel"
-              > Datensatzfinder nach Themen
+              > Firmenfilter
               </label>
               <input 
               type="text" 
-              name="sucheThema" 
-              value={themenFilter}
+              name="sucheFirma" 
+              id="sucheFirma" 
+              placeholder="Firma finden - Filter eingeben" 
+              value={firmenFilter}
               onDoubleClickCapture={(e) => 
-                {setThemenFilter("")}}
+                {setFirmenFilter("")}}
               /* onChange={handleFilter} */ 
               onChange={(e) =>
-                {setThemenFilter(e.target.value)}} 
-              id="sucheThema" 
-              placeholder="Themensuchfilter" 
+                {setFirmenFilter(e.target.value)}} 
               //autoComplete="off"
               />
             </div>
-            <select name="themenListe" 
+            <select name="firmenListe" 
             onChange={(e) => {
-              getCourseToReview(e);
+              getCompanyToReview(e);
               setStatusSicherung("gesichert");
             }} 
-            /* onClick={getCourseToReview} */ 
-            id="themenListe"> 
-            {themenListe.length > 0 ? 
-            <option value="no data">bitte auswählen</option> : 
-            <option value="no data">kein Treffer - bitte Filter verändern</option>} 
-              {themenListe.map((item, index) => (
-                <option key={index} value={item._id}>{item.Thema}</option>
+            /* onClick={getCompanyToReview} */ 
+            id="firmenListe"> 
+              {firmenListe.length < 1 ? 
+              <option value="">kein Treffer - bitte Filter verändern</option> : 
+              <option value="">bitte filtern</option>} 
+              {firmenListe.map((item, index) => (
+              <option key={index} value={item._id}>
+              {item.Firma}</option>
               ))} 
             </select> 
           </div>
@@ -669,20 +490,20 @@ const clearCompanyForm =() => {
         }
         {workingMode === 'inputMode' ? 
           (<form
-          onSubmit={handleSubmit}
+          onSubmit={submitCompany}
           encType="multipart/form-data"
           id="companySubmitForm" className={statusSicherung}
           onChange={(e)=>{setStatusSicherung("ungesichert")}}
           >
           {statusSicherung === "ungesichert" ? <p id="änderunsgHinweis">ACHTUNG: Änderungen wurden noch nicht gesichert</p>: null}
-          <div id="addressNature">
+          <div id="addressart">
             <p id="companyNature">Adressart<sup id="addressNatureSup">*</sup></p>
             <div id="eingabeCompanyNature">
               <div>
                 <input
                 type="radio"
                 value="business"
-                id="business"
+                id="addressNature"
                 name="addressNature"
                 placeholder="Business"
                 autoComplete="off"
@@ -724,6 +545,7 @@ const clearCompanyForm =() => {
               type="text"
               id="companyType"
               name="companyType"
+              list="auswahlCompanyType"
               value={companyType}
               placeholder="Unternehmensart"
               autoComplete="off"
@@ -733,9 +555,16 @@ const clearCompanyForm =() => {
               setCompanyType(e.target.value);
             }}
             />
+              <datalist id="auswahlCompanyType">
+                {ListOfCompanyType.map((company, index) => (
+                <option key={index} value={company.kürzel}>
+                {company.discription}
+                </option>
+                ))}
+              </datalist>
             </div> : 
             <div id="firmentyp">
-            <label htmlFor="companyType">Art des Unternehmen<sup id="companyTypeSup">*</sup></label>
+            <label htmlFor="companyType">Art des Unternehmens<sup id="companyTypeSup">*</sup></label>
             <input
               disabled
               type="text"
@@ -759,6 +588,7 @@ const clearCompanyForm =() => {
               type="text"
               id="companyBranch"
               name="companyBranch"
+              list="auswahlBranche"
               value={companyBranch}
               placeholder="Unternehmensbranche"
               autoComplete="off"
@@ -768,6 +598,13 @@ const clearCompanyForm =() => {
               setCompanyBranch(e.target.value);
             }}
               />
+              <datalist id="auswahlBranche">
+                    {IndustryField.map((field, index) => (
+                  <option key={index} value={field.brancheDe}>
+                    {field.brancheDe}
+                  </option>
+                ))}
+              </datalist>
               {formErrors.companyName && <p className="error">{formErrors.companyName}</p>}
             </div> 
           }       
@@ -788,7 +625,8 @@ const clearCompanyForm =() => {
             }}
             />
             {formErrors.companyName && <p className="error">{formErrors.companyName}</p>}
-            </div> : <div id="firmennameneingabe">
+            </div> : 
+            <div id="firmennameneingabe">
               <label htmlFor="companyName">Vor und Nachname<sup id="courseTopicSup">*</sup></label>
               <input
               disabled
@@ -878,7 +716,7 @@ const clearCompanyForm =() => {
           </div>
           <div id="linkeingabe">
             <label htmlFor="linkProvider">Homepage:</label>
-              <input type= "url"
+              <input type= "text"
               id="companyHomepage"
               name="companyHomepage"
               value={companyHomepage}
@@ -900,6 +738,26 @@ const clearCompanyForm =() => {
               setCompanyEmail(e.target.value);
               }} />
           </div>
+          {accessRights.includes(5) || accessRights.includes(10) || accessRights.includes(9) ?
+          <div id="clientid">
+            <label htmlFor="companyClientID">interne ClientID</label>
+            <input
+              type="text"
+              id="companyClientID"
+              name="companyClientID"
+              value={companyClientID}
+              placeholder="companyClientID"
+              autoComplete="off"
+              onChange={(e) => {
+                setFormErrors({ ...formErrors, companyCity: "" }); // Fehlermeldung zurücksetzen
+              handleChangeOfData(e);
+              setCompanyClientID(e.target.value);
+            }}
+              />
+              {formErrors.courseTopic && <p className="error">{formErrors.courseTopic}</p>}
+          </div>: 
+            <></>
+          }
           {accessRights.includes(5) || accessRights.includes(10) || accessRights.includes(9) ? 
             <div id="providerdefinition">
               <label htmlFor="cpdProvider">CPD Provider:</label>
@@ -909,7 +767,7 @@ const clearCompanyForm =() => {
               value={cpdProvider}
               onChange={(e) => {
               handleChangeOfData(e);
-              setCPDProvider(e.target.value);
+              setCPDProvider(e.target.checked);
               }} />
             </div> : 
             <></>
@@ -929,8 +787,9 @@ const clearCompanyForm =() => {
             </div> :
             <></>
           }
+          {/* {accessRights.includes(5) || accessRights.includes(10) || accessRights.includes(9) ?
           <div id="updatedbyeingabe">
-            <label htmlFor="updatedBy">upgedated von:</label>
+            <label htmlFor="updatedBy">zuletzt updated von:</label>
             <output         
             id="updatedBy"
             name="updatedBy"
@@ -938,394 +797,225 @@ const clearCompanyForm =() => {
             {userData.firstName} {userData.lastName}
             </output>
           </div>
+          :
+          <></>
+          } */}
           {statusSicherung === "ungesichert" ? (<div id="buttonBox">
             <button className="buttonBasics" type="submit" value="senden" >senden</button>
             <button className="buttonBasics" type="reset" onClick={clearForm}>reset Daten</button>
           </div>) : (<p>Noch keine Daten eingegeben</p>)}
           </form>) : 
-          (
-            data.length === 1 ?
-            <div id="courseDisplayForm" className={statusSicherung}>
+          (data  ?
+            <form id="companyDisplayForm" className={statusSicherung}>
               { statusSicherung === "ungesichert" ? <p id="änderunsgHinweis">Änderungen wurden noch nicht gesichert</p>: null}
-              <div id="kurstiteldefinition">
-                <label htmlFor="courseTopic">Kursthema</label>
-                {/* {data.length === 1 ? <p id="courseTopic">{data[0].courseTopic}</p> : <p></p>} */}
-                {/* <p id="courseTopic">{data[0].courseTopic}</p> */}
+              <div id="addressart">
+            <p id="companyNature">Adressart<sup id="addressNatureSup">*</sup></p>
+            <div id="eingabeCompanyNature">
+              <div>
                 <input
+                type="radio"
+                value="business"
+                id="addressNature"
+                name="addressNature"
+                placeholder="Business"
+                autoComplete="off"
+                checked={addressNature === "business"}
+                onChange={(e) => {
+                  setFormErrors({ ...formErrors, addressNature: "" }); 
+                  handleChangeOfData(e);
+                  setAddressNature("business");
+                  setCompanyType("")
+                }}
+                />
+                <label htmlFor="business">business</label>
+              </div>
+              <div>
+                <input
+                type="radio"
+                value="private"
+                id="private"
+                name="addressNature"
+                placeholder="Private"
+                autoComplete="off"
+                checked={addressNature === "private"}
+                onChange={(e) => {
+                  setFormErrors({ ...formErrors, addressNature: "" }); 
+                  handleChangeOfData(e);
+                  setAddressNature("private");
+                  setCompanyType("PA")
+                }}
+                />
+                <label htmlFor="private">private / personal</label>
+              </div>
+            </div>
+          </div>
+            <div id="firmentyp">
+              <label htmlFor="companyType">Art des Unternehmens<sup id="companyTypeSup">*</sup></label>
+              <input
+              autoFocus
+              type="text"
+              id="companyType"
+              name="companyType"
+              list="auswahlCompanyType"
+              value={companyType}
+              placeholder="Unternehmensart"
+              autoComplete="off"
+              onChange={(e) => {
+                setFormErrors({ ...formErrors, companyType: "" }); // Fehlermeldung zurücksetzen
+                handleChangeOfData(e);
+                setCompanyType(e.target.value);
+              }}
+              />
+              <datalist id="auswahlCompanyType">
+                    {ListOfCompanyType.map((company, index) => (
+                  <option key={index} value={company.kürzel}>
+                    {company.discription}
+                  </option>
+                ))}
+              </datalist>
+            </div>
+            {addressNature ==="business" ? 
+              <div id="firmennameneingabe">
+              <label htmlFor="companyName">Firmenname<sup id="courseTopicSup">*</sup></label>
+              <input
+              type="text"
+              id="companyName"
+              name="companyName"
+              value={companyName}
+              placeholder="Firma / Adressname eingeben"
+              autoComplete="off"
+              onChange={(e) => {
+                setFormErrors({ ...formErrors, companyName: "" }); // Fehlermeldung zurücksetzen
+              handleChangeOfData(e);
+              setCompanyName(e.target.value);
+              }}
+              />
+              {formErrors.companyName && <p className="error">{formErrors.companyName}</p>}
+              </div> : 
+              <div id="firmennameneingabe">
+                <label htmlFor="companyName">Vor und Nachname<sup id="courseTopicSup">*</sup></label>
+                <input
+                disabled
                   type="text"
-                  id="courseTopic"
-                  name="courseTopic"
-                  value={courseTopic}
-                  placeholder="Wie lautet das Thema?"
+                  id="companyName"
+                  name="companyName"
+                  value={companyName}
+                  placeholder="Vor- und Nachname Privatadresse"
                   autoComplete="off"
                   autoFocus
-                  onDoubleClickCapture={(e) => 
-                    {setCourseTopic("")}}
                   onChange={(e) => {
-                    setFormErrors({ ...formErrors, courseTopic: "" }); // Fehlermeldung zurücksetzen
-                    handleChangeOfData(e);
-                    setCourseTopic(e.target.value);
+                    setFormErrors({ ...formErrors, companyName: "" }); // Fehlermeldung zurücksetzen
+                  handleChangeOfData(e);
+                  setCompanyName(e.target.value);
                 }}
-                  /> 
+                  />
+                  {formErrors.companyName && <p className="error">{formErrors.companyName}</p>}
+              </div>
+            }   
+              <div id="firmenanschrift">
+            <label htmlFor="companyStreet">Anschrift</label>
+            <input
+            type="text"
+            id="companyStreet"
+            name="companyStreet"
+            value={companyStreet}
+            placeholder="Strasse"
+            autoComplete="off"
+            onChange={(e) => {
+              setFormErrors({ ...formErrors, companyStreet: "" }); // Fehlermeldung zurücksetzen
+            handleChangeOfData(e);
+            setCompanyStreet(e.target.value);
+            }}
+            />
+            {formErrors.companyStreet && <p className="error">{formErrors.companyStreet}</p>}
+              </div>
+              <div id="firmenplz">
+                <label htmlFor="companyZip">PLZ / zip code</label>
+                <input
+                  type="text"
+                  id="companyZip"
+                  name="companyZip"
+                  value={companyZip}
+                  placeholder="PLD / ZIPcode"
+                  autoComplete="off"
+                  onChange={(e) => {
+                    setFormErrors({ ...formErrors, companyZip: "" }); // Fehlermeldung zurücksetzen
+                  handleChangeOfData(e);
+                  setCompanyZip(e.target.value);
+                }}
+                  />
                   {formErrors.courseTopic && <p className="error">{formErrors.courseTopic}</p>}
               </div>
-              <div id="autorenauswahl">
-                  <div >
-                    <label htmlFor="kursAutor" id="autorenSucheLabel"> Autoren</label>
-                    <input 
-                    type="text" 
-                    name="sucheAutor" 
-                    value={autorenFilter}
-                    onChange={(e) =>
-                    {setAutorenFilter(e.target.value)}} 
-                    id="sucheAutor" 
-                    placeholder="Suchfilter" 
-                    autoComplete="off"
-                    multiple 
-                    />
-                  </div>              
-                <div>   
-                
-                {<select name="kursAutor" 
-                onClick={updateAuthorsList} 
-                id="kursAutor" multiple>
-                  {authorsFilter(autorenFilter).map((item, index) => (
-                    <option key={index} value={item._id}>
-                      {item.Name}
-                    </option>
-                  ))}
-                </select>} 
-
-                <ul id="authorsListToSave">
-                  {kursAutor.length >= 1 ? (
-                    kursAutor.map((authorsId, index) => (
-                      <li key={index} value={authorsId}>
-                        {listOfAuthors.find(author => author._id === authorsId)?.Name}
-                      </li>
-                    ))
-                  ) : (
-                    <li>Auswahl ist leer</li>
-                  )}
-                </ul>
-              </div>
-              </div>
-              <div id="bookingnodefinition">
-                <label htmlFor="bookingNo">KursCode:</label>
+              <div id="firmenort">
+                <label htmlFor="companyCity">Ort</label>
                 <input
-                    type="text"
-                    id="bookingNo"
-                    name="bookingNo"
-                    value={bookingNo}
-                    placeholder="KursCode"
-                    autoComplete="off"
-                    autoFocus
-                    onDoubleClickCapture={(e) => 
-                      {setBookingNo("")}}
-                    onChange={(e) => {
-                      setFormErrors({ ...formErrors, bookingNo: "" }); // Fehlermeldung zurücksetzen
-                      handleChangeOfData(e);
-                      setBookingNo(e.target.value);
-                  }}
-                />
-              </div>          
-              <div id="kurstypauswahl">
-                <label htmlFor="kursTyp">Kurstyp:</label>
-                {/* <p id="kursTyp">{data[0].courseType}</p> */}
-                <input type= "text"
-                id="kursTyp"
-                name="kursTyp"
-                list="AuswahlKurstyp"
-                value={kursTyp}
-                placeholder="Kurstyp aussuchen"
-                autoComplete="off"
-                onDoubleClickCapture={(e) => 
-                  {setKursTyp("");
-                  setStatusSicherung("ungesichert")}}
-                onChange={(e) => {
-                  handleChangeOfData(e);
-                  setKursTyp(e.target.value);
-                }} 
-                />
-                <datalist id="AuswahlKurstyp">< ListOfCourseTypes /></datalist>
-              </div>
-              <div id="themenfeldauswahl">
-                <label htmlFor="themenfeld">Themenfeld:</label>
-                {/* <p id="themenfeld">{data[0].topicField}</p> */}
-                <input type= "text"
-                id="themenfeld"
-                name="themenfeld"
-                value={themenfeld}
-                list="auswahlThemenfeld"
-                placeholder="Themenfeld aussuchen"
-                autoComplete="off"
-                onDoubleClickCapture={(e) => 
-                  {setThemenfeld("")
-                  setStatusSicherung("ungesichert")}}
-                onChange={(e) => {
-                  handleChangeOfData(e);
-                  setThemenfeld(e.target.value);
-                }} 
-                />
-                <datalist id="auswahlThemenfeld">
-                  {ListOfTopicFields.map((topicField, index) => (
-                <option key={index} value={topicField}>
-                  {topicField}
-                </option>
-              ))}
-                  </datalist>
-              </div>
-              <div id="kursinhalteinfügen">
-                <label htmlFor="kursInhalt">Kursinhalt:</label>
-                {/* <p id="kursInhalt" style={{height:"fit-content"}}>{data[0].courseContent}</p> */}
-                  <textarea 
-                  id="kursInhalt"
-                  name="kursInhalt"
-                  value={kursInhalt}
-                  placeholder="Kursinhalt"
-                  onLoad={(e)=>{
-                    textAreaResizeHandler(e)}}
-                  onDoubleClickCapture={(e) => {
-                    setStatusSicherung("ungesichert")
-                    textAreaResizeHandler(e)
-                  }}
+                  type="text"
+                  id="companyCity"
+                  name="companyCity"
+                  value={companyCity}
+                  placeholder="Firmenstandort"
+                  autoComplete="off"
                   onChange={(e) => {
+                    setFormErrors({ ...formErrors, companyCity: "" }); // Fehlermeldung zurücksetzen
                   handleChangeOfData(e);
-                  textAreaResizeHandler(e)
-                  setKursInhalt(e.target.value);
-                  }} />
+                  setCompanyCity(e.target.value);
+                }}
+                  />
+                  {formErrors.courseTopic && <p className="error">{formErrors.courseTopic}</p>}
               </div>
-              <div id="sprachauswahl">
-                  <label htmlFor="kursSprache">Sprache:</label>
-                  <div>
-                    {/* <ul id="sprachListToSave">
-                      {data[0].courseLanguage.map((language, index) => (
-                        <li key={index} value={language}>
-                        {language} 
-                      </li>
-                    ))}
-                    </ul> */}
-                        <input 
-                      list="sprachOptionen"
-                      name="kursSprache" 
-                      onChange={(e)=>{
-                        setStatusSicherung("ungesichert")
-                        updateLanguageList(e)
-                      }}
-                      id="kursSprache" 
-                      placeholder={kursSprache.length > 0 ? "Sprachen ergänzen oder löschen" : "Sprache auswählen"}
-                      multiple>
-                      </input>
-                      <datalist id="sprachOptionen">
-                        {/* < ListOfLanguages /> */}
-                      {ListOfLanguages.map((language, index) => (
-                <option key={index} value={language}>
-                  {language}
-                </option>
-              ))}
-                      </datalist>
-                      {kursSprache.length >= 1 ? (
-                      <ul id="sprachListToSave">
-                        {Array.isArray(kursSprache) ? kursSprache.join(', ') : ''}
-                      {/* {kursSprache.map((language, index) => (
-                        <li key={index} value={language}>
-                          {language}
-                        </li>
-                      ))} */}
-                    </ul>
-                      ) : (
-                        <ul id="sprachListToSave">
-                          <li>Auswahl ist leer</li>
-                        </ul>
-                      )}
-                  </div>
+              <div id="ländercodeauswahl">
+            <label htmlFor="companyCountryCode">Country:<sup id="companyCountryCode">*</sup></label>
+            <input type= "text"
+            id="companyCountryCode"
+            name="companyCountryCode"
+            value={companyCountryCode}
+            list="countryCodeOptions"
+            placeholder="CountryCode eingeben"
+            onChange={(e) => {
+            handleChangeOfData(e);
+            setCompanyCountryCode(e.target.value);
+            }} 
+            onDoubleClickCapture={(e) => 
+              setCompanyCountryCode("")}
+            />
+              < ListOfCountryCodes />            
               </div>
-              <div id="levelauswahl">
-                <label htmlFor="professionalLevel">Level:</label>         
-                <div id="test">
-                  <input type= "text"
-                  id="professionalLevel"
-                  name="professionalLevel"
-                  value={professionalLevel}
-                  list="levelOptionen"
-                  placeholder="professional Level eingeben"
-                  onDoubleClickCapture={(e) => 
-                    {setProfessionalLevel("");
-                  setStatusSicherung("ungesichert")}}
-                  onChange={(e) => {
-                  /* handleChangeOfData(e); */
-                  setProfessionalLevel(e.target.value);
-                  }} 
-                  /> 
-                  <datalist id="levelOptionen">
-                    {ListOfLevel.map((level, index) => (
-                    <option key={index} value={level.value}>
-                      {level.value} - {level.discription}
-                    </option>
-                    ))}
-                  </datalist>
-                  <div id="levelDiscription">
-                    {ListOfLevel.find((level) => level.value === professionalLevel)?.discription || ''}
-                  </div>
-                </div>
-              </div>
-              <div id="cpdBasicPointsAuswahl">
-                <label htmlFor="cpdBasicPoints">CPDPoints:</label>
-                {/* <p id="cpdBasicPoints">{data[0].cpdBasicPoints}</p> */}
-                <input type= "number"
-                id="cpdBasicPoints"
-                name="cpdBasicPoints"
-                value={cpdPoints}
-                //placeholder="Themenfeld"
-                onDoubleClickCapture={(e) => 
-                  {setCPDPoints("");
-                  setStatusSicherung("ungesichert")}}
-                onChange={(e) => {
-                handleChangeOfData(e);
-                setCPDPoints(e.target.value);
-                e.target.value<0 ? setCPDPoints(0) : setCPDPoints(e.target.value);
-                }} />
-              </div>
-              <div id="cpdAdditionalPointsAuswahl">
-                <label htmlFor="cpdAdditionalPoints">Bonus CPDPoints:</label>
-                {/* <p id="cpdAdditionalPoints">{data[0].cpdAdditionalPoints}</p> */}
-                <input type= "number"
-                id="cpdAdditionalPoints"
-                name="cpdAdditionalPoints"
-                value={additionalCPDPoints}
-                //placeholder="Themenfeld"
-                onDoubleClickCapture={(e) => 
-                  { setAdditionalCPDPoints("");
-                  setStatusSicherung("ungesichert")}}
-                onChange={(e) => {
-                handleChangeOfData(e);
-                e.target.value<0 ? setAdditionalCPDPoints(0) : setAdditionalCPDPoints(e.target.value);
-                }} />
-              </div>
-              <div id="minTeilnehmer">
-                <label htmlFor="minTeilnehmer">Mindestanzahl Teilnehmer:</label>
-                {/* <p id="cpdAdditionalPoints">{data[0].cpdAdditionalPoints}</p> */}
-                <input type= "number"
-                id="minTeilnehmer"
-                name="minTeilnehmer"
-                value={minTeilnehmer}
-                //placeholder="Themenfeld"
-                onDoubleClickCapture={(e) => 
-                  { setMinTeilnehmer("");
-                  setStatusSicherung("ungesichert")}}
-                onChange={(e) => {
-                handleChangeOfData(e);
-                setMinTeilnehmer(e.target.value);
-                }} />
-              </div>
-              <div id="maxTeilnehmer">
-                <label htmlFor="maxTeilnehmer">AMximalanzahl Teilnehmer:</label>
-                {/* <p id="cpdAdditionalPoints">{data[0].cpdAdditionalPoints}</p> */}
-                <input type= "number"
-                id="maxTeilnehmer"
-                name="maxTeilnehmer"
-                value={maxTeilnehmer}
-                //placeholder="Themenfeld"
-                onDoubleClickCapture={(e) => 
-                  { setMaxTeilnehmer("");
-                  setStatusSicherung("ungesichert")}}
-                onChange={(e) => {
-                handleChangeOfData(e);
-                setMaxTeilnehmer(e.target.value);
-                }} />
-              </div>
-              <div id="kursstartdefinition">
-                <label htmlFor="kursstart">Kursstart:</label>
-                {/* <p id="kursstart">{Moment(data[0].startDateOfCourse).format("DD.MM.YYYY")}</p> */}
-                <input type= "date"
-                id="kursstart"
-                name="kursstart"
-                value={Moment(kursstart).format("YYYY-MM-DD")}
-                //placeholder="Themenfeld"
-                onDoubleClickCapture={(e) => 
-                  {setKursstart("");
-                  setStatusSicherung("ungesichert")}}
-                onChange={(e) => {
-                handleChangeOfData(e);
-                setKursstart(e.target.value);
-                }} />
-              </div>
-              <div id="kursendedefinition">
-                <label htmlFor="kursende">Kursende:</label>
-                {/* <p id="kursende">{Moment(data[0].endDateOfCourse).format("DD.MM.YYYY")}</p> */}
-                <input type= "date"
-                id="kursende"
-                name="kursende"
-                value={Moment(kursende).format("YYYY-MM-DD")}
-                //placeholder="Themenfeld"
-                onDoubleClickCapture={(e) => 
-                  {setKursende("");
-                  setStatusSicherung("ungesichert")}}
-                onChange={(e) => {
-                handleChangeOfData(e);
-                setKursende(e.target.value);
-                }} />
-              </div>
-              <div id="providereingabe">
-                <label htmlFor="linkProvider">Anbieter:</label>
-                {/* <p><a id="linkProvider" target="_blank" href='https://${data[0].linkToProvider}'>{data[0].linkToProvider}</a></p> */}
+              <div id="homepageeingabe">
+                <label htmlFor="linkProvider">Homepage:</label>
                   <input type= "url"
-                  id="linkProvider"
-                  name="linkProvider"
-                  value={linkProvider}
+                  id="companyHomepage"
+                  name="companyHomepage"
+                  value={companyHomepage}
                   //placeholder="Themenfeld"
                   onDoubleClickCapture={(e) => 
-                    {setLinkProvider("");
+                    {setCompanyHomepage("");
                     setStatusSicherung("ungesichert")}}
                   onChange={(e) => {
                   handleChangeOfData(e);
-                  setLinkProvider(e.target.value);
+                  setCompanyHomepage(e.target.value);
                   }} />
               </div>
-              <div id="bilderupload">
-                <label htmlFor="imageUpload">
-                  Foto hochladen:
-                </label>
-                  <input
-                    type="file"
-                    name="imageUpload"
-                    id="imageUpload"
-                    onChange={(e) => {
-                      setFile(e.target.files[0]);
-                      setRemoved(false);
-                    }}
-                  />
-                {file ? (
-                  <>
-                    <div>
-                      <p>
-                        <span id="file">{file.name}</span>
-                        <CloseOutlined
-                          onClick={() => {
-                            setRemoved(true);
-                            setFile(null);
-                          }}
-                        />
-                      </p>
-                      {/* <label htmlFor="image">
-                        Dateien durchsuchen
-                      </label> */}
-                    </div>
-                  </>
-                ) : (
-                  <></>
-                )}
-              </div>
-              <div id="kursactivating">
-                <label htmlFor="kursActivated">Kurs aktiv:</label>
-                {/* <p id="kursActivated">{data[0].active === true ? "aktiviert" : "nicht aktiv"}</p> */}
+              <div id="providerdefinition">
+                <label htmlFor="cpdProvider">CPD Provider:</label>
                 <input type= "checkbox"
-                id="kursActivated"
-                name="kursActivated"
-                checked={kursActivated}
-                //placeholder="Themenfeld"
+                id="cpdProvider"
+                name="cpdProvider"
+                value={cpdProvider}
                 onChange={(e) => {
                 handleChangeOfData(e);
-                setKursActivated(e.target.checked);
+                setCPDProvider(e.target.checked);
+                }} />
+              </div>          
+              <div id="firmenaktivierung">
+                <label htmlFor="companyActive">Adresse aktiv:</label>
+                {/* <p id="kursActivated">{data[0].active === true ? "aktiviert" : "nicht aktiv"}</p> */}
+                <input type= "checkbox"
+                id="companyActive"
+                name="companyActive"
+                checked={companyActive}
+                onChange={(e) => {
+                handleChangeOfData(e);
+                setCompanyActive(e.target.checked);
                 }} 
                 />
               </div>
@@ -1340,29 +1030,27 @@ const clearCompanyForm =() => {
               </div>
               <div id="updatedon">
                 <label htmlFor="updatedOn">Zuletz aktualisiert am:</label>
-                {/* <p id="kursActivated">{data[0].active === true ? "aktiviert" : "nicht aktiv"}</p> */}
                 <output         
                 id="updatedOn"
                 name="updatedOn"
                 >{Moment(updatedOn).format("DD.MMMM.YYYY")}
                 </output>
               </div>
-              <div id="updatedby">
+              {/* <div id="updatedby">
                 <label htmlFor="updatedBy">Zuletz aktualisiert von:</label>
-                {/* <p id="kursActivated">{data[0].active === true ? "aktiviert" : "nicht aktiv"}</p> */}
                 <output         
                 id="updatedBy"
                 name="updatedBy"
                 >{updatedBy.firstName} {updatedBy.lastName}
                 </output>
-              </div>
+              </div> */}
               <div id="buttonBox">
-              {data.length === 1 && <button onClick={() => deleteCourse(courseId)}>Datensatz löschen</button>}
-                {statusSicherung === "ungesichert" && <button onClick={updateCourse}>Änderungen speichern</button>}
+              {data && <button onClick={() => deleteCompany(companyClientID)}>Unternehmen löschen</button>}
+                {statusSicherung === "ungesichert" && <button onClick={updateCompany}>Änderungen speichern</button>}
               </div>
-            </div> 
+            </form> 
             : 
-            <div id="courseEditForm" >Bitte Datensatz suchen und auswählen</div>
+            <div id="companyEditForm" >Bitte Datensatz suchen und auswählen</div>
           )
         } 
       </main>

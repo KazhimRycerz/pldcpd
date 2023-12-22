@@ -3,7 +3,7 @@
 #companyForm{
   width: 80%;
   max-width: 1280px;
-  min-height: 80vh;
+  min-height: 70vh;
   margin: 00px auto 100px;
   //box-shadow: $managementshadow;
   //border: solid 2px white;
@@ -48,7 +48,7 @@
     }
   } */
   
-  #companySubmitForm, #courseEditForm, #courseDisplayForm {
+  #companySubmitForm, #companyEditForm, #companyDisplayForm {
     display: flex;
     flex-flow: column nowrap;
     gap: 10px;
@@ -56,7 +56,7 @@
     padding: 1.5rem 1rem;
     width: 80%;
     max-width: 800px;
-    //min-width: 400px;
+    min-width: 400px;
     border-radius: $radiussmall;
     box-shadow: $boxshadow;
     background-color: $fourth-color;
@@ -75,7 +75,7 @@
       label, #companyNature {
         //border: solid;
         padding: 5px 0 0 10px;
-        flex-basis: 20%;
+        flex-basis: 30%;
         //margin-left: 20px;
         font-size: $normal;
         align-items: flex-start;
@@ -88,7 +88,7 @@
         width: 40%;
       } */
       input, textarea, p, output {
-        //border: solid 01px;
+        border: none;
         height: 35px;
         padding: 10px;
         border-radius: 0px;
@@ -117,8 +117,8 @@
         div {
           display: flex;
           flex-flow: column nowrap;
-          border-left: dotted 1px;
-          border-right: dotted 1px;
+          border-left: dotted 1px $cpdred;
+          border-right: dotted 1px $cpdred;
           border-radius: 20px;
           padding: 10px;
           *{
@@ -180,6 +180,7 @@
 
 #boxModusWahl{
   width: 80%;
+  max-width: 800px;
   margin: 0 auto;
   padding: 10px;
   display: flex;
@@ -190,9 +191,9 @@
   //border: solid;
 }
 
-#themensuche{
+#firmensuche{
   width: 80%;
-  max-width: 1280px;
+  max-width: 800px;
   margin: 0 auto 20px;
   //margin-bottom: 50px;
   border-radius: $radiussmall;
@@ -209,7 +210,7 @@
     }
 
   }
-  #themenListe{
+  #firmenListe{
     position: relative;
     top:25px;
     height: 40px;
@@ -219,7 +220,7 @@
 }
 
 
-#autorenauswahl, #sprachauswahl, #themensuche{
+#firmensuche{
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start; 
@@ -235,7 +236,7 @@
       width:100%;
       //margin-bottom: 20px;
     }
-    #sucheAutor, #sucheThema {
+    #sucheFirma {
       margin: 7px 0 0 0px;
       width: 80%;
       height: 40px;
@@ -266,40 +267,11 @@
       border: none;
     }
     }
-    #authorsListToSave, #sprachListToSave{
-      width: 50%;
-      font-size: $small;
-      display: inline;
-      list-style-type: none;
-      padding: 10px;
-      overflow: scroll;
-      background-color: white;
-    }
-    #authorsAvailableListToSave{
-      width: 100%;
-    }
-    #sprachListToSave {
-      display: flex;
-      flex-flow: row wrap;
-      //border: solid;
-      gap: 5px;
-      //width: fit-content
-      li{
-        &::after{
-          content:", "
-        }
-        &:last-child{
-          &::after{
-            content:""
-          }
-        }
-      }
-    }
 }
 
 .ungesichert{
  /*  background-color: $cpdred !important; */
-  border: dotted $cpdred 5px
+  border: dotted $cpdred 3px
 }
 .gesichert {
   border: none

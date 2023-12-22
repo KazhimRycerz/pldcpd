@@ -14,9 +14,7 @@ const LoginForm = () => {
   const passwordEl = useRef(null);
   
   const getUserData = async (respData) => {
-    const axiosResp = await axiosConfig.get(
-      `/user/${respData}`
-      );
+    const axiosResp = await axiosConfig.get(`/user/${respData}`);
       //console.log(axiosResp)
     };
 

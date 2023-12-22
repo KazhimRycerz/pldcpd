@@ -21,8 +21,7 @@ const AuthorMain = () => {
   
   const getAuthorsData = async (id) => {
   const userID = id
-  const axiosResp = await axiosConfig
-  .get(`http://localhost:4000/authorsinfo/${userID}`);
+  const axiosResp = await axiosConfig.get(`/authorsinfo/${userID}`);
   const authorsData = axiosResp.data;
   const authorsDetails = axiosResp.data.authorsData;
   const authorsExpertise = axiosResp.data.authorsData.fieldsOfExpertise;

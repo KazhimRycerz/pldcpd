@@ -33,11 +33,11 @@ const SectionsProvider = ({ children }) => {
     const logoutName = localStorage.getItem("firstName")
     setIsAuth(false);
     axiosConfig.post("/user/logout").then((res) => {
-      console.log(res.data);
+      //console.log(res.data);
     });
     localStorage.clear();
     setAccessRights([0]) 
-    console.log(accessRights, typeof accessRights)
+    //console.log(accessRights, typeof accessRights)
     //console.log(localStorage)
     !localStorage.length && navigate("/home")
     Swal.fire({
@@ -57,10 +57,10 @@ const SectionsProvider = ({ children }) => {
        const contactData = axiosResp.data.contactData;
        const contactKnowledgeData = axiosResp.data.contactData.professionalStatus;
        const accessRights = axiosResp.data.accessRights
-        setUserData(userData);
-        setContactData(contactData);
-        setKnowledgeData(contactKnowledgeData)
-        setAccessRights(accessRights);
+       setUserData(userData);
+       setContactData(contactData);
+       setKnowledgeData(contactKnowledgeData)
+       setAccessRights(accessRights);
     };
 
     const getMarketKnowledgeData = async () => {
