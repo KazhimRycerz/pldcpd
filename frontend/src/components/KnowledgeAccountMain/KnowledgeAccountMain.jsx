@@ -1,6 +1,6 @@
 import './KnowledgeAccountMain.scss'
 import JoachimRitter from '../../../src/images/Joachim_privat.jpg'
-import { useNavigate, useParams } from "react-router-dom";
+//import { useNavigate, useParams } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import { SectionsContext } from "../../context/SectionsContext.js";
 //import axiosInstance from "../../util/axiosConfig";
@@ -19,32 +19,38 @@ const  KnowledgeAccountMain = ()=>{
    const [companyData, setCompanyData] = useState({})
    const userId = localStorage.getItem("userId");
    
-   const buttonPosCheck =()=>{
-      if (isAuth && gotoPage==="/home") {setButtonPos("showBut"); setAsidePos("accountAside") //ok
-   } else {setButtonPos(buttonPos); setAsidePos(asidePos)
-   }}
+   useEffect(() => {
+      const buttonPosCheck = () =>{
+         if (isAuth && gotoPage==="/home") {setButtonPos("showBut"); setAsidePos("accountAside") //ok
+         } else {setButtonPos(buttonPos); setAsidePos(asidePos)
+      }}
+   }, [isAuth, asidePos, buttonPos, gotoPage, setAsidePos, setButtonPos]);
+   
 
 /* const authorsDataTest = contactData.authorsData
 const companyDataTest = contactData.currentCompany
 console.log(authorsDataTest, companyDataTest) */
 
-   const getUserData = async () => {
-      const axiosResp = await axiosConfig.get(
-         `/user/${userId}`
-         );
-         //const userData = axiosResp.data;
-         //const contactData = axiosResp.data.contactData;
-         //const contactKnowledgeData = axiosResp.data.contactData.professionalStatus;
-         const authorsData = axiosResp.data.contactData.authorsData;
-         const companyData = axiosResp.data.contactData.currentCompany;
-         //setUserData(userData);
-         //setContactData(contactData);
-         //setKnowledgeData(contactKnowledgeData);
-         //setUserImg(userData.userImage);
-         setAuthorsData(authorsData)
-         setCompanyData(companyData)
-      };
-      //console.log(userImg);
+   useEffect(() => {
+      const getUserData = async () => {
+         const axiosResp = await axiosConfig.get(
+            `/user/${userId}`
+            );
+            //const userData = axiosResp.data;
+            //const contactData = axiosResp.data.contactData;
+            //const contactKnowledgeData = axiosResp.data.contactData.professionalStatus;
+            const authorsData = axiosResp.data.contactData.authorsData;
+            const companyData = axiosResp.data.contactData.currentCompany;
+            //setUserData(userData);
+            //setContactData(contactData);
+            //setKnowledgeData(contactKnowledgeData);
+            //setUserImg(userData.userImage);
+            setAuthorsData(authorsData)
+            setCompanyData(companyData)
+         };
+         getUserData()
+   }, [isAuth, userId]);
+   //console.log(userImg);
 
             
    /* const getMarketKnowledgeData = async () => {
@@ -67,10 +73,10 @@ console.log(authorsDataTest, companyDataTest) */
                icon: "success",
                showConfirmButton: true,
                confirmButtonText: 'OK'
-             }).then(() => {
+             })/* .then(() => {
                getUserData();
                window.location.reload();
-             })
+             }) */
              } catch (error) {
                
                console.error(error);
@@ -81,15 +87,15 @@ console.log(authorsDataTest, companyDataTest) */
                });
              }
          
-       };
-   
-   useEffect(() => {
-      //setGotoPage("/KnowledgeAccount")
+            };
+            
+      /* useEffect(() => {
+         //setGotoPage("/KnowledgeAccount")
          //getMarketKnowledgeData()
-         getUserData()
-         buttonPosCheck()
+         //getUserData()
+         //buttonPosCheck()
          //console.log(contactData)
-      }, [isAuth]);
+      }, [isAuth]); */
          
 
    return (
@@ -104,7 +110,7 @@ console.log(authorsDataTest, companyDataTest) */
                <h3> Karrierestatus {contactData.firstName} {contactData.lastName}</h3>
                <p /* onClick={} */>
                   <span className="C">C </span> 
-                  Daten hier aktualisieren
+                  Daten aktualisieren
                </p>
                <img src={JoachimRitter} 
                 id="imgKnowledgeAccount"
@@ -121,7 +127,7 @@ console.log(authorsDataTest, companyDataTest) */
                   </div>
                   <div>
                      <p>aktuelle Firma</p>
-                     {companyData ? (<div className="output" id="company"><p>{companyData.companyName}</p> <p>{companyData.city} / {companyData.countryCode}</p> <p>{companyData.homepage}</p></div>) : (<div className="output" id="company"><p>Ihre Firma wurde noch nicht eingegeben</p></div>)}
+                     {companyData ? (<div className="output" id="company"><p>{companyData.companyName}</p> <p>{companyData.companyCity} / {companyData.companyCountryCode}</p> <p>{companyData.companyHomepage}</p></div>) : (<div className="output" id="company"><p>Ihre Firma wurde noch nicht eingegeben</p></div>)}
                   </div>                  
                </div>
                <div>

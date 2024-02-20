@@ -62,6 +62,7 @@
       p{
         position: relative;
         bottom: 0;
+        margin-top: 10px;
         font-size: $small;
         //border: solid;
         &:hover {
@@ -329,7 +330,7 @@
       //border-radius: $radiusxsmall;
       font-size: $xlarge;
       padding: 2px;
-      margin: 0 auto;
+      margin: 0px auto;
       //border: solid;
     }
     .account_market_data {
@@ -338,14 +339,15 @@
       box-shadow: none;
       width: 50%;
       //min-width: 100%;
-      border: 1px solid $third-color;
-      border-radius: 5px;
+      //border: 1px solid $third-color;
+      //border-radius: 5px;
       font-size: $small;
       color: $third-color;
       padding: 0px;
       text-align: center;
       justify-content: center;
-      margin: 0 auto;
+      margin: 0px auto;
+      line-height: 25px;
     }
   }
 
@@ -355,6 +357,10 @@
     border-right: 3px dotted $cpdred;
     border-left: 3px dotted $cpdred;
     border-radius: 20px;
+    div p {
+      font-size: $small;
+      margin-top: 10px;
+    }
     
     #account_3_data {
       display: flex;
@@ -432,7 +438,7 @@
     }
     p {
       padding: 0px;
-      font-size: 14px;
+      font-size: $small;
       margin: 10px 0 10px 0;
     }
   }
@@ -463,6 +469,10 @@
     border-right: 3px dotted $cpdred;
     border-left: 3px dotted $cpdred;
     border-radius: 20px;
+    div p {
+      font-size: $small;
+      margin-top: 10px;
+    }
     
     #account_5_data {
       display: flex;
@@ -501,7 +511,6 @@
         //max-height: 100px;
         flex-grow: 2;
         max-width: 30%;
-        
         margin-bottom: 10px;
         div div{
           display: flex;
