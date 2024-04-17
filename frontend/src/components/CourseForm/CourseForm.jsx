@@ -1,8 +1,8 @@
 import React, { useState, useRef, useContext, useEffect } from "react";
-import { Link} from "react-router-dom";
+//import { Link} from "react-router-dom";
 import axiosConfig from "../../util/axiosConfig.js";
 import { SectionsContext } from "../../context/SectionsContext.js";
-import "./CourseAddForm.scss";
+import "./CourseForm.scss";
 import { CloseOutlined } from "@ant-design/icons";
 import Moment from "moment"
 import Swal from "sweetalert2";
@@ -28,7 +28,7 @@ const CourseAddForm = () => {
   const [courseTopic, setCourseTopic] = useState("");
   const [kursAutor, setKursAutor] = useState([]);
   const [bookingNo, setBookingNo] = useState("")
-  const [themenfeld, setThemenfeld] = useState("");
+  const [topicField, setThemenfeld] = useState("");
   const [kursTyp, setKursTyp] = useState("");
   const [kursInhalt, setKursInhalt] = useState("");
   const [professionalLevel, setProfessionalLevel] = useState("");
@@ -40,7 +40,7 @@ const CourseAddForm = () => {
   const [maxTeilnehmer, setMaxTeilnehmer] = useState(0);
   const [kursstart, setKursstart] = useState(today);
   const [kursende, setKursende] = useState(today);
-  const [courseDuration, setCourseSurations] = useState("");
+  const [courseDuration, setCourseDurations] = useState("");
   const [listOfAuthors, setListOfAuthors] = useState([]);
   const [kursActivated, setKursActivated] = useState(false);
   const [courseId, setCourseId] = useState("");
@@ -73,7 +73,7 @@ const CourseAddForm = () => {
     setKursstart(Moment(today).format("YYYY-MM-DD"));
     setKursende(Moment(today).format("YYYY-MM-DD"));
     setLinkProvider("");
-    setCourseSurations("")
+    setCourseDurations("")
     //setDescription("");
     setKursActivated(false);
     setStatusSicherung("gesichert")
@@ -93,8 +93,8 @@ const CourseAddForm = () => {
     e.target.style.height = `${height}px`;
   }
 
-  const handleChangeOfData = (event) => {
-    const { name, value, checked, type } = event.target;
+  const handleChangeOfData = (e) => {
+    const { name, value, checked, type } = e.target;
     setStatusSicherung("ungesichert")
     /* const { categories } = eventCategory;
     if (checked) {
@@ -157,24 +157,33 @@ const CourseAddForm = () => {
     try {
       const response = await axiosConfig.get("/courses");
       const receivedData = response.data;
-      // Filtere die Daten basierend auf dem aktuellen Wert von filter
-      const filteredData = receivedData.filter(entry => entry.courseTopic.toLowerCase().includes(themenFilter.toLowerCase()));
-      // Erstelle ein Array von Objekten mit _id und Thema aus den gefilterten Daten
+  
+      // Filter the data based on the current value of the filter
+      const filteredData = receivedData.filter(entry =>
+        entry.courseTopic.toLowerCase().includes(themenFilter.toLowerCase())
+      );
+  
+      // Create an array of objects with _id and Thema from the filtered data
       const themenArray = filteredData.map(entry => ({
         _id: entry._id,
         Thema: entry.courseTopic
       }));
-      // Aktualisiere den Zustand mit den gefilterten Themen
+  
+      // Sort the themenArray alphabetically based on the 'Thema' property
+      themenArray.sort((a, b) => a.Thema.localeCompare(b.Thema));
+  
+      // Update the state with the sorted topics
       setThemenListe(themenArray);
     } catch (error) {
-      // Handle den Fehler, z.B. mit einer Benachrichtigung
+      // Handle the error, for example, with a notification
       Swal.fire({
-        title: "Fehler beim Abrufen der Themen",
+        title: "Error fetching topics",
         icon: "error",
         confirmButtonText: "OK"
       });
     }
-  }
+  };
+  
 
   const displayCourse = (data) => {
     setData(data)
@@ -265,7 +274,7 @@ const CourseAddForm = () => {
     if (kursTyp.trim() === "") {
       errors.push("Das Feld Kurstyp darf nicht leer sein");
     }
-    if (themenfeld.trim() === "") {
+    if (topicField.trim() === "") {
       errors.push("Das Feld Themenkategorie darf nicht leer sein");
     }
     if (kursInhalt === "") {
@@ -341,7 +350,7 @@ const CourseAddForm = () => {
         courseTopic,
         author: kursAutor,
         bookingNo,
-        topicField: themenfeld,
+        topicField,
         courseType: kursTyp,
         courseContent: kursInhalt,
         courseLanguage: kursSprache,
@@ -411,7 +420,7 @@ const CourseAddForm = () => {
         courseTopic,
         bookingNo,
         author: kursAutor,
-        topicField: themenfeld,
+        topicField,
         courseType: kursTyp,
         courseContent: kursInhalt,
         courseLanguage: kursSprache,
@@ -426,11 +435,11 @@ const CourseAddForm = () => {
         updatedBy: localStorage.getItem("userId"),
       };
       try {
-        
         const response = await axiosConfig.patch("/courses/id", courseData); 
         setStatusSicherung("gesichert")
         setThemenFilter("");
         topicsAvailableList();
+        /* setData(response) */
         Swal.fire({
           icon: "success",
           title: "Das Kursangebot wurde erfolgreich korrigiert!",
@@ -443,6 +452,7 @@ const CourseAddForm = () => {
           cancelButtonText: 'zurück zum Datensatz',
           denyButtonText: 'Formular schließen',
           //fourthButtonText: 'Datensatz bearbeiten',
+          timer: 5000,
         }).then((result) => {
           if (result.isConfirmed) {
             clearForm()
@@ -451,6 +461,7 @@ const CourseAddForm = () => {
             clearForm()
             setWorkingMode("editMode")
           } */ else if (result.isDismissed) {
+            //getCourseToReview()
             setWorkingMode("editMode")
           } else if (result.isDenied) {
             navigate("/home")
@@ -709,12 +720,12 @@ const CourseAddForm = () => {
                 < ListOfCourseTypes />
                 </datalist>
               </div>
-              <div id="themenfeldauswahl">
-                <label htmlFor="themenfeld">Themenfeld:<sup id="topicFieldSup">*</sup></label>
+              <div id="topicFieldauswahl">
+                <label htmlFor="topicField">Themenfeld:<sup id="topicFieldSup">*</sup></label>
                 <input type= "text"
-                id="themenfeld"
-                name="themenfeld"
-                value={themenfeld}
+                id="topicField"
+                name="topicField"
+                value={topicField}
                 list="auswahlThemenfeld"
                 placeholder="Themenfeld aussuchen"
                 autoComplete="off"
@@ -763,7 +774,7 @@ const CourseAddForm = () => {
                 <option key={index} value={language}>
                   {language}
                 </option>
-              ))}
+                ))}
                     </datalist>
                     {kursSprache.length >= 1 ? (
                     <ul id="sprachListToSave">
@@ -1072,13 +1083,13 @@ const CourseAddForm = () => {
                 />
                 <datalist id="AuswahlKurstyp">< ListOfCourseTypes /></datalist>
               </div>
-              <div id="themenfeldauswahl">
-                <label htmlFor="themenfeld">Themenfeld:</label>
-                {/* <p id="themenfeld">{data[0].topicField}</p> */}
+              <div id="topicFieldauswahl">
+                <label htmlFor="topicField">Themenfeld:</label>
+                {/* <p id="topicField">{data[0].topicField}</p> */}
                 <input type= "text"
-                id="themenfeld"
-                name="themenfeld"
-                value={themenfeld}
+                id="topicField"
+                name="topicField"
+                value={topicField}
                 list="auswahlThemenfeld"
                 placeholder="Themenfeld aussuchen"
                 autoComplete="off"
@@ -1165,7 +1176,7 @@ const CourseAddForm = () => {
               </div>
               <div id="levelauswahl">
                 <label htmlFor="professionalLevel">Level:</label>         
-                <div id="test">
+                <div id="level">
                   <input type= "text"
                   id="professionalLevel"
                   name="professionalLevel"
@@ -1178,16 +1189,17 @@ const CourseAddForm = () => {
                   onChange={(e) => {
                   /* handleChangeOfData(e); */
                   setProfessionalLevel(e.target.value);
+                  setStatusSicherung("ungesichert")
                   }} 
                   /> 
                   <datalist id="levelOptionen">
                     {ListOfLevel.map((level, index) => (
                     <option key={index} value={level.value}>
-                      {level.value} - {level.discription}
+                      {level.discription}
                     </option>
                     ))}
                   </datalist>
-                  <div id="levelDiscription">
+                  <div id="levelDiscription" >
                     {ListOfLevel.find((level) => level.value === professionalLevel)?.discription || ''}
                   </div>
                 </div>
@@ -1242,7 +1254,7 @@ const CourseAddForm = () => {
                 }} />
               </div>
               <div id="maxTeilnehmer">
-                <label htmlFor="maxTeilnehmer">AMximalanzahl Teilnehmer:</label>
+                <label htmlFor="maxTeilnehmer">Maximalanzahl Teilnehmer:</label>
                 {/* <p id="cpdAdditionalPoints">{data[0].cpdAdditionalPoints}</p> */}
                 <input type= "number"
                 id="maxTeilnehmer"
@@ -1363,7 +1375,7 @@ const CourseAddForm = () => {
                 </output>
               </div>
               <div id="updatedon">
-                <label htmlFor="updatedOn">Zuletz aktualisiert am:</label>
+                <label htmlFor="updatedOn">Zuletzt aktualisiert am:</label>
                 {/* <p id="kursActivated">{data[0].active === true ? "aktiviert" : "nicht aktiv"}</p> */}
                 <output         
                 id="updatedOn"
@@ -1372,7 +1384,7 @@ const CourseAddForm = () => {
                 </output>
               </div>
               <div id="updatedby">
-                <label htmlFor="updatedBy">Zuletz aktualisiert von:</label>
+                <label htmlFor="updatedBy">Zuletzt aktualisiert von:</label>
                 {/* <p id="kursActivated">{data[0].active === true ? "aktiviert" : "nicht aktiv"}</p> */}
                 <output         
                 id="updatedBy"

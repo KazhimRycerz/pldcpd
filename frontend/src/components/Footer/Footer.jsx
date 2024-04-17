@@ -5,22 +5,23 @@ import React, { useState } from "react";
 const Footer = () => {
   const [footerFullContents, setFooterFullContents] = useState(false);
   const [footerValue, setFooterValue] = useState("open Footer"); 
-  //window.scrollTo(0, document.body.scrollHeight);
 
-const handleFooterHeight = () => {
-  //const elemb = document.getElementById("footerButton");
-
-  if(!footerFullContents){
-    setFooterFullContents (true);
-    setFooterValue("close Footer");
+  
+  const handleFooterHeight = () => {
+    // const elemb = document.getElementById("footerButton");
+    
+    if (!footerFullContents) {
+      setFooterFullContents(true);
+      setFooterValue("reduce Footer");
+    } else {
+      setFooterFullContents(false);
+      setFooterValue("open Footer");
+    }
+        
+    // Scrollen zum unteren Rand des Dokuments
     window.scrollTo(0, document.body.scrollHeight);
   }
-  else {
-    setFooterFullContents (false);
-    setFooterValue("open Footer");
-    window.scrollTo(0, document.body.scrollHeight);
-  }
-}
+  
 
 
    return(
@@ -47,7 +48,7 @@ const handleFooterHeight = () => {
               <div>
                 <ul>
                 <li><Link to="/impressum"> Imprint</Link></li>
-                  <li><a>Privacy policy</a></li>
+                  <li>Privacy policy</li>
                   <li>NN</li>
                   <li>sdlkfhj </li>
                   <li>sd glkdfjg</li>

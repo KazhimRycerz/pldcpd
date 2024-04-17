@@ -10,7 +10,7 @@ import Swal from "sweetalert2"
 import { FehlendeZugangsrechte, RegistriertenRechte } from "../FehlermeldungenSwal/FehlermeldungenSwal.jsx"
 
 const Header = () => {
-  const { isAuth, buttonPos, setButtonPos, asidePos, setAsidePos, gotoPage, setGotoPage, navigate, logout, accessRights, setAccessRights } = useContext(SectionsContext);
+  const { isAuth, buttonPos, setButtonPos, asidePos, setAsidePos, setGotoPage, navigate, logout, accessRights } = useContext(SectionsContext);
   const [showMenue, setShowMenue] = useState(false);
   const [accountListShow, setAccountListShow] = useState("hideAccountList");
   
@@ -99,8 +99,7 @@ const Header = () => {
             <ul>
               <li
               id="showregister">
-                {!isAuth && <Link to="/register"> register 
-                <span className="C">C</span> </Link> }
+                {!isAuth && <Link to="/register"> register <span className="C">C</span> </Link> }
               </li>
               <li
                 id="showlogin"
@@ -152,7 +151,7 @@ const Header = () => {
 
       <nav onMouseLeave={(event)=>{setShowMenue(!showMenue)}}  id="navmain" className={showMenue ? "showNav" : " hideNav"}>
         <div id="listOfFields">
-          <ul>
+          <ul id="mainItems">
             <p>
               main <br /> items
             </p>
@@ -176,6 +175,19 @@ const Header = () => {
                 <span className="C">C</span> clients
               </NavLink>
             </li>
+            
+            
+            <li>
+              <NavLink to="/companypage" className="closebtn active">
+                <span className="C">C</span> register company 
+              </NavLink>
+            </li>
+            {/* <img src="./images/finger-print-outline.svg" alt="" /> */}
+          </ul>
+          {isAuth && (<ul id="acountItems">
+            <p>
+              account <br /> items
+            </p>
             <li>
               {isAuth ? (
                 <NavLink to="/KnowledgeAccount" className="closebtn active">
@@ -217,7 +229,7 @@ const Header = () => {
             <li>
               {isAuth ? (
                 <NavLink to="/userupdate" className="closebtn active">
-                  <span className="C">C</span> persönliche Daten ändern
+                  <span className="C">C</span> Nutzer-Daten ändern
                 </NavLink>
                 ) : (
                 <NavLink
@@ -252,17 +264,12 @@ const Header = () => {
                 </NavLink>
               )}
             </li>
-            <li>
-              <NavLink to="/companypage" className="closebtn active">
-                <span className="C">C</span> register company 
-              </NavLink>
-            </li>
             {/* <img src="./images/finger-print-outline.svg" alt="" /> */}
-          </ul>
-         <ul>
+          </ul>)}
+         <ul id="learningByTopics">
             <p>
-              overview <br />
-              of topics{" "}
+              learning <br />
+              by topics{" "}
             </p>
             {/* <li>
               <NavLink to="/coursepage" className="closebtn" style={{color: "red"}}>
@@ -290,10 +297,10 @@ const Header = () => {
               </NavLink>
             </li>
           </ul>
-          <ul>
+          <ul id="learningByTopicAreas">
             <p>
-              overview <br />
-              of sections{" "}
+              learning <br />
+              by topic areas{" "}
             </p>
             <li>
               <NavLink to="/home" className="closebtn">
@@ -326,10 +333,10 @@ const Header = () => {
               </NavLink>
             </li>
           </ul>
-          <ul>
+          <ul id="learningByCourseType">
             <p>
               learning <br />
-              by access
+              by course Type
             </p>
             <li>
               <NavLink to="/home" className="closebtn">
@@ -362,7 +369,7 @@ const Header = () => {
               </NavLink>
             </li>
           </ul>
-          <ul>
+          <ul id="regularItems">
             <p>
               regular <br />
               items
@@ -389,14 +396,17 @@ const Header = () => {
             </li>
             
           </ul>
-          {isAuth & accessRights.includes(10) || isAuth & accessRights.includes(8)? (<ul>
+          {isAuth & accessRights.includes(10) || isAuth & accessRights.includes(8)? (<ul id="managementItems">
             <p>
               management <br />
               items
             </p>
             {accessRights.includes(5) || accessRights.includes(10) || accessRights.includes(9) ? (<li>
-              <NavLink to="/courseaddpage" className="closebtn active" >
+              <NavLink to="/courseform" className="closebtn active" >
                 <span className="C">C</span> add courses
+              </NavLink>
+              <NavLink to="/courseform" className="closebtn active" >
+                <span className="C">C</span> change courses
               </NavLink>
             </li> ) : (<li><NavLink onClick={ FehlendeZugangsrechte } className="closebtn"><span className="C">C</span> add courses</NavLink></li>)}           
           </ul>) : null}

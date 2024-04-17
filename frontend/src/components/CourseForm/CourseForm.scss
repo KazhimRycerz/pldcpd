@@ -285,7 +285,7 @@ text-align: center;
 //border: solid;
 }
 
-#test{
+#level{
   display: flex;
   flex-flow: row nowrap;
   border: solid 1px;
@@ -293,9 +293,13 @@ text-align: center;
   width: 60%;
 }
 
- #levelDiscription{
-  max-width: 50%;
+#professionalLevel{
+  max-width: 15%;
   padding: 10px;
   background-color: white;
-  
+}
+#levelDiscription{
+  width: 85%;
+  padding: 10px;
+  background-color: white;
 }

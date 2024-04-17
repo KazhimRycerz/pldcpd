@@ -104,7 +104,7 @@ const AboutTheProfessionMain = () => {
             </div>
 
             <div id="levelI"> 
-              <h3> Level I - Student in lighting design<br />(Bachelor, Master – 3 to 5 years) </h3>
+              <h3> Level I - Student in lighting design<br />(Bachelor, Master – 3 to 6 years) </h3>
               <div>
                   <ul> Knowledge you need to cover...
                     <li> <span className="C">C</span> Latest technical lighting knowledge</li>

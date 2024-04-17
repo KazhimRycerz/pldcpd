@@ -148,7 +148,7 @@ export const deleteCourse = async (req, res) => {
     const deleteCourse = await CourseModel.deleteOne({_id: req.params.id});
     res.status(202).send({ message: "Kurs erfolgreich gelöscht" });
   } catch (error) {
-    res.status(404).send({message: "Fehler, der Kurs konnte nicht gelöscht werden"});
+    res.status(404).send({ message: "Fehler, der Kurs konnte nicht gelöscht werden"});
   }
 };
 
