@@ -96,9 +96,9 @@ const CodeSenden = () => {
         event.preventDefault();
     
         // Hier sollten Sie Ihre Twilio-Kontoinformationen einfügen
-        const accountSid = 'ACe538e04cd8ff4d99d2bef9a6a5fd6bdd';
-        const authToken = '5d69e88d15c8eb0751d4b8187b095050';
-        const twilioPhoneNumber = '+49 170 2046812';
+        const accountSid = process.env.TWILIO_ACCOUNT_SID;
+        const authToken = process.env.TWILIO_AUTH_TOKEN;
+        const twilioPhoneNumber = process.env.TWILIO_PHONE_NUMBER;
         const code = generateRandomNumber(); // Annahme: generateRandomNumber ist eine Funktion, die den Bestätigungscode generiert
         console.log(code);
     
