@@ -1,11 +1,12 @@
 @import '../../scss/global.scss';
 
-main{
+#sandboxMain{
    box-shadow: $mainshadow;
+   height:auto;
+   min-height: 35vh;
    #sandbox{
       color: black;
       width: 80%;
-      min-height: 25vh;
       padding: 50px;
       >p{
          color: black;

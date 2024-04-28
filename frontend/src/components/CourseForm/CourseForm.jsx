@@ -821,6 +821,7 @@ const CourseAddForm = () => {
               <div id="cpdbasicpointseingabe">
                 <label htmlFor="cpdBasicPoints">CPDPoints:<sup id="cpdBasicPointsSup">*</sup></label>
                 <input type= "number"
+                className="Test"
                 id="cpdBasicPoints"
                 name="cpdBasicPoints"
                 value={cpdPoints}

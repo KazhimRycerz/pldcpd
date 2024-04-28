@@ -5,48 +5,6 @@
   max-width: 1280px;
   min-height: 70vh;
   margin: 00px auto 100px;
-  //box-shadow: $managementshadow;
-  //border: solid 2px white;
-  //font-family: $primary-font;
-  /* .headBox{
-    h2 {
-      display: block;
-      padding: 20px;
-      width:fit-content;
-      font-size: $small;
-      text-align: center;
-      color: $cpdblue;
-      margin: 50px auto 0px;
-      border-left: dotted 3px $cpdred;
-      border-right: dotted 3px $cpdred;
-      border-radius:  20px ;
-      //box-shadow: $boxshadow;
-      }
-    .closingFunction{
-      display: block;
-      margin: 0px auto 0px;
-      padding: 0px;
-      width:fit-content;
-      font-size: $small;
-      text-align: center;
-      color: $cpdblue;
-      background-color: transparent;
-      border: none;
-      &:hover {
-        color: $cpdred;
-        text-shadow: 1px 1px 20px $cpdred;
-      }
-      &:before {
-        content: "C ";
-        font-family: $calli;
-        color: $cpdred;
-        font-size: calc($normal + 2px);
-        vertical-align: -3px;
-      }
-      
-      //box-shadow: $boxshadow;
-    }
-  } */
   
   #companySubmitForm, #companyEditForm, #companyDisplayForm {
     display: flex;

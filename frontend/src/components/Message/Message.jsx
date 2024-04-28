@@ -1,6 +1,9 @@
 import React from 'react';
 import  { useState, useEffect } from 'react';
 import axios from 'axios';
+//import dotenv from 'dotenv'
+//dotenv.config();
+
 
 
 //import WhatsAppShareButton from 'react-share';
@@ -72,6 +75,8 @@ const SendMessageToWhatsApp = () => {
 
 
 const CodeSenden = () => {
+  
+
    const [phoneNumber, setPhoneNumber] = useState('');
    const [verificationCode, setVerificationCode] = useState('');
    
@@ -94,13 +99,14 @@ const CodeSenden = () => {
     
       const handleSubmit = (event) => {
         event.preventDefault();
+        
     
         // Hier sollten Sie Ihre Twilio-Kontoinformationen einfügen
         const accountSid = process.env.TWILIO_ACCOUNT_SID;
         const authToken = process.env.TWILIO_AUTH_TOKEN;
         const twilioPhoneNumber = process.env.TWILIO_PHONE_NUMBER;
         const code = generateRandomNumber(); // Annahme: generateRandomNumber ist eine Funktion, die den Bestätigungscode generiert
-        console.log(code);
+        console.log(code, accountSid);
     
         axios.post(`https://api.twilio.com/2010-04-01/Accounts/${accountSid}/Messages.json`, {
             Body: `Ihr Bestätigungscode lautet: ${code}`,
@@ -183,7 +189,7 @@ const CodeSenden = () => {
          <button onClick={generateRandomText}>Neu generieren</button>
       </div>
    );
-   }
+  }
 
 
  export { SendMessageToWhatsApp,  CodeSenden /* SendMessageWidthCode */, RandomTextGenerator  };

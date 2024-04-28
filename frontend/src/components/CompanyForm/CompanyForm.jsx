@@ -2,7 +2,7 @@ import React, { useState, useRef, useContext, useEffect } from "react";
 import axiosConfig from "../../util/axiosConfig.js";
 import { SectionsContext } from "../../context/SectionsContext.js";
 import "./CompanyForm.scss";
-import { CloseOutlined } from "@ant-design/icons";
+import { LogoutOutlined } from "@ant-design/icons";
 import Moment from "moment"
 import Swal from "sweetalert2";
 import { Footer } from "../../components/Footer/Footer.jsx"
@@ -424,6 +424,7 @@ const CompanyPage = () => {
       <main id="companyForm" className = {userMode}>
         <div className="headBox"> 
           <h2 id="courseHead">Eingabe / Bearbeiten von Unternehmen</h2>
+          {/* <LogoutOutlined onClick={() => navigate("/home")} /> */}
           <p className="closingFunction" onClick={() => navigate("/home")}>Formular schließen</p>
         </div>
         {isAuth && Array.isArray(accessRights) && accessRights.some(item => item > 1) ? <div id="boxModusWahl">
@@ -670,7 +671,7 @@ const CompanyPage = () => {
               id="companyZip"
               name="companyZip"
               value={companyZip}
-              placeholder="PLD / ZIPcode"
+              placeholder="PLZ / ZIPcode"
               autoComplete="off"
               onChange={(e) => {
                 setFormErrors({ ...formErrors, companyZip: "" }); // Fehlermeldung zurücksetzen
@@ -936,7 +937,7 @@ const CompanyPage = () => {
                   id="companyZip"
                   name="companyZip"
                   value={companyZip}
-                  placeholder="PLD / ZIPcode"
+                  placeholder="PLZ / ZIPcode"
                   autoComplete="off"
                   onChange={(e) => {
                     setFormErrors({ ...formErrors, companyZip: "" }); // Fehlermeldung zurücksetzen
