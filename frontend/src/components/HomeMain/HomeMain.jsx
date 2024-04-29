@@ -7,6 +7,9 @@ import { useContext, useEffect } from "react";
 import { SectionsContext } from "../../context/SectionsContext.js";
 import { HashLink as Link } from 'react-router-hash-link';
 import Clock from '../Clock/Clock.jsx'
+import BeforeAfterSlider from '../../components/BeforeAfterSlider/BeforeAfterSlider.jsx'
+import Bahai_day from '../../../src/images/Bahai_day.jpg';
+import Bahai_night from '../../../src/images/Bahai_night.jpg';
 
 const HomeMain = () => {
   const { isAuth, setGotoPage, setButtonPos, setAsidePos } = useContext(SectionsContext);
@@ -384,6 +387,18 @@ const HomeMain = () => {
         </div>
       </section>
       
+      <Link to="/home">
+        <img className="Trenner" src={C} alt="" />{" "}
+      </Link>
+
+      <BeforeAfterSlider 
+          beforeImage= { Bahai_day } 
+          afterImage= { Bahai_night }
+          size="100" 
+          leftCorrection="0"
+          topCorrection="0"/>
+          <p>Bahia Tempel in Südamerika</p>
+
       <Link to="/home">
         <img className="Trenner" src={C} alt="" />{" "}
       </Link>

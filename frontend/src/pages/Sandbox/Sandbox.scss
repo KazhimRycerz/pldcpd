@@ -3,10 +3,11 @@
 #sandboxMain{
    box-shadow: $mainshadow;
    height:auto;
-   min-height: 35vh;
+   min-height: 50vh;
    #sandbox{
       color: black;
-      width: 80%;
+      width: 75%;
+      height: auto;
       padding: 50px;
       >p{
          color: black;

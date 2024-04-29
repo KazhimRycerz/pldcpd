@@ -8,6 +8,8 @@ import { SendMessageToWhatsApp, CodeSenden, RandomTextGenerator  } from '../../c
 import './Sandbox.scss'
 import JoachimRitter from '../../../src/images/Joachim_Rycerz.jpg';
 import KazhimRitter from '../../../src/images/Kazhim_Rycerz.jpg';
+import Bahai_day from '../../../src/images/Bahai_day.jpg';
+import Bahai_night from '../../../src/images/Bahai_night.jpg';
 
 const Sandbox = () => {
   return (
@@ -18,14 +20,18 @@ const Sandbox = () => {
           <p>this is the sandbox of this website</p>
           <br />
           {/* <Clock /> */}
-          {/* <ImageUpload /> */}
+          <ImageUpload />
           {/* <SendMessageToWhatsApp /> */}
           {/* <CodeSenden /> */}
           {/* <RandomTextGenerator /> */}
-          <BeforeAfterSlider 
-          beforeImage= {JoachimRitter} 
-          afterImage= {KazhimRitter} />
+          {/* <BeforeAfterSlider 
+          beforeImage= { Bahai_day } 
+          afterImage= { Bahai_night }
+          size="110" />
           <br />
+          <BeforeAfterSlider 
+          beforeImage= { JoachimRitter } 
+          afterImage= { KazhimRitter } /> */}
           {/* <FractalLeaves /> */}
         </div>
       </main>

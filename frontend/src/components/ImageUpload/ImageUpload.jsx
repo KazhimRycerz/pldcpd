@@ -21,30 +21,7 @@ class ImageUpload extends Component {
     }
   };
 
-  /* handleUpload = () => {
-    const { selectedFile } = this.state;
-    // Hier können Sie den ausgewählten Dateiobjekt 'selectedFile' an Ihren Server senden
-    // und die Datei hochladen. Dies erfordert normalerweise eine AJAX-Anfrage oder eine Formularübermittlung.
-
-    // Beispiel für eine AJAX-Anfrage mit Fetch:
-    if (selectedFile) {
-      const formData = new FormData();
-      formData.append('file', selectedFile);
-
-      fetch('/upload-url', {
-        method: 'POST',
-        body: formData,
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          // Verarbeiten Sie die Antwort vom Server nach Bedarf
-          console.log('Upload erfolgreich:', data);
-        })
-        .catch((error) => {
-          console.error('Fehler beim Upload:', error);
-        });
-    }
-  }; */
+  
 
   render() {
     const { imageUrl } = this.state;
