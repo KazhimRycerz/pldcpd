@@ -14,6 +14,7 @@ import emailRouter from './routes/emailRoutes.js';
 import companiesRouter from './routes/companiesRoutes.js';
 import professionalStatusRouter from './routes/professionalStatusRoutes.js';
 import accessRightsRouter from './routes/accessRightsRoutes.js';
+//import multer from "multer"
 
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -27,16 +28,12 @@ const port = process.env.PORT || 4000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-server.use(express.json(), cookieParser());
-server.use(
-  cors({
-    origin: "http://localhost:3000", // Der Create React App Port
-    credentials: true, // Cookies zulassen
-  })
-);
+
+server.use(express.json(), cookieParser(), cors({ origin: "http://localhost:3000", credentials: true }));
 server.use(express.static("public"));
 server.use(expressFileUpload({createParentPath: true,}));
 
+server.use("/images", express.static('public/'));
 server.use("/home", indexRouter)
 server.use("/user", userRouter);
 server.use("/contacts",  contactsRouter)

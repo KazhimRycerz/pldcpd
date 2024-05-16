@@ -2,8 +2,12 @@ import UserModel from "../models/userModel.js";
 import { addContactData, addProfessionalStatus } from "../middleware/addUserData.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import fs from 'fs'; // Erforderliches Modul, um Dateien zu lesen und zu schreiben
+import path from 'path'; // Erforderliches Modul für den Dateipfad
+import expressFileUpload from "express-fileupload";
 
-export const createUser = async (req, res) => {
+
+/* export const createUser = async (req, res) => {
   try {
     const hashedSaltyPassword = await bcrypt.hash(req.body.password, 14);
     const newUserData = await UserModel.create({
@@ -23,11 +27,68 @@ export const createUser = async (req, res) => {
   } catch (error) {
     res.status(401).send(error.message);
   }
+}; */
+
+
+export const createUser = async (req, res) => {
+  try {
+    // Gehashtes Passwort erstellen
+    const hashedSaltyPassword = await bcrypt.hash(req.body.password, 14);
+
+    // Benutzerdatensatz erstellen
+    const newUser = {
+      userName: req.body.userName,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      gender: req.body.gender,
+      eMail: req.body.eMail,
+      accessRights: 1,
+      password: hashedSaltyPassword,
+    };
+
+    // Benutzer in der Datenbank erstellen
+    const createdUser = await UserModel.create(newUser);
+
+    if (!req.files || !req.files.userImage) {
+      return res.status(400).send('No files were uploaded.');
+    }
+
+    const userImage = req.files.userImage;
+
+    // Bildspeicherort erstellen
+    const userImagesDir = './public/userDirectories/';
+    const userDirectory = userImagesDir + createdUser._id; // Verzeichnisname basierend auf der _id des neuen Benutzers
+    const imagePath = userDirectory + '/' + userImage.name;
+
+    // Speicherort erstellen, falls nicht vorhanden
+    if (!fs.existsSync(userDirectory)){
+      fs.mkdirSync(userDirectory, { recursive: true });
+    }
+
+    // Bild speichern
+    userImage.mv(imagePath, async (err) => {
+      if (err) {
+        console.error('Error uploading image:', err);
+        // Fehlerantwort senden
+        return res.status(500).send('Error uploading image');
+      }
+
+      createdUser.userImage = imagePath; // Pfad zum Bild in der MongoDB speichern
+      await createdUser.save();
+      addContactData(createdUser);
+      addProfessionalStatus(createdUser.ContactData);
+      // Erfolgsantwort senden
+      res.status(201).send(createdUser);
+    });
+  } catch (error) {
+    // Fehlerantwort senden
+    res.status(401).send(error.message);
+  }
 };
 
 export const userLogin = async (req, res) => {
   const loginUser = await UserModel
-    .findOne({ userName: req.body.userName });
+  .findOne({ userName: req.body.userName });
   if (!loginUser) {
     return res.send({ error: "userName/password combination not found" });
   }
@@ -35,11 +96,11 @@ export const userLogin = async (req, res) => {
     req.body.password,
     loginUser.password
   );
-
+  
   if (!isRightPassword) {
     return res.send({ error: "email/password combination not found" });
   }
-
+  
   const expiresInSec = 1 * 60 * 60 * 24; // 1 h * 24 => 24h
 
   const token = jwt.sign(
@@ -54,7 +115,6 @@ export const userLogin = async (req, res) => {
   res.cookie("jwt", token, { httpOnly: true, maxAge: expiresInSec * 1000 });
 
   const expireDate = new Date().getTime() + expiresInSec * 1000;
-
   res.cookie("isLogged", expireDate, {
     httpOnly: false,
     maxAge: expiresInSec * 1000,
@@ -108,7 +168,7 @@ export const getUserData = async (req, res) => {
             "currentCompany"
           ]
         });
-
+        
     res.status(200).send(getUser);
   } catch (error) {
     res.status(404).send(error.message);
