@@ -66,13 +66,6 @@ const BeforeAfterSlider = ({ beforeImage, afterImage, size, leftCorrection, topC
       }
     };
   }, [beforeImageRef]);
-  
-  
-  
-  
-  
-  
-
 
   return (
     <div className="before-after-container" style={{ height: `${imageHeight}px` }} ref={containerRef}>
@@ -82,6 +75,8 @@ const BeforeAfterSlider = ({ beforeImage, afterImage, size, leftCorrection, topC
         className="slider"
         style={{ left: `calc(${position}%)`}}
         onMouseDown={handleDragStart}>
+          <div id="sliderTop"></div>
+          <div id="sliderBottom"></div>
           <p id="dragKreis"><CaretLeftFilled /><CaretRightFilled /></p>
       </div>  
     </div>

@@ -1,51 +1,33 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import "./ImageUpload.scss";
 
-class ImageUpload extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedFile: null,
-      imageUrl: '',
-    };
-  }
+const ImageUpload = ({ setUserImage }) => {
+  const [imageUrl, setImageUrl] = useState('');
 
-  handleFileChange = (event) => {
+  const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      // Validieren Sie hier den Dateityp oder die Dateigröße nach Bedarf.
-      this.setState({
-        selectedFile: file,
-        imageUrl: URL.createObjectURL(file), // Vorschau des ausgewählten Bildes
-      });
+      setUserImage(file); // Das ausgewählte Bild an die übergeordnete Komponente übergeben
+      setImageUrl(URL.createObjectURL(file));
     }
   };
 
-  
-
-  render() {
-    const { imageUrl } = this.state;
-
-    return (
-      <>
-        <div id="uploadImageMain">
-          {/* <h2 id="uploadHead">Bild hochladen</h2> */}
-          <input 
-            onChange={this.handleFileChange} 
-            type="file" 
-            accept="image/*" 
-            id="test2" 
-            className="buttonBasics"/>
-          {imageUrl && (
-            <div>
-              <img src={imageUrl} alt="Vorschau" style={{ maxWidth: '100px' }} />
-            </div>
-          )}
-          {/* <button onClick={this.handleUpload} className="buttonBasics" >Hochladen</button> */}
+  return (
+    <div id="uploadImageMain">
+      <input 
+        onChange={handleFileChange} 
+        type="file" 
+        accept="image/*" 
+        id="test2" 
+        className="buttonBasics"
+      />
+      {imageUrl && (
+        <div>
+          <img src={imageUrl} alt="Vorschau" style={{ maxWidth: '100px' }} />
         </div>
-      </>
-    );
-  }
+      )}
+    </div>
+  );
 }
 
 export default ImageUpload;

@@ -95,13 +95,13 @@ const searchListElements = async () => {
 
     /* const themenListe = receivedData.map(({topicField }) => topicField);
     const reducedThemenListeSet = new Set(themenListe);
-    const reducedThemenListe = Array.from(reducedThemenListeSet) */
+    const reducedThemenListe = Array.from(reducedThemenListeSet)
 
-    /* const kursartListe = receivedData.map(({courseType }) => courseType);
+    const kursartListe = receivedData.map(({courseType }) => courseType);
     const reducedKursartListeSet = new Set(kursartListe);
-    const reducedKursartListe = Array.from(reducedKursartListeSet) */
+    const reducedKursartListe = Array.from(reducedKursartListeSet)
 
-    /* const sprachenListe = receivedData.map(({ courseLanguage }) => courseLanguage); 
+    const sprachenListe = receivedData.map(({ courseLanguage }) => courseLanguage); 
     //const flachesArray = [].concat(...sprachenListe);
     const doppelflachesArray = [].concat(...([].concat(...sprachenListe)))
     //Liste von allen Themenfeldern in allen Datensätzen:

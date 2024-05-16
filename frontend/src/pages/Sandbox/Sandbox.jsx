@@ -11,6 +11,8 @@ import KazhimRitter from '../../../src/images/Kazhim_Rycerz.jpg';
 import Bahai_day from '../../../src/images/Bahai_day.jpg';
 import Bahai_night from '../../../src/images/Bahai_night.jpg';
 
+import Testimonials from '../../components/Testimonials/Testimonials.jsx'
+
 const Sandbox = () => {
   return (
     <>
@@ -21,6 +23,7 @@ const Sandbox = () => {
           <br />
           {/* <Clock /> */}
           <ImageUpload />
+          <Testimonials  />
           {/* <SendMessageToWhatsApp /> */}
           {/* <CodeSenden /> */}
           {/* <RandomTextGenerator /> */}

@@ -14,11 +14,11 @@ const  KnowledgeAccountMain = ()=>{
   /*  const [userData, setUserData] = useState({}) */
    //const [knowledgeData, setKnowledgeData] = useState({})
    //const [contactData, setContactData] = useState({})
-   const [userImg, setUserImg] = useState({JoachimRitter})
+   //const [userImg, setUserImg] = useState({JoachimRitter})
    const [authorsData, setAuthorsData] = useState({})
    const [companyData, setCompanyData] = useState({})
    const userId = localStorage.getItem("userId");
-   
+   console.log(userData.userImage)
    useEffect(() => {
       const buttonPosCheck = () =>{
          if (isAuth && gotoPage==="/home") {setButtonPos("showBut"); setAsidePos("accountAside") //ok
@@ -112,7 +112,7 @@ console.log(authorsDataTest, companyDataTest) */
                   <span className="C">C </span> 
                   Daten aktualisieren
                </p>
-               <img src={JoachimRitter} 
+               <img src={ userData.userImage } 
                 id="imgKnowledgeAccount"
                 alt={contactData.firstName}  />
             </div>

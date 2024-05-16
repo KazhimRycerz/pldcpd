@@ -36,58 +36,73 @@ export default function RegisterForm() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [genderRadio, setGenderRadio] = useState("none");
-  const [userImage, setUserImage] = useState("");
+  const [userImage, setUserImage] = useState(null);
   const [eMail, setEmail] = useState("");
   const [password, setPassword] = useState("");
   //const [location, setLocation] = useState("");
 
   const props = {
-    userName: userName,
-    setUserName: setUserName,
-    firstName: firstName,
-    setFirstName: setFirstName,
-    lastName: lastName,
-    setLastName: setLastName,
-    genderRadio: genderRadio,
-    setGenderRadio: setGenderRadio,
-    userImage: userImage,
-    setUserImage: setUserImage,
-    password: password,
-    setPassword: setPassword,
-    eMail: eMail,
-    setEmail: setEmail,
-    stepOne: stepOne,
+    userName,
+    setUserName,
+    firstName,
+    setFirstName,
+    lastName,
+    setLastName,
+    genderRadio,
+    setGenderRadio,
+    userImage,
+    setUserImage,
+    password,
+    setPassword,
+    eMail,
+    setEmail,
+    stepOne,
     setOne: setStepOne,
-    stepTwo: stepTwo,
+    stepTwo,
     setTwo: setStepTwo,
-    stepThree: stepThree,
+    stepThree,
     setThree: setStepThree,
   };
-
+  
   const submitHandler = async () => {
-    /*  e.preventDefault(); */
-    const userData = {
-      userName: userName,
-      firstName: firstName,
-      lastName: lastName,
-      gender: genderRadio,
-      userImage: userImage,
-      eMail: eMail,
-      password: password,
-      /* location: location, */
-    };
-
     try {
-      setHasRegistered(false);
-      setIsLoading(true);
-      const axiosResp = await axiosConfig.post("/user", 
-        userData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
+    setHasRegistered(false);
+    setIsLoading(true);
+    
+    let formData = new FormData();
+    formData.append('userName', userName);
+    formData.append('firstName', firstName);
+    formData.append('lastName', lastName);
+    formData.append('gender', genderRadio);
+    formData.append('eMail', eMail);
+    formData.append('password', password);
+
+    if (userImage) {
+      // Check if the image exists
+      const imageFile = userImage instanceof File ? userImage : null;
+      if (imageFile) {
+        // Check the image file type
+        if (imageFile.type.startsWith('image/')) {
+          // Add the image to the FormData object
+          formData.append('userImage', imageFile, imageFile.name);
+        } else {
+          console.error('Invalid image file type');
         }
-      );
+      } else {
+        console.error('Invalid image');
+      }
+    }
+
+    console.log("Bild zur Verarbeitung", userImage);
+    console.log("FormData Contents:");
+      for (const [key, value] of formData.entries()) {
+        console.log(`Key: ${key}, Value: ${value}`);
+      }
+      const axiosResp = await axiosConfig.post("/user", formData, {
+        /* headers: {
+          "Content-Type": "multipart/form-data"
+        } */
+      });
       console.debug("axiosResp.data:", axiosResp.data);
       setIsLoading(false);
       if (axiosResp.data.error) {
@@ -119,7 +134,7 @@ export default function RegisterForm() {
     }
     setIsError(false);
     setHasRegistered(true);
-    //logIn(data);
+    //logIn(axiosResp.data);
   };
 
   const logIn = async (data) => {
@@ -133,8 +148,6 @@ export default function RegisterForm() {
   };
 
   const handleSuccessfulLogin = (respData, location) => {
-    /* const locationLowercase = location.toLowerCase(); 
-    localStorage.setItem("defSearch", locationLowercase); */
     setIsAuth(true);
     localStorage.setItem("userName", respData.userName);
     localStorage.setItem("userId", respData.userId);
@@ -163,7 +176,8 @@ export default function RegisterForm() {
   return (
     <main id="registerMain">
       <h2>registrieren</h2>
-      <form ref={formEl} method="POST" action="/user">
+      <form ref={formEl} method="post" action="/user" encType="multipart/form-data" onSubmit={(e) => submitHandler(e)}>
+
         {stepOne && (
           <>
             <div id="stepOne">
@@ -197,23 +211,24 @@ export default function RegisterForm() {
           </>
         )}
         {stepTwo && (
-          <div id="stepTwo">
-            <p>Geschlecht</p>
-              <div id="radioGenderButtons">
-                <GenderRadioBtn gender="female" props={props} />
-                <GenderRadioBtn gender="male" props={props} />
-                <GenderRadioBtn gender="diverse" props={props} />
-                <GenderRadioBtn gender="none" props={props} />
-              </div>
-              <p>Bild hochladen</p>
-              <ImageUpload labelValue="userImage" stateFunc={setUserImage}/>
-            <div id="buttonBoxStepTwo">
-              <ResetBtn props={props} />
-              <BackBtnToOne props={props} />
-              <NextBtnToThree props={props} />
-            </div>
-          </div>
-        )}
+  <div id="stepTwo">
+    <p>Geschlecht</p>
+    <div id="radioGenderButtons">
+      <GenderRadioBtn gender="female" props={props} />
+      <GenderRadioBtn gender="male" props={props} />
+      <GenderRadioBtn gender="diverse" props={props} />
+      <GenderRadioBtn gender="none" props={props} />
+    </div>
+    <p>Bild hochladen</p>
+    <ImageUpload setUserImage={setUserImage} /> {/* Übergeben der setUserImage-Funktion */}
+    <div id="buttonBoxStepTwo">
+      <ResetBtn props={props} />
+      <BackBtnToOne props={props} />
+      <NextBtnToThree props={props} />
+    </div>
+  </div>
+)}
+
         {stepThree && (
           <div id="stepThree">
             <div>

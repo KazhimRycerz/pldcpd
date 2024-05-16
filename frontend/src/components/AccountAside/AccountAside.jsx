@@ -1,13 +1,14 @@
 import './AccountAside.scss'
 import { Link } from 'react-router-dom'
 import React, { useContext, useState/* , useEffect, useCallback */ } from 'react'
-//import JoachimRitter from '../../../src/images/Joachim_privat.jpg'
+//import JoachimRitter from '../../images/Joachim_privat.jpg'
 import { SectionsContext } from '../../context/SectionsContext.js'
 //import axiosConfig from "../../util/axiosConfig";
 
 const AccountAside = () => {
   const { isAuth, userData, contactData, marketData, knowledgeData, asidePos, setAsidePos, buttonPos, setButtonPos, navigate } = useContext(SectionsContext);
   const [buttonText, setButtonText] = useState("hide  account");
+isAuth && (console.log(userData.userImage))
 
 const initialButtonPos = "buttonZeroPosition" 
 const buttonMove1 = "showBut" 
@@ -114,7 +115,7 @@ return (
             to="/KnowledgeAccount">C</Link></p>
     
       </aside>) : (<aside id="homeAsideAccount" className = {asidePos} >
-      {/* <img src= {userData.userImage} alt="Joachim Ritter privat" /> */}
+      <img src= {userData.userImage} alt="Joachim Ritter privat" />
         <p><strong>Hallo, {contactData.firstName} </strong><br />
          <br />Karrierelevel <br />--- <span> </span> ---<br /></p> <br />
               

@@ -15,31 +15,6 @@
     }
   }
 
-  /* #Gruß_account {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    //border: solid black;
-    width: 80%;
-    margin: 20px auto;
-    position: relative;
-    top: 00px;
-    h2 {
-      padding-top: 50px;
-      font-family: $primary-font-bold;
-      font-size: $xxlarge;
-    }
-    img{
-      width: 10vw;
-      position:relative;
-      left: 0;
-      bottom: 100px;
-      height: 130px;
-      width: 100px;
-      overflow:hidden;
-      //border: solid;
-    } 
-  } */
   .accountHead{
     display: flex;
     flex-flow: row nowrap;
@@ -47,6 +22,7 @@
     margin-right: 30px;
     height: 30px;
     //border: solid;
+    
   }
   
   #account_1 {
@@ -72,14 +48,13 @@
         }
       }
       img{
-        width: 10vw;
         position:relative;
         left: 0;
         bottom: 100px;
         height: 130px;
         width: 100px;
-        overflow:hidden;
-        //border: solid;
+        //overflow:hidden;
+        border: solid;
       } 
     }
     

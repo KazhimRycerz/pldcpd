@@ -1,0 +1,40 @@
+.slider-container {
+   position: relative;
+   width: 100%;
+   overflow: hidden;
+}
+
+.slider {
+   display: flex;
+   transition: transform 0.5s ease;
+}
+
+.slide {
+   flex: 0 0 100%;
+   padding: 20px;
+   transition: opacity 0.5s ease;
+   opacity: 0;
+}
+
+.slide.active {
+   opacity: 1;
+}
+
+.slider-button {
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+   background: none;
+   border: none;
+   color: white;
+   font-size: 24px;
+   cursor: pointer;
+}
+
+.left {
+   left: 0;
+}
+
+.right {
+   right: 0;
+}
