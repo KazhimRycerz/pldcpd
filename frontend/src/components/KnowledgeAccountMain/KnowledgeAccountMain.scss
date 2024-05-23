@@ -4,15 +4,45 @@
   margin: -0px auto 50px;
   //height: auto;
   box-shadow: $mainshadow;
-  
+    
   section {
     width: 80%;
     margin: 0 auto;
-    h3 {
-      font-family: $primary-font-bold;
-      margin: 0 30px ;
-      padding-top: 10px;
+    .accountHead{
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      margin-right: 30px;
+      height: 30px;
+      //border: solid;
+      h3 {
+        font-family: $primary-font-bold;
+        margin: 0 30px ;
+        padding-top: 5px;
+        &:before {
+          content: "C ";
+          font-family: $calli;
+          color: $cpdred;
+          font-size: calc($normal + 2px);
+          vertical-align: -1px;
+        };
+        &:hover {
+          //color: $cpdred;
+          text-shadow: $text-shadow;
+          cursor: pointer;
+        }
+      }
+      p:hover{
+        text-shadow: $text-shadow;
+        cursor: pointer;
+      }
     }
+    div div div p {
+      font-family: $primary-font;
+      font-size: $small;
+      padding: 10px 5px 10px 5px;
+    }
+
   }
 
   .accountHead{
@@ -25,6 +55,26 @@
     
   }
   
+  .output {
+    line-height: 30px;
+    font-size: $small;
+    text-align: center;
+    padding: 10px;
+    width: 75%;
+    //height: auto;
+    border: solid black;
+    //border-radius: $radiusxsmall;
+    color: $secondary-color;
+    background-color: $cpdblue;
+    opacity: 1;
+    p{
+      //color: white;
+      border: none;
+      width: 100%;
+    }
+  }
+
+
   #account_1 {
     display: block;
     margin-top: 20px;
@@ -32,13 +82,11 @@
     border-left: 3px dotted $cpdred;
     border-radius: 20px;
     div{
-      h3{
-        //border: solid;
-      }
       p{
         position: relative;
-        bottom: 0;
-        margin-top: 10px;
+        bottom: 0px;
+        //margin-top: 10px;
+        //padding: 5px;
         font-size: $small;
         //border: solid;
         &:hover {
@@ -53,20 +101,16 @@
         bottom: 100px;
         height: 130px;
         width: 100px;
-        //overflow:hidden;
-        border: solid;
+        object-fit:scale-down;
+        //border: solid;
       } 
     }
     
-      div div div{
-        //border: solid;
-      }
-
     #account_1_data {
       display: flex;
       flex-flow: row wrap;
-      gap: 20px 0;
-      padding: 10px;
+      gap: 10px 0px;
+      padding: 0px;
       width: 100%;
       height: auto;
       font-size: $small;
@@ -78,7 +122,7 @@
         justify-content: flex-start;
         gap: 10px;
         margin: 10px auto 0;
-        padding: 15px;
+        padding: 10px;
         width: 45%;
         //min-width: 45%;
         height: auto;
@@ -97,21 +141,20 @@
           border: solid $cpdblue;
           p {
             //line-height: 1rem;
-            font-size: $small;
-            font-family: $primary-font;
             width: 50%;
-            vertical-align: middle;
+            //vertical-align: middle;
             min-height: 30px;
-            padding: 5px;
+            padding: 10px;
+            line-height: 30px;
             //border: solid 02px;
           }
           .output {
-            line-height: 25px;
+            line-height: 30px;
             font-size: $small;
             text-align: center;
             padding: 0px;
             width: 75%;
-            height: auto;
+            //height: auto;
             border: solid black;
             //border-radius: $radiusxsmall;
             color: $secondary-color;
@@ -184,12 +227,12 @@
   #my_start {
     top: 60px;
     right: 10px;
-    height: 30px;
+    //height: 30px;
   }
   #my_active {
     top: 90px;
     right: 10px;
-    height: 30px;
+    //height: 30px;
   }
 
   /* zweite Datenreihe*/
@@ -222,10 +265,10 @@
     flex-flow: row wrap;
     justify-content: space-around;
     //align-content: flex-start;
-    gap: 30px 0px;
+    gap: 20px 0px;
     margin-top: 10px;
     width: 100%;
-    padding: 10px;
+    padding: 10px 0;
     //border: solid;
     .account_2 {
       display: flex;
@@ -334,18 +377,19 @@
     border-radius: 20px;
     div p {
       font-size: $small;
-      margin-top: 10px;
+      margin-top: 00px;
     }
     
     #account_3_data {
       display: flex;
       flex-flow: row wrap;
-      margin: 0 20px;
+      margin: 0 15px;
+      gap:5px 5px;
       .account_3 {
         display: flex;
         flex-flow: column nowrap;
         justify-content: flex-start;
-        gap: 5px;
+        gap: 10px;
         margin: 10px;
         padding: 10px;
         flex-basis: 40%;
@@ -370,7 +414,7 @@
           }
           div {
             margin: 0px;
-            padding: 3px;
+            padding: 5px;
             font-size: $small;
             background-color: $cpdblue;
             border: none;

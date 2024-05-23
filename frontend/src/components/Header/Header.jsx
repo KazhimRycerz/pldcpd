@@ -8,9 +8,10 @@ import { SectionsContext } from "../../context/SectionsContext.js";
 import Swal from "sweetalert2"
 //import swal from "sweetalert"
 import { FehlendeZugangsrechte, RegistriertenRechte } from "../FehlermeldungenSwal/FehlermeldungenSwal.jsx"
+import baseURL from "../../util/constants.js"
 
 const Header = () => {
-  const { isAuth, buttonPos, setButtonPos, asidePos, setAsidePos, setGotoPage, navigate, logout, accessRights } = useContext(SectionsContext);
+  const { isAuth, userData, buttonPos, setButtonPos, asidePos, setAsidePos, setGotoPage, navigate, logout, accessRights } = useContext(SectionsContext);
   const [showMenue, setShowMenue] = useState(false);
   const [accountListShow, setAccountListShow] = useState("hideAccountList");
   
@@ -116,8 +117,10 @@ const Header = () => {
                 </li>
                 /* :
                 <span></span> */}
+
             </ul>
           </div>
+              {/* {isAuth && (<img src={baseURL + userData.userImage} alt={userData.userName} style={{width: '50px'}}/>)} */}
         </div>
       </header>
 

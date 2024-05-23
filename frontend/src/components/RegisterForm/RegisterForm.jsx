@@ -83,8 +83,11 @@ export default function RegisterForm() {
       if (imageFile) {
         // Check the image file type
         if (imageFile.type.startsWith('image/')) {
-          // Add the image to the FormData object
-          formData.append('userImage', imageFile, imageFile.name);
+          // Replace spaces in the file name with underscores
+          const fileNameWithoutSpaces = imageFile.name.replace(/\s+/g, '_');
+          
+          // Add the image to the FormData object with the modified file name
+          formData.append('userImage', imageFile, fileNameWithoutSpaces);
         } else {
           console.error('Invalid image file type');
         }
@@ -93,17 +96,16 @@ export default function RegisterForm() {
       }
     }
 
-    console.log("Bild zur Verarbeitung", userImage);
-    console.log("FormData Contents:");
+    /* console.log("FormData Contents:");
       for (const [key, value] of formData.entries()) {
         console.log(`Key: ${key}, Value: ${value}`);
-      }
+      } */
       const axiosResp = await axiosConfig.post("/user", formData, {
-        /* headers: {
+        headers: {
           "Content-Type": "multipart/form-data"
-        } */
+        }
       });
-      console.debug("axiosResp.data:", axiosResp.data);
+      //console.debug("axiosResp.data:", axiosResp.data);
       setIsLoading(false);
       if (axiosResp.data.error) {
         setIsError(true);

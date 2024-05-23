@@ -21,27 +21,28 @@ const SectionsProvider = ({ children }) => {
     }
   });
   const [buttonPos, setButtonPos] = useState(isAuth ? "showBut" : "buttonZeroPosition");
-  const [asidePos, setAsidePos] = useState("accountAside");
+  const [asidePos, setAsidePos] = useState("");//accountAside
   const [userData, setUserData] = useState({});
   const [contactData, setContactData] = useState({});
   const [knowledgeData, setKnowledgeData] = useState({});
   const [marketData, setMarketData] = useState({});
-  const [gotoPage, setGotoPage] = useState("/home")
-  const [accessRights, setAccessRights] = useState([0])
-
+  const [gotoPage, setGotoPage] = useState("/home");
+  const [accessRights, setAccessRights] = useState([0]);
+  const [authorsData, setAuthorsData] = useState({})
+  const [companyData, setCompanyData] = useState({})
+    
   const logout = async () => {
     const logoutName = localStorage.getItem("firstName")
+    const logoutUser = localStorage.getItem("userName")
     setIsAuth(false);
     axiosConfig.post("/user/logout").then((res) => {
-      //console.log(res.data);
     });
     localStorage.clear();
     setAccessRights([0]) 
-    //console.log(accessRights, typeof accessRights)
     //console.log(localStorage)
     !localStorage.length && navigate("/home")
     Swal.fire({
-      title: `Sie haben sich erfolgreich abgemeldet, ${logoutName}. Besuchen sie uns bald wieder!`,
+      title: `Sie haben sich erfolgreich abgemeldet, ${logoutName}, alias ${logoutUser}. Besuchen sie uns bald wieder!`,
       icon: "success",
       timer: 5000,
     })
@@ -51,25 +52,28 @@ const SectionsProvider = ({ children }) => {
     const userId = localStorage.getItem("userId");
     const axiosResp = await axiosConfig.get(
        `/user/${userId}`
-       //`http://localhost:4000/user/${userId}`
        );
        const userData = axiosResp.data;
        const contactData = axiosResp.data.contactData;
        const contactKnowledgeData = axiosResp.data.contactData.professionalStatus;
        const accessRights = axiosResp.data.accessRights
+       const authorsData = axiosResp.data.contactData.authorsData;
+       const companyData = axiosResp.data.contactData.currentCompany;
        setUserData(userData);
        setContactData(contactData);
        setKnowledgeData(contactKnowledgeData)
        setAccessRights(accessRights);
+       setAuthorsData(authorsData)
+       setCompanyData(companyData)
     };
 
-    const getMarketKnowledgeData = async () => {
-      const axiosResp = await axiosConfig.get(
-         "/professionalStatus"
-         );
-         const marketData = axiosResp.data;
-         setMarketData(marketData)
-      };
+  const getMarketKnowledgeData = async () => {
+    const axiosResp = await axiosConfig.get(
+        "/professionalStatus"
+        );
+        const marketData = axiosResp.data;
+        setMarketData(marketData)
+    };
 
     useEffect(() => {
       isAuth && getMarketKnowledgeData();
@@ -81,7 +85,6 @@ const SectionsProvider = ({ children }) => {
       value={{
         isAuth,
         logout,
-        /* getUserData, */
         gotoPage, 
         setGotoPage,
         setIsAuth,
@@ -90,8 +93,6 @@ const SectionsProvider = ({ children }) => {
         buttonPos, 
         navigate,
         setButtonPos,
-        //eventLogin,
-        //setEventLogin,
         userData,
         setUserData,
         contactData, 
@@ -102,6 +103,8 @@ const SectionsProvider = ({ children }) => {
         setMarketData,
         asidePos, 
         setAsidePos,
+        authorsData,
+        companyData,
       }}
     >
       {children}

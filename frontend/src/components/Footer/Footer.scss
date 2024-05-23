@@ -3,28 +3,28 @@
 
 footer {
   position: relative;
-  bottom: 0px;  
-  background-color:$first-color;
-  padding: 10px 0 10px 0;
-  width:100%;
-  height: auto;
-  //overflow: hidden;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: $first-color;
+  padding: 10px 0;
   font-size: 12px;
-  margin-top: 0px ;
   z-index: 10;
+
   #footerButton {
     position: relative;
     top: 0px;
     display: block;
     margin: 0 auto;
-    z-index:100;
+    z-index: 100;
     padding: 10px;
-    width: auto;  
-    height: auto;  
+    width: auto;
+    height: auto;
   }
+
   p {
     text-align: center;
-    width:80%;
+    width: 80%;
     font-size: $small;
     margin: 10px auto;
   }
@@ -38,57 +38,18 @@ footer {
     gap: 10px;
     list-style-type: none;
     text-decoration: none;
+
     ion-icon {
-      font-size: 30px;;
-      color:$third-color;
-      color:$cpdblue;
+      font-size: 30px;
+      color: $third-color;
+      color: $cpdblue;
     }
   }
- 
-   >div {
-     display: flex;
-     flex-flow: row wrap;
-     justify-content: center;
-     gap: 50px;
-     width: 80%;
-     max-width: 1280px;
-     margin: 20px auto ;
-     border-left: dotted 3px $cpdred;
-     border-right: dotted 3px $cpdred;
-     border-radius: 30px;
-     padding: 20px 0;
-     div > ul {
-       display: flex;
-       flex-flow: column wrap;
-       justify-content: flex-start;
-       font-size: $small;
-       width: 100%;
-       gap: 0;
-       //border: solid;
-       li {
-        //border: solid;
-        padding-left: 10px;
-         a{
-           text-decoration: none;
-           color: black;
-           //cursor: url("../../images/C.png");
-          }
-          &::before{
-            content: "C ";
-            font-family: $calli;
-            color: $cpdred;
-            font-size: calc($normal + 2px);
-            vertical-align: -1.5px; 
-          }
-      }
-       li:first-child {
-        font-size: $normal;
-        border-left: dotted 2px;
-        border-right: dotted 2px;
-        border-radius: 10px;
-        padding: 3px;
-       }
-      }
-    }
-   
- }
+
+  &.full-height {
+    position: fixed;
+    //bottom: 0;
+    
+  }
+  
+}

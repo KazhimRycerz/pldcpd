@@ -1,15 +1,15 @@
 import './Footer.scss'
 import { Link } from 'react-router-dom'
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { throttle } from 'lodash'
 
 const Footer = () => {
+  const [footerPosition, setFooterPosition] = useState('fixed');
   const [footerFullContents, setFooterFullContents] = useState(false);
   const [footerValue, setFooterValue] = useState("open Footer"); 
-
+  const footerRef = useRef(null);
   
   const handleFooterHeight = () => {
-    // const elemb = document.getElementById("footerButton");
-    
     if (!footerFullContents) {
       setFooterFullContents(true);
       setFooterValue("reduce Footer");
@@ -17,15 +17,43 @@ const Footer = () => {
       setFooterFullContents(false);
       setFooterValue("open Footer");
     }
-        
-    // Scrollen zum unteren Rand des Dokuments
     window.scrollTo(0, document.body.scrollHeight);
   }
   
+  useEffect(() => {
+    const handleResize = throttle(() => {
+      if (footerRef.current) {
+        const footerHeight = footerRef.current.offsetHeight;
+        const isOverflowing = document.body.scrollHeight > (window.innerHeight - footerHeight );
+        //console.log(`Footer height: ${footerHeight}, isOverflowing: ${isOverflowing}`);
+        setFooterPosition(isOverflowing ? 'relative' : 'fixed');
+      }
+    }, 10);
+
+    // Initial check
+    handleResize();
+
+    const observer = new MutationObserver(() => {
+      handleResize();
+    });
+
+    observer.observe(document.body, {
+      attributes: true,
+      childList: true,
+      subtree: true,
+    });
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
 
    return(
-   <footer>
+    <footer id="footer" ref={footerRef} style={{ position: footerPosition }}>
     <button className="buttonBasics" id="footerButton" onClick={handleFooterHeight} >{footerValue}</button>
          <p>
          Rycerz Media <br />
@@ -100,8 +128,6 @@ const Footer = () => {
               </div>
             </div>
           }
-
-   
    </footer>
    );
 };

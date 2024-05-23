@@ -28,7 +28,7 @@ const LoginForm = () => {
     setButtonPos("showBut");
     setAccessRights(JSON.parse(localStorage.getItem("accessRights")));
     //setAccessRights(respData.accessRights)
-    console.log(accessRights, typeof accessRights, localStorage.getItem("accessRights", respData.accessRights))
+   // console.log(accessRights, typeof accessRights, localStorage.getItem("accessRights", respData.accessRights))
     //window.history.back();
     //navigate(-1);
     navigate(gotoPage)
