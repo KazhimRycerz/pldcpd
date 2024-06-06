@@ -28,7 +28,7 @@ const Footer = () => {
         //console.log(`Footer height: ${footerHeight}, isOverflowing: ${isOverflowing}`);
         setFooterPosition(isOverflowing ? 'relative' : 'fixed');
       }
-    }, 10);
+    }, 100);
 
     // Initial check
     handleResize();
@@ -72,7 +72,7 @@ const Footer = () => {
           </ul>
    
          {footerFullContents &&
-            <div>
+            <div id="footerOverview">
               <div>
                 <ul>
                 <li><Link to="/impressum"> Imprint</Link></li>
@@ -109,10 +109,6 @@ const Footer = () => {
                   <li>NN</li>
                   <li>NN</li>
                   <li>sdlkfhj </li>
-                  <li>sd glkdfjg</li>
-                  <li> eoirtu </li>
-                  <li> aeöglkhj</li>
-                  <li> aeöglkhj</li>
                 </ul>      
               </div>
               <div>

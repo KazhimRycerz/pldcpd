@@ -1,15 +1,22 @@
 import { Link } from "react-router-dom";
 import "./ImpressumMain.scss";
+import { useContext, useEffect } from "react";
+import { SectionsContext } from "../../context/SectionsContext.js";
 
 
 const ImpressumMain = () => {
 
+    const { gotoPage, setGotoPage, navigate } = useContext(SectionsContext);
+
   return (
     <main id="impressumMain">
-
+       <div className="headBox">
+       <h2> Impressum</h2>
+        <p className="closingFunction" onClick={() => navigate(-1)}>Impressum schließen</p>
+        </div>   
        <div id="impressum">
          <div>
-            <h3>Impressum</h3>
+            <h3>Verlag</h3>
             <p>Rycerz Media GmbH</p>
             <p>Marienfelder Str. 18</p>
             <p>33330 Gütersloh</p>

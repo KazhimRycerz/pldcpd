@@ -124,6 +124,14 @@ const ListOfCountryCodes = () => {
   )
 }
 
+const stepsOfCPDEvaluation = [
+  "CPD listed", 
+  "CPD started", 
+  "CPD finished", 
+  "Request for verification", 
+  "CPD verified"
+]
+
 const ListOfLanguages = [
   "Deutsch",
   "Englisch",
@@ -287,4 +295,4 @@ const ListOfAccessRights = () => {
     )
   }
 
-export { IndustryField, ListOfCompanyType, ListOfCourseTypes, ListOfLanguages, ListOfTopicFields, ListOfLevel, ListOfAccessRights, ListOfCountryCodes }
+export { IndustryField, ListOfCompanyType, ListOfCourseTypes, ListOfLanguages, ListOfTopicFields, stepsOfCPDEvaluation, ListOfLevel, ListOfAccessRights, ListOfCountryCodes }

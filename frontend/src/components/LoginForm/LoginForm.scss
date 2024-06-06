@@ -5,12 +5,15 @@
   max-width: 1280px;
   min-height: 600px;
   margin: 250px auto 0;
-  box-shadow: $cpdblue 0px 0px 100px 50px inset, 0px 0px 15px 5px white;
+  box-shadow: $mainshadow;
+  //background-image: url(../../images/Sonnenuntergang.jpg);
+  //background-blend-mode: luminosity;
+  background-size: cover;
   //border: solid 2px white;
   //font-family: $primary-font;
   h2 {
     display: block;
-    margin: 50px auto;
+    margin: 75px auto 0;
     padding: 20px;
     width:fit-content;
     font-size: $small;
@@ -25,7 +28,7 @@
     flex-flow: column nowrap;
     //justify-content: space-around;
     gap: 20px;
-    margin: 0 auto;
+    margin: 50px auto;
     padding: 1.5rem 1rem;
     width: 40%;
     min-width: 400px;
@@ -95,7 +98,7 @@
     border-radius:  20px;
     //border: solid;
   }
-  #toRegisterButton {
+  #registerButton {
     display: block;
     //width: fit-content;
     //margin: 1rem auto 3rem;

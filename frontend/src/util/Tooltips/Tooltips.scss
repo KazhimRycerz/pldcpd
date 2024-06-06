@@ -1,0 +1,31 @@
+@import '../../scss/global.scss';
+
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-popup {
+  width: 200px;
+  position: absolute;
+  bottom: 125%; /* Position des Popups über dem Element */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: black;
+  color: $secondary-color;
+  padding: 5px 10px;
+  border-radius: 4px;
+  z-index: 1;
+  white-space: pre-line; /* Damit HTML-Tags korrekt dargestellt werden */
+}
+
+.tooltip-popup::after {
+  content: '';
+  position: absolute;
+  top: 100%; /* Pfeilspitze am unteren Rand des Popups */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}

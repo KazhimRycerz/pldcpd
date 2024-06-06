@@ -137,6 +137,12 @@ main {
     cursor: pointer;
     }
 }
+.actionButtons{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  gap: 0px;
+}
 
 .headBox{
   margin: 20px auto 30px;
@@ -146,8 +152,9 @@ main {
     display: block;
     padding: 20px;
     width:fit-content;
-    margin: 50px auto 0px;
+    margin: 70px auto 0px;
     font-size: $small;
+    font-weight: bold;
     text-align: center;
     color: $cpdblue;
     border-left: dotted 3px $cpdred;
@@ -269,12 +276,7 @@ background: blue;
   box-shadow: $boxshadow;
 }
 
-.actionButtons{
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-  gap: 0px;
-}
+
     
 @media (max-width: $tablet){
   body {

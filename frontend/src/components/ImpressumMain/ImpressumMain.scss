@@ -8,6 +8,7 @@
   background-color: $first-color;
   //border-color: $cpdred;
   box-shadow: $mainshadow;
+
 }
 
 #impressum {
@@ -15,7 +16,7 @@
   flex-flow: row nowrap;
   justify-content: space-around;
   position: relative;
-  top: 20%; 
+  top: 10%; 
   //box-shadow: $boxshadow;
   border-radius: 10px;
   color: $cpdblue;

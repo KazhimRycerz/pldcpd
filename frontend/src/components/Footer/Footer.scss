@@ -34,15 +34,43 @@ footer {
     flex-flow: row nowrap;
     justify-content: center;
     width: 50%;
-    margin: 0 auto;
+    margin: 0 auto 10px;
     gap: 10px;
     list-style-type: none;
     text-decoration: none;
-
+    //border: solid black;
     ion-icon {
       font-size: 30px;
       color: $third-color;
       color: $cpdblue;
+    }
+  }
+  #footerOverview{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    gap: 20px;
+    ul {
+      display: flex;
+      flex-flow: column nowrap;
+      gap: 0;
+      width: auto;
+      li{
+        font-size: $small;
+        //border: solid;
+        &:before {
+          content: "C ";
+          font-family: $calli;
+          color: $cpdred;
+          font-size: calc($normal + 2px);
+          vertical-align: -1px;
+        };
+        &:hover {
+          //color: $cpdred;
+          text-shadow: $text-shadow;
+          cursor: pointer;
+        }
+      }
     }
   }
 

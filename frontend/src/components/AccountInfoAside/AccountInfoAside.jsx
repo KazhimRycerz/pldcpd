@@ -63,44 +63,42 @@ return (
             <dl>
               <dt>KF</dt>
               <dd>
-                <h3>Knowledge Factor</h3>Der Knowledge Factor definiert Ihren Wissensstand. Er setzt sich zusammen aus
+                <h3>Knowledge Factor</h3>Der Knowledge Factor definiert Ihren derzeitigen Wissensstand. Er setzt sich zusammen aus
                 Ihre Ausbildungsbasis (PED - Professional Education), Ihrer Berufspraxis (PEX - Berufserfahrung) und
                 Ihrer aktiven Weiterbildungsaktivität (LP - Professional Learning Points). Ihr Knowledge Factor verliert ohne
-                Weiterbildung an Wert. Sie bauen Ihren KF auf durch Ihre berufliche Praxis und zusätzliche
-                Weiterbildung.
+                Weiterbildung an Wert. Sie bauen Ihren KF durch Ihre berufliche Praxis und zusätzliche
+                Weiterbildung kontinuierlich auf.
               </dd>
 
               <dt>LF</dt>
               <dd>
                 <h3>Learning Factor</h3>Ihr Lerning Factor zeigt Ihnen, wie aktiv Sie sich in der Zeit Ihre
-                Registrierung weitergebildet haben. Er berücksichtig alle Weiterbildungsmaßnahmen, die Sie in die Liste
+                Registrierung weitergebildet haben. Er berücksichtig alle Weiterbildungsmaßnahmen und Aktivitäten, die Sie in dem CPD-Tracker
                 eingeben.
               </dd>
 
               <dt>PEX</dt>
               <dd>
                 <h3>Professional Experience</h3>Hier werden alle beruflichen Erfahrungen gelistet und berücksichtig. Die
-                zeit ihrer beruflichen Aktivitäten wird mit 10% addiert. Der PEX Wert verliert pro Jahr 10% an Wert.
-                Gleichzeit
+                Zeit ihrer beruflichen Aktivitäten wird mit 10% addiert. Der PEX Wert verliert pro Jahr 10% an Wert.
               </dd>
 
               <dt>PED</dt>
               <dd>
-                <h3>Professional Education</h3>Hier werden alle beruflichen Erfahrungen gelistet und berücksichtig. Die
-                zeit ihrer beruflichen Aktivitäten wird mit 10% addiert. Der PEX Wert verliert pro Jahr 10% an Wert.
-                Gleichzeit
+                <h3>Professional Education</h3>Hier werden alle berufsbezogenen Hochschulaktivitäten gelistet und berücksichtig. Die
+                Zeit ihrer Hochschulaktivitäten wird zum KnowledgeFAktor addiert. 
               </dd>
 
               <dt>LP</dt>
               <dd>
                 <h3>Learning Points</h3>Hier werden alle CPD-Maßnahmen gelistet.
-                wie Engagement in Verbänden, gewonnene Awards, Vorträge, Artikel u.a.
+                wie Vorträge, Facharktiek, Konferenzen, workshops u.a.
               </dd>
 
               <dt>PA</dt>
               <dd>
                 <h3>Professional Activity</h3>Hier werden alle berufständischen Aktivitäten bewertet,
-                wie Engagement in Verbänden, gewonnene Awards, Vorträge, Autorenschaft u.a.
+                wie Engagement in Verbänden, gewonnene Awards, halten von Vorträge, Autorenschaft u.a.
               </dd>
 
               <dt id="LC_only">LC</dt>
@@ -109,14 +107,14 @@ return (
                 <span className="LitCoin">L</span>
                 <span className="Calli">it</span>
                 <span className="LitCoin">C</span>
-                <span className="Calli">oin</span>
+                <span className="Calli">oin</span> 
                 </h3>Hiermit können Sie Ihre Weiterbildungsangebote in digitale Währung
                 bezahlen. 10 
                 <span className="LitCoin">L</span>
                 <span className="Calli">it</span>
                 <span className="LitCoin">C</span>
                 <span className="Calli">oin</span> 
-                hat den Wert von einspan €. Sie können 500 
+                hat den Wert von 1 €. Sie können 500 
                 <span className="LitCoin">L</span>
                 <span className="Calli">it</span>
                 <span className="LitCoin">C</span>

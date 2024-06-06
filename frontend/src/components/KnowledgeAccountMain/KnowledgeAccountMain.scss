@@ -4,10 +4,14 @@
   margin: -0px auto 50px;
   //height: auto;
   box-shadow: $mainshadow;
-    
   section {
     width: 80%;
     margin: 0 auto;
+    display: block;
+    margin-top: 20px;
+    border-right: 3px dotted $cpdred;
+    border-left: 3px dotted $cpdred;
+    border-radius: 20px;
     .accountHead{
       display: flex;
       flex-flow: row nowrap;
@@ -31,86 +35,13 @@
           text-shadow: $text-shadow;
           cursor: pointer;
         }
-      }
-      p:hover{
-        text-shadow: $text-shadow;
-        cursor: pointer;
-      }
-    }
-    div div div p {
-      font-family: $primary-font;
-      font-size: $small;
-      padding: 10px 5px 10px 5px;
-    }
-
-  }
-
-  .accountHead{
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    margin-right: 30px;
-    height: 30px;
-    //border: solid;
-    
-  }
-  
-  .output {
-    line-height: 30px;
-    font-size: $small;
-    text-align: center;
-    padding: 10px;
-    width: 75%;
-    //height: auto;
-    border: solid black;
-    //border-radius: $radiusxsmall;
-    color: $secondary-color;
-    background-color: $cpdblue;
-    opacity: 1;
-    p{
-      //color: white;
-      border: none;
-      width: 100%;
-    }
-  }
-
-
-  #account_1 {
-    display: block;
-    margin-top: 20px;
-    border-right: 3px dotted $cpdred;
-    border-left: 3px dotted $cpdred;
-    border-radius: 20px;
-    div{
-      p{
-        position: relative;
-        bottom: 0px;
-        //margin-top: 10px;
-        //padding: 5px;
-        font-size: $small;
-        //border: solid;
-        &:hover {
-          //color: $cpdred;
-          text-shadow: $text-shadow;
-          cursor: pointer;
-        }
-      }
-      img{
-        position:relative;
-        left: 0;
-        bottom: 100px;
-        height: 130px;
-        width: 100px;
-        object-fit:scale-down;
-        //border: solid;
       } 
     }
-    
-    #account_1_data {
+    .accountData{
       display: flex;
       flex-flow: row wrap;
       gap: 10px 0px;
-      padding: 0px;
+      padding-bottom: 20px;
       width: 100%;
       height: auto;
       font-size: $small;
@@ -139,89 +70,93 @@
           border-left: dotted $cpdred;
           border-radius: 5px; */
           border: solid $cpdblue;
-          p {
-            //line-height: 1rem;
-            width: 50%;
-            //vertical-align: middle;
-            min-height: 30px;
-            padding: 10px;
-            line-height: 30px;
-            //border: solid 02px;
-          }
-          .output {
-            line-height: 30px;
-            font-size: $small;
-            text-align: center;
-            padding: 0px;
-            width: 75%;
-            //height: auto;
-            border: solid black;
-            //border-radius: $radiusxsmall;
-            color: $secondary-color;
-            background-color: $cpdblue;
-            opacity: 1;
-            p{
-              //color: white;
-              border: none;
-              width: 100%;
-            }
-          }
-          #company{
-            display: flex;
-            flex-flow: column nowrap;
-            gap: 0;
-            height: auto;
-            text-align: left;
-            padding: 0;
-            //border: solid yellow;
-            p{
-              display: inline;
-              width: 100%;
-              padding: 0 0 0 5px;
-              margin: 0;
-              height: auto;
-              border-bottom: solid $secondary-color 1px;
-              //border-radius: 3px;
-              &:last-child{
-                border-bottom: none;
-              }
-            }
-            
-          }
         }
-        #account_1_data > div:nth-of-child(2) {
-          display: flex;
-          flex: 1 auto 1;
-          flex-direction: column;
-          flex-wrap: wrap;
-        }
-        #account_1_p {
-          font-size: 1.5rem;
+      }
+      .fieldName {
+        width: 50%;
+        padding: 10px;
+        min-height: 30px;
+        line-height: 30px;
+        font-family: $primary-font;
+        font-size: $small;
+      }
+      .output {
+        line-height: 30px;
+        font-size: $small;
+        text-align: center;
+        padding: 10px;
+        width: 75%;
+        border: solid black;
+        //border-radius: $radiusxsmall;
+        color: $secondary-color;
+        background-color: $cpdblue;
+        opacity: 1;
+        p{
+          //color: white;
+          border: none;
           width: 100%;
-          text-align: center;
-          color: $third-color;
+          
         }
       }
     }
-  .colorYellow {
-    color: $secondary-color;
   }
+  
+  #welcomeLine {
+    display:flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    border: none;
+    h3{
+      font-family: $primary-font-bold;
+      margin: 0 30px ;
+      padding-top: 5px;
+    }
+    img{
+      border-radius: 50%;
+      width:200px;
+      aspect-ratio: 1;
+      object-fit: cover;
+      object-position:50%
+    }
   }
 
-  .account_box_dates {
-    display: block;
-    position: absolute;
-    font-family: $primary-font-bold;
-    font-size: $xxlarge;
-    letter-spacing: -2px;
-    margin: -50px 100px;
-    margin-right: 0px;
-    width: 120px;
-    border-bottom: 3px solid $first-color;
-    border-radius: $radiussmall;
-    text-align: center;
-    padding: 7px;
-    background-color: $fourth-color;
+  #account_1 {      
+    #company{
+      display: flex;
+      flex-flow: column nowrap;
+      gap: 0;
+      height: auto;
+      text-align: left;
+      padding: 0;
+      //border: solid yellow;
+      p{
+        display: inline;
+        width: 100%;
+        padding: 0 0 0 5px;
+        margin: 0;
+        height: auto;
+        border-bottom: solid $secondary-color 1px;
+        //border-radius: 3px;
+        &:last-child{
+          border-bottom: none;
+        }
+      }
+    }
+    #account_1_data > div:nth-of-child(2) {
+      display: flex;
+      flex: 1 auto 1;
+      flex-direction: column;
+      flex-wrap: wrap;
+    }
+    #account_1_p {
+      font-size: 1.5rem;
+      width: 100%;
+      text-align: center;
+      color: $third-color;
+    }
+    .colorYellow {
+      color: $secondary-color;
+    }
   }
 
   #my_start {
@@ -237,7 +172,22 @@
 
   /* zweite Datenreihe*/
 
-  #account_2 {
+  #account_2, #account_6 {
+    table {
+      border: solid;
+      border-radius: 10px;
+      width: 95%;
+      margin: 0 auto;
+      //padding: 10px;
+      background-color: $fourth-color;
+      th{
+        border-bottom: solid;
+        text-align: left;
+      }
+    }
+  }
+
+  #account_3 {
     display: block;
     margin-top: 20px;
     border-left: 3px dotted $cpdred;
@@ -245,7 +195,7 @@
     border-radius: 20px;
     height: auto;
     
-    #account_2_head p{
+    #account_3_head p{
       &:hover {
         //color: $cpdred;
         text-shadow: $text-shadow;
@@ -255,12 +205,12 @@
 
     > p {
       margin: 0px 0px 30px 30px;
-      
+      padding-bottom: 10px;
+      //border: solid
     }
 
-
   }
-  #account_2_data {
+  #account_3_data {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
@@ -268,9 +218,9 @@
     gap: 20px 0px;
     margin-top: 10px;
     width: 100%;
-    padding: 10px 0;
+    padding: 0 0 20px 0;
     //border: solid;
-    .account_2 {
+    .account_3 {
       display: flex;
       flex: row nowrap;
       justify-content: space-between;
@@ -369,78 +319,28 @@
     }
   }
 
-  #account_3 {
-    display: block;
-    margin-top: 20px;
-    border-right: 3px dotted $cpdred;
-    border-left: 3px dotted $cpdred;
-    border-radius: 20px;
-    div p {
-      font-size: $small;
-      margin-top: 00px;
-    }
-    
-    #account_3_data {
-      display: flex;
-      flex-flow: row wrap;
-      margin: 0 15px;
-      gap:5px 5px;
-      .account_3 {
-        display: flex;
-        flex-flow: column nowrap;
-        justify-content: flex-start;
-        gap: 10px;
-        margin: 10px;
-        padding: 10px;
-        flex-basis: 40%;
-        flex-grow: 1;
-        flex-shrink: 2;
-        //width: 33%;
-        height: auto;
-        background-color: $fourth-color;
-        border-radius: $radiussmall;
-        box-shadow: $boxshadow;
-        >div {
-          display: flex;
-          flex-flow: row wrap;
-          justify-content: space-between;
-          padding: 0px;
-          border: solid;
-          >p{
-            width: 25%;
-            line-height: 25px;
-            font-size: $small;
-            padding-left: 5px;
-          }
-          div {
-            margin: 0px;
-            padding: 5px;
-            font-size: $small;
-            background-color: $cpdblue;
-            border: none;
-            //border-radius: 3px;
-            color: $secondary-color;
-            width: 60%;
-            text-align: center;
-
-          }
-        }
-      }
+  .linkin {
+    font-size: $small;
+    margin-top: 0px;
+    &:hover {
+      //color: $cpdred;
+      text-shadow: $text-shadow;
+      cursor: pointer;
     }
   }
-
-  #account_4 {
+  
+  #account_8 {
     display: block;
     margin-top: 20px;
     border-right: 3px dotted $cpdred;
     border-left: 3px dotted $cpdred;
     border-radius: 20px;
     
-    #account_4_data {
+    #account_8_data {
       display: flex;
       margin: 0 20px;
     }
-    .account_4 {
+    .account_8 {
       display: flex;
       flex: row nowrap;
       justify-content: space-between;
@@ -462,7 +362,7 @@
     }
   }
 
-  #account_4_Box {
+  #account_8_Box {
     font-weight: bold;
     font-size: 30px;
     margin: auto auto;
@@ -481,7 +381,7 @@
     }
   }
 
-  #account_5 {
+  #account_10 {
     display: block;
     margin-top: 20px;
     margin-bottom: 100px;
@@ -493,7 +393,7 @@
       margin-top: 10px;
     }
     
-    #account_5_data {
+    #account_10_data {
       display: flex;
       flex-flow: row wrap;
       justify-content: flex-start;
@@ -517,16 +417,16 @@
       div div div {
         padding: 10px;
       }
-      #account_5_data_1{
+      #account_10_data_1{
         width: 66%;
         flex-basis: 66%;
         flex-grow: 1;
       }
-      #account_5_data_2{
+      #account_10_data_2{
         width: 30%;
         flex-grow: 2;
       }
-      #account_5_data_3{
+      #account_10_data_3{
         //max-height: 100px;
         flex-grow: 2;
         max-width: 30%;
@@ -540,7 +440,7 @@
     }
   }
 
-  .account_5 {
+  .account_10 {
     margin: px;
     margin-top: 10px;
     padding: 0px;
@@ -558,10 +458,10 @@
         justify-content:flex-start;
         list-style: none;
     }
-}
+  }
 }
 @media (max-width: $phone){
-  .account_2 {
+  .account_3 {
     width: 100%;
   }
   section {

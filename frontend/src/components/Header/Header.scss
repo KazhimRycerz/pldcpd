@@ -163,10 +163,10 @@ header {
 
 #header_myaccount {
   font-size: $small;
-  //border: solid;
   height: auto;
   align-self: baseline;
   //border: solid;
+  position: relative;
 
   ul {
     margin-top: 20px;
@@ -198,6 +198,9 @@ header {
       width: 50px;
     }
   }  
+}
+#headerUserAvatar:hover{
+  
 }
 
 #dropDownAccountBackground{
@@ -262,7 +265,7 @@ header {
       text-align:end;
       list-style-type: none;
       border-radius: 10px;
-      a{
+      span{
         text-decoration: none;
         color: $cpdblue;
       }
@@ -459,6 +462,7 @@ header {
     background-image: url(../../images/Sonnenuntergang.jpg);
     background-size: cover;
     background-position: center 300px;
+    //background-repeat:no-repeat;
     padding: 40px;
     height: 180px;
     #nlPromo {

@@ -1,19 +1,79 @@
 import './KnowledgeAccountMain.scss'
 //import JoachimRitter from '../../../src/images/Joachim_privat.jpg'
-//import { useNavigate, useParams } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import { SectionsContext } from "../../context/SectionsContext.js";
+import { useLocation } from 'react-router-dom';
 //import axiosInstance from "../../util/axiosConfig";
 import axiosConfig from "../../util/axiosConfig";
 import Moment from "moment";
 import Swal from "sweetalert2";
 import baseURL from "../../util/constants.js"
+import UserAvatar from "../UserAvatar/UserAvatar.jsx"
+import Tooltip from "../../util/Tooltips/Tooltips.js"
 
 
-const  KnowledgeAccountMain = ()=>{
-   const { isAuth, userData, authorsData, companyData,  contactData, marketData,  knowledgeData,  buttonPos, setButtonPos, asidePos, setAsidePos, gotoPage, navigate } = useContext(SectionsContext);
+const  KnowledgeAccountMain = () =>{
+   const { isAuth,
+      userData, 
+      getUserData, 
+      careerData, 
+      cpdData, 
+      authorsData, 
+      companyData, 
+      contactData, 
+      marketData, 
+      knowledgeData, 
+      buttonPos, 
+      setButtonPos, 
+      asidePos, 
+      setAsidePos, 
+      gotoPage,
+      objectSize, 
+      setObjectSize,
+      saveUserSettings,
+      navigate } = useContext(SectionsContext);
    const [showPassword, setShowPassword] = useState(false);
-   const [openSections, setOpenSections] = useState(["account_3"]);
+   const [openSections, setOpenSections] = useState([]);
+   //const [careerData, setCareerData] = useState([]);
+   const location = useLocation();
+
+   const getTooltipText = (contents) => {
+      if (contents === 'LEO') {
+        return 'Learning Opportunity'
+      } else if (contents === 'CRE') {
+        return 'Creating a Learning Item'
+      } else if (contents === 'PAC') {
+        return 'Professional Activity';
+      } else if (contents === 'EDU') {
+         return 'Educaters Activity';
+      } else if (contents === 'PEX') {
+         return 'Professional Experience';
+      } else if (contents === 'PED') {
+         return 'Professional Education';
+       } else {
+        return ''
+      }
+   };
+   //console.log(cpdData);
+   //console.log(companyData, companyData.companyName)
+
+  /*  useEffect(() => {
+      if (contactData && contactData.careerPath) {
+        setCareerData(contactData.careerPath);
+        //console.log('Updated careerData:', contactData.careerPath);
+      }
+    }, [contactData]); */ 
+    
+    const handleSizeChange = (e) => {
+      setObjectSize(e.target.value);
+      saveUserSettings()
+    };
+  
+    useEffect(() => {
+      if (location.state?.openSection) {
+         setOpenSections(location.state.openSection);
+      }
+   }, [location.state]);
 
    const toggleSection = (sectionId) => {
       setOpenSections((prevOpenSections) => {
@@ -27,13 +87,11 @@ const  KnowledgeAccountMain = ()=>{
    };
 
    useEffect(() => {
-      const buttonPosCheck = () =>{
+      const buttonPosCheck = () =>{ // buttonPosCheck nicht löschen!!!!
          if (isAuth && gotoPage==="/home") {setButtonPos("showBut"); setAsidePos("accountAside") //ok
       } else {setButtonPos(buttonPos); setAsidePos(asidePos)
       }}
    }, [isAuth, asidePos, buttonPos, gotoPage, setAsidePos, setButtonPos]);
-    
-   //console.log(userData.userImage)
 
    const toggleShowPassword = () => {
       setShowPassword(prevShowPassword => !prevShowPassword);
@@ -64,122 +122,72 @@ const  KnowledgeAccountMain = ()=>{
          }
    };
             
-
    return (
-      <main id="accountMain">
+      <main id="accountMain" /* onClick={() => getUserData()} */>
          <div /* id="Gruß_account"  */className= "headBox">
-            <h2> Ihre Fachwissen im Überblick</h2>
+            <h2> Ihre Kontodaten im Überblick</h2>
             <p className="closingFunction" onClick={() => navigate("/home")}>Formular schließen</p>
          </div>
-
-         <section id="account_3" style={!openSections.includes("account_3") ? { backgroundColor: 'rgba(221, 155, 55, 0.2)' } : {}}>
-            <div className="accountHead" >
-               <h3 onClick={() => toggleSection("account_3")}>Ihre User Daten</h3>
-               {openSections.includes("account_3") && 
-                  <p>
-                     <span className="C">C </span>
-                     Daten aktualisieren
-                  </p>
-               }
-            </div>
-            {openSections.includes("account_3") && (
-               <div id="account_3_data">
-                  <div className="account_3">
-                     <div>
-                        <p>Name</p> 
-                        <div className="output">{contactData.firstName} {contactData.lastName}</div>
-                     </div>
-                     <div>
-                        <p>Geburtsdatum</p>
-                        <div >{Moment(contactData.dateOfBirth).format("DD.MM.YYYY")}</div>
-                     </div>
-                  </div>
-   
-                  <div className="account_3">
-                     <div>
-                        <p>E-Mail</p> 
-                        <div className="output">{userData.eMail}</div>
-                     </div>
-                     <div>
-                        <p>Mobil</p> 
-                        <div className="output">{userData.eMail}</div>
-                     </div>
-                     <div>
-                        <p>Firma</p> 
-                        <div className="output">{userData.eMail}</div>
-                     </div>
-                  </div>
-                  <div className="account_3">
-                     <div>
-                        <p>E-Mail</p> 
-                        <div className="output">{userData.eMail}</div>
-                     </div>
-                     <div>
-                        <p>Mobil</p> 
-                        <div className="output">{userData.eMail}</div>
-                     </div>
-                     <div>
-                        <p>Firma</p> 
-                        <div className="output">{userData.eMail}</div>
-                     </div>
-                  </div>
-   
-                  <div className="account_3">
-                     <div>
-                        <p>Username</p> 
-                        <div className="output">{userData.userName}</div>
-                     </div>
-                     <div>
-                        <p>Ihr Passwort</p>
-                        <div className="output" onClick={toggleShowPassword}>
-                        {showPassword ? userData.userName : userData.userName && '*'.repeat(userData.userName.length)}
-                        </div>
-                     </div>
-                     <div>
-                        <p>Ihr Avatar</p>
-                        <div>
-                           <img src={baseURL+userData.userImage} 
-                           id="imgKnowledgeAccount"
-                           alt={userData.firstName + " "+ userData.lastName} style={{width: '50px'}}/>
-                        </div>
-                     </div>
-                  </div>
+         <section id="welcomeLine">
+            <div><h3>Daten von {userData.firstName} {userData.lastName}</h3></div>
+            {/* <div>
+               < UserAvatar width="75px" height="75px" allowDragging="true"/> 
+               <div className="slider-container">
+                  <label>
+                     <input
+                        type="range"
+                        min="50"
+                        max="200"
+                        value={objectSize}
+                        onChange={handleSizeChange}
+                     />
+                  </label>
                </div>
-            )}
+            </div> */}
+            {/* <img src={baseURL+userData.userImage} 
+                  alt={userData.firstName + " "+ userData.lastName} id="accountImage"
+                  style={{width: '50px'}}/> */}
          </section>
 
          <section id="account_1" style={!openSections.includes("account_1") ? { backgroundColor: 'rgba(221, 155, 55, 0.2)' } : {}}>
             <div className="accountHead" id="account_1_head" >
-               <h3 onClick={() => toggleSection("account_1")}>Karrierestatus {contactData.firstName} {contactData.lastName}</h3>
+               <h3 onClick={() => toggleSection("account_1")}>Berufsstatus</h3>
                {openSections.includes("account_1") && 
-                  <p>
+                  <p className="linkin" onClick={() => getUserData()}>
                   <span className="C">C </span>
                   Daten aktualisieren
                   </p>
                }
             </div>
             {openSections.includes("account_1") && (
-            <div id="account_1_data">
+            <div className="accountData" id="account_1_data">
                <div>
                   <div>
-                     <p>Ihr Beruf</p> 
+                     <p className="fieldName">Ihr Beruf</p> 
                      {/* {knowledgeData ? (<div className="output" id="profession">{knowledgeData.profession}</div>) : (<div className="output" id="profession">(0)</div>)} */}
                      <div className="output" id="profession">
                      {knowledgeData ? <p>{knowledgeData.profession}</p> : <p>Ihr Beruf wurde noch nicht aktualisiert</p>}
                      </div>
                   </div>
                   <div>
-                     <p>aktuelle Firma</p>
+                     <p className="fieldName">aktuelle Firma</p>
                      {companyData ? (<div className="output" id="company"><p>{companyData.companyName}</p> <p>{companyData.companyCity} / {companyData.companyCountryCode}</p> <p>{companyData.companyHomepage}</p></div>) : (<div className="output" id="company"><p>Ihre Firma wurde noch nicht eingegeben</p></div>)}
                   </div>                  
                </div>
                <div>
-                  <div><p>Karrierelevel</p>
+                  <div>
+                     <p className="fieldName">Karrierelevel</p>
                      <div className="output" id="myCL"> 
                         {knowledgeData ? (<p>{knowledgeData.myCStatus} von 9</p>) : (<p>Ihr Datensatz wurde noch nicht angelegt</p>)}
                      </div> 
                   </div> 
-                  <div><p></p></div>  
+                  <div><p className="fieldName"></p>
+                     {/* <div className="output" id="myCL"> 
+                        {knowledgeData ? (<p>{knowledgeData.test.description} von 9</p>) : (<p>Ihr Datensatz wurde noch nicht angelegt</p>)}
+                     </div>  */}
+                  </div>  
+                  
+                  
                   <div id="myCPDStatus">
                      <div>
                         {knowledgeData ? <p id="account_1_p">{knowledgeData.careerPathStatus}</p> : <p></p>}
@@ -189,19 +197,19 @@ const  KnowledgeAccountMain = ()=>{
 
                <div>
                   <div>
-                     <p>beruflich aktiv seit </p>
+                     <p className="fieldName">beruflich aktiv seit </p>
                      <div className="output" id="my_active"> 
                         {knowledgeData ? <p>{Moment(knowledgeData.professionalSince).format("DD.MM.YYYY")}</p> : <p>Info fehlt</p>}
                      </div>
                   </div>
                   <div>
-                     <p>CPD-aktiv seit</p>
+                     <p className="fieldName">CPD-aktiv seit</p>
                         <div className="output" id="my_start"> 
                         {knowledgeData ? <p>{Moment(knowledgeData.cpdActiveSince).format("DD.MM.YYYY")}</p> : <p>Info fehlt</p>}
                      </div>
                   </div>
                   <div>
-                     <p>letztes Update </p>
+                     <p className="fieldName">letztes Update </p>
                      <div className="output" id="my_active"> 
                      {knowledgeData ? <p>{Moment(knowledgeData.updatedOn).format("DD.MM.YYYY")}</p> : <p>Info fehlt</p>}
                      </div>
@@ -210,33 +218,38 @@ const  KnowledgeAccountMain = ()=>{
 
                <div>
                   <div>
-                     <p>Ihr Guthaben</p>
+                     <p className="fieldName">Ihr CPD Guthaben</p>
                      <div className="output account_Box" id="myLCoins"> 
                         {knowledgeData ? <p>{knowledgeData.myLC}<span className="C colorYellow"> LC</span></p>: <>0<span className="C colorYellow"> LC</span></>} 
                      </div>
                   </div>
-                  <div><p></p></div>
-                  <div><p></p></div>
+                  <div><p className="fieldName"></p></div>
+                  <div><p className="fieldName"></p></div>
                </div>
             </div>
             )}
          </section>
-   
-         <section id="account_2" style={!openSections.includes("account_2") ? { backgroundColor: 'rgba(221, 155, 55, 0.2)' } : {}}>
-            <div className="accountHead" id="account_2_head" >
-               <h3 onClick={() => toggleSection("account_2")}>Ihr persönliches Fachwissen</h3>
+
+         <section id="account_3" style={!openSections.includes("account_3") ? { backgroundColor: 'rgba(221, 155, 55, 0.2)' } : {}}>
+            <div className="accountHead" id="account_3_head" >
+               <h3 onClick={() => toggleSection("account_3")}>Ihr persönliches Fachwissen / CPD-Status</h3>
                {!knowledgeData && (
-                <p onClick={addKnowledgeDaten}>
+                  <p onClick={addKnowledgeDaten}>
                   <span className="C">C </span>
                   Datensatz anlegen
                   </p>
                )}
+               {openSections.includes("account_3") && (<p className="linkin" onClick={() => getUserData()}>
+                  <span className="C">C </span>
+                  Daten aktualisieren
+                  </p>)}
             </div>
-            <p> Die Zahlen zeigen Ihnen die Durchschnittswerte im <br/>internationalen Lichtdesignermarkt aller Teilnehmer an.</p>
-            
-            {openSections.includes("account_2") && (
-               <div id="account_2_data">
-                  <div className="account_2">
+                        
+            {openSections.includes("account_3") && (
+               <>
+                  <p> Die Zahlen zeigen Ihnen die Durchschnittswerte im internationalen Lichtdesignermarkt aller Teilnehmer an.</p>
+               <div id="account_3_data">
+                  <div className="account_3">
                      <div>
                         <h2>KF</h2>
                         <p>Knowledge<br />Factor</p>
@@ -247,7 +260,7 @@ const  KnowledgeAccountMain = ()=>{
                      </div>
                   </div>
 
-                  <div className="account_2">
+                  <div className="account_3">
                      <div>
                         <h2>LF</h2>
                         <p>Learning<br />Factor</p>
@@ -258,7 +271,7 @@ const  KnowledgeAccountMain = ()=>{
                      </div>
                   </div>
 
-                  <div className="account_2">
+                  <div className="account_3">
                      <div>
                         <h2>PEX</h2>
                         <p>Professional<br />Experience</p>
@@ -269,7 +282,7 @@ const  KnowledgeAccountMain = ()=>{
                      </div>
                   </div>
 
-                  <div className="account_2">
+                  <div className="account_3">
                      <div>
                         <h2>PED</h2>
                         <p>Professional<br />Education</p>
@@ -280,7 +293,7 @@ const  KnowledgeAccountMain = ()=>{
                      </div>
                   </div>
 
-                  <div className="account_2">
+                  <div className="account_3">
                      <div>
                         <h2>LP</h2>
                         <p>Learning<br />Points</p>
@@ -291,7 +304,7 @@ const  KnowledgeAccountMain = ()=>{
                      </div>
                   </div>
 
-                  <div className="account_2">
+                  <div className="account_3">
                      <div>
                         <h2>PA</h2>
                         <p>Professional<br />Activity</p>
@@ -302,56 +315,334 @@ const  KnowledgeAccountMain = ()=>{
                      </div>
                   </div>
                </div>
+               </>
             )}
-          </section>
+            </section>
+         
+         <section id="account_6" style={!openSections.includes("account_6") ? { backgroundColor: 'rgba(221, 155, 55, 0.2)' } : {}}>
+            <div className="accountHead" id="account_6_head" >
+               <h3 onClick={() => toggleSection("account_6")}>Ihre CPD-Tracker</h3>
+               {openSections.includes("account_6") && 
+                  <p className="linkin">
+                  <span className="C">C </span>
+                  Daten aktualisieren
+                  </p>
+               }
+            </div>
+            {openSections.includes("account_6") && (
+            <div className="accountData" id="account_6_data">
+               <table id="cpdTrackerTable">
+                  <thead>
+                     <tr>
+                        <th>
+                           <Tooltip text="LEO = Learning Opportunity, <br/>CRE = Creating an education opportunity, <br/> PAC = professional Activity">
+                           <span style={{ marginLeft: '5px', cursor: 'pointer' }}>{/* ℹ️ */}Typ</span>
+                           </Tooltip>
+                        </th>
+                        <th>Activity</th>
+                        <th>Content</th>
+                        <th>LPs <br/>basic</th>
+                        <th>LPs additional</th>
+                        <th>LPs total</th>
+                        <th>Start date</th>
+                        <th>End date</th>
+                        <th>status of CPD</th>
+                        {/* <th>Request for evaluation</th>
+                        <th>Verified</th> */}
+                        <th>Value date</th>
+                        
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {cpdData.map((item, index) => (
+                        <tr key={item._id}>
+                           {/* <td>{item.activityType || 'N/A'}</td> */}
+                           <td>
+                              <Tooltip text={getTooltipText(item.activityType)}>
+                                 <span style={{ marginLeft: '5px', cursor: 'pointer' }}>{/* ℹ️ */}{item.activityType}</span>
+                              </Tooltip>
+                           </td>
+                           <td>{item.courseId?.courseType || 'N/A'}</td>
+                           <td>{item.courseId?.courseTopic || 'N/A'}</td>
+                           <td>{item.earnedLP || 'N/A'}</td>
+                           <td>{item.addedLP || 'N/A'}</td>
+                           <td>{item.totalLP || 'N/A'}</td>
+                           <td>{item.startDate ? (Moment(item.startDate).format("DD.MM.YYYY")) : ''}</td>
+                           <td>{item.endDate ? (Moment(item.endDate).format("DD.MM.YYYY")) : ''}</td>
+                           <td>{item.statusOfVerification || 'N/A'}</td>
+                           {/* <td><input type="checkbox" checked={item.requestToEvaluate} readOnly /></td>
+                           <td><input type="checkbox" checked={item.verified} readOnly /></td> */}
+                           <td>{item.valueDate ? (Moment(item.valueDate).format("DD.MM.YYYY")) : ''}</td>
+                           
+                        </tr>
+                     ))}
+                  </tbody>
+               </table>
+            </div>
+            )}
+         </section>
+
+         <section id="account_2" style={!openSections.includes("account_2") ? { backgroundColor: 'rgba(221, 155, 55, 0.2)' } : {}}>
+            <div className="accountHead" id="account_2_head" >
+               <h3 onClick={() => toggleSection("account_2")}>Ihre beruflicher Werdegang</h3>
+               {openSections.includes("account_2") && 
+                  <p className="linkin">
+                  <span className="C">C </span>
+                  Daten eingeben oder ändern
+                  </p>
+               }
+            </div>
+            {openSections.includes("account_2") && (
+            <div className="accountData" id="account_2_data">
+               <table id="werdegangTable">
+                  <thead>
+                     <tr>
+                        <th>Company Name</th>
+                        <th>Department</th>
+                        <th>Position</th>
+                        <th>aktiviert</th>
+                        <th>{/* Werttyp<br/> */}
+                           <Tooltip text="EDU = education, <br/>PEX = professional Experience, <br/> PED = professional Education">
+                              <span style={{ marginLeft: '5px', cursor: 'pointer' }}>{/* ℹ️ */}Werttyp</span>
+                           </Tooltip>
+                        </th>
+                        
+                        {/* <th>PEX</th>
+                        <th>PED</th>
+                        <th>EDU</th> */}
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Time <br/>Span</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {careerData.map((item, index) => (
+                        <tr key={item._id}>
+                        <td>{item.company?.companyName || 'N/A'}</td>
+                        <td>{item.department || 'N/A'}</td>
+                        <td>{item.position || 'N/A'}</td>
+                        <td><input type="checkbox" checked={item.activated} readOnly /></td>
+                        {/* <td><Tooltip text="EDU = education, <br/>PEX = professional Experience, <br/> PED = professional Education">
+                              <span style={{ marginLeft: '5px', cursor: 'pointer' }}>{item.typeOfValue || 'N/A'}</span>
+                           </Tooltip>
+                        </td> */}
+                        <td>
+                           <Tooltip text={getTooltipText(item.typeOfValue)}>
+                              <span style={{ marginLeft: '5px', cursor: 'pointer' }}>{/* ℹ️ */}{item.typeOfValue}</span>
+                           </Tooltip>
+                        </td>
+                        {/* <td><input type="checkbox" checked={item.pex} readOnly /></td>
+                        <td><input type="checkbox" checked={item.ped} readOnly /></td>
+                        <td><input type="checkbox" checked={item.edu} readOnly /></td> */}
+                        <td>{Moment(item.startDate).format("DD.MM.YY")}</td>
+                        <td>{item.endDate ? (Moment(item.endDate).format("DD.MM.YY")) : ''}</td>
+                        <td>{item.timeSpan || 0}</td>
+                        </tr>
+                     ))}
+                  </tbody>
+               </table>
+            </div>
+            )}
+         </section>
    
          <section id="account_4" style={!openSections.includes("account_4") ? { backgroundColor: 'rgba(221, 155, 55, 0.2)' } : {}}>
             <div className="accountHead" >
-               <h3 onClick={() => toggleSection("account_4")}>Ihre Abrechnungsdaten</h3>
+               <h3 onClick={() => toggleSection("account_4")}>Ihre Konto Nutzerdaten</h3>
                {openSections.includes("account_4") && 
-               <p>
+                  <p className="linkin" onClick={() => navigate("/userUpdate")}>
+                     <span className="C" >C </span>
+                     Daten aktualisieren
+                  </p>
+               }
+            </div>
+            {openSections.includes("account_4") && (
+               <div className="accountData" id="account_4_data">
+                  <div className="account_4">
+                     <div>
+                        <p className="fieldName">Vorname</p> 
+                        <div className="output">{userData.firstName}</div>
+                     </div>
+                     <div>
+                        <p className="fieldName">Nachname</p> 
+                        <div className="output">{userData.lastName}</div>
+                     </div>
+                     <div>
+                        <p className="fieldName">E-Mail</p> 
+                        <div className="output">{userData.eMail}</div>
+                     </div>
+                  </div>
+
+                  <div className="account_4">
+                     <div>
+                        <p className="fieldName">Username</p> 
+                        <div className="output">{userData.userName}</div>
+                     </div>
+                     <div>
+                        <p className="fieldName">Ihr Passwort</p>
+                        <div className="output" onClick={toggleShowPassword}>
+                        {showPassword ? userData.userName : userData.userName && '*'.repeat(userData.userName.length)}
+                        </div>
+                     </div>
+                     <div>
+                        <p className="fieldName">Ihr Avatar</p>
+                        {/* <div className="output">
+                           <img src={baseURL+userData.userImage} 
+                           id="imgKnowledgeAccount"
+                           alt={userData.firstName + " "+ userData.lastName} style={{width: '50px'}}/>
+                        </div> */}
+                        <div className="output">
+               < UserAvatar width="65px" height="65px" allowDragging="true"/> 
+               <div className="slider-container">
+                  <label>
+                     {/* Bildgröße:<br/> */}
+                     <input
+                        type="range"
+                        min="50"
+                        max="200"
+                        value={objectSize}
+                        onChange={handleSizeChange}
+                     />
+                  </label>
+               </div>
+            </div>
+                     </div>
+                  </div>
+               </div>
+            )}
+         </section>
+         
+         <section id="account_5" style={!openSections.includes("account_5") ? { backgroundColor: 'rgba(221, 155, 55, 0.2)' } : {}}>
+            <div className="accountHead" >
+               <h3 onClick={() => toggleSection("account_5")}>Ihre persönliche Daten</h3>
+               {openSections.includes("account_5") && 
+                  <p className="linkin" onClick={() => navigate("/userUpdate")}>
+                     <span className="C" >C </span>
+                     Daten aktualisieren
+                  </p>
+               }
+            </div>
+            {openSections.includes("account_5") && (
+               <div className="accountData"id="account_5_data">
+                  <div className="account_5">
+                     <div>
+                        <p className="fieldName">Vorname</p> 
+                        <div className="output">{userData.firstName}</div>
+                     </div>
+                     <div>
+                        <p className="fieldName">Nachname</p> 
+                        <div className="output">{userData.lastName}</div>
+                     </div>
+                     <div>
+                        <p className="fieldName">E-Mail</p> 
+                        <div className="output">{userData.eMail}</div>
+                     </div>
+                     {/* <div>
+                        <p>Geburtsdatum</p>
+                        <div >{Moment(contactData.dateOfBirth).format("DD.MM.YYYY")}</div>
+                     </div> */}
+                  </div>
+   
+                  <div className="account_5">
+                     <div>
+                        <p className="fieldName">E-Mail</p> 
+                        <div className="output">{userData.eMail}</div>
+                     </div>
+                     <div>
+                        <p className="fieldName">Mobil</p> 
+                        <div className="output">{userData.eMail}</div>
+                     </div>
+                     <div>
+                        <p className="fieldName">Firma</p> 
+                        <div className="output">{userData.eMail}</div>
+                     </div>
+                  </div>
+                  <div className="account_5">
+                     <div>
+                        <p className="fieldName">E-Mail</p> 
+                        <div className="output">{userData.eMail}</div>
+                     </div>
+                     <div>
+                        <p className="fieldName">Mobil</p> 
+                        <div className="output">{userData.eMail}</div>
+                     </div>
+                     <div>
+                        <p className="fieldName">Firma</p> 
+                        <div className="output">{userData.eMail}</div>
+                     </div>
+                  </div>
+   
+                  <div className="account_5">
+                     <div>
+                        <p className="fieldName">Username</p> 
+                        <div className="output">{userData.userName}</div>
+                     </div>
+                     <div>
+                        <p className="fieldName">Ihr Passwort</p>
+                        <div className="output" onClick={toggleShowPassword}>
+                        {showPassword ? userData.userName : userData.userName && '*'.repeat(userData.userName.length)}
+                        </div>
+                     </div>
+                     <div >
+                        <p className="fieldName">Ihr Avatar</p>
+                        <div className="output">
+                           <img src={baseURL+userData.userImage} 
+                           id="imgKnowledgeAccount"
+                           alt={userData.firstName + " "+ userData.lastName} style={{width: '50px'}}/>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            )}
+         </section>
+
+         <section id="account_8" style={!openSections.includes("account_8") ? { backgroundColor: 'rgba(221, 155, 55, 0.2)' } : {}}>
+            <div className="accountHead" >
+               <h3 onClick={() => toggleSection("account_8")}>Ihre Abrechnungsdaten</h3>
+               {openSections.includes("account_8") && 
+               <p className="linkin" onClick={() => getUserData()}>
                   <span className="C">C </span>
                   Daten aktualisieren
                </p>
                }
             </div>
-            {openSections.includes("account_4") && (
-               <div id="account_4_data">
-                  <div className="account_4">
+            {openSections.includes("account_8") && (
+               <div id="account_8_data">
+                  <div className="account_8">
                      <p>Joachim Ritter<br />
                         Marienfelder Str. 18 <br />33330 Gütersloh<br />Deutschland
                      </p>
                   </div>
-                  <div className="account_4">
+                  <div className="account_8">
                      <p>Ihr <br />derzeit angestellt bei<br />angstellt
                      </p>
                   </div>
-                  <div className="account_4">
+                  <div className="account_8">
                      <p>Ihr <span className="LitCoin">L</span>it<span className="LitCoin">C</span>oin <br />Guthaben</p>
-                     <div id="account_4_Box"> 250 <span className="LC"> LC</span> </div>  
+                     <div id="account_8_Box"> 250 <span className="LC"> LC</span> </div>  
                   </div>
                </div>
             )}
          </section>
           
          {authorsData ?
-         (<section id="account_5" style={!openSections.includes("account_5") ? { backgroundColor: 'rgba(221, 155, 55, 0.2)' } : {}}>
+         (<section id="account_10" style={!openSections.includes("account_10") ? { backgroundColor: 'rgba(221, 155, 55, 0.2)' } : {}}>
             <div className="accountHead" >
-               <h3 onClick={() => toggleSection("account_5")}>Autoreninfo</h3>
-               {openSections.includes("account_5") &&<p>
+               <h3 onClick={() => toggleSection("account_10")}>Autoreninfo</h3>
+               {openSections.includes("account_10") && 
+               <p className="linkin">
                   <span className="C">C </span>
                   Daten aktualisieren
                </p>}
             </div>
-            {openSections.includes("account_5") && (
-               <div id="account_5_data">
-                  <div className="account_5" id="account_5_data_1">
+            {openSections.includes("account_10") && (
+               <div id="account_10_data">
+                  <div className="account_10" id="account_10_data_1">
                      <div>
                         <p>CV</p> 
                         <div >{authorsData.careerSummary}</div>
                      </div>
                   </div>
-                  <div className="account_5" id="account_5_data_2">
+                  <div className="account_10" id="account_10_data_2">
                      <div>
                         <p>Expertisen</p> 
                         <div >
@@ -369,7 +660,7 @@ const  KnowledgeAccountMain = ()=>{
                         </div>
                      </div>
                   </div>
-                  <div className="account_5" id="account_5_data_3">
+                  <div className="account_10" id="account_10_data_3">
                      <div>
                         <p>letztes Update </p> 
                         <div >{Moment(authorsData.updatedOn).format("DD.MM.YYYY")}
@@ -380,7 +671,7 @@ const  KnowledgeAccountMain = ()=>{
                </div>
                )}  
             </section>) :
-            (<section id="account_5">
+            (<section id="account_10">
                <div className="accountHead">
                   <h3> Aktuell keine Autorendaten vorhanden. </h3>
                   <p><span className="C">C</span> Daten eingeben</p>

@@ -8,7 +8,7 @@ import Swal from "sweetalert2"
 
 export default function EMailUs() {
 
-  const { userData, setUserData, contactData, isAuth, gotoPage, setGotoPage } = useContext(SectionsContext);
+  const { userData, setUserData, contactData, isAuth, navigate, setGotoPage } = useContext(SectionsContext);
   const userId = localStorage.getItem("userId");
   
   //const [to, setTo] = useState("jritter@via-internet.com");
@@ -129,7 +129,10 @@ export default function EMailUs() {
   return (
     <main id="contactUsMain" >
 
-      <h2>contact form for any questions, comments or suggestions...</h2>
+      <div className="headBox">
+        <h2>Kontaktformular für Fragen, Kommentare, Vorschläge...</h2>
+        <p className="closingFunction" onClick={() => navigate(-1)}>Kontaktformular schließen</p>
+      </div>
         <form id="eMailForm" onSubmit={handleSubmit}>
           {/* <input
             type="text"

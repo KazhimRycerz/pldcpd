@@ -9,9 +9,10 @@ import Swal from "sweetalert2"
 //import swal from "sweetalert"
 import { FehlendeZugangsrechte, RegistriertenRechte } from "../FehlermeldungenSwal/FehlermeldungenSwal.jsx"
 import baseURL from "../../util/constants.js"
+import UserAvatar from "../UserAvatar/UserAvatar.jsx"
 
 const Header = () => {
-  const { isAuth, userData, buttonPos, setButtonPos, asidePos, setAsidePos, setGotoPage, navigate, logout, accessRights } = useContext(SectionsContext);
+  const { isAuth, userData, contactData, buttonPos, setButtonPos, asidePos, setAsidePos, setGotoPage, navigate, logout, accessRights } = useContext(SectionsContext);
   const [showMenue, setShowMenue] = useState(false);
   const [accountListShow, setAccountListShow] = useState("hideAccountList");
   
@@ -105,22 +106,19 @@ const Header = () => {
               <li
                 id="showlogin"
                 onClick={handleAccountButton}
-              >
+                >
                 {isAuth ? <div> log me out <span className="C">C</span></div> : <Link to="/login"> login <span className="C">C</span></Link>}  
               </li>
               
               {isAuth &&
-                <li id="dropBtnAccount" 
-                /* onMouseEnter={()=> { handleDropdownAccount()}} */ 
+                <li id="dropBtnAccount"  
                 onClick={()=> { handleDropdownAccount()}}>
                   logged in as {localStorage.userName} <span className="C">C</span>
-                </li>
-                /* :
-                <span></span> */}
-
+                </li>}
+                  {/* {isAuth && (<img src={baseURL + userData.userImage} alt={userData.userName} style={{width: '50px'}}/>)} */}
+                  {isAuth && <div onClick={() => navigate("/KnowledgeAccount", { state: { openSection: ["account_4"] } })}>< UserAvatar  id="headerUserAvatar" width="30px" height="30px" allowDragging={false} cursor="pointer"/></div>}
             </ul>
-          </div>
-              {/* {isAuth && (<img src={baseURL + userData.userImage} alt={userData.userName} style={{width: '50px'}}/>)} */}
+          </div >
         </div>
       </header>
 
@@ -129,11 +127,51 @@ const Header = () => {
             <p>rufen sie hier Ihre persönliche Daten auf!</p>
             <div>
               <ul id="dropDownAccount" /* className={accountListShow} */ >
-                <li ><NavLink to="/KnowledgeAccount" className="closebtn">Knowledge Status</NavLink></li>
-                <li ><NavLink to="/KnowledgeAccount" className="closebtn">Personal Data</NavLink></li>
-                <li ><NavLink to="/KnowledgeAccount" className="closebtn">Money: your budget</NavLink></li>
-                <li ><NavLink to="/userupdate" className="closebtn">change your personal data</NavLink></li>
-                <li className="closebtn" onClick={handleAccountButton}>logout</li>
+                <li>
+                  <span className="closebtn" onClick={() => navigate("/KnowledgeAccount", { state: { openSection: ["account_4"] } })}
+                    >Ihre Userdaten
+                  </span>
+                  
+                  {/* <NavLink 
+                    to={{ pathname: "/KnowledgeAccount", state: { openSection: ["account_2"] } }} className="closebtn"> Knowledge Status
+                  </NavLink> */}
+                </li>
+                <li >
+                <span className="closebtn" onClick={() => navigate("/KnowledgeAccount", { state: { openSection: ["account_1"] } })}
+                  >Ihr Berufsstatus
+                </span>
+                </li>
+                <li >
+                  <span className="closebtn" onClick={() => navigate("/KnowledgeAccount", { state: { openSection: ["account_3"] } })}
+                    >Ihr CPD-Status
+                  </span>
+                  {/* <NavLink to={{pathname: "/KnowledgeAccount", state: { openSection: ["account_3"] }}} className="closebtn">Personal Data</NavLink> */}
+                </li>
+                <li >
+                  <span className="closebtn" onClick={() => navigate("/KnowledgeAccount", { state: { openSection: ["account_6"] } })}
+                    >Ihr CPD-Tracker
+                  </span>
+                  {/* <NavLink to={{pathname: "/KnowledgeAccount", state: { openSection: ["account_3"] }}} className="closebtn">Personal Data</NavLink> */}
+                </li>
+                <li >
+                <span className="closebtn" onClick={() => navigate("/KnowledgeAccount", { state: { openSection: ["account_2"] } })}
+                  >Ihr Career-Tracker
+                </span>
+                </li>
+                {/* <li >
+                  <span
+                     className="closebtn" onClick={() => navigate("/KnowledgeAccount", { state: { openSection: ["account_4"] } })}
+                  >  your budget Kontodaten
+                  </span>
+                </li> */}
+                {contactData.authorsData && (<li >
+                  <span
+                     className="closebtn" onClick={() => navigate("/KnowledgeAccount", { state: { openSection: ["account_5"] } })}
+                  >  Autorendaten
+                  </span>
+                  </li>)}
+                {/* <li className="closebtn" onClick={handleAccountButton}>logout</li> */}
+                  {/* <NavLink to="/userupdate" className="closebtn">change your personal data</NavLink> */}
                 {/* <li onClick={() => handleOptionSelect("/KnowledgeAccount")}>Personal Data</li>
                 <li onClick={() => handleOptionSelect("/KnowledgeAccount")}>Money: your budget</li>
                 <li onClick={() => handleOptionSelect("/userupdate")}>change your personal data</li> */}

@@ -6,8 +6,8 @@ import Swal from "sweetalert2";
 import "./UserUpdateMain.scss";
 
 export default function UpdateUser() {
-  const { userData, setUserData, navigate, gotoPage, setGotoPage } = useContext(SectionsContext);
-  const [contactData, setContactData] = useState({});
+  const { userData, setUserData, getUserData, contactData, setContactData,  navigate, gotoPage, setGotoPage } = useContext(SectionsContext);
+  //const [contactData, setContactData] = useState({});
   const userId = localStorage.getItem("userId");
 
   const [refreshData, setRefreshData] = useState({});
@@ -53,11 +53,11 @@ export default function UpdateUser() {
     return gender;
   };*/
 
-  const getUserData = () => {
+  /* const getUserData = () => {
     const getUserById = async () => {
       const axiosResp = await axiosConfig.get(
-        `http://localhost:4000/user/${userId}`
-      );
+       `/user/${userId}`
+       );
       const userData = axiosResp.data;
       //const contactDetails = userData.contactData;
       setUserData(userData);
@@ -66,7 +66,8 @@ export default function UpdateUser() {
     getUserById();
     console.log(userData)
     //console.log(contactData)
-  };
+  }; */
+  
   useEffect(() => {
     setGotoPage("/userupdate")
     getUserData();
@@ -109,9 +110,10 @@ export default function UpdateUser() {
         data
       );
       setRefreshData(axiosResp.data);
-      Swal.fire.fire({
+      Swal.fire({
         title: `${editInputName} erfolgreich geändert!!`,
         icon: "success",
+        confirmButtonText: 'OK',
       });
       refreshData ? getUserData() : getUserData();
       setEditUserName(false);
@@ -125,6 +127,7 @@ export default function UpdateUser() {
         title: "Da ist ein Fehler aufgetreten.",
         text: errorMessage,
         icon: "error",
+        confirmButtonText: 'OK',
       });
       setEditUserName(false);
       setEditFirstName(false);
@@ -145,6 +148,7 @@ export default function UpdateUser() {
       Swal.fire({
         title: `${editInputName} erfolgreich geändert!!`,
         icon: "success",
+        confirmButtonText: 'OK',
       });
       refreshData ? getUserData() : getUserData();
       setEditPassword(false);
@@ -153,6 +157,7 @@ export default function UpdateUser() {
         title: "Da ist ein Fehler aufgetreten.",
         text: errorMessage,
         icon: "error",
+        confirmButtonText: 'OK',
       });
       setEditPassword(false);
       console.log(error);
@@ -477,8 +482,10 @@ export default function UpdateUser() {
               </button>
             ) : (
               <input
-                type="password"
+                type="text"
+                /* type= "password" */
                 className="col1"
+                //value={userData.password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             )}

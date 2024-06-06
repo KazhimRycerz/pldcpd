@@ -111,7 +111,10 @@ const LoginForm = () => {
 
   return (
     <main id="loginMain">
-      <h2 id="loginh2">anmelden</h2>
+      <div className="headBox">
+        <h2 id="loginh2">anmelden</h2>
+        <p className="closingFunction" onClick={() => navigate(-1)}>abbrechen und schließen</p>
+      </div>
       {!isAuth ?
         (<form id="loginForm" ref={formEl} method="post" onSubmit={submitHandler}>
           <div>
@@ -145,7 +148,7 @@ const LoginForm = () => {
 
       <p id="textKeinKonto">Sie haben noch kein Konto? Dann können Sie sich hier als neuer User</p>
       <div id="buttonInside">
-        <button className="buttonBasics" id="toRegisterButton">
+        <button className="buttonBasics" id="registerButton">
           <Link to={"/register"}>registrieren</Link>
         </button>
       </div>
