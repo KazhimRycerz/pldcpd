@@ -1,7 +1,41 @@
 @import '../../scss/global.scss';
 
+.swiper-button-next, .swiper-button-prev {
+  color: white; /* Change the color of the navigation buttons */
+  background-color: rgba(0, 0, 0, 0.5); /* Add a background color to the buttons */
+  border-radius: 50%; /* Make the buttons circular */
+  width: 30px; /* Set the width of the buttons */
+  height: 30px; /* Set the height of the buttons */
+  /*left: 50%;
+  transform: translateX(-50%);
+  top: 50%; /* Verschieben Sie die nächste Taste um 50% nach unten */
+  /*transform: translate(-50%, -50%);*/
+}
 
-//.buttonAccount {
+.swiper-button-next:hover, .swiper-button-prev:hover {
+  background-color: rgba(0, 0, 0, 0.8); /* Darken the background on hover */
+
+}
+
+.swiper-button-next:after, .swiper-button-prev:after {
+  font-size: 20px; /* Change the size of the arrow icons */
+}
+
+.image-hover-effect {
+  width: auto;
+  max-width: 50px;
+  overflow: hidden;
+  transition: max-width 0.3s ease-in-out;
+  margin: 0 auto;
+}
+
+.image-hover-effect:hover {
+  max-width: 100px;
+  overflow:visible;
+  z-index: 10;
+}
+
+/* //.buttonAccount {
 #buttonShowAccount {
   //display: none; 
    display: inline-block;
@@ -203,15 +237,6 @@
   #buttonShowAccount {
      z-index: 0;
      transform: translateY(-25px) rotate(0deg); 
-/* 
-    &.showBut {
-      right:calc(10% - 33px);//ex44
-      transition: 0.5s ease-in-out;
-    }
-    &.hideBut {
-      right:calc(10% - 10px);//ex24
-      transition: 0.5s ease-in-out;
-    } */
   }
   .hideBut {
     transform: translateY(-25px) rotate(0deg) translateY(33px);
@@ -219,4 +244,4 @@
      transition: 0.5s ease-in-out;
   }
   
- }
+ } */

@@ -1,6 +1,6 @@
 import './KnowledgeAccountMain.scss'
 //import JoachimRitter from '../../../src/images/Joachim_privat.jpg'
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, useRef } from "react";
 import { SectionsContext } from "../../context/SectionsContext.js";
 import { useLocation } from 'react-router-dom';
 //import axiosInstance from "../../util/axiosConfig";
@@ -9,7 +9,11 @@ import Moment from "moment";
 import Swal from "sweetalert2";
 import baseURL from "../../util/constants.js"
 import UserAvatar from "../UserAvatar/UserAvatar.jsx"
-import Tooltip from "../../util/Tooltips/Tooltips.js"
+import { Tooltip, getTooltipText } from "../../util/Tooltips/Tooltips.js"
+import { ImageSlider} from "../Slider/Slider.jsx"
+import { ImageSliderModal } from "../../modals/Slider/SliderModal.jsx"
+
+//import ImageUpload from '../ImageUpload/ImageUpload.jsx';
 
 
 const  KnowledgeAccountMain = () =>{
@@ -34,36 +38,115 @@ const  KnowledgeAccountMain = () =>{
       navigate } = useContext(SectionsContext);
    const [showPassword, setShowPassword] = useState(false);
    const [openSections, setOpenSections] = useState([]);
-   //const [careerData, setCareerData] = useState([]);
    const location = useLocation();
+   //const [showImageUpload, setShowImageUpload] = useState(false);
+   const [selectedImage, setSelectedImage] = useState(null);
+   const [previewImage, setPreviewImage] = useState(null);
+   const [isModalOpen, setIsModalOpen] = useState(false);
+   //const [selectedImages, setSelectedImages] = useState([]);
+   const [images, setImages] = useState([])
+   
+   const closeModal = () => {
+      setIsModalOpen(false);
+    };
 
-   const getTooltipText = (contents) => {
-      if (contents === 'LEO') {
-        return 'Learning Opportunity'
-      } else if (contents === 'CRE') {
-        return 'Creating a Learning Item'
-      } else if (contents === 'PAC') {
-        return 'Professional Activity';
-      } else if (contents === 'EDU') {
-         return 'Educaters Activity';
-      } else if (contents === 'PEX') {
-         return 'Professional Experience';
-      } else if (contents === 'PED') {
-         return 'Professional Education';
-       } else {
-        return ''
+   const handleImageChange = (event) => {
+      const file = event.target.files[0]; // Das ausgewählte Bild als Datei
+      const filePfad = URL.createObjectURL(event.target.files[0])
+      setSelectedImage(file);
+      setPreviewImage(filePfad);
+      //console.log(previewImage.path);
+    };
+
+   const saveImage = async () => {
+      if (!selectedImage) {
+         console.error("Es wurde kein Bild ausgewählt.");
+         return;
       }
+      const formData = new FormData();
+      const userId = localStorage.getItem("userId");
+      formData.append('userId', userId)
+      //formData.append('image', selectedImage)
+      if (selectedImage) {
+         // Check if the image exists
+         const imageFile = selectedImage instanceof File ? selectedImage : null;
+         if (imageFile) {
+           // Check the image file type
+           if (imageFile.type.startsWith('image/')) {
+             // Replace spaces in the file name with underscores
+             const fileName = imageFile.name.replace(/\s+/g, '_');
+             
+             // Add the image to the FormData object with the modified file name
+             formData.append('image', imageFile, fileName);
+           } else {
+             console.error('Invalid image file type');
+           }
+         } else {
+           console.error('Invalid image');
+         }
+       }
+
+      const axiosResp = await axiosConfig.post('/user/imageupload', formData, {
+         headers: {
+            "Content-Type": "multipart/form-data"
+          }
+      })
+      .then(response => {
+         setSelectedImage(null)
+         setPreviewImage(null)
+         console.log('Bild erfolgreich hochgeladen:', response.data);
+         // Hier können Sie weitere Aktionen nach dem erfolgreichen Hochladen des Bildes ausführen
+      })
+      .catch(error => {
+         console.error('Fehler beim Hochladen des Bildes:', error);
+      });
    };
-   //console.log(cpdData);
-   //console.log(companyData, companyData.companyName)
 
-  /*  useEffect(() => {
-      if (contactData && contactData.careerPath) {
-        setCareerData(contactData.careerPath);
-        //console.log('Updated careerData:', contactData.careerPath);
+   const saveImageAbbrechen = ()=>{
+      setSelectedImage(null)
+      setPreviewImage(null)
+   }
+
+   const getUserImageList = async ()=>{
+      const userId = localStorage.getItem("userId");
+      //console.log(userId)
+      //console.log(`/user/userimages/${userId}`)
+      setIsModalOpen(true)
+      try {
+         const response = await axiosConfig.get(`/user/userimages/${userId}`); // Hier den entsprechenden Endpunkt einsetzen
+         const images = response.data; // Annahme: Das Backend sendet ein Array von Bildern als Antwort
+         setImages(images);
+         console.log('Bilder:', {images});
+         //return images;
+      } catch (error) {
+         console.error('Fehler beim Abrufen der Bilder:', error);
+         return null;
       }
-    }, [contactData]); */ 
-    
+   }
+
+   const handleImageSelect = async (image) => {
+           
+      const userId = localStorage.getItem("userId");
+      const imagePath = `./userDirectories/${userId}/${image}`;
+      //console.log('Bild wurde angeklickt:', image);
+      
+      try {
+        const response = await axiosConfig.patch(`/user/userimages/${userId}`, {
+          userId,
+          imagePath,
+        });
+  
+        if (response.data.success) {
+          console.log('Bildpfad erfolgreich aktualisiert');
+          getUserData()
+        } else {
+          console.error('Fehler beim Aktualisieren des Bildpfads:', response.data.message);
+        }
+      } catch (error) {
+        console.error('Fehler beim Aktualisieren des Bildpfads:', error);
+      }
+    };
+
     const handleSizeChange = (e) => {
       setObjectSize(e.target.value);
       saveUserSettings()
@@ -97,12 +180,12 @@ const  KnowledgeAccountMain = () =>{
       setShowPassword(prevShowPassword => !prevShowPassword);
     };
     
-   const addKnowledgeDaten = async () => {
+   const addKnowledgeDatensatz = async () => {
       //e.preventDefault();       
       const contactID = contactData._id;   
       try {
          const response = await axiosConfig.post("/professionalStatus", {contactID});
-         console.log("reponsData", response.data);
+         //console.log("reponsData", response.data);
          Swal.fire({
          title: "Der Knowledgedatensatz wurde erfolgreich erstellt!",
          icon: "success",
@@ -130,23 +213,6 @@ const  KnowledgeAccountMain = () =>{
          </div>
          <section id="welcomeLine">
             <div><h3>Daten von {userData.firstName} {userData.lastName}</h3></div>
-            {/* <div>
-               < UserAvatar width="75px" height="75px" allowDragging="true"/> 
-               <div className="slider-container">
-                  <label>
-                     <input
-                        type="range"
-                        min="50"
-                        max="200"
-                        value={objectSize}
-                        onChange={handleSizeChange}
-                     />
-                  </label>
-               </div>
-            </div> */}
-            {/* <img src={baseURL+userData.userImage} 
-                  alt={userData.firstName + " "+ userData.lastName} id="accountImage"
-                  style={{width: '50px'}}/> */}
          </section>
 
          <section id="account_1" style={!openSections.includes("account_1") ? { backgroundColor: 'rgba(221, 155, 55, 0.2)' } : {}}>
@@ -166,7 +232,8 @@ const  KnowledgeAccountMain = () =>{
                      <p className="fieldName">Ihr Beruf</p> 
                      {/* {knowledgeData ? (<div className="output" id="profession">{knowledgeData.profession}</div>) : (<div className="output" id="profession">(0)</div>)} */}
                      <div className="output" id="profession">
-                     {knowledgeData ? <p>{knowledgeData.profession}</p> : <p>Ihr Beruf wurde noch nicht aktualisiert</p>}
+                     {knowledgeData ? <p>{knowledgeData.profession}</p> 
+                     : <p>Ihr Beruf wurde noch nicht aktualisiert</p>}
                      </div>
                   </div>
                   <div>
@@ -178,19 +245,21 @@ const  KnowledgeAccountMain = () =>{
                   <div>
                      <p className="fieldName">Karrierelevel</p>
                      <div className="output" id="myCL"> 
-                        {knowledgeData ? (<p>{knowledgeData.myCStatus} von 9</p>) : (<p>Ihr Datensatz wurde noch nicht angelegt</p>)}
+                     {knowledgeData && knowledgeData.myCPDLevel ? (
+                     <p>{knowledgeData.myCPDLevel.level} von 9</p>
+                  ) : (
+                     <p>Ihr Datensatz wurde noch nicht angelegt</p>
+                  )}
                      </div> 
                   </div> 
-                  <div><p className="fieldName"></p>
-                     {/* <div className="output" id="myCL"> 
+                  {/*<div><p className="fieldName"></p>
+                      <div className="output" id="myCL"> 
                         {knowledgeData ? (<p>{knowledgeData.test.description} von 9</p>) : (<p>Ihr Datensatz wurde noch nicht angelegt</p>)}
-                     </div>  */}
-                  </div>  
-                  
-                  
+                     </div>  
+                  </div>  */}
                   <div id="myCPDStatus">
                      <div>
-                        {knowledgeData ? <p id="account_1_p">{knowledgeData.careerPathStatus}</p> : <p></p>}
+                        {knowledgeData && knowledgeData.myCPDLevel ? (<p id="account_1_p">{knowledgeData.myCPDLevel.description}</p>) : (<p></p>)}
                      </div>
                   </div>
                </div>
@@ -216,25 +285,25 @@ const  KnowledgeAccountMain = () =>{
                   </div>
                </div>
 
-               <div>
-                  <div>
+                <div>
+                  {/*<div>
                      <p className="fieldName">Ihr CPD Guthaben</p>
                      <div className="output account_Box" id="myLCoins"> 
                         {knowledgeData ? <p>{knowledgeData.myLC}<span className="C colorYellow"> LC</span></p>: <>0<span className="C colorYellow"> LC</span></>} 
                      </div>
                   </div>
                   <div><p className="fieldName"></p></div>
-                  <div><p className="fieldName"></p></div>
-               </div>
+                  <div><p className="fieldName"></p></div>*/}
+               </div> 
             </div>
             )}
          </section>
 
          <section id="account_3" style={!openSections.includes("account_3") ? { backgroundColor: 'rgba(221, 155, 55, 0.2)' } : {}}>
             <div className="accountHead" id="account_3_head" >
-               <h3 onClick={() => toggleSection("account_3")}>Ihr persönliches Fachwissen / CPD-Status</h3>
+               <h3 onClick={() => toggleSection("account_3")}>Ihr Fachwissen / CPD-Status</h3>
                {!knowledgeData && (
-                  <p onClick={addKnowledgeDaten}>
+                  <p onClick={addKnowledgeDatensatz}>
                   <span className="C">C </span>
                   Datensatz anlegen
                   </p>
@@ -340,9 +409,9 @@ const  KnowledgeAccountMain = () =>{
                            </Tooltip>
                         </th>
                         <th>Activity</th>
-                        <th>Content</th>
+                        <th>Thema</th>
                         <th>LPs <br/>basic</th>
-                        <th>LPs additional</th>
+                        <th>LPs <br/>additional</th>
                         <th>LPs total</th>
                         <th>Start date</th>
                         <th>End date</th>
@@ -451,7 +520,7 @@ const  KnowledgeAccountMain = () =>{
                {openSections.includes("account_4") && 
                   <p className="linkin" onClick={() => navigate("/userUpdate")}>
                      <span className="C" >C </span>
-                     Daten aktualisieren
+                     Daten ändern
                   </p>
                }
             </div>
@@ -484,12 +553,19 @@ const  KnowledgeAccountMain = () =>{
                         </div>
                      </div>
                      <div>
-                        <p className="fieldName">Ihr Avatar</p>
-                        {/* <div className="output">
-                           <img src={baseURL+userData.userImage} 
-                           id="imgKnowledgeAccount"
-                           alt={userData.firstName + " "+ userData.lastName} style={{width: '50px'}}/>
-                        </div> */}
+                        
+                     <div className="fieldName">
+                        <p>Ihr Avatar</p>
+                        {!selectedImage && <p className="bildLaden" onClick={() => { document.getElementById('fileInput').click()}}> neues Bild laden</p>}
+                        {!selectedImage && <input id="fileInput" type="file" accept="image/*" style={{ display: 'none' }} onChange={handleImageChange} />}
+                        {selectedImage && <img src={previewImage} style={{width: "50px"}} alt="Vorschau des ausgewählten Bildes" />}
+                        {selectedImage && <p className="bildLaden" onClick={saveImage}> Bild speichern</p>}
+                        {selectedImage && <p className="bildLaden" onClick={saveImageAbbrechen}> abbrechen</p>}
+                        {!selectedImage && <p onClick={getUserImageList} className="bildLaden">Avatar ändern</p>}
+                        <ImageSliderModal isOpen={isModalOpen} onRequestClose={closeModal} images={images} onImageClick={handleImageSelect} />
+                        {/* {images && images.length > 0 && isModalOpen ? (<p className="bildLaden" onClick={() => { setImages(null); closeModal(); }}>abbrechen</p>) : <p></p> } */} 
+                     </div>
+
                         <div className="output">
                < UserAvatar width="65px" height="65px" allowDragging="true"/> 
                <div className="slider-container">

@@ -1,0 +1,115 @@
+@import '../../scss/global.scss';
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+  background: $first-color;
+  padding: 0px;
+  border: solid;
+  border-radius: 20px;
+  box-shadow: $boxshadow; 
+  width: 50%;
+  height: auto;
+  //max-width: 50%;
+  max-height: 50%;
+  overflow: auto;
+  outline: none;
+  //box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  //background-color: $fourth-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  //box-shadow: $boxshadow;
+  //border-radius: 20px;
+  z-index: 999;
+  .swiper{
+    width: 75%;
+    border: solid;
+    border-radius: 20px;
+    padding: 40px;
+    gap: 0px;
+      img{
+      width: auto;
+      max-width: 100px;
+      overflow: hidden;
+      }
+    }
+    p{
+      margin: 20px;
+      text-align: center;
+      //border: solid;
+      &:before {
+        content: "C ";
+        font-family: $calli;
+        color: $cpdred;
+        font-size: calc($normal + 0px);
+        vertical-align: -2px;
+      };
+      &:hover {
+        //color: $cpdred;
+        text-shadow: $text-shadow;
+        cursor: pointer;
+      }
+
+    }
+}
+
+.swiper-button-next, .swiper-button-prev {
+  color: white; /* Change the color of the navigation buttons */
+  background-color: rgba(0, 0, 0, 0.5); /* Add a background color to the buttons */
+  border-radius: 50%; /* Make the buttons circular */
+  width: 30px; /* Set the width of the buttons */
+  height: 30px; /* Set the height of the buttons */
+  /*left: 50%;
+  transform: translateX(-50%);
+  top: 50%; /* Verschieben Sie die nächste Taste um 50% nach unten */
+  /*transform: translate(-50%, -50%);*/
+}
+
+.swiper-button-next:hover, .swiper-button-prev:hover {
+  background-color: rgba(0, 0, 0, 0.8); /* Darken the background on hover */
+
+}
+
+.swiper-button-next:after, .swiper-button-prev:after {
+  font-size: 20px; /* Change the size of the arrow icons */
+}
+
+.active-slide img {
+  transform: scale(1.2);  // Vergrößert das Bild um 20%
+  transition: transform 0.3s ease-in-out;  // Animation für weichen Übergang
+}
+
+.swiper .swiper-slide {
+  transition: transform 0.3s ease-in-out;
+}
+
+.active-slide {
+  transform: scale(1.2);  // Vergrößert das Bild um 20%
+  transition: transform 0.3s ease-in-out;  // Animation für weichen Übergang
+}
+
+/* Stellen Sie sicher, dass die aktive Folie in der Mitte zentriert ist */
+/* .custom-swiper .swiper-wrapper {
+  display: flex;
+  justify-content: center;
+} */
+
+.swiper .swiper-slide-active {
+  transform: scale(1.2);  // Vergrößert
+}

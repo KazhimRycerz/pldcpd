@@ -76,7 +76,6 @@ export default function RegisterForm() {
     formData.append('gender', genderRadio);
     formData.append('eMail', eMail);
     formData.append('password', password);
-
     if (userImage) {
       // Check if the image exists
       const imageFile = userImage instanceof File ? userImage : null;
@@ -268,7 +267,7 @@ export default function RegisterForm() {
         {isAuth && !eventLogin && !backToEvent && <Navigate to="/profile" />}*/}
         {isLoading ? (
           <p>
-            <strong>Daten weren geladen – bitte einen Moment warten...</strong>
+            <strong>Daten werden geladen – bitte einen Moment warten...</strong>
           </p>
         ) : null}
         {/* {(stepTwo || stepThree) && <ResetBtn props={props} />} */}

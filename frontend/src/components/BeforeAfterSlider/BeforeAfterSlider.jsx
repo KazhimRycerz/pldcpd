@@ -10,9 +10,6 @@ const BeforeAfterSlider = ({ beforeImage, afterImage, size, leftCorrection, topC
   const containerRef = useRef(null);
   const [imageHeight, setImageHeight] = useState(300); // Standardhöhe
   const beforeImageRef = useRef(null);
-    
-
-  
   
   useEffect(() => {
     const handleDrag = (e) => {
