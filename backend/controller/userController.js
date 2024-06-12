@@ -5,30 +5,8 @@ import bcrypt from "bcrypt";
 import fs from 'fs'; // Erforderliches Modul, um Dateien zu lesen und zu schreiben
 import path from 'path'; // Erforderliches Modul für den Dateipfad
 import expressFileUpload from "express-fileupload";
-
-
-/* export const createUser = async (req, res) => {
-  try {
-    const hashedSaltyPassword = await bcrypt.hash(req.body.password, 14);
-    const newUserData = await UserModel.create({
-      userName: req.body.userName,
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      gender: req.body.gender,
-      userImage: req.body.userImage,
-      eMail: req.body.eMail,
-      //contactData: req.body.collectedData,
-      password: hashedSaltyPassword,
-    });
-    //console.log(newUserData._id);
-    addContactData(newUserData);
-    addProfessionalStatus(newUserData.ContactData);
-    res.status(201).send(newUserData);
-  } catch (error) {
-    res.status(401).send(error.message);
-  }
-}; */
-
+import { uploadImageExpressFile } from "../middleware/imageUploadExpressFile.js";
+import { stringify } from "querystring";
 
 export const createUser = async (req, res) => {
   try {
@@ -48,38 +26,17 @@ export const createUser = async (req, res) => {
 
     // Benutzer in der Datenbank erstellen
     const createdUser = await UserModel.create(newUser);
+    req.createdUser = createdUser;
 
-    if (!req.files || !req.files.userImage) {
-      return res.status(400).send('No files were uploaded.');
-    }
-
-    const userImage = req.files.userImage;
-
-    // Bildspeicherort erstellen
-    const userImagesDir = './public/userDirectories/';
-    const userDirectory = userImagesDir + createdUser._id; // Verzeichnisname basierend auf der _id des neuen Benutzers
-    const imagePath = userDirectory + '/' + userImage.name;
-
-    // Speicherort erstellen, falls nicht vorhanden
-    if (!fs.existsSync(userDirectory)){
-      fs.mkdirSync(userDirectory, { recursive: true });
-    }
-
-    // Bild speichern
-    userImage.mv(imagePath, async (err) => {
-      if (err) {
-        console.error('Error uploading image:', err);
-        // Fehlerantwort senden
-        return res.status(500).send('Error uploading image');
-      }
-
-      createdUser.userImage = imagePath; // Pfad zum Bild in der MongoDB speichern
+    uploadImageExpressFile(req, res, async (imagePathdb) => {
+      // Bildpfad in der MongoDB speichern
+      createdUser.userImage = imagePathdb;
       await createdUser.save();
-      addContactData(createdUser);
-      addProfessionalStatus(createdUser.ContactData);
-      // Erfolgsantwort senden
-      res.status(201).send(createdUser);
     });
+    
+    addContactData(createdUser);
+    //addProfessionalStatus(createdUser.ContactData);
+    res.status(201).send(createdUser);
   } catch (error) {
     // Fehlerantwort senden
     res.status(401).send(error.message);
@@ -126,6 +83,7 @@ export const userLogin = async (req, res) => {
     userId: loginUser._id,
     firstName: loginUser.firstName,
     accessRights: loginUser.accessRights,
+    userImage: loginUser.userImage,
   });
 };
 
@@ -142,10 +100,22 @@ export const getUserByID = async (req, res) => {
       .populate({
         path:"contactData",
           populate: [
-            "careerPath",
+            {
+              path: "careerPath",
+              populate: {
+                path: "company"
+              }
+            },
+            {
+              path: "cpdTracker",
+              populate: {
+                path: "courseId"
+              }
+            },
             "professionalStatus",
             "authorsData",
-            "currentCompany"
+            "currentCompany",
+            /* "cpdTracker" */
           ]
         });
 
@@ -159,15 +129,26 @@ export const getUserData = async (req, res) => {
   try {
     const getUser = await UserModel
     .find()
-      .populate({
-        path:"contactData",
-          populate: [
-            "careerPath",
-            "professionalStatus",
-            "authorsData",
-            "currentCompany"
-          ]
-        });
+    .populate({
+      path:"contactData",
+        populate: [
+          {
+            path: "careerPath",
+            populate: {
+              path: "company"
+            }
+          },
+          "professionalStatus",
+          "authorsData",
+          "currentCompany",
+            {
+              path: "cpdTracker",
+              populate: {
+                path: "courseId"
+              }
+            },
+        ]
+      });
         
     res.status(200).send(getUser);
   } catch (error) {
@@ -204,39 +185,40 @@ export const updateUserByID = async (req, res) => {
   }
 };
 
-/* export const addComment = async (req, res) => {
+export const updateUserImageSettings = async (req, res) => {
+  //console.log(req.body, req.params.id)
   try {
-    const getUser = await UserModel.findById(req.params.id);
-    getUser.comments.push(req.body)
-    await getUser.save()
-    res.status(206).send(`user: ${getUser.userName} successfully updated`);
+    const userImageSettings = await UserModel.findByIdAndUpdate(
+      req.params.id, // ID des Benutzers, der aktualisiert werden soll
+      { 
+        objectSizeUserImage: req.body.objectSize, // Aktualisierte Größe des Objekts im Bild
+        objectPositionUserImage: req.body.objectPosition // Aktualisierte Position des Objekts im Bild
+      },
+      { new: true } // Option, um das aktualisierte Dokument zurückzugeben
+    );
+    
+    res.status(206).send(userImageSettings);
+  } catch (error) {
+    res.status(404).send(error.message);
+  }
+}
+
+export const getUserSettings = async (req, res) => {
+  try {
+    const userSettings = await UserModel
+    .findOne({ _id: req.params.id })
+        
+    res.status(200).send(userSettings);
   } catch (error) {
     res.status(404).send(error.message);
   }
 };
 
-export const addToWatchList = async (req, res) => {
-  try {
-    const passedToken = req.cookies.jwt;
-    const decodedToken = jwt.verify(passedToken, process.env.TOKEN_SECRET);
-    console.log(req.params.id);
-    const getUser = await UserModel.findOne({ _id: decodedToken.userId });
-    console.log(getUser);
-    console.log(req.body.watchedEvents);
-    getUser.watchedEvents.push(req.body.watchedEvents);
-
-    await getUser.save();
-    res.send(getUser);
-  } catch (error) {
-    res.status(401).send(error.message);
-  }
-}; */
-
 export const getUserByUsername = async (req, res) => {
   try {
     const user = await UserModel
-      .findOne({ userName: req.params.username });
-      
+    .findOne({ userName: req.params.username });
+    
     res.status(200).send(user.userName);
   } catch (error) {
     res.status(204).send(false);
@@ -251,3 +233,122 @@ export const getUserByEmail = async (req, res) => {
     res.status(204).send(false);
   }
 };
+
+export const imageUpload = async (req, res) => {
+  
+  try {
+       if (!req.files || !req.files.image) {
+         return res.status(400).send('No files were uploaded.');
+       }
+   
+       const image = req.files.image;
+       const imagesDir = './public/userDirectories/';
+       const userDirectory = imagesDir + req.body.userId;
+       const imagePath = userDirectory + '/' + image.name;
+         
+       if (!fs.existsSync(userDirectory)){
+         fs.mkdirSync(userDirectory, { recursive: true });
+       }
+   
+       // Bild speichern
+       image.mv(imagePath, async (err) => {
+        if (err) {
+          console.error('Error uploading image:', err);
+          // Fehlerantwort senden
+          return res.status(500).send('Error uploading image');
+        }
+  
+        //console.log('Image uploaded successfully:', imagePath);
+        // Erfolgsantwort senden
+        res.status(200).send('Image uploaded successfully');
+      });
+    } catch (error) {
+      // Fehlerantwort senden
+      res.status(500).send(error.message);
+    }
+  };
+
+export const getUserImages = async (req, res) => {
+  //console.log(req.params)
+  try {
+    const imagesDir = './public/userDirectories/';
+    const userDirectory = path.join(imagesDir, req.params.id); // Pfad zum Benutzerverzeichnis
+
+    // Überprüfen, ob das Benutzerverzeichnis existiert
+    if (!fs.existsSync(userDirectory)) {
+      return res.status(404).send('Benutzerverzeichnis nicht gefunden');
+    }
+
+    // Liste der Dateien im Benutzerverzeichnis abrufen
+    const files = fs.readdirSync(userDirectory);
+
+    // Nur Bilddateien auswählen (Annahme: Nur Bilddateien im Verzeichnis)
+    const images = files.filter(file => {
+      const ext = path.extname(file).toLowerCase();
+      return ext === '.jpg' || ext === '.jpeg' || ext === '.png' || ext === '.gif';
+    });
+
+    if (images.length > 0) {
+      res.status(200).json(images);
+    } else {
+      res.status(404).send('Keine Bilddateien gefunden');
+    }
+  } catch (error) {
+    console.error('Fehler beim Abrufen der Benutzerbilder:', error);
+    res.status(500).send('Interner Serverfehler');
+  }
+};
+  
+export const updateUserImage = async (req, res) => {
+  //console.log(req.body, req.params.id)
+  try {
+    const userImagePath = await UserModel.findByIdAndUpdate(
+      req.params.id, // ID des Benutzers, der aktualisiert werden soll
+      { userImage: req.body.imagePath // aktualisierte Bild
+      },
+      { new: true } // Option, um das aktualisierte Dokument zurückzugeben
+    );
+    
+    res.status(200).send({ success: true, userImagePath });
+  } catch (error) {
+    res.status(404).send(error.message);
+  }
+}
+
+export const deleteUserImage = async (req, res) => {
+  const { fileName } = req.body;
+  const userId = req.params.id;
+
+  const imagesDir = `./public/userDirectories/${userId}/`;
+  const filePath = path.join(imagesDir, fileName);
+  //console.log(filePath)
+
+  try {
+    // Überprüfen, ob die Datei existiert
+    if (!fs.existsSync(filePath)) {
+      return res.status(404).send('File not found.');
+    }
+
+    fs.unlink(filePath, (err) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send('File could not be deleted.');
+      }
+      res.status(202).send({ success: true, message: 'File deleted successfully' });
+    });
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
+
+/* export const addComment = async (req, res) => {
+  try {
+    const getUser = await UserModel.findById(req.params.id);
+    getUser.comments.push(req.body)
+    await getUser.save()
+    res.status(206).send(`user: ${getUser.userName} successfully updated`);
+  } catch (error) {
+    res.status(404).send(error.message);
+  }
+}; */

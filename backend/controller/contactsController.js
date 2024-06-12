@@ -3,10 +3,13 @@ import ContactModel from '../models/contactModel.js'
 export const getAllContacts = async (req, res) => {
     try {
     const contact = await ContactModel.find()
-      .populate("professionalStatus")
-      .populate("careerPath")
-      .populate("authorsData")
-      .populate("currentCompany")
+      .populate([
+        "professionalStatus",
+        "careerPath",
+        "authorsData",
+        "currentCompany",
+        "cpdTracker"
+      ])
       //.populate("companyData");
         res.status(200).json(contact)
     } catch (error) {
@@ -21,21 +24,31 @@ export const getContact = async (req, res) => {
     try {
       const contact = await ContactModel
         .findById(contactId);
-  
-      const contactPopulated = await ContactModel
+        const contactPopulated = await ContactModel
         .findById(contactId)
-        /* .populate("professionalStatus")
-        .populate("careerPath")
-        .populate("authorsData")
-        .populate("companyData")
-        .populate("career"); */
         .populate([
-          "careerPath",
+          {
+            path: "careerPath",
+            populate: {
+              path: "company",
+            }
+          },
+          {
+            path: "cpdTracker",
+            populate: {
+              path: "courseId",
+            }
+          },
+          {
+            path: "currentCompany",
+            populate: {
+              path:"company",
+            }
+          },
           "professionalStatus",
-          "authorsData",
-          "currentCompany",
-          "career"
-        ])
+          "authorsData"
+        ]);
+      
 
       console.log("contact.userName", contact.userName); 
     // hier kann ich auf das virtuelle Feld "firstName" zugreifen

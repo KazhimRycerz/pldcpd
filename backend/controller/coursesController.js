@@ -134,7 +134,6 @@ export const updateCourse = async (req, res) => {
   const courseId = req.body.courseId;
   try {
     const updatedCourse = req.body;
-
     const course = await CourseModel.findByIdAndUpdate(courseId, updatedCourse, { new: true });
     res.json(course);
   } catch (error) {

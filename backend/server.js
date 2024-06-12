@@ -7,6 +7,7 @@ import contactsRouter from './routes/contactsRoutes.js';
 import authorsRouter from './routes/authorsRoutes.js';
 import authorsInfoRouter from './routes/authorsInfoRoutes.js';
 import careerRouter from './routes/careerRoutes.js';
+import cpdTrackerRouter from './routes/cpdTrackerRoutes.js';
 import coursesRouter from './routes/coursesRoutes.js';
 import courseTypesRouter from './routes/courseTypeRoutes.js';
 import countryCodeRouter from './routes/countryCodeRoutes.js';
@@ -14,8 +15,8 @@ import emailRouter from './routes/emailRoutes.js';
 import companiesRouter from './routes/companiesRoutes.js';
 import professionalStatusRouter from './routes/professionalStatusRoutes.js';
 import accessRightsRouter from './routes/accessRightsRoutes.js';
-//import multer from "multer"
 
+//import multer from "multer"
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import cookieParser from "cookie-parser";
@@ -27,19 +28,22 @@ const server = express();
 const port = process.env.PORT || 4000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const frontend = process.env.FRONTENDPORT;
 
 
-server.use(express.json(), cookieParser(), cors({ origin: "http://localhost:3000", credentials: true }));
+server.use(express.json(), cookieParser(), cors({ origin: frontend, credentials: true }));
 server.use(express.static("public"));
-server.use(expressFileUpload({createParentPath: true,}));
+server.use(expressFileUpload({createParentPath: true}));
+//server.use(multer())
 
-server.use("/images", express.static('public/'));
+server.use("/images", express.static("public"));
 server.use("/home", indexRouter)
 server.use("/user", userRouter);
 server.use("/contacts",  contactsRouter)
 server.use("/authors",  authorsRouter)
 server.use("/authorsinfo",  authorsInfoRouter)
 server.use("/careers",  careerRouter)
+server.use("/cpdtracker",  cpdTrackerRouter)
 server.use("/professionalStatus", professionalStatusRouter)
 server.use("/companies",  companiesRouter)
 server.use("/courses", coursesRouter)

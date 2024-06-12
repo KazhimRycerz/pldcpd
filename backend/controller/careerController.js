@@ -1,4 +1,6 @@
 import CareerModel from '../models/careerModel.js'
+import CompanyModel from '../models/companyModel.js';
+import ContactModel from '../models/contactModel.js';
 
 export const getAllCareers = async (req, res) => {
     try {
@@ -13,12 +15,13 @@ export const getAllCareers = async (req, res) => {
     }
 }
 
-export const getCareerOfUser = async (req, res) => {
+export const getCareerOfContact = async (req, res) => {
     const careerContact = req.params.contact;
     try {
       const career = await CareerModel
         .find({contact: careerContact/* , active: false */})
-        .populate("company");
+        .populate("company")
+        .populate("contact");
 
       //console.log("career.company", career); 
   

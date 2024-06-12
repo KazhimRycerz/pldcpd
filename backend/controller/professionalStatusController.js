@@ -120,7 +120,7 @@ export const getMyKnowledgeData = async (req, res) => {
 
 export const addMyKnowledgeData = async (req, res) => {
   console.log(req.body)
-  
+
   try {
     const newProfessionalStatus = await ProfessionalStatusModel.create({
       myKF: 100,

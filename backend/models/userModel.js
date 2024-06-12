@@ -41,6 +41,14 @@ const userSchema = mongoose.Schema({
     type:String,
     default: ""
   },
+  objectSizeUserImage: {
+    type: Number,
+    default: 100,
+  },
+  objectPositionUserImage: {
+    type: Object,
+    default: {x: 50, y: 50},
+  },
   accessRights: {
     type: Array,
   },

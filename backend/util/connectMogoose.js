@@ -11,6 +11,7 @@ async function connectMongoose() {
   const _cluster = process.env.MONGO_DB_CLUSTER;
   const _uri = `mongodb+srv://${_user}:${_pwd}@${_cluster}/${_database}`;
 
+  
   try {
     await mongoose.connect(_uri);
 

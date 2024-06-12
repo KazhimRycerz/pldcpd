@@ -15,9 +15,9 @@ const storage = multer.diskStorage({
 });
 
 // Erstellen der Upload-Middleware
-const imageUpload = multer({
+const imageUploadMulter = multer({
   storage: storage,
   limits: { fileSize: 10 * 1024 * 1024 }, // Beispiel: 10 MB maximale Dateigröße
-}).single('userImage');
+}).single('image');
 
-export default imageUpload;
+export default imageUploadMulter;
