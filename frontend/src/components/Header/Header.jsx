@@ -1,20 +1,23 @@
 import "./Header.scss";
-//import JoachimRitter from '../../images/Joachim_privat.jpg'
 import { NavLink, Link} from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import pldcpd from "../../images/pldcpd.png";
-//import CLogo from "../../images/C.png"
 import { SectionsContext } from "../../context/SectionsContext.js";
 import Swal from "sweetalert2"
-//import swal from "sweetalert"
 import { FehlendeZugangsrechte, RegistriertenRechte } from "../FehlermeldungenSwal/FehlermeldungenSwal.jsx"
-import baseURL from "../../util/constants.js"
 import UserAvatar from "../UserAvatar/UserAvatar.jsx"
+//import LoginFormModel from "../../modals/LoginForm/LoginFormModal.jsx"
 
 const Header = () => {
-  const { isAuth, userData, contactData, buttonPos, setButtonPos, asidePos, setAsidePos, setGotoPage, navigate, logout, accessRights } = useContext(SectionsContext);
+  const { isAuth, contactData, buttonPos, setButtonPos, asidePos, setAsidePos, setGotoPage, navigate, logout, accessRights } = useContext(SectionsContext);
   const [showMenue, setShowMenue] = useState(false);
   const [accountListShow, setAccountListShow] = useState("hideAccountList");
+
+  /* const [isModalOpen, setIsModalOpen] = useState(false);   
+   // Handling Modal open / close
+   const closeModal = () => {
+      setIsModalOpen(false);
+    }; */
   
   const handleDropdownAccount =()=>{
     showMenue === true && setShowMenue(false)
@@ -107,7 +110,7 @@ const Header = () => {
                 id="showlogin"
                 onClick={handleAccountButton}
                 >
-                {isAuth ? <div> log me out <span className="C">C</span></div> : <Link to="/login"> login <span className="C">C</span></Link>}  
+                {isAuth ? <div> log me out <span className="C">C</span></div> : <Link to="/login"> login <span className="C">C</span></Link>}
               </li>
               
               {isAuth &&
@@ -158,23 +161,12 @@ const Header = () => {
                   >Ihr Career-Tracker
                 </span>
                 </li>
-                {/* <li >
-                  <span
-                     className="closebtn" onClick={() => navigate("/KnowledgeAccount", { state: { openSection: ["account_4"] } })}
-                  >  your budget Kontodaten
-                  </span>
-                </li> */}
                 {contactData.authorsData && (<li >
                   <span
-                     className="closebtn" onClick={() => navigate("/KnowledgeAccount", { state: { openSection: ["account_5"] } })}
+                     className="closebtn" onClick={() => navigate("/KnowledgeAccount", { state: { openSection: ["account_10"] } })}
                   >  Autorendaten
                   </span>
                   </li>)}
-                {/* <li className="closebtn" onClick={handleAccountButton}>logout</li> */}
-                  {/* <NavLink to="/userupdate" className="closebtn">change your personal data</NavLink> */}
-                {/* <li onClick={() => handleOptionSelect("/KnowledgeAccount")}>Personal Data</li>
-                <li onClick={() => handleOptionSelect("/KnowledgeAccount")}>Money: your budget</li>
-                <li onClick={() => handleOptionSelect("/userupdate")}>change your personal data</li> */}
               </ul>
             </div>
           </div>

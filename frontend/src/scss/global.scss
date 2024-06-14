@@ -16,12 +16,6 @@ body {
   overflow-x: hidden; 
   height: auto; 
 }
-
-/* header {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-} */ 
   
 main {
   //display: none;
@@ -37,11 +31,7 @@ main {
   
   //box-shadow:0px 0px 15px 5px white;
 }
-    
-/* Footer {
-  position: relative;
-  bottom: 0px;  
-} */
+
 
 .logo_cpd {
   width: 8%;
@@ -261,6 +251,8 @@ background: blue;
 .swal2-title{
   color: $cpdred;
   color: $cpdblue;
+  width: 80%;
+  margin: 0 auto;
 }
 /* .swal2-icon {
   

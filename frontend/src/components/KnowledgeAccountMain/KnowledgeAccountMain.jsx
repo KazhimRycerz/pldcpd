@@ -1,25 +1,24 @@
 import './KnowledgeAccountMain.scss'
-//import JoachimRitter from '../../../src/images/Joachim_privat.jpg'
 import { useContext, useState, useEffect, useRef } from "react";
 import { SectionsContext } from "../../context/SectionsContext.js";
 import { useLocation } from 'react-router-dom';
-//import axiosInstance from "../../util/axiosConfig";
+import { EditOutlined, SaveOutlined, StopOutlined } from "@ant-design/icons";
 import axiosConfig from "../../util/axiosConfig";
 import Moment from "moment";
 import Swal from "sweetalert2";
 import baseURL from "../../util/constants.js"
 import UserAvatar from "../UserAvatar/UserAvatar.jsx"
 import { Tooltip, getTooltipText } from "../../util/Tooltips/Tooltips.js"
-import { ImageSlider} from "../Slider/Slider.jsx"
-import { ImageSliderModal } from "../../modals/Slider/SliderModal.jsx"
+//import { ImageSlider} from "../Slider/Slider.jsx"
+import { AvatarSliderModal } from "../../modals/Slider/SliderModal.jsx"
+import UpdateUserModal from "../../modals/UserUpdate/UserUpdateModal.jsx"
 
 //import ImageUpload from '../ImageUpload/ImageUpload.jsx';
 
 
 const  KnowledgeAccountMain = () =>{
    const { isAuth,
-      userData, 
-      getUserData, 
+      userData, getUserData, 
       careerData, 
       cpdData, 
       authorsData, 
@@ -27,35 +26,59 @@ const  KnowledgeAccountMain = () =>{
       contactData, 
       marketData, 
       knowledgeData, 
-      buttonPos, 
-      setButtonPos, 
-      asidePos, 
-      setAsidePos, 
+      buttonPos, setButtonPos, 
+      asidePos, setAsidePos, 
       gotoPage,
-      objectSize, 
-      setObjectSize,
+      objectSize, setObjectSize,
       saveUserSettings,
       navigate } = useContext(SectionsContext);
    const [showPassword, setShowPassword] = useState(false);
    const [openSections, setOpenSections] = useState([]);
    const location = useLocation();
-   //const [showImageUpload, setShowImageUpload] = useState(false);
    const [selectedImage, setSelectedImage] = useState(null);
-   const [previewImage, setPreviewImage] = useState(null);
-   const [isModalOpen, setIsModalOpen] = useState(false);
-   //const [selectedImages, setSelectedImages] = useState([]);
-   const [images, setImages] = useState([])
+   const [isSliderModalOpen, setIsSliderModalOpen] = useState(false);
+   const [updateUserModalIsOpen, setUpdateUserModalIsOpen] = useState(false);
    
-   const closeModal = () => {
-      setIsModalOpen(false);
-    };
+   // Handling Modal open / close
+   /* const closeModal = () => {
+      setIsSliderModalOpen(false);
+    }; */
 
-   const handleImageChange = (event) => {
+   /* const addImage = (event) => {
       const file = event.target.files[0]; // Das ausgewählte Bild als Datei
+      console.log(file)
       const filePfad = URL.createObjectURL(event.target.files[0])
       setSelectedImage(file);
       setPreviewImage(filePfad);
       //console.log(previewImage.path);
+    };
+
+    const handleImageDelete = async (index) => {
+      const imageToDelete = images[index];
+      const userId = localStorage.getItem("userId");
+    
+      // Entferne das Bild aus der lokalen Anzeige
+      const newImages = images.filter((_, imgIndex) => imgIndex !== index);
+      setImages(newImages);
+      console.log(`Image at index ${index} deleted`);
+    
+      try {
+        const response = await axiosConfig.delete(`/user/userimages/${userId}`, {
+          data: { fileName: imageToDelete }
+        });
+    
+        if (response.status === 202) {
+          console.log('Bild erfolgreich vom Server gelöscht');
+        } else {
+          console.error('Fehler beim Löschen des Bildes vom Server');
+          // Wenn das Löschen fehlschlägt, füge das Bild wieder zur lokalen Anzeige hinzu
+          setImages(images);
+        }
+      } catch (error) {
+        console.error('Fehler beim Löschen des Bildes vom Server:', error);
+        // Wenn ein Fehler auftritt, füge das Bild wieder zur lokalen Anzeige hinzu
+        setImages(images);
+      }
     };
 
    const saveImage = async () => {
@@ -94,8 +117,9 @@ const  KnowledgeAccountMain = () =>{
       .then(response => {
          setSelectedImage(null)
          setPreviewImage(null)
+         getUserData()
+         getUserImageList();
          console.log('Bild erfolgreich hochgeladen:', response.data);
-         // Hier können Sie weitere Aktionen nach dem erfolgreichen Hochladen des Bildes ausführen
       })
       .catch(error => {
          console.error('Fehler beim Hochladen des Bildes:', error);
@@ -111,7 +135,7 @@ const  KnowledgeAccountMain = () =>{
       const userId = localStorage.getItem("userId");
       //console.log(userId)
       //console.log(`/user/userimages/${userId}`)
-      setIsModalOpen(true)
+      setIsSliderModalOpen(true)
       try {
          const response = await axiosConfig.get(`/user/userimages/${userId}`); // Hier den entsprechenden Endpunkt einsetzen
          const images = response.data; // Annahme: Das Backend sendet ein Array von Bildern als Antwort
@@ -145,11 +169,12 @@ const  KnowledgeAccountMain = () =>{
       } catch (error) {
         console.error('Fehler beim Aktualisieren des Bildpfads:', error);
       }
-    };
+    }; */
 
+    // Handling of Imagesize
     const handleSizeChange = (e) => {
       setObjectSize(e.target.value);
-      saveUserSettings()
+      saveUserSettings(e.target.value)
     };
   
     useEffect(() => {
@@ -158,6 +183,7 @@ const  KnowledgeAccountMain = () =>{
       }
    }, [location.state]);
 
+   //Toggle Sections to open / close
    const toggleSection = (sectionId) => {
       setOpenSections((prevOpenSections) => {
          //console.log(prevOpenSections, sectionId)
@@ -169,17 +195,20 @@ const  KnowledgeAccountMain = () =>{
       });
    };
 
+   // Button Positions Check Sidebox
    useEffect(() => {
       const buttonPosCheck = () =>{ // buttonPosCheck nicht löschen!!!!
          if (isAuth && gotoPage==="/home") {setButtonPos("showBut"); setAsidePos("accountAside") //ok
       } else {setButtonPos(buttonPos); setAsidePos(asidePos)
       }}
    }, [isAuth, asidePos, buttonPos, gotoPage, setAsidePos, setButtonPos]);
-
+ 
+   // Passwort zeigen oder verschleiern
    const toggleShowPassword = () => {
       setShowPassword(prevShowPassword => !prevShowPassword);
     };
     
+    // Knwoldge Datensatz zu dem User anlegen
    const addKnowledgeDatensatz = async () => {
       //e.preventDefault();       
       const contactID = contactData._id;   
@@ -518,10 +547,17 @@ const  KnowledgeAccountMain = () =>{
             <div className="accountHead" >
                <h3 onClick={() => toggleSection("account_4")}>Ihre Konto Nutzerdaten</h3>
                {openSections.includes("account_4") && 
-                  <p className="linkin" onClick={() => navigate("/userUpdate")}>
-                     <span className="C" >C </span>
-                     Daten ändern
-                  </p>
+                  <div>
+                     {/* <p className="linkin" onClick={() => navigate("/userUpdate")}>
+                        <span className="C" >C </span>
+                        Daten ändern
+                     </p> */}
+                     <p onClick={() => setUpdateUserModalIsOpen(true)} ><span className="C" >C </span> Daten ändern</p>
+                     <UpdateUserModal 
+                     isOpen={updateUserModalIsOpen} 
+                     onRequestClose={() => setUpdateUserModalIsOpen(false)}
+                     />
+                  </div>
                }
             </div>
             {openSections.includes("account_4") && (
@@ -555,15 +591,18 @@ const  KnowledgeAccountMain = () =>{
                      <div>
                         
                      <div className="fieldName">
-                        <p>Ihr Avatar</p>
-                        {!selectedImage && <p className="bildLaden" onClick={() => { document.getElementById('fileInput').click()}}> neues Bild laden</p>}
-                        {!selectedImage && <input id="fileInput" type="file" accept="image/*" style={{ display: 'none' }} onChange={handleImageChange} />}
-                        {selectedImage && <img src={previewImage} style={{width: "50px"}} alt="Vorschau des ausgewählten Bildes" />}
-                        {selectedImage && <p className="bildLaden" onClick={saveImage}> Bild speichern</p>}
-                        {selectedImage && <p className="bildLaden" onClick={saveImageAbbrechen}> abbrechen</p>}
-                        {!selectedImage && <p onClick={getUserImageList} className="bildLaden">Avatar ändern</p>}
-                        <ImageSliderModal isOpen={isModalOpen} onRequestClose={closeModal} images={images} onImageClick={handleImageSelect} />
-                        {/* {images && images.length > 0 && isModalOpen ? (<p className="bildLaden" onClick={() => { setImages(null); closeModal(); }}>abbrechen</p>) : <p></p> } */} 
+                        <p>Ihr Avatar</p>   
+                        {/* {selectedImage && <p className="bildLaden" onClick={saveImageAbbrechen}> abbrechen</p>} */}
+                        {!selectedImage && (
+                        <p onClick={() => setIsSliderModalOpen(true)} className="bildLaden">
+                           Avatar ändern
+                        </p>
+                        )}
+                        <AvatarSliderModal 
+                        isOpen={isSliderModalOpen} 
+                        onRequestClose={() => setIsSliderModalOpen(false)} 
+                        />
+
                      </div>
 
                         <div className="output">
@@ -580,10 +619,10 @@ const  KnowledgeAccountMain = () =>{
                      />
                   </label>
                </div>
-            </div>
-                     </div>
-                  </div>
                </div>
+               </div>
+               </div>
+            </div>
             )}
          </section>
          
@@ -648,7 +687,7 @@ const  KnowledgeAccountMain = () =>{
                   </div>
    
                   <div className="account_5">
-                     <div>
+                     {/* <div>
                         <p className="fieldName">Username</p> 
                         <div className="output">{userData.userName}</div>
                      </div>
@@ -665,7 +704,7 @@ const  KnowledgeAccountMain = () =>{
                            id="imgKnowledgeAccount"
                            alt={userData.firstName + " "+ userData.lastName} style={{width: '50px'}}/>
                         </div>
-                     </div>
+                     </div> */}
                   </div>
                </div>
             )}

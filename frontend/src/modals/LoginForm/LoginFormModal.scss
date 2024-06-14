@@ -1,0 +1,121 @@
+@import "../../scss/global.scss";
+
+#loginMain{
+  width: 80%;
+  max-width: 1280px;
+  min-height: 600px;
+  margin: 250px auto 0;
+  box-shadow: $mainshadow;
+  //background-image: url(../../images/Sonnenuntergang.jpg);
+  //background-blend-mode: luminosity;
+  background-size: cover;
+  //border: solid 2px white;
+  //font-family: $primary-font;
+  h2 {
+    display: block;
+    margin: 75px auto 0;
+    padding: 20px;
+    width:fit-content;
+    font-size: $small;
+    text-align: center;
+    color: $cpdblue;
+    border-left: dotted 3px $cpdred;
+    border-right: dotted 3px $cpdred;
+    border-radius:  20px ;
+    }
+  #loginForm {
+    display: flex;
+    flex-flow: column nowrap;
+    //justify-content: space-around;
+    gap: 20px;
+    margin: 50px auto;
+    padding: 1.5rem 1rem;
+    width: 40%;
+    min-width: 400px;
+    border-radius: $radiussmall;
+    box-shadow: $boxshadow;
+    background-color: $first-color;
+    //border: solid;
+    div{
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: flex-end;
+      gap: 0px;
+      //border: solid;
+      label {
+        //padding-left: 20px;
+        flex-basis: 40%;
+        //margin-left: 20px;
+        align-items: flex-start;
+      }
+      input {
+        border: solid 2px;
+        height: 35px;
+        padding: 10px;
+        border-radius: 10px;
+        //width: 25%;
+        flex-basis: 60%;
+        background-color: white;
+        &:focus {
+          color: $cpdred;
+          &::placeholder {
+            color: $cpdred;
+          }
+        }
+      }
+      #loginButton {
+        max-width: 150px;
+        color: $cpdblue;
+        padding: 5px;
+        border-radius: 10px;
+        padding: 10px;
+        :active{
+          border: solid 5px;
+        }
+      }
+    }
+  }
+
+  #buttonInside{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    width: 40%;
+    min-width: 400px;
+    margin: 20px auto;
+    //border: solid;
+  }
+  #textKeinKonto{
+    display: block;
+    margin: 30px auto 0px;
+    padding: 0px;
+    width:30%;
+    font-size: $small;
+    text-align: center;
+    color: $cpdblue;
+    //border-left: dotted 3px $cpdred;
+    //border-right: dotted 3px $cpdred;
+    border-radius:  20px;
+    //border: solid;
+  }
+  #registerButton {
+    display: block;
+    //width: fit-content;
+    //margin: 1rem auto 3rem;
+    //border: solid;
+    a {
+    background-color: none;
+    color: $cpdblue;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    }
+  }
+  
+  #ladeInfo {
+    text-align: center;
+    color: $cpdblue;
+    margin-bottom: 30px;
+  }
+}
+

@@ -3,7 +3,7 @@ import { SectionsContext } from "../../context/SectionsContext.js";
 import { EditOutlined, SaveOutlined, CancleOutlined } from "@ant-design/icons";
 import axiosConfig from "../../util/axiosConfig";
 import Swal from "sweetalert2";
-import "./UserUpdateMain.scss";
+//import "./UserUpdateMain.scss";
 
 export default function UpdateUser() {
   const { userData, setUserData, getUserData, contactData, setContactData,  navigate, gotoPage, setGotoPage } = useContext(SectionsContext);

@@ -32,10 +32,8 @@ const SectionsProvider = ({ children }) => {
   const [companyData, setCompanyData] = useState({})
   const [careerData, setCareerData] = useState([0]);
   const [cpdData, setCPDData] = useState([0])
-  /* const [objectSize, setObjectSize] = useState(100);
-  const [objectPosition, setObjectPosition] = useState({ x: 50, y: 50 }); */
   const [objectSize, setObjectSize] = useState(() => {
-    const savedSize = localStorage.getItem('objectSize');
+  const savedSize = localStorage.getItem('objectSize');
     return savedSize ? parseInt(savedSize) : 100;
   });
   const [objectPosition, setObjectPosition] = useState(() => {

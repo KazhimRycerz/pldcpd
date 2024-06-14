@@ -5,12 +5,11 @@ import './Slider.scss'
 import React, { useState, useEffect } from 'react'
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
-//import SwiperCore, { Navigation, Pagination } from 'swiper/core';
 import baseURL from "../../util/constants.js"
 
-//Swiper.use([Navigation, Pagination]);
+Swiper.use([Navigation, Pagination]);
 
-/* export const Slider = ({ photos }) => {
+export const Slider = ({ photos }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleNextSlide = () => {
@@ -30,7 +29,7 @@ import baseURL from "../../util/constants.js"
       <button onClick={handleNextSlide}>Nächstes Foto</button>
     </div>
   );
-}; */
+};
 
 
 export const ImageSlider = ({ images, onImageClick }) => {
