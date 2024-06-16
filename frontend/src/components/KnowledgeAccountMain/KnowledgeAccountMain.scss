@@ -96,25 +96,117 @@
         font-family: $primary-font;
         font-size: $small;
       }
-      .output {
+    
+      .output, .input {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
         line-height: 30px;
         font-size: $small;
-        text-align: center;
+        text-align: left;
         padding: 10px;
         width: 75%;
-        border: solid black;
+        //border: solid black;
         //border-radius: $radiusxsmall;
         color: $secondary-color;
         background-color: $cpdblue;
         opacity: 1;
         p{
-          //color: white;
-          border: none;
+          display: block;
+          //border: solid white;
           width: 100%;
+        }
+        *{
+          //border: solid red;
+          //line-height: 30px;
+          height: 100%;
+          vertical-align: middle;
           
         }
       }
+      /* .input{
+        //background-color: $cpdblue-50;
+        input{
+          background-color: white !important;
+        }
+      } */
     }
+    #logoContainer{
+      display: flex;
+      flex-flow: column nowrap;
+      gap: 5px;
+      justify-content: space-between;
+      background-color: $cpdblue;
+      /* :hover{
+        color: $cpdred;
+      } */
+    }
+    input {
+      font-size: $large;
+      color: $cpdblue;
+      border: none;
+      background-color: white;
+      padding: 5px;
+      width: 90%;
+      border-radius: 3px;
+      /* *{
+        height: 100%;
+      vertical-align: middle;
+      background-color: $fourth-color;
+      } */
+    }
+    
+    .save-icon,
+    .edit-icon,
+    .abort-icon{
+      height: 100%;
+      vertical-align: middle;
+      //background-color: $fourth-color; 
+    color: $cpdblue;
+    text-align: start;
+    transition: font-size 1s ease-in;
+    color: $secondary-color;
+    &:hover{
+      transform: scale(1.5);  // Vergrößert das Bild um 20%
+      transition: transform 0.3s ease-in-out;  // Animation für weichen Übergang
+    }
+    }
+    .save-icon:after {
+      content: "speichern";
+      color: $cpdblue-50;
+    }
+    
+    .edit-icon:after {
+      content: "ändern";
+      color: $cpdblue-50;
+    }
+    
+    .abort-icon:after {
+      content: "abbrechen";
+      color: $cpdblue-50;
+    }
+    .save-icon:after,
+    .edit-icon:after,
+    .abort-icon:after {
+      color: $secondary-color;
+      text-shadow: 0 0 0.25rem $cpdblue-50;
+      font-weight: bold;
+      transform: translate(-65%, 0%);
+      position: absolute;
+      //top: 20px;
+      z-index: 1;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .save-icon:hover::after,
+    .edit-icon:hover::after,
+    .abort-icon:hover::after {
+      opacity: 1;
+      visibility: visible;
+    }
+    
     #listOfImages{
       display: flex;
       flex-flow: row nowrap;
@@ -134,13 +226,6 @@
       font-family: $primary-font-bold;
       margin: 0 30px ;
       padding-top: 5px;
-    }
-    img{
-      border-radius: 50%;
-      width:200px;
-      aspect-ratio: 1;
-      object-fit: cover;
-      object-position:50%
     }
   }
 

@@ -12,7 +12,7 @@ Modal.setAppElement('#root');
   isOpen, 
   onRequestClose, 
   }) => {
-  const { isAuth, userData, setUserData, getUserData, navigate } = useContext(SectionsContext);
+  const { isAuth, userData, setUserData, getUserData } = useContext(SectionsContext);
   //const [contactData, setContactData] = useState({});
   const userId = localStorage.getItem("userId");
 
