@@ -4,9 +4,164 @@
   width: 80%;
   max-width: 1280px;
   min-height: 70vh;
-  margin: 00px auto 100px;
+  margin: 00px auto 50px;
+  box-shadow: $mainshadow;
+
+  #formContainer{
+    width: 80%;
+    //border: solid;
+    border-radius: 10px;
+    margin: 0 auto 100px;
+    box-shadow: $boxshadow;
+    background-color: $first-color;
+    padding: 50px;
+    #änderunsgHinweis{
+      position: relative;
+      top: -15px;
+      font-size: $xlarge;
+      width: fit-content;
+      margin: 50px auto 20px;
+      color: $cpdblue;
+    }
+    #boxEingabeFirma{
+      //border: solid;
+      border-radius: 20px;
+      padding: 10px;
+      background-color: $fourth-color;
+      box-shadow: $boxshadow;
+      #addressart{
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        padding: 0px;
+        //border-radius: 10px;
+        width: 100%;
+        gap: 20px;
+        background-color: $fourth-color;
+        border: solid;
+        margin: 0 0 10px 0;
+        label{
+          border: none;
+          padding: 0;
+        }
+        #companyNature{
+          //border: solid;
+          width: 50%;
+          padding: 10px;
+          color: $cpdblue;
+        }
+        #eingabeCompanyNature{
+          display: flex;
+          flex-flow: row nowrap;
+          justify-content: space-around;
+          gap: 50px;
+          padding: 10px ;
+          //border: solid;
+          width: 50%;
+          background-color: transparent;
+          div {
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: space-between;
+            border-left: dotted 2px $cpdred;
+            border-right: dotted 2px $cpdred;
+            border-radius: 20px;
+            padding: 0px 10px ;
+            width: 50%;
+            margin: auto;
+            input{
+              //border: solid;
+              padding: 20px;
+              margin: 0 auto;
+              background-color: transparent;
+              font-size: $small;
+              width: 100%;
+              height: 20px;
+            }
+            label{
+              width: 100%;
+              //border: solid;
+              width: auto;
+              margin: auto;
+            }
+          }
+        }
+      }
+
+    }
+      #dataEingabeFirma{
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      padding: 0px;
+      border-radius: 10px;
+      width: 100%;
+      gap: 20px;
+      background-color: $fourth-color;
+      //box-shadow: $boxshadow;
+      margin: 0 0 20px 0;
+      //border: solid;
+      >div {
+        display: flex;
+        flex-flow: column nowrap;
+        width: 50%;
+        //border: solid;
+        gap: 10px;
+        >div{
+          display: flex;
+          flex-flow: row nowrap;
+          justify-content: flex-start;
+          >*{
+            width: 50%;
+            padding: 5px;
+          }
+          label {
+            border: solid 1.5px;
+            //height: 35px;
+            align-self: baseline;            
+          }
+          input{
+            //border: solid white;
+            background-color: $cpdblue;
+            //height: 40px;
+            &:focus{
+              background-color: White;
+              border-radius: none;
+            }
+          }
+          sup{
+            
+          }
+        }
+      }
+      }
+      
+      .inputContainer{
+        background-color: $cpdblue;
+        //border: solid white;
+        flex-basis: 70%;
+        padding: 10px;
+        
+      }
+      input, output {
+        border: none;
+        //height: 35px;
+        //width: auto;
+        padding: 5px;
+        border-radius: 0px;
+        font-family: $primary-font;
+        font-size: $small;
+        flex-basis: 70%;
+        background-color: $cpdblue;
+        color: $secondary-color;
+        &:focus {
+          background-color: white;
+          color: $cpdblue;
+        }
+      }
+  }
   
-  #companySubmitForm, #companyEditForm, #companyDisplayForm {
+  /* #companySubmitForm, #companyEditForm, #companyDisplayForm {
     display: flex;
     flex-flow: column nowrap;
     gap: 10px;
@@ -27,7 +182,7 @@
       border: solid;
       > div{
         //border: solid 1px;
-        background-color: transparent;
+        //background-color: transparent;
         width: 20%;
       }
       label, #companyNature {
@@ -35,31 +190,33 @@
         padding: 5px 0 0 10px;
         flex-basis: 30%;
         //margin-left: 20px;
-        font-size: $normal;
+        font-size: $small;
         align-items: flex-start;
         border: none;
         background-color: transparent;
+        color: $cpdblue
       }
-      /* #companyNature{
-        border: none;
-        background-color: none;
-        width: 40%;
-      } */
+      
+      .inputContainer{
+        background-color: $cpdblue;
+        //border: solid white;
+        flex-basis: 60%;
+        padding: 5px;
+      }
       input, textarea, p, output {
         border: none;
         height: 35px;
-        padding: 10px;
+        //width: auto;
+        padding: 5px;
         border-radius: 0px;
         font-family: $primary-font;
-        font-size: $normal;
+        font-size: $small;
         flex-basis: 60%;
-        //background-color: $fourth-color;
-        background-color: white;
+        background-color: $cpdblue;
+        color: $secondary-color;
         &:focus {
-          color: $cpdred;
-          &::placeholder {
-            color: $cpdred;
-          }
+          background-color: white;
+          color: $cpdblue;
         }
       }
 
@@ -103,16 +260,93 @@
         }
       }
     }
-  } 
+  } */ 
   
+  
+  #boxModusWahl{
+    width: 80%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 10px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 20px;
+    //border: solid;
+  }
+
+  #firmensuche{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between; 
+    padding: 0px !important;
+    border-radius: 10px;
+    width: 100%;
+    gap: 0px !important;
+    background-color: $fourth-color;
+    box-shadow: $boxshadow;
+    margin-bottom: 20px;
+    #boxFirmensuche {
+      display: flex;
+      flex-flow: row nowrap;
+      width: 50%;
+      justify-content: space-around;
+      border: none ;
+      gap: 0;
+      margin: 0px;
+      padding: 10px 0 10px 10px;
+      label{
+        width:50%;
+        border: solid;
+        padding: 10px;
+      }
+      input {
+        margin: 0;
+        width: 50%;
+        background-color: $cpdblue;
+        font-size: $small;
+        padding: 0 0 0 5px;
+        &:focus{
+          background-color: white;
+        }
+      }
+    }
+    #firmenListe {
+      width: 50%;
+      color: $fourth-color;
+      background-color: $cpdblue;
+      padding: 5px;
+      margin: 10px 10px 10px 0;
+      
+      &:focus{
+        background-color: white;
+        color: $cpdblue;
+      }
+      option {
+        background-color: aqua !important;
+
+      }
+    }
+
+    #doubleRightOutlined{
+      margin: auto;
+      font-size: $small;
+      width: auto;
+      padding: 0 5px 0 5px;
+    }
+  }
+
   #buttonBox {
     display: flex;
     flex-flow: row nowrap;
     justify-content: flex-end !important;
-    gap: 20px !important;
-    margin-top: 5px;
-    border: none !important;
-    input, button{
+    gap: 20px;
+    margin-top: 20px;
+    //border: none !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    button{
       vertical-align: middle;
       width: 60%;
       height: 40px;
@@ -134,145 +368,57 @@
       }
     }
   }
-}
-
-#boxModusWahl{
-  width: 80%;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 10px;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: flex-end;
-  align-items: flex-end;
-  gap: 10px;
-  //border: solid;
-}
-
-#firmensuche{
-  width: 80%;
-  max-width: 800px;
-  margin: 0 auto 20px;
-  //margin-bottom: 50px;
-  border-radius: $radiussmall;
-  background-color: $fourth-color;
-  //border: solid white 2px;
-  //border:2px solid $first-color;
-  box-shadow: $boxshadow;
-  padding:10px;
-  div:first-child{
-    width: 40%;
-    label{
-      width:100%;
-      //margin-bottom: 20px;
-    }
-
+  input[type='checkbox'] {
+    padding: 5px;
+    transform: scale(1.5);
+    margin: 5px ;
+    display: block;
+    accent-color: $fourth-color;
+    width: auto;
   }
-  #firmenListe{
-    position: relative;
-    top:25px;
-    height: 40px;
-    width: 60%;
-    padding: 10px;
-  }
-}
-
-
-#firmensuche{
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: flex-start; 
-  max-width: 800px;
-  *{
-    //border:solid;
-  }
-  >div:first-child,  {
-    display: flex;
-    flex-flow: column nowrap;
-    width: 40%;
-    label{
-      width:100%;
-      //margin-bottom: 20px;
-    }
-    #sucheFirma {
-      margin: 7px 0 0 0px;
-      width: 80%;
-      height: 40px;
-      background-color: $fourth-color;
-      border: solid 1px;
-      font-size: $normal;
-      padding: 0 0 0 5px;
-    }
-  }
-  >div:last-child{
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-start;
-    flex-basis: 60%;
-    border: solid 1px;
-    border-radius: 0px;
-    #kursAutor {
-      padding: 10px;
-      width: 50%;
-      display: inline;
-      max-height: 100px;
-      background-color: $fourth-color;
-      border: none;
-    }
-    #kursSprache{
-      max-width: 50%;
-      background-color: $fourth-color;
-      border: none;
-    }
-    }
-}
-
-.ungesichert{
- /*  background-color: $cpdred !important; */
-  border: dotted $cpdred 3px
-}
-.gesichert {
-  border: none
-}
-#änderunsgHinweis{
-  position: relative;
-  top: -15px;
-  font-size: $xlarge;
-  width: fit-content;
-  margin: 0 auto;
-  color: $cpdblue;
-}
-#auswahlThemenfeld option{
-  border: solid !important;
-  background-color: red;
-}
-
-#zugangsRechteInfo h2{
-margin: 300px auto;
-text-align: center;
-//border: solid;
-}
-
-#test{
-  display: flex;
-  flex-flow: row nowrap;
-  border: solid 1px;
-  padding: 0;
-  width: 60%;
-}
-
- #levelDiscription{
-  max-width: 50%;
-  padding: 10px;
-  background-color: white;
   
+  .ungesichert{
+  /*  background-color: $cpdred !important; */
+    border: none !important;
+    box-shadow: $managementshadow !important;
+  }
+  .gesichert {
+    border: none !important;
+    box-shadow: $boxshadow !important;
+  }  
+
+  #änderunsgHinweis{
+    //position: relative;
+    //top: -15px;
+    font-size: $xlarge;
+    width: fit-content;
+    margin: 0 auto ;
+    color: $cpdblue;
+  }
+  
+  #hinweisDaten{
+    font-size: $xlarge;
+    width: fit-content;
+    margin: 0 auto ;
+    color: $cpdblue;
+  }
+  
+  #zugangsRechteInfo h2{
+  margin: 300px auto;
+  text-align: center;
+  //border: solid;
+  }
+
+
 }
+
 .user{
   box-shadow: $mainshadow;
 }
 .manager {
   box-shadow: $managementshadow;
 }
-#cpdProvider{
-  margin: 0;
-}
+
+
+
+

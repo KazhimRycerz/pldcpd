@@ -1,12 +1,12 @@
-import React, { useState, useRef, useContext, useEffect } from "react";
+import React, { useState, useRef, useContext, useEffect, useCallback } from "react";
 import axiosConfig from "../../util/axiosConfig.js";
 import { SectionsContext } from "../../context/SectionsContext.js";
 import "./CompanyForm.scss";
-import { LogoutOutlined } from "@ant-design/icons";
+import { DoubleRightOutlined } from "@ant-design/icons";
 import Moment from "moment"
 import Swal from "sweetalert2";
 import { Footer } from "../../components/Footer/Footer.jsx"
-import { IndustryField, ListOfCompanyType, ListOfCountryCodes, ListOfCourseTypes, ListOfLanguages, ListOfTopicFields, ListOfLevel } from "../ListsOfData/ListOfData.jsx";
+import { IndustryField, ListOfCompanyType, ListOfCountryCodes } from "../ListsOfData/ListOfData.jsx";
 import { FehlendeZugangsrechte } from "../FehlermeldungenSwal/FehlermeldungenSwal.jsx"
 
 const CompanyPage = () => {
@@ -15,10 +15,7 @@ const CompanyPage = () => {
   const [workingMode, setWorkingMode] = useState("inputMode")
   const [userMode, setUserMode] = useState("user")
   const [formErrors, setFormErrors] = useState({})
-  const [data, setData] = useState([])
-  //const [autorenFilter, setAutorenFilter] = useState('')
-  //const [themenFilter, setThemenFilter] = useState('')
-  //const [themenListe, setThemenListe] = useState([])
+  const [data, setData] = useState([null])
   const [firmenFilter, setFirmenFilter] = useState('')
   const [firmenListe, setFirmenListe] = useState([])
   const [statusSicherung, setStatusSicherung] = useState("gesichert")
@@ -45,10 +42,10 @@ const CompanyPage = () => {
   const [createdOn, setCreatedOn] = useState("")
   
   const workingModeSelect = (e) => {
-    //const { value, checked } = e.target;
-    e.target.value === "editMode" && setData([])
+    const { value } = e.target;
+    e.target.value === "editMode" && setData([null], clearForm())
     e.target.value === "inputMode" && clearForm()
-    setWorkingMode(e.target.value);
+    setWorkingMode(value);
     //console.log(workingMode)
   };
 
@@ -69,9 +66,21 @@ const CompanyPage = () => {
     setCPDProvider(false)
     setUpdatedBy("");
     setUpdatedOn(Moment(today).format("YYYY-MM-DD"));
-    setStatusSicherung("gesichert")
+    setStatusSicherung("gesichert");
+    setData([null])
   }
 
+  const isFormEmpty = () => {
+    return !companyName && !companyStreet && !companyZip && !companyCity && !companyCountryCode && !companyHomepage;
+  };
+
+  const clearSelectionOfCompany = () => {
+    setData([]);
+    clearForm();
+    setStatusSicherung('gesichert');
+    document.getElementById('firmenListe').value = " ";
+  };
+  
   const handleChangeOfData = (event) => {
     const { name, value, checked, type } = event.target;
     setStatusSicherung("ungesichert")
@@ -83,7 +92,7 @@ const CompanyPage = () => {
     } */
   };
 
-  const firmenFilteredList = async (e) => {
+  const firmenFilteredList = useCallback(async (e) => {
     try {
       const response = await axiosConfig.get("/companies");
       const receivedData = response.data;
@@ -104,18 +113,23 @@ const CompanyPage = () => {
         confirmButtonText: "OK"
       });
     }
-  };
+  }, [firmenFilter]);;
 
   const getCompanyToReview = async (e) => {
-    console.log(e.target.value);
+    //console.log(e.target.value);
+    const selectedValue = e.target.value;
+    if (selectedValue === "") {
+      setData([null]);
+      clearForm()
+      return // Abbrechen, wenn "bitte auswählen" gewählt wird
+    }
     try {
       const companyId = e.target.value
      //console.log(companyId);
       const response = await axiosConfig.get(`/companies/${companyId}`);
       const receivedData = await response.data;
-      //setData(receivedData)
-      displayCompany(receivedData)
-      receivedData.length === 1 && console.log(receivedData)
+      receivedData && displayCompany(receivedData)
+      //console.log(receivedData)
     } catch (error) {
       Swal.fire({
         title: "Fehler beim Aufrufen der Firma",
@@ -125,7 +139,7 @@ const CompanyPage = () => {
     }
   };
 
-  const displayCompany = async (data) => {
+  const displayCompany = useCallback(async (data) => {
     if (data) 
     { setAddressNature(data.addressNature);
       setCompanyType(data.companyType);
@@ -143,9 +157,9 @@ const CompanyPage = () => {
       setUpdatedOn(data.updatedOn);
       setCreatedOn(data.createdOn);
       setCompanyClientID(data.companyClientID)
-      console.log(data.companyName)
-    }
-  };
+      //console.log(data.companyName)
+    } 
+  }, []);
 
   const validateForm = () => {
     const errors = [];
@@ -220,22 +234,21 @@ const CompanyPage = () => {
         cpdProvider,
         companyActive,
         updatedBy: localStorage.getItem("userId"),
-      };
-          
+      };     
       try {
         const response = await axiosConfig.post("/companies", companyData,
         );
         setStatusSicherung("gesichert")
         //console.log("reponsData", response.data);
         Swal.fire({
-          title: "Das Kursangebot wurde erfolgreich erstellt!",
+          title: "Das Unternehmen wurde erfolgreich registriert!",
           text: "Was willst du als nächstes tun?",
           icon: "success",
           showConfirmButton: true,
           showCancelButton: true,
           showDenyButton: true,
-          confirmButtonText: 'Neuen Kurs anlegen',
-          cancelButtonText: 'neuen Kurs anzeigen',
+          confirmButtonText: 'Neues Unternehmen anlegen',
+          cancelButtonText: 'anderes Unternehmen anzeigen',
           denyButtonText: 'Formular schließen',
         }).then((result) => {
           if (result.isConfirmed) {
@@ -369,65 +382,33 @@ const CompanyPage = () => {
     firmenFilteredList();
     displayCompany()
 
-    /* if (companyId) {
-      getCompanyToReview({ target: { value: companyId } });
-    } */
-
     const interval = setInterval(() => {
       setCurrentDate(new Date());
     }, 1000);
     return () => clearInterval(interval);
   }, [firmenFilter, /* companyId, */ data]);
 
-    useEffect(() => {
-      if (isAuth && Array.isArray(accessRights) && accessRights.some(item => item > 1)) {
-        setUserMode("manager");
-      } else {
-        setUserMode("user");
-      }
-      //console.log(userMode, typeof accessRights, (accessRights) )
-  }, [accessRights, userMode, isAuth]);
-
- /*  useEffect(() => {
-    setGotoPage("/companypage");
-    authorsAvailableList();
-    topicsAvailableList();
-    // console.log(accessRights)
-  
-    if (courseId) {
-      // Lade den ausgewählten Kurs
-      getCourseToReview({ target: { value: courseId } });
-    }
-  
-    if (data[0] && data[0].author) {
-      setKursAutor(data[0].author.map(author => author._id));
-    }
-  
-    const interval = setInterval(() => {
-      //const updatedDate = new Date();
-      setCurrentDate(new Date());
-    }, 1000);
-    // Aufräumen, um den Intervall zu stoppen, wenn die Komponente unmontiert wird
-    return () => clearInterval(interval);
-  
+  useEffect(() => {
     if (isAuth && Array.isArray(accessRights) && accessRights.some(item => item > 1)) {
-      setUserMode("manager");
+      setUserMode("user");
+      //setUserMode("manager")
     } else {
       setUserMode("user");
     }
-    console.log(userMode, typeof accessRights, (accessRights) )
-  
-  }, [themenFilter, courseId, data, isAuth, accessRights, userMode]); */
-    
+    //console.log(userMode, typeof accessRights, (accessRights) )
+  }, [accessRights, userMode, isAuth]);
+
   return (
     <>
-      <main id="companyForm" className = {userMode}>
+      <main id="companyForm" /* className = {userMode} */>
         <div className="headBox"> 
           <h2 id="courseHead">Eingabe / Bearbeiten von Unternehmen</h2>
           {/* <LogoutOutlined onClick={() => navigate("/home")} /> */}
           <p className="closingFunction" onClick={() => navigate("/home")}>Formular schließen</p>
         </div>
-        {isAuth && Array.isArray(accessRights) && accessRights.some(item => item > 1) ? <div id="boxModusWahl">
+
+        {isAuth && Array.isArray(accessRights) && accessRights.some(item => item > 1) ? 
+        <div id="boxModusWahl">
           <label>
           <input
           type="radio"
@@ -448,614 +429,630 @@ const CompanyPage = () => {
           />
           <span style={{ marginLeft: '5px' }}>Neues Unternehmen erfassen</span>
           </label>
-        </div> : <></>}
-        {workingMode === "editMode" && (
-          <div id="firmensuche">
-            <div>
-              <label 
-              htmlFor="sucheFirma" 
-              id="themenFilterLabel"
-              > Firmenfilter
-              </label>
-              <input 
-              type="text" 
-              name="sucheFirma" 
-              id="sucheFirma" 
-              placeholder="Firma finden - Filter eingeben" 
-              value={firmenFilter}
-              onDoubleClickCapture={(e) => 
-                {setFirmenFilter("")}}
-              /* onChange={handleFilter} */ 
-              onChange={(e) =>
-                {setFirmenFilter(e.target.value)}} 
-              //autoComplete="off"
-              />
-            </div>
-            <select name="firmenListe" 
-            onChange={(e) => {
-              getCompanyToReview(e);
-              setStatusSicherung("gesichert");
-            }} 
-            /* onClick={getCompanyToReview} */ 
-            id="firmenListe"> 
-              {firmenListe.length < 1 ? 
-              <option value="">kein Treffer - bitte Filter verändern</option> : 
-              <option value="">bitte filtern</option>} 
-              {firmenListe.map((item, index) => (
-              <option key={index} value={item._id}>
-              {item.Firma}</option>
-              ))} 
-            </select> 
-          </div>
-          )
+        </div> : <></>
         }
-        {workingMode === 'inputMode' ? 
-          (<form
-          onSubmit={submitCompany}
-          encType="multipart/form-data"
-          id="companySubmitForm" className={statusSicherung}
-          onChange={(e)=>{setStatusSicherung("ungesichert")}}
-          >
-          {statusSicherung === "ungesichert" ? <p id="änderunsgHinweis">ACHTUNG: Änderungen wurden noch nicht gesichert</p>: null}
-          <div id="addressart">
-            <p id="companyNature">Adressart<sup id="addressNatureSup">*</sup></p>
-            <div id="eingabeCompanyNature">
-              <div>
-                <input
-                type="radio"
-                value="business"
-                id="addressNature"
-                name="addressNature"
-                placeholder="Business"
-                autoComplete="off"
-                checked={addressNature === "business"}
-                onChange={(e) => {
-                  setFormErrors({ ...formErrors, addressNature: "" }); 
-                  handleChangeOfData(e);
-                  setAddressNature("business");
-                  setCompanyType("")
-                }}
-                />
-                <label htmlFor="business">business</label>
-              </div>
-              <div>
-                <input
-                type="radio"
-                value="private"
-                id="private"
-                name="addressNature"
-                placeholder="Private"
-                autoComplete="off"
-                checked={addressNature === "private"}
-                onChange={(e) => {
-                  setFormErrors({ ...formErrors, addressNature: "" }); 
-                  handleChangeOfData(e);
-                  setAddressNature("private");
-                  setCompanyType("PA")
-                }}
-                />
-                <label htmlFor="private">private / personal</label>
-              </div>
-            </div>
-          </div>
-          {addressNature ==="business" ? 
-            <div id="firmentyp">
-            <label htmlFor="companyType">Art des Unternehmen<sup id="companyTypeSup">*</sup></label>
-            <input
-              autoFocus
-              type="text"
-              id="companyType"
-              name="companyType"
-              list="auswahlCompanyType"
-              value={companyType}
-              placeholder="Unternehmensart"
-              autoComplete="off"
-              onChange={(e) => {
-                setFormErrors({ ...formErrors, companyType: "" }); // Fehlermeldung zurücksetzen
-              handleChangeOfData(e);
-              setCompanyType(e.target.value);
-            }}
-            />
-              <datalist id="auswahlCompanyType">
-                {ListOfCompanyType.map((company, index) => (
-                <option key={index} value={company.kürzel}>
-                {company.discription}
-                </option>
-                ))}
-              </datalist>
-            </div> : 
-            <div id="firmentyp">
-            <label htmlFor="companyType">Art des Unternehmens<sup id="companyTypeSup">*</sup></label>
-            <input
-              disabled
-              type="text"
-              id="companyType"
-              name="companyType"
-              value={companyType}
-              placeholder="Unternehmensart"
-              autoComplete="off"
-              onChange={(e) => {
-                setFormErrors({ ...formErrors, companyType: "" }); // Fehlermeldung zurücksetzen
-              handleChangeOfData(e);
-              setCompanyType(e.target.value);
-            }}
-              />
-            </div>
-          }
-          {addressNature ==="business" &&  
-            <div id="firmenbranche">
-            <label htmlFor="companyBranch">Branche</label>
-            <input
-              type="text"
-              id="companyBranch"
-              name="companyBranch"
-              list="auswahlBranche"
-              value={companyBranch}
-              placeholder="Unternehmensbranche"
-              autoComplete="off"
-              onChange={(e) => {
-                setFormErrors({ ...formErrors, companyBranch: "" }); // Fehlermeldung zurücksetzen
-              handleChangeOfData(e);
-              setCompanyBranch(e.target.value);
-            }}
-              />
-              <datalist id="auswahlBranche">
-                    {IndustryField.map((field, index) => (
-                  <option key={index} value={field.brancheDe}>
-                    {field.brancheDe}
-                  </option>
-                ))}
-              </datalist>
-              {formErrors.companyName && <p className="error">{formErrors.companyName}</p>}
-            </div> 
-          }       
-          {addressNature ==="business" ? 
-            <div id="firmennameneingabe">
-            <label htmlFor="companyName">Firmenname<sup id="courseTopicSup">*</sup></label>
-            <input
-            type="text"
-            id="companyName"
-            name="companyName"
-            value={companyName}
-            placeholder="Firma / Adressname eingeben"
-            autoComplete="off"
-            onChange={(e) => {
-              setFormErrors({ ...formErrors, companyName: "" }); // Fehlermeldung zurücksetzen
-            handleChangeOfData(e);
-            setCompanyName(e.target.value);
-            }}
-            />
-            {formErrors.companyName && <p className="error">{formErrors.companyName}</p>}
-            </div> : 
-            <div id="firmennameneingabe">
-              <label htmlFor="companyName">Vor und Nachname<sup id="courseTopicSup">*</sup></label>
-              <input
-              disabled
-                type="text"
-                id="companyName"
-                name="companyName"
-                value={companyName}
-                placeholder="Vor- und Nachname Privatadresse"
-                autoComplete="off"
-                autoFocus
-                onChange={(e) => {
-                  setFormErrors({ ...formErrors, companyName: "" }); // Fehlermeldung zurücksetzen
-                handleChangeOfData(e);
-                setCompanyName(e.target.value);
-              }}
-                />
-                {formErrors.companyName && <p className="error">{formErrors.companyName}</p>}
-            </div>
-          }            
-          <div id="firmenanschrift">
-            <label htmlFor="companyStreet">Anschrift</label>
-            <input
-            type="text"
-            id="companyStreet"
-            name="companyStreet"
-            value={companyStreet}
-            placeholder="Strasse"
-            autoComplete="off"
-            onChange={(e) => {
-              setFormErrors({ ...formErrors, companyStreet: "" }); // Fehlermeldung zurücksetzen
-            handleChangeOfData(e);
-            setCompanyStreet(e.target.value);
-            }}
-            />
-            {formErrors.companyStreet && <p className="error">{formErrors.companyStreet}</p>}
-          </div>
-          <div id="firmenplz">
-            <label htmlFor="companyZip">PLZ / zip code</label>
-            <input
-              type="text"
-              id="companyZip"
-              name="companyZip"
-              value={companyZip}
-              placeholder="PLZ / ZIPcode"
-              autoComplete="off"
-              onChange={(e) => {
-                setFormErrors({ ...formErrors, companyZip: "" }); // Fehlermeldung zurücksetzen
-              handleChangeOfData(e);
-              setCompanyZip(e.target.value);
-            }}
-              />
-              {formErrors.courseTopic && <p className="error">{formErrors.courseTopic}</p>}
-          </div>
-          <div id="firmenort">
-            <label htmlFor="companyCity">Ort</label>
-            <input
-              type="text"
-              id="companyCity"
-              name="companyCity"
-              value={companyCity}
-              placeholder="Firmenstandort"
-              autoComplete="off"
-              onChange={(e) => {
-                setFormErrors({ ...formErrors, companyCity: "" }); // Fehlermeldung zurücksetzen
-              handleChangeOfData(e);
-              setCompanyCity(e.target.value);
-            }}
-              />
-              {formErrors.courseTopic && <p className="error">{formErrors.courseTopic}</p>}
-          </div>
-          <div id="ländercodeauswahl">
-            <label htmlFor="companyCountryCode">Country:<sup id="companyCountryCode">*</sup></label>
-            <input type= "text"
-            id="companyCountryCode"
-            name="companyCountryCode"
-            value={companyCountryCode}
-            list="countryCodeOptions"
-            placeholder="CountryCode eingeben"
-            onChange={(e) => {
-            handleChangeOfData(e);
-            setCompanyCountryCode(e.target.value);
-            }} 
-            onDoubleClickCapture={(e) => 
-              setCompanyCountryCode("")}
-            />
-              < ListOfCountryCodes />            
-          </div>
-          <div id="linkeingabe">
-            <label htmlFor="linkProvider">Homepage:</label>
-              <input type= "text"
-              id="companyHomepage"
-              name="companyHomepage"
-              value={companyHomepage}
-              //placeholder="Themenfeld"
-              onChange={(e) => {
-              handleChangeOfData(e);
-              setCompanyHomepage(e.target.value);
-              }} />
-          </div>
-          <div id="emaileingabe">
-            <label htmlFor="companyEmail">FirmenEmail:</label>
-              <input type= "email"
-              id="companyEmail"
-              name="companyEmail"
-              value={companyEmail}
-              //placeholder="Themenfeld"
-              onChange={(e) => {
-              handleChangeOfData(e);
-              setCompanyEmail(e.target.value);
-              }} />
-          </div>
-          {accessRights.includes(5) || accessRights.includes(10) || accessRights.includes(9) ?
-          <div id="clientid">
-            <label htmlFor="companyClientID">interne ClientID</label>
-            <input
-              type="text"
-              id="companyClientID"
-              name="companyClientID"
-              value={companyClientID}
-              placeholder="companyClientID"
-              autoComplete="off"
-              onChange={(e) => {
-                setFormErrors({ ...formErrors, companyCity: "" }); // Fehlermeldung zurücksetzen
-              handleChangeOfData(e);
-              setCompanyClientID(e.target.value);
-            }}
-              />
-              {formErrors.courseTopic && <p className="error">{formErrors.courseTopic}</p>}
-          </div>: 
-            <></>
-          }
-          {accessRights.includes(5) || accessRights.includes(10) || accessRights.includes(9) ? 
-            <div id="providerdefinition">
-              <label htmlFor="cpdProvider">CPD Provider:</label>
-              <input type= "checkbox"
-              id="cpdProvider"
-              name="cpdProvider"
-              value={cpdProvider}
-              onChange={(e) => {
-              handleChangeOfData(e);
-              setCPDProvider(e.target.checked);
-              }} />
-            </div> : 
-            <></>
-          }
-          {accessRights.includes(5) || accessRights.includes(10) || accessRights.includes(9) ?
-            <div id="firmaaktiv">
-            <label htmlFor="companyActive">Firma / Adresse aktiv?:<sup id="activeSup">*</sup></label>
-            <input type= "checkbox"
-            id="companyActive"
-            name="companyActive"
-            checked={companyActive}
-            onChange={(e) => {
-            handleChangeOfData(e);
-            setCompanyActive(e.target.checked);
-            }} 
-            />
-            </div> :
-            <></>
-          }
-          {/* {accessRights.includes(5) || accessRights.includes(10) || accessRights.includes(9) ?
-          <div id="updatedbyeingabe">
-            <label htmlFor="updatedBy">zuletzt updated von:</label>
-            <output         
-            id="updatedBy"
-            name="updatedBy"
-            >
-            {userData.firstName} {userData.lastName}
-            </output>
-          </div>
-          :
-          <></>
-          } */}
-          {statusSicherung === "ungesichert" ? (<div id="buttonBox">
-            <button className="buttonBasics" type="submit" value="senden" >senden</button>
-            <button className="buttonBasics" type="reset" onClick={clearForm}>reset Daten</button>
-          </div>) : (<p>Noch keine Daten eingegeben</p>)}
-          </form>) : 
-          (data  ?
-            <form id="companyDisplayForm" className={statusSicherung}>
-              { statusSicherung === "ungesichert" ? <p id="änderunsgHinweis">Änderungen wurden noch nicht gesichert</p>: null}
-              <div id="addressart">
-            <p id="companyNature">Adressart<sup id="addressNatureSup">*</sup></p>
-            <div id="eingabeCompanyNature">
-              <div>
-                <input
-                type="radio"
-                value="business"
-                id="addressNature"
-                name="addressNature"
-                placeholder="Business"
-                autoComplete="off"
-                checked={addressNature === "business"}
-                onChange={(e) => {
-                  setFormErrors({ ...formErrors, addressNature: "" }); 
-                  handleChangeOfData(e);
-                  setAddressNature("business");
-                  setCompanyType("")
-                }}
-                />
-                <label htmlFor="business">business</label>
-              </div>
-              <div>
-                <input
-                type="radio"
-                value="private"
-                id="private"
-                name="addressNature"
-                placeholder="Private"
-                autoComplete="off"
-                checked={addressNature === "private"}
-                onChange={(e) => {
-                  setFormErrors({ ...formErrors, addressNature: "" }); 
-                  handleChangeOfData(e);
-                  setAddressNature("private");
-                  setCompanyType("PA")
-                }}
-                />
-                <label htmlFor="private">private / personal</label>
-              </div>
-            </div>
-          </div>
-            <div id="firmentyp">
-              <label htmlFor="companyType">Art des Unternehmens<sup id="companyTypeSup">*</sup></label>
-              <input
-              autoFocus
-              type="text"
-              id="companyType"
-              name="companyType"
-              list="auswahlCompanyType"
-              value={companyType}
-              placeholder="Unternehmensart"
-              autoComplete="off"
-              onChange={(e) => {
-                setFormErrors({ ...formErrors, companyType: "" }); // Fehlermeldung zurücksetzen
-                handleChangeOfData(e);
-                setCompanyType(e.target.value);
-              }}
-              />
-              <datalist id="auswahlCompanyType">
-                    {ListOfCompanyType.map((company, index) => (
-                  <option key={index} value={company.kürzel}>
-                    {company.discription}
-                  </option>
-                ))}
-              </datalist>
-            </div>
-            {addressNature ==="business" ? 
-              <div id="firmennameneingabe">
-              <label htmlFor="companyName">Firmenname<sup id="courseTopicSup">*</sup></label>
-              <input
-              type="text"
-              id="companyName"
-              name="companyName"
-              value={companyName}
-              placeholder="Firma / Adressname eingeben"
-              autoComplete="off"
-              onChange={(e) => {
-                setFormErrors({ ...formErrors, companyName: "" }); // Fehlermeldung zurücksetzen
-              handleChangeOfData(e);
-              setCompanyName(e.target.value);
-              }}
-              />
-              {formErrors.companyName && <p className="error">{formErrors.companyName}</p>}
-              </div> : 
-              <div id="firmennameneingabe">
-                <label htmlFor="companyName">Vor und Nachname<sup id="courseTopicSup">*</sup></label>
-                <input
-                disabled
-                  type="text"
-                  id="companyName"
-                  name="companyName"
-                  value={companyName}
-                  placeholder="Vor- und Nachname Privatadresse"
-                  autoComplete="off"
-                  autoFocus
-                  onChange={(e) => {
-                    setFormErrors({ ...formErrors, companyName: "" }); // Fehlermeldung zurücksetzen
-                  handleChangeOfData(e);
-                  setCompanyName(e.target.value);
-                }}
-                  />
-                  {formErrors.companyName && <p className="error">{formErrors.companyName}</p>}
-              </div>
-            }   
-              <div id="firmenanschrift">
-            <label htmlFor="companyStreet">Anschrift</label>
-            <input
-            type="text"
-            id="companyStreet"
-            name="companyStreet"
-            value={companyStreet}
-            placeholder="Strasse"
-            autoComplete="off"
-            onChange={(e) => {
-              setFormErrors({ ...formErrors, companyStreet: "" }); // Fehlermeldung zurücksetzen
-            handleChangeOfData(e);
-            setCompanyStreet(e.target.value);
-            }}
-            />
-            {formErrors.companyStreet && <p className="error">{formErrors.companyStreet}</p>}
-              </div>
-              <div id="firmenplz">
-                <label htmlFor="companyZip">PLZ / zip code</label>
-                <input
-                  type="text"
-                  id="companyZip"
-                  name="companyZip"
-                  value={companyZip}
-                  placeholder="PLZ / ZIPcode"
-                  autoComplete="off"
-                  onChange={(e) => {
-                    setFormErrors({ ...formErrors, companyZip: "" }); // Fehlermeldung zurücksetzen
-                  handleChangeOfData(e);
-                  setCompanyZip(e.target.value);
-                }}
-                  />
-                  {formErrors.courseTopic && <p className="error">{formErrors.courseTopic}</p>}
-              </div>
-              <div id="firmenort">
-                <label htmlFor="companyCity">Ort</label>
-                <input
-                  type="text"
-                  id="companyCity"
-                  name="companyCity"
-                  value={companyCity}
-                  placeholder="Firmenstandort"
-                  autoComplete="off"
-                  onChange={(e) => {
-                    setFormErrors({ ...formErrors, companyCity: "" }); // Fehlermeldung zurücksetzen
-                  handleChangeOfData(e);
-                  setCompanyCity(e.target.value);
-                }}
-                  />
-                  {formErrors.courseTopic && <p className="error">{formErrors.courseTopic}</p>}
-              </div>
-              <div id="ländercodeauswahl">
-            <label htmlFor="companyCountryCode">Country:<sup id="companyCountryCode">*</sup></label>
-            <input type= "text"
-            id="companyCountryCode"
-            name="companyCountryCode"
-            value={companyCountryCode}
-            list="countryCodeOptions"
-            placeholder="CountryCode eingeben"
-            onChange={(e) => {
-            handleChangeOfData(e);
-            setCompanyCountryCode(e.target.value);
-            }} 
-            onDoubleClickCapture={(e) => 
-              setCompanyCountryCode("")}
-            />
-              < ListOfCountryCodes />            
-              </div>
-              <div id="homepageeingabe">
-                <label htmlFor="linkProvider">Homepage:</label>
-                  <input type= "url"
-                  id="companyHomepage"
-                  name="companyHomepage"
-                  value={companyHomepage}
-                  //placeholder="Themenfeld"
-                  onDoubleClickCapture={(e) => 
-                    {setCompanyHomepage("");
-                    setStatusSicherung("ungesichert")}}
-                  onChange={(e) => {
-                  handleChangeOfData(e);
-                  setCompanyHomepage(e.target.value);
-                  }} />
-              </div>
-              <div id="providerdefinition">
-                <label htmlFor="cpdProvider">CPD Provider:</label>
-                <input type= "checkbox"
-                id="cpdProvider"
-                name="cpdProvider"
-                value={cpdProvider}
-                onChange={(e) => {
-                handleChangeOfData(e);
-                setCPDProvider(e.target.checked);
-                }} />
-              </div>          
-              <div id="firmenaktivierung">
-                <label htmlFor="companyActive">Adresse aktiv:</label>
-                {/* <p id="kursActivated">{data[0].active === true ? "aktiviert" : "nicht aktiv"}</p> */}
-                <input type= "checkbox"
-                id="companyActive"
-                name="companyActive"
-                checked={companyActive}
-                onChange={(e) => {
-                handleChangeOfData(e);
-                setCompanyActive(e.target.checked);
-                }} 
-                />
-              </div>
-              <div id="createdon">
-                <label htmlFor="createdOn">Erfasst am:</label>
-                {/* <p id="kursActivated">{data[0].active === true ? "aktiviert" : "nicht aktiv"}</p> */}
-                <output         
-                id="createdOn"
-                name="createdOn"
-                >{Moment(createdOn).format("DD.MMMM.YYYY")}
-                </output>
-              </div>
-              <div id="updatedon">
-                <label htmlFor="updatedOn">Zuletz aktualisiert am:</label>
-                <output         
-                id="updatedOn"
-                name="updatedOn"
-                >{Moment(updatedOn).format("DD.MMMM.YYYY")}
-                </output>
-              </div>
-              {/* <div id="updatedby">
-                <label htmlFor="updatedBy">Zuletz aktualisiert von:</label>
-                <output         
-                id="updatedBy"
-                name="updatedBy"
-                >{updatedBy.firstName} {updatedBy.lastName}
-                </output>
-              </div> */}
-              <div id="buttonBox">
-              {data && <button onClick={() => deleteCompany(companyClientID)}>Unternehmen löschen</button>}
-                {statusSicherung === "ungesichert" && <button onClick={updateCompany}>Änderungen speichern</button>}
-              </div>
-            </form> 
-            : 
-            <div id="companyEditForm" >Bitte Datensatz suchen und auswählen</div>
-          )
-        } 
-      </main>
 
+        {workingMode === 'inputMode' ?    
+          <form id="formContainer"
+            className={statusSicherung}
+            onSubmit={submitCompany}
+            encType="multipart/form-data"
+            /* id="companySubmitForm" className={statusSicherung} */
+            onChange={(e)=>{setStatusSicherung("ungesichert")}}>
+
+            {statusSicherung === "ungesichert" ? <p id="änderunsgHinweis">ACHTUNG: Änderungen wurden noch nicht gesichert</p> : <p id="änderunsgHinweis">Noch keine Daten eingegeben</p>}
+            <div id="boxEingabeFirma">
+              <div id="addressart">
+                <label id="companyNature">Adressart<sup id="addressNatureSup">*</sup></label>
+                <div id="eingabeCompanyNature">
+                  <div>
+                    <input
+                    type="radio"
+                    value="business"
+                    id="addressNature"
+                    name="addressNature"
+                    //placeholder="Business"
+                    //autoComplete="off"
+                    checked={addressNature === "business"}
+                    onChange={(e) => {
+                      setFormErrors({ ...formErrors, addressNature: "" }); 
+                      handleChangeOfData(e);
+                      setAddressNature("business");
+                      setCompanyType("")
+                    }}
+                    />
+                    <label htmlFor="business">business</label>
+                  </div>
+                  <div>
+                    <input
+                    type="radio"
+                    value="private"
+                    id="private"
+                    name="addressNature"
+                    placeholder="Private"
+                    autoComplete="off"
+                    checked={addressNature === "private"}
+                    onChange={(e) => {
+                      setFormErrors({ ...formErrors, addressNature: "" }); 
+                      handleChangeOfData(e);
+                      setAddressNature("private");
+                      setCompanyType("PA")
+                    }}
+                    />
+                    <label htmlFor="private">private / personal</label>
+                  </div>
+                </div>
+              </div>
+              <div id="dataEingabeFirma">
+                <div>
+                  {addressNature ==="business" ? 
+                  <div id="firmentyp">
+                    <label htmlFor="companyType">Art des Adresse<sup id="companyTypeSup">*</sup></label>
+                    <input
+                    autoFocus
+                    type="text"
+                    id="companyType"
+                    name="companyType"
+                    list="auswahlCompanyType"
+                    value={companyType}
+                    placeholder="Unternehmensart"
+                    autoComplete="off"
+                    onChange={(e) => {
+                      setFormErrors({ ...formErrors, companyType: "" }); // Fehlermeldung zurücksetzen
+                    handleChangeOfData(e);
+                    setCompanyType(e.target.value);
+                    }}
+                    />
+                    <datalist id="auswahlCompanyType">
+                      {ListOfCompanyType.map((company, index) => (
+                      <option key={index} value={company.kürzel}>
+                      {company.discription}
+                      </option>
+                      ))}
+                    </datalist>
+                  </div> : 
+                  <div id="firmentyp">
+                  <label htmlFor="companyType">Art des Unternehmens<sup id="companyTypeSup">*</sup></label>
+                  <input
+                    disabled
+                    type="text"
+                    id="companyType"
+                    name="companyType"
+                    value={companyType}
+                    placeholder="Unternehmensart"
+                    autoComplete="off"
+                    onChange={(e) => {
+                      setFormErrors({ ...formErrors, companyType: "" }); // Fehlermeldung zurücksetzen
+                    handleChangeOfData(e);
+                    setCompanyType(e.target.value);
+                  }}
+                    />
+                  </div>
+                  }       
+                  {addressNature === "business" &&  
+                    <div id="firmenbranche">
+                    <label htmlFor="companyBranch">Branche</label>
+                    <input
+                      type="text"
+                      id="companyBranch"
+                      name="companyBranch"
+                      list="auswahlBranche"
+                      value={companyBranch}
+                      placeholder="Unternehmensbranche"
+                      autoComplete="off"
+                      onChange={(e) => {
+                        setFormErrors({ ...formErrors, companyBranch: "" }); // Fehlermeldung zurücksetzen
+                      handleChangeOfData(e);
+                      setCompanyBranch(e.target.value);
+                    }}
+                      />
+                      <datalist id="auswahlBranche">
+                            {IndustryField.map((field, index) => (
+                          <option key={index} value={field.brancheDe}>
+                            {field.brancheDe}
+                          </option>
+                        ))}
+                      </datalist>
+                      {formErrors.companyName && <p className="error">{formErrors.companyName}</p>}
+                    </div> 
+                  }       
+                  {addressNature ==="business" ? 
+                    <div id="firmennameneingabe">
+                    <label htmlFor="companyName">Firmenname<sup id="courseTopicSup">*</sup></label>
+                    <input
+                    type="text"
+                    id="companyName"
+                    name="companyName"
+                    value={companyName}
+                    placeholder="Firma / Adressname eingeben"
+                    autoComplete="off"
+                    onChange={(e) => {
+                      setFormErrors({ ...formErrors, companyName: "" }); // Fehlermeldung zurücksetzen
+                    handleChangeOfData(e);
+                    setCompanyName(e.target.value);
+                    }}
+                    />
+                    {formErrors.companyName && <p className="error">{formErrors.companyName}</p>}
+                    </div> : 
+                    <div id="firmennameneingabe">
+                      <label htmlFor="companyName">Vor und Nachname<sup id="courseTopicSup">*</sup></label>
+                      <input
+                        disabled
+                        type="text"
+                        id="companyName"
+                        name="companyName"
+                        value={companyName}
+                        placeholder="Vor- und Nachname Privatadresse"
+                        autoComplete="off"
+                        autoFocus
+                        onChange={(e) => {
+                          setFormErrors({ ...formErrors, companyName: "" }); // Fehlermeldung zurücksetzen
+                        handleChangeOfData(e);
+                        setCompanyName(e.target.value);
+                      }}
+                        />
+                        {formErrors.companyName && <p className="error">{formErrors.companyName}</p>}
+                    </div>
+                  }            
+                  <div id="firmenanschrift">
+                    <label htmlFor="companyStreet">Strasse / Nr.</label>
+                    <input
+                    type="text"
+                    id="companyStreet"
+                    name="companyStreet"
+                    value={companyStreet}
+                    placeholder="Strasse"
+                    autoComplete="off"
+                    onChange={(e) => {
+                      setFormErrors({ ...formErrors, companyStreet: "" }); // Fehlermeldung zurücksetzen
+                    handleChangeOfData(e);
+                    setCompanyStreet(e.target.value);
+                    }}
+                    />
+                    {formErrors.companyStreet && <p className="error">{formErrors.companyStreet}</p>}
+                  </div>
+                  <div id="firmenplz">
+                    <label htmlFor="companyZip">PLZ</label>
+                    <input
+                      type="text"
+                      id="companyZip"
+                      name="companyZip"
+                      value={companyZip}
+                      placeholder="PLZ / ZIPcode"
+                      autoComplete="off"
+                      onChange={(e) => {
+                        setFormErrors({ ...formErrors, companyZip: "" }); // Fehlermeldung zurücksetzen
+                      handleChangeOfData(e);
+                      setCompanyZip(e.target.value);
+                    }}
+                      />
+                      {formErrors.courseTopic && <p className="error">{formErrors.courseTopic}</p>}
+                  </div>
+                  <div id="firmenort">
+                    <label htmlFor="companyCity">Ort</label>
+                    <input
+                      type="text"
+                      id="companyCity"
+                      name="companyCity"
+                      value={companyCity}
+                      placeholder="Firmenstandort"
+                      autoComplete="off"
+                      onChange={(e) => {
+                        setFormErrors({ ...formErrors, companyCity: "" }); // Fehlermeldung zurücksetzen
+                      handleChangeOfData(e);
+                      setCompanyCity(e.target.value);
+                    }}
+                      />
+                      {formErrors.courseTopic && <p className="error">{formErrors.courseTopic}</p>}
+                  </div>
+                  <div id="ländercodeauswahl">
+                    <label htmlFor="companyCountryCode">Country:<sup id="companyCountryCode">*</sup></label>
+                    <input type= "text"
+                    id="companyCountryCode"
+                    name="companyCountryCode"
+                    value={companyCountryCode}
+                    list="countryCodeOptions"
+                    placeholder="CountryCode eingeben"
+                    onChange={(e) => {
+                    handleChangeOfData(e);
+                    setCompanyCountryCode(e.target.value);
+                    }} 
+                    onDoubleClickCapture={(e) => 
+                      setCompanyCountryCode("")}
+                    />
+                      < ListOfCountryCodes />            
+                  </div>
+                </div>
+                <div>
+                  <div id="linkeingabe">
+                    <label htmlFor="linkProvider">Homepage:</label>
+                    <input type= "text"
+                    id="companyHomepage"
+                    name="companyHomepage"
+                    value={companyHomepage}
+                    //placeholder="Themenfeld"
+                    onChange={(e) => {
+                    handleChangeOfData(e);
+                    setCompanyHomepage(e.target.value);
+                    }} />
+                  </div>
+                  <div id="emaileingabe">
+                    <label htmlFor="companyEmail">Firmenemail:</label>
+                      <input type= "email"
+                      id="companyEmail"
+                      name="companyEmail"
+                      value={companyEmail}
+                      placeholder="Firmenemail"
+                      autoComplete = "off"
+                      onChange={(e) => {
+                      handleChangeOfData(e);
+                      setCompanyEmail(e.target.value);
+                      }} />
+                  </div>
+                  {accessRights.includes(5) || accessRights.includes(10) || accessRights.includes(9) ?
+                  <div id="clientid">
+                    <label htmlFor="companyClientID">interne ClientID</label>
+                    <input
+                      type="text"
+                      id="companyClientID"
+                      name="companyClientID"
+                      value={companyClientID}
+                      placeholder="companyClientID"
+                      autoComplete="off"
+                      onChange={(e) => {
+                        setFormErrors({ ...formErrors, companyCity: "" }); // Fehlermeldung zurücksetzen
+                      handleChangeOfData(e);
+                      setCompanyClientID(e.target.value);
+                    }}
+                    />
+                    {formErrors.courseTopic && <p className="error">{formErrors.courseTopic}</p>}
+                  </div>: 
+                    <></>
+                  }
+
+                  {accessRights.includes(5) || accessRights.includes(10) || accessRights.includes(9) ? 
+                  <div id="providerdefinition">
+                    <label htmlFor="cpdProvider">CPD Provider:</label>
+                    <div className="inputContainer">
+                      <input type= "checkbox"
+                      id="cpdProvider"
+                      name="cpdProvider"
+                      value={cpdProvider}
+                      onChange={(e) => {
+                      handleChangeOfData(e);
+                      setCPDProvider(e.target.checked);
+                      }}/>
+                    </div>
+                  </div> : 
+                  <></>
+                  }
+                  {accessRights.includes(5) || accessRights.includes(10) || accessRights.includes(9) ?
+                  <div id="firmaaktiv">
+                    <label htmlFor="companyActive">Firma / Adresse aktiv:<sup id="activeSup">*</sup></label>
+                    <div className="inputContainer">
+                      <input type= "checkbox"
+                      id="companyActive"
+                      name="companyActive"
+                      checked={companyActive}
+                      onChange={(e) => {
+                      handleChangeOfData(e);
+                      setCompanyActive(e.target.checked);
+                      }}/>
+                    </div>
+                  </div> :
+                  <></>
+                  }
+                </div>
+              </div>
+            </div>
+            {statusSicherung === "ungesichert" ? 
+              (<div id="buttonBox">
+                <button className="buttonBasics" type="submit" value="senden" >senden</button>
+                <button className="buttonBasics" type="reset" onClick={clearForm}>reset Daten</button>
+              </div>) : 
+              <p></p>}
+          </form> : 
+          <form id="formContainer" className={statusSicherung}> 
+            <p id="änderunsgHinweis">
+              {isFormEmpty() ? "Bitte Firma filtern und auswählen" :
+              (statusSicherung === "ungesichert" ? "ACHTUNG: Änderungen wurden noch nicht gesichert" : "Daten jetzt ändern")}
+            </p>
+            
+            <div id="firmensuche">
+              <div id="boxFirmensuche">
+                <label 
+                htmlFor="sucheFirma" 
+                id="themenFilterLabel"
+                > Firmenfilter
+                </label>
+                <input 
+                type="text" 
+                name="sucheFirma" 
+                id="sucheFirma" 
+                placeholder="Text-Filter" 
+                value={firmenFilter}
+                onDoubleClickCapture={(e) => 
+                  {setFirmenFilter("")}}
+                /* onChange={handleFilter} */ 
+                onChange={(e) =>
+                  {setFirmenFilter(e.target.value)}} 
+                //autoComplete="off"
+                />
+              </div>
+              <DoubleRightOutlined id="doubleRightOutlined"/>
+              <select name="firmenListe" 
+              onChange={(e) => {
+                getCompanyToReview(e);
+                setStatusSicherung("gesichert");
+              }} 
+              id="firmenListe"> 
+                {firmenListe.length < 1  ? 
+                <option  value="">kein Treffer - bitte Filter verändern</option> : 
+                <option value="">keine Auswahl / Auswahl löschen</option>} 
+                {firmenListe.map((item, index) => (
+                <option key={index} value={item._id}>
+                {item.Firma}</option>
+                ))} 
+              </select> 
+            </div>            
+            <div id="boxEingabeFirma">
+              <div id="addressart">
+                <label id="companyNature">Adressart<sup id="addressNatureSup">*</sup></label>
+                <div id="eingabeCompanyNature">
+                  <div>
+                    <input
+                    type="radio"
+                    value="business"
+                    id="addressNature"
+                    name="addressNature"
+                    placeholder="Business"
+                    autoComplete="off"
+                    checked={addressNature === "business"}
+                    onChange={(e) => {
+                      setFormErrors({ ...formErrors, addressNature: "" }); 
+                      handleChangeOfData(e);
+                      setAddressNature("business");
+                      setCompanyType("")
+                    }}
+                    />
+                    <label htmlFor="business">business</label>
+                  </div>
+                  <div>
+                    <input
+                    type="radio"
+                    value="private"
+                    id="private"
+                    name="addressNature"
+                    placeholder="Private"
+                    autoComplete="off"
+                    checked={addressNature === "private"}
+                    onChange={(e) => {
+                      setFormErrors({ ...formErrors, addressNature: "" }); 
+                      handleChangeOfData(e);
+                      setAddressNature("private");
+                      setCompanyType("PA")
+                    }}
+                    />
+                    <label htmlFor="private">private / personal</label>
+                  </div>
+                </div>
+              </div>
+              <div id="dataEingabeFirma">
+                <div>              
+                  <div id="firmentyp">
+                    <label htmlFor="companyType">Art des Unternehmens<sup id="companyTypeSup">*</sup></label>
+                    <input
+                    //autoFocus
+                    type="text"
+                    id="companyType"
+                    name="companyType"
+                    list="auswahlCompanyType"
+                    value={companyType}
+                    placeholder="Unternehmensart"
+                    autoComplete="off"
+                    onChange={(e) => {
+                      setFormErrors({ ...formErrors, companyType: "" }); // Fehlermeldung zurücksetzen
+                      handleChangeOfData(e);
+                      setCompanyType(e.target.value);
+                    }}
+                    />
+                    <datalist id="auswahlCompanyType">
+                          {ListOfCompanyType.map((company, index) => (
+                        <option key={index} value={company.kürzel}>
+                          {company.discription}
+                        </option>
+                      ))}
+                    </datalist>
+                  </div>
+                  {addressNature ==="business" ? 
+                    <div id="firmennameneingabe">
+                    <label htmlFor="companyName">Firmenname<sup id="courseTopicSup">*</sup></label>
+                    <input
+                    type="text"
+                    id="companyName"
+                    name="companyName"
+                    value={companyName}
+                    placeholder="Firma / Adressname eingeben"
+                    autoComplete="off"
+                    onChange={(e) => {
+                      setFormErrors({ ...formErrors, companyName: "" }); // Fehlermeldung zurücksetzen
+                    handleChangeOfData(e);
+                    setCompanyName(e.target.value);
+                    }}
+                    />
+                    {formErrors.companyName && <p className="error">{formErrors.companyName}</p>}
+                    </div> : 
+                    <div id="firmennameneingabe">
+                      <label htmlFor="companyName">Vor und Nachname<sup id="courseTopicSup">*</sup></label>
+                      <input
+                      disabled
+                        type="text"
+                        id="companyName"
+                        name="companyName"
+                        value={companyName}
+                        placeholder="Vor- und Nachname Privatadresse"
+                        autoComplete="off"
+                        autoFocus
+                        onChange={(e) => {
+                          setFormErrors({ ...formErrors, companyName: "" }); // Fehlermeldung zurücksetzen
+                        handleChangeOfData(e);
+                        setCompanyName(e.target.value);
+                      }}
+                        />
+                        {formErrors.companyName && <p className="error">{formErrors.companyName}</p>}
+                    </div>
+                  }   
+                  <div id="firmenanschrift">
+                <label htmlFor="companyStreet">Anschrift</label>
+                <input
+                type="text"
+                id="companyStreet"
+                name="companyStreet"
+                value={companyStreet}
+                placeholder="Strasse"
+                autoComplete="off"
+                onChange={(e) => {
+                  setFormErrors({ ...formErrors, companyStreet: "" }); // Fehlermeldung zurücksetzen
+                handleChangeOfData(e);
+                setCompanyStreet(e.target.value);
+                }}
+                />
+                {formErrors.companyStreet && <p className="error">{formErrors.companyStreet}</p>}
+                  </div>
+                  <div id="firmenplz">
+                    <label htmlFor="companyZip">PLZ / zip code</label>
+                    <input
+                      type="text"
+                      id="companyZip"
+                      name="companyZip"
+                      value={companyZip}
+                      placeholder="PLZ / ZIPcode"
+                      autoComplete="off"
+                      onChange={(e) => {
+                        setFormErrors({ ...formErrors, companyZip: "" }); // Fehlermeldung zurücksetzen
+                      handleChangeOfData(e);
+                      setCompanyZip(e.target.value);
+                    }}
+                      />
+                      {formErrors.courseTopic && <p className="error">{formErrors.courseTopic}</p>}
+                  </div>
+                  <div id="firmenort">
+                    <label htmlFor="companyCity">Ort</label>
+                    <input
+                      type="text"
+                      id="companyCity"
+                      name="companyCity"
+                      value={companyCity}
+                      placeholder="Firmenstandort"
+                      autoComplete="off"
+                      onChange={(e) => {
+                        setFormErrors({ ...formErrors, companyCity: "" }); // Fehlermeldung zurücksetzen
+                      handleChangeOfData(e);
+                      setCompanyCity(e.target.value);
+                    }}
+                      />
+                      {formErrors.courseTopic && <p className="error">{formErrors.courseTopic}</p>}
+                  </div>
+                  <div id="ländercodeauswahl">
+                    <label htmlFor="companyCountryCode">Country:<sup id="companyCountryCode">*</sup></label>
+                    <input type= "text"
+                    id="companyCountryCode"
+                    name="companyCountryCode"
+                    value={companyCountryCode}
+                    list="countryCodeOptions"
+                    placeholder="CountryCode eingeben"
+                    onChange={(e) => {
+                    handleChangeOfData(e);
+                    setCompanyCountryCode(e.target.value);
+                    }} 
+                    onDoubleClickCapture={(e) => 
+                      setCompanyCountryCode("")}
+                    />
+                    < ListOfCountryCodes />            
+                  </div>
+                </div>
+                <div>
+                  <div id="homepageeingabe">
+                    <label htmlFor="linkProvider">Homepage:</label>
+                    <input type= "url"
+                    id="companyHomepage"
+                    name="companyHomepage"
+                    value={companyHomepage}
+                    //placeholder="Themenfeld"
+                    onDoubleClickCapture={(e) => 
+                      {setCompanyHomepage("");
+                      setStatusSicherung("ungesichert")}}
+                    onChange={(e) => {
+                    handleChangeOfData(e);
+                    setCompanyHomepage(e.target.value);
+                    }} />
+                  </div>
+                  <div id="providerdefinition">
+                    <label htmlFor="cpdProvider">CPD Provider:</label>
+                    <div className="inputContainer">
+                      <input 
+                      type= "checkbox"
+                      id="cpdProvider"
+                      name="cpdProvider"
+                      value={cpdProvider}
+                      checked={cpdProvider}
+                      onChange={(e) => {
+                      handleChangeOfData(e);
+                      setCPDProvider(e.target.checked);
+                      }} />
+                    </div>
+                  </div>          
+                  <div id="firmenaktivierung">
+                    <label htmlFor="companyActive">Adresse aktiv:</label>
+                    {/* <p id="kursActivated">{data[0].active === true ? "aktiviert" : "nicht aktiv"}</p> */}
+                    <div className="inputContainer">
+                      <input 
+                      type= "checkbox"
+                      id="companyActive"
+                      name="companyActive"
+                      checked={companyActive}
+                      value={companyActive}
+                      onChange={(e) => {
+                      handleChangeOfData(e);
+                      setCompanyActive(e.target.checked);
+                      }} 
+                      />
+                    </div>
+                  </div>
+                  <div id="createdon">
+                    <label htmlFor="createdOn">Erfasst am:</label>
+                    {/* <p id="kursActivated">{data[0].active === true ? "aktiviert" : "nicht aktiv"}</p> */}
+                    <output         
+                    id="createdOn"
+                    name="createdOn"
+                    >{Moment(createdOn).format("DD.MMMM.YYYY")}
+                    </output>
+                  </div>
+                  <div id="updatedon">
+                    <label htmlFor="updatedOn">Zuletz aktualisiert am:</label>
+                    <output         
+                    id="updatedOn"
+                    name="updatedOn"
+                    >{Moment(updatedOn).format("DD.MMMM.YYYY")}
+                    </output>
+                  </div>
+                </div>
+              </div>
+            </div> 
+            <div id="buttonBox">
+              {statusSicherung === "ungesichert"  && (
+                <>
+                  <button onClick={updateCompany}>Änderungen speichern</button>
+                  <button onClick={() => deleteCompany(companyClientID)}>Unternehmen löschen</button>
+                  <button onClick={clearSelectionOfCompany}>abbrechen</button>
+                </>
+              )}
+            </div>
+
+          </form>
+        }    
+          
+      </main>
     </>
   )
 }

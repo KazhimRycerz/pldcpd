@@ -9,12 +9,9 @@ import Swal from "sweetalert2";
 import baseURL from "../../util/constants.js"
 import UserAvatar from "../UserAvatar/UserAvatar.jsx"
 import { Tooltip, getTooltipText } from "../../util/Tooltips/Tooltips.js"
-//import { ImageSlider} from "../Slider/Slider.jsx"
 import { AvatarSliderModal } from "../../modals/Slider/SliderModal.jsx"
-import UpdateUserModal from "../../modals/UserUpdate/UserUpdateModal.jsx"
-
+//import UpdateUserModal from "../../modals/UserUpdate/UserUpdateModal.jsx"
 //import ImageUpload from '../ImageUpload/ImageUpload.jsx';
-
 
 const  KnowledgeAccountMain = () =>{
    const { isAuth,
@@ -34,11 +31,11 @@ const  KnowledgeAccountMain = () =>{
       navigate } = useContext(SectionsContext);
       const location = useLocation();
 
-   const [showPassword, setShowPassword] = useState(false);
+   //const [showPassword, setShowPassword] = useState(false);
    const [openSections, setOpenSections] = useState([]);
-   const [selectedImage, setSelectedImage] = useState(null);
+   //const [selectedImage, setSelectedImage] = useState(null);
    const [isSliderModalOpen, setIsSliderModalOpen] = useState(false);
-   const [updateUserModalIsOpen, setUpdateUserModalIsOpen] = useState(false);
+   //const [updateUserModalIsOpen, setUpdateUserModalIsOpen] = useState(false);
    const [refreshData, setRefreshData] = useState({});
 
   const [editUserName, setEditUserName] = useState(false);
@@ -65,117 +62,118 @@ const  KnowledgeAccountMain = () =>{
    /* const closeModal = () => {
       setIsSliderModalOpen(false);
     }; */
-    const dataEingabeAbbrechen = () => {
-      setChangeData(false);
+
+   const dataEingabeAbbrechen = () => {
+   setChangeData(false);
+   setEditUserName(false);
+   setEditFirstName(false);
+   setEditLastName(false);
+   setEditEmail(false);
+   setEditPassword(false);
+   setChangeData(false);
+   }
+
+   const handleErrorMessage = (data) => {
+   switch (data) {
+      case "Benutzername":
+         setErrorMessage(
+         "Ihr Benutzername muss zwischen 4 und 20 Zeichen lang sein"
+         );
+         break;
+      case "Email":
+         setErrorMessage("Geben Sie bitte eine gültige Email-Adresse ein");
+         break;
+      case "Passwort":
+         setErrorMessage(
+         "Ihr Passwort muss mindestens 8 Zeichen lang sein und eine Zahl, einen Groß- und einen Kleinbuchstaben enthalten."
+         );
+         break;
+      case "Vorname":
+         setErrorMessage("Bitte geben Sie Ihren Vornamen ein");
+         break;
+      case "Nachname":
+         setErrorMessage("Bitte geben Sie ihren Nachnamen ein");
+         break;
+      case "Wohnort":
+         setErrorMessage("Bitte geben Sie Ihre Stadt ein");
+         break;
+      default:
+         setErrorMessage("");
+         break;
+   }
+   };
+  
+   const updateUser = async (data) => {
+   const userId = localStorage.getItem("userId")
+   try {
+      const axiosResp = await axiosConfig.patch(
+         `/user/edit/${userId}`,
+         data
+      );
+      setRefreshData(axiosResp.data);
+      Swal.fire({
+         title: `${editInputName} erfolgreich geändert!!`,
+         icon: "success",
+         confirmButtonText: 'OK',
+      });
+      refreshData ? getUserData() : getUserData();
       setEditUserName(false);
       setEditFirstName(false);
       setEditLastName(false);
       setEditEmail(false);
       setEditPassword(false);
       setChangeData(false);
+      
+   } catch (error) {
+      Swal.fire({
+         title: "Da ist ein Fehler aufgetreten.",
+         text: errorMessage,
+         icon: "error",
+         confirmButtonText: 'OK',
+      });
+      setEditUserName(false);
+      setEditFirstName(false);
+      setEditLastName(false);
+      setEditEmail(false);
+      setEditPassword(false);
+      console.log(error);
    }
+   };
+  
+   const updateUserPassword = async (data) => {
+   try {
+      const axiosResp = await axiosConfig.patch(
+         `/user/password/${localStorage.getItem("userId")}`,
+         data
+      );
+      setRefreshData(axiosResp.data);
+      Swal.fire({
+         title: `${editInputName} erfolgreich geändert!!`,
+         icon: "success",
+         confirmButtonText: 'OK',
+      });
+      refreshData ? getUserData() : getUserData();
+      setEditPassword(false);
+   } catch (error) {
+      Swal.fire({
+         title: "Da ist ein Fehler aufgetreten.",
+         text: errorMessage,
+         icon: "error",
+         confirmButtonText: 'OK',
+      });
+      setEditPassword(false);
+      console.log(error);
+   }
+   };
 
-    const handleErrorMessage = (data) => {
-      switch (data) {
-        case "Benutzername":
-          setErrorMessage(
-            "Ihr Benutzername muss zwischen 4 und 20 Zeichen lang sein"
-          );
-          break;
-        case "Email":
-          setErrorMessage("Geben Sie bitte eine gültige Email-Adresse ein");
-          break;
-        case "Passwort":
-          setErrorMessage(
-            "Ihr Passwort muss mindestens 8 Zeichen lang sein und eine Zahl, einen Groß- und einen Kleinbuchstaben enthalten."
-          );
-          break;
-        case "Vorname":
-          setErrorMessage("Bitte geben Sie Ihren Vornamen ein");
-          break;
-        case "Nachname":
-          setErrorMessage("Bitte geben Sie ihren Nachnamen ein");
-          break;
-        case "Wohnort":
-          setErrorMessage("Bitte geben Sie Ihre Stadt ein");
-          break;
-        default:
-          setErrorMessage("");
-          break;
-      }
-    };
+   // Handling of Imagesize
+   const handleSizeChange = (e) => {
+   setObjectSize(e.target.value);
+   saveUserSettings(e.target.value)
+   };
   
-     const updateUser = async (data) => {
-      const userId = localStorage.getItem("userId")
-      try {
-        const axiosResp = await axiosConfig.patch(
-          `/user/edit/${userId}`,
-          data
-        );
-        setRefreshData(axiosResp.data);
-        Swal.fire({
-          title: `${editInputName} erfolgreich geändert!!`,
-          icon: "success",
-          confirmButtonText: 'OK',
-        });
-        refreshData ? getUserData() : getUserData();
-        setEditUserName(false);
-        setEditFirstName(false);
-        setEditLastName(false);
-        setEditEmail(false);
-        setEditPassword(false);
-        setChangeData(false);
-        
-      } catch (error) {
-        Swal.fire({
-          title: "Da ist ein Fehler aufgetreten.",
-          text: errorMessage,
-          icon: "error",
-          confirmButtonText: 'OK',
-        });
-        setEditUserName(false);
-        setEditFirstName(false);
-        setEditLastName(false);
-        setEditEmail(false);
-        setEditPassword(false);
-        console.log(error);
-      }
-    };
-  
-    const updateUserPassword = async (data) => {
-      try {
-        const axiosResp = await axiosConfig.patch(
-          `/user/password/${localStorage.getItem("userId")}`,
-          data
-        );
-        setRefreshData(axiosResp.data);
-        Swal.fire({
-          title: `${editInputName} erfolgreich geändert!!`,
-          icon: "success",
-          confirmButtonText: 'OK',
-        });
-        refreshData ? getUserData() : getUserData();
-        setEditPassword(false);
-      } catch (error) {
-        Swal.fire({
-          title: "Da ist ein Fehler aufgetreten.",
-          text: errorMessage,
-          icon: "error",
-          confirmButtonText: 'OK',
-        });
-        setEditPassword(false);
-        console.log(error);
-      }
-    };
-
-    // Handling of Imagesize
-    const handleSizeChange = (e) => {
-      setObjectSize(e.target.value);
-      saveUserSettings(e.target.value)
-    };
-  
-    // Handling to open sections
-    useEffect(() => {
+   // Handling to open sections
+   useEffect(() => {
       if (location.state?.openSection) {
          setOpenSections(location.state.openSection);
       }
@@ -201,10 +199,10 @@ const  KnowledgeAccountMain = () =>{
       }}
    }, [isAuth, asidePos, buttonPos, gotoPage, setAsidePos, setButtonPos]);
  
-   // Passwort zeigen oder verschleiern
+   /* // Passwort zeigen oder verschleiern
    const toggleShowPassword = () => {
       setShowPassword(prevShowPassword => !prevShowPassword);
-    };
+    }; */
     
     // Knwoldge Datensatz zu dem User anlegen
    const addKnowledgeDatensatz = async () => {
@@ -238,8 +236,9 @@ const  KnowledgeAccountMain = () =>{
             <h2> Ihre Kontodaten im Überblick</h2>
             <p className="closingFunction" onClick={() => navigate("/home")}>Formular schließen</p>
          </div>
+         
          <section id="welcomeLine">
-            <div><h3>Daten von {userData.firstName} {userData.lastName}</h3></div>
+            <div><h3>Konto und Daten von {userData.firstName} {userData.lastName}</h3></div>
          </section>
 
          <section id="account_1" style={!openSections.includes("account_1") ? { backgroundColor: 'rgba(221, 155, 55, 0.2)' } : {}}>
@@ -280,7 +279,7 @@ const  KnowledgeAccountMain = () =>{
                      </div> 
                   </div> 
                   {/*<div><p className="fieldName"></p>
-                      <div className="output" id="myCL"> 
+                        <div className="output" id="myCL"> 
                         {knowledgeData ? (<p>{knowledgeData.test.description} von 9</p>) : (<p>Ihr Datensatz wurde noch nicht angelegt</p>)}
                      </div>  
                   </div>  */}
@@ -312,7 +311,7 @@ const  KnowledgeAccountMain = () =>{
                   </div>
                </div>
 
-                <div>
+                  <div>
                   {/*<div>
                      <p className="fieldName">Ihr CPD Guthaben</p>
                      <div className="output account_Box" id="myLCoins"> 
@@ -540,7 +539,7 @@ const  KnowledgeAccountMain = () =>{
             </div>
             )}
          </section>
-   
+
          <section id="account_4" style={!openSections.includes("account_4") ? { backgroundColor: 'rgba(221, 155, 55, 0.2)' } : {}}>
             <div className="accountHead" >
                <h3 onClick={() => toggleSection("account_4")}>Ihre Konto Nutzerdaten</h3>
@@ -555,7 +554,7 @@ const  KnowledgeAccountMain = () =>{
                      isOpen={updateUserModalIsOpen} 
                      onRequestClose={() => setUpdateUserModalIsOpen(false)}
                      /> */}
-                     {changeData === false ? (<p onClick={() => setChangeData(true)}><span className="C" >C </span> Daten ändern</p>) : (<p onClick={() => dataEingabeAbbrechen()}><span className="C" >C </span> keine Änderungen</p>)}
+                     {changeData === false ? (<p onClick={() => setChangeData(true)} className="linkin"><span className="C" >C </span> Daten ändern</p>) : (<p onClick={() => dataEingabeAbbrechen()}className="linkin"><span className="C" >C </span> schließen</p>)}
                   </div>
                }
             </div>
@@ -833,7 +832,6 @@ const  KnowledgeAccountMain = () =>{
                               /* id="passwordInput" */
                               type="text"
                               /* type= "password" */
-                              //defaultValue={userData.password}
                               onChange={(e) => setPassword(e.target.value)}
                               />                                               
                         <div id="logoContainer">
@@ -875,17 +873,12 @@ const  KnowledgeAccountMain = () =>{
                         />
                      </div>
                   </div>
-                )}
+                  )}
                </div>              
-                    
+                     
                <div>      
                   <div className="fieldName">
                      <p>Ihr Avatar</p>   
-                     {/* {!selectedImage && (
-                     <p onClick={() => setIsSliderModalOpen(true)} className="bildLaden">
-                        Avatar ändern
-                     </p>
-                     )} */}
                      <AvatarSliderModal 
                      isOpen={isSliderModalOpen} 
                      onRequestClose={() => setIsSliderModalOpen(false)} 
@@ -902,8 +895,9 @@ const  KnowledgeAccountMain = () =>{
                                  onChange={handleSizeChange}
                                  style={{width:"100%"}}
                               />
+                              <p>Größe und Position</p>
                      </div>
-                              <div>{changeData === true && <EditOutlined onClick={() => setIsSliderModalOpen(true)} className="edit-icon"/>}</div> 
+                     <div>{changeData === true && <EditOutlined onClick={() => setIsSliderModalOpen(true)} className="edit-icon"/>}</div> 
                   </div>
                   </div>
                   </div>
@@ -941,7 +935,7 @@ const  KnowledgeAccountMain = () =>{
                         <div >{Moment(contactData.dateOfBirth).format("DD.MM.YYYY")}</div>
                      </div> */}
                   </div>
-   
+
                   <div className="account_5">
                      <div>
                         <p className="fieldName">E-Mail</p> 
@@ -970,7 +964,7 @@ const  KnowledgeAccountMain = () =>{
                         <div className="output">{userData.eMail}</div>
                      </div>
                   </div>
-   
+
                   <div className="account_5">
                      {/* <div>
                         <p className="fieldName">Username</p> 
@@ -1023,9 +1017,9 @@ const  KnowledgeAccountMain = () =>{
                </div>
             )}
          </section>
-          
+            
          {authorsData ?
-         (<section id="account_10" style={!openSections.includes("account_10") ? { backgroundColor: 'rgba(221, 155, 55, 0.2)' } : {}}>
+            (<section id="account_10" style={!openSections.includes("account_10") ? { backgroundColor: 'rgba(221, 155, 55, 0.2)' } : {}}>
             <div className="accountHead" >
                <h3 onClick={() => toggleSection("account_10")}>Autoreninfo</h3>
                {openSections.includes("account_10") && 
@@ -1077,7 +1071,7 @@ const  KnowledgeAccountMain = () =>{
                   <p><span className="C">C</span> Daten eingeben</p>
                </div>
             </section>)
-            }
+         }
       </main>
    )
 }

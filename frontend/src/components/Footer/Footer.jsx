@@ -54,7 +54,7 @@ const Footer = () => {
 
    return(
     <footer id="footer" ref={footerRef} style={{ position: footerPosition }}>
-    <button className="buttonBasics" id="footerButton" onClick={handleFooterHeight} >{footerValue}</button>
+    <p className="pFunction" id="footerButton" onClick={handleFooterHeight} >{footerValue}</p>
          <p>
          Rycerz Media <br />
          Marienfelder Str. 18<br />

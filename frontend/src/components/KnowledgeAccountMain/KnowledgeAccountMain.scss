@@ -32,13 +32,12 @@
           vertical-align: -1px;
         };
         &:hover {
-          //color: $cpdred;
           text-shadow: $text-shadow;
           cursor: pointer;
         }
       } 
     }
-    .bildLaden{
+    /* .bildLaden{
       &:before {
         content: "C ";
         font-family: $calli;
@@ -50,6 +49,17 @@
         //color: $cpdred;
         text-shadow: $text-shadow;
         cursor: pointer;
+      }
+    } */
+    .slider-container {
+      display: flex;
+      flex-flow: column nowrap;
+      padding: 0 5px;
+      gap: 0;
+      //border: solid 1px;
+      input p{
+        margin: 0;
+        padding: 0;
       }
     }
     .accountData{
@@ -550,7 +560,7 @@
   }
 
   .account_10 {
-    margin: px;
+    margin: 0px;
     margin-top: 10px;
     padding: 0px;
     padding-top: 0px;

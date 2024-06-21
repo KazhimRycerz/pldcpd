@@ -7,6 +7,7 @@ import KnowledgeAccount from "./pages/KnowledgeAccount/KnowledgeAccount.jsx";
 import PersonalAccount from "./pages/PersonalAccount/PersonalAccount.jsx";
 import CareerPlanning from "./pages/CareerPlanning/CareerPlanning.jsx";
 import CourseListPage from "./pages/CourseListPage/CourseListPage.jsx";
+import CPDInput from "./pages/CPDInput/CPDInput.jsx";
 import CoursePage from "./pages/CoursePage/CoursePage.jsx";
 import CourseForm from "./pages/CourseForm/CourseForm.jsx";
 import CompanyPage from "./pages/CompanyPage/CompanyPage.jsx";
@@ -50,6 +51,7 @@ function App() {
           <Route path="/courseform" element={<CourseForm />} />
           <Route path="/courselistpage" element={<CourseListPage />} />
           <Route path="/companypage" element={<CompanyPage />} />
+          <Route path="/cpdinput" element={<CPDInput />} />
           <Route path="/authorspage" element={<AuthorsPage />} />
           <Route path="/sandbox" element={<Sandbox />} />
           {/* <Route path="/community" element={<Community />} /> */}
