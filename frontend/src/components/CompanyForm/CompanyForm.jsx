@@ -22,6 +22,7 @@ const CompanyPage = () => {
   const today = new Date();
   const [currentDate, setCurrentDate] = useState(today);
   
+  const [companyId, setCompanyId] = useState("")
   const [companyName, setCompanyName] = useState("")
   const [addressNature, setAddressNature] = useState("")
   const [companyType, setCompanyType] = useState("")
@@ -36,7 +37,6 @@ const CompanyPage = () => {
   const [companyEmail, setCompanyEmail] = useState("")
   const [cpdProvider, setCPDProvider] = useState(false)
   const [companyActive, setCompanyActive] = useState(true)
-  //const [companyId, setCompanyId]= useState("")
   const [updatedBy, setUpdatedBy] = useState("")
   const [updatedOn, setUpdatedOn] = useState("")
   const [createdOn, setCreatedOn] = useState("")
@@ -67,7 +67,7 @@ const CompanyPage = () => {
     setUpdatedBy("");
     setUpdatedOn(Moment(today).format("YYYY-MM-DD"));
     setStatusSicherung("gesichert");
-    setData([null])
+    //setData([null])
   }
 
   const isFormEmpty = () => {
@@ -75,10 +75,8 @@ const CompanyPage = () => {
   };
 
   const clearSelectionOfCompany = () => {
-    setData([]);
     clearForm();
-    setStatusSicherung('gesichert');
-    document.getElementById('firmenListe').value = " ";
+    document.getElementById('firmenListe').value = "";
   };
   
   const handleChangeOfData = (event) => {
@@ -113,14 +111,14 @@ const CompanyPage = () => {
         confirmButtonText: "OK"
       });
     }
-  }, [firmenFilter]);;
+  }, [firmenFilter]);
 
   const getCompanyToReview = async (e) => {
     //console.log(e.target.value);
     const selectedValue = e.target.value;
     if (selectedValue === "") {
       setData([null]);
-      clearForm()
+      //clearForm()
       return // Abbrechen, wenn "bitte auswählen" gewählt wird
     }
     try {
@@ -129,7 +127,8 @@ const CompanyPage = () => {
       const response = await axiosConfig.get(`/companies/${companyId}`);
       const receivedData = await response.data;
       receivedData && displayCompany(receivedData)
-      //console.log(receivedData)
+      setCompanyId(receivedData._id)
+      console.log(companyId)
     } catch (error) {
       Swal.fire({
         title: "Fehler beim Aufrufen der Firma",
@@ -157,7 +156,7 @@ const CompanyPage = () => {
       setUpdatedOn(data.updatedOn);
       setCreatedOn(data.createdOn);
       setCompanyClientID(data.companyClientID)
-      //console.log(data.companyName)
+      //console.log(companyId)
     } 
   }, []);
 
@@ -177,7 +176,7 @@ const CompanyPage = () => {
       errors.push(" Die Anschrift darf nicht leer sein darf nicht leer sein");
     }
     if (companyCity.trim() === "") {
-      errors.push("Der Standort darf nicht leer sein");
+      errors.push("Der Ort darf nicht leer sein");
     }
     if (companyCountryCode === "") {
       errors.push("Das Feld Ländercode darf nicht leer sein");
@@ -209,14 +208,6 @@ const CompanyPage = () => {
     e.preventDefault();
     const isValid = validateForm();
     if (isValid) {
-        // Führe die Aktionen aus, wenn das Formular gültig ist
-       /*  const formData = new FormData(e.target);
-        let imgToSave;
-        if (removed || !file) {
-        imgToSave = null;
-      } else {
-        imgToSave = formData.get("imageUpload");
-      } */
       
       const companyData = {
         addressNature,
@@ -275,12 +266,14 @@ const CompanyPage = () => {
 
   //UpdateFunktion
   const updateCompany = async (e) => {
+    //const companyId = {companyId}
+    //console.log(e.target.value)
     e.preventDefault();
     const isValid = validateForm();
     if (isValid) {
       const companyData = {
-        companyName,
         addressNature,
+        companyName,
         companyType,
         companyBranch,
         companyCountryCode,
@@ -293,11 +286,11 @@ const CompanyPage = () => {
         companyEmail,
         cpdProvider,
         companyActive,
-        updatedBy: localStorage.getItem("userId"),
+        updatedBy: localStorage.getItem("userId")
       };
+      //console.log(companyId)
       try {
-        
-        const response = await axiosConfig.patch("/company/id", companyData); 
+        const response = await axiosConfig.patch(`/companies/${companyId}`, companyData); 
         setStatusSicherung("gesichert")
         Swal.fire({
           icon: "success",
@@ -324,7 +317,7 @@ const CompanyPage = () => {
             navigate("/home")
           }
         })
-        //console.log('Datensatz aktualisiert:', response.data);
+        console.log('Datensatz aktualisiert:', response.data);
       } catch (error) {
           
         console.error(error);
@@ -338,57 +331,62 @@ const CompanyPage = () => {
   };
 
   // Löschfunktion
-  const deleteCompany = async (companyId) => {
-    Swal.fire({
-      icon: "warning",
-      title: 'Soll das Untermehmen wirklich gelöscht werden?',
-      showDenyButton: true,
-      /* showCancelButton: true, */
-      confirmButtonText: 'löschen ist ok!',
-      denyButtonText: `nein, nicht löschen`,
-      }).then (async (result) => {
-        if (result.isConfirmed) {
-          try {
-            const response =  await axiosConfig.delete(`/companies/${companyId}`);
-            setData([]);
-            // Erfolgreich gelöscht
-            Swal.fire({
-              icon: "success",
-              title: "Das Unternehmen wurde gelöscht.",
-              confirmButtonText: "OK",
-              timer: 3000,
-            })
-          } catch (error) {
-            console.error(error);
-            Swal.fire({
-              icon: "error",
-              title: "Es ist ein Fehler aufgetreten. Der Datensatz wurde nicht gelöscht.",
-              confirmButtonText: "OK"
+  const deleteCompany = async (event) => {
+    event.preventDefault(); // Verhindert das Neuladen der Seite
+    const company = companyName; // Stellen Sie sicher, dass companyName korrekt deklariert ist
+  
+    const result = await Swal.fire({
+        icon: "warning",
+        title: `Soll das Unternehmen ${company} wirklich gelöscht werden?`,
+        showConfirmButton: true,
+        showDenyButton: true,
+        confirmButtonText: 'Ja, löschen',
+        denyButtonText: 'Nein, nicht löschen',
+    });
+
+    if (result.isConfirmed) {
+        try {
+            const response = await axiosConfig.delete(`/companies/${companyId}`, {
+                data: { companyName: company }
             });
-          }
-        } else if (result.isDenied) {
-          Swal.fire({
-            icon: "info",
-            title: "Abbruch: Der Datensatz wurde nicht gelöscht.",
-            confirmButtonText: "OK", 
-            /* timer: 3000, */
-          })
+
+            clearSelectionOfCompany(); // Auswahl des Unternehmens nur nach erfolgreicher Löschung löschen
+
+            Swal.fire({
+                icon: "success",
+                title: response.data.message || `Das Unternehmen ${company} wurde gelöscht.`,
+                confirmButtonText: "OK",
+                timer: 3000, // Display for 3 seconds
+            });
+        } catch (error) {
+            console.error("Fehler beim Löschen des Unternehmens:", error); 
+            Swal.fire({
+                icon: "error",
+                title: "Es ist ein Fehler aufgetreten. Der Datensatz wurde nicht gelöscht.",
+                confirmButtonText: "OK"
+            });
         }
-      })
-  }
+    } else if (result.isDenied) {
+        Swal.fire({
+            icon: "info",
+            title: "Der Löschvorgang wurde von Ihnen abgebrochen.",
+            confirmButtonText: "OK",
+        });
+    }
+};
+
   
   useEffect(() => {
     setGotoPage("/companypage");
     firmenFilteredList();
     displayCompany()
-
     const interval = setInterval(() => {
       setCurrentDate(new Date());
     }, 1000);
     return () => clearInterval(interval);
-  }, [firmenFilter, /* companyId, */ data]);
+  }, [firmenFilter, data, deleteCompany]);
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (isAuth && Array.isArray(accessRights) && accessRights.some(item => item > 1)) {
       setUserMode("user");
       //setUserMode("manager")
@@ -396,14 +394,13 @@ const CompanyPage = () => {
       setUserMode("user");
     }
     //console.log(userMode, typeof accessRights, (accessRights) )
-  }, [accessRights, userMode, isAuth]);
+  }, [accessRights, userMode, isAuth]); */
 
   return (
     <>
       <main id="companyForm" /* className = {userMode} */>
         <div className="headBox"> 
           <h2 id="courseHead">Eingabe / Bearbeiten von Unternehmen</h2>
-          {/* <LogoutOutlined onClick={() => navigate("/home")} /> */}
           <p className="closingFunction" onClick={() => navigate("/home")}>Formular schließen</p>
         </div>
 
@@ -747,7 +744,7 @@ const CompanyPage = () => {
             </div>
             {statusSicherung === "ungesichert" ? 
               (<div id="buttonBox">
-                <button className="buttonBasics" type="submit" value="senden" >senden</button>
+                <button className="buttonBasics" type="submit" value="senden" > Daten senden</button>
                 <button className="buttonBasics" type="reset" onClick={clearForm}>reset Daten</button>
               </div>) : 
               <p></p>}
@@ -755,7 +752,7 @@ const CompanyPage = () => {
           <form id="formContainer" className={statusSicherung}> 
             <p id="änderunsgHinweis">
               {isFormEmpty() ? "Bitte Firma filtern und auswählen" :
-              (statusSicherung === "ungesichert" ? "ACHTUNG: Änderungen wurden noch nicht gesichert" : "Daten jetzt ändern")}
+              (statusSicherung === "ungesichert" ? "ACHTUNG: Änderungen wurden noch nicht gesichert" : "Daten jetzt ändern oder löschen")}
             </p>
             
             <div id="firmensuche">
@@ -1040,13 +1037,11 @@ const CompanyPage = () => {
               </div>
             </div> 
             <div id="buttonBox">
-              {statusSicherung === "ungesichert"  && (
-                <>
-                  <button onClick={updateCompany}>Änderungen speichern</button>
-                  <button onClick={() => deleteCompany(companyClientID)}>Unternehmen löschen</button>
-                  <button onClick={clearSelectionOfCompany}>abbrechen</button>
-                </>
-              )}
+                  {statusSicherung === "ungesichert"  && (<button onClick={updateCompany}>Änderungen speichern</button>)}
+                  {!isFormEmpty() && (
+                      <button onClick={(event) => deleteCompany(event)}>Firma löschen</button>
+                  )}
+                  {(statusSicherung === "ungesichert" || !isFormEmpty()) && (<button type="reset" onClick={clearSelectionOfCompany}>abbrechen</button>)}
             </div>
 
           </form>

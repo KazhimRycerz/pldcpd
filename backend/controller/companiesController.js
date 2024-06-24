@@ -25,7 +25,6 @@ export const getCompany = async (req, res) => {
   
   }
 
-
 export const registerCompany = async (req, res) => {
     try {
     const newCompany = await CompanyModel.create(req.body)
@@ -37,10 +36,10 @@ export const registerCompany = async (req, res) => {
 }
 
 export const updateCompany = async (req, res) => {
-
+//console.log(req.params.id)
     const companyId = req.params.id;
     try {
-        const company = await CompanyModel.findOneAndUpdate(companyId, req.body);
+        const company = await CompanyModel.findOneAndUpdate({_id: companyId}, req.body, { new: true });
   
       res.json(company)
     } catch (error) {
@@ -49,13 +48,21 @@ export const updateCompany = async (req, res) => {
 }
 
 export const deleteCompany = async (req, res) => {
-  const companyId = req.params.companyid;
+  const companyId = req.params.id;
+  const companyName = req.body.companyName
+
   try {
-    const deleteCourse = await CompanyModel.deleteOne({_id: companyId});
-    res.status(202).send({ message: "Firma wurde erfolgreich gelöscht" });
+    const deleteResult = await CompanyModel.deleteOne({ _id: companyId });
+
+    if (deleteResult.deletedCount === 0) {
+      return res.status(404).send({ message: "Firma nicht gefunden" });
+    }
+
+    res.status(200).send({ message: `Die Firma ${companyName} wurde erfolgreich gelöscht` });
   } catch (error) {
-    res.status(404).send({message: "Fehler, die Adresse konnte nicht gelöscht werden"});
+    res.status(500).send({ message: "Fehler, die Adresse konnte nicht gelöscht werden" });
   }
 };
+
   
 
