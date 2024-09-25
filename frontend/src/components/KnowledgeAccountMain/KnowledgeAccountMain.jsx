@@ -10,6 +10,7 @@ import baseURL from "../../util/constants.js"
 import UserAvatar from "../UserAvatar/UserAvatar.jsx"
 import { Tooltip, getTooltipText } from "../../util/Tooltips/Tooltips.js"
 import { AvatarSliderModal } from "../../modals/Slider/SliderModal.jsx"
+import Countdown from "../Countdown/Countdown.jsx";
 //import UpdateUserModal from "../../modals/UserUpdate/UserUpdateModal.jsx"
 //import ImageUpload from '../ImageUpload/ImageUpload.jsx';
 
@@ -62,6 +63,7 @@ const  KnowledgeAccountMain = () =>{
    /* const closeModal = () => {
       setIsSliderModalOpen(false);
     }; */
+    //const cpdStartDate = knowledgeData && new Date(knowledgeData.cpdActiveSince);
 
    const dataEingabeAbbrechen = () => {
    setChangeData(false);
@@ -416,7 +418,7 @@ const  KnowledgeAccountMain = () =>{
          
          <section id="account_6" style={!openSections.includes("account_6") ? { backgroundColor: 'rgba(221, 155, 55, 0.2)' } : {}}>
             <div className="accountHead" id="account_6_head" >
-               <h3 onClick={() => toggleSection("account_6")}>Ihre CPD-Tracker</h3>
+               <h3 onClick={() => toggleSection("account_6")}>Ihr CPD-Tracker</h3>
                {openSections.includes("account_6") && 
                   <p className="linkin">
                   <span className="C">C </span>
@@ -431,7 +433,7 @@ const  KnowledgeAccountMain = () =>{
                      <tr>
                         <th>
                            <Tooltip text="LEO = Learning Opportunity, <br/>CRE = Creating an education opportunity, <br/> PAC = professional Activity">
-                           <span style={{ marginLeft: '5px', cursor: 'pointer' }}>{/* ℹ️ */}Typ</span>
+                           <span style={{ marginLeft: '0px', cursor: 'pointer' }}>{/* ℹ️ */}Typ</span>
                            </Tooltip>
                         </th>
                         <th>Activity</th>
@@ -454,7 +456,7 @@ const  KnowledgeAccountMain = () =>{
                            {/* <td>{item.activityType || 'N/A'}</td> */}
                            <td>
                               <Tooltip text={getTooltipText(item.activityType)}>
-                                 <span style={{ marginLeft: '5px', cursor: 'pointer' }}>{/* ℹ️ */}{item.activityType}</span>
+                                 <span style={{ marginLeft: '0px', cursor: 'pointer' }}>{/* ℹ️ */}{item.activityType}</span>
                               </Tooltip>
                            </td>
                            <td>{item.courseId?.courseType || 'N/A'}</td>
@@ -472,6 +474,7 @@ const  KnowledgeAccountMain = () =>{
                         </tr>
                      ))}
                   </tbody>
+                  <tfoot></tfoot>
                </table>
             </div>
             )}
@@ -498,7 +501,7 @@ const  KnowledgeAccountMain = () =>{
                         <th>aktiviert</th>
                         <th>{/* Werttyp<br/> */}
                            <Tooltip text="EDU = education, <br/>PEX = professional Experience, <br/> PED = professional Education">
-                              <span style={{ marginLeft: '5px', cursor: 'pointer' }}>{/* ℹ️ */}Werttyp</span>
+                              <span style={{ marginLeft: '0px', cursor: 'pointer' }}>{/* ℹ️ */}Werttyp</span>
                            </Tooltip>
                         </th>
                         
@@ -523,7 +526,7 @@ const  KnowledgeAccountMain = () =>{
                         </td> */}
                         <td>
                            <Tooltip text={getTooltipText(item.typeOfValue)}>
-                              <span style={{ marginLeft: '5px', cursor: 'pointer' }}>{/* ℹ️ */}{item.typeOfValue}</span>
+                              <span style={{ marginLeft: '0px', cursor: 'pointer' }}>{/* ℹ️ */}{item.typeOfValue}</span>
                            </Tooltip>
                         </td>
                         {/* <td><input type="checkbox" checked={item.pex} readOnly /></td>
@@ -1072,6 +1075,7 @@ const  KnowledgeAccountMain = () =>{
                </div>
             </section>)
          }
+          {isAuth && knowledgeData && <Countdown  targetDate={knowledgeData.cpdActiveSince} />} 
       </main>
    )
 }

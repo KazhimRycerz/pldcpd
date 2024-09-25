@@ -8,6 +8,7 @@
   //background-color: $secondary-color;
   //border-color: $cpdred;
   //max-width: 1200px;
+  box-shadow: $mainshadow;
   
    >div {
     display: flex;
@@ -94,12 +95,12 @@
         line-height: 0px; 
         margin: 0;
         padding: 15px 10px ;
-        font-size: $normal;
+        font-size: $small;
         font-family:$primary-font;
-        background-color: $first-color;
-        background-color: $fourth-color;
-        background: linear-gradient($first-color, $cpdblue );
-        color: $first-color;
+        background-color: $cpdblue;
+        //background-color: $first-color;
+        //background: linear-gradient($first-color, $cpdblue );
+        color: $fourth-color;
         border-radius: 10px 10px 0 0 ;  
         border: solid;
         border-bottom: none;
@@ -133,25 +134,16 @@
           text-decoration-line: none;
           color: $cpdblue;
         }
+        &:before{
+          content: 'C ';
+          font-family: VIA-Verlag;
+          font-size: $large;
+          color: $cpdred;
+          vertical-align: -2px;
+        }
       }
       
-      #author:hover:before{
-        content: 'C ';
-        font-family: VIA-Verlag;
-        font-size: $large;
-        color: $cpdred;
-        vertical-align: -2px;
-      }
       #author:hover {
-        //background-color: $cpdblue;
-        padding: 3px;
-        //font-weight: 700;
-        border-radius: 5px;
-        box-shadow: $btnshadow;
-        position: relative;
-        left: -10px;
-        padding-right: 20px;
-        width: calc(100% + 20px);
         #authorsLink:hover {
           color: $cpdred;
         }

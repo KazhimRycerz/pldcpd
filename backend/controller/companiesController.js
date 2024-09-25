@@ -15,7 +15,8 @@ export const getCompany = async (req, res) => {
   const companyId = req.params.id;
   try {
       const company = await CompanyModel
-        .findById(companyId);
+        .findById(companyId)
+        .populate("updatedBy");
       //console.log("companyName", company.companyName); 
       res.json(company);   
      

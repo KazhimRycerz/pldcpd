@@ -4,19 +4,13 @@ import Moment from "moment";
 import "./Countdown.scss";
 
  const  Countdown = ({ targetDate }) => {
-  //const { isAuth, knowledgeData } = useContext(SectionsContext);
   const [countdown, setCountdown] = useState({});
-  /* const [startData, setStartData] = useState(new Date(knowledgeData.cpdActiveSince)); */
-  //setStartData(getUserData.cpdActiveSince)
+  const cpdStartDate = targetDate && new Date(targetDate);
   
   useEffect(() => {
     const interval = setInterval(() => {
       const now = new Date();
-      //const cpdStartDate = new Date(knowledgeData.cpdActiveSince);
-      //const distance = now - cpdStartDate;
-      const distance = now - targetDate;
-      //const distance = targetDate - now
-      //console.log(knowledgeData.cpdActiveSince);
+      const distance = now - cpdStartDate;
 
       const years = Math.floor(distance / (1000 * 60 * 60 * 24 * 365) )
       const months = Math.floor((distance % (1000 * 60 * 60 * 24 * 30 * 12)) / (1000 * 60 * 60 * 24 * 30) )
@@ -29,7 +23,7 @@ import "./Countdown.scss";
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [targetDate/* , knowledgeData.cpdActiveSince */]);
+  }, [targetDate]);
 
   return (
     <>

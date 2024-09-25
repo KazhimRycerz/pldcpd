@@ -42,14 +42,11 @@ useEffect(() => {
     <main id="courseMain"> {/* Styling in global */}
       <div id="headBox">
         <h2 id="courseHead">Kursinhalt und Beschreibung</h2>
-        <button onClick={() => {navigate(-1)}} className="buttonBasics" /* id="returnToCoursePage" */>zurück zur Übersicht</button>
+        <button onClick={() => {navigate(-1)}} className="buttonBasics pFunction" /* id="returnToCoursePage" */>zurück</button>
       </div>
       
       <article id="courseArticle">
-        <div className="courseBoxes" id="boxBookingNo"> 
-            <p>Kurs-Code</p> 
-            <div className="output" id="bookingNo">{courseData.bookingNo}</div>
-        </div>
+        
         <div className="courseBoxes" id="boxAutor"> 
             <p>Kursthema</p> 
             <div className="output" id="courseTopic">{courseData.courseTopic}</div>
@@ -74,6 +71,10 @@ useEffect(() => {
         <div> 
             <p>Themenbereich</p> 
             <div className="output" id="courseTopicField">{courseData.topicField}</div>
+        </div>
+        <div className="courseBoxes" id="boxBookingNo"> 
+            <p>Kurs-Code</p> 
+            <div className="output" id="bookingNo">{courseData.bookingNo}</div>
         </div>
         <div id="boxCourseContent"> 
             <p>Inhalt</p> 
@@ -122,10 +123,11 @@ useEffect(() => {
           <p>Kursanbieter</p> 
           <div className="output" id="courseProvider" ><a href={courseData.linkToProvider} target="_blank" rel="noopener noreferrer">{courseData.linkToProvider}</a></div>
         </div>   
+        
       </article>
         <div id="buttonBottom">
           <h2>Haben Sie Interesse an diesen Kurs?</h2>
-          <button className="buttonBasics" /* id="buttonLernListe" */>auf meine Lernliste</button>
+          <button className="buttonBasics pFunction" /* id="buttonLernListe" */>auf Lernliste</button>
         </div>   
     </main>
   );

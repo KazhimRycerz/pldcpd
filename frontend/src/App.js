@@ -10,6 +10,7 @@ import CourseListPage from "./pages/CourseListPage/CourseListPage.jsx";
 import CPDInput from "./pages/CPDInput/CPDInput.jsx";
 import CoursePage from "./pages/CoursePage/CoursePage.jsx";
 import CourseForm from "./pages/CourseForm/CourseForm.jsx";
+import ContactForm from "./pages/ContactForm/ContactForm.jsx";
 import CompanyPage from "./pages/CompanyPage/CompanyPage.jsx";
 import AuthorsPage from "./pages/AuthorsPage/AuthorsPage.jsx";
 import Login from "./pages/LoginPage/Login.jsx";
@@ -51,6 +52,7 @@ function App() {
           <Route path="/courseform" element={<CourseForm />} />
           <Route path="/courselistpage" element={<CourseListPage />} />
           <Route path="/companypage" element={<CompanyPage />} />
+          <Route path="/contactpage" element={<ContactForm />} />
           <Route path="/cpdinput" element={<CPDInput />} />
           <Route path="/authorspage" element={<AuthorsPage />} />
           <Route path="/sandbox" element={<Sandbox />} />

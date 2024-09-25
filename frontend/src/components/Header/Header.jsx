@@ -212,8 +212,10 @@ const Header = () => {
             
             <li>
               <NavLink to="/companypage" className="closebtn active">
-                <span className="C">C</span> register company 
-              </NavLink>
+                <span className="C">C</span> 
+                {isAuth && Array.isArray(accessRights) && accessRights.some(item => item > 1) ? 'work on companies' : 'register company'}
+            </NavLink>
+
             </li>
             {/* <img src="./images/finger-print-outline.svg" alt="" /> */}
           </ul>

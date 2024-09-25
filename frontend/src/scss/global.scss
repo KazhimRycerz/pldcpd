@@ -21,7 +21,7 @@ main {
   //display: none;
   width: 80%;
   max-width: 1280px;
-  margin: -20px auto 50px;
+  margin: 0 auto 50px;
   z-index: 5;
   position: relative;
   border: solid white 2px;
@@ -96,36 +96,35 @@ main {
 }
 
 .buttonBasics {
-  //vertical-align: middle;
+  vertical-align: middle;
+  padding: 10px;
   width: 60%;
   height: 40px;
   max-width: 120px;
   margin: 0px ;
   font-size: $xsmall;
-  padding: 10px;
   background-color: $first-color;
-  background-color: white;
   color: $cpdblue;
   box-shadow: $btnshadow;
   border-radius: $radiussmall;
   text-decoration: none;
   border: none;
   cursor: pointer;
+  text-align: left;
   &:hover{
     background-color: $cpdblue-10;
   }
-  &:active {
+  /* &:active {
     //background-color: white;
     box-shadow: $btnshadowpressed;
     background-color: $first-color;
     //border: solid 2px;
-  }
-  a {
-    color: $cpdblue;
-    border-radius: $radiussmall;
-    text-decoration: none;
-    cursor: pointer;
-    }
+  } */
+  /* &:focus {
+    top: 2px;
+  left: 1px;
+  box-shadow: none;
+  } */
 }
 .actionButtons{
   display: flex;
@@ -135,7 +134,7 @@ main {
 }
 
 .headBox{
-  margin: 20px auto 30px;
+  margin: 10px auto 10px;
   width: fit-content;
   //border: solid;
   h2 {
@@ -258,9 +257,7 @@ background: blue;
   
 } */
 
-/* .containerBox{
-  background: aqua;
-} */
+
 .containerBox{
   background: white;
   border-radius: $small;
@@ -279,10 +276,22 @@ background: blue;
     color: $cpdred;
     font-size: calc($normal + 2px);
     vertical-align: -3px;
+    //margin-left: 10px;
   }
 }
 
+
+.ungesichert {
+  box-shadow: $ungesichertshadow !important;
+  //transition: box-shadow 3s;
+}
+.gesichert {
+  border: none;
+  box-shadow: none;
+  //transition: box-shadow 3s;
+}
     
+
 @media (max-width: $tablet){
   body {
     background-image: none;

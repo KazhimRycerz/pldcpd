@@ -26,8 +26,6 @@
     border-radius: $radiuslarge;
     border-color: $cpdred;
     overflow-x:scroll;
-    
-    
     >div{
       display: flex;
       flex-flow: row nowrap;
@@ -50,8 +48,10 @@
         div{
           display: flex;
           flex-flow: row nowrap;
-          border: dotted;
-          border-radius:2px;
+          background: $fourth-color;
+          border-left: dotted $cpdred;
+          border-right: dotted $cpdred;
+          border-radius:5px;
           position: relative;
           bottom: 3px;
           margin: 0 0 0 5px;
@@ -70,12 +70,15 @@
       #sortItem {
         position: relative;
         top: 0px;
-        background: transparent;
+        background: $fourth-color;
         margin: 0 0 0 5px;
-        padding: 0 ;
+        padding: 0px ;
         font-size: $small;
-        border: dotted $cpdred;
-        border-radius:2px;
+        border-left: dotted $cpdred;
+        border-right: dotted $cpdred;
+        border-top: none;
+        border-bottom: none;
+        border-radius:5px;
         height: 25px;
         &:active{
           border: none;
@@ -85,7 +88,7 @@
           text-shadow: $text-shadow;
         }
       }
-      p select{
+      /* p select{
         //border:solid;
         //display: inline;
         text-align: right;
@@ -99,16 +102,18 @@
       #filterLöschen:hover {
         color: $cpdred;
           text-shadow: $text-shadow;
-      }
+      } */
     }
   }
   
   #tableCourseList {
     font-size: $small;
     margin: 0 auto;
-    font-size: 0.8rem;
     padding: 10px;
     width: 80%;
+    overflow:scroll;
+    margin-bottom: 20px;
+    table-layout:unset;
     
   
     //text-align: center;
@@ -159,27 +164,14 @@
     tr:last-child td:last-child {
       border-radius: 0 0 10px 0;
     }
+    
     #topicLink, #authorsLink{
       text-decoration-line: none;
       color: $cpdblue;
     }
-    
-    /* .larger:hover {
-      background: $cpdred;
-      color: $secondary-color;
-      box-shadow: $btnshadow;
-      border-radius: 3px;
-      width: 20%;
-      padding:0px;
-      cursor: pointer;
-      //border-radius:10px 0 10px 0;
-      #topicLink, #authorsLink{
-        color: $secondary-color;
-        font-size: 16px;
-      }
-    } */
-    #author:hover:before, #topic:hover:before{
+    #author:before, #topic:before{
        content: 'C ';
+       color: $cpdred;
        font-family: VIA-Verlag;
        vertical-Align: -1px;
        text-shadow: $text-shadow;
@@ -187,15 +179,19 @@
     #author:hover, #topic:hover {
       //background-color: $first-color;
       color: $cpdred;
+      width:max-content;
+      margin-bottom: 5px;
+      //overflow: auto;
       //padding: 5px;
       //margin-left: -5px;
       //width: calc(100% + 10px);
       //font-size: 16px;
       //box-shadow: $btnshadowsmall;
-      border-radius: 7px;
+      //border-radius: 7px;
       #authorsLink:hover,#topicLink:hover {
-        color: $cpdred;
+        //color: $cpdred;
         text-shadow: $text-shadow;
+        
       }
     }
     #infoLink, #providerLink {

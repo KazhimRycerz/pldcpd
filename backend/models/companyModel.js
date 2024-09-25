@@ -79,7 +79,7 @@ const companySchema = mongoose.Schema({
 
    updatedBy: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "contact",
+      ref: "user",
    }
 });
 companySchema.set('strictQuery', true);

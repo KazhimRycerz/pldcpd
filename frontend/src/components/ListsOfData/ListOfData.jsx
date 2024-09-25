@@ -1,10 +1,11 @@
-import React, { useState, useRef, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import axiosConfig from "../../util/axiosConfig.js"
 import { SectionsContext } from "../../context/SectionsContext.js";
 import Swal from "sweetalert2";
+import { CloseOutlined } from "@ant-design/icons";
 
 
-const ListOfCourseTypes = () => {
+const DataListOfCourseTypes = () => {
   const { isAuth } = useContext(SectionsContext);
   const [typeList, setTypeList] = useState([])
   const getListOfCourseTypes = async () => {
@@ -12,7 +13,7 @@ const ListOfCourseTypes = () => {
       const response = await axiosConfig.get("/coursetypes");
       const receivedData = response.data;
       setTypeList(receivedData);
-      //console.log(receivedData);
+      //console.log(typeList);
     } catch (error) {
       Swal.fire({
         title: "Keine Liste gefunden",
@@ -25,7 +26,7 @@ const ListOfCourseTypes = () => {
   useEffect(() => {
     getListOfCourseTypes();
   }, []);
-
+  
   return (
     <>   
         {typeList.map((typeList, index) => (
@@ -36,62 +37,54 @@ const ListOfCourseTypes = () => {
     </>   
   )
 }
+  
+const ListOfCourseTypes = ({ onSelectCourseType}) => {
+  //const { isAuth } = useContext(SectionsContext);
+  const [typeList, setTypeList] = useState([]);
 
-/* const ListOfCountryCodes = () => {
-const [filteredData, setFilteredData] = useState([]);
-const [filterValue, setFilterValue] = useState('');
-
-useEffect(() => {
-  const getList = async () => {
+  const getListOfCourseTypes = async () => {
     try {
-      if (filterValue.trim() === '') {
-        // Wenn kein Filterwert vorhanden ist, alle Daten abrufen
-        const response = await axiosConfig.get(`/countrycodes`);
-        if (response.status !== 200) {
-          throw new Error('Network response was not ok');
-        }
-        const receivedData = response.data;
-        setFilteredData(receivedData);
-      } else {
-        // Wenn ein Filterwert vorhanden ist, nur gefilterte Daten abrufen
-        const response = await axiosConfig.get(`/countrycodes?filter=${filterValue}`);
-        if (response.status !== 200) {
-          throw new Error('Network response was not ok');
-        }
-        const filteredData = response.data;
-        setFilteredData(filteredData);
-      }
+      const response = await axiosConfig.get("/coursetypes");
+      const receivedData = response.data;
+      setTypeList(receivedData);
+    console.log(typeList);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      Swal.fire({
+        title: "Keine Liste gefunden",
+        icon: "error",
+        confirmButtonText: "OK"
+      });
     }
   };
 
-  getList();
-}, [filterValue]);
+  useEffect(() => {
+    getListOfCourseTypes();
+  }, []);
 
-return (
-  <>
-    <input
-      type="text"
-      placeholder="Filter by Country"
-      value={filterValue}
-      onChange={e => setFilterValue(e.target.value)}
-    />
-    <datalist id="countryCodeOptions">
-      {filteredData.map((countryList, index) => (
-        <option key={index} value={countryList.kurzCode}>
-          {countryList.landBezeichnung}
-        </option>
+  return (
+    <ul 
+    id="listOfCourseTypes" 
+    style={{ listStyleType: 'none', padding: 0 }}>
+      
+      {typeList.map((type, index) => (
+        <li 
+          key={index} 
+          onClick={() => onSelectCourseType(type.type)} 
+          style={{ cursor: 'pointer', padding: '5px', borderBottom: '1px solid #ddd' }}
+        >
+          {type.type}
+        </li>
       ))}
-    </datalist>
-  </>
-);
-}; */
+    </ul>
+  );
+};
 
-const ListOfCountryCodes = () => {
+
+const ListOfCountryCodes = ({ onSelectCountryCode, handleCountryCodeFocus }) => {
   //const { isAuth } = useContext(SectionsContext);
   const [countryList, setCountryList] = useState([])
-
+  const [searchTerm, setSearchTerm] = useState('');
+  
   const getListOfCountryCodes = async () => {
     try {
       const response = await axiosConfig.get("/countrycodes");
@@ -111,15 +104,43 @@ const ListOfCountryCodes = () => {
     getListOfCountryCodes();
   }, []);
 
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+  }
+
+  const filteredCountryList = countryList.filter(country =>
+    country.landBezeichnung.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <>   
-      <datalist id="countryCodeOptions">
-        {countryList.map((country, index) => (
-          <option key={index} value={countryList.kurzCode}>
-            {country.landBezeichnung}
-          </option>
-        ))}
-      </datalist>
+      <ul id="countryCodeOptions">
+        
+          < CloseOutlined 
+            id="closeX" 
+            onClick={() => {
+              handleCountryCodeFocus();
+            }}
+            />
+       
+        <input
+        id="sucheCountryCode"
+        type="text"
+        placeholder="Land Suchfilter"
+        value={searchTerm}
+        onChange={handleSearch}
+        autoFocus
+        autoComplete="off"
+        />
+      {filteredCountryList.slice(0, 10).map((country, index) => (
+        <li 
+        key={index} 
+        value={country.kurzCode} 
+        onClick={() => onSelectCountryCode(country)}>
+        {country.landBezeichnung}
+        </li>
+      ))}
+      </ul>
     </>   
   )
 }
@@ -138,17 +159,19 @@ const ListOfLanguages = [
   "Französisch",
   "Italienisch",
   "Spanisch",
-  "Chinesisch"
+  "Chinesisch",
+  "Schwedisch"
 ];
 
 const ListOfTopicFields = [
   "Lichtdesign",
   "Lichttechnik",
+  "Tageslicht",
+  "Masterplanung",
   "Lichtkunst",
   "Planungspraxis",
   "Berufspraxis",
-  "Masterplanung",
-  "Community",
+  "Community"
 ];
 
 const ListOfCompanyType = [
@@ -164,7 +187,7 @@ const ListOfCompanyType = [
   },
   {
     kürzel:"LT",
-    discription: "Lichtdesignbüro",
+    discription: "Lichttechnikbüro",
     discriptionEn: "lighting design practise"
   },
   {
@@ -178,6 +201,11 @@ const ListOfCompanyType = [
     discriptionEn: "architectural practise"
   },
   {
+    kürzel:"IAB",
+    discription: "Innenarchitekturbüro",
+    discriptionEn: "interior architecture"
+  },
+  {
     kürzel:"HS",
     discription: "Hochschule",
     discriptionEn: "university"
@@ -186,6 +214,16 @@ const ListOfCompanyType = [
     kürzel:"PA",
     discription: "Privatadresse",
     discriptionEn: "private address"
+  },
+  {
+    kürzel:"ME",
+    discription: "Medien",
+    discriptionEn: "media"
+  },
+  {
+    kürzel:"V",
+    discription: "Verband",
+    discriptionEn: "association"
   }
 ]
 
@@ -221,48 +259,48 @@ const IndustryField= [
 const ListOfLevel = [
   {
   value: 0,
-  discription: "beginner"
+  discription: "Beginner"
   },
   {
   value: 1,
-  discription: "student"
+  discription: "Student"
   },
   {
   value: 2,
-  discription: "newly qualified Lighting designer"
+  discription: "Newly qualified Lighting designer"
   },
   {
   value: 3,
-  discription: "junior lighting designer"
+  discription: "Junior lighting designer"
   },
   {
   value: 4,
-  discription: "project lighting designer"
+  discription: "Project lighting designer"
   },
   {
   value: 5,
-  discription: "senior lighting designer"
+  discription: "Senior lighting designer"
   },
   {
   value: 6,
-  discription: "associate lighting designer"
+  discription: "Associate lighting designer"
   },
   {
   value: 7,
-  discription: "principal lighting designer"
+  discription: "Principal lighting designer"
   },
   {
   value: 8,
-  discription: "master in lighting design"
+  discription: "Master in lighting design"
   },
   {
   value: 9,
-  discription: "authorised expert in lighting design"
+  discription: "Authorised expert in lighting design"
   },
 ];
   
 const ListOfAccessRights = () => {
-  const { isAuth } = useContext(SectionsContext);
+  //const { isAuth } = useContext(SectionsContext);
   const [accessList, setAccessList] = useState([])
   
     const getListOfAccessRights = async () => {
@@ -295,4 +333,4 @@ const ListOfAccessRights = () => {
     )
   }
 
-export { IndustryField, ListOfCompanyType, ListOfCourseTypes, ListOfLanguages, ListOfTopicFields, stepsOfCPDEvaluation, ListOfLevel, ListOfAccessRights, ListOfCountryCodes }
+export { IndustryField, ListOfCompanyType, ListOfCourseTypes, DataListOfCourseTypes, ListOfLanguages, ListOfTopicFields, stepsOfCPDEvaluation, ListOfLevel, ListOfAccessRights, ListOfCountryCodes }

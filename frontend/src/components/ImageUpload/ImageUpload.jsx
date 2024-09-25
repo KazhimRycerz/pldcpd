@@ -15,11 +15,11 @@ const ImageUpload = ({ setUserImage }) => {
   return (
     <div id="uploadImageMain">
       <input 
-        onChange={handleFileChange} 
         type="file" 
         accept="image/*" 
         id="test2" 
         className="buttonBasics"
+        onChange={handleFileChange} 
       />
       {imageUrl && (
         <div>

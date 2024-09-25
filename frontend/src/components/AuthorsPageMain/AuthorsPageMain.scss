@@ -5,6 +5,7 @@
   min-height: 60vh;
   //margin-top: 0px;
   background-color: $first-color;
+  box-shadow: $mainshadow;
   //background-color: $cpdblue;
   //border-color: $cpdred;
   >div {
@@ -52,7 +53,7 @@
         line-height: 0px; 
         margin: 0 0 0 0;
         padding: 15px 20px 10px 20px;
-        font-size: $normal;
+        font-size: $small;
         font-family:$primary-font;
         //background: linear-gradient($first-color, $cpdblue );
         background-color: $cpdblue;
@@ -64,7 +65,7 @@
       }
       .output {
         font-size: $normal;
-        padding: 10px 20px;
+        padding: 10px ;
         width: 100%;
         color: $cpdblue;
         text-align:left; 

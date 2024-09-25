@@ -2,6 +2,7 @@ import './Footer.scss'
 import { Link } from 'react-router-dom'
 import React, { useState, useEffect, useRef } from "react";
 import { throttle } from 'lodash'
+import { XOutlined } from "@ant-design/icons";
 
 const Footer = () => {
   const [footerPosition, setFooterPosition] = useState('fixed');

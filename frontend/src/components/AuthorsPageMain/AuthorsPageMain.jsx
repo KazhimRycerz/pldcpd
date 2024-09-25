@@ -45,13 +45,13 @@ useEffect(() => {
     <main id="authorsPageMain"> {/* Styling in global */}
       <div id="headBox">
         <h2 id="courseHead">Autoren Info</h2>
-        <button onClick={zurückZurListe} className="buttonBasics" >zurück zur Übersicht</button>
+        <button onClick={zurückZurListe} className="buttonBasics pFunction" >zur Übersicht</button>
       </div>
       
       <article id="authorsArticle">
         <div className="courseBoxes"> 
             <p>Autorenname</p> 
-            <div className="output" id="courseTopic">{authorsData.professionalTitle} {authorsData.firstName} {authorsData.lastName} {authorsData.appendix}</div>
+            <div className="output" id="courseTopic">{authorsData.professionalTitle} {authorsData.firstName} {authorsData.lastName}, {authorsData.appendix}</div>
         </div>
         {/* <div className="courseBoxes"> 
             <p>Autorenname</p> 
@@ -95,7 +95,7 @@ useEffect(() => {
 
       <div>
         <h2></h2>
-        <button className="buttonBasics">Themenliste Autor</button>
+        <button className="buttonBasics pFunction">Themen Autor</button>
       </div> 
       
     </main>

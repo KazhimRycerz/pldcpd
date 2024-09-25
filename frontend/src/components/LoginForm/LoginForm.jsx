@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 //import swal from "sweetalert";
 
 const LoginForm = () => {
-  const { setButtonPos, navigate, gotoPage, isAuth, setIsAuth, logout, accessRights, setAccessRights } = useContext(SectionsContext)
+  const { setButtonPos, navigate, gotoPage, isAuth, setIsAuth, userMode, setUserMode, logout, accessRights, setAccessRights } = useContext(SectionsContext)
   const [isLoading, setIsLoading] = useState(false);
   const formEl = useRef(null);
   const usernameEL = useRef(null);
@@ -26,11 +26,11 @@ const LoginForm = () => {
     localStorage.setItem("accessRights", JSON.stringify(respData.accessRights));
     localStorage.setItem("firstName", respData.firstName);
     setButtonPos("showBut");
-    setAccessRights(JSON.parse(localStorage.getItem("accessRights")));
-    //setAccessRights(respData.accessRights)
-   // console.log(accessRights, typeof accessRights, localStorage.getItem("accessRights", respData.accessRights))
-    //window.history.back();
-    //navigate(-1);
+    const accessRights = JSON.parse(localStorage.getItem("accessRights"));
+    setAccessRights(accessRights);
+    if (accessRights.some(item => item > 1)) {
+      setUserMode("manager");
+    }
     navigate(gotoPage)
   };
 
@@ -138,7 +138,7 @@ const LoginForm = () => {
             />
           </div>
           <div>
-            <button className="buttonBasics" id="loginButton" type="submit" value="Daten senden">Daten senden
+            <button className="buttonBasics pFunction" id="loginButton" type="submit" value="Daten senden">Daten senden
             </button>
           </div>
         </form>):(
@@ -148,7 +148,7 @@ const LoginForm = () => {
 
       <p id="textKeinKonto">Sie haben noch kein Konto? Dann können Sie sich hier als neuer User</p>
       <div id="buttonInside">
-        <button className="buttonBasics" id="registerButton">
+        <button className="buttonBasics pFunction" id="registerButton">
           <Link to={"/register"}>registrieren</Link>
         </button>
       </div>

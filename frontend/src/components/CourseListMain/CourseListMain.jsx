@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 //import C from "../../images/C.png"
 import { useContext, useState, useEffect } from "react";
 import { SectionsContext } from "../../context/SectionsContext";
-import { ListOfCourseTypes, ListOfLanguages, ListOfTopicFields, ListOfLevel } from "../ListsOfData/ListOfData.jsx";
+import { ListOfCourseTypes, DataListOfCourseTypes, ListOfLanguages, ListOfTopicFields, ListOfLevel } from "../ListsOfData/ListOfData.jsx";
 import axiosConfig from "../../util/axiosConfig";
 import baseUrl from "../../util/constants";
 import Moment from "moment";
@@ -30,7 +30,7 @@ const CourseAddMain = () => {
   const [filterElements,setFilterElements] = useState(["keine"]);
   const [sortElement, setSortElement] = useState('');
 
-  const cpdStartDate = knowledgeData && new Date(knowledgeData.cpdActiveSince);
+  //const cpdStartDate = knowledgeData && new Date(knowledgeData.cpdActiveSince);
   //console.log(cpdStartDate)
   
   const buttonPosCheck = ()=>{
@@ -88,12 +88,12 @@ const searchCourseListData = async () => {
   }
 };
 
-const searchListElements = async () => { 
+/* const searchListElements = async () => { 
   try {
     const axiosResp = await axiosConfig.get("/courses");
     const receivedData = await axiosResp.data;
 
-    /* const themenListe = receivedData.map(({topicField }) => topicField);
+    const themenListe = receivedData.map(({topicField }) => topicField);
     const reducedThemenListeSet = new Set(themenListe);
     const reducedThemenListe = Array.from(reducedThemenListeSet)
 
@@ -107,7 +107,7 @@ const searchListElements = async () => {
     //Liste von allen Themenfeldern in allen Datensätzen:
     const reducedLanguageListeSet = new Set(doppelflachesArray);
     // reduziert, so dass keine Dubletten mehr vorhanden sind:
-    const reducedLanguageListe = Array.from(reducedLanguageListeSet) */
+    const reducedLanguageListe = Array.from(reducedLanguageListeSet)
 
     //setListLanguage(courseLanguage)
     //setListOfThemen(reducedThemenListe)
@@ -115,18 +115,18 @@ const searchListElements = async () => {
     //setListOfKursart(reducedKursartListe)
     /* console.log(sprachenListe)
     console.log(reducedKursartListe)
-    console.log(reducedLanguageListe) */
+    console.log(reducedLanguageListe) 
   } catch (error) {
     console.log(error);
   }
-};
+};*/
 
 useEffect(() => {
   setGotoPage("/courselistpage")
   searchCourseListData();
   buttonPosCheck()
   //searchListElements()
-  console.log(accessRights)
+  //console.log(accessRights)
 }, [ sortElement, themenFilter, kursartFilter, autorenFilter, kursstartFilter, levelFilter, sprachFilter]);
 
   return (
@@ -137,9 +137,7 @@ useEffect(() => {
       </div>
       <div id="overviewCourses">
         <div>
-          {/* <p>sie können nch Ihren Bedürfnissen filtern...</p> */}
-          {/* <p>gesetzte Filter: {filterElements}</p> */}
-          <ul>gesetzte Filter: {filterElements.length >= 1 ? <div>{filterElements.map((value, index) => (
+          <ul id="gesetzterFilter" >gesetzte Filter: {filterElements.length >= 1 ? <div>{filterElements.map((value, index) => (
                     <li key={index}> {value}</li>
                   ))}</div> : <div><li>ohne Filter</li></div>}
           </ul>
@@ -155,10 +153,11 @@ useEffect(() => {
               <option value="Level">Level</option>
             </select></p>
                             
-          <p id="filterLöschen" onClick={resetFilter}><span className="C">C </span>Filter löschen</p>
+          {filterElements.length >= 1 &&  <p id="filterLöschen" className="pFunction"onClick={resetFilter}>Filter löschen</p>}
         </div>
+
         <table id="tableCourseList">
-          <colgroup>
+          {/* <colgroup>
             <col width="10%" />
             <col width="10%" />
             <col width="5%" />
@@ -170,8 +169,7 @@ useEffect(() => {
             <col width="2%" />
             <col width="2%" />
             <col width="10%" />
-            <col width="1%" />
-          </colgroup>
+          </colgroup> */}
           <thead>
             <tr>
               <th>Thema</th>
@@ -204,7 +202,7 @@ useEffect(() => {
                   {/* {listOfKursart.map((value, index) => (
                     <option key={index}>{value}</option>
                   ))} */}
-                  < ListOfCourseTypes />
+                  < DataListOfCourseTypes />
                 </select>
               </th>
               <th>
@@ -269,14 +267,14 @@ useEffect(() => {
             {coursesData.map((course, index)=>{
               return(
                 <tr key={index} >
-                  <td className="larger">
+                  <td >
                     <li id="topic">
                       <Link to="/coursepage" state= {course._id} id="topicLink">
                       {course.courseTopic}
                       </Link>
                     </li>
                   </td>
-                  <td className="larger">
+                  <td >
                     {authorsData[index].map((author, innerIndex) => (
                       <li key={innerIndex} id="author">
                         <Link to="/authorspage" state= {author._id} id="authorsLink">
@@ -318,7 +316,7 @@ useEffect(() => {
       {/* <div>
         <h3>Sie sind CPD-aktiv seit {{cpdStartDate}}</h3>
       </div> */}
-      {isAuth && knowledgeData && <Countdown  targetDate={cpdStartDate} />}
+      {isAuth && knowledgeData && <Countdown  targetDate={knowledgeData.cpdActiveSince} />}
 
     </main>
   );

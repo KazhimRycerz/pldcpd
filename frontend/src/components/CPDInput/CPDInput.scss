@@ -1,0 +1,19 @@
+@import "../../scss/global.scss";
+
+#cpdInput{
+  width: 80%;
+  max-width: 1280px;
+  min-height: 600px;
+  margin: 00px auto 100px;
+  box-shadow: $mainshadow;
+  //border: solid 2px white;
+  //font-family: $primary-font;
+  
+  form{
+  width: 80%;
+  border: solid;
+  margin: 0 auto;
+  height: 300px;
+
+}
+}

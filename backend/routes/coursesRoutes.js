@@ -3,11 +3,6 @@ import { getAllCourses, addCourse, updateCourse, getCourse, getFilteredCourselis
 
 
 const router = Router()
-/* router
-.get("/", getAllCompanies )
-.post("/", registerCompany )
-.patch("/:id", updateCompany)
-.get("/:id", getCompany); */
 
 router.route("/")
     .get(getAllCourses )

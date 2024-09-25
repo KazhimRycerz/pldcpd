@@ -27,11 +27,13 @@ const SectionsProvider = ({ children }) => {
   const [knowledgeData, setKnowledgeData] = useState({});
   const [marketData, setMarketData] = useState({});
   const [gotoPage, setGotoPage] = useState("/home");
+  const [userMode, setUserMode] = useState("user")
   const [accessRights, setAccessRights] = useState([0]);
   const [authorsData, setAuthorsData] = useState({})
   const [companyData, setCompanyData] = useState({})
   const [careerData, setCareerData] = useState([0]);
   const [cpdData, setCPDData] = useState([0])
+
   const [objectSize, setObjectSize] = useState(() => {
   const savedSize = localStorage.getItem('objectSize');
     return savedSize ? parseInt(savedSize) : 100;
@@ -65,9 +67,10 @@ const SectionsProvider = ({ children }) => {
     axiosConfig.post("/user/logout").then((res) => {
     });
     localStorage.clear();
-    setAccessRights([0]) 
+    setAccessRights([0]); 
+    setUserMode("user");
     //console.log(localStorage)
-    !localStorage.length && navigate("/home")
+    !localStorage.length && navigate(gotoPage || "/home")
     Swal.fire({
       title: `Sie haben sich erfolgreich abgemeldet, ${logoutName}, alias ${logoutUser}. Besuchen sie uns bald wieder!`,
       icon: "success",
@@ -149,7 +152,9 @@ const SectionsProvider = ({ children }) => {
         setObjectSize,
         objectPosition,
         setObjectPosition,
-        saveUserSettings
+        saveUserSettings,
+        userMode,
+        setUserMode
       }}
     >
       {children}

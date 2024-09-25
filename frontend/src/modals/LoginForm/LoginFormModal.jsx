@@ -12,7 +12,7 @@ const LoginFormModal = ({
   isOpen, 
   onRequestClose,
 }) => {
-  const { setButtonPos, navigate, gotoPage, isAuth, setIsAuth, logout, accessRights, setAccessRights } = useContext(SectionsContext)
+  const { setButtonPos, navigate, gotoPage, isAuth, setIsAuth, logout, accessRights, setAccessRights, userMode, setUserMode } = useContext(SectionsContext)
   const [isLoading, setIsLoading] = useState(false);
   const formEl = useRef(null);
   const usernameEL = useRef(null);
@@ -30,12 +30,13 @@ const LoginFormModal = ({
     localStorage.setItem("userId",  respData.userId);
     localStorage.setItem("accessRights", JSON.stringify(respData.accessRights));
     localStorage.setItem("firstName", respData.firstName);
+    if (isAuth && Array.isArray(accessRights) && accessRights.some(item => item > 1)) {
+      setUserMode("manager")
+    } else {
+      setUserMode("user");
+    }
     setButtonPos("showBut");
     setAccessRights(JSON.parse(localStorage.getItem("accessRights")));
-    //setAccessRights(respData.accessRights)
-   // console.log(accessRights, typeof accessRights, localStorage.getItem("accessRights", respData.accessRights))
-    //window.history.back();
-    //navigate(-1);
     onRequestClose()
   };
 
