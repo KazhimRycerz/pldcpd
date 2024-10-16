@@ -10,7 +10,7 @@ header {
   height: 100px;
   background-color: $first-color;
   box-shadow: $boxshadow;
-  z-index: 95;
+  z-index: 100;
   margin: 0 auto;
   
   #headerFrame {
@@ -23,9 +23,11 @@ header {
     max-width: 1280px;
     height: 100px;
     margin: 0 auto;
-  }
-  /* Navigation*/
     
+    
+  }
+
+  /* Navigation*/ 
   #navheader {
     width:auto;
     min-width: 30%;
@@ -64,6 +66,7 @@ header {
         }
       }
       ul {
+        
         display: flex;
         gap: 10px;
         opacity: 0;
@@ -105,7 +108,10 @@ header {
       }
     }
    }
-
+   @keyframes navpresenter {
+    0%  {opacity: 0;}
+    100% {opacity: 1;}
+  }
    #dropdown:hover #dropdown-content {
      opacity: 1;
      width: auto;
@@ -136,10 +142,7 @@ header {
      display: none;
      opacity: 0;
    }
-   @keyframes navpresenter {
-     0%  {opacity: 0;}
-     100% {opacity: 1;}
-   }
+   
    #text_header {
      position: relative;
      display: flex;
@@ -159,6 +162,85 @@ header {
       display: none;
      }
    }
+   #headerUserAvatar:hover{
+  }
+  #burger_button {
+    cursor: pointer;
+    height: 35px;
+    width: 35px;
+     margin: 0px;
+     overflow: visible;
+     position: fixed;
+     top: 32px;
+     //left:3.0vw;
+     left: calc(10% - 60px);
+     z-index: 99;
+     :hover {
+      color: $cpdred;
+      box-shadow: 0px 0px 25px 5px $cpdred;
+      }
+
+     /* THE LINES */
+     span, span::before, span::after {
+       background: $cpdred;
+       display: block;
+       height: 4.5px;
+       opacity: 1;
+       position: absolute;
+       transition: 0.3s ease-in-out;
+     }
+ 
+     span::before, span::after {
+       content: '';
+     }
+ 
+     // TOP
+     span::before {
+       left: 0px;
+       top: -10px;
+       width: 27px;
+     }
+ 
+     // MIDDLE
+     span {
+       right: 0px;
+       top: 13px;
+       width: 27px;
+     }
+ 
+     // BOTTOM
+     span::after {
+       left: 0px;
+       top: 10px;
+       width: 27px;
+     }
+ 
+     // ROTATION ON CLICK
+  &.changeBurger {
+    // TOP
+    span::before {
+      top: 0px;
+      transform: rotate(90deg);
+      width: 33px;
+    }
+
+    // MIDDLE
+    span {
+      transform: rotate(-45deg);
+      top: 13px;
+      width: 33px;
+    }
+
+    // BOTTOM
+    span::after {
+      top: 0px;
+      left: 0;
+      transform: rotate(90deg);
+      opacity: 0;
+      width: 0;
+    }
+  }
+}
 }
 
 #header_myaccount {
@@ -199,29 +281,28 @@ header {
     }
   }  
 }
-#headerUserAvatar:hover{
-  
-}
 
 #dropDownAccountBackground{
   position: fixed;
-  top: 0px;
+  top: -200px;
   background-color: $first-color;
-  margin-top: -220px;
+  //margin-top: -220px;
   padding: 40px 0;
   box-shadow: $boxshadow;
-  z-index:12;
   height: 200px;
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  z-index: 11;
   &.showAccountList{
-    top: 300px;
+    top: 100px;
     transition: 0.5s ease-in-out;
+    z-index: 90;
   }
   &.hideAccountList {
-    top: -220px;
+    top: -200px;
     transition: 0.5s ease-in-out;
+    z-index: 11;
   }
   p{
     //border: solid;
@@ -300,97 +381,21 @@ header {
   }
 }
 
-#burger_button {
-    cursor: pointer;
-    height: 35px;
-    width: 35px;
-     margin: 0px;
-     overflow: visible;
-     position: fixed;
-     top: 32px;
-     //left:3.0vw;
-     left: calc(10% - 60px);
-     z-index: 99;
-     :hover {
-      color: $cpdred;
-      box-shadow: 0px 0px 25px 5px $cpdred;
-      }
 
-     /* THE LINES */
-     span, span::before, span::after {
-       background: $cpdred;
-       display: block;
-       height: 4.5px;
-       opacity: 1;
-       position: absolute;
-       transition: 0.3s ease-in-out;
-     }
- 
-     span::before, span::after {
-       content: '';
-     }
- 
-     // TOP
-     span::before {
-       left: 0px;
-       top: -10px;
-       width: 27px;
-     }
- 
-     // MIDDLE
-     span {
-       right: 0px;
-       top: 13px;
-       width: 27px;
-     }
- 
-     // BOTTOM
-     span::after {
-       left: 0px;
-       top: 10px;
-       width: 27px;
-     }
- 
-     // ROTATION ON CLICK
-  &.changeBurger {
-    // TOP
-    span::before {
-      top: 0px;
-      transform: rotate(90deg);
-      width: 33px;
-    }
-
-    // MIDDLE
-    span {
-      transform: rotate(-45deg);
-      top: 13px;
-      width: 33px;
-    }
-
-    // BOTTOM
-    span::after {
-      top: 0px;
-      left: 0;
-      transform: rotate(90deg);
-      opacity: 0;
-      width: 0;
-    }
-  }
-}
 // Großes Menue beginnt hier
 
 #navmain {
   position: fixed;
-  top: -500px;
+  top: -600px;
   width: 100%;
-  height: 600px;
+  height:600px;
   margin: 0 auto;
   background: $first-color;
   z-index: 11;
-  padding-top: 50px;
   padding-bottom: 30px;
   box-shadow: $boxshadowbottom;
   padding-top: 20px; 
+  
   div {
     display: flex;
     flex-flow: row nowrap;
@@ -404,6 +409,11 @@ header {
     border-left: dotted $cpdred 3px;
     border-radius:80px;
     padding: 50px;
+    background: $first-color;
+    overflow: auto;
+    scrollbar-color: grey;
+    scrollbar-width: 5mm;
+    
     ul {
       display: flex;
       flex-flow: column nowrap;
@@ -453,18 +463,27 @@ header {
   &.showNav{
     top: 100px;
     transition: 0.3s ease-in-out;
+    //z-index: 90;
   }
   &.hideNav {
-    top: -500px;
+    top: -600px;
     transition: 0.3s ease-in-out;
+    //z-index: 11;
   }
-  #navPromo {
+  .navPromo {
     background-image: url(../../images/Sonnenuntergang.jpg);
     background-size: cover;
-    background-position: center 300px;
+    background-position: center 70%;
+    border-radius: 0%;
     //background-repeat:no-repeat;
     padding: 40px;
     height: 180px;
+    width: 100%;
+    max-width: 100%;
+    //border: solid black;
+    position:absolute;
+    bottom:0;
+    margin: 0;
     #nlPromo {
       text-align: center;
       vertical-align: top;
@@ -475,7 +494,7 @@ header {
       //aspect-ratio: 1;
       height: 100%;
       width: 54%;
-      padding: 100px 0 30px 0;
+      padding: 80px 0 30px 0;
       text-decoration: none;
       p:hover {
         text-shadow: 0px 2px 10px;
@@ -489,6 +508,26 @@ header {
   .active{
     color: $cpdred;
   }
+}
+.noMenueOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.0); 
+  z-index: 10;
+  transition: 0.3s ease-in-out;
+}
+.menueOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7); 
+  z-index: 10;
+  transition: 0.3s ease-in-out;
 }
 
 @media (min-width: 1600px){
@@ -537,7 +576,7 @@ header {
       height: auto;
       //width: auto;
       color: black;
-      z-index: 98;
+      //z-index: 98;
     }
     
   }
