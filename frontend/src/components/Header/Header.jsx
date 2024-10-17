@@ -1,6 +1,6 @@
 import "./Header.scss";
 import { NavLink, Link} from "react-router-dom";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import pldcpd from "../../images/pldcpd.png";
 import { SectionsContext } from "../../context/SectionsContext.js";
 import Swal from "sweetalert2"
@@ -12,17 +12,27 @@ const Header = () => {
   const { isAuth, contactData, buttonPos, setButtonPos, asidePos, setAsidePos, setGotoPage, gotoPage, navigate, logout, accessRights } = useContext(SectionsContext);
   const [showMenue, setShowMenue] = useState(false);
   const [accountListShow, setAccountListShow] = useState("hideAccountList");
+  const [overlayStatus, setOverlayStatus] = useState("noMenueOverlay")
 
   const handleBurgerButton = ()=>{
     setShowMenue(!showMenue);
     !showMenue & accountListShow === "showAccountList"  && setAccountListShow("hideAccountList");
+    if (!showMenue) {
+      setOverlayStatus("menueOverlay")
+    } else {
+      setOverlayStatus("noMenueOverlay")
+    }
   }
 
   const handleDropdownAccount =()=>{
     showMenue === true && setShowMenue(false)
     if (accountListShow === "hideAccountList" ) {
-      setAccountListShow("showAccountList")
-    } else {setAccountListShow("hideAccountList")}
+      setAccountListShow("showAccountList");
+      setOverlayStatus("menueOverlay")
+    } else {
+      setAccountListShow("hideAccountList");
+      setOverlayStatus("noMenueOverlay")
+    }
   }
 
   const handleAccountButton =()=> {
@@ -54,13 +64,16 @@ const Header = () => {
     }, [dataUpdate]) */
 
   return (
-    <>
-    {/* {accountListShow === "showAccountList" && <div className="overlay" onClick={() => setAccountListShow("hideAccountList")}></div>} */}
-    {/* {showMenue && <div className="overlay" onClick={() => setShowMenue(false)}>
-      </div>} */}
-      
+    <>      
       <header >
         <div id="headerFrame">
+          <div id="burgerButton" className={showMenue ? "changeBurger" : ""}
+          onClick={()=> {
+            handleBurgerButton()
+          }}
+          >
+          <span></span>
+          </div>
           <nav id="navheader">
             <div id="dropdown">
               <button id="dropbtn">
@@ -92,7 +105,6 @@ const Header = () => {
               </ul>
             </div>
           </nav>
-  
           <div id="text_header">
             <NavLink to="/home">
               <img className="image_header" id="ClogolongHeader" src={pldcpd} alt="" style={navigate === "Home" ? {cursor:"default"} : {cursor:"pointer"}}/>
@@ -102,7 +114,6 @@ const Header = () => {
               Professional Development
             </p>
           </div>
-  
           <div id="header_myaccount">
             <ul>
               <li
@@ -121,85 +132,80 @@ const Header = () => {
                 onClick={()=> { handleDropdownAccount()}}>
                   logged in as {localStorage.userName} <span className="C">C</span>
                 </li>}
-                  {/* {isAuth && (<img src={baseURL + userData.userImage} alt={userData.userName} style={{width: '50px'}}/>)} */}
-                  {isAuth && <div onClick={() => navigate("/KnowledgeAccount", { state: { openSection: ["account_4"] } })}>< UserAvatar  id="headerUserAvatar" width="30px" height="30px" allowDragging={false} cursor="pointer"/></div>}
+                  {isAuth && <div id="avatarPosition" onClick={() => navigate("/KnowledgeAccount", { state: { openSection: ["account_4"] } })}>< UserAvatar  id="headerUserAvatar" width="30px" height="30px" allowDragging={false} cursor="pointer"/></div>}
             </ul>
-          </div >
-        </div>
-        <div id="burger_button" className={showMenue ? "changeBurger" : ""}
-        onClick={()=> {
-          handleBurgerButton()
-        }}
-        >
-        <span></span>
-      </div>  
             
+          </div >      
+        </div>
+
       </header>
       
       {isAuth && (
-        <div id="dropDownAccountBackground" className={accountListShow} onMouseLeave={()=> { handleDropdownAccount()}}>
-          <p>rufen sie hier Ihre persönliche Daten auf!</p>
-          <div>
-            <ul id="dropDownAccount" /* className={accountListShow} */ >
-              <li>
-                <span className="closebtn" onClick={() => navigate("/KnowledgeAccount", { state: { openSection: ["account_4"] } })}
-                  >Ihre Userdaten
+        <div id="dropDownAccountBackground" className={accountListShow} onMouseLeave={()=> { setAccountListShow("hideAccountList");setOverlayStatus("noMenueOverlay")}}>
+          <div id="dropdownContent">
+            <p>rufen sie hier Ihre persönliche Daten auf!</p>
+            <div>
+              <ul id="dropDownAccount" >
+          <p onClick={() => {navigate("/KnowledgeAccount");
+                  handleDropdownAccount()
+                }}>Daten im Überblick</p>
+                <br/>
+                <li>
+                  <span className="closebtn" onClick={() => {navigate("/KnowledgeAccount", { state: { openSection: ["account_4"] } });
+                  handleDropdownAccount()
+                }}
+                    >Ihre Userdaten
+                  </span>
+                  
+                  {/* <NavLink 
+                    to={{ pathname: "/KnowledgeAccount", state: { openSection: ["account_2"] } }} className="closebtn"> Knowledge Status
+                  </NavLink> */}
+                </li>
+                <li >
+                <span className="closebtn" onClick={() => {navigate("/KnowledgeAccount", { state: { openSection: ["account_1"] } });
+                handleDropdownAccount()}}
+                  >Ihr Berufsstatus
                 </span>
-                
-                {/* <NavLink 
-                  to={{ pathname: "/KnowledgeAccount", state: { openSection: ["account_2"] } }} className="closebtn"> Knowledge Status
-                </NavLink> */}
-              </li>
-              <li >
-              <span className="closebtn" onClick={() => navigate("/KnowledgeAccount", { state: { openSection: ["account_1"] } })}
-                >Ihr Berufsstatus
-              </span>
-              </li>
-              <li >
-                <span className="closebtn" onClick={() => navigate("/KnowledgeAccount", { state: { openSection: ["account_3"] } })}
-                  >Ihr CPD-Status
+                </li>
+                <li >
+                  <span className="closebtn" onClick={() => {navigate("/KnowledgeAccount", { state: { openSection: ["account_3"] } });
+                  handleDropdownAccount()}}
+                    >Ihr CPD-Status
+                  </span>
+                  {/* <NavLink to={{pathname: "/KnowledgeAccount", state: { openSection: ["account_3"] }}} className="closebtn">Personal Data</NavLink> */}
+                </li>
+                <li >
+                  <span className="closebtn" onClick={() => {navigate("/KnowledgeAccount", { state: { openSection: ["account_6"] } });
+                  handleDropdownAccount()}}
+                    >Ihr CPD-Tracker
+                  </span>
+                  {/* <NavLink to={{pathname: "/KnowledgeAccount", state: { openSection: ["account_3"] }}} className="closebtn">Personal Data</NavLink> */}
+                </li>
+                <li >
+                <span className="closebtn" onClick={() => {navigate("/KnowledgeAccount", { state: { openSection: ["account_2"] } });
+                  handleDropdownAccount()}}
+                  >Ihr Career-Tracker
                 </span>
-                {/* <NavLink to={{pathname: "/KnowledgeAccount", state: { openSection: ["account_3"] }}} className="closebtn">Personal Data</NavLink> */}
-              </li>
-              <li >
-                <span className="closebtn" onClick={() => navigate("/KnowledgeAccount", { state: { openSection: ["account_6"] } })}
-                  >Ihr CPD-Tracker
-                </span>
-                {/* <NavLink to={{pathname: "/KnowledgeAccount", state: { openSection: ["account_3"] }}} className="closebtn">Personal Data</NavLink> */}
-              </li>
-              <li >
-              <span className="closebtn" onClick={() => navigate("/KnowledgeAccount", { state: { openSection: ["account_2"] } })}
-                >Ihr Career-Tracker
-              </span>
-              </li>
-              {contactData.authorsData && (<li >
-                <span
-                    className="closebtn" onClick={() => navigate("/KnowledgeAccount", { state: { openSection: ["account_10"] } })}
-                >  Autorendaten
-                </span>
-                </li>)}
-            </ul>
+                </li>
+                {contactData.authorsData && (<li >
+                  <span
+                      className="closebtn" onClick={() => {navigate("/KnowledgeAccount", { state: { openSection: ["account_10"] } });
+                      handleDropdownAccount()}}
+                  >  Autorendaten
+                  </span>
+                  </li>)}
+              </ul>
+            </div>
           </div>
-          {/* <div className="navPromo">
-            <NavLink to="/register" id="nlPromo">
-            <p>direct registration</p>
+          <div className="logPromo">
+            <NavLink to="/KnowledgeAccount" id="llPromo">
+              <p>zum Kontenüberblick</p>
             </NavLink>
-          </div> */}
+          </div> 
         </div>
       )}    
-      {accountListShow === "showAccountList" ? <div className="menueOverlay basis" onClick={() => setAccountListShow("hideAccountList")}></div> : <div className="noMenueOverlay"></div>}
-      
-      {/* <div
-        id="burger_button"
-        className={showMenue ? "changeBurger" : ""}
-        onClick={()=> {
-          setShowMenue(!showMenue);!showMenue & accountListShow === "showAccountList"  && setAccountListShow("hideAccountList");
-        }}
-        >
-        <span></span>
-      </div>  */}
 
-      <nav id="navmain" onMouseLeave={(event)=>{setShowMenue(!showMenue)}}   className={showMenue ? "showNav" : " hideNav"}>
+      <nav id="navmain" onMouseLeave={(event)=>{setShowMenue(!showMenue);setOverlayStatus("noMenueOverlay")}}   className={showMenue ? "showNav" : " hideNav"}>
         <div id="listOfFields">
           <ul id="mainItems">
             <p>
@@ -468,8 +474,11 @@ const Header = () => {
           </NavLink>
         </div>
       </nav>
-       {showMenue ? <div className="menueOverlay" onClick={() => setShowMenue(false)}>
-        </div> : <div className="noMenueOverlay"></div>}
+
+      {(showMenue || accountListShow ==="showAccountList") ? <div className={overlayStatus} onClick={() => {
+        setShowMenue(false); 
+        setAccountListShow("hideAccountList");
+        setOverlayStatus("noMenueOverlay")}}> </div> : <div className={overlayStatus}></div>}
  
     </>
   );

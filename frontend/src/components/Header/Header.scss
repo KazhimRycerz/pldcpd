@@ -112,59 +112,7 @@ header {
     0%  {opacity: 0;}
     100% {opacity: 1;}
   }
-   #dropdown:hover #dropdown-content {
-     opacity: 1;
-     width: auto;
-     li:nth-child(2){
-       opacity: 0;
-       animation: navpresenter 1s forwards; 
-       animation-fill-mode: both;
-     }
-     li:nth-child(3){
-       opacity: 0;
-       animation: navpresenter 2s  forwards;
-     }
-     li:nth-child(4){
-       opacity: 0;
-       animation: navpresenter 3s  forwards;
-     }
-     li a:hover {
-       color: $cpdred;
-       text-shadow: 1px 1px 20px $cpdred;
-     }
-   }
-   /* #dropbtn p::after {
-     content: "";
-     width: 10px;
-     height: 10px;
-   } */
-   #dropdown:hover #dropbtn {
-     display: none;
-     opacity: 0;
-   }
-   
-   #text_header {
-     position: relative;
-     display: flex;
-     align-items: center;
-     gap: 10px;
-     flex-wrap: nowrap;
-     margin-top: 0px;
-     margin-left: 0%;
-     font-size: $small;
-     text-decoration: none;
-     vertical-align: top;
-     line-height: 1.2;
-     img {
-       height:30px;
-     }
-     #ClogoHeader{
-      display: none;
-     }
-   }
-   #headerUserAvatar:hover{
-  }
-  #burger_button {
+  #burgerButton {
     cursor: pointer;
     height: 35px;
     width: 35px;
@@ -240,59 +188,124 @@ header {
       width: 0;
     }
   }
-}
-}
-
-#header_myaccount {
-  font-size: $small;
-  height: auto;
-  align-self: baseline;
-  //border: solid;
-  position: relative;
-
-  ul {
-    margin-top: 20px;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: flex-start;
-    align-content: flex-start;
-    align-items: flex-end;
-    height: auto;
-    //background-color: $first-color;
-    cursor: pointer;
-    li {
-      list-style-type: none;
-      align-content: flex-start;
-      a {
-        text-decoration:none;
-        color: black;
-      }
+  }
+  #dropdown:hover #dropdown-content {
+    opacity: 1;
+    width: auto;
+    li:nth-child(2){
+      opacity: 0;
+      animation: navpresenter 1s forwards; 
+      animation-fill-mode: both;
     }
-    li:hover{
+    li:nth-child(3){
+      opacity: 0;
+      animation: navpresenter 2s  forwards;
+    }
+    li:nth-child(4){
+      opacity: 0;
+      animation: navpresenter 3s  forwards;
+    }
+    li a:hover {
       color: $cpdred;
-      text-shadow: $text-shadow;
+      text-shadow: 1px 1px 20px $cpdred;
     }
-  }  
-  .user{
-    //display: none;
-    visibility: hidden;
-    #imgHeader{
-      width: 50px;
+  }
+  /* #dropbtn p::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+  } */
+  #dropdown:hover #dropbtn {
+    display: none;
+    opacity: 0;
+  }
+  
+  #text_header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: nowrap;
+    margin-top: 0px;
+    margin-left: 0%;
+    font-size: $small;
+    text-decoration: none;
+    vertical-align: top;
+    line-height: 1.2;
+    img {
+      height:30px;
     }
-  }  
+    #ClogoHeader{
+    display: none;
+    }
+  }
+  #headerUserAvatar:hover{
+  }
+  #header_myaccount {
+    font-size: $small;
+    height: auto;
+    margin: auto 0;
+    align-self: baseline;
+    //border: solid;
+    position: relative;
+    
+    ul {
+      //margin-top: 20px;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: flex-start;
+      align-content: flex-start;
+      align-items: flex-end;
+      height: auto;
+      //border: solid;
+      //background-color: $first-color;
+      cursor: pointer;
+      li {
+        list-style-type: none;
+        align-content: flex-start;
+        a {
+          text-decoration:none;
+          color: black;
+        }
+      }
+      li:hover{
+        color: $cpdred;
+        text-shadow: $text-shadow;
+      }
+    }  
+    .user{
+      //display: none;
+      visibility: hidden;
+      #imgHeader{
+        width: 50px;
+      }
+    }  
+  }
+}
+
+#avatarPosition {
+  cursor: pointer;
+  margin: auto 0px;
+  position: fixed;
+  top: 35px;
+  //left:3.0vw;
+  right: calc(10% - 50px);
+  z-index: 99;
+  //border: solid;
+  //height: auto;
 }
 
 #dropDownAccountBackground{
+  //display: flex;
+  //justify-content: flex-end;
+  //border: solid black;
   position: fixed;
-  top: -200px;
+  top: -600px;
   background-color: $first-color;
-  //margin-top: -220px;
   padding: 40px 0;
   box-shadow: $boxshadow;
-  height: 200px;
+  height: 600px;
   width: 100%;
-  display: flex;
-  justify-content: flex-end;
   z-index: 11;
   &.showAccountList{
     top: 100px;
@@ -300,89 +313,119 @@ header {
     z-index: 90;
   }
   &.hideAccountList {
-    top: -200px;
+    top: -600px;
     transition: 0.5s ease-in-out;
     z-index: 11;
   }
-  p{
-    //border: solid;
-    margin-top: 30px;
-    flex-basis: 30%;
-  }
-  >div {
+
+  >div{
+    //border: solid black;
+    width: 80%;
+    margin: 0 auto;
     display: flex;
     flex-flow: row nowrap;
     justify-content: flex-end;
     gap: 2vw;
-    //align-self: flex-end;
-    width: fit-content;
-    height: fit-content;
-    //max-height: 150px;
-    //margin: 20px auto;
-    max-width: 1280px;
-    margin-right: 10%;
-    padding: 10px 60px;
-    background-color: $first-color;
-    //box-shadow: $boxshadow;
-    //opacity: 0.5;
-    border-left: dotted 3px;
-    border-right: dotted 3px;
-    border-radius: 20px;
-  ul{
-    //background-color: $first-color;
-    padding: 0;
-    width: auto;
-    //flex-basis: 50%;
-    height: auto;
-    //border-radius: 10px;
-    z-index:1;
-    font-size: $small;
-    //border: solid;
-  
-    li{
-      padding: 0  10px;
-      align-items: flex-end;
-      align-content: flex-end;
-      text-align:end;
-      list-style-type: none;
-      border-radius: 10px;
-      span{
-        text-decoration: none;
-        color: $cpdblue;
-      }
-      &:hover {
-        color: $cpdred;
-        text-shadow: $text-shadow;
-        cursor: pointer;
-      }
-      &:after {
-        content: " C";
-            font-family: $calli;
+    >p{
+      //border: solid;
+      margin-top: 50px;
+      vertical-align: middle;
+      flex-basis: 30%;
+    }
+    >div {
+      width: fit-content;
+      height: fit-content;
+      //max-height: 150px;
+      //margin: 20px auto;
+      max-width: 1280px;
+      //margin-right: 10%;
+      padding: 0px 60px;
+      background-color: $first-color;
+      //box-shadow: $boxshadow;
+      //opacity: 0.5;
+      border-left: dotted 3px;
+      border-right: dotted 3px;
+      border-radius: 20px;
+      ul{
+        //background-color: $first-color;
+        padding: 10px;
+        width: auto;
+        //flex-basis: 50%;
+        height: auto;
+        //border-radius: 10px;
+        z-index:1;
+        font-size: $small;
+        //border: solid;
+      
+        li, p{
+          padding: 0  10px;
+          align-items: flex-end;
+          align-content: flex-end;
+          text-align:end;
+          list-style-type: none;
+          border-radius: 10px;
+          span{
+            text-decoration: none;
+            color: $cpdblue;
+          }
+          &:hover {
             color: $cpdred;
-            font-size: calc($normal + 1px);
-            vertical-align: -3px;
+            text-shadow: $text-shadow;
+            cursor: pointer;
+          }
+          &:after {
+            content: " C";
+                font-family: $calli;
+                color: $cpdred;
+                font-size: calc($normal + 1px);
+                vertical-align: -3px;
+          }
+        }
+      }
+    }
+    
+  }  
+  // p {
+  //   padding: 20px;
+  //   height: auto;
+  //   width: 200px;
+  //   text-align: center; 
+  // }
+
+  .logPromo {
+    background-image: url(../../images/Sonnenuntergang.jpg);
+    background-size: cover;
+    background-position: center 70%;
+    border-radius: 0%;
+    padding: 40px;
+    height: 180px;
+    width: 100%;
+    max-width: 100%;
+    //border: solid black;
+    position:absolute;
+    bottom:0;
+    margin: 0;
+    #llPromo {
+      margin: 0 auto;
+      text-align: center;
+      //vertical-align: top;
+      color: white;
+      border-top: white dotted;
+      //border-bottom: white dotted;
+      border-radius: 70%;
+      //aspect-ratio: 1;
+      height: 100%;
+      width: 54%;
+      padding: 80px 0 30px 0;
+      text-decoration: none;
+      p:hover {
+        text-shadow: 0px 2px 10px;
       }
     }
   }
-  }
-  p {
-   //margin-top: 10px;
-    //margin-left: 0px;
-    padding: 20px;
-    height: auto;
-    width: 200px;
-    text-align: center;
-    //line-height:100px;
-    /* border-left: dotted 3px;
-    border-right: dotted 3px;
-    border-radius: 20px; */
-    //border: solid;
-  
-  }
+
 }
 
-
-// Großes Menue beginnt hier
 
 #navmain {
   position: fixed;
@@ -475,7 +518,6 @@ header {
     background-size: cover;
     background-position: center 70%;
     border-radius: 0%;
-    //background-repeat:no-repeat;
     padding: 40px;
     height: 180px;
     width: 100%;
@@ -505,13 +547,15 @@ header {
     //background-image: url(../../images/Sonnenuntergang_dark.jpg);
     } */
   }
+
   .active{
     color: $cpdred;
   }
 }
+
 .noMenueOverlay {
   position: fixed;
-  top: 0;
+  top: -100vh;
   left: 0;
   width: 100vw;
   height: 100vh;
@@ -525,7 +569,7 @@ header {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.7); 
+  background-color: rgba(125, 125, 125, 0.7); 
   z-index: 10;
   transition: 0.3s ease-in-out;
 }
@@ -534,7 +578,7 @@ header {
   #dropdownAccount{
     right: calc((100% - 1280px) / 2 - 00px)
   }
-  #burger_button {
+  #burgerButton {
     left: calc((100% - 1280px) / 2 - 60px)
   }
   #dropDownAccountBackground div {
