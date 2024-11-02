@@ -8,6 +8,13 @@
   box-shadow: $mainshadow;
   //background-color: $cpdblue;
   //border-color: $cpdred;
+  > p {
+    text-align: end;
+    width: 80%;
+    margin: 0 auto;
+    //border: solid;
+    padding-right: 30px;
+  };
   >div {
     display: flex;
     justify-content: space-between;
@@ -37,11 +44,13 @@
     width: 80%;
     margin: 0px auto;
     padding: 20px;
-    border-left: dotted;
-    border-right: dotted;
-    border-radius: $radiuslarge;
+    // border-left: dotted;
+    // border-right: dotted;
+    border-radius: $radiussmall;
     border-width: 3px;
     border-color: $cpdred;
+    background-color: $fourth-color;
+    box-shadow: $boxshadow;
     
     div {
       display: flex;

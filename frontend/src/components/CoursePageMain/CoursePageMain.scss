@@ -3,13 +3,19 @@
 #courseMain {
   position: relative;
   min-height: 60vh;
-  margin-top: -20px;
+  margin-top: 0px;
   background-color: $first-color;
   //background-color: $secondary-color;
   //border-color: $cpdred;
   //max-width: 1200px;
   box-shadow: $mainshadow;
-  
+  > p {
+    text-align: end;
+    width: 80%;
+    margin: 0 auto;
+    //border: solid;
+    padding-right: 30px;
+  };
    >div {
     display: flex;
     justify-content: space-between;
@@ -23,7 +29,7 @@
       color: $first-color;
       color: $cpdblue;
       width: 80%;
-      margin: 10px 30px ;
+      margin: 20px 30px ;
       font-family: $primary-font-bold;
       //border: solid;
     }
@@ -42,12 +48,14 @@
     //max-width: 1000px;
     margin: 0px auto;
     padding: 20px;
-    border-left: dotted;
-    border-right: dotted;
-    border-radius: $radiuslarge;
+    // border-left: dotted;
+    // border-right: dotted;
+    border-radius: $radiussmall;
     border-width: 3px;
-    border-color: $first-color;
+    //border-color: $first-color;
     border-color: $cpdred;
+    background-color: $fourth-color;
+    box-shadow: $boxshadow;
     
     .boxGroup {
       display: flex;

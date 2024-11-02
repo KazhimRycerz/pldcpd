@@ -477,10 +477,10 @@ const placeholders = Array(itemsPerPageValue - currentItems.length).fill(null);
   return (
     <>
       <main id="companyForm" /* className = {userMode} */>
-        
+      < CloseOutlined className="closeX" onClick={() => navigate("/home")} /> 
         <div className="headBox"> 
           <h2 id="companyHead">Eingabe / Bearbeiten von Unternehmen</h2>
-          <p className="closingFunction" onClick={() => navigate("/home")}>Formular schließen</p>
+          {/* <p className="closingFunction" onClick={() => navigate("/home")}>Formular schließen</p> */}
         </div>
 
         <div id="companyFormContainer" className={statusSicherung}>

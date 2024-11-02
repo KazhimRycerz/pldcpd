@@ -7,7 +7,9 @@ import { ListOfCourseTypes, DataListOfCourseTypes, ListOfLanguages, ListOfTopicF
 import axiosConfig from "../../util/axiosConfig";
 import baseUrl from "../../util/constants";
 import Moment from "moment";
+import { Modal, Button } from 'antd';
 import Countdown from "../Countdown/Countdown.jsx";
+import { DoubleRightOutlined, CloseOutlined, EditOutlined, SaveOutlined, StopOutlined, StepBackwardOutlined, StepForwardOutlined  } from "@ant-design/icons";
 
 const CourseAddMain = () => {
   const { isAuth, setGotoPage, setButtonPos, setAsidePos, knowledgeData, accessRights, navigate  } = useContext(SectionsContext);
@@ -19,38 +21,125 @@ const CourseAddMain = () => {
   //const [listOfLanguage, setListOfLanguage] = useState([])
   //const [items, setItems] = useState([]);
   const [autorenFilter, setAutorenFilter] = useState('');
-  const [themenFilter, setThemenFilter] = useState("");
-  const [kursartFilter, setKursartFilter] = useState('');
-  const [kursstartFilter, setKursstartFilter] = useState('');
+  const [themenFilter, setThemenFilter] = useState(
+    localStorage.getItem("themenFilter") === null ? "" : localStorage.getItem("themenFilter")
+);
+  const [kursartFilter, setKursartFilter] = useState(
+    localStorage.getItem("kursartFilter") === null ? "" : localStorage.getItem("kursartFilter")
+);
+  const [kursstartFilter, setKursstartFilter] = useState(
+    localStorage.getItem("kursstartFilter") === null ? "" : localStorage.getItem("kursstartFilter")
+);
   const [kursendeFilter, setKursendeFilter] = useState('');
-  const [levelFilter, setLevelFilter] = useState('');
-  const [sprachFilter, setSprachFilter] = useState('');
+  const [levelFilter, setLevelFilter] = useState(
+    localStorage.getItem("levelFilter") === null ? "" : localStorage.getItem("levelFilter")
+);
+  const [sprachFilter, setSprachFilter] = useState(
+    localStorage.getItem("sprachFilter") === null ? "" : localStorage.getItem("sprachFilter")
+);
   //const [buchungsNoFilter, setBuchungsNoFilter] = useState('');
 
-  const [filterElements,setFilterElements] = useState(["keine"]);
+  const [filterElements, setFilterElements] = useState(
+    localStorage.getItem("filterElements") === null || localStorage.getItem("filterElements") === ""
+        ? []
+        : JSON.parse(localStorage.getItem("filterElements"))
+);
+
   const [sortElement, setSortElement] = useState('');
+  const [anzeige, setAnzeige] = useState("Karten");
+
+  const [isTopicFieldFocused, setIsTopicFieldFocused] = useState(false);
+  const [isLanguageFocused, setIsLanguageFocused] = useState(false);
+  const [isAuthorFocused, setIsAuthorFocused] = useState(false);
+  const [isCourseTypeFocused, setIsCourseTypeFocused] = useState(false);
+  const [isLevelFocused, setIsLevelFocused] = useState(false);
 
   //const cpdStartDate = knowledgeData && new Date(knowledgeData.cpdActiveSince);
   //console.log(cpdStartDate)
+  //console.log(filterElements)
+  //console.log(localStorage.getItem("filterElements"))
   
   const buttonPosCheck = ()=>{
     if (isAuth) {setButtonPos("showBut"); setAsidePos ("accountAside")
     }
   }
+  const handleViewChange = (e) => {
+    const { value } = e.target;
+    setAnzeige(value);
+    localStorage.setItem("anzeige", value); // Speichern des View-Modus im localStorage
+  };
 
-  const handleFilter = (e, setFilterFunc) => {
-    setFilterFunc(e.target.value)}
+  const handleFilter = (e, setFilter) => {
+    const { value } = e.target;
+    setFilter(value);
 
-  const resetFilter= () => {
-    setAutorenFilter("")
-    setThemenFilter("")
-    setKursartFilter("")
-    setLevelFilter("")
-    setSprachFilter("")
-    //setBuchungsNoFilter("")
-    setSortElement("")
-    setFilterElements([])
-}
+    // Speichern im localStorage
+    switch (setFilter) {
+      case setThemenFilter:
+        localStorage.setItem("themenFilter", value);
+        break;
+      case setKursartFilter:
+        localStorage.setItem("kursartFilter", value);
+        break;
+      case setKursstartFilter:
+        localStorage.setItem("kursstartFilter", value);
+        break;
+      case setSprachFilter:
+        localStorage.setItem("sprachFilter", value);
+        break;
+      case setLevelFilter:
+        localStorage.setItem("levelFilter", value);
+        break;
+      default:
+        break;
+    }
+  };
+
+  useEffect(() => {
+    const savedThemenFilter = localStorage.getItem("themenFilter");
+    const savedKursartFilter = localStorage.getItem("kursartFilter");
+    const savedKursstartFilter = localStorage.getItem("kursstartFilter");
+    const savedSprachFilter = localStorage.getItem("sprachFilter");
+    const savedLevelFilter = localStorage.getItem("levelFilter");
+    const savedSortElement = localStorage.getItem("sortElement");
+    const savedAnzeige = localStorage.getItem("anzeige");
+    const savedFilterElements = JSON.parse(localStorage.getItem("filterElements") || "[]");
+
+    if (savedThemenFilter) setThemenFilter(savedThemenFilter);
+    if (savedKursartFilter) setKursartFilter(savedKursartFilter);
+    if (savedKursstartFilter) setKursstartFilter(savedKursstartFilter);
+    if (savedSprachFilter) setSprachFilter(savedSprachFilter);
+    if (savedLevelFilter) setLevelFilter(savedLevelFilter);
+    if (savedSortElement) setSortElement(savedSortElement);
+    if (savedAnzeige) setAnzeige(savedAnzeige);
+    setFilterElements(savedFilterElements); // wird immer gesetzt, da es ein Array sein sollte
+}, []);
+
+
+    const handleSelectCourseType = (selectedType) => {
+      setKursartFilter(selectedType);
+      //setFilteredCourseTypes(ListOfTopicFields); // Reset the filtered topics to show the full list
+      setIsCourseTypeFocused(false); // Close the dropdown after selection
+    };
+
+    const resetFilter = () => {
+      setAutorenFilter("");
+      setThemenFilter("");
+      setKursartFilter("");
+      setLevelFilter("");
+      setSprachFilter("");
+      // setBuchungsNoFilter("");
+      setSortElement("");
+      setFilterElements([]);
+      
+      localStorage.removeItem("themenFilter");
+      localStorage.removeItem("kursartFilter");
+      localStorage.removeItem("levelFilter");
+      localStorage.removeItem("sprachFilter");
+      localStorage.removeItem("sortElement");
+      localStorage.removeItem("filterElements");
+  };
+  
 
 const searchCourseListData = async () => {
   const filterItems = {
@@ -131,18 +220,113 @@ useEffect(() => {
 
   return (
     <main id="courseListMain"> {/* MainStyling in global */}
+    < CloseOutlined className="closeX" onClick={() => {resetFilter(); navigate("/home")}}> </CloseOutlined>
       <div className="headBox">
-        <h2 /* id="courseListHead" */>Übersicht aller aktuellen Kursangebote</h2>
-        <p className="closingFunction" onClick={() => navigate("/home")}>Formular schließen</p>
+        <h2 >Übersicht aller aktuellen Kursangebote</h2>
+        {/* <p className="closingFunction" onClick={() => navigate("/home")}>Formular schließen</p> */}
       </div>
+
       <div id="overviewCourses">
-        <div>
-          <ul id="gesetzterFilter" >gesetzte Filter: {filterElements.length >= 1 ? <div>{filterElements.map((value, index) => (
-                    <li key={index}> {value}</li>
-                  ))}</div> : <div><li>ohne Filter</li></div>}
-          </ul>
-          
-          <p>sortiert nach: 
+      
+        <div id="themenFilter">
+          <div>
+            <p>Themenfeld</p>
+            <select 
+              name="Themenfeld" 
+              value={themenFilter} 
+              onChange={(e) => handleFilter(e, setThemenFilter)} id="themen">
+                <option value="">ohne Filter</option>
+                {/* < ListOfTopicFields /> */}
+                {ListOfTopicFields.map((topicField, index) => (
+                <option key={index} value={topicField}>
+                  {topicField}
+                </option>
+                ))}
+            </select>
+          </div>
+          <div>
+            <p>Kursart</p>
+            <select 
+            name="Kursart" 
+            value={kursartFilter} 
+            onChange={(e) => handleFilter(e, setKursartFilter)} 
+            id="kursartFilter">
+              <option value="">ohne Filter</option>
+              < DataListOfCourseTypes />
+            </select>
+          </div>
+          {/* <div id="kursartFilter" style={{ position: 'relative' }}>
+            
+            <p>Kursartfilter
+              {isCourseTypeFocused ? (
+                  <StopOutlined
+                    className="edit-icon"
+                    onClick={() => setIsCourseTypeFocused(false)}
+                  />
+                ) : (
+                  <EditOutlined
+                    className="edit-icon"
+                    onClick={() => setIsCourseTypeFocused(true)}
+                  />
+                )}</p>
+            <input 
+            type="text"
+            id="kursartFilter"
+            name="Kursart" 
+            value={kursartFilter} 
+            onChange={(e) => handleFilter(e, setKursartFilter)} 
+              />
+              {isCourseTypeFocused && (
+                  <ListOfCourseTypes id="test" onSelectCourseType={handleSelectCourseType} 
+                  />
+                )}
+                
+          </div> */}
+          <div>
+            <p>Kursstart</p>
+            <select 
+            name="Kurstart" 
+            value={kursstartFilter} 
+            onChange={(e) => handleFilter(e, setKursstartFilter)}
+            id="kursstartFilter">
+              <option value="">ohne Filter</option>
+              <option value="Art">Art</option>
+              <option value="Datum">Datum</option>
+              <option value="Level">Level</option>
+            </select>
+          </div>
+          <div>
+            <p>Sprachfilter</p>
+            <select 
+            name="Sprache" 
+            value={sprachFilter} 
+            onChange={(e) => handleFilter(e, setSprachFilter)} 
+            id="sprachFilter">
+              <option value="">ohne Filter</option>
+              {ListOfLanguages.map((language, index) => (
+              <option key={index} value={language}>
+              {language}
+              </option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <p>Levelfilter</p>
+            <select 
+            name="Level" 
+            onChange={(e) => handleFilter(e, setLevelFilter)}
+            id="levelFilter"
+            >
+              <option value="">ohne Filter</option>
+              {ListOfLevel.map((level, index) => (
+              <option key={index} value={level.value}>
+                {level.discription}
+              </option>
+              ))}
+            </select>
+          </div>
+          <div id="sortBy">
+            <p>sortiert nach:</p> 
             <select 
             name="sortItem"  
             value={sortElement}
@@ -151,25 +335,120 @@ useEffect(() => {
               <option value="">nicht sortiert</option>
               <option value="Kursstart">Kursstart</option>
               <option value="Level">Level</option>
-            </select></p>
-                            
-          {filterElements.length >= 1 &&  <p id="filterLöschen" className="pFunction"onClick={resetFilter}>Filter löschen</p>}
-        </div>
+            </select>
+          </div>   
+          <div id="gesetzterFilter">
+            <p>gesetzte Filter:</p> 
+            <ul>
+              {filterElements.length >= 1 ? 
+                filterElements.map((value, index) => (
+                  <li key={index}>{value}</li>
+                )) 
+                : <li>ohne Filter</li>
+              }
+            </ul>
+          </div>
+          
 
+          <div id="ansicht">
+            <p>anzeigen als:</p>
+            <label>
+              <input
+                type="radio"
+                value="Karten"
+                checked={anzeige === "Karten"}
+                onChange={handleViewChange}
+              />
+            Karten
+            </label>
+            <label>
+              <input
+                type="radio"
+                value="Tabelle"
+                checked={anzeige === "Tabelle"}
+                onChange={handleViewChange}
+              />
+              Tabelle 
+            </label>
+          </div>
+          <div id="filterLöschen">{filterElements.length >= 1 ?  
+            <p  id="pFilterLöschen" onClick={resetFilter}>Filter löschen</p>:<p>kein Filter gesetzt</p>}
+            <span>{coursesData.length} Angebote</span>
+          </div>
+        </div>
+        
+        {anzeige ==="Karten" && 
+        <section id="kursÜberblick">
+        {coursesData.map((course, index) => {
+          return <div key={index} id="cards"> 
+            <h3 
+              data-tooltip={course.courseTopic}
+              onClick={() => {
+              navigate("/coursepage", { state: course._id  }); // State-Objekt korrekt übergeben
+              }} >{course.courseTopic}
+            </h3> 
+            <div>
+              <div>
+                <p> Autor/en:</p>
+                <div>
+                  {Array.isArray(authorsData[index]) && authorsData[index].map((author, innerIndex) => (
+                    <p 
+                      key={innerIndex} 
+                      onClick={() => {
+                        navigate("/authorspage", { state: author._id  }); // State-Objekt korrekt übergeben
+                      }}   
+                      id="author"
+                    >
+                      {author.professionalTitle}{author.professionalTitle && " "}
+                      {author.firstName} {author.lastName}
+                      {author.appendix && ", "}{author.appendix}
+                    </p>
+                  ))}
+                </div>
+
+              </div>
+                <div><p>Themenfeld:</p> <div>{course.topicField}</div></div>
+                <div><p>Kursart:</p> <div>{course.courseType}</div></div>
+                <div><p>Kursstart:</p> <div>{Moment(course.startDateOfCourse).format("DD.MM.YYYY")}</div></div>
+                <div><p>Kursende:</p> <div>{Moment(course.endDateOfCourse).format("DD.MM.YYYY")}</div></div>
+                
+                <div>
+                  <p>Sprachen:</p>   
+                  <div id="sprachliste">{languageData[index].map((courseLanguage, innerIndex) => (
+                            <p key={innerIndex} id="courseLanguage">
+                              {courseLanguage}
+                            </p>
+                            )
+                  )}</div>
+                </div>
+                <div><p>CPD-points:</p><div>{course.cpdBasicPoints}</div></div>
+                <div><p>CPD plus:</p><div>{course.cpdAdditionalPoints}</div></div>
+                <div><p>Level min:</p><div>{course.professionalLevel} - {ListOfLevel.find((item) => item.value === course.professionalLevel)?.discription}</div></div>
+                <div><p>Anbieter:</p><div><a href={course.linkToProvider} id="providerLink" target="_blank" rel="noopener noreferrer">{course.linkToProvider}</a></div></div>
+                <div><p>Details...</p><div><Link to="/coursepage" state= {course._id} className="C" id="infoLink"><p>C zum Kurs</p></Link></div></div>
+                
+            </div>
+
+            </div>
+          })}
+        </section>
+        }
+        {anzeige ==="Tabelle" && 
         <table id="tableCourseList">
-          {/* <colgroup>
+          <colgroup>
+            <col width="15%" />
+            <col width="15%" />
             <col width="10%" />
             <col width="10%" />
-            <col width="5%" />
-            <col width="5%" />
-            <col width="3%" />
-            <col width="5%" />
-            <col width="5%" />
-            <col width="2%" />
-            <col width="2%" />
-            <col width="2%" />
             <col width="10%" />
-          </colgroup> */}
+            <col width="10%" />
+            <col width="10%" />
+            <col width="5%" />
+            <col width="5%" />
+            <col width="10%" />
+            <col width="10%" />
+            <col width="10%" />
+          </colgroup>
           <thead>
             <tr>
               <th>Thema</th>
@@ -182,33 +461,32 @@ useEffect(() => {
               </th>
               <th>
                 <p>Themenfeld</p>
-                <select 
+                {/* <select 
                 name="Themenfeld" 
                 value={themenFilter} 
-                onChange={(e) => handleFilter(e, setThemenFilter)} id="themenFilter">
+                onChange={(e) => handleFilter(e, setThemenFilter)} id="themenFilterTabelle">
                   <option value="">ohne Filter</option>
-                  {/* < ListOfTopicFields /> */}
                   {ListOfTopicFields.map((topicField, index) => (
-            <option key={index} value={topicField}>
-              {topicField}
-            </option>
-          ))}
-                </select>
+                  <option key={index} value={topicField}>
+                    {topicField}
+                  </option>
+                ))}
+                </select> */}
               </th>
               <th>
                <p>Kursart</p>
-                <select name="Kursart" value={kursartFilter} /* onChange={handleKursartFilter}  */onChange={(e) => handleFilter(e, setKursartFilter)} id="kursartFilter">
+                {/* <select 
+                name="Kursart" 
+                value={kursartFilter} 
+                onChange={(e) => handleFilter(e, setKursartFilter)} id="kursartFilter">
                   <option value="">ohne Filter</option>
-                  {/* {listOfKursart.map((value, index) => (
-                    <option key={index}>{value}</option>
-                  ))} */}
                   < DataListOfCourseTypes />
-                </select>
+                </select> */}
               </th>
               <th>
                 <p>Kursstart</p>
-                <select 
-                name="Kurstart" 
+                {/* <select 
+                name="Kursstart" 
                 value={kursstartFilter} 
                 onChange={(e) => handleFilter(e, setKursstartFilter)}
                 id="kursstartFilter">
@@ -216,48 +494,50 @@ useEffect(() => {
                   <option value="Art">Art</option>
                   <option value="Datum">Datum</option>
                   <option value="Level">Level</option>
-                </select>
+                </select> */}
               </th>
               <th>
-                <select name="Kursende" id="Filter">
+              <p>Kursende</p>
+                {/* <select name="Kursende" id="Filter">
                   <option value="">Kursende</option>
                   <option value="Art">Art</option>
                   <option value="Datum">Datum</option>
                   <option value="Level">Level</option>
-                </select>
+                </select> */}
               </th>
               <th>
                 <p>Sprachfilter</p>
-                <select 
+                {/* <select 
                 name="Sprache" 
                 value={sprachFilter} 
                 onChange={(e) => handleFilter(e, setSprachFilter)} 
                 id="sprachFilter">
                   <option value="">ohne Filter</option>
                   {ListOfLanguages.map((language, index) => (
-            <option key={index} value={language}>
-              {language}
-            </option>
-          ))}
-                </select>
+                  <option key={index} value={language}>
+                    {language}
+                  </option>
+                ))}
+                </select> */}
               </th>
               <th>CPD</th>
-              <th>CPD plus</th>
+              <th>CPD <br />plus</th>
               <th>
-              <p>Levelfilter</p>
-                <select 
+                <p>Levelfilter</p>
+                {/* <select 
                 name="Level" 
                 onChange={(e) => handleFilter(e, setLevelFilter)}
                 id="levelFilter"
                 >
                   <option value="">ohne Filter</option>
                   {ListOfLevel.map((level, index) => (
-            <option key={index} value={level.value}>
-              {level.discription}
-            </option>
-          ))}
-                </select></th>
-              <th>Link zum Anbieter</th>
+                  <option key={index} value={level.value}>
+                    {level.discription}
+                  </option>
+                ))}
+                </select> */}
+                </th>
+              <th>zum Anbieter</th>
               <th>mehr Infos</th>
             </tr>
           </thead>    
@@ -274,7 +554,7 @@ useEffect(() => {
                       </Link>
                     </li>
                   </td>
-                  <td >
+                  <td id="authorsColumn">
                     {authorsData[index].map((author, innerIndex) => (
                       <li key={innerIndex} id="author">
                         <Link to="/authorspage" state= {author._id} id="authorsLink">
@@ -299,7 +579,8 @@ useEffect(() => {
                   <td>{course.cpdBasicPoints}</td>
                   <td>{course.cpdAdditionalPoints}</td>
                   <td>{course.professionalLevel} - {ListOfLevel.find((item) => item.value === course.professionalLevel)?.discription}</td>
-                  <td><a href={course.linkToProvider} id="providerLink" target="_blank" rel="noopener noreferrer">{course.linkToProvider}</a></td>
+                  <td><a href={course.linkToProvider} id="providerLink" target="_blank" rel="noopener noreferrer">{course.linkToProvider}</a>
+                  </td>
                   <td><Link to="/coursepage" state= {course._id} className="C" id="infoLink"><p>C</p></Link></td>
                   
                 </tr>
@@ -310,14 +591,14 @@ useEffect(() => {
           </tbody>) : (
             <p>keine Angebote vorhanden</p>
           )}
-        </table>  
-          
+        </table>  }
+
+      
       </div>
       {/* <div>
         <h3>Sie sind CPD-aktiv seit {{cpdStartDate}}</h3>
       </div> */}
       {isAuth && knowledgeData && <Countdown  targetDate={knowledgeData.cpdActiveSince} />}
-
     </main>
   );
 };

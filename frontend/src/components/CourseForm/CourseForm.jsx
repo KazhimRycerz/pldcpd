@@ -167,7 +167,6 @@ const CourseAddForm = () => {
     setWorkingMode("inputMode")
   };
 
-  //Funktion nicht mehr notwendig:
   const handleChangeOfTopicFieldData = (e) => {
     const value = e.target.value;
     setTopicField(value);
@@ -176,13 +175,14 @@ const CourseAddForm = () => {
     ));
   };
    //Funktion nicht mehr notwendig:
-  const handleChangeOfCourseTypeData = (e) => {
-    const value = e.target.value;
-    setKursTyp(value);
-    setFilteredCourseTypes(ListOfCourseTypes.filter(courseType =>
-      courseType.toLowerCase().includes(value.toLowerCase())
-    ));
-  };
+  // const handleChangeOfCourseTypeData = (e) => {
+  //   const value = e.target.value;
+  //   setKursTyp(value);
+  //   setFilteredCourseTypes(ListOfCourseTypes.filter(courseType =>
+  //     courseType.toLowerCase().includes(value.toLowerCase())
+  //   ));
+  // };
+  
   const handleSelectTopic = (topic) => {
     setTopicField(topic);
     setFilteredTopics(ListOfTopicFields); // Reset the filtered topics to show the full list
@@ -581,7 +581,7 @@ const CourseAddForm = () => {
         startDateOfCourse: kursstart,
         endDateOfCourse: kursende,
         linkToProvider: linkProvider,
-        //courseImage: imgToSave,
+        //courseImage: file,
         active: kursActivated,
         updatedBy: localStorage.getItem("userId"),
       };
@@ -710,19 +710,22 @@ const CourseAddForm = () => {
     <>
       {isAuth && [5, 10, 9].some(right => accessRights.includes(right)) 
       ? 
-      (<main id="courseForm">
+      (<main id="courseForm" >
+            < CloseOutlined className="closeX" onClick={() => navigate("/home")}> </CloseOutlined>
           <div className="headBox">
-            <h2 id="courseHead">Eingabe / Bearbeiten von Kursangeboten</h2>
-            <p className="closingFunction" onClick={() => navigate("/home")}>Formular schließen</p>
+            <h2 id="courseHead">Eingabe / Bearbeiten von Kursangeboten
+              {/* <p className="closingFunction" onClick={() => navigate("/home")}>Formular schließen</p>  */}
+            </h2>
+            
           </div>
 
-         <div id="courseFormContainer" className={statusSicherung} >
-          <p id="änderungsHinweis">
+         <div id="courseFormContainer"  className={statusSicherung}>
+          <p id="änderungsHinweis" >
           {/* {(data.length > 0 && statusSicherung === "ungesichert") 
             ? "ACHTUNG: Änderungen wurden noch nicht gesichert"
             : "Bitte Daten eingegeben"} */}
             {(data.length === 0)?"Bitte Daten eingegeben":""}
-            {(data.length > 0 && statusSicherung === "gesichert")?"Daten sind unverändert":""}
+            {(data.length > 0 && statusSicherung === "gesichert")?"Daten sind gesichert":""}
             {(data.length > 0 && statusSicherung === "ungesichert")?"ACHTUNG: Änderungen wurden noch nicht gesichert":""}
           </p>
           
@@ -1009,12 +1012,6 @@ const CourseAddForm = () => {
               </div>
             </div>
 
-
-
-
-
-
-
             <div id="kursnummer">
               <label htmlFor="bookingNo">KursCode:</label>
               <input
@@ -1148,7 +1145,7 @@ const CourseAddForm = () => {
               <label htmlFor="file">Kursbilder:</label>
               <div id="imagesContainer">
                 <div id="imageBox"></div>
-                <ImagesUploadModal id="test"setImages={setFile} />
+                <ImagesUploadModal id="test" setImages={setFile} />
               </div>
             </div>
             <div id="sprachauswahl">

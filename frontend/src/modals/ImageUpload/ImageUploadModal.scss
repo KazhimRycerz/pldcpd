@@ -17,6 +17,14 @@
 .ant-modal-content{
     background-color: $first-color !important;
     //width: 80%;
+    .ant-modal-header{
+        //border: solid;
+        width: fit-content !important;
+        div{
+            margin: 10px auto ;
+            //border: solid;
+        }
+    }
 }
 
 #uploadImageMain {

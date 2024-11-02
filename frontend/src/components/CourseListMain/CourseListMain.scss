@@ -5,206 +5,451 @@
   min-height: 75vh;
   //margin-top: 100px;
   //margin-bottom: 100px;
-  margin: -20px auto 50px;
+  margin: 0px auto 50px;
   background-color: $first-color;
   box-shadow: $mainshadow;
-  
-  #courseListHead{
-    width: 90%;
-    margin: 80px 60px 0;
-    padding-left: 20px;
-    font-family: $primary-font-bold;
-    //border: solid;
-  }
-  
+    
   #overviewCourses {
     width: 90%;
-    margin: 0 auto; 
+    height: 800px;
+    margin: 20px auto; 
     border-left: dotted;
     border-right: dotted;
     border-width: 3px;
     border-radius: $radiuslarge;
     border-color: $cpdred;
-    overflow-x:scroll;
-    >div{
+    overflow-y:scroll;
+    
+    #themenFilter{
+      position: sticky;
+      top: 00px;
       display: flex;
-      flex-flow: row nowrap;
-      justify-content:flex-end;
-      gap: 20px;
-      padding: 0px;
-      width: 85%;
-      margin: 0px auto;
-      height: min-content;
+      flex-flow: row wrap;
+      justify-content:space-evenly;
+      gap: 10px;
+      padding: 0 5%  ;
+      width: 100%;
+      margin: 0px auto 0px;
+      height: auto;
+      min-height: 75px;
+      border-radius: 10px 10px 0 0;
+      color: $secondary-color;
+      background-color: $cpdblue;
+      font-size: $small;
       //border: solid;
-      ul{
-        display: flex;
-        flex-flow: row nowrap;
-        position: relative;
-        bottom: -03px;
-        list-style-type: none;
-        width: auto;
-        height: min-content;
-       //border: solid;
-        div{
+      border-bottom: solid 2px $fourth-color;
+      >div{
+        margin: 10px 0;
+        padding: 3px;
+        font-size: $xsmall;
+        //border-bottom: solid $fourth-color;
+        border-left: dotted $fourth-color;
+        border-right: dotted $fourth-color;
+        border-radius: 10px;
+        //width: 80px;
+        p{
+          margin: 0 0 5px 0;
+          padding:0 0 3px 0;
+          font-size: $xsmall;
+          border-bottom: dotted 1px;
+          //width: 80px; 
+        }
+        select {
+          background-color: $cpdblue;
+          color: $secondary-color;
+          border: none;
+          font-size: $xsmall;
+          width: 80px;
+          //padding: 5px 0 0 0 ;
+          margin: 0;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        ul{
           display: flex;
-          flex-flow: row nowrap;
-          background: $fourth-color;
-          border-left: dotted $cpdred;
-          border-right: dotted $cpdred;
-          border-radius:5px;
+          flex-flow: column wrap;
           position: relative;
-          bottom: 3px;
-          margin: 0 0 0 5px;
+          list-style-type: none;
+          width: auto;
+          //max-width: 80px;
+          height: min-content;
+          font-size: $xsmall;
+         //border: solid;
           li{
-            padding: 2px 5px;
-            min-width: 50px;
-            &:after{
-              content: ",";
-            }
-            &:last-child::after{
-              content: "";
-            }
+            font-size: $small;
+            padding: 2px  0 0 0;
+            margin-right: 3px;
+            max-width: auto;
+            // &:after{
+            //   content: ", ";
+            // }
+            // &:last-child::after{
+            //   content: "";
+            // }
           }
         }
       }
       #sortItem {
         position: relative;
         top: 0px;
-        background: $fourth-color;
+        background-color: $cpdblue;
         margin: 0 0 0 5px;
         padding: 0px ;
-        font-size: $small;
-        border-left: dotted $cpdred;
-        border-right: dotted $cpdred;
-        border-top: none;
-        border-bottom: none;
-        border-radius:5px;
-        height: 25px;
-        &:active{
-          border: none;
-        }
+        font-size: $xsmall;
+        // border-left: dotted $cpdred;
+        // border-right: dotted $cpdred;
+        // border-top: none;
+        // border-bottom: none;
+        // border-color: $fourth-color;
+        // border-radius:5px;
+        //height: 25px;
+        // &:active{
+        //   border: none;
+        // }
         &:hover {
-          color: $cpdred;
-          text-shadow: $text-shadow;
+          //color: $cpdred;
+          text-shadow: 0px 0px 10px $fourth-color;
+        }
+        option{
+          font-size: $xsmall;
         }
       }
-      /* p select{
-        //border:solid;
-        //display: inline;
-        text-align: right;
-        margin: 10px 20px 0 20px;
-        //border: solid;
-        &:hover {
-          color: $cpdred;
-          text-shadow: $text-shadow;
+      #sortBy{
+        margin-right: 0;
+        padding-right:0;
+        //font-size: $xsmall;
+        width: min-content;
+        select{
+          font-size: $xsmall;
+          padding: 0;
+          margin: 0;
         }
       }
-      #filterLöschen:hover {
-        color: $cpdred;
-          text-shadow: $text-shadow;
-      } */
-    }
-  }
-  
-  #tableCourseList {
-    font-size: $small;
-    margin: 0 auto;
-    padding: 10px;
-    width: 80%;
-    overflow:scroll;
-    margin-bottom: 20px;
-    table-layout:unset;
-    
-  
-    //text-align: center;
-    /* border-width: 1rem;
-    border-left: dotted;
-    border-right: dotted;
-    border-width: 3px;
-    border-radius: $radiussmall; */
-    //border-collapse: collapse;
-    th {
-      margin: 5px;
-      padding:5px;
-      color: $secondary-color;
-      background-color: $cpdblue;
-      font-size: 0.8rem;
-      //background: linear-gradient($first-color, $cpdblue );
-      text-align: left;
-      //border-radius: 0 10px 0 10px;
-      p{
-        padding-left: 4px;
-        font-size: 0.8rem;
+      #gesetzterFilter li{
+        font-size: $xsmall;
       }
-      select {
-        background-color: $cpdblue;
-        color: $secondary-color;
-        border: none;
-        font-size: 0.8rem;
-      }
+      #filterLöschen{
+        // color: $fourth-color;
+        // font-size: $xsmall;
+         border: none;
+        // margin: 0;
+        // padding: 0;
+        // width:auto;
+        p{
+          border-bottom: dotted 1px;
+        }
+        
+        #pFilterLöschen {
+          //border: none;     
+          &:before {
+              content: 'C ';
+              color: $fourth-color;
+              font-family: 'VIA-Verlag', sans-serif; // Font-Fallback hinzufügen
+              vertical-align: -1px;
+          }
+          &:hover {
+              text-shadow: 0px 0px 5px $fourth-color;
+          }
+        }
       
-    }
-    th:first-child {
-      border-radius: 10px 0 0 0;
-    }
-    th:last-child {
-      border-radius: 0 10px 0 0;
-    }
-
-    tr, td{
-      padding:5px 5px;
-      text-align: left;
-      list-style-type: none;
-      vertical-align: top;
-      background: linear-gradient($first-color, $fourth-color );
-    }
-    tr:last-child td:first-child {
-      border-radius: 0 0 0 10px;
-    }
-    tr:last-child td:last-child {
-      border-radius: 0 0 10px 0;
-    }
-    
-    #topicLink, #authorsLink{
-      text-decoration-line: none;
-      color: $cpdblue;
-    }
-    #author:before, #topic:before{
-       content: 'C ';
-       color: $cpdred;
-       font-family: VIA-Verlag;
-       vertical-Align: -1px;
-       text-shadow: $text-shadow;
-     }
-    #author:hover, #topic:hover {
-      //background-color: $first-color;
-      color: $cpdred;
-      width:max-content;
-      margin-bottom: 5px;
-      //overflow: auto;
-      //padding: 5px;
-      //margin-left: -5px;
-      //width: calc(100% + 10px);
-      //font-size: 16px;
-      //box-shadow: $btnshadowsmall;
-      //border-radius: 7px;
-      #authorsLink:hover,#topicLink:hover {
-        //color: $cpdred;
-        text-shadow: $text-shadow;
+      }
+      #ansicht {
+        display: flex;
+        //align-items: center;
+        flex-flow:column;
+        input[type="radio"] {
+          display: none;
+        }
+        label {
+          display: inline-block;
+          position: relative;
+          padding-left: 15px;
+          margin-right: 15px;
+          cursor: pointer;
+          font-size: $xsmall;
+          user-select: none;
+          &:hover {
+            text-shadow: 5px 0px 5px white; 
+          }
+          &::before {
+            content: "C";
+            font-family: VIA-verlag;;
+            position: absolute;
+            left: 0;
+            top: 1px;
+            width: 10px;
+            height: 10px;
+            //border-radius: 50%;
+            //background-color: $fourth-color; /* Standard Hintergrundfarbe */
+            //border: 1px solid #333; /* Standard Randfarbe */
+          }
+        }
         
       }
     }
-    #infoLink, #providerLink {
-      text-align: center;
+
+    #kursÜberblick {
+        display: flex;
+        flex-flow: row wrap;
+        gap:10px;
+        justify-content:center;
+        width: 95%;
+        margin: 20px auto ;
+        font-size: small;
+        padding: 0 ;
+        //border: solid;
+        #cards{
+          padding: 0 ;
+          width: 30%;
+          height: auto;
+          min-width: 300px;
+          min-height: 200px;
+          flex-basis: auto;
+          // flex-grow: 3;
+          flex-shrink: 1;
+          border-radius: $small;
+          border: solid;
+          background: linear-gradient($first-color, $fourth-color );
+          h3{
+            //position: relative;
+            padding: 5px;
+            text-align: center;
+            font-size: 18px;
+            color: $fourth-color;
+            background-color: $cpdblue;
+            margin: 0;
+            border-radius:10px 10px 0 0px ;
+            min-height: 50px;
+            line-height: 50px;
+            white-space: nowrap; 
+            overflow: hidden;
+            text-overflow: ellipsis;
+            cursor: pointer;
+            // 
+            // &:hover::after {
+            //   content: attr(data-tooltip); /* Tooltip-Text aus dem Attribut */
+            //   position: absolute;
+            //   bottom: 100%; /* Tooltip über dem Element anzeigen */
+            //   left: 50%;
+            //   transform: translateX(-50%);
+            //   background-color: #333;
+            //   color: #fff;
+            //   padding: 5px;
+            //   border-radius: 4px;
+            //   white-space: nowrap;
+            //   font-size: 14px;
+            //   opacity: 0;
+            //   visibility: hidden;
+            //   transition: opacity 0.3s ease;
+            //   z-index: 10;
+            // }
+            // &:hover::after {
+            //   opacity: 1;
+            //   visibility: visible;
+            // }
+            
+            &:before{
+              
+              content: "C ";
+              font-family: VIA-Verlag;
+              //position: relative;
+              top: 1px;
+              z-index: 1;
+            }
+            &:hover{
+              text-shadow: 5px 0px 5px white;
+            }
+          }
+          >div{
+            margin: 0px;
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content:space-between;
+            >div{
+              padding: 4px 10px;
+              background: linear-gradient($first-color, $fourth-color );
+              display: flex;
+              flex-flow: row nowrap;
+              justify-content: space-between;
+              //height: min-content;
+              //border: solid;
+              >p{
+                font-size: small;
+                //border: solid;
+                width: 30%;
+              }
+              #sprachliste {
+                //display: flex;
+                flex-flow: row wrap;
+              }
+              #sprachliste p::after {
+                content: ", ";
+                white-space: pre;
+              }
+              #sprachliste p:last-of-type::after {
+                content: "";
+              }
+              >div{
+                display: flex;
+                flex-flow: column nowrap;
+                // background: black;
+                // color: $fourth-color;
+                //border: solid;
+                width: 60%;
+                #author{
+                  //border-bottom: solid 1px;
+                  &:before{
+                    content: 'C ';
+                    color: $cpdred;
+                    font-family: VIA-Verlag;
+                    vertical-Align: -1px;
+                  }
+                  &:hover{
+                    cursor: pointer;
+                    color: $cpdred;
+                    text-shadow: $text-shadow;
+                  }
+                }
+                
+              } 
+            } 
+            >div:last-child{
+              border-radius: 0 0 10px 10px 
+            }  
+            #infoLink:hover{
+              text-shadow: $text-shadow;
+            }
+          }
+        }
+      }
+
+    #tableCourseList {
+      font-size: $small;
       margin: 0 auto;
-      &:hover {
-        color: $cpdred;
+      padding: 10px;
+      table-layout:fixed;
+      width: 100%;
+      min-width: 1000px;
+      overflow:scroll;
+      margin-bottom: 20px;
+      th {
+        margin: 5px;
+        padding: 5px;
+        color: $secondary-color;
+        background-color: $cpdblue;
+        font-size: 0.8rem;
+        //background: linear-gradient($first-color, $cpdblue );
+        text-align: left;
+        //border-radius: 0 10px 0 10px;
+        p{
+          padding-left: 4px;
+          font-size: 0.8rem;
+        }
+        select {
+          background-color: $cpdblue;
+          color: $secondary-color;
+          border: none;
+          font-size: 0.8rem;
+        }
+        
+      }
+      th:first-child {
+        border-radius: 10px 0 0 0;
+      }
+      th:last-child {
+        border-radius: 0 10px 0 0;
+      }
+  
+      tr, td{
+        padding:5px 5px;
+        text-align: left;
+        list-style-type: none;
+        vertical-align: top;
+        background: linear-gradient($first-color, $fourth-color );
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;       
+      }
+      tr:last-child td:first-child {
+        border-radius: 0 0 0 10px;
+      }
+      tr:last-child td:last-child {
+        border-radius: 0 0 10px 0;
+      }
+      
+      #topicLink, #authorsLink{
+        text-decoration-line: none;
+        color: $cpdblue;
+      }
+      #topicLink:hover, #authorsLink:hover {
+        //color: $cpdred;
         text-shadow: $text-shadow;
+        background-color: $fourth-color;
+      }
+      #author:before, #topic:before{
+         content: 'C ';
+         color: $cpdred;
+         font-family: VIA-Verlag;
+         vertical-Align: -1px;
+         text-shadow: $text-shadow;
+       }
+      #author:hover, #topic:hover, td:hover {
+        //background-color: $first-color;
+        color: $cpdred;
+        width:max-content;
+        padding-right: 20px;
+        overflow: visible;
+        //margin-bottom: 5px;
+        background-color: $fourth-color;
+        //border: solid black;
+        text-overflow:unset;
+        //background-color: black;;
+        //overflow: auto;
+        //padding: 5px;
+        //margin-left: -5px;
+        //width: calc(100% + 10px);
+        //font-size: 16px;
+        //box-shadow: $btnshadowsmall;
+        //border-radius: 7px;
+        
+        
+      }
+      #infoLink, #providerLink {
+        text-align: center;
+        margin: 0 auto;
+        &:hover {
+          color: $cpdred;
+          text-shadow: $text-shadow;
+        }
       }
     }
   }
-  #levelFilter {
-    width: 80px;
+  
+}  
+
+#kursartFilter {
+  height: 20px;
+  input{
+    background-color: $cpdblue;
+    color: $secondary-color;
+    border: none;
+    font-size: $xsmall;
+  }
+  #listOfCourseTypes{
+    position:absolute;
+    top: 0px;
+    
+    li{
+      width: auto;
+      cursor: pointer;
+    }
   }
 }
- 
+
+ select#kursartFilter{
+  appearance: none;
+  option{
+    background-color: aqua !important;
+    color: yellow;
+  }
+ }

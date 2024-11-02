@@ -6,6 +6,7 @@ import { SectionsContext } from "../../context/SectionsContext.js";
 import axiosConfig from "../../util/axiosConfig.js";
 import Moment from "moment"
 import { ListOfLevel } from "../ListsOfData/ListOfData.jsx";
+import { DoubleRightOutlined, CloseOutlined, EditOutlined, SaveOutlined, StopOutlined, StepBackwardOutlined, StepForwardOutlined  } from "@ant-design/icons";
 
 const CourseMain = () => {
   const { state } = useLocation();
@@ -40,18 +41,19 @@ useEffect(() => {
 
   return (
     <main id="courseMain"> {/* Styling in global */}
+      < CloseOutlined className="closeX" onClick={() => navigate(-1)} /> 
       <div id="headBox">
         <h2 id="courseHead">Kursinhalt und Beschreibung</h2>
-        <button onClick={() => {navigate(-1)}} className="buttonBasics pFunction" /* id="returnToCoursePage" */>zurück</button>
       </div>
+      <p onClick={() => {navigate(-1)}} className="pFunction" /* id="returnToCoursePage" */>zurück zur Übersicht</p>
       
       <article id="courseArticle">
         
-        <div className="courseBoxes" id="boxAutor"> 
+        <div className="courseBoxes" id="boxTopic"> 
             <p>Kursthema</p> 
             <div className="output" id="courseTopic">{courseData.courseTopic}</div>
         </div>
-        <div className="courseBoxes"> 
+        <div className="courseBoxes" id="boxAutor"> 
               <p>Autoren</p> 
             <div className="output" id="courseHead">
               {authorsData.map((author, index) => (
@@ -122,13 +124,12 @@ useEffect(() => {
         <div> 
           <p>Kursanbieter</p> 
           <div className="output" id="courseProvider" ><a href={courseData.linkToProvider} target="_blank" rel="noopener noreferrer">{courseData.linkToProvider}</a></div>
-        </div>   
-        
+        </div>    
       </article>
-        <div id="buttonBottom">
-          <h2>Haben Sie Interesse an diesen Kurs?</h2>
-          <button className="buttonBasics pFunction" /* id="buttonLernListe" */>auf Lernliste</button>
-        </div>   
+      <div id="buttonBottom">
+        <h2>Haben Sie Interesse an diesen Kurs?</h2>
+        <button className="buttonBasics pFunction" /* id="buttonLernListe" */>auf Lernliste</button>
+      </div>   
     </main>
   );
 };

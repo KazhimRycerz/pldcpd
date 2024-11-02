@@ -5,6 +5,7 @@ import { useContext, useState, useEffect } from "react";
 import { SectionsContext } from "../../context/SectionsContext.js";
 import axiosConfig from "../../util/axiosConfig";
 import Moment from "moment"
+import { DoubleRightOutlined, CloseOutlined, EditOutlined, SaveOutlined, StopOutlined, StepBackwardOutlined, StepForwardOutlined  } from "@ant-design/icons";
 
 const AuthorMain = () => {
   const { state } = useLocation();
@@ -43,10 +44,11 @@ useEffect(() => {
 
   return (
     <main id="authorsPageMain"> {/* Styling in global */}
+    < CloseOutlined className="closeX" onClick={() => navigate(-1)} /> 
       <div id="headBox">
         <h2 id="courseHead">Autoren Info</h2>
-        <button onClick={zurückZurListe} className="buttonBasics pFunction" >zur Übersicht</button>
       </div>
+        <p onClick={zurückZurListe} className=" pFunction" >zur Übersicht</p>
       
       <article id="authorsArticle">
         <div className="courseBoxes"> 

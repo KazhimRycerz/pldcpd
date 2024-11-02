@@ -137,7 +137,6 @@ const Header = () => {
             
           </div >      
         </div>
-
       </header>
       
       {isAuth && (
@@ -459,15 +458,19 @@ const Header = () => {
               items
             </p>
             {accessRights.includes(5) || accessRights.includes(10) || accessRights.includes(9) ? (<li>
-              <NavLink to="/courseform" className="closebtn active" >
-                <span className="C">C</span> add courses
+              <NavLink to="/companypage" className="closebtn active" >
+                <span className="C">C</span> add/work on company
               </NavLink>
               <NavLink to="/courseform" className="closebtn active" >
+                <span className="C">C</span> add/work on courses
+              </NavLink>
+              {/* <NavLink to="/courseform" className="closebtn active" >
                 <span className="C">C</span> change courses
-              </NavLink>
+              </NavLink> */}
             </li> ) : (<li><NavLink onClick={ FehlendeZugangsrechte } className="closebtn"><span className="C">C</span> add courses</NavLink></li>)}           
           </ul>) : null}
         </div>
+
         <div className="navPromo">
           <NavLink to="/register" id="nlPromo">
           <p>direct registration</p>

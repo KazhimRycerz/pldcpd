@@ -11,17 +11,16 @@
   #courseFormContainer{
     width: 80%;
     border-radius: 20px;
-    margin: 0 auto 50px;
+    margin: 0px auto 50px;
     //box-shadow: none;
     background-color: transparent;
-    padding: 30px 0 50px ;
+    //padding: 30px 0 50px ;
 
     #änderungsHinweis{
-      //position: relative;
-      //top: -15px;
+      
       font-size: $xlarge;
       width: fit-content;
-      margin: 0px auto 30px ;
+      margin: 20px auto 0px ;
       color: $cpdblue;
     }
     
@@ -32,7 +31,7 @@
       align-items:flex-start;
       gap: 0px;
       width: 25%;
-      margin: 0 0 10px;
+      margin: 0 0 0px;
       padding: 0px;
       position: relative;
       left: 70%;
@@ -51,7 +50,7 @@
       gap: 10px;
       margin: 0 auto 20px;
       padding: 10px;
-      width: 90%;
+      width: 100%;
       min-width: 700px;
       border-radius: $radiussmall;
       box-shadow: $boxshadow;

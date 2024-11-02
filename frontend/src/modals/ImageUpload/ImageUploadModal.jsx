@@ -101,7 +101,7 @@ const ImagesUploadModal = ({ setImages }) => {
       
       <Modal
       id="test"
-      title="Bilderer hochladen"
+      title="Bilder hochladen"
       open={isModalVisible}
       onOk={handleOk}
       onCancel={handleCancel}

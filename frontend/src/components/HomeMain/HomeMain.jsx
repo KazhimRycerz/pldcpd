@@ -235,14 +235,14 @@ const HomeMain = () => {
           <div id="info_1_1">
             <div>
               <h3>Lernangebote</h3>
-              <label htmlFor="Filter">Sortiert nach</label>
+              {/* <label htmlFor="Filter">Sortiert nach</label>
               <select name="Filter" id="Filter">
                 <option value="Themenfeld">Themenfeld</option>
                 <option value="Art">Art</option>
                 <option value="Datum">Datum</option>
                 <option value="Level">Level</option>
               </select>
-              <br />
+              <br /> */}
             </div>
 
             <table>
