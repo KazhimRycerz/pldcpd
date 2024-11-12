@@ -22,7 +22,7 @@ const DataListOfCourseTypes = () => {
       });
     }
   }
-
+  
   useEffect(() => {
     getListOfCourseTypes();
   }, []);
@@ -32,6 +32,70 @@ const DataListOfCourseTypes = () => {
         {typeList.map((typeList, index) => (
           <option key={index} value={typeList.type}>
             {typeList.type}
+          </option>
+        ))}
+    </>   
+  )
+}
+
+const DataListOfCourses = () => {
+  const [courseList, setCourseList] = useState([])
+  const getListOfCourses = async () => {
+    try {
+      const response = await axiosConfig.get("/courses");
+      const receivedData = response.data;
+      setCourseList(receivedData);
+      console.log(courseList);
+    } catch (error) {
+      Swal.fire({
+        title: "Keine Liste gefunden",
+        icon: "error",
+        confirmButtonText: "OK"
+      });
+    }
+  }
+  
+  useEffect(() => {
+    getListOfCourses();
+  }, []);
+  
+  return (
+    <>   
+        {courseList.map((courseList, index) => (
+          <option key={index} value={courseList._id}>
+            {courseList.courseTopic} 
+          </option>
+        ))}
+    </>   
+  )
+}
+
+const DataListOfAuthors = () => {
+  const [authorsList, setAuthorsList] = useState([])
+  const getListOfAuthors = async () => {
+    try {
+      const response = await axiosConfig.get("/authorsinfo");
+      const receivedData = response.data;
+      setAuthorsList(receivedData);
+      //console.log(authorsList);
+    } catch (error) {
+      Swal.fire({
+        title: "Keine Liste gefunden",
+        icon: "error",
+        confirmButtonText: "OK"
+      });
+    }
+  }
+  
+  useEffect(() => {
+    getListOfAuthors();
+  }, []);
+  
+  return (
+    <>   
+        {authorsList.map((authorsList, index) => (
+          <option key={index} value={authorsList._id}>
+            {authorsList.professionalTitle} {authorsList.firstName} {authorsList.lastName}
           </option>
         ))}
     </>   
@@ -333,4 +397,4 @@ const ListOfAccessRights = () => {
     )
   }
 
-export { IndustryField, ListOfCompanyType, ListOfCourseTypes, DataListOfCourseTypes, ListOfLanguages, ListOfTopicFields, stepsOfCPDEvaluation, ListOfLevel, ListOfAccessRights, ListOfCountryCodes }
+export { IndustryField, ListOfCompanyType, ListOfCourseTypes, DataListOfCourses, DataListOfCourseTypes, ListOfLanguages, ListOfTopicFields, stepsOfCPDEvaluation, ListOfLevel, ListOfAccessRights, ListOfCountryCodes, DataListOfAuthors }

@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 //import swal from "sweetalert";
 
 const LoginForm = () => {
-  const { setButtonPos, navigate, gotoPage, isAuth, setIsAuth, userMode, setUserMode, logout, accessRights, setAccessRights } = useContext(SectionsContext)
+  const { setButtonPos, navigate, isAuth, setIsAuth, userMode, setUserMode, logout, accessRights, setAccessRights } = useContext(SectionsContext)
   const [isLoading, setIsLoading] = useState(false);
   const formEl = useRef(null);
   const usernameEL = useRef(null);
@@ -31,7 +31,7 @@ const LoginForm = () => {
     if (accessRights.some(item => item > 1)) {
       setUserMode("manager");
     }
-    navigate(gotoPage)
+    navigate(-1)
   };
 
   const logoutHandler = () => {
@@ -58,7 +58,7 @@ const LoginForm = () => {
       if (result.isConfirmed) {
         logout();
         setButtonPos("");
-        navigate("/home");
+        navigate(-1 || "/home");
       } else if (result.isDenied) {
         logout();
         setButtonPos("");

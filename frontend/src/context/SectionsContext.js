@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import axiosConfig from "../util/axiosConfig.js";
 import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Swal from "sweetalert2";
 
 
@@ -19,7 +19,9 @@ const SectionsProvider = ({ children }) => {
       return true;
     }
   });
+  const location = useLocation();
   const navigate = useNavigate();
+  const [lastPath, setLastPath] = useState("/");
   const [buttonPos, setButtonPos] = useState(isAuth ? "showBut" : "buttonZeroPosition");
   const [asidePos, setAsidePos] = useState("");//accountAside
   const [userData, setUserData] = useState({});
@@ -42,6 +44,9 @@ const SectionsProvider = ({ children }) => {
     const savedPosition = localStorage.getItem('objectPosition');
     return savedPosition ? JSON.parse(savedPosition) : { x: 50, y: 50 };
   });
+  const saveLastPath = (path) => {
+    setLastPath(path);
+  };
   
   useEffect(() => {
     localStorage.setItem('objectSize', objectSize);
@@ -130,7 +135,9 @@ const SectionsProvider = ({ children }) => {
         accessRights, 
         setAccessRights,
         buttonPos, 
+        location,
         navigate,
+        lastPath, saveLastPath,
         setButtonPos,
         userData,
         setUserData,

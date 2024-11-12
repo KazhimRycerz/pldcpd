@@ -114,14 +114,14 @@ const Header = () => {
               Professional Development
             </p>
           </div>
-          <div id="header_myaccount">
+          <div id="headerMyAccount">
             <ul>
               <li
-              id="showregister">
+              id="showRegister">
                 {!isAuth && <Link to="/register"> register <span className="C">C</span> </Link> }
               </li>
               <li
-                id="showlogin"
+                id="showLogin"
                 onClick={handleAccountButton}
                 >
                 {isAuth ? <div> log me out <span className="C">C</span></div> : <Link to="/login"> login <span className="C">C</span></Link>}
@@ -212,29 +212,29 @@ const Header = () => {
             </p>
             <li>
               <NavLink to="/home" className="closebtn active">
-                <span className="C">C</span> home
+              <span className="pFunction"></span> home
               </NavLink>
             </li>
             <li>
               <NavLink to="/abouttheprofession" className="closebtn active">
-                <span className="C">C</span> the profession
+              <span className="pFunction"></span> the profession
               </NavLink>
             </li>
             <li>
               <NavLink to="/404" className="closebtn">
-                <span className="C">C</span> services
+              <span className="pFunction"></span> services
               </NavLink>
             </li>
             <li>
               <NavLink to="/404" className="closebtn">
-                <span className="C">C</span> clients
+              <span className="pFunction"></span> clients
               </NavLink>
             </li>
             
             
             <li>
               <NavLink to="/companypage" className="closebtn active">
-                <span className="C">C</span> 
+              <span className="pFunction"></span> 
                 {isAuth && Array.isArray(accessRights) && accessRights.some(item => item > 1) ? 'work on companies' : 'register company'}
             </NavLink>
 
@@ -248,7 +248,7 @@ const Header = () => {
             <li>
               {isAuth ? (
                 <NavLink to="/KnowledgeAccount" className="closebtn active">
-              <span className="C">C</span> your CPD account
+              <span className="pFunction"></span> your CPD account
               </NavLink>
               ) : (
                 <NavLink
@@ -279,14 +279,14 @@ const Header = () => {
                 to="#"
                 >
                 {/* < RegistriertenRechte /> */}
-                <span className="C">C</span> your CPD account
+                <span className="pFunction"></span> your CPD account
                 </NavLink> 
               )}
             </li>
             <li>
               {isAuth ? (
                 <NavLink to="/userupdate" className="closebtn active">
-                  <span className="C">C</span> Nutzer-Daten ändern
+                  <span className="pFunction"></span> Nutzer-Daten ändern
                 </NavLink>
                 ) : (
                 <NavLink
@@ -317,7 +317,7 @@ const Header = () => {
                   }}
                   to="#"
                 >
-                  <span className="C">C</span> change your Userdata
+                  <span className="pFunction"></span> change your Userdata
                 </NavLink>
               )}
             </li>
@@ -327,29 +327,24 @@ const Header = () => {
               learning <br />
               by topics{" "}
             </p>
-            {/* <li>
-              <NavLink to="/coursepage" className="closebtn" style={{color: "red"}}>
-                <span className="C">C</span> single course
-              </NavLink>
-            </li> */}
             <li>
             <NavLink to="/courselistpage" className="closebtn active">
-                <span className="C">C</span> listed courses on offer
+                <span className="pFunction"></span> listed courses on offer
               </NavLink>
             </li>
             <li>
               <NavLink to="/home" className="closebtn">
-                <span className="C">C</span> services
+              <span className="pFunction"></span> services
               </NavLink>
             </li>
             <li>
               <NavLink to="/home" className="closebtn">
-                <span className="C">C</span> clients
+              <span className="pFunction"></span> clients
               </NavLink>
             </li>
             <li>
               <NavLink to="/home" className="closebtn">
-                <span className="C">C</span> contact
+              <span className="pFunction"></span> contact
               </NavLink>
             </li>
           </ul>
@@ -360,32 +355,32 @@ const Header = () => {
             </p>
             <li>
               <NavLink to="/home" className="closebtn">
-                <span className="C">C</span> home
+              <span className="pFunction"></span> home
               </NavLink>
             </li>
             <li>
               <NavLink to="/home" className="closebtn">
-                <span className="C">C</span> learning
+              <span className="pFunction"></span> learning
               </NavLink>
             </li>
             <li>
               <NavLink to="/home" className="closebtn">
-                <span className="C">C</span> services
+              <span className="pFunction"></span> services
               </NavLink>
             </li>
             <li>
               <NavLink to="/home" className="closebtn">
-                <span className="C">C</span> clients
+              <span className="pFunction"></span> clients
               </NavLink>
             </li>
             <li>
             {isAuth && <NavLink to="/KnowledgeAccount" className="closebtn, active">
-                <span className="C">C</span> your CPD account
+              <span className="pFunction"></span> your CPD account
               </NavLink>}
             </li>
             <li>
               <NavLink to="/home" className="closebtn">
-                <span className="C">C</span> contact
+              <span className="pFunction"></span> contact
               </NavLink>
             </li>
           </ul>
@@ -396,32 +391,32 @@ const Header = () => {
             </p>
             <li>
               <NavLink to="/home" className="closebtn">
-                <span className="C">C</span> home
+              <span className="pFunction"></span> home
               </NavLink>
             </li>
             <li>
               <NavLink to="/home" className="closebtn">
-                <span className="C">C</span> learning
+              <span className="pFunction"></span> learning
               </NavLink>
             </li>
             <li>
               <NavLink to="/home" className="closebtn">
-                <span className="C">C</span> services
+              <span className="pFunction"></span> services
               </NavLink>
             </li>
             <li>
               <NavLink to="/home" className="closebtn">
-                <span className="C">C</span> clients
+              <span className="pFunction"></span> clients
               </NavLink>
             </li>
             <li>
             {isAuth && <NavLink to="/KnowledgeAccount" className="closebtn active">
-                <span className="C">C</span> your CPD account
+              <span className="pFunction"></span> your CPD account
               </NavLink>}
             </li>
             <li>
               <NavLink to="/home" className="closebtn">
-                <span className="C">C</span> contact
+              <span className="pFunction"></span> contact
               </NavLink>
             </li>
           </ul>
@@ -432,22 +427,22 @@ const Header = () => {
             </p>
             <li>
               <NavLink to="/emailus" className="closebtn active">
-                <span className="C">C</span> e-mail us 
+              <span className="pFunction"></span> e-mail us 
               </NavLink>
             </li>
             <li>
               <NavLink to="/emailus" className="closebtn active">
-                <span className="C">C</span> contact us 
+              <span className="pFunction"></span> contact us 
               </NavLink>
             </li>
             <li>
               <NavLink to="/404" className="closebtn">
-                <span className="C">C</span> dataprotection 
+              <span className="pFunction"></span> dataprotection 
               </NavLink>
             </li>
             <li>
               <NavLink to="/impressum" className="closebtn active">
-                <span className="C">C</span> impressum 
+              <span className="pFunction"></span> impressum 
               </NavLink>
             </li>
             
@@ -459,10 +454,10 @@ const Header = () => {
             </p>
             {accessRights.includes(5) || accessRights.includes(10) || accessRights.includes(9) ? (<li>
               <NavLink to="/companypage" className="closebtn active" >
-                <span className="C">C</span> add/work on company
+              <span className="pFunction"></span> add/work on company
               </NavLink>
               <NavLink to="/courseform" className="closebtn active" >
-                <span className="C">C</span> add/work on courses
+              <span className="pFunction"></span> add/work on courses
               </NavLink>
               {/* <NavLink to="/courseform" className="closebtn active" >
                 <span className="C">C</span> change courses

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 //import C from "../../images/C.png"
 import { useContext, useState, useEffect } from "react";
 import { SectionsContext } from "../../context/SectionsContext";
-import { ListOfCourseTypes, DataListOfCourseTypes, ListOfLanguages, ListOfTopicFields, ListOfLevel } from "../ListsOfData/ListOfData.jsx";
+import { DataListOfAuthors, ListOfCourseTypes, DataListOfCourseTypes, ListOfLanguages, ListOfTopicFields, ListOfLevel } from "../ListsOfData/ListOfData.jsx";
 import axiosConfig from "../../util/axiosConfig";
 import baseUrl from "../../util/constants";
 import Moment from "moment";
@@ -20,131 +20,145 @@ const CourseAddMain = () => {
   //const [listOfKursart, setListOfKursart] = useState([])
   //const [listOfLanguage, setListOfLanguage] = useState([])
   //const [items, setItems] = useState([]);
-  const [autorenFilter, setAutorenFilter] = useState('');
-  const [themenFilter, setThemenFilter] = useState(
-    localStorage.getItem("themenFilter") === null ? "" : localStorage.getItem("themenFilter")
-);
+  const [autorenFilter, setAutorenFilter] = useState(sessionStorage.getItem("autorenFilter") === null ? "" : sessionStorage.getItem("autorenFilter"));
+  const [themenfeldFilter, setThemenfeldFilter] = useState(
+    sessionStorage.getItem("themenfeldFilter") === null ? "" : sessionStorage.getItem("themenfeldFilter"));
   const [kursartFilter, setKursartFilter] = useState(
-    localStorage.getItem("kursartFilter") === null ? "" : localStorage.getItem("kursartFilter")
-);
+    sessionStorage.getItem("kursartFilter") === null ? "" : sessionStorage.getItem("kursartFilter"));
   const [kursstartFilter, setKursstartFilter] = useState(
-    localStorage.getItem("kursstartFilter") === null ? "" : localStorage.getItem("kursstartFilter")
-);
+    sessionStorage.getItem("kursstartFilter") === null ? "" : sessionStorage.getItem("kursstartFilter"));
   const [kursendeFilter, setKursendeFilter] = useState('');
   const [levelFilter, setLevelFilter] = useState(
-    localStorage.getItem("levelFilter") === null ? "" : localStorage.getItem("levelFilter")
-);
+    sessionStorage.getItem("levelFilter") === null ? "" : sessionStorage.getItem("levelFilter"));
   const [sprachFilter, setSprachFilter] = useState(
-    localStorage.getItem("sprachFilter") === null ? "" : localStorage.getItem("sprachFilter")
-);
+    sessionStorage.getItem("sprachFilter") === null ? "" : sessionStorage.getItem("sprachFilter"));
   //const [buchungsNoFilter, setBuchungsNoFilter] = useState('');
-
   const [filterElements, setFilterElements] = useState(
-    localStorage.getItem("filterElements") === null || localStorage.getItem("filterElements") === ""
+    sessionStorage.getItem("filterElements") === null || sessionStorage.getItem("filterElements") === ""
         ? []
-        : JSON.parse(localStorage.getItem("filterElements"))
-);
-
+        : JSON.parse(sessionStorage.getItem("filterElements")));
   const [sortElement, setSortElement] = useState('');
   const [anzeige, setAnzeige] = useState("Karten");
-
+  const [isCourseDetailsModalVisible, setIsCourseDetailsModalVisible] = useState(sessionStorage.getItem("modalStatus"));
+  console.log(isCourseDetailsModalVisible)
+  const [selectedCourse, setSelectedCourse] = useState(JSON.parse(sessionStorage.getItem("selectedCourse")));
+  console.log(selectedCourse)
   const [isTopicFieldFocused, setIsTopicFieldFocused] = useState(false);
   const [isLanguageFocused, setIsLanguageFocused] = useState(false);
   const [isAuthorFocused, setIsAuthorFocused] = useState(false);
   const [isCourseTypeFocused, setIsCourseTypeFocused] = useState(false);
   const [isLevelFocused, setIsLevelFocused] = useState(false);
-
-  //const cpdStartDate = knowledgeData && new Date(knowledgeData.cpdActiveSince);
-  //console.log(cpdStartDate)
-  //console.log(filterElements)
-  //console.log(localStorage.getItem("filterElements"))
+  const currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0); 
   
   const buttonPosCheck = ()=>{
     if (isAuth) {setButtonPos("showBut"); setAsidePos ("accountAside")
     }
   }
+
+  const handleCancel = () => {
+    setIsCourseDetailsModalVisible(false);
+    sessionStorage.removeItem("selectedCourse");
+    //console.log(JSON.parse(sessionStorage.getItem("selectedCourse")))
+    setSelectedCourse(null);
+  };
+
+  const handleAufrufDetails = (course) => {
+    setIsCourseDetailsModalVisible(true);
+    setSelectedCourse(course);
+    sessionStorage.setItem("modalStatus", isCourseDetailsModalVisible);
+    sessionStorage.setItem("selectedCourse", JSON.stringify(course));
+    //console.log(JSON.parse(sessionStorage.getItem("selectedCourse")))
+  }
+
   const handleViewChange = (e) => {
     const { value } = e.target;
     setAnzeige(value);
-    localStorage.setItem("anzeige", value); // Speichern des View-Modus im localStorage
+    sessionStorage.setItem("anzeige", value); // Speichern des View-Modus im sessionStorage
   };
 
   const handleFilter = (e, setFilter) => {
     const { value } = e.target;
     setFilter(value);
-
-    // Speichern im localStorage
+    // Speichern im sessionStorage
     switch (setFilter) {
-      case setThemenFilter:
-        localStorage.setItem("themenFilter", value);
+      case setThemenfeldFilter:
+        sessionStorage.setItem("themenfeldFilter", value);
         break;
       case setKursartFilter:
-        localStorage.setItem("kursartFilter", value);
+        sessionStorage.setItem("kursartFilter", value);
         break;
       case setKursstartFilter:
-        localStorage.setItem("kursstartFilter", value);
+        sessionStorage.setItem("kursstartFilter", value);
         break;
       case setSprachFilter:
-        localStorage.setItem("sprachFilter", value);
+        sessionStorage.setItem("sprachFilter", value);
         break;
       case setLevelFilter:
-        localStorage.setItem("levelFilter", value);
+        sessionStorage.setItem("levelFilter", value);
         break;
+      case setAutorenFilter:
+      sessionStorage.setItem("autorenFilter", value);
+      break;
       default:
         break;
     }
   };
 
   useEffect(() => {
-    const savedThemenFilter = localStorage.getItem("themenFilter");
-    const savedKursartFilter = localStorage.getItem("kursartFilter");
-    const savedKursstartFilter = localStorage.getItem("kursstartFilter");
-    const savedSprachFilter = localStorage.getItem("sprachFilter");
-    const savedLevelFilter = localStorage.getItem("levelFilter");
-    const savedSortElement = localStorage.getItem("sortElement");
-    const savedAnzeige = localStorage.getItem("anzeige");
-    const savedFilterElements = JSON.parse(localStorage.getItem("filterElements") || "[]");
+    const savedAutorenFilter = sessionStorage.getItem("autorenFilter");
+    const savedThemenFilter = sessionStorage.getItem("themenfeldFilter");
+    const savedKursartFilter = sessionStorage.getItem("kursartFilter");
+    const savedKursstartFilter = sessionStorage.getItem("kursstartFilter");
+    const savedSprachFilter = sessionStorage.getItem("sprachFilter");
+    const savedLevelFilter = sessionStorage.getItem("levelFilter");
+    const savedSortElement = sessionStorage.getItem("sortElement");
+    const savedAnzeige = sessionStorage.getItem("anzeige");
+    const savedFilterElements = JSON.parse(sessionStorage.getItem("filterElements") || "[]");
+    //const savedSelectedCourse = (sessionStorage.getItem("selectedCourse"));
+    const savedDetailsModalStatus = sessionStorage.getItem("modalStatus" );
 
-    if (savedThemenFilter) setThemenFilter(savedThemenFilter);
+    if (savedAutorenFilter) setAutorenFilter(savedAutorenFilter);
+    if (savedThemenFilter) setThemenfeldFilter(savedThemenFilter);
     if (savedKursartFilter) setKursartFilter(savedKursartFilter);
     if (savedKursstartFilter) setKursstartFilter(savedKursstartFilter);
     if (savedSprachFilter) setSprachFilter(savedSprachFilter);
     if (savedLevelFilter) setLevelFilter(savedLevelFilter);
     if (savedSortElement) setSortElement(savedSortElement);
     if (savedAnzeige) setAnzeige(savedAnzeige);
+    //if (savedSelectedCourse) setSelectedCourse(JSON.parse(sessionStorage.getItem("savedSelectedCourse")));
+    setIsCourseDetailsModalVisible(savedDetailsModalStatus);
     setFilterElements(savedFilterElements); // wird immer gesetzt, da es ein Array sein sollte
-}, []);
-
-
-    const handleSelectCourseType = (selectedType) => {
-      setKursartFilter(selectedType);
-      //setFilteredCourseTypes(ListOfTopicFields); // Reset the filtered topics to show the full list
-      setIsCourseTypeFocused(false); // Close the dropdown after selection
-    };
+    }, []);
 
     const resetFilter = () => {
       setAutorenFilter("");
-      setThemenFilter("");
+      setThemenfeldFilter("");
       setKursartFilter("");
+      setKursstartFilter("");
       setLevelFilter("");
       setSprachFilter("");
       // setBuchungsNoFilter("");
       setSortElement("");
       setFilterElements([]);
+      setIsCourseDetailsModalVisible(false);
+      //setSelectedCourse(null)
       
-      localStorage.removeItem("themenFilter");
-      localStorage.removeItem("kursartFilter");
-      localStorage.removeItem("levelFilter");
-      localStorage.removeItem("sprachFilter");
-      localStorage.removeItem("sortElement");
-      localStorage.removeItem("filterElements");
+      sessionStorage.removeItem("autorenFilter");
+      sessionStorage.removeItem("themenfeldFilter");
+      sessionStorage.removeItem("kursartFilter");
+      sessionStorage.removeItem("levelFilter");
+      sessionStorage.removeItem("sprachFilter");
+      sessionStorage.removeItem("sortElement");
+      sessionStorage.removeItem("filterElements");
+      sessionStorage.removeItem("modalStatus");
   };
   
 
 const searchCourseListData = async () => {
   const filterItems = {
     autor: autorenFilter,
-    themenfeld: themenFilter,
+    themenfeld: themenfeldFilter,
     kursart: kursartFilter,
     kursstart: kursstartFilter,
     kursende: kursendeFilter,
@@ -159,6 +173,7 @@ const searchCourseListData = async () => {
     .map(([key, value]) => key.charAt(0).toUpperCase() + key.slice(1));
   setFilterElements(filterList)
   //console.log(filterList);
+  //console.log(autorenFilter)
     
   try {
     const axiosResp = await axiosConfig.get("/courses/courselist", {params: filterItems}
@@ -167,56 +182,21 @@ const searchCourseListData = async () => {
     const receivedData = await axiosResp.data;
     const authorsForCourse = receivedData.map(({ author }) => author);
     const courseLanguage = receivedData.map(({ courseLanguage }) => courseLanguage); 
-    const themenliste = receivedData.map(({topicField }) => topicField);
+    //const themenfeldListe = receivedData.map(({topicField }) => topicField);
     setAuthorsData(authorsForCourse)  
     setCoursesData(receivedData)
     setLanguageData(courseLanguage)
-    //console.log(themenliste)
+    //console.log(themenfeldListe)
   } catch (error) {
     console.log(error);
   }
 };
 
-/* const searchListElements = async () => { 
-  try {
-    const axiosResp = await axiosConfig.get("/courses");
-    const receivedData = await axiosResp.data;
-
-    const themenListe = receivedData.map(({topicField }) => topicField);
-    const reducedThemenListeSet = new Set(themenListe);
-    const reducedThemenListe = Array.from(reducedThemenListeSet)
-
-    const kursartListe = receivedData.map(({courseType }) => courseType);
-    const reducedKursartListeSet = new Set(kursartListe);
-    const reducedKursartListe = Array.from(reducedKursartListeSet)
-
-    const sprachenListe = receivedData.map(({ courseLanguage }) => courseLanguage); 
-    //const flachesArray = [].concat(...sprachenListe);
-    const doppelflachesArray = [].concat(...([].concat(...sprachenListe)))
-    //Liste von allen Themenfeldern in allen Datensätzen:
-    const reducedLanguageListeSet = new Set(doppelflachesArray);
-    // reduziert, so dass keine Dubletten mehr vorhanden sind:
-    const reducedLanguageListe = Array.from(reducedLanguageListeSet)
-
-    //setListLanguage(courseLanguage)
-    //setListOfThemen(reducedThemenListe)
-    //setListOfLanguage(reducedLanguageListe)
-    //setListOfKursart(reducedKursartListe)
-    /* console.log(sprachenListe)
-    console.log(reducedKursartListe)
-    console.log(reducedLanguageListe) 
-  } catch (error) {
-    console.log(error);
-  }
-};*/
-
 useEffect(() => {
-  setGotoPage("/courselistpage")
   searchCourseListData();
   buttonPosCheck()
   //searchListElements()
-  //console.log(accessRights)
-}, [ sortElement, themenFilter, kursartFilter, autorenFilter, kursstartFilter, levelFilter, sprachFilter]);
+}, [ sortElement, themenfeldFilter, kursartFilter, autorenFilter, kursstartFilter, levelFilter, sprachFilter]);
 
   return (
     <main id="courseListMain"> {/* MainStyling in global */}
@@ -227,14 +207,27 @@ useEffect(() => {
       </div>
 
       <div id="overviewCourses">
-      
-        <div id="themenFilter">
+        <div id="themenfeldFilter">
+          <div>
+            <p>Autoren</p>
+            <select 
+            name="Autoren" 
+            id="autorenFilter"
+            value={autorenFilter}
+            onChange={(e) => handleFilter(e, setAutorenFilter)}
+            >
+              <option value="">ohne Filter</option>
+              < DataListOfAuthors />
+            </select>
+          </div>
           <div>
             <p>Themenfeld</p>
             <select 
               name="Themenfeld" 
-              value={themenFilter} 
-              onChange={(e) => handleFilter(e, setThemenFilter)} id="themen">
+              id="themen"
+              value={themenfeldFilter} 
+              onChange={(e) => handleFilter(e, setThemenfeldFilter)} 
+              >
                 <option value="">ohne Filter</option>
                 {/* < ListOfTopicFields /> */}
                 {ListOfTopicFields.map((topicField, index) => (
@@ -282,7 +275,7 @@ useEffect(() => {
                 )}
                 
           </div> */}
-          <div>
+          {/* <div>
             <p>Kursstart</p>
             <select 
             name="Kurstart" 
@@ -290,11 +283,11 @@ useEffect(() => {
             onChange={(e) => handleFilter(e, setKursstartFilter)}
             id="kursstartFilter">
               <option value="">ohne Filter</option>
-              <option value="Art">Art</option>
-              <option value="Datum">Datum</option>
+              <option value={currentDate.toISOString().split('T')[0]}>Heute</option>
+              <option value="Datum">Datum eingeben</option>
               <option value="Level">Level</option>
             </select>
-          </div>
+          </div> */}
           <div>
             <p>Sprachfilter</p>
             <select 
@@ -334,7 +327,8 @@ useEffect(() => {
             id="sortItem">
               <option value="">nicht sortiert</option>
               <option value="Kursstart">Kursstart</option>
-              <option value="Level">Level</option>
+              <option value="Level0_9">Level 0 -&gt; 9</option>
+              <option value="Level9_0">Level 9 -&gt; 0</option>
             </select>
           </div>   
           <div id="gesetzterFilter">
@@ -348,8 +342,6 @@ useEffect(() => {
               }
             </ul>
           </div>
-          
-
           <div id="ansicht">
             <p>anzeigen als:</p>
             <label>
@@ -372,20 +364,26 @@ useEffect(() => {
             </label>
           </div>
           <div id="filterLöschen">{filterElements.length >= 1 ?  
-            <p  id="pFilterLöschen" onClick={resetFilter}>Filter löschen</p>:<p>kein Filter gesetzt</p>}
+            <p  id="pFilterLöschen" onClick={resetFilter}>Filter löschen</p> : 
+            <p>kein Filter gesetzt</p>}
             <span>{coursesData.length} Angebote</span>
           </div>
         </div>
-        
+
         {anzeige ==="Karten" && 
         <section id="kursÜberblick">
         {coursesData.map((course, index) => {
           return <div key={index} id="cards"> 
             <h3 
               data-tooltip={course.courseTopic}
+              // onClick={() => {
+              // navigate("/coursepage", { state: course._id  });
+              // }} 
               onClick={() => {
-              navigate("/coursepage", { state: course._id  }); // State-Objekt korrekt übergeben
-              }} >{course.courseTopic}
+                // Setze den ausgewählten Kurs und öffne das Modal
+                handleAufrufDetails(course)
+              }}
+              >{course.courseTopic}
             </h3> 
             <div>
               <div>
@@ -395,7 +393,8 @@ useEffect(() => {
                     <p 
                       key={innerIndex} 
                       onClick={() => {
-                        navigate("/authorspage", { state: author._id  }); // State-Objekt korrekt übergeben
+                        //navigate("/authorspage", { state: author._id  }); // State-Objekt korrekt übergeben
+                        window.open(`/authorspage?aID=${author._id}`, "_blank", "noopener,noreferrer");                        
                       }}   
                       id="author"
                     >
@@ -405,7 +404,6 @@ useEffect(() => {
                     </p>
                   ))}
                 </div>
-
               </div>
                 <div><p>Themenfeld:</p> <div>{course.topicField}</div></div>
                 <div><p>Kursart:</p> <div>{course.courseType}</div></div>
@@ -425,8 +423,17 @@ useEffect(() => {
                 <div><p>CPD plus:</p><div>{course.cpdAdditionalPoints}</div></div>
                 <div><p>Level min:</p><div>{course.professionalLevel} - {ListOfLevel.find((item) => item.value === course.professionalLevel)?.discription}</div></div>
                 <div><p>Anbieter:</p><div><a href={course.linkToProvider} id="providerLink" target="_blank" rel="noopener noreferrer">{course.linkToProvider}</a></div></div>
-                <div><p>Details...</p><div><Link to="/coursepage" state= {course._id} className="C" id="infoLink"><p>C zum Kurs</p></Link></div></div>
-                
+                {/* <div><p>Details...</p><div><Link to="/coursepage" state= {course._id} className="C" id="infoLink"><p>C zum Kurs</p></Link></div></div> */}
+                <div><p>Details...</p><div><p className="C" id="infoLink" onClick={() => {
+                setSelectedCourse(course);
+                sessionStorage.setItem("modalStatus", isCourseDetailsModalVisible);
+                sessionStorage.setItem("selectedCourse", JSON.stringify(course));
+                setIsCourseDetailsModalVisible(true);
+                }}>... zum Kurs</p></div></div>
+                {isAuth && [5, 10, 9].some(right => accessRights.includes(right))&&<div className="linkToCourse"><p></p><div onClick={() => {
+                  navigate("/courseform", { state: { courseId: course._id } }); // course._id wird im state übergeben
+                }}  
+                style={{ cursor: "pointer"}}><p className="pFunction">Kursdaten ändern</p></div></div>}
             </div>
 
             </div>
@@ -451,20 +458,20 @@ useEffect(() => {
           </colgroup>
           <thead>
             <tr>
-              <th>Thema</th>
+              <th><p>Thema</p></th>
               <th>
                 {/* <input type="text" name="autorenFilter" 
                 value={autorenFilter} 
                 onChange={(e) => handleFilter(e, setAutorenFilter)} 
                 id="autorenFilter"/> */}
-                Autoren
+                <p>Autoren</p>
               </th>
               <th>
                 <p>Themenfeld</p>
                 {/* <select 
                 name="Themenfeld" 
-                value={themenFilter} 
-                onChange={(e) => handleFilter(e, setThemenFilter)} id="themenFilterTabelle">
+                value={themenfeldFilter} 
+                onChange={(e) => handleFilter(e, setThemenfeldFilter)} id="themenfeldFilterTabelle">
                   <option value="">ohne Filter</option>
                   {ListOfTopicFields.map((topicField, index) => (
                   <option key={index} value={topicField}>
@@ -520,8 +527,8 @@ useEffect(() => {
                 ))}
                 </select> */}
               </th>
-              <th>CPD</th>
-              <th>CPD <br />plus</th>
+              <th><p>CPD</p></th>
+              <th><p>CPD <br />plus</p></th>
               <th>
                 <p>Levelfilter</p>
                 {/* <select 
@@ -537,8 +544,8 @@ useEffect(() => {
                 ))}
                 </select> */}
                 </th>
-              <th>zum Anbieter</th>
-              <th>mehr Infos</th>
+              <th><p>zum Anbieter</p></th>
+              <th><p>mehr Infos</p></th>
             </tr>
           </thead>    
           {/* hier beginnt die Liste der gefundenen Datensätze  */}    
@@ -549,17 +556,24 @@ useEffect(() => {
                 <tr key={index} >
                   <td >
                     <li id="topic">
-                      <Link to="/coursepage" state= {course._id} id="topicLink">
+                      {/* <Link to="/coursepage" state= {course._id} id="topicLink">
                       {course.courseTopic}
-                      </Link>
+                      </Link> */}
+                      <p onClick={() => {
+                // Setze den ausgewählten Kurs und öffne das Modal
+                handleAufrufDetails(course)
+              }}>{course.courseTopic}</p>
                     </li>
                   </td>
                   <td id="authorsColumn">
                     {authorsData[index].map((author, innerIndex) => (
-                      <li key={innerIndex} id="author">
-                        <Link to="/authorspage" state= {author._id} id="authorsLink">
-                        {author.professionalTitle}{author.professionalTitle && " "}{author.firstName} {author.lastName}{author.appendix && ", "}{author.appendix}{/* {authorsData[index]>0 ? "" : ","}  */}
-                        </Link>
+                      <li key={innerIndex} id="author" onClick={() => {
+                        window.open(`/authorspage?aID=${author._id}`, "_blank", "noopener,noreferrer");                        
+                      }} >
+                        {/* <Link to="/authorspage" state= {author._id} id="authorsLink"> */}
+                        <p>{author.professionalTitle}{author.professionalTitle && " "}{author.firstName} {author.lastName}{author.appendix && ", "}{author.appendix}</p>
+                        {/* </Link> */}
+
                       </li>
                       )
                     )}
@@ -578,11 +592,14 @@ useEffect(() => {
                   </td>
                   <td>{course.cpdBasicPoints}</td>
                   <td>{course.cpdAdditionalPoints}</td>
-                  <td>{course.professionalLevel} - {ListOfLevel.find((item) => item.value === course.professionalLevel)?.discription}</td>
+                  <td><p>{course.professionalLevel} - {ListOfLevel.find((item) => item.value === course.professionalLevel)?.discription}</p></td>
                   <td><a href={course.linkToProvider} id="providerLink" target="_blank" rel="noopener noreferrer">{course.linkToProvider}</a>
                   </td>
-                  <td><Link to="/coursepage" state= {course._id} className="C" id="infoLink"><p>C</p></Link></td>
-                  
+                  {/* <td><Link to="/coursepage" state= {course._id} className="C" id="infoLink"><p>C</p></Link></td> */}
+                  <td><p className="pFunction" id="infoLink" onClick={() => {
+                    handleAufrufDetails(course)
+                      }}>... Details</p>
+                  </td>
                 </tr>
                   )
                 }
@@ -593,11 +610,109 @@ useEffect(() => {
           )}
         </table>  }
 
-      
+        {isCourseDetailsModalVisible && selectedCourse && (
+          <Modal
+          title={<span className="headBox">Kursdetails</span>}
+          open={isCourseDetailsModalVisible}
+          onCancel={handleCancel}
+          className="courseDetailsModal"
+          id="courseDetailsModal"
+            footer={
+              <Button 
+                key="back" 
+                className="pFunction buttonBasics"
+                id="backButtonKursFinden"
+                onClick={handleCancel}
+              >
+                schließen
+              </Button>
+            }
+          >
+            <article id="courseArticle">
+              {/* Kursüberschrift */}
+              <h2>{selectedCourse.courseTopic}</h2>
+              
+              {/* Autor(en) */}
+              <div>
+                <p>Autor/en:</p>
+                <output>
+                  <div>
+                    {selectedCourse.author.map((author, index) => (
+                      <p key={index} 
+                        className="pFunction" 
+                        // onClick={() => {navigate("/authorspage", { state: author._id  },);
+                        // }}
+                        onClick={() => {
+                          window.open(`/authorspage?aID=${author._id}`, "_blank", "noopener,noreferrer");
+                        }}
+                        
+                        
+                      >
+                        {author.professionalTitle}{author.professionalTitle && " "}
+                        {author.firstName} {author.lastName}
+                        {author.appendix && `, ${author.appendix}`}
+                      </p>
+                    ))}
+                  </div>
+                </output>
+              </div>
+              
+              {/* Weitere Kursinformationen */}
+              <div><p>Themenfeld:</p> <output>{selectedCourse.topicField}</output></div>
+              <div><p>Kursart:</p> <output>{selectedCourse.courseType}</output></div>
+              <div><p>Inhalt:</p> <output>{selectedCourse.courseContent}</output></div>
+
+              {/* Bilderanzeige */}
+              <div id="contentImagesModal">
+                {[...Array(4)].map((_, i) => (
+                  <img key={i} src={require('../../images/level_5_senior.jpg')} alt="" />
+                ))}
+              </div>
+
+              {/* Kurszeitraum */}
+              <div><p>Kursstart:</p> <output>{Moment(selectedCourse.startDateOfCourse).format("DD.MM.YYYY")}</output></div>
+              <div><p>Kursende:</p> <output>{Moment(selectedCourse.endDateOfCourse).format("DD.MM.YYYY")}</output></div>
+
+              {/* Sprachen */}
+              <div>
+                <p>Sprachen:</p>
+                <output id="sprachlisteModal">
+                  {selectedCourse.courseLanguage.join(", ")}
+                </output>
+              </div>
+
+              {/* Weitere Punkte und Levels */}
+              <div><p>CPD-Punkte:</p><output>{selectedCourse.cpdBasicPoints}</output></div>
+              <div><p>CPD Plus:</p><output>{selectedCourse.cpdAdditionalPoints}</output></div>
+              <div><p>Level min:</p><output>{selectedCourse.professionalLevel} - {ListOfLevel.find(item => item.value === selectedCourse.professionalLevel)?.discription}</output></div>
+              <div><p>Min Teilnehmer:</p><output>{selectedCourse.minTeilnehmer}</output></div>
+              <div><p>Max Teilnehmer:</p><output>{selectedCourse.maxTeilnehmer}</output></div>
+              
+              {/* Anbieterlink */}
+              <div>
+                <p>Anbieter:</p>
+                <output>
+                  <a href={`https://${selectedCourse.linkToProvider}`} id="providerLink" target="_blank" rel="noopener noreferrer">
+                    {selectedCourse.linkToProvider}
+                  </a>
+                </output>
+              </div>
+
+              {/* Bearbeitungsoption für autorisierte Benutzer */}
+              {isAuth && [5, 10, 9].some(right => accessRights.includes(right)) && (
+                <div className="linkToCourse">
+                  <p>Daten ändern</p>
+                  <div className="pFunction" onClick={() => navigate("/courseform", { state: { courseId: selectedCourse._id } })}>
+                    Kursdaten ändern
+                  </div>
+                </div>
+              )}
+            </article>
+          </Modal>
+        )}
+        
       </div>
-      {/* <div>
-        <h3>Sie sind CPD-aktiv seit {{cpdStartDate}}</h3>
-      </div> */}
+      
       {isAuth && knowledgeData && <Countdown  targetDate={knowledgeData.cpdActiveSince} />}
     </main>
   );

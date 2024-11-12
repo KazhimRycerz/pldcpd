@@ -30,19 +30,6 @@ export const getCourse = async (req, res) => {
             path: "authorsData"}
         });
   
-      /* const coursePopulated = await CourseModel
-        .findById(courseId)
-        .populate(["author","updatedBy"]) */
-
-      //console.log("course.topic", course.topic); 
-    // hier kann ich auf das virtuelle Feld "firstName" zugreifen
-    // obwohl dieses nicht in der Datenbank exisitert 
-    // (deswegen bezeichnet man es als virtuell)
-      
-      //console.log("course", course); 
-      // hier wird das virtuelle Feld nicht angezeigt,
-      // da ich es nicht explizit mit dem . Operator auswähle
-  
       res.json(course);    
     } catch (error) {
       res.send(error.message)
@@ -50,56 +37,56 @@ export const getCourse = async (req, res) => {
   }
 
   
-export const getFilteredCourselist = async (req, res) => {
-  console.log(req.query);
-  
-  try {
-    const { autor, themenfeld, kursart, kursstart, kursende, level, sprache, sortierung, active, bookingNo } = req.query;
-          
-    let query = { active: 'true' };
-    let sortItem = "Kursstart";
-    
-    // Hier wird das aktuelle Datum erstellt
-    const currentDate = new Date();
-    
-    autor !== "" && (query.autor = autor)
-    themenfeld !== "" && (query.topicField = themenfeld);
-    kursart !== "" && (query.courseType = kursart);
-    level !== "" && (query.professionalLevel = level);
-    sprache !== "" && (query.courseLanguage = sprache);
-    
-    if (sortierung === "Kursstart") {
-      sortItem = "startDateOfCourse";
-    }
-    if (sortierung === "Level") {
-      sortItem = "professionalLevel";
-    }
-    
-    if (Object.keys(query).length === 0) {
-      query = { active: 'true' };
-    }
-    
-    // Hier wird der Filter für das Enddatum (endDateOfCourse) hinzugefügt
-    query.endDateOfCourse = { $gt: currentDate };
-    //query.startDateOfCourse = { $gt: currentDate };
+  export const getFilteredCourselist = async (req, res) => {
+    try {
+      const { autor, themenfeld, kursart, kursstart, kursende, level, sprache, sortierung, active, bookingNo } = req.query;
+      
+      let query = { active: 'true' };
+      let sortItem = "startDateOfCourse"; // Standard-Sortierfeld
+      let sortDirection = 1; // Standard: aufsteigend sortieren
+      
+      // Aktuelles Datum
+      const currentDate = new Date();
+      
+      // Filterbedingungen
+      if (autor) query.author = { $in: [autor] };
+      if (themenfeld) query.topicField = themenfeld;
+      if (kursart) query.courseType = kursart;
+      if (level) query.professionalLevel = { $lte: level }; // Filter nach Level: maximaler Level
+      if (sprache) query.courseLanguage = sprache;
+      // Enddatum-Filter
+      query.endDateOfCourse = { $gt: currentDate };
 
-    console.log(query);
-    
-    const filteredCourselist = await CourseModel
-      .find(query)
-      .sort({ [sortItem]: 1 })
-      .populate(["author", "updatedBy"]);
+      // Sortierung
+      if (sortierung === "Kursstart") {
+        sortItem = "startDateOfCourse";
+        sortDirection = 1; // Aufsteigende Sortierung
+      } else if (sortierung === "Level9_0") {
+        sortItem = "professionalLevel";
+        sortDirection = -1; // Absteigende Sortierung
+      } else if (sortierung === "Level0_9") {
+        sortItem = "professionalLevel";
+        sortDirection = 1; // Absteigende Sortierung
+      }
+      
+      // Abfrage mit Sortierung und Population
+      const filteredCourselist = await CourseModel
+        .find(query)
+        .sort({ [sortItem]: sortDirection })
+        .populate(["author", "updatedBy"]);
   
-    res.json(filteredCourselist);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
+      // Antwort senden
+      res.json(filteredCourselist);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  };
+  
   
 
 
 export const addCourse = async (req, res) => {
-  console.log(req)
+  //console.log(req)
     try {
     const newCourse = await CourseModel.create(
       req.body
@@ -119,9 +106,8 @@ export const addCourse = async (req, res) => {
       active: req.body.active,
       updatedBy: req.body.updatedBy, */
     )
-      console.log(newCourse)
+      //console.log(newCourse)
     
-    //res.status(200).json(newPerson)
     res.json(newCourse/* `Course has been created and saved. mit der ID:${newCourse._id}` */)
     } catch (error) {
         console.log(error)
@@ -130,7 +116,6 @@ export const addCourse = async (req, res) => {
 }
 
 export const updateCourse = async (req, res) => {
-  //console.log(req.body)
   const courseId = req.body.courseId;
   try {
     const updatedCourse = req.body;

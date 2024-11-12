@@ -93,31 +93,46 @@ export const updateContact = async (req, res) => {
   
   }
 
-  export const getAuthorsInfo = async (req, res) => {
+export const getAuthorsInfo = async (req, res) => {
 
-    const contactId = req.params.id;
-    try {
-      const contact = await ContactModel
-        .findById(contactId);
-  
-      const contactPopulated = await ContactModel
-        .findById(contactId)
-        .populate("authorsData");
+  const contactId = req.params.id;
+  try {
+    const contact = await ContactModel
+      .findById(contactId);
 
-      console.log("contact.userName", contact.userName); 
-    // hier kann ich auf das virtuelle Feld "firstName" zugreifen
-    // obwohl dieses nicht in der Datenbank exisitert 
-    // (deswegen bezeichnet man es als virtuell)
-      
-      console.log("contact", contact); 
-      // hier wird das virtuelle Feld nicht angezeigt,
-      // da ich es nicht explizit mit dem . Operator auswähle
-  
-      res.json(contactPopulated);   
-     
-    } catch (error) {
-      res.send(error.message)
-    }
-  
+    const contactPopulated = await ContactModel
+      .findById(contactId)
+      .populate("authorsData");
+
+    console.log("contact.userName", contact.userName); 
+  // hier kann ich auf das virtuelle Feld "firstName" zugreifen
+  // obwohl dieses nicht in der Datenbank exisitert 
+  // (deswegen bezeichnet man es als virtuell)
+    
+    console.log("contact", contact); 
+    // hier wird das virtuelle Feld nicht angezeigt,
+    // da ich es nicht explizit mit dem . Operator auswähle
+
+    res.json(contactPopulated);   
+    
+  } catch (error) {
+    res.send(error.message)
   }
+
+}
+
+
+export const getAllAuthorsInfo = async (req, res) => {
+  try {
+    // Suche nach Dokumenten, bei denen `authorsData` existiert und mindestens eine ObjectId enthält
+    const authorsList = await ContactModel.find({
+      authorsData: { $exists: true, $type: 'objectId' } 
+    });
+console.log(authorsList)
+    res.status(200).json(authorsList);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send(error.message);
+  }
+};
 

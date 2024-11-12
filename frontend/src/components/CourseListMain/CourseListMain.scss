@@ -11,23 +11,25 @@
     
   #overviewCourses {
     width: 90%;
-    height: 800px;
+    height: 900px;
     margin: 20px auto; 
     border-left: dotted;
     border-right: dotted;
     border-width: 3px;
     border-radius: $radiuslarge;
     border-color: $cpdred;
-    overflow-y:scroll;
+    overflow-y:auto;
+    background-color: transparent;
     
-    #themenFilter{
+    #themenfeldFilter{
       position: sticky;
       top: 00px;
       display: flex;
       flex-flow: row wrap;
-      justify-content:space-evenly;
-      gap: 10px;
-      padding: 0 5%  ;
+      justify-content:center;
+      row-gap: 5px ;
+      column-gap: 15px;
+      padding: 10px 5%  ;
       width: 100%;
       margin: 0px auto 0px;
       height: auto;
@@ -35,11 +37,12 @@
       border-radius: 10px 10px 0 0;
       color: $secondary-color;
       background-color: $cpdblue;
-      font-size: $small;
+      font-size: $xsmall;
       //border: solid;
       border-bottom: solid 2px $fourth-color;
+      z-index: 10;
       >div{
-        margin: 10px 0;
+        margin:  0;
         padding: 3px;
         font-size: $xsmall;
         //border-bottom: solid $fourth-color;
@@ -47,10 +50,11 @@
         border-right: dotted $fourth-color;
         border-radius: 10px;
         //width: 80px;
+        background-color: $cpdblue;
         p{
-          margin: 0 0 5px 0;
-          padding:0 0 3px 0;
-          font-size: $xsmall;
+          margin: 0 0 3px 0;
+          padding:0 3px 0 3px ;
+          //font-size: $xsmall;
           border-bottom: dotted 1px;
           //width: 80px; 
         }
@@ -60,7 +64,7 @@
           border: none;
           font-size: $xsmall;
           width: 80px;
-          //padding: 5px 0 0 0 ;
+          padding:0 0 0 0px ;
           margin: 0;
           overflow: hidden;
           text-overflow: ellipsis;
@@ -76,9 +80,10 @@
           font-size: $xsmall;
          //border: solid;
           li{
-            font-size: $small;
-            padding: 2px  0 0 0;
-            margin-right: 3px;
+            font-size: $xsmall;
+            padding: 0;
+            //margin-right: 3px;
+            padding:0 2px 0 3px ;
             max-width: auto;
             // &:after{
             //   content: ", ";
@@ -86,6 +91,24 @@
             // &:last-child::after{
             //   content: "";
             // }
+          }
+        }
+      }
+      #kursartFilter {
+        //height: 20px;
+        input{
+          background-color: $cpdblue;
+          color: $secondary-color;
+          border: none;
+          font-size: $xsmall;
+        }
+        #listOfCourseTypes{
+          position:absolute;
+          top: 0px;
+          
+          li{
+            width: auto;
+            cursor: pointer;
           }
         }
       }
@@ -125,7 +148,7 @@
           margin: 0;
         }
       }
-      #gesetzterFilter li{
+      #gesetzterFilter {
         font-size: $xsmall;
       }
       #filterLöschen{
@@ -138,6 +161,9 @@
         p{
           border-bottom: dotted 1px;
         }
+        span{
+          padding-left: 3px;
+        }
         
         #pFilterLöschen {
           //border: none;     
@@ -145,10 +171,12 @@
               content: 'C ';
               color: $fourth-color;
               font-family: 'VIA-Verlag', sans-serif; // Font-Fallback hinzufügen
-              vertical-align: -1px;
+              position: relative;
+              top: 0.5px;
           }
           &:hover {
-              text-shadow: 0px 0px 5px $fourth-color;
+              //text-shadow: 0px 0px 5px $fourth-color;
+              text-shadow: $text-shadow;
           }
         }
       
@@ -169,13 +197,13 @@
           font-size: $xsmall;
           user-select: none;
           &:hover {
-            text-shadow: 5px 0px 5px white; 
+            text-shadow: 5px 0px 5px white;
           }
           &::before {
             content: "C";
-            font-family: VIA-verlag;;
+            font-family: VIA-Verlag;;
             position: absolute;
-            left: 0;
+            left: 4px;
             top: 1px;
             width: 10px;
             height: 10px;
@@ -191,7 +219,7 @@
     #kursÜberblick {
         display: flex;
         flex-flow: row wrap;
-        gap:10px;
+        gap:20px;
         justify-content:center;
         width: 95%;
         margin: 20px auto ;
@@ -208,8 +236,9 @@
           // flex-grow: 3;
           flex-shrink: 1;
           border-radius: $small;
-          border: solid;
-          background: linear-gradient($first-color, $fourth-color );
+          //border: solid;
+          background: $fourth-color;
+          box-shadow: $boxshadow;
           h3{
             //position: relative;
             padding: 5px;
@@ -249,12 +278,12 @@
             // }
             
             &:before{
-              
               content: "C ";
               font-family: VIA-Verlag;
-              //position: relative;
-              top: 1px;
-              z-index: 1;
+              // position: relative;
+              // top: 1px;
+              //z-index: 1;
+              vertical-align: -1px;
             }
             &:hover{
               text-shadow: 5px 0px 5px white;
@@ -302,7 +331,10 @@
                     content: 'C ';
                     color: $cpdred;
                     font-family: VIA-Verlag;
-                    vertical-Align: -1px;
+                    //position: relative;
+                    //top: 1.4px;
+                    font-size: $small;
+                    vertical-align: -1px;;
                   }
                   &:hover{
                     cursor: pointer;
@@ -337,19 +369,19 @@
         padding: 5px;
         color: $secondary-color;
         background-color: $cpdblue;
-        font-size: 0.8rem;
+        font-size: $xsmall;
         //background: linear-gradient($first-color, $cpdblue );
         text-align: left;
         //border-radius: 0 10px 0 10px;
         p{
-          padding-left: 4px;
-          font-size: 0.8rem;
+          padding-left: 3px;
+          font-size: $xsmall;
         }
         select {
           background-color: $cpdblue;
           color: $secondary-color;
           border: none;
-          font-size: 0.8rem;
+          font-size: $small;
         }
         
       }
@@ -377,79 +409,197 @@
         border-radius: 0 0 10px 0;
       }
       
-      #topicLink, #authorsLink{
-        text-decoration-line: none;
+      #topic p, #author p {
+        //text-decoration-line: none;
         color: $cpdblue;
+        width: 200px;
+        white-space: nowrap; 
+        overflow: hidden;
+        text-overflow: ellipsis;
+          
       }
-      #topicLink:hover, #authorsLink:hover {
-        //color: $cpdred;
-        text-shadow: $text-shadow;
-        background-color: $fourth-color;
-      }
-      #author:before, #topic:before{
+      #author p:before, #topic p:before{
          content: 'C ';
          color: $cpdred;
          font-family: VIA-Verlag;
          vertical-Align: -1px;
          text-shadow: $text-shadow;
        }
-      #author:hover, #topic:hover, td:hover {
-        //background-color: $first-color;
-        color: $cpdred;
+       td:hover{
         width:max-content;
-        padding-right: 20px;
         overflow: visible;
-        //margin-bottom: 5px;
-        background-color: $fourth-color;
-        //border: solid black;
         text-overflow:unset;
-        //background-color: black;;
-        //overflow: auto;
-        //padding: 5px;
-        //margin-left: -5px;
-        //width: calc(100% + 10px);
-        //font-size: 16px;
-        //box-shadow: $btnshadowsmall;
-        //border-radius: 7px;
-        
-        
-      }
-      #infoLink, #providerLink {
-        text-align: center;
-        margin: 0 auto;
-        &:hover {
-          color: $cpdred;
-          text-shadow: $text-shadow;
-        }
+        background-color: $fourth-color;
+       }
+       #author p:hover,
+       #topic p:hover {
+         background-color: $first-color;
+         text-shadow: $text-shadow;
+         color: $cpdred;
+         width: max-content;
+         padding-right: 20px;
+         overflow: visible;
+         text-overflow: unset;
+         cursor: pointer;
+         position: relative;
+         z-index: 10;
+         white-space: nowrap;
+         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+       }
+              
+      #infoLink:hover, 
+      #providerLink:hover  { 
+        background-color: $first-color;
+        text-shadow: $text-shadow;
+        color: $cpdred;
+        width: max-content;
+        overflow: visible;
+        text-overflow: unset;
+        cursor: pointer;
+        position: relative;
+        z-index: 10;
+        white-space: nowrap;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
       }
     }
   }
   
-}  
+} 
 
-#kursartFilter {
-  height: 20px;
-  input{
-    background-color: $cpdblue;
-    color: $secondary-color;
-    border: none;
-    font-size: $xsmall;
-  }
-  #listOfCourseTypes{
-    position:absolute;
-    top: 0px;
+
+.courseDetailsModal {
+  
+  .ant-modal-content{
+    width: 100%;
+    min-height: 1000px;
+    box-shadow: $mainshadow;
+    top: 50px;
+    margin:  0 0 100px;
+    //padding: 0;
+    overflow:auto;
     
-    li{
-      width: auto;
-      cursor: pointer;
+    .ant-modal-header{
+      margin: 30px auto ;
+      //border: solid;
+    }
+  
+    button{
+      margin-top: 20px;
+    }
+    button.ant-modal-close{
+      //position: relative;
+      right: 10% ;
+      top: 55px !important;
+      width: 20px;
+      height: 20px;
+      //font-size: 34px;
+      .ant-modal-close-x {
+        font-size: 20px !important;
+        margin: 0px auto !important;
+      }
+    }
+    .ant-modal-footer{
+      width: 80%;
+    }
+  
+    #courseArticle {
+      //border: solid;
+      border-radius: 10px;
+      width: 90%;
+      margin: 0 auto;
+      box-shadow: $boxshadow;
+    
+      h2{
+      background-color: $cpdblue;
+      color: $fourth-color;
+      text-align: center;
+      padding: 15px;
+      border-radius: 10px 10px 0px 0px;
+      }
+      >div {
+        padding: 4px 10px;
+        background: linear-gradient($first-color, $fourth-color );
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content:flex-start;
+        //height: min-content;
+        //border: solid;
+        >p{
+          font-size: $small;
+          //border: solid;
+          width: 30%;
+        }
+        >output {
+          font-size: $small;
+          width: 70%;
+        }
+        #sprachlisteModal {
+          display: flex !important;
+          flex-flow: row wrap !important;
+        }
+        
+        #sprachlisteModal p::after {
+          content: ', '; /* Fügt ein Komma und ein Leerzeichen nach jedem <p> hinzu */
+          margin-right: 4px;
+        }
+        
+        #sprachlisteModal p:last-of-type::after {
+          content: ''; /* Entfernt das Komma und das Leerzeichen beim letzten Element */
+        }  
+      }
+      >div:last-of-type{
+        border-radius: 0 0px 10px 10px;
+      }
+      #contentImagesModal{
+        display: flex;
+        flex-flow: row nowrap;
+        gap: 10px;
+        width: 100%;
+        overflow-y:auto;
+        scrollbar-width:thin;  
+        scrollbar-color: $first-color $cpdred;
+        padding-right: 90%; /* Platz für Scrollbar schaffen */
+        //box-sizing: content-box; /* Sicherstellen, dass Padding nicht zur Breite addiert wird */
+      }
+    //   #contentImagesModal::-webkit-scrollbar {
+    //     width: 100px; /* Breite der Scrollbar */
+    //     //height: 8px; /* Höhe der horizontalen Scrollbar */
+    // }
+    
+    // #contentImagesModal::-webkit-scrollbar-track {
+    //     background: $cpdred; /* Hintergrundfarbe des Scrollbar-Tracks */
+    // }
+    
+    // #contentImagesModal::-webkit-scrollbar-thumb {
+    //     background-color: $first-color; /* Farbe des Scrollbalkens */
+    //     border-radius: 10px; /* Abgerundete Ecken für den Scrollbalken */
+    //     //border: 2px solid $cpdred; /* Rand um den Scrollbalken */
+    // }
+
+      .linkToCourse div{
+        cursor: pointer;
+      }
+      
+
+      // .linkToCourse div:hover{
+      //   text-shadow: $text-shadow;
+      // }
+      // .linkToCourse div::before{
+      //   content: "C ";
+      //   color: $cpdred;
+      //   text-shadow: $text-shadow;
+      //   font-family: VIA-Verlag;
+      //   position: relative;
+      //   top: 1px;
+      // }
+      
+      #infoLink {
+        text-shadow: $text-shadow;
+        cursor: pointer;
+      }
     }
   }
+
 }
 
- select#kursartFilter{
-  appearance: none;
-  option{
-    background-color: aqua !important;
-    color: yellow;
-  }
- }
+

@@ -8,37 +8,30 @@ import Swal from "sweetalert2";
 
 Modal.setAppElement('#root');
 
-const LoginFormModal = ({
-  isOpen, 
-  onRequestClose,
-}) => {
-  const { setButtonPos, navigate, gotoPage, isAuth, setIsAuth, logout, accessRights, setAccessRights, userMode, setUserMode } = useContext(SectionsContext)
-  const [isLoading, setIsLoading] = useState(false);
-  const formEl = useRef(null);
-  const usernameEL = useRef(null);
-  const passwordEl = useRef(null);
-  
-  const getUserData = async (respData) => {
-    const axiosResp = await axiosConfig.get(`/user/${respData}`);
-      //console.log(axiosResp)
-    };
-
-  const handleSuccessfulLogin =  (respData) => {
-    localStorage.setItem("defSearch", getUserData(respData.userId));
+const handleSuccessfulLogin = async (respData) => {
+  const { setIsAuth, isAuth, setAccessRights, accessRights, getUserData, navigate, location, lastPath, setLastPath  } = useContext(SectionsContext);
+  try {
+    const userData = await getUserData(respData.userId);
+    if (userData) {
+      localStorage.setItem("defSearch", JSON.stringify(userData));
+    }
     setIsAuth(true);
+    setUserMode(Array.isArray(respData.accessRights) && respData.accessRights.some(item => item > 1) ? "manager" : "user");
     localStorage.setItem("userName", respData.userName);
-    localStorage.setItem("userId",  respData.userId);
+    localStorage.setItem("userId", respData.userId);
     localStorage.setItem("accessRights", JSON.stringify(respData.accessRights));
     localStorage.setItem("firstName", respData.firstName);
-    if (isAuth && Array.isArray(accessRights) && accessRights.some(item => item > 1)) {
-      setUserMode("manager")
-    } else {
-      setUserMode("user");
-    }
+    navigate(-1);
     setButtonPos("showBut");
-    setAccessRights(JSON.parse(localStorage.getItem("accessRights")));
-    onRequestClose()
-  };
+    setAccessRights(respData.accessRights);
+    // navigate(lastPath || "/");
+    // onRequestClose(); // Schließen
+     if (onRequestClose) onRequestClose();
+  } catch (error) {
+    console.error("Login-Fehler:", error);
+  }
+};
+
 
   const logoutHandler = () => {
     Swal.fire({
@@ -64,7 +57,7 @@ const LoginFormModal = ({
       if (result.isConfirmed) {
         logout();
         setButtonPos("");
-        navigate("/home");
+        navigate(1 || "/home");
       } else if (result.isDenied) {
         logout();
         setButtonPos("");

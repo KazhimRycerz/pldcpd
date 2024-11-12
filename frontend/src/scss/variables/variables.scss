@@ -10,11 +10,11 @@ $alternativeblue: rgb(175, 215, 250);
 $button-color: rgba(170, 170, 170, 0.75);
 $cpdred: /* rgb(125, 0, 0); */rgb(100, 27, 26);//Persian Plum
 $cpdred-o:/* rgba(125, 0, 0, 0.5); */rgba(120, 27, 26, 0.5);
-$cpdred-50: rgb(100 27 26 / 50%);
-$cpdred-30: rgb(100 27 26 / 30%);
+$cpdred-50: rgba(100, 27, 26, 0.5);
+$cpdred-30: rgba(100, 27, 26, 0.3);
 $cpdblue: #00001e;
-$cpdblue-100: rgb(0 0 30 / 100%);
-$cpdblue-50: rgb(0 0 30 / 50%);
+$cpdblue-100: rgba(0, 0, 30, 1);
+$cpdblue-50: rgba(0, 0, 30, 0.5);
 //$cpdblue-10: rgb(0 0 30 / 10%);
 $cpdblue-10: rgb(240,255,255);
 $databaseblue:#49586F;
@@ -37,7 +37,7 @@ $btnshadowsmall: 0px 0px 5px 2px $third-color inset, 0px 0px 3px 1px grey,  -2px
 $rshadow: 3px 3px black, -3px -3px black, 3px -3px black, -3px 3px black;
 $hovershadow:3px;
 $text-shadow: 1px 1px 20px $cpdred;
-$mainshadow: $cpdblue 0px 0px 100px 50px inset, 0px 0px 15px 5px white;
+$mainshadow: $cpdblue 0px 0px 100px 30px inset, 0px 0px 15px 5px white;
 $mainshadowsmall: $cpdblue 0px 0px 50px 25px inset, 0px 0px 15px 5px white;
 $managementshadow: $cpdred 0px 0px 100px 30px inset, 0px 0px 15px 5px $cpdred /* white */;
 $ungesichertshadow: $cpdred 0px 0px 100px 30px inset, 0px 0px 15px 5px $cpdred /* white */;

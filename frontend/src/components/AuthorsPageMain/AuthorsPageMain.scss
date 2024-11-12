@@ -2,7 +2,7 @@
 
 #authorsPageMain {
   position: relative;
-  min-height: 60vh;
+  min-height: 75vh;
   //margin-top: 0px;
   background-color: $first-color;
   box-shadow: $mainshadow;
@@ -15,95 +15,108 @@
     //border: solid;
     padding-right: 30px;
   };
-  >div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    //border: solid;
-    width: 80%;
-    margin: 50px auto 20px;
-    h2{
-      display: inline;
-      color: $first-color;
-      color: $cpdblue;
-      width: 80%;
-      margin: 10px 30px ;
-      font-family: $primary-font-bold;
-      //border: solid;
-    }
-    &:last-child {
-      margin: 20px auto 50px;
-    }
-  }
+  
 
   #authorsArticle {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: column nowrap;
     justify-content:flex-start;
     column-gap: 20px;
-    width: 80%;
+    width: 85%;
     margin: 0px auto;
-    padding: 20px;
+    padding: 0px;
     // border-left: dotted;
     // border-right: dotted;
-    border-radius: $radiussmall;
+    border-radius: 10px;
     border-width: 3px;
-    border-color: $cpdred;
+    // border-color: $cpdred;
     background-color: $fourth-color;
     box-shadow: $boxshadow;
+    h2{
+      background-color: $cpdblue;
+      color: $fourth-color;
+      text-align: center;
+      padding: 15px;
+      border-radius: 10px 10px 0px 0px;
+      margin: 0;
+      }
     
-    div {
+    >div {
       display: flex;
       flex-flow: column nowrap;
       border-radius: $radiussmall;
       margin-bottom: 10px;
       //box-shadow: $boxshadow;
-      >p{
-        line-height: 0px; 
-        margin: 0 0 0 0;
-        padding: 15px 20px 10px 20px;
+      >div{
+        padding: 4px 10px;
+        background: linear-gradient($first-color, $fourth-color );
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content:flex-start;
         font-size: $small;
-        font-family:$primary-font;
-        //background: linear-gradient($first-color, $cpdblue );
-        background-color: $cpdblue;
-        color: $secondary-color;
-        border-radius: 10px 10px 0 0 ;  
-        border: solid;
-        border-bottom: none;
-        border-color: $cpdred; 
+        >p{
+          font-size: $small;
+          width: 30%;
+          //border: solid;
+        }
+        output {
+          font-size: $small;
+          width: 70%;
+        }
+        #authorVitae {
+          font-size: $small;
+          line-height: 1.5rem;  
+        }
+        #authorUpdate {
+          max-width: 220px;
+        }
+        #authorsOffers{
+          flex-basis: 2;
+          //flex-grow: 200px;
+          //flex-shrink: 1;
+          //max-width: 220px;
+        }
+        #fieldsOfExpertise ul{
+          display: flex;
+          flex-flow: row nowrap;
+          justify-content:flex-start;
+          list-style: none;
+          // li::before{
+          //   content: "C ";
+          //   font-family: VIA-Verlag;
+          //   display: relative;
+          //   top: 2px;
+          // }
+          li::after{
+           content:  ", " ;
+           margin-right: 3px;
+          }
+          li:last-child::after{
+          content:"";
+          }
+        }
       }
-      .output {
-        font-size: $normal;
-        padding: 10px ;
+      #contentImages{
+        display: flex;
+        flex-flow: row nowrap;
+        gap: 10px;
         width: 100%;
-        color: $cpdblue;
-        text-align:left; 
-        border-radius: 0 0 10px 10px; 
-        background-color: $first-color; 
-        background-color: $fourth-color;
-        border-color: $cpdred;
-        border: solid; 
-        //box-shadow: $boxshadow;
-      }
-      #authorVitae {
-        font-size: $normal;
-        line-height: 2rem;  
-      }
-      #authorUpdate {
-        max-width: 220px;
-      }
-      #authorsOffers{
-        flex-basis: 2;
-        //flex-grow: 200px;
-        //flex-shrink: 1;
-        //max-width: 220px;
+        overflow-y:auto;
+        scrollbar-width:thin;   
+        scrollbar-color: $first-color $cpdred;
+        
       }
     }
-    #fieldsOfExpertise ul{
-      display: flex;
-      flex-flow: column nowrap;
-      justify-content:flex-start;
-      list-style: none;
+  }
+
+  #buttonBox{
+  width: 80%;
+  margin: 20px auto;
+  //border: solid;
+    button {
+      position: relative;
+      right: -80% ;
+      //border: solid;
     }
   }
 }

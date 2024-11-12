@@ -1,5 +1,6 @@
 import React, { useState, useRef, useContext, useEffect } from "react";
 //import { Link} from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import axiosConfig from "../../util/axiosConfig.js";
 import { SectionsContext } from "../../context/SectionsContext.js";
 import "./CourseForm.scss";
@@ -15,7 +16,7 @@ import { ImagesUploadModal } from '../../modals/ImageUpload/ImageUploadModal.jsx
 
 const CourseAddForm = () => {
   const { isAuth, setGotoPage, userData, userMode, setUserMode, accessRights, navigate} = useContext(SectionsContext);
-  
+  const location = useLocation();
   const [workingMode, setWorkingMode] = useState("inputMode")
   const [formErrors, setFormErrors] = useState({})
   const [data, setData] = useState([])
@@ -59,8 +60,8 @@ const CourseAddForm = () => {
   const [kursActivated, setKursActivated] = useState(false);
   const [courseId, setCourseId] = useState("");
   const [updatedBy, setUpdatedBy] = useState("")
-  const [updatedOn, setUpdatedOn] = useState("")
-  const [createdOn, setCreatedOn] = useState("")
+  const [updatedOn, setUpdatedOn] = useState(today)
+  const [createdOn, setCreatedOn] = useState(today)
   const [courseImages, setCourseImages] = useState([])
   /* const courseTypes = ListOfCourseTypes()*/
   //console.log(ListOfLevel) 
@@ -371,28 +372,12 @@ const CourseAddForm = () => {
     }
   };
 
-  /* const updateLanguageList = (e) => {
-    const addLanguage = e.target.value;
-    if (!kursSprache.includes(addLanguage)) {
-      setKursSprache([...kursSprache, addLanguage]);
-      // Hinzufügen der Sprache zum Array
-    } else {
-      const updatedSprache = kursSprache.filter((sprache) => sprache !== addLanguage);// Entfernen des Autors aus dem Array
-      setKursSprache(updatedSprache);
+  useEffect(() => {
+    if (location.state?.courseId) {
+      // Ruft getCourseToReview auf und übergibt den Wert im gewünschten Format
+      getCourseToReview({ target: { value: location.state.courseId } });
     }
-      e.target.value = "";
-  }; */
-
-  /* const updateLanguageList = (e) => {
-    const addLanguage = e.target.value;
-    if (addLanguage && !kursSprache.includes(addLanguage)) {
-      setKursSprache([...kursSprache, addLanguage]);
-    } else if (addLanguage) {
-      const updatedSprache = kursSprache.filter(sprache => sprache !== addLanguage);
-      setKursSprache(updatedSprache);
-    }
-    setInputValue(''); // Clear the input field
-  }; */
+  }, [location.state]);
 
   const handleSelectLanguage = (language) => {
     if (kursSprache.includes(language)) {
@@ -430,8 +415,8 @@ const CourseAddForm = () => {
     if (kursInhalt === "") {
       errors.push("Bitte eine Beschreibung des Themas und der Inhalte eingeben");
     }
-    if (kursInhalt.length > 500) {
-      const überlänge = kursInhalt.length - 500;
+    if (kursInhalt.length > 2000) {
+      const überlänge = kursInhalt.length - 2000;
       errors.push(`Die Beschreibung ist zu lang. Sie darf nur 500 Zeichen umfassen. Kürzen Sie um ${überlänge} Zeichen`);
     }
     if (kursSprache.length === 0) {
@@ -524,7 +509,6 @@ const CourseAddForm = () => {
         } */
         );
         setStatusSicherung("gesichert")
-        //console.log("reponsData", response.data);
         setThemenFilter("");
         topicsAvailableList();
         setWorkingMode("inputMode")
@@ -711,7 +695,7 @@ const CourseAddForm = () => {
       {isAuth && [5, 10, 9].some(right => accessRights.includes(right)) 
       ? 
       (<main id="courseForm" >
-            < CloseOutlined className="closeX" onClick={() => navigate("/home")}> </CloseOutlined>
+            < CloseOutlined className="closeX" onClick={() => navigate(-1)}> </CloseOutlined>
           <div className="headBox">
             <h2 id="courseHead">Eingabe / Bearbeiten von Kursangeboten
               {/* <p className="closingFunction" onClick={() => navigate("/home")}>Formular schließen</p>  */}
@@ -928,7 +912,6 @@ const CourseAddForm = () => {
               /> 
               {formErrors.courseTopic && <p className="error">{formErrors.courseTopic}</p>}
             </div>
-            
             <div id="autorenauswahl" 
             style={{ position: 'relative' }}>
               <label htmlFor="kursAutor" id="autorenSucheLabel"> Autoren:<sup id="autorenSucheSup">*</sup>

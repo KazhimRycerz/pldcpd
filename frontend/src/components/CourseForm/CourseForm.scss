@@ -162,6 +162,9 @@
         border: solid 1px;
         font-size: $normal;
         padding: 0 0 0 5px;
+        li:last-child{
+          border: none;
+        }
       }
     }
     >div:last-child{
@@ -360,6 +363,9 @@ list-style: none;
       &:hover{
         text-shadow: 0px 0px 10px ;
       }
+      &:last-child{
+        border: none;
+      }
     }
   }
 }
@@ -408,10 +414,14 @@ list-style: none;
 }
 
 .ant-modal-content {
+  position: relative;
+  top: 50px;
   background-color: $first-color;
   font-family: $primary-font;
   max-width: 1280px;
+  min-height: 650px;
   margin: 0 auto;
+  box-shadow: $mainshadow !important;
   //width: 100%;
   .ant-modal-header{
     background-color: transparent;
@@ -434,11 +444,10 @@ list-style: none;
   div.ant-modal-footer{
   margin: 0 auto;
   width: 90%;
-
-    #backButtonKursFinden:hover{
-    color: $cpdblue;
-    }
-  }
+}
+#backButtonKursFinden:hover{
+color: $cpdblue;
+}
 
   #themensuche {
     padding: 20px;
@@ -448,6 +457,7 @@ list-style: none;
     background-color: $fourth-color;
     box-shadow: $boxshadow;
     max-width: 930px;
+    margin-bottom: 20px;
     div {
       margin: 0 0 10px;
       border: solid black;

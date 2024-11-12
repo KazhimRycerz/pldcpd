@@ -241,7 +241,7 @@ header {
   }
   #headerUserAvatar:hover{
   }
-  #header_myaccount {
+  #headerMyAccount {
     font-size: $small;
     height: auto;
     margin: auto 0;
@@ -263,6 +263,10 @@ header {
       li {
         list-style-type: none;
         align-content: flex-start;
+        span{
+          position:relative;
+          top: 3px;
+        }
         a {
           text-decoration:none;
           color: black;

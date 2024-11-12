@@ -68,9 +68,9 @@ const HomeMain = () => {
             <h3>Themen und Lernmittel</h3>
             <p>
               Brauchen sie Hinweise auf neue Themen und Lernmittel?
-              Empfehlungen finden Sie
+              Eine Übersicht aller Angebote finden Sie
             </p>{" "}
-            <Link to="/abouttheprofession">
+            <Link to="/courselistpage">
               hier
               <img src={C} alt=""/>
             </Link>

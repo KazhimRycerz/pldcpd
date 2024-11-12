@@ -30,11 +30,12 @@ import "./Countdown.scss";
       <div id="cd">
         <h3 id="countdownHead">Sie sind CPD aktiv seit </h3>
         <p>{Moment(targetDate).format("DD.MM.YYYY")}</p>
-        <p>{countdown.years} {countdown.years !== 1 ? "Jahre" : "Jahr"} </p>
-        <p>{countdown.months} {countdown.months !== 1 ? "Monate" : "Monat"}</p> 
-        <p>{countdown.days} {countdown.days !== 1 ? "Tage" : "Tag"}</p> 
+        <p>{countdown.years} {countdown.years !== 1 ? "Jahren" : "Jahr"} </p>
+        <p>{countdown.months} {countdown.months !== 1 ? "Monaten" : "Monat"}</p> 
+        <p>{countdown.days} {countdown.days !== 1 ? "Tagen" : "Tag"}</p> 
         <p>{countdown.hours} {countdown.hours !== 1 ? "Stunden" : "Stunde"}</p> 
-        <p>{countdown.minutes}:{countdown.seconds} </p>       
+        <p>{countdown.minutes} {countdown.hours !== 1 ? "Minuten" : "Minute"}</p>
+        <p>{String(countdown.seconds).padStart(2, "0")} {countdown.seconds !== 1 ? "Sekunden" : "Sekunde"}</p>
       </div>
     </>
   );
