@@ -13,7 +13,7 @@ import "./Countdown.scss";
       const distance = now - cpdStartDate;
 
       const years = Math.floor(distance / (1000 * 60 * 60 * 24 * 365) )
-      const months = Math.floor((distance % (1000 * 60 * 60 * 24 * 30 * 12)) / (1000 * 60 * 60 * 24 * 30) )
+      const months = Math.floor((distance % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30) )
       const days = Math.floor((distance % (1000 * 60 * 60 * 24 * 30) / (1000 * 60 * 60 * 24)));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));

@@ -12,15 +12,22 @@ import { FehlendeZugangsrechte } from "../FehlermeldungenSwal/FehlermeldungenSwa
 
 const ContactPage =() => {
    const { isAuth, setGotoPage, accessRights, navigate, userMode, setUserMode} = useContext(SectionsContext);
-
+   const [statusSicherung, setStatusSicherung] = useState("gesichert")
 
    return (
-   <main id="contactMain">
-      <div className="headBox"> 
-          <h2 id="companyHead">Eingabe / Bearbeiten von Kontakten</h2>
-          <p className="closingFunction" onClick={() => navigate("/home")}>Formular schließen</p>
-        </div>
-   </main>
+   <>
+      <main id="contactMain">
+         < CloseOutlined className="closeX" onClick={() => navigate(-1)}> </CloseOutlined>
+         <div className="headBox"> 
+             <h2 id="contactHead">Eingabe / Bearbeiten von Kontakten</h2>
+             <p className="closingFunction" onClick={() => navigate("/home")}>Formular schließen</p>
+         </div>
+   
+         <div id="contactFormContainer"  className={statusSicherung}>
+            <p id="änderungsHinweis" >Äänderungshinweis</p>
+         </div>
+      </main>
+   </>
 
    )
 

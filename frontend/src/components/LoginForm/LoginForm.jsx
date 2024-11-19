@@ -3,6 +3,7 @@ import axiosConfig from "../../util/axiosConfig.js";
 import { SectionsContext } from "../../context/SectionsContext.js";
 import { Link } from "react-router-dom";
 import "./LoginForm.scss";
+import { LoadingOutlined } from "@ant-design/icons";
 import Swal from "sweetalert2";
 //import swal from "sweetalert";
 
@@ -28,6 +29,11 @@ const LoginForm = () => {
     setButtonPos("showBut");
     const accessRights = JSON.parse(localStorage.getItem("accessRights"));
     setAccessRights(accessRights);
+    Swal.fire({
+      title: `Welcome back, ${respData.userName}, alias ${respData.firstName}! Ihre Anmeldung war erfolgreich`,
+      icon: "success",
+      timer: 5000,
+    })
     if (accessRights.some(item => item > 1)) {
       setUserMode("manager");
     }
@@ -35,42 +41,44 @@ const LoginForm = () => {
   };
 
   const logoutHandler = () => {
-    Swal.fire({
-      title: `Du bist aktuell als ${localStorage.userName} angemeldet. Möchtest du dich ausloggen oder als ein anderer Nutzer anmelden oder den Vorgang abbrechen?`,
-      icon: "info",
-      iconColor: "red",
-      showDenyButton: true,
-      showCancelButton: true,
-      confirmButtonText: "ausloggen",
-      denyButtonText: "als anderen Nutzer einloggen!",
-      cancelButtonText: "abbrechen",
-      allowOutsideClick: false,
-      customClass: {
-        /* confirmButton: 'buttonBasics',
-        cancelButton: 'buttonBasics', 
-        denyButton: 'buttonBasics',*/
-        popup: 'containerBox',
-        actions: 'actionButtons'
-      },
-      buttonsStyling: false,
-    })
-    .then((result) => {
-      if (result.isConfirmed) {
-        logout();
-        setButtonPos("");
-        navigate(-1 || "/home");
-      } else if (result.isDenied) {
-        logout();
-        setButtonPos("");
-        navigate("/login");
-      } else if (result.isDismissed) {
-        navigate(-1);
-      } else {
-        Swal.fire("Nichts passiert. Got away safely!");
-      }
-    });
-    
+    if (isAuth) {
+      Swal.fire({
+        title: `Du bist aktuell als ${localStorage.userName || "unbekannter Nutzer"} angemeldet. Möchtest du dich ausloggen oder als ein anderer Nutzer anmelden oder den Vorgang abbrechen?`,
+        icon: "info",
+        iconColor: "red",
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: "Ausloggen",
+        denyButtonText: "Als anderer Nutzer einloggen!",
+        cancelButtonText: "Abbrechen",
+        allowOutsideClick: false,
+        customClass: {
+          // confirmButton: 'buttonBasics',
+          // cancelButton: 'buttonBasics',
+          // denyButton: 'buttonBasics',
+          popup: 'containerBox',
+          actions: 'actionButtons'
+        },
+        buttonsStyling: false,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          logout();
+          setButtonPos("");
+          navigate("/home");
+        } else if (result.isDenied) {
+          logout();
+          setButtonPos("");
+          navigate("/login");
+        } else if (result.isDismissed) {
+          navigate(-1); // Gehe zur vorherigen Seite zurück
+        } else {
+          Swal.fire("Nichts passiert. Got away safely!");
+        }
+      });
+    } else {
+      logout();
     }
+  };
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -142,7 +150,7 @@ const LoginForm = () => {
             </button>
           </div>
         </form>):(
-        <div>{logoutHandler()}</div> 
+        <div>{logoutHandler}</div> //geändert von logoutHandler() nach logout. Er ruf nun logout im SectionContext auf
         )
       }
 
@@ -153,7 +161,7 @@ const LoginForm = () => {
         </button>
       </div>
 
-      {isLoading && <p id="ladeInfo">Ihre Daten werden geladen - bitte warten...</p>}
+      {isLoading && <p id="ladeInfo">Ihre Daten werden geladen - bitte warten...<LoadingOutlined /></p>}
     </main>
   );
 }

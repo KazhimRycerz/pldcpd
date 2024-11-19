@@ -6,6 +6,7 @@ import { SectionsContext } from "../../context/SectionsContext.js";
 import Swal from "sweetalert2"
 import { FehlendeZugangsrechte, RegistriertenRechte } from "../FehlermeldungenSwal/FehlermeldungenSwal.jsx"
 import UserAvatar from "../UserAvatar/UserAvatar.jsx"
+import { CloseOutlined, UserOutlined } from "@ant-design/icons";
 //import LoginFormModel from "../../modals/LoginForm/LoginFormModal.jsx"
 
 const Header = () => {
@@ -53,6 +54,26 @@ const Header = () => {
     } else {setButtonPos("buttonZeroPosition") 
     }
     }
+
+  const navigateToKnowledgeAccount = () => {
+      navigate("/KnowledgeAccount", { state: { openSection: ["account_4"] } });
+    };
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const navMain = document.getElementById('navmain');
+  
+    // Dynamisch die Höhe als CSS-Variable setzen
+    const resizeObserver = new ResizeObserver(() => {
+      const navHeight = navMain.offsetHeight;
+      document.documentElement.style.setProperty('--nav-height', `${navHeight}px`);
+    });
+  
+    resizeObserver.observe(navMain); // Beobachten starten
+  });
+  
+    
+    
+    
 
     /* const dataUpdate = ()=>{
       setAccessRights(JSON.parse(localStorage.getItem("accessRights")));
@@ -127,12 +148,28 @@ const Header = () => {
                 {isAuth ? <div> log me out <span className="C">C</span></div> : <Link to="/login"> login <span className="C">C</span></Link>}
               </li>
               
-              {isAuth &&
-                <li id="dropBtnAccount"  
-                onClick={()=> { handleDropdownAccount()}}>
-                  logged in as {localStorage.userName} <span className="C">C</span>
-                </li>}
-                  {isAuth && <div id="avatarPosition" onClick={() => navigate("/KnowledgeAccount", { state: { openSection: ["account_4"] } })}>< UserAvatar  id="headerUserAvatar" width="30px" height="30px" allowDragging={false} cursor="pointer"/></div>}
+              {isAuth && (
+                <>
+                  <li 
+                    id="dropBtnAccount" 
+                    onClick={handleDropdownAccount}
+                  >
+                    logged in as {localStorage.userName} <span className="C">C</span>
+                  </li>
+                  <div 
+                    id="avatarPosition" 
+                    onClick={() => navigateToKnowledgeAccount()}
+                  >
+                    <UserAvatar 
+                      id="headerUserAvatar" 
+                      width="30px" 
+                      height="30px" 
+                      allowDragging={false} 
+                      cursor="pointer" 
+                    />
+                  </div>
+                </>
+              )}
             </ul>
             
           </div >      
@@ -206,104 +243,70 @@ const Header = () => {
 
       <nav id="navmain" onMouseLeave={(event)=>{setShowMenue(!showMenue);setOverlayStatus("noMenueOverlay")}}   className={showMenue ? "showNav" : " hideNav"}>
         <div id="listOfFields">
-          <ul id="mainItems">
-            <p>
-              main <br /> items
-            </p>
-            <li>
-              <NavLink to="/home" className="closebtn active">
-              <span className="pFunction"></span> home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/abouttheprofession" className="closebtn active">
-              <span className="pFunction"></span> the profession
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/404" className="closebtn">
-              <span className="pFunction"></span> services
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/404" className="closebtn">
-              <span className="pFunction"></span> clients
-              </NavLink>
-            </li>
-            
-            
-            <li>
-              <NavLink to="/companypage" className="closebtn active">
-              <span className="pFunction"></span> 
-                {isAuth && Array.isArray(accessRights) && accessRights.some(item => item > 1) ? 'work on companies' : 'register company'}
-            </NavLink>
-
-            </li>
-            {/* <img src="./images/finger-print-outline.svg" alt="" /> */}
-          </ul>
-          {isAuth && (<ul id="acountItems">
-            <p>
-              account <br /> items
-            </p>
-            <li>
-              {isAuth ? (
-                <NavLink to="/KnowledgeAccount" className="closebtn active">
-              <span className="pFunction"></span> your CPD account
-              </NavLink>
-              ) : (
-                <NavLink
-                className="closebtn active"
-                onClick={(e) => {
-                  e.preventDefault(); // Prevent the default navigation behavior
-
-                  Swal.fire({
-                    //text: 'Hinweis',
-                    title: 'Du musst registriert und angemeldet sein, um deinen Account sehen zu können.',
-                    icon: 'info',
-                    showCancelButton: true,
-                    showConfirmButton: true,
-                    confirmButtonText: 'Ja, bitte einloggen!',
-                    cancelButtonText: 'Nein, zurück zur Hauptseite'
-                  }).then((result) => {
-                    if (result.isConfirmed) {
-                      setGotoPage('/KnowledgeAccount');
-                      navigate('/login');
-                    } else if (result.isDismissed) {
-                      setShowMenue(!showMenue);
-                      navigate('/home');
-                    } else {
-                      Swal.fire('Got away safely!', '', 'success');
-                    }
-                  });
-                }}
-                to="#"
-                >
-                {/* < RegistriertenRechte /> */}
-                <span className="pFunction"></span> your CPD account
-                </NavLink> 
-              )}
-            </li>
-            <li>
-              {isAuth ? (
-                <NavLink to="/userupdate" className="closebtn active">
-                  <span className="pFunction"></span> Nutzer-Daten ändern
+         {/* <div id="innerContainer"> */}
+            <ul id="mainItems">
+              <p>
+                main <br /> items
+              </p>
+              <li>
+                <NavLink to="/home" className="closebtn active">
+                <span className="pFunction"></span> home
                 </NavLink>
+              </li>
+              <li>
+                <NavLink to="/abouttheprofession" className="closebtn active">
+                <span className="pFunction"></span> the profession
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/404" className="closebtn">
+                <span className="pFunction"></span> services
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/404" className="closebtn">
+                <span className="pFunction"></span> clients
+                </NavLink>
+              </li>
+              
+              
+              <li>
+                <NavLink to="/companypage" className="closebtn active">
+                <span className="pFunction"></span> 
+                  {isAuth && Array.isArray(accessRights) && accessRights.some(item => item > 1) ? 'work on companies' : 'register company'}
+              </NavLink>
+  
+              </li>
+              {/* <img src="./images/finger-print-outline.svg" alt="" /> */}
+            </ul>
+            {isAuth && (<ul id="acountItems">
+              <p>
+                account <br /> items
+              </p>
+              <li>
+                {isAuth ? (
+                  <NavLink to="/KnowledgeAccount" className="closebtn active">
+                <span className="pFunction"></span> your CPD account
+                </NavLink>
+
+                //("/KnowledgeAccount", { state: { openSection: ["account_4"] } })
                 ) : (
-                <NavLink
-                className="closebtn active"
-                onClick={(e) => {
-                e.preventDefault(); // Prevent the default navigation behavior
-                  Swal.fire({
-                    //title: 'Message',
-                    title: 'Du musst angemeldet sein, um deine Accountdaten ändern zu können. Willst du dich einloggen?',
-                    icon: 'info',
-                    showCancelButton: true,
-                    showConfirmButton: true,
-                    confirmButtonText: 'Ja, bitte einloggen!',
-                    cancelButtonText: 'Nein, zurück zur Hauptseite'
+                  <NavLink
+                  className="closebtn active"
+                  onClick={(e) => {
+                    e.preventDefault(); // Prevent the default navigation behavior
+  
+                    Swal.fire({
+                      //text: 'Hinweis',
+                      title: 'Du musst registriert und angemeldet sein, um deinen Account sehen zu können.',
+                      icon: 'info',
+                      showCancelButton: true,
+                      showConfirmButton: true,
+                      confirmButtonText: 'Ja, bitte einloggen!',
+                      cancelButtonText: 'Nein, zurück zur Hauptseite'
                     }).then((result) => {
                       if (result.isConfirmed) {
-                        setGotoPage('/userupdate');
+                        setGotoPage('/KnowledgeAccount');
                         navigate('/login');
                       } else if (result.isDismissed) {
                         setShowMenue(!showMenue);
@@ -311,164 +314,210 @@ const Header = () => {
                       } else {
                         Swal.fire('Got away safely!', '', 'success');
                       }
-                      //navigate(gotoPage);
-
                     });
                   }}
                   to="#"
+                  >
+                  {/* < RegistriertenRechte /> */}
+                  <span className="pFunction"></span> your CPD account
+                  </NavLink> 
+                )}
+              </li>
+              <li>
+                {isAuth ? (
+                  <NavLink 
+                  to={{ 
+                    pathname: "/KnowledgeAccount", 
+                    state: { openSection: ["account_4"] } 
+                  }} 
+                  //className="closebtn active"
                 >
-                  <span className="pFunction"></span> change your Userdata
+                  <span className="pFunction"></span> Nutzer-Daten ändern
                 </NavLink>
-              )}
-            </li>
-          </ul>)}
-         <ul id="learningByTopics">
-            <p>
-              learning <br />
-              by topics{" "}
-            </p>
-            <li>
-            <NavLink to="/courselistpage" className="closebtn active">
-                <span className="pFunction"></span> listed courses on offer
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/home" className="closebtn">
-              <span className="pFunction"></span> services
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/home" className="closebtn">
-              <span className="pFunction"></span> clients
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/home" className="closebtn">
-              <span className="pFunction"></span> contact
-              </NavLink>
-            </li>
-          </ul>
-          <ul id="learningByTopicAreas">
-            <p>
-              learning <br />
-              by topic areas{" "}
-            </p>
-            <li>
-              <NavLink to="/home" className="closebtn">
-              <span className="pFunction"></span> home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/home" className="closebtn">
-              <span className="pFunction"></span> learning
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/home" className="closebtn">
-              <span className="pFunction"></span> services
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/home" className="closebtn">
-              <span className="pFunction"></span> clients
-              </NavLink>
-            </li>
-            <li>
-            {isAuth && <NavLink to="/KnowledgeAccount" className="closebtn, active">
-              <span className="pFunction"></span> your CPD account
-              </NavLink>}
-            </li>
-            <li>
-              <NavLink to="/home" className="closebtn">
-              <span className="pFunction"></span> contact
-              </NavLink>
-            </li>
-          </ul>
-          <ul id="learningByCourseType">
-            <p>
-              learning <br />
-              by course Type
-            </p>
-            <li>
-              <NavLink to="/home" className="closebtn">
-              <span className="pFunction"></span> home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/home" className="closebtn">
-              <span className="pFunction"></span> learning
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/home" className="closebtn">
-              <span className="pFunction"></span> services
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/home" className="closebtn">
-              <span className="pFunction"></span> clients
-              </NavLink>
-            </li>
-            <li>
-            {isAuth && <NavLink to="/KnowledgeAccount" className="closebtn active">
-              <span className="pFunction"></span> your CPD account
-              </NavLink>}
-            </li>
-            <li>
-              <NavLink to="/home" className="closebtn">
-              <span className="pFunction"></span> contact
-              </NavLink>
-            </li>
-          </ul>
-          <ul id="regularItems">
-            <p>
-              regular <br />
-              items
-            </p>
-            <li>
-              <NavLink to="/emailus" className="closebtn active">
-              <span className="pFunction"></span> e-mail us 
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/emailus" className="closebtn active">
-              <span className="pFunction"></span> contact us 
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/404" className="closebtn">
-              <span className="pFunction"></span> dataprotection 
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/impressum" className="closebtn active">
-              <span className="pFunction"></span> impressum 
-              </NavLink>
-            </li>
-            
-          </ul>
-          {isAuth & accessRights.includes(10) || isAuth & accessRights.includes(8)? (<ul id="managementItems">
-            <p>
-              management <br />
-              items
-            </p>
-            {accessRights.includes(5) || accessRights.includes(10) || accessRights.includes(9) ? (<li>
-              <NavLink to="/companypage" className="closebtn active" >
-              <span className="pFunction"></span> add/work on company
-              </NavLink>
-              <NavLink to="/courseform" className="closebtn active" >
-              <span className="pFunction"></span> add/work on courses
-              </NavLink>
-              {/* <NavLink to="/courseform" className="closebtn active" >
-                <span className="C">C</span> change courses
-              </NavLink> */}
-            </li> ) : (<li><NavLink onClick={ FehlendeZugangsrechte } className="closebtn"><span className="C">C</span> add courses</NavLink></li>)}           
-          </ul>) : null}
+                
+                  
+                  ) : (
+                  <NavLink
+                  className="closebtn active"
+                  onClick={(e) => {
+                  e.preventDefault(); // Prevent the default navigation behavior
+                    Swal.fire({
+                      //title: 'Message',
+                      title: 'Du musst angemeldet sein, um deine Accountdaten ändern zu können. Willst du dich einloggen?',
+                      icon: 'info',
+                      showCancelButton: true,
+                      showConfirmButton: true,
+                      confirmButtonText: 'Ja, bitte einloggen!',
+                      cancelButtonText: 'Nein, zurück zur Hauptseite'
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                          setGotoPage('/userupdate');
+                          navigate('/login');
+                        } else if (result.isDismissed) {
+                          setShowMenue(!showMenue);
+                          navigate('/home');
+                        } else {
+                          Swal.fire('Got away safely!', '', 'success');
+                        }
+                        //navigate(gotoPage);
+  
+                      });
+                    }}
+                    to="#"
+                  >
+                    <span className="pFunction"></span> change your Userdata
+                  </NavLink>
+                )}
+              </li>
+            </ul>)}
+           <ul id="learningByTopics">
+              <p>
+                learning <br />
+                by topics{" "}
+              </p>
+              <li>
+              <NavLink to="/courselistpage" className="closebtn active">
+                  <span className="pFunction"></span> courses on offer
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/home" className="closebtn">
+                <span className="pFunction"></span> services
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/home" className="closebtn">
+                <span className="pFunction"></span> clients
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/home" className="closebtn">
+                <span className="pFunction"></span> contact
+                </NavLink>
+              </li>
+            </ul>
+            <ul id="learningByTopicAreas">
+              <p>
+                learning <br />
+                by topic areas{" "}
+              </p>
+              <li>
+                <NavLink to="/home" className="closebtn">
+                <span className="pFunction"></span> home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/home" className="closebtn">
+                <span className="pFunction"></span> learning
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/home" className="closebtn">
+                <span className="pFunction"></span> services
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/home" className="closebtn">
+                <span className="pFunction"></span> clients
+                </NavLink>
+              </li>
+              <li>
+              {isAuth && <NavLink to="/KnowledgeAccount" className="closebtn, active">
+                <span className="pFunction"></span> your CPD account
+                </NavLink>}
+              </li>
+              <li>
+                <NavLink to="/home" className="closebtn">
+                <span className="pFunction"></span> contact
+                </NavLink>
+              </li>
+            </ul>
+            <ul id="learningByCourseType">
+              <p>
+                learning <br />
+                by course Type
+              </p>
+              <li>
+                <NavLink to="/home" className="closebtn">
+                <span className="pFunction"></span> home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/home" className="closebtn">
+                <span className="pFunction"></span> learning
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/home" className="closebtn">
+                <span className="pFunction"></span> services
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/home" className="closebtn">
+                <span className="pFunction"></span> clients
+                </NavLink>
+              </li>
+              <li>
+              {isAuth && <NavLink to="/KnowledgeAccount" className="closebtn active">
+                <span className="pFunction"></span> your CPD account
+                </NavLink>}
+              </li>
+              <li>
+                <NavLink to="/home" className="closebtn">
+                <span className="pFunction"></span> contact
+                </NavLink>
+              </li>
+            </ul>
+            <ul id="regularItems">
+              <p>
+                regular <br />
+                items
+              </p>
+              <li>
+                <NavLink to="/emailus" className="closebtn active">
+                <span className="pFunction"></span> e-mail us 
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/emailus" className="closebtn active">
+                <span className="pFunction"></span> contact us 
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/404" className="closebtn">
+                <span className="pFunction"></span> dataprotection 
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/impressum" className="closebtn active">
+                <span className="pFunction"></span> impressum 
+                </NavLink>
+              </li>
+              
+            </ul>
+            {isAuth & accessRights.includes(10) || isAuth & accessRights.includes(8)? (<ul id="managementItems">
+              <p>
+                management <br />
+                items
+              </p>
+              {accessRights.includes(5) || accessRights.includes(10) || accessRights.includes(9) ? (<li>
+                <NavLink to="/companypage" className="closebtn active" >
+                <span className="pFunction"></span> add/work on company
+                </NavLink>
+                <NavLink to="/courseform" className="closebtn active" >
+                <span className="pFunction"></span> add/work on courses
+                </NavLink>
+                {/* <NavLink to="/courseform" className="closebtn active" >
+                  <span className="C">C</span> change courses
+                </NavLink> */}
+              </li> ) : (<li><NavLink onClick={ FehlendeZugangsrechte } className="closebtn"><span className="C">C</span> add courses</NavLink></li>)}           
+            </ul>) : null}
+         {/* </div> */}
         </div>
 
         <div className="navPromo">
           <NavLink to="/register" id="nlPromo">
-          <p>direct registration</p>
+          {!isAuth && <p>zur Registrierung</p>}
           </NavLink>
         </div>
       </nav>

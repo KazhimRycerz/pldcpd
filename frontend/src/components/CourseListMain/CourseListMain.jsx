@@ -1,18 +1,17 @@
 import "./CourseListMain.scss";
-import { Link } from "react-router-dom";
-//import C from "../../images/C.png"
+//import { Link } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import { SectionsContext } from "../../context/SectionsContext";
-import { DataListOfAuthors, ListOfCourseTypes, DataListOfCourseTypes, ListOfLanguages, ListOfTopicFields, ListOfLevel } from "../ListsOfData/ListOfData.jsx";
+import { DataListOfAuthors, DataListOfCourseTypes, ListOfLanguages, ListOfTopicFields, ListOfLevel } from "../ListsOfData/ListOfData.jsx";
 import axiosConfig from "../../util/axiosConfig";
 import baseUrl from "../../util/constants";
 import Moment from "moment";
 import { Modal, Button } from 'antd';
 import Countdown from "../Countdown/Countdown.jsx";
-import { DoubleRightOutlined, CloseOutlined, EditOutlined, SaveOutlined, StopOutlined, StepBackwardOutlined, StepForwardOutlined  } from "@ant-design/icons";
+import { CloseOutlined } from "@ant-design/icons";
 
 const CourseAddMain = () => {
-  const { isAuth, setGotoPage, setButtonPos, setAsidePos, knowledgeData, accessRights, navigate  } = useContext(SectionsContext);
+  const { isAuth, setButtonPos, setAsidePos, knowledgeData, accessRights, navigate  } = useContext(SectionsContext);
   const [coursesData, setCoursesData] = useState([])
   const [authorsData, setAuthorsData] = useState([])
   const [languageData, setLanguageData] = useState([])
@@ -43,13 +42,14 @@ const CourseAddMain = () => {
   console.log(isCourseDetailsModalVisible)
   const [selectedCourse, setSelectedCourse] = useState(JSON.parse(sessionStorage.getItem("selectedCourse")));
   console.log(selectedCourse)
-  const [isTopicFieldFocused, setIsTopicFieldFocused] = useState(false);
-  const [isLanguageFocused, setIsLanguageFocused] = useState(false);
-  const [isAuthorFocused, setIsAuthorFocused] = useState(false);
-  const [isCourseTypeFocused, setIsCourseTypeFocused] = useState(false);
-  const [isLevelFocused, setIsLevelFocused] = useState(false);
+  // const [isTopicFieldFocused, setIsTopicFieldFocused] = useState(false);
+  // const [isLanguageFocused, setIsLanguageFocused] = useState(false);
+  // const [isAuthorFocused, setIsAuthorFocused] = useState(false);
+  // const [isCourseTypeFocused, setIsCourseTypeFocused] = useState(false);
+  // const [isLevelFocused, setIsLevelFocused] = useState(false);
   const currentDate = new Date();
     currentDate.setHours(0, 0, 0, 0); 
+    
   
   const buttonPosCheck = ()=>{
     if (isAuth) {setButtonPos("showBut"); setAsidePos ("accountAside")
@@ -161,7 +161,7 @@ const searchCourseListData = async () => {
     themenfeld: themenfeldFilter,
     kursart: kursartFilter,
     kursstart: kursstartFilter,
-    kursende: kursendeFilter,
+    //kursende: kursendeFilter,
     level: levelFilter,
     sprache: sprachFilter,
     sortierung: sortElement,
@@ -193,10 +193,10 @@ const searchCourseListData = async () => {
 };
 
 useEffect(() => {
+  // Reagiere auf Filteränderungen
   searchCourseListData();
-  buttonPosCheck()
-  //searchListElements()
-}, [ sortElement, themenfeldFilter, kursartFilter, autorenFilter, kursstartFilter, levelFilter, sprachFilter]);
+  buttonPosCheck();
+}, [sortElement, themenfeldFilter, kursartFilter, autorenFilter, kursstartFilter, levelFilter, sprachFilter]);
 
   return (
     <main id="courseListMain"> {/* MainStyling in global */}
@@ -660,7 +660,7 @@ useEffect(() => {
               {/* Weitere Kursinformationen */}
               <div><p>Themenfeld:</p> <output>{selectedCourse.topicField}</output></div>
               <div><p>Kursart:</p> <output>{selectedCourse.courseType}</output></div>
-              <div><p>Inhalt:</p> <output>{selectedCourse.courseContent}</output></div>
+              <div><p>Inhalt:</p> <output id="inhaltModal">{selectedCourse.courseContent}</output></div>
 
               {/* Bilderanzeige */}
               <div id="contentImagesModal">
@@ -670,23 +670,32 @@ useEffect(() => {
               </div>
 
               {/* Kurszeitraum */}
-              <div><p>Kursstart:</p> <output>{Moment(selectedCourse.startDateOfCourse).format("DD.MM.YYYY")}</output></div>
-              <div><p>Kursende:</p> <output>{Moment(selectedCourse.endDateOfCourse).format("DD.MM.YYYY")}</output></div>
+              <div ><p>Kursdaten:</p>
+                <div className="boxInOutput">
+                  <div className="feldInFeld"><p>Start:</p> <output>{Moment(selectedCourse.startDateOfCourse).format("DD.MM.YYYY")}</output></div>
+                  <div className="feldInFeld"><p>Ende:</p> <output>{Moment(selectedCourse.endDateOfCourse).format("DD.MM.YYYY")}</output></div>
+                </div>
+              </div>
 
               {/* Sprachen */}
               <div>
-                <p>Sprachen:</p>
-                <output id="sprachlisteModal">
-                  {selectedCourse.courseLanguage.join(", ")}
-                </output>
+                <p>Sprachen:</p><output id="sprachlisteModal">{selectedCourse.courseLanguage.join(", ")}</output>
               </div>
 
               {/* Weitere Punkte und Levels */}
-              <div><p>CPD-Punkte:</p><output>{selectedCourse.cpdBasicPoints}</output></div>
-              <div><p>CPD Plus:</p><output>{selectedCourse.cpdAdditionalPoints}</output></div>
+              <div><p>CPD-Punkte</p>
+                <div className="boxInOutput">
+                  <div className="feldInFeld"><p>Basispoints:</p><output>{selectedCourse.cpdBasicPoints}</output></div>
+                  <div className="feldInFeld"><p>Pluspoints:</p><output>{selectedCourse.cpdAdditionalPoints}</output></div>
+                </div>
+              </div>
               <div><p>Level min:</p><output>{selectedCourse.professionalLevel} - {ListOfLevel.find(item => item.value === selectedCourse.professionalLevel)?.discription}</output></div>
-              <div><p>Min Teilnehmer:</p><output>{selectedCourse.minTeilnehmer}</output></div>
-              <div><p>Max Teilnehmer:</p><output>{selectedCourse.maxTeilnehmer}</output></div>
+              <div><p>Teilnehmer:</p>
+                <div className="boxInOutput">
+                  <div className="feldInFeld"> <p>min: </p> <output>{selectedCourse.minTeilnehmer}</output></div>
+                  <div className="feldInFeld"> <p>max: </p> <output>{selectedCourse.maxTeilnehmer}</output></div>
+                </div>
+              </div>
               
               {/* Anbieterlink */}
               <div>

@@ -1,10 +1,10 @@
-import React, { useState, useRef, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 //import { Link} from "react-router-dom";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 import axiosConfig from "../../util/axiosConfig.js";
 import { SectionsContext } from "../../context/SectionsContext.js";
 import "./CourseForm.scss";
-import { CloseOutlined, EditOutlined, SaveOutlined, StopOutlined, StepBackwardOutlined, StepForwardOutlined  } from "@ant-design/icons";
+import { CloseOutlined, EditOutlined, StopOutlined, StepBackwardOutlined, StepForwardOutlined  } from "@ant-design/icons";
 import { Modal, Button } from 'antd';
 import Moment from "moment"
 import Swal from "sweetalert2";
@@ -15,8 +15,8 @@ import { ImagesUploadModal } from '../../modals/ImageUpload/ImageUploadModal.jsx
 
 
 const CourseAddForm = () => {
-  const { isAuth, setGotoPage, userData, userMode, setUserMode, accessRights, navigate} = useContext(SectionsContext);
-  const location = useLocation();
+  const { isAuth, setGotoPage, accessRights, navigate, location} = useContext(SectionsContext);
+  //const location = useLocation();
   const [workingMode, setWorkingMode] = useState("inputMode")
   const [formErrors, setFormErrors] = useState({})
   const [data, setData] = useState([])
@@ -27,7 +27,6 @@ const CourseAddForm = () => {
   const today = new Date();
   const [currentDate, setCurrentDate] = useState(today);
   const [filteredTopics, setFilteredTopics] = useState(ListOfTopicFields);
-  const [filteredCourseTypes, setFilteredCourseTypes] = useState([ListOfCourseTypes]);
   const [filteredLanguages, setFilteredLanguages] = useState(ListOfLanguages);
   const [inputValue, setInputValue] = useState('');
 
@@ -86,7 +85,6 @@ const CourseAddForm = () => {
   const currentItems = themenListe.slice(startIndex, endIndex);
   // Erzeuge Platzhalter für leere Zeilen, falls weniger als itemsPerPage Elemente vorhanden sind
   const placeholders = Array(itemsPerPageValue - currentItems.length).fill(null);
-
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   /* const showModal = () => {
@@ -175,14 +173,6 @@ const CourseAddForm = () => {
       topic.toLowerCase().includes(value.toLowerCase())
     ));
   };
-   //Funktion nicht mehr notwendig:
-  // const handleChangeOfCourseTypeData = (e) => {
-  //   const value = e.target.value;
-  //   setKursTyp(value);
-  //   setFilteredCourseTypes(ListOfCourseTypes.filter(courseType =>
-  //     courseType.toLowerCase().includes(value.toLowerCase())
-  //   ));
-  // };
   
   const handleSelectTopic = (topic) => {
     setTopicField(topic);
@@ -308,6 +298,8 @@ const CourseAddForm = () => {
     setUpdatedOn(data.updatedOn)
     setCreatedOn(data.createdOn)}
     setCourseImages(data.courseImages)
+    setMinTeilnehmer(data.minTeilnehmer)
+    setMaxTeilnehmer(data.maxTeilnehmer)
     console.log(courseImages)
   }
 
@@ -360,6 +352,8 @@ const CourseAddForm = () => {
         setUpdatedBy(filteredData[0].updatedBy)
         setUpdatedOn(filteredData[0].updatedOn)
         setCreatedOn(filteredData[0].createdOn)
+        setMinTeilnehmer(filteredData[0].minTeilnehmer)
+        setMaxTeilnehmer(filteredData[0].maxTeilnehmer)
       }
       //console.log(data)
     } catch (error) {
@@ -441,6 +435,9 @@ const CourseAddForm = () => {
     if (new Date(kursstart) > new Date(kursende)) {
       errors.push("Der Kursstart liegt hinter dem Kursende.");
     }
+    if (minTeilnehmer > maxTeilnehmer) {
+      errors.push("maximale Teilnehmerzahl muss größer sein als minimale Teilnehmerzahl");
+    }
 
     if (errors.length > 6) {
       Swal.fire({
@@ -494,6 +491,8 @@ const CourseAddForm = () => {
         cpdAdditionalPoints: additionalCPDPoints,
         startDateOfCourse: kursstart,
         endDateOfCourse: kursende,
+        minTeilnehmer,
+        maxTeilnehmer,
         linkToProvider: linkProvider,
         //courseImage: file,
         active: kursActivated,
@@ -564,6 +563,8 @@ const CourseAddForm = () => {
         cpdAdditionalPoints: additionalCPDPoints,
         startDateOfCourse: kursstart,
         endDateOfCourse: kursende,
+        minTeilnehmer,
+        maxTeilnehmer,
         linkToProvider: linkProvider,
         //courseImage: file,
         active: kursActivated,
@@ -1284,10 +1285,10 @@ const CourseAddForm = () => {
               /* onDoubleClickCapture={(e) => 
                 { setMinTeilnehmer("");
                 setStatusSicherung("ungesichert")}} */
-              onChange={(e) => {
-              handleChangeOfData(e);
-              setMinTeilnehmer(e.target.value);
-              }} />
+                onChange={(e) => {
+                  handleChangeOfData(e);
+                  e.target.value<0 ? setMinTeilnehmer(0): setMinTeilnehmer(e.target.value); 
+                }} />
             </div>
             <div id="maxTeilnehmer">
               <label htmlFor="maxTeilnehmer">Maximalanzahl Teilnehmer:</label>
@@ -1295,9 +1296,6 @@ const CourseAddForm = () => {
               id="maxTeilnehmer"
               name="maxTeilnehmer"
               value={maxTeilnehmer}
-              /* onDoubleClickCapture={(e) => 
-                { setMaxTeilnehmer("");
-                setStatusSicherung("ungesichert")}} */
               onChange={(e) => {
               handleChangeOfData(e);
               setMaxTeilnehmer(e.target.value);
@@ -1400,6 +1398,8 @@ const CourseAddForm = () => {
             
             {(data.length > 0 || statusSicherung === "ungesichert") && 
             <button className="buttonBasics pFunction" type="reset" onClick={clearForm}>abbrechen</button>}
+
+            <button className="buttonBasics pFunction" type="closet" onClick={() => navigate(-1)}>schließen</button>
             
           </div>
           

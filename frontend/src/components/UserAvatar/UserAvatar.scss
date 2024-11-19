@@ -3,12 +3,13 @@
    display: inline-block;
    cursor: pointer;
    border-radius: 50%;
-   width: 75px; /* Fixed container size */
-   height: 75px; /* Fixed container size */
+   width: 75px; /* fixed container size */
+   height: 75px; /* fixed container size */
    background-size: cover;
    background-position: center;
    overflow: hidden;
    background-repeat: no-repeat;
+   background-color: transparent;
  }
  
  .slider-container {

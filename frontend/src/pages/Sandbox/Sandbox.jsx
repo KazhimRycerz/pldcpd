@@ -11,6 +11,7 @@ import KazhimRitter from '../../../src/images/Kazhim_Rycerz.jpg';
 import Bahai_day from '../../../src/images/Bahai_day.jpg';
 import Bahai_night from '../../../src/images/Bahai_night.jpg';
 import { CubeSlider } from "../../modals/Slider/SliderModal.jsx"
+//import LightBulb from "../../components/LightBulb/LightBulb.jsx"
 
 import Testimonials from '../../components/Testimonials/Testimonials.jsx'
 
@@ -25,7 +26,8 @@ const Sandbox = () => {
           {/* <Clock /> */}
           <ImageUpload />
           <CubeSlider />
-          <Testimonials  />
+          {/* <Testimonials  /> */}
+          {/* <LightBulb /> */}
           {/* <SendMessageToWhatsApp /> */}
           {/* <CodeSenden /> */}
           {/* <RandomTextGenerator /> */}

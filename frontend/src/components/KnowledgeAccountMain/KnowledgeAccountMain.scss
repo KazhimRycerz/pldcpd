@@ -17,12 +17,13 @@
       display: flex;
       flex-flow: row nowrap;
       justify-content: space-between;
-      margin-right: 30px;
+      width: 95%;
+      margin: 0 auto;
       height: 30px;
       //border: solid;
       h3 {
         font-family: $primary-font-bold;
-        margin: 0 30px ;
+        //margin: 0 30px ;
         padding-top: 5px;
         &:before {
           content: "C ";
@@ -36,6 +37,9 @@
           cursor: pointer;
         }
       } 
+      p{
+        line-height: 30px;
+      }
     }
     /* .bildLaden{
       &:before {
@@ -54,6 +58,7 @@
     .slider-container {
       display: flex;
       flex-flow: column nowrap;
+      margin: 0 auto;
       padding: 0 5px;
       gap: 0;
       //border: solid 1px;
@@ -65,9 +70,10 @@
     .accountData{
       display: flex;
       flex-flow: row wrap;
-      gap: 10px 0px;
-      padding-bottom: 20px;
-      width: 100%;
+      gap: 20px;
+      margin: 0 auto;
+      padding: 20px 0 20px 0;
+      width: 95%;
       height: auto;
       font-size: $small;
 
@@ -78,9 +84,8 @@
         flex-flow: column nowrap;
         justify-content: flex-start;
         gap: 10px;
-        margin: 10px auto 0;
         padding: 10px;
-        width: 45%;
+        width: calc(50% - 10px);
         //min-width: 45%;
         height: auto;
         background-color: $fourth-color;
@@ -177,6 +182,7 @@
     text-align: start;
     transition: font-size 1s ease-in;
     color: $secondary-color;
+    background-color: transparent;
     &:hover{
       transform: scale(1.5);  // Vergrößert das Bild um 20%
       transition: transform 0.3s ease-in-out;  // Animation für weichen Übergang
@@ -210,7 +216,7 @@
       opacity: 0;
       transition: opacity 1s ease-in-out;
     }
-
+    
     .save-icon:hover::after,
     .edit-icon:hover::after,
     .abort-icon:hover::after {
@@ -277,27 +283,24 @@
     .colorYellow {
       color: $secondary-color;
     }
+    #my_start {
+      top: 60px;
+      right: 10px;
+      //height: 30px;
+    }
+    #my_active {
+      top: 90px;
+      right: 10px;
+      //height: 30px;
+    }
   }
-
-  #my_start {
-    top: 60px;
-    right: 10px;
-    //height: 30px;
-  }
-  #my_active {
-    top: 90px;
-    right: 10px;
-    //height: 30px;
-  }
-
-  /* zweite Datenreihe*/
 
   #account_2, #account_6 {
     table {
       //border: solid;
       border-radius: 10px;
       box-shadow: $boxshadow;
-      width: 95%;
+      width: 100%;
       margin: 10px auto 0;
       //padding: 10px;
       background-color: $fourth-color;
@@ -347,13 +350,12 @@
   }
 
   #account_3 {
-    display: block;
-    margin-top: 20px;
-    border-left: 3px dotted $cpdred;
-    border-right: 3px dotted $cpdred;
-    border-radius: 20px;
-    height: auto;
-    
+    // display: block;
+    // margin-top: 20px;
+    // border-left: 3px dotted $cpdred;
+    // border-right: 3px dotted $cpdred;
+    // border-radius: 20px;
+    // height: auto;
     #account_3_head p{
       &:hover {
         //color: $cpdred;
@@ -361,78 +363,78 @@
         cursor: pointer;
       }
     }
-
     > p {
       margin: 0px 0px 30px 30px;
       padding-bottom: 10px;
       //border: solid
     }
-
-  }
-  #account_3_data {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    //align-content: flex-start;
-    gap: 20px 0px;
-    margin-top: 10px;
-    width: 100%;
-    padding: 0 0 20px 0;
-    //border: solid;
-    .account_3 {
+    #account_3_data {
       display: flex;
-      flex: row nowrap;
+      flex-flow: row wrap;
       justify-content: space-between;
-      gap:10px;
-      //margin: 30px 30px 0 30px;
-      padding: 10px;
-      width: auto;
-      min-width: 45%;
-      background-color: $fourth-color;
-      border-radius: $radiussmall;
-      box-shadow: $boxshadow;
-      height: 80px;
-      position: relative;
+      //align-content: flex-start;
+      gap: 20px 0px;
+      margin-top: 10px;
+      margin: 0 auto;
+      width: 95%;
+      padding: 0 0 20px 0;
       //border: solid;
-      div:first-child {
+      .account_3 {
+        display: flex;
+        flex: row nowrap;
+        justify-content: space-between;
+        gap:10px;
+        //margin: 30px 30px 0 30px;
+        padding: 10px;
+        width: calc(50% - 10px);
+        //min-width: 45%;
+        background-color: $fourth-color;
+        border-radius: $radiussmall;
+        box-shadow: $boxshadow;
+        height: 80px;
         position: relative;
-        top: -20px;
-        left: 10px;
-        background-color: $cpdblue;
-        >h2 {
-          font-family: $guthaben;
-          font-weight: bold;
-          font-size: 30px;
-          text-align: center;
-          color: white;
-          padding: 5px;
-          width: 70px;
-          height: 90px;
+        //border: solid;
+        div:first-child {
           position: relative;
-          top: -10px;
-          line-height: 180%;
-          border-radius: $radiussmall;
+          top: -20px;
+          left: 10px;
           background-color: $cpdblue;
-        }
-        >p {
-          padding-left: 4px;
-          margin-top: -40px;
-          font-family: $primary-font;
-          font-size: 10px;
-          text-align: center;
-          color: white;
+          >h2 {
+            font-family: $guthaben;
+            font-weight: bold;
+            font-size: 30px;
+            text-align: center;
+            color: white;
+            padding: 5px;
+            width: 70px;
+            height: 90px;
+            position: relative;
+            top: -10px;
+            line-height: 180%;
+            border-radius: $radiussmall;
+            background-color: $cpdblue;
+          }
+          >p {
+            padding-left: 4px;
+            margin-top: -40px;
+            font-family: $primary-font;
+            font-size: 10px;
+            text-align: center;
+            color: white;
+            position: relative;
+            background-color: $cpdblue;
+          }
+        }    
+        div:last-child {
           position: relative;
-          background-color: $cpdblue;
+          right: 0px;
+          width: 50%;
+          //margin: 0 auto;
         }
-      }    
-      div:last-child {
-        position: relative;
-        right: 0px;
-        width: 50%;
-        //margin: 0 auto;
       }
     }
   }
+
   .account_data_box {
     display: flex;
     flex-flow: column;
@@ -478,23 +480,24 @@
     }
   }
 
-  .linkin {
-    font-size: $small;
-    margin-top: 0px;
-    &:hover {
-      //color: $cpdred;
-      text-shadow: $text-shadow;
-      cursor: pointer;
-    }
-  }
+  // .linking {
+  //   font-size: $small;
+  //   margin-top: 0px;
+  //   &::before {
+  //     content: "C ";
+  //     font-family: VIA-Verlag;
+  //     font-size: $normal;
+  //     color: $cpdred;
+  //     vertical-align: -2px;
+  //   }
+  //   &:hover {
+  //     //color: $cpdred;
+  //     text-shadow: $text-shadow;
+  //     cursor: pointer;
+  //   }
+  // }
   
-  #account_8 {
-    display: block;
-    margin-top: 20px;
-    border-right: 3px dotted $cpdred;
-    border-left: 3px dotted $cpdred;
-    border-radius: 20px;
-    
+  #account_8 {    
     #account_8_data {
       display: flex;
       margin: 0 20px;
@@ -619,6 +622,7 @@
     }
   }
 }
+
 @media (max-width: $phone){
   .account_3 {
     width: 100%;

@@ -8,4 +8,22 @@
    min-height: 70vh;
    margin: 0px auto 50px;
    box-shadow: $mainshadow;
+   //border: solid;
+
+   #contactFormContainer{
+      width: 80%;
+      border-radius: 20px;
+      margin: 0px auto 50px;
+      //box-shadow: none;
+      background-color: transparent;
+      //padding: 30px 0 50px ;
+  
+      #änderungsHinweis{
+        
+        font-size: $xlarge;
+        width: fit-content;
+        margin: 20px auto 0px ;
+        color: $cpdblue;
+      }
+   }
 }

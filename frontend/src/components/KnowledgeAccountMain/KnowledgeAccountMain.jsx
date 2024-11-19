@@ -2,7 +2,7 @@ import './KnowledgeAccountMain.scss'
 import { useContext, useState, useEffect, useRef } from "react";
 import { SectionsContext } from "../../context/SectionsContext.js";
 import { useLocation } from 'react-router-dom';
-import { EditOutlined, SaveOutlined, StopOutlined } from "@ant-design/icons";
+import { EditOutlined, SaveOutlined, StopOutlined, CloseOutlined } from "@ant-design/icons";
 import axiosConfig from "../../util/axiosConfig";
 import Moment from "moment";
 import Swal from "sweetalert2";
@@ -11,6 +11,7 @@ import UserAvatar from "../UserAvatar/UserAvatar.jsx"
 import { Tooltip, getTooltipText } from "../../util/Tooltips/Tooltips.js"
 import { AvatarSliderModal } from "../../modals/Slider/SliderModal.jsx"
 import Countdown from "../Countdown/Countdown.jsx";
+
 //import UpdateUserModal from "../../modals/UserUpdate/UserUpdateModal.jsx"
 //import ImageUpload from '../ImageUpload/ImageUpload.jsx';
 
@@ -30,7 +31,8 @@ const  KnowledgeAccountMain = () =>{
       objectSize, setObjectSize,
       saveUserSettings,
       navigate } = useContext(SectionsContext);
-      const location = useLocation();
+      
+   const location = useLocation();
 
    //const [showPassword, setShowPassword] = useState(false);
    const [openSections, setOpenSections] = useState([]);
@@ -238,7 +240,7 @@ const  KnowledgeAccountMain = () =>{
             <h2> Ihre Kontodaten im Überblick</h2>
             <p className="closingFunction" onClick={() => navigate("/home")}>Formular schließen</p>
          </div>
-         
+         < CloseOutlined className="closeX" onClick={() => navigate("/home")}> </CloseOutlined>
          <section id="welcomeLine">
             <div><h3>Konto und Daten von {userData.firstName} {userData.lastName}</h3></div>
          </section>
@@ -247,8 +249,8 @@ const  KnowledgeAccountMain = () =>{
             <div className="accountHead" id="account_1_head" >
                <h3 onClick={() => toggleSection("account_1")}>Berufsstatus</h3>
                {openSections.includes("account_1") && 
-                  <p className="linkin" onClick={() => getUserData()}>
-                  <span className="C">C </span>
+                  <p className="pFunction" onClick={() => getUserData()}>
+                  {/* <span className="C">C </span> */}
                   Daten aktualisieren
                   </p>
                }
@@ -313,15 +315,15 @@ const  KnowledgeAccountMain = () =>{
                   </div>
                </div>
 
-                  <div>
-                  {/*<div>
-                     <p className="fieldName">Ihr CPD Guthaben</p>
-                     <div className="output account_Box" id="myLCoins"> 
-                        {knowledgeData ? <p>{knowledgeData.myLC}<span className="C colorYellow"> LC</span></p>: <>0<span className="C colorYellow"> LC</span></>} 
-                     </div>
+               <div>
+               {/*<div>
+                  <p className="fieldName">Ihr CPD Guthaben</p>
+                  <div className="output account_Box" id="myLCoins"> 
+                     {knowledgeData ? <p>{knowledgeData.myLC}<span className="C colorYellow"> LC</span></p>: <>0<span className="C colorYellow"> LC</span></>} 
                   </div>
-                  <div><p className="fieldName"></p></div>
-                  <div><p className="fieldName"></p></div>*/}
+               </div>
+               <div><p className="fieldName"></p></div>
+               <div><p className="fieldName"></p></div>*/}
                </div> 
             </div>
             )}
@@ -336,8 +338,8 @@ const  KnowledgeAccountMain = () =>{
                   Datensatz anlegen
                   </p>
                )}
-               {openSections.includes("account_3") && (<p className="linkin" onClick={() => getUserData()}>
-                  <span className="C">C </span>
+               {openSections.includes("account_3") && (<p className="pFunction" onClick={() => getUserData()}>
+                  {/* <span className="C">C </span> */}
                   Daten aktualisieren
                   </p>)}
             </div>
@@ -420,8 +422,8 @@ const  KnowledgeAccountMain = () =>{
             <div className="accountHead" id="account_6_head" >
                <h3 onClick={() => toggleSection("account_6")}>Ihr CPD-Tracker</h3>
                {openSections.includes("account_6") && 
-                  <p className="linkin">
-                  <span className="C">C </span>
+                  <p className="pFunction">
+                  {/* <span className="C">C </span> */}
                   Daten aktualisieren
                   </p>
                }
@@ -484,8 +486,8 @@ const  KnowledgeAccountMain = () =>{
             <div className="accountHead" id="account_2_head" >
                <h3 onClick={() => toggleSection("account_2")}>Ihre beruflicher Werdegang</h3>
                {openSections.includes("account_2") && 
-                  <p className="linkin">
-                  <span className="C">C </span>
+                  <p className="pFunction">
+                  {/* <span className="C">C </span> */}
                   Daten eingeben oder ändern
                   </p>
                }
@@ -548,7 +550,7 @@ const  KnowledgeAccountMain = () =>{
                <h3 onClick={() => toggleSection("account_4")}>Ihre Konto Nutzerdaten</h3>
                {openSections.includes("account_4") && 
                   <div>
-                     {/* <p className="linkin" onClick={() => navigate("/userUpdate")}>
+                     {/* <p className="pFunction" onClick={() => navigate("/userUpdate")}>
                         <span className="C" >C </span>
                         Daten ändern
                      </p> */}
@@ -557,185 +559,254 @@ const  KnowledgeAccountMain = () =>{
                      isOpen={updateUserModalIsOpen} 
                      onRequestClose={() => setUpdateUserModalIsOpen(false)}
                      /> */}
-                     {changeData === false ? (<p onClick={() => setChangeData(true)} className="linkin"><span className="C" >C </span> Daten ändern</p>) : (<p onClick={() => dataEingabeAbbrechen()}className="linkin"><span className="C" >C </span> schließen</p>)}
+                     {changeData === false ? (<p onClick={() => setChangeData(true)} className="pFunction">
+                        {/* <span className="C" >C </span>  */}
+                        Daten ändern</p>) : (<p onClick={() => dataEingabeAbbrechen()}className="pFunction">
+                           {/* <span className="C" >C </span>  */}
+                           schließen</p>)}
                   </div>
                }
             </div>
             {openSections.includes("account_4") && (
-               <div className="accountData" id="account_4_data">
-                  <div className="account_4">
-                     <div>
-                        <p className="fieldName">Vorname</p> 
-                        {!editFirstName ? (
-                           <div className="output">
-                              <p>{userData.firstName}</p>
-                              {changeData === true && (<EditOutlined
-                              className="edit-icon"
+            <div className="accountData" id="account_4_data">
+               <div className="account_4">
+                  <div>
+                     <p className="fieldName">Vorname</p> 
+                     {!editFirstName ? (
+                        <div className="output">
+                           <p>{userData.firstName}</p>
+                           {changeData === true && (<EditOutlined
+                           className="edit-icon"
+                           onClick={() => {
+                              setEditFirstName(true);
+                              setEditInputName("Vorname");
+                              handleErrorMessage("Vorname");
+                           }}
+                           />)}
+                        </div> ) : (
+                        <div className="input">
+                           <input
+                           type="text"
+                           defaultValue={userData.firstName}
+                           onChange={(e) => setFirstName(e.target.value)}
+                           />
+                           <div id="logoContainer">
+                              <SaveOutlined
+                              className="save-icon"
                               onClick={() => {
-                                 setEditFirstName(true);
-                                 setEditInputName("Vorname");
-                                 handleErrorMessage("Vorname");
-                              }}
-                              />)}
-                           </div> ) : (
-                           <div className="input">
-                              <input
-                              type="text"
-                              defaultValue={userData.firstName}
-                              onChange={(e) => setFirstName(e.target.value)}
-                              />
-                              <div id="logoContainer">
-                                 <SaveOutlined
-                                 className="save-icon"
-                                 onClick={() => {
-                                    if (!firstName) {
-                                       Swal.fire({ title: "Vorname unverändert!" });
+                                 if (!firstName) {
+                                    Swal.fire({ title: "Vorname unverändert!" });
+                                    setEditFirstName(false);
+                                 } else {
+                                    Swal.fire({
+                                    title: "Vorname ändern?",
+                                    text: firstName,
+                                    icon: "warning",
+                                    buttons: ["Nein, nicht ändern!", "Ja, ändern!"],
+                                    dangerMode: true,
+                                    }).then((isConfirm) => {
+                                    if (isConfirm) {
+                                       const data = {
+                                          userName: userData.userName,
+                                          firstName: firstName,
+                                          lastName: userData.lastName,
+                                          //gender: userData.gender,
+                                          email: userData.eMail
+                                       };
+                                       updateUser(data);
+                                    } else {
+                                       Swal.fire({ title: "Vorname ändern abgebrochen." });
                                        setEditFirstName(false);
-                                    } else {
-                                       Swal.fire({
-                                       title: "Vorname ändern?",
-                                       text: firstName,
-                                       icon: "warning",
-                                       buttons: ["Nein, nicht ändern!", "Ja, ändern!"],
-                                       dangerMode: true,
-                                       }).then((isConfirm) => {
-                                       if (isConfirm) {
-                                          const data = {
-                                             userName: userData.userName,
-                                             firstName: firstName,
-                                             lastName: userData.lastName,
-                                             //gender: userData.gender,
-                                             email: userData.eMail
-                                          };
-                                          updateUser(data);
-                                       } else {
-                                          Swal.fire({ title: "Vorname ändern abgebrochen." });
-                                          setEditFirstName(false);
-                                       }
-                                       });
                                     }
-                                    getUserData();
-                                 }}
-                                 />
-                                 <StopOutlined
-                                 className="abort-icon"
-                                 onClick={(e) => setEditFirstName(false)}
-                                 />
-                              </div>
-                           </div>    
-                        )}           
-                     </div>
-                     <div>
-                        <p className="fieldName">Nachname</p> 
-                        {!editLastName ? (
-                           <div className="output">
-                              <p>{userData.lastName}</p>
-                              
-                              {changeData === true && (<EditOutlined
-                              className="edit-icon"
-                              onClick={() => {
-                                 setEditLastName(true);
-                                 setEditInputName("Nachname");
-                                 handleErrorMessage("Nachname");
+                                    });
+                                 }
+                                 getUserData();
                               }}
-                              />)}
-                              
-                           </div> ) : (
-                           <div className="input">
-                              <input
-                              type="text"
-                              defaultValue={userData.lastName}
-                              onChange={(e) => setFirstName(e.target.value)}
                               />
-                              <div id="logoContainer">
-                                 <SaveOutlined
-                                 className="save-icon"
-                                 onClick={() => {
-                                    if (!lastName) {
-                                       Swal.fire({ title: "Nachname unverändert!" });
+                              <StopOutlined
+                              className="abort-icon"
+                              onClick={(e) => setEditFirstName(false)}
+                              />
+                           </div>
+                        </div>    
+                     )}           
+                  </div>
+                  <div>
+                     <p className="fieldName">Nachname</p> 
+                     {!editLastName ? (
+                        <div className="output">
+                           <p>{userData.lastName}</p>
+                           
+                           {changeData === true && (<EditOutlined
+                           className="edit-icon"
+                           onClick={() => {
+                              setEditLastName(true);
+                              setEditInputName("Nachname");
+                              handleErrorMessage("Nachname");
+                           }}
+                           />)}
+                           
+                        </div> ) : (
+                        <div className="input">
+                           <input
+                           type="text"
+                           defaultValue={userData.lastName}
+                           onChange={(e) => setFirstName(e.target.value)}
+                           />
+                           <div id="logoContainer">
+                              <SaveOutlined
+                              className="save-icon"
+                              onClick={() => {
+                                 if (!lastName) {
+                                    Swal.fire({ title: "Nachname unverändert!" });
+                                    setEditLastName(false);
+                                 } else {
+                                    Swal.fire({
+                                    title: "Nachname ändern?",
+                                    text: lastName,
+                                    icon: "warning",
+                                    buttons: ["Nein, nicht ändern!", "Ja, ändern!"],
+                                    dangerMode: true,
+                                    }).then((isConfirm) => {
+                                    if (isConfirm) {
+                                       const data = {
+                                          userName: userData.userName,
+                                          firstName: userData.firstName,
+                                          lastName: lastName,
+                                          //gender: userData.gender,
+                                          email: userData.eMail
+                                       };
+                                       updateUser(data);
+                                    } else {
+                                       Swal.fire({ title: "Nachname ändern abgebrochen." });
                                        setEditLastName(false);
-                                    } else {
-                                       Swal.fire({
-                                       title: "Nachname ändern?",
-                                       text: lastName,
-                                       icon: "warning",
-                                       buttons: ["Nein, nicht ändern!", "Ja, ändern!"],
-                                       dangerMode: true,
-                                       }).then((isConfirm) => {
-                                       if (isConfirm) {
-                                          const data = {
-                                             userName: userData.userName,
-                                             firstName: userData.firstName,
-                                             lastName: lastName,
-                                             //gender: userData.gender,
-                                             email: userData.eMail
-                                          };
-                                          updateUser(data);
-                                       } else {
-                                          Swal.fire({ title: "Nachname ändern abgebrochen." });
-                                          setEditLastName(false);
-                                       }
-                                       });
                                     }
-                                    getUserData();
-                                 }}
-                                 />
-                                 <StopOutlined
-                                 className="abort-icon"
-                                 onClick={(e) => setEditLastName(false)}
-                                 />
-                              </div>
-                           </div>    
-                        )}           
-                     </div>
-                     <div>
-                        <p className="fieldName">E-Mail</p> 
-                        {!editEmail ? (
+                                    });
+                                 }
+                                 getUserData();
+                              }}
+                              />
+                              <StopOutlined
+                              className="abort-icon"
+                              onClick={(e) => setEditLastName(false)}
+                              />
+                           </div>
+                        </div>    
+                     )}           
+                  </div>
+                  <div>
+                     <p className="fieldName">E-Mail</p> 
+                     {!editEmail ? (
+                        <div className="output">
+                           <p>{userData.eMail}</p>
+                           
+                           {changeData === true && (<EditOutlined
+                           className="edit-icon"
+                           onClick={() => {
+                              setEditEmail(true);
+                              setEditInputName("E-Mail");
+                              handleErrorMessage("E-Mail");
+                           }}
+                           />)}  
+                        </div> ) : (
+                        <div className="input">
+                           <input
+                           type="text"
+                           defaultValue={userData.eMail}
+                           onChange={(e) => setEmail(e.target.value)}
+                           />
+                           <div id="logoContainer">
+                              <SaveOutlined
+                              className="save-icon"
+                              onClick={() => {
+                                 if (!email) {
+                                    Swal.fire({ title: "E-Mail unverändert!" });
+                                    setEditEmail(false);
+                                 } else {
+                                    Swal.fire({
+                                    title: "E-Mil ändern?",
+                                    text: email,
+                                    icon: "warning",
+                                    buttons: ["Nein, nicht ändern!", "Ja, ändern!"],
+                                    dangerMode: true,
+                                    }).then((isConfirm) => {
+                                    if (isConfirm) {
+                                       const data = {
+                                          userName: userData.userName,
+                                          firstName: userData.firstName,
+                                          lastName: userData.lastName,
+                                          //gender: userData.gender,
+                                          email: email
+                                       };
+                                       updateUser(data);
+                                    } else {
+                                       Swal.fire({ title: "E-Mail ändern abgebrochen." });
+                                       setEditEmail(false);
+                                    }
+                                    });
+                                 }
+                                 getUserData();
+                              }}
+                              />
+                              <StopOutlined
+                              className="abort-icon"
+                              onClick={(e) => setEditEmail(false)}
+                              />
+                           </div>
+                        </div>    
+                     )}           
+                  </div>
+               </div>
+               <div className="account_4">
+                  <div>
+                        <p className="fieldName">Username</p> 
+                        {!editUserName ? (
                            <div className="output">
-                              <p>{userData.eMail}</p>
+                              <p>{userData.userName}</p>
                               
                               {changeData === true && (<EditOutlined
                               className="edit-icon"
                               onClick={() => {
-                                 setEditEmail(true);
-                                 setEditInputName("E-Mail");
-                                 handleErrorMessage("E-Mail");
+                                 setEditUserName(true);
+                                 setEditInputName("Username");
+                                 handleErrorMessage("Username");
                               }}
-                              />)}  
+                              />)}
+                              
                            </div> ) : (
                            <div className="input">
                               <input
                               type="text"
-                              defaultValue={userData.eMail}
-                              onChange={(e) => setEmail(e.target.value)}
+                              defaultValue={userData.userName}
+                              onChange={(e) => setUserName(e.target.value)}
                               />
                               <div id="logoContainer">
                                  <SaveOutlined
                                  className="save-icon"
                                  onClick={() => {
-                                    if (!email) {
-                                       Swal.fire({ title: "E-Mail unverändert!" });
-                                       setEditEmail(false);
+                                    if (!userName) {
+                                       Swal.fire({ title: "Username unverändert!" });
+                                       setEditUserName(false);
                                     } else {
                                        Swal.fire({
-                                       title: "E-Mil ändern?",
-                                       text: email,
+                                       title: "Username ändern?",
+                                       text: userName,
                                        icon: "warning",
                                        buttons: ["Nein, nicht ändern!", "Ja, ändern!"],
                                        dangerMode: true,
                                        }).then((isConfirm) => {
                                        if (isConfirm) {
                                           const data = {
-                                             userName: userData.userName,
+                                             userName: userName,
                                              firstName: userData.firstName,
                                              lastName: userData.lastName,
                                              //gender: userData.gender,
-                                             email: email
+                                             email: userData.eMail
                                           };
                                           updateUser(data);
                                        } else {
-                                          Swal.fire({ title: "E-Mail ändern abgebrochen." });
-                                          setEditEmail(false);
+                                          Swal.fire({ title: "Username ändern abgebrochen." });
+                                          setEditUserName(false);
                                        }
                                        });
                                     }
@@ -744,167 +815,98 @@ const  KnowledgeAccountMain = () =>{
                                  />
                                  <StopOutlined
                                  className="abort-icon"
-                                 onClick={(e) => setEditEmail(false)}
+                                 onClick={(e) => setEditUserName(false)}
                                  />
                               </div>
                            </div>    
                         )}           
-                     </div>
                   </div>
-
-                  <div className="account_4">
-                     <div>
-                           <p className="fieldName">Username</p> 
-                           {!editUserName ? (
-                              <div className="output">
-                                 <p>{userData.userName}</p>
-                                 
-                                 {changeData === true && (<EditOutlined
-                                 className="edit-icon"
-                                 onClick={() => {
-                                    setEditUserName(true);
-                                    setEditInputName("Username");
-                                    handleErrorMessage("Username");
-                                 }}
-                                 />)}
-                                 
-                              </div> ) : (
-                              <div className="input">
-                                 <input
-                                 type="text"
-                                 defaultValue={userData.userName}
-                                 onChange={(e) => setUserName(e.target.value)}
-                                 />
-                                 <div id="logoContainer">
-                                    <SaveOutlined
-                                    className="save-icon"
-                                    onClick={() => {
-                                       if (!userName) {
-                                          Swal.fire({ title: "Username unverändert!" });
-                                          setEditUserName(false);
-                                       } else {
-                                          Swal.fire({
-                                          title: "Username ändern?",
-                                          text: userName,
-                                          icon: "warning",
-                                          buttons: ["Nein, nicht ändern!", "Ja, ändern!"],
-                                          dangerMode: true,
-                                          }).then((isConfirm) => {
-                                          if (isConfirm) {
-                                             const data = {
-                                                userName: userName,
-                                                firstName: userData.firstName,
-                                                lastName: userData.lastName,
-                                                //gender: userData.gender,
-                                                email: userData.eMail
-                                             };
-                                             updateUser(data);
-                                          } else {
-                                             Swal.fire({ title: "Username ändern abgebrochen." });
-                                             setEditUserName(false);
-                                          }
-                                          });
-                                       }
-                                       getUserData();
-                                    }}
-                                    />
-                                    <StopOutlined
-                                    className="abort-icon"
-                                    onClick={(e) => setEditUserName(false)}
-                                    />
-                                 </div>
-                              </div>    
-                           )}           
-                     </div>
-                     <div>
-                        <p className="fieldName">Ihr Passwort</p>
-                        {!editPassword ? (
-                           <div className="output" > 
-                              <p> ********* </p>
-                              {changeData === true && (<EditOutlined
-                              onClick={() => {
-                                 setEditPassword(true);
-                                 setEditInputName("Passwort");
-                                 handleErrorMessage("Passwort");
-                              }}
-                              className="edit-icon"
-                              />)}
-                           </div>) : (
-                           <div className="input">
-                              <input
-                              /* id="passwordInput" */
-                              type="text"
-                              /* type= "password" */
-                              onChange={(e) => setPassword(e.target.value)}
-                              />                                               
-                        <div id="logoContainer">
-                        <SaveOutlined
-                        className="save-icon"
-                        onClick={() => {
-                           if (!password) {
-                              Swal.fire({ title: "Passwort unverändert!" });
-                              setEditPassword(false);
+                  <div>
+                     <p className="fieldName">Ihr Passwort</p>
+                     {!editPassword ? (
+                        <div className="output" > 
+                           <p> ********* </p>
+                           {changeData === true && (<EditOutlined
+                           onClick={() => {
+                              setEditPassword(true);
+                              setEditInputName("Passwort");
+                              handleErrorMessage("Passwort");
+                           }}
+                           className="edit-icon"
+                           />)}
+                        </div>) : (
+                        <div className="input">
+                           <input
+                           /* id="passwordInput" */
+                           type="text"
+                           /* type= "password" */
+                           onChange={(e) => setPassword(e.target.value)}
+                           />                                               
+                     <div id="logoContainer">
+                     <SaveOutlined
+                     className="save-icon"
+                     onClick={() => {
+                        if (!password) {
+                           Swal.fire({ title: "Passwort unverändert!" });
+                           setEditPassword(false);
+                        } else {
+                           Swal.fire({
+                           title: "Passwort ändern?",
+                           icon: "warning",
+                           buttons: ["Nein, nicht ändern!", "Ja, ändern!"],
+                           dangerMode: true,
+                           }).then((isConfirm) => {
+                           if (isConfirm) {
+                              const data = {
+                                 userName: userData.userName,
+                                 firstName: userData.firstName,
+                                 lastName: userData.lastName,
+                                 gender: userData.gender,
+                                 email: userData.eMail,
+                                 password: password,
+                              };
+                              updateUserPassword(data);
                            } else {
-                              Swal.fire({
-                              title: "Passwort ändern?",
-                              icon: "warning",
-                              buttons: ["Nein, nicht ändern!", "Ja, ändern!"],
-                              dangerMode: true,
-                              }).then((isConfirm) => {
-                              if (isConfirm) {
-                                 const data = {
-                                    userName: userData.userName,
-                                    firstName: userData.firstName,
-                                    lastName: userData.lastName,
-                                    gender: userData.gender,
-                                    email: userData.eMail,
-                                    password: password,
-                                 };
-                                 updateUserPassword(data);
-                              } else {
-                                 Swal.fire({ title: "Passwort ändern abgebrochen." });
-                                 setEditPassword(false);
-                              }
-                              });
+                              Swal.fire({ title: "Passwort ändern abgebrochen." });
+                              setEditPassword(false);
                            }
-                           getUserData();
-                        }}
-                        />
-                        <StopOutlined
-                        className="abort-icon"
-                        onClick={(e) => setEditPassword(false)}
-                        />
-                     </div>
+                           });
+                        }
+                        getUserData();
+                     }}
+                     />
+                     <StopOutlined
+                     className="abort-icon"
+                     onClick={(e) => setEditPassword(false)}
+                     />
                   </div>
-                  )}
-               </div>              
-                     
-               <div>      
-                  <div className="fieldName">
-                     <p>Ihr Avatar</p>   
+               </div>
+               )}
+                  </div>                       
+                  <div>      
+                     <p className="fieldName">Ihr Avatar</p>   
                      <AvatarSliderModal 
                      isOpen={isSliderModalOpen} 
                      onRequestClose={() => setIsSliderModalOpen(false)} 
                      />
-                  </div>
-                  <div className="output">
-                     < UserAvatar width="65px" height="65px" allowDragging="true"/> 
-                     <div className="slider-container">
-                              <input
-                                 type="range"
-                                 min="50"
-                                 max="200"
-                                 value={objectSize}
-                                 onChange={handleSizeChange}
-                                 style={{width:"100%"}}
-                              />
-                              <p>Größe und Position</p>
+                     <div className="output">
+                        < UserAvatar width="65px" height="65px" allowDragging="true"/> 
+                        <div className="slider-container">
+                           <input
+                           type="range"
+                           min="50"
+                           max="200"
+                           value={objectSize}
+                           onChange={handleSizeChange}
+                           style={{width:"100%"}}
+                           />
+                           <p>Größe und Position</p>
+                        </div>
+                        {changeData === true && <EditOutlined onClick={() => setIsSliderModalOpen(true)} className="edit-icon" id="test"/>} 
                      </div>
-                     <div>{changeData === true && <EditOutlined onClick={() => setIsSliderModalOpen(true)} className="edit-icon"/>}</div> 
-                  </div>
-                  </div>
                   </div>
                </div>
+            </div>
             )}
          </section>
          
@@ -912,8 +914,8 @@ const  KnowledgeAccountMain = () =>{
             <div className="accountHead" >
                <h3 onClick={() => toggleSection("account_5")}>Ihre persönliche Daten</h3>
                {openSections.includes("account_5") && 
-                  <p className="linkin" onClick={() => navigate("/userUpdate")}>
-                     <span className="C" >C </span>
+                  <p className="pFunction" onClick={() => navigate("/userUpdate")}>
+                     {/* <span className="C" >C </span> */}
                      Daten aktualisieren
                   </p>
                }
@@ -996,8 +998,8 @@ const  KnowledgeAccountMain = () =>{
             <div className="accountHead" >
                <h3 onClick={() => toggleSection("account_8")}>Ihre Abrechnungsdaten</h3>
                {openSections.includes("account_8") && 
-               <p className="linkin" onClick={() => getUserData()}>
-                  <span className="C">C </span>
+               <p className="pFunction" onClick={() => getUserData()}>
+                  {/* <span className="C">C </span> */}
                   Daten aktualisieren
                </p>
                }
@@ -1026,8 +1028,8 @@ const  KnowledgeAccountMain = () =>{
             <div className="accountHead" >
                <h3 onClick={() => toggleSection("account_10")}>Autoreninfo</h3>
                {openSections.includes("account_10") && 
-               <p className="linkin">
-                  <span className="C">C </span>
+               <p className="pFunction pFunction">
+                  {/* <span className="C">C </span> */}
                   Daten aktualisieren
                </p>}
             </div>
@@ -1071,7 +1073,7 @@ const  KnowledgeAccountMain = () =>{
             (<section id="account_10">
                <div className="accountHead">
                   <h3> Aktuell keine Autorendaten vorhanden. </h3>
-                  <p><span className="C">C</span> Daten eingeben</p>
+                  {/* <p className="pFunction"><span className="C">C</span> Daten eingeben</p> */}
                </div>
             </section>)
          }
