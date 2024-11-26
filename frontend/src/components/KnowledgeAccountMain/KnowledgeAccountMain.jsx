@@ -1,14 +1,13 @@
 import './KnowledgeAccountMain.scss'
-import { useContext, useState, useEffect, useRef } from "react";
+import { useContext, useState, useEffect} from "react";
 import { SectionsContext } from "../../context/SectionsContext.js";
-import { useLocation } from 'react-router-dom';
 import { EditOutlined, SaveOutlined, StopOutlined, CloseOutlined } from "@ant-design/icons";
 import axiosConfig from "../../util/axiosConfig";
 import Moment from "moment";
 import Swal from "sweetalert2";
-import baseURL from "../../util/constants.js"
+//import baseURL from "../../util/constants.js"
 import UserAvatar from "../UserAvatar/UserAvatar.jsx"
-import { Tooltip, getTooltipText } from "../../util/Tooltips/Tooltips.js"
+import { Tooltip, getTooltipText } from "../../components/Tooltips/Tooltips.js"
 import { AvatarSliderModal } from "../../modals/Slider/SliderModal.jsx"
 import Countdown from "../Countdown/Countdown.jsx";
 
@@ -30,9 +29,8 @@ const  KnowledgeAccountMain = () =>{
       gotoPage,
       objectSize, setObjectSize,
       saveUserSettings,
+      location,
       navigate } = useContext(SectionsContext);
-      
-   const location = useLocation();
 
    //const [showPassword, setShowPassword] = useState(false);
    const [openSections, setOpenSections] = useState([]);
@@ -59,22 +57,48 @@ const  KnowledgeAccountMain = () =>{
   const [editInputName, setEditInputName] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const [changeData, setChangeData] = useState(false);
-   
-   // Handling Modal open / close
-   /* const closeModal = () => {
-      setIsSliderModalOpen(false);
-    }; */
-    //const cpdStartDate = knowledgeData && new Date(knowledgeData.cpdActiveSince);
+  const [changeUserData, setChangeUserData] = useState(false);
+  const [changeContactData, setChangeContactData] = useState(false);
+  const [changeAuthorsData, setChangeAuthorsData] = useState(false);
+  const [changeAccountData, setChangeAccountData] = useState(false);
+  const [changeProfessionalStatus, setChangeProfessionalStatus] = useState(false);
 
+  const [dropdownToggleIsOpen, setDropdownToggleIsOpen] = useState({});
+
+//   const toggleDropdowns = () => {
+//    setCPDToggleIsOpen(!CPDToggleIsOpen); 
+// };
+
+   //Toggle Sections to open / close
+   const toggleSection = (sectionId) => {
+      setOpenSections((prevOpenSections) => {
+         //console.log(prevOpenSections, sectionId)
+         if (prevOpenSections.includes(sectionId)) {
+         return prevOpenSections.filter((section) => section !== sectionId);
+         } else {
+         return [...prevOpenSections, sectionId];
+         };
+      });
+   };
+   //Dropdowns in den Sections
+   const toggleDropdowns = (id) => {
+      setDropdownToggleIsOpen((prevState) => ({
+         ...prevState,
+         [id]: !prevState[id], // Zustand der spezifischen ID toggeln
+      }));
+   };
+   
    const dataEingabeAbbrechen = () => {
-   setChangeData(false);
+   setChangeUserData(false);
+   setChangeAuthorsData(false)
+   setChangeContactData(false)
+   setChangeAccountData(false)
+   setChangeProfessionalStatus(false)
    setEditUserName(false);
    setEditFirstName(false);
    setEditLastName(false);
    setEditEmail(false);
    setEditPassword(false);
-   setChangeData(false);
    }
 
    const handleErrorMessage = (data) => {
@@ -126,11 +150,15 @@ const  KnowledgeAccountMain = () =>{
       setEditLastName(false);
       setEditEmail(false);
       setEditPassword(false);
-      setChangeData(false);
+      setChangeUserData(false);
+      setChangeAuthorsData(false);
+      setChangeContactData(false);
+      setChangeAccountData(false);
+      setChangeProfessionalStatus(false);
       
    } catch (error) {
       Swal.fire({
-         title: "Da ist ein Fehler aufgetreten.",
+         title: "Ein Fehler ist aufgetreten.",
          text: errorMessage,
          icon: "error",
          confirmButtonText: 'OK',
@@ -183,18 +211,6 @@ const  KnowledgeAccountMain = () =>{
       }
    }, [location.state]);
 
-   //Toggle Sections to open / close
-   const toggleSection = (sectionId) => {
-      setOpenSections((prevOpenSections) => {
-         //console.log(prevOpenSections, sectionId)
-         if (prevOpenSections.includes(sectionId)) {
-         return prevOpenSections.filter((section) => section !== sectionId);
-         } else {
-         return [...prevOpenSections, sectionId];
-         }
-      });
-   };
-
    // Button Positions Check Sidebox
    useEffect(() => {
       const buttonPosCheck = () =>{ // buttonPosCheck nicht löschen!!!!
@@ -220,7 +236,7 @@ const  KnowledgeAccountMain = () =>{
          icon: "success",
          showConfirmButton: true,
          confirmButtonText: 'OK'
-         })/* .then(() => {
+         }) /*.then(() => {
          getUserData();
          window.location.reload();
          }) */
@@ -238,21 +254,59 @@ const  KnowledgeAccountMain = () =>{
       <main id="accountMain" /* onClick={() => getUserData()} */>
          <div /* id="Gruß_account"  */className= "headBox">
             <h2> Ihre Kontodaten im Überblick</h2>
-            <p className="closingFunction" onClick={() => navigate("/home")}>Formular schließen</p>
+            {/* <p className="closingFunction" onClick={() => navigate("/home")}>Formular schließen</p> */}
          </div>
          < CloseOutlined className="closeX" onClick={() => navigate("/home")}> </CloseOutlined>
-         <section id="welcomeLine">
+         <div id="welcomeLine">
             <div><h3>Konto und Daten von {userData.firstName} {userData.lastName}</h3></div>
-         </section>
+         </div>
 
          <section id="account_1" style={!openSections.includes("account_1") ? { backgroundColor: 'rgba(221, 155, 55, 0.2)' } : {}}>
             <div className="accountHead" id="account_1_head" >
-               <h3 onClick={() => toggleSection("account_1")}>Berufsstatus</h3>
-               {openSections.includes("account_1") && 
-                  <p className="pFunction" onClick={() => getUserData()}>
-                  {/* <span className="C">C </span> */}
-                  Daten aktualisieren
-                  </p>
+               <h3 onClick={() => {toggleSection("account_1"); setChangeProfessionalStatus(false); dropdownToggleIsOpen["dropdownProfessionalData"] && toggleDropdowns("dropdownProfessionalData")}}>Ihr Berufsstatus</h3>
+
+               {openSections.includes("account_1") &&                  
+               <div className={`dropdownContainer ${
+                     dropdownToggleIsOpen["dropdownProfessionalData"] ? "activeC" : ""
+                  }`}>
+                     <p
+                        className={`pFunction ${
+                           dropdownToggleIsOpen["dropdownProfessionalData"] ? "activeP" : ""
+                        }`}
+                        onClick={() => toggleDropdowns("dropdownProfessionalData")} // Callback richtig binden
+                     >Aktionen {/* Dropdown-Kopf */}
+                        <span style={{ marginLeft: "8px" }}>
+                           {/* {CPDToggleIsOpen["dropdownCPDTracker"] ? "▲" : "▼"} */}
+                        </span>
+                     </p>
+                     
+                     <div className={`dropdownContent ${
+                        dropdownToggleIsOpen["dropdownProfessionalData"] ? "active" : ""
+                     }`}>
+                        {openSections.includes("account_1") && 
+                        (<p className="pFunction" onClick={() => getUserData()}> aktualisieren
+                        </p>)
+                        }
+                        {changeProfessionalStatus === false ? 
+                        (<p onClick={() => {setChangeProfessionalStatus(true);toggleDropdowns("dropdownProfessionalData")}} className="pFunction">
+                        Daten ändern</p>) : (<p onClick={() => {dataEingabeAbbrechen(); toggleDropdowns("dropdownProfessionalData")}}className="pFunction">
+                        Daten sichern</p>)}
+                        <p onClick={() => {toggleDropdowns("dropdownProfessionalData"); setChangeProfessionalStatus(false)}} // Eingabe
+                        className="pFunction"
+                        >abbrechen
+                        </p>
+                        <p 
+                        onClick={() => {
+                        setChangeProfessionalStatus(false);
+                        toggleDropdowns("dropdownProfessionalData");
+                        toggleSection("account_1");
+                        }} // Schließen
+                        className="pFunction"
+                        >schließen
+                        </p>
+                     </div>
+                     
+               </div>  	 
                }
             </div>
             {openSections.includes("account_1") && (
@@ -282,11 +336,6 @@ const  KnowledgeAccountMain = () =>{
                   )}
                      </div> 
                   </div> 
-                  {/*<div><p className="fieldName"></p>
-                        <div className="output" id="myCL"> 
-                        {knowledgeData ? (<p>{knowledgeData.test.description} von 9</p>) : (<p>Ihr Datensatz wurde noch nicht angelegt</p>)}
-                     </div>  
-                  </div>  */}
                   <div id="myCPDStatus">
                      <div>
                         {knowledgeData && knowledgeData.myCPDLevel ? (<p id="account_1_p">{knowledgeData.myCPDLevel.description}</p>) : (<p></p>)}
@@ -316,14 +365,6 @@ const  KnowledgeAccountMain = () =>{
                </div>
 
                <div>
-               {/*<div>
-                  <p className="fieldName">Ihr CPD Guthaben</p>
-                  <div className="output account_Box" id="myLCoins"> 
-                     {knowledgeData ? <p>{knowledgeData.myLC}<span className="C colorYellow"> LC</span></p>: <>0<span className="C colorYellow"> LC</span></>} 
-                  </div>
-               </div>
-               <div><p className="fieldName"></p></div>
-               <div><p className="fieldName"></p></div>*/}
                </div> 
             </div>
             )}
@@ -331,22 +372,70 @@ const  KnowledgeAccountMain = () =>{
 
          <section id="account_3" style={!openSections.includes("account_3") ? { backgroundColor: 'rgba(221, 155, 55, 0.2)' } : {}}>
             <div className="accountHead" id="account_3_head" >
-               <h3 onClick={() => toggleSection("account_3")}>Ihr Fachwissen / CPD-Status</h3>
-               {!knowledgeData && (
+               <h3 //onClick={() => toggleSection("account_3")}
+                  onClick={() => {toggleSection("account_3");dropdownToggleIsOpen["dropdownCPDStatus"] && toggleDropdowns("dropdownCPDStatus")}}>Ihr CPD-Status</h3>
+               {/* {!knowledgeData && (
                   <p onClick={addKnowledgeDatensatz}>
                   <span className="C">C </span>
                   Datensatz anlegen
                   </p>
                )}
                {openSections.includes("account_3") && (<p className="pFunction" onClick={() => getUserData()}>
-                  {/* <span className="C">C </span> */}
                   Daten aktualisieren
-                  </p>)}
+                  </p>)} */}
+                  {openSections.includes("account_3") && 
+               <>
+                  <div //className="dropdownContainer"
+                  className={`dropdownContainer ${
+                     dropdownToggleIsOpen["dropdownCPDStatus"] ? "activeC" : ""
+                  }`}>
+                     <p
+                        //className="pFunction"
+                        className={`pFunction ${
+                           dropdownToggleIsOpen["dropdownCPDStatus"] ? "activeP" : ""
+                        }`}
+                        onClick={() => toggleDropdowns("dropdownCPDStatus")} // Callback richtig binden
+                        >Aktionen {/* Dropdown-Kopf */}
+                        <span style={{ marginLeft: "8px" }}>
+                           {/* {CPDToggleIsOpen["dropdownCPDTracker"] ? "▲" : "▼"} */}
+                        </span>
+                     </p>
+                     <div
+                        className={`dropdownContent ${
+                           dropdownToggleIsOpen["dropdownCPDStatus"] ? "active" : ""
+                        }`}
+                        >
+                        {!knowledgeData && (
+                        <p onClick={addKnowledgeDatensatz}>
+                        <span className="C">C </span>
+                        Basis anlegen
+                        </p>
+                        )}
+                        {openSections.includes("account_3") && 
+                        (<p className="pFunction" onClick={() => getUserData()}> aktualisieren
+                        </p>)
+                        }
+                        <p
+                        onClick={() => toggleDropdowns("dropdownCPDStatus")}
+                        className="pFunction"
+                        > abbrechen
+                        </p>
+                        <p
+                        onClick={() => {
+                           toggleDropdowns("dropdownCPDStatus");
+                           toggleSection("account_3");
+                        }}
+                        className="pFunction"
+                        > schließen
+                        </p>
+                     </div>
+                  </div>
+               </>
+               }
             </div>
                         
             {openSections.includes("account_3") && (
-               <>
-                  <p> Die Zahlen zeigen Ihnen die Durchschnittswerte im internationalen Lichtdesignermarkt aller Teilnehmer an.</p>
+            <>
                <div id="account_3_data">
                   <div className="account_3">
                      <div>
@@ -414,22 +503,212 @@ const  KnowledgeAccountMain = () =>{
                      </div>
                   </div>
                </div>
-               </>
+               <p> Die Zahlen zeigen Ihnen die Durchschnittswerte im internationalen Lichtdesignermarkt aller Teilnehmer an.</p>
+            </>
             )}
-            </section>
+            
+         </section>
          
          <section id="account_6" style={!openSections.includes("account_6") ? { backgroundColor: 'rgba(221, 155, 55, 0.2)' } : {}}>
             <div className="accountHead" id="account_6_head" >
-               <h3 onClick={() => toggleSection("account_6")}>Ihr CPD-Tracker</h3>
+               <h3 onClick={() => {toggleSection("account_6");dropdownToggleIsOpen["dropdownCPDTracker"] && toggleDropdowns("dropdownCPDTracker")}}>Ihr CPD-Tracker</h3>
                {openSections.includes("account_6") && 
-                  <p className="pFunction">
-                  {/* <span className="C">C </span> */}
-                  Daten aktualisieren
-                  </p>
+               <>
+                  <p>Sie haben {cpdData.length} Kurse gelistet</p>
+                  <div //className="dropdownContainer"
+                  className={`dropdownContainer ${
+                     dropdownToggleIsOpen["dropdownCPDTracker"] ? "activeC" : ""
+                  }`}>
+                     <p
+                     //className="pFunction"
+                     className={`pFunction ${
+                        dropdownToggleIsOpen["dropdownCPDTracker"] ? "activeP" : ""
+                     }`}
+                     onClick={() => toggleDropdowns("dropdownCPDTracker")} // Callback richtig binden
+                     >Aktionen {/* Dropdown-Kopf */}
+                     <span style={{ marginLeft: "8px" }}>
+                        {/* {CPDToggleIsOpen["dropdownCPDTracker"] ? "▲" : "▼"} */}
+                     </span>
+                     </p>
+                     <div
+                        className={`dropdownContent ${
+                           dropdownToggleIsOpen["dropdownCPDTracker"] ? "active" : ""
+                        }`}
+                        >
+                        <p onClick={() => console.log("Aktualisieren")} className="pFunction">
+                           aktualisieren
+                        </p>
+                        <p
+                        onClick={() => navigate("courselistpage")} // Navigation
+                        className="pFunction"
+                        >
+                        Kursangebote
+                        </p>
+                        <p
+                        onClick={() => toggleDropdowns("dropdownCPDTracker")}
+                        className="pFunction"
+                        >
+                        Eingabe
+                        </p>
+                        <p
+                        onClick={() => toggleDropdowns("dropdownCPDTracker")}
+                        className="pFunction"
+                        >
+                        Daten öffnen
+                        </p>
+                        <p
+                        onClick={() => toggleDropdowns("dropdownCPDTracker")}
+                        className="pFunction"
+                        >
+                        abbrechen
+                        </p>
+                        <p
+                        onClick={() => {
+                           toggleDropdowns("dropdownCPDTracker");
+                           toggleSection("account_6");
+                        }}
+                        className="pFunction"
+                        >
+                        schließen
+                        </p>
+                     </div>
+                  </div>
+               </>
                }
             </div>
             {openSections.includes("account_6") && (
             <div className="accountData" id="account_6_data">
+               <table id="cpdTrackerTable">
+                  <thead>
+                     <tr>
+                        <th >
+                           {/* <Tooltip text="LEO = Learning Opportunity, CRE = Creating an education opportunity,  PAC = professional Activity">
+                           <span style={{ marginLeft: '0px', cursor: 'pointer' }}>Typ</span>
+                           </Tooltip> */}
+                           Typ
+                        </th>
+                        <th>Activity</th>
+                        <th>Thema</th>
+                        <th>LPs <br/>basic</th>
+                        <th>LPs <br/>plus</th>
+                        <th>LPs <br/>total</th>
+                        <th>Start date</th>
+                        <th>End date</th>
+                        <th>status of CPD</th>
+                        {/* <th>Request for evaluation</th>
+                        <th>Verified</th> */}
+                        <th>Value date</th>
+                        <th>aktiv</th>
+                        
+                     </tr>
+                  </thead>
+                  <tbody>
+                     {cpdData.sort((a, b) => {
+                        const dateA = new Date(a.startDate);
+                        const dateB = new Date(b.startDate);
+                        return dateA - dateB; // Aufsteigend sortieren
+                     }).map((item) => {
+                        return(
+                           <tr key={item._id}>
+                           <td>
+                              <Tooltip text={getTooltipText(item.activityType)}>
+                                 <span style={{ top: "100%", left:"100%", marginLeft: '0px', cursor: 'pointer' }}>{item.activityType || 'N/A'}</span>
+                              </Tooltip>
+                           </td>
+                           <td>{item.courseId?.courseType || 'N/A'}</td>
+                           <td>{item.courseId?.courseTopic || 'N/A'}</td>
+                           <td>{item.earnedLP !== undefined && item.earnedLP !== null ? item.earnedLP : 'N/A'}</td>
+                           <td>{item.addedLP !== undefined && item.addedLP !== null ? item.addedLP : 'N/A'}</td>
+                           <td>{item.totalLP !== undefined && item.totalLP !== null ? item.totalLP : 'N/A'}</td>
+                           <td>{item.startDate ? Moment(item.startDate).format("DD.MM.YYYY") : ''}</td>
+                           <td>{item.endDate ? Moment(item.endDate).format("DD.MM.YYYY") : ''}</td>
+                           <td>{item.statusOfVerification || 'N/A'}</td>
+                           <td>{item.valueDate ? Moment(item.valueDate).format("DD.MM.YYYY") : ''}</td>
+                           <td><input
+                                 type="checkbox"
+                                 checked={!!item.courseId?.active} // Konvertiert undefined/null zu false
+                                 readOnly // Verhindert Interaktion (nur zur Anzeige)
+                                 style={{
+                                    cursor: 'not-allowed',
+                                 }}
+                               />
+                           </td>
+                        </tr>
+                        )
+                     })}
+                  </tbody>
+
+                  <tfoot></tfoot>
+               </table>
+            </div>
+            )}
+         </section>
+
+         <section id="account_7" style={!openSections.includes("account_7") ? { backgroundColor: 'rgba(221, 155, 55, 0.2)' } : {}}>
+            <div className="accountHead" id="account_7_head" >
+               <h3 onClick={() => {toggleSection("account_7");dropdownToggleIsOpen["dropdownProfessionalTracker"] && toggleDropdowns("dropdownProfessionalTracker")}}>Ihr Professional-Tracker</h3>
+
+               {openSections.includes("account_7") && 
+               <>
+                  <p>Sie haben {cpdData.length} Aktivitäten gelistet</p>
+                  <div //className="dropdownContainer"
+                  className={`dropdownContainer ${
+                     dropdownToggleIsOpen["dropdownProfessionalTracker"] ? "activeC" : ""
+                  }`}>
+                     <p
+                     //className="pFunction"
+                     className={`pFunction ${
+                        dropdownToggleIsOpen["dropdownProfessionalTracker"] ? "activeP" : ""
+                     }`}
+                     onClick={() => toggleDropdowns("dropdownProfessionalTracker")} // Callback richtig binden
+                     >Aktionen {/* Dropdown-Kopf */}
+                     <span style={{ marginLeft: "8px" }}>
+                        {/* {CPDToggleIsOpen["dropdownCPDTracker"] ? "▲" : "▼"} */}
+                     </span>
+                     </p>
+                     <div
+                        className={`dropdownContent ${
+                           dropdownToggleIsOpen["dropdownProfessionalTracker"] ? "active" : ""
+                        }`}
+                        >
+                        <p onClick={() => console.log("Aktualisieren")} className="pFunction"
+                        >aktualisieren
+                        </p>
+                        <p
+                        onClick={() => navigate("courselistpage")} // Navigation
+                        className="pFunction"
+                        >Aktivitäten
+                        </p>
+                        <p
+                        onClick={() => toggleDropdowns("dropdownProfessionalTracker")}
+                        className="pFunction"
+                        >Eingabe
+                        </p>
+                        <p
+                        onClick={() => toggleDropdowns("dropdownProfessionalTracker")}
+                        className="pFunction"
+                        >Daten öffnen
+                        </p>
+                        <p
+                        onClick={() => toggleDropdowns("dropdownProfessionalTracker")}
+                        className="pFunction"
+                        >abbrechen
+                        </p>
+                        <p
+                        onClick={() => {
+                           toggleDropdowns("dropdownProfessionalTracker");
+                           toggleSection("account_7");
+                        }}
+                        className="pFunction"
+                        >schließen
+                        </p>
+                     </div>
+                  </div>
+               </>
+               }
+            </div>
+            {openSections.includes("account_7") && (
+            <div className="accountData" id="account_7_data">
                <table id="cpdTrackerTable">
                   <thead>
                      <tr>
@@ -454,26 +733,26 @@ const  KnowledgeAccountMain = () =>{
                   </thead>
                   <tbody>
                      {cpdData.map((item, index) => (
-                        <tr key={item._id}>
-                           {/* <td>{item.activityType || 'N/A'}</td> */}
-                           <td>
-                              <Tooltip text={getTooltipText(item.activityType)}>
-                                 <span style={{ marginLeft: '0px', cursor: 'pointer' }}>{/* ℹ️ */}{item.activityType}</span>
-                              </Tooltip>
-                           </td>
-                           <td>{item.courseId?.courseType || 'N/A'}</td>
-                           <td>{item.courseId?.courseTopic || 'N/A'}</td>
-                           <td>{item.earnedLP || 'N/A'}</td>
-                           <td>{item.addedLP || 'N/A'}</td>
-                           <td>{item.totalLP || 'N/A'}</td>
-                           <td>{item.startDate ? (Moment(item.startDate).format("DD.MM.YYYY")) : ''}</td>
-                           <td>{item.endDate ? (Moment(item.endDate).format("DD.MM.YYYY")) : ''}</td>
-                           <td>{item.statusOfVerification || 'N/A'}</td>
-                           {/* <td><input type="checkbox" checked={item.requestToEvaluate} readOnly /></td>
-                           <td><input type="checkbox" checked={item.verified} readOnly /></td> */}
-                           <td>{item.valueDate ? (Moment(item.valueDate).format("DD.MM.YYYY")) : ''}</td>
-                           
-                        </tr>
+                     <tr key={item._id}>
+                        {/* <td>{item.activityType || 'N/A'}</td> */}
+                        <td>
+                           <Tooltip text={getTooltipText(item.activityType)}>
+                              <span style={{ marginLeft: '0px', cursor: 'pointer' }}>{/* ℹ️ */}{item.activityType}</span>
+                           </Tooltip>
+                        </td>
+                        <td>{item.courseId?.courseType || 'N/A'}</td>
+                        <td>{item.courseId?.courseTopic || 'N/A'}</td>
+                        <td>{item.earnedLP || 'N/A'}</td>
+                        <td>{item.addedLP || 'N/A'}</td>
+                        <td>{item.totalLP || 'N/A'}</td>
+                        <td>{item.startDate ? (Moment(item.startDate).format("DD.MM.YYYY")) : ''}</td>
+                        <td>{item.endDate ? (Moment(item.endDate).format("DD.MM.YYYY")) : ''}</td>
+                        <td>{item.statusOfVerification || 'N/A'}</td>
+                        {/* <td><input type="checkbox" checked={item.requestToEvaluate} readOnly /></td>
+                        <td><input type="checkbox" checked={item.verified} readOnly /></td> */}
+                        <td>{item.valueDate ? (Moment(item.valueDate).format("DD.MM.YYYY")) : ''}</td>
+                        
+                     </tr>
                      ))}
                   </tbody>
                   <tfoot></tfoot>
@@ -484,12 +763,60 @@ const  KnowledgeAccountMain = () =>{
 
          <section id="account_2" style={!openSections.includes("account_2") ? { backgroundColor: 'rgba(221, 155, 55, 0.2)' } : {}}>
             <div className="accountHead" id="account_2_head" >
-               <h3 onClick={() => toggleSection("account_2")}>Ihre beruflicher Werdegang</h3>
+               <h3 onClick={() => {toggleSection("account_2");dropdownToggleIsOpen["dropdownCV"] && toggleDropdowns("dropdownCV")}}>Ihr beruflicher Werdegang</h3>
                {openSections.includes("account_2") && 
-                  <p className="pFunction">
-                  {/* <span className="C">C </span> */}
-                  Daten eingeben oder ändern
-                  </p>
+               <>
+                  <p>Sie haben {careerData.length} berufliche Stationen</p>
+                  <div className={`dropdownContainer ${
+                  dropdownToggleIsOpen["dropdownCV"] ? "activeC" : ""
+               }`}>
+                     <p
+                     className={`pFunction ${
+                        dropdownToggleIsOpen["dropdownCV"] ? "activeP" : ""
+                     }`}
+                     onClick={() => toggleDropdowns("dropdownCV")} // Callback richtig binden
+                     >Aktionen
+                        <span style={{ marginLeft: "8px" }}>
+                           {/* {dropdownToggleIsOpen["dropdownCV"] ? "▲" : "▼"} */}
+                        </span>
+                     </p>
+                     <div className={`dropdownContent ${
+                        dropdownToggleIsOpen["dropdownCV"] ? "active" : ""
+                     }`}>
+                        <p
+                           onClick={() => console.log("Aktualisieren")} // Beispielaktion
+                           className={`pFunction ${
+                              dropdownToggleIsOpen["dropdownCV"] ? "activeP" : ""
+                           }`}
+                        >aktualisieren
+                        </p>
+                        <p
+                           //onClick={() => navigate("courselistpage")}  Navigation
+                           className="pFunction"
+                        >neue Station
+                        </p>
+                        <p
+                           onClick={() => toggleDropdowns("dropdownCV")} // Öffnen
+                           className="pFunction"
+                        >bearbeiten
+                        </p>
+                        <p
+                        onClick={() => toggleDropdowns("dropdownCV")} // Eingabe
+                        className="pFunction"
+                        >abbrechen
+                        </p>
+                        <p
+                        onClick={() => {
+                           toggleDropdowns("dropdownCV");
+                           toggleSection("account_2");
+                        }} // Schließen
+                        className="pFunction"
+                        >Schließen
+                        </p>
+                     </div>
+                     
+                  </div>
+               </>
                }
             </div>
             {openSections.includes("account_2") && (
@@ -517,7 +844,7 @@ const  KnowledgeAccountMain = () =>{
                   </thead>
                   <tbody>
                      {careerData.map((item, index) => (
-                        <tr key={item._id}>
+                        <tr key={index}>
                         <td>{item.company?.companyName || 'N/A'}</td>
                         <td>{item.department || 'N/A'}</td>
                         <td>{item.position || 'N/A'}</td>
@@ -545,26 +872,139 @@ const  KnowledgeAccountMain = () =>{
             )}
          </section>
 
+         {authorsData ?
+         (<section id="account_10" style={!openSections.includes("account_10") ? { backgroundColor: 'rgba(221, 155, 55, 0.2)' } : {}}>
+         <div className="accountHead" >
+            <h3 onClick={() => {toggleSection("account_10"); setChangeAuthorsData(false); dropdownToggleIsOpen["dropdownAuthorsData"] && toggleDropdowns("dropdownAuthorsData")}}>Autoreninfo</h3>
+            
+            {openSections.includes("account_10") &&                  
+                  <div className={`dropdownContainer ${
+                     dropdownToggleIsOpen["dropdownAuthorsData"] ? "activeC" : ""
+                  }`}>
+                     <p
+                        className={`pFunction ${
+                           dropdownToggleIsOpen["dropdownAuthorsData"] ? "activeP" : ""
+                        }`}
+                        onClick={() => toggleDropdowns("dropdownAuthorsData")} // Callback richtig binden
+                     >Aktionen {/* Dropdown-Kopf */}
+                        <span style={{ marginLeft: "8px" }}>
+                           {/* {CPDToggleIsOpen["dropdownCPDTracker"] ? "▲" : "▼"} */}
+                        </span>
+                     </p>
+                     
+                     <div className={`dropdownContent ${
+                        dropdownToggleIsOpen["dropdownAuthorsData"] ? "active" : ""
+                     }`}>
+                        {changeAuthorsData === false ? 
+                        (<p onClick={() => {setChangeAuthorsData(true);toggleDropdowns("dropdownAuthorsData")}} className="pFunction">
+                        Daten ändern</p>) : (<p onClick={() => {dataEingabeAbbrechen(); toggleDropdowns("dropdownAuthorsData")}}className="pFunction">
+                        Daten sichern</p>)}
+                        <p
+                        onClick={() => {toggleDropdowns("dropdownAuthorsData"); setChangeAuthorsData(false)}} // Eingabe
+                        className="pFunction"
+                        >abbrechen
+                        </p>
+                        <p
+                        onClick={() => {
+                           setChangeAuthorsData(false);
+                           toggleDropdowns("dropdownAuthorsData");
+                           toggleSection("account_10");
+                        }} // Schließen
+                        className="pFunction"
+                        >schließen
+                        </p>
+                     </div>
+                     
+                  </div>  	 
+               }
+         </div>
+         {openSections.includes("account_10") && (
+            <div id="account_10_data">
+               <div className="account_10" id="account_10_data_1">
+                  <div>
+                     <p>CV</p> 
+                     <div >{authorsData.careerSummary}</div>
+                  </div>
+               </div>
+               <div className="account_10" id="account_10_data_2">
+                  <div>
+                     <p>Expertisen</p> 
+                     <div >
+                     <ul>
+                        {authorsData.fieldsOfExpertise && authorsData.fieldsOfExpertise.length > 0 ? (
+                        authorsData.fieldsOfExpertise.map((field, index) => (
+                           <li key={index}>
+                              <span className="C">C</span> {field}
+                           </li>
+                        ))
+                        ) : (
+                        <li>No expertise available.</li>
+                        )}
+                     </ul>
+                     </div>
+                  </div>
+               </div>
+               <div className="account_10" id="account_10_data_3">
+                  <div>
+                     <p>letztes Update </p> 
+                     <div >{Moment(authorsData.updatedOn).format("DD.MM.YYYY")}
+                     </div>
+                  </div> 
+               </div>
+               
+            </div>
+            )}  
+         </section>) :
+         (<section id="account_10">
+            <div className="accountHead">
+               <h3> aktuell keine Autorendaten vorhanden. </h3>
+               {/* <p className="pFunction"><span className="C">C</span> Daten eingeben</p> */}
+            </div>
+         </section>)
+         }
+
          <section id="account_4" style={!openSections.includes("account_4") ? { backgroundColor: 'rgba(221, 155, 55, 0.2)' } : {}}>
             <div className="accountHead" >
-               <h3 onClick={() => toggleSection("account_4")}>Ihre Konto Nutzerdaten</h3>
-               {openSections.includes("account_4") && 
-                  <div>
-                     {/* <p className="pFunction" onClick={() => navigate("/userUpdate")}>
-                        <span className="C" >C </span>
-                        Daten ändern
-                     </p> */}
-                     {/* <p onClick={() => setUpdateUserModalIsOpen(true)} ><span className="C" >C </span> Daten ändern</p>
-                     <UpdateUserModal 
-                     isOpen={updateUserModalIsOpen} 
-                     onRequestClose={() => setUpdateUserModalIsOpen(false)}
-                     /> */}
-                     {changeData === false ? (<p onClick={() => setChangeData(true)} className="pFunction">
-                        {/* <span className="C" >C </span>  */}
-                        Daten ändern</p>) : (<p onClick={() => dataEingabeAbbrechen()}className="pFunction">
-                           {/* <span className="C" >C </span>  */}
-                           schließen</p>)}
-                  </div>
+               <h3 onClick={() => {toggleSection("account_4"); setChangeUserData(false); dropdownToggleIsOpen["dropdownUserData"] && toggleDropdowns("dropdownUserData")}}>Ihre Userdaten</h3>
+               {openSections.includes("account_4") &&                  
+                  <div className={`dropdownContainer ${
+                     dropdownToggleIsOpen["dropdownUserData"] ? "activeC" : ""
+                  }`}>
+                     <p
+                        className={`pFunction ${
+                           dropdownToggleIsOpen["dropdownUserData"] ? "activeP" : ""
+                        }`}
+                        onClick={() => toggleDropdowns("dropdownUserData")} // Callback richtig binden
+                     >Aktionen {/* Dropdown-Kopf */}
+                        <span style={{ marginLeft: "8px" }}>
+                           {/* {CPDToggleIsOpen["dropdownCPDTracker"] ? "▲" : "▼"} */}
+                        </span>
+                     </p>
+                     
+                     <div className={`dropdownContent ${
+                        dropdownToggleIsOpen["dropdownUserData"] ? "active" : ""
+                     }`}>
+                        {changeUserData === false ? 
+                        (<p onClick={() => {setChangeUserData(true);toggleDropdowns("dropdownUserData")}} className="pFunction">
+                        Daten ändern</p>) : (<p onClick={() => {dataEingabeAbbrechen(); toggleDropdowns("dropdownUserData")}}className="pFunction">
+                        Daten sichern</p>)}
+                        <p
+                        onClick={() => {toggleDropdowns("dropdownUserData"); setChangeUserData(false)}} // Eingabe
+                        className="pFunction"
+                        >abbrechen
+                        </p>
+                        <p
+                        onClick={() => {
+                           setChangeUserData(false);
+                           toggleDropdowns("dropdownUserData");
+                           toggleSection("account_4");
+                        }} // Schließen
+                        className="pFunction"
+                        >schließen
+                        </p>
+                     </div>
+                     
+                  </div>  	 
                }
             </div>
             {openSections.includes("account_4") && (
@@ -575,7 +1015,7 @@ const  KnowledgeAccountMain = () =>{
                      {!editFirstName ? (
                         <div className="output">
                            <p>{userData.firstName}</p>
-                           {changeData === true && (<EditOutlined
+                           {changeUserData === true && (<EditOutlined
                            className="edit-icon"
                            onClick={() => {
                               setEditFirstName(true);
@@ -637,7 +1077,7 @@ const  KnowledgeAccountMain = () =>{
                         <div className="output">
                            <p>{userData.lastName}</p>
                            
-                           {changeData === true && (<EditOutlined
+                           {changeUserData === true && (<EditOutlined
                            className="edit-icon"
                            onClick={() => {
                               setEditLastName(true);
@@ -700,7 +1140,7 @@ const  KnowledgeAccountMain = () =>{
                         <div className="output">
                            <p>{userData.eMail}</p>
                            
-                           {changeData === true && (<EditOutlined
+                           {changeUserData === true && (<EditOutlined
                            className="edit-icon"
                            onClick={() => {
                               setEditEmail(true);
@@ -764,7 +1204,7 @@ const  KnowledgeAccountMain = () =>{
                            <div className="output">
                               <p>{userData.userName}</p>
                               
-                              {changeData === true && (<EditOutlined
+                              {changeUserData === true && (<EditOutlined
                               className="edit-icon"
                               onClick={() => {
                                  setEditUserName(true);
@@ -826,7 +1266,7 @@ const  KnowledgeAccountMain = () =>{
                      {!editPassword ? (
                         <div className="output" > 
                            <p> ********* </p>
-                           {changeData === true && (<EditOutlined
+                           {changeUserData === true && (<EditOutlined
                            onClick={() => {
                               setEditPassword(true);
                               setEditInputName("Passwort");
@@ -902,7 +1342,7 @@ const  KnowledgeAccountMain = () =>{
                            />
                            <p>Größe und Position</p>
                         </div>
-                        {changeData === true && <EditOutlined onClick={() => setIsSliderModalOpen(true)} className="edit-icon" id="test"/>} 
+                        {changeUserData === true && <EditOutlined onClick={() => setIsSliderModalOpen(true)} className="edit-icon" id="test"/>} 
                      </div>
                   </div>
                </div>
@@ -912,12 +1352,45 @@ const  KnowledgeAccountMain = () =>{
          
          <section id="account_5" style={!openSections.includes("account_5") ? { backgroundColor: 'rgba(221, 155, 55, 0.2)' } : {}}>
             <div className="accountHead" >
-               <h3 onClick={() => toggleSection("account_5")}>Ihre persönliche Daten</h3>
-               {openSections.includes("account_5") && 
-                  <p className="pFunction" onClick={() => navigate("/userUpdate")}>
-                     {/* <span className="C" >C </span> */}
-                     Daten aktualisieren
-                  </p>
+               <h3 onClick={() => {toggleSection("account_5"); setChangeContactData(false); dropdownToggleIsOpen["dropdownContactData"] && toggleDropdowns("dropdownContactData")}}>Ihre persönlichen Daten</h3>
+               {openSections.includes("account_5") &&                  
+                  <div className={`dropdownContainer ${
+                     dropdownToggleIsOpen["dropdownContactData"] ? "activeC" : ""
+                  }`}>
+                     <p
+                        className={`pFunction ${
+                           dropdownToggleIsOpen["dropdownContactData"] ? "activeP" : ""
+                        }`}
+                        onClick={() => toggleDropdowns("dropdownContactData")} // Callback richtig binden
+                     >Aktionen {/* Dropdown-Kopf */}
+                        <span style={{ marginLeft: "8px" }}>
+                           {/* {CPDToggleIsOpen["dropdownCPDTracker"] ? "▲" : "▼"} */}
+                        </span>
+                     </p>
+                     
+                     <div className={`dropdownContent ${
+                        dropdownToggleIsOpen["dropdownContactData"] ? "active" : ""
+                     }`}>
+                        {changeContactData === false ? 
+                        (<p onClick={() => {setChangeContactData(false);toggleDropdowns("dropdownContactData")}} className="pFunction">
+                        Daten ändern</p>) : (<p onClick={() => {dataEingabeAbbrechen(); toggleDropdowns("dropdownContactData")}}className="pFunction">
+                        Daten sichern</p>)}
+                        <p
+                        onClick={() => {toggleDropdowns("dropdownContactData"); setChangeContactData(false)}} // Eingabe
+                        className="pFunction"
+                        >abbrechen
+                        </p>
+                        <p
+                        onClick={() => {
+                           setChangeContactData(false);
+                           toggleDropdowns("dropdownContactData");
+                           toggleSection("account_5");
+                        }} // Schließen
+                        className="pFunction"
+                        >schließen
+                        </p>
+                     </div>  
+                  </div>  	 
                }
             </div>
             {openSections.includes("account_5") && (
@@ -996,12 +1469,46 @@ const  KnowledgeAccountMain = () =>{
 
          <section id="account_8" style={!openSections.includes("account_8") ? { backgroundColor: 'rgba(221, 155, 55, 0.2)' } : {}}>
             <div className="accountHead" >
-               <h3 onClick={() => toggleSection("account_8")}>Ihre Abrechnungsdaten</h3>
-               {openSections.includes("account_8") && 
-               <p className="pFunction" onClick={() => getUserData()}>
-                  {/* <span className="C">C </span> */}
-                  Daten aktualisieren
-               </p>
+               <h3 onClick={() => {toggleSection("account_8"); setChangeAccountData(false); dropdownToggleIsOpen["dropdownAccountData"] && toggleDropdowns("dropdownAccountData")}}>Ihre Abrechnungsdaten</h3>
+               {openSections.includes("account_8") &&                  
+               <div className={`dropdownContainer ${
+                     dropdownToggleIsOpen["dropdownAccountData"] ? "activeC" : ""
+                  }`}>
+                     <p
+                        className={`pFunction ${
+                           dropdownToggleIsOpen["dropdownAccountData"] ? "activeP" : ""
+                        }`}
+                        onClick={() => toggleDropdowns("dropdownAccountData")} // Callback richtig binden
+                     >Aktionen {/* Dropdown-Kopf */}
+                        <span style={{ marginLeft: "8px" }}>
+                           {/* {CPDToggleIsOpen["dropdownCPDTracker"] ? "▲" : "▼"} */}
+                        </span>
+                     </p>
+                     
+                     <div className={`dropdownContent ${
+                        dropdownToggleIsOpen["dropdownAccountData"] ? "active" : ""
+                     }`}>
+                        {changeAccountData === false ? 
+                        (<p onClick={() => {setChangeAccountData(true);toggleDropdowns("dropdownAccountData")}} className="pFunction">
+                        Daten ändern</p>) : (<p onClick={() => {dataEingabeAbbrechen(); toggleDropdowns("dropdownAccountData")}}className="pFunction">
+                        Daten sichern</p>)}
+                        <p
+                        onClick={() => {toggleDropdowns("dropdownAccountData"); setChangeAccountData(false)}} // Eingabe
+                        className="pFunction"
+                        >abbrechen
+                        </p>
+                        <p
+                        onClick={() => {
+                           setChangeAccountData(false);
+                           toggleDropdowns("dropdownAccountData");
+                           toggleSection("account_8");
+                        }} // Schließen
+                        className="pFunction"
+                        >schließen
+                        </p>
+                     </div>
+                     
+               </div>  	 
                }
             </div>
             {openSections.includes("account_8") && (
@@ -1023,60 +1530,6 @@ const  KnowledgeAccountMain = () =>{
             )}
          </section>
             
-         {authorsData ?
-            (<section id="account_10" style={!openSections.includes("account_10") ? { backgroundColor: 'rgba(221, 155, 55, 0.2)' } : {}}>
-            <div className="accountHead" >
-               <h3 onClick={() => toggleSection("account_10")}>Autoreninfo</h3>
-               {openSections.includes("account_10") && 
-               <p className="pFunction pFunction">
-                  {/* <span className="C">C </span> */}
-                  Daten aktualisieren
-               </p>}
-            </div>
-            {openSections.includes("account_10") && (
-               <div id="account_10_data">
-                  <div className="account_10" id="account_10_data_1">
-                     <div>
-                        <p>CV</p> 
-                        <div >{authorsData.careerSummary}</div>
-                     </div>
-                  </div>
-                  <div className="account_10" id="account_10_data_2">
-                     <div>
-                        <p>Expertisen</p> 
-                        <div >
-                        <ul>
-                           {authorsData.fieldsOfExpertise && authorsData.fieldsOfExpertise.length > 0 ? (
-                           authorsData.fieldsOfExpertise.map((field, index) => (
-                              <li key={index}>
-                                 <span className="C">C</span> {field}
-                              </li>
-                           ))
-                           ) : (
-                           <li>No expertise available.</li>
-                           )}
-                        </ul>
-                        </div>
-                     </div>
-                  </div>
-                  <div className="account_10" id="account_10_data_3">
-                     <div>
-                        <p>letztes Update </p> 
-                        <div >{Moment(authorsData.updatedOn).format("DD.MM.YYYY")}
-                        </div>
-                     </div> 
-                  </div>
-                  
-               </div>
-               )}  
-            </section>) :
-            (<section id="account_10">
-               <div className="accountHead">
-                  <h3> Aktuell keine Autorendaten vorhanden. </h3>
-                  {/* <p className="pFunction"><span className="C">C</span> Daten eingeben</p> */}
-               </div>
-            </section>)
-         }
           {isAuth && knowledgeData && <Countdown  targetDate={knowledgeData.cpdActiveSince} />} 
       </main>
    )

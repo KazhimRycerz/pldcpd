@@ -50,12 +50,12 @@ export const getContact = async (req, res) => {
         ]);
       
 
-      console.log("contact.userName", contact.userName); 
+      //console.log("contact.userName", contact.userName); 
     // hier kann ich auf das virtuelle Feld "firstName" zugreifen
     // obwohl dieses nicht in der Datenbank exisitert 
     // (deswegen bezeichnet man es als virtuell)
       
-      console.log("contact", contact); 
+      //console.log("contact", contact); 
       // hier wird das virtuelle Feld nicht angezeigt,
       // da ich es nicht explizit mit dem . Operator auswähle
   

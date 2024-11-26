@@ -17,7 +17,7 @@ import ProfessionalStatusModel from "../models/professionalStatusModel.js";
        eMail: userData.eMail
       }); 
       await newContact.save(); */
-      console.log(userData)
+      //console.log(userData)
     const newContact = await ContactModel.create({
       firstName: userData.firstName,
       lastName: userData.lastName
@@ -53,5 +53,27 @@ export const addProfessionalStatus = async (contactID) => {
    return ({ msg: "Ihr professioneller Status wurde eingerichtet", newProfessionalStatus});
  } catch (error) {
    return (error.message);
+ }
+};
+
+export const addCPDTrackToUser = async (cpdData) => {
+  try {
+   const userId = cpdData._id; // ID des Kontakts
+   const courseId = cpdData.course_id; // Neue Kurs-ID
+
+   // Füge die Kurs-ID zum Array "cpdTracker" hinzu
+   const updatedContact = await UserModel.findOneAndUpdate(
+     { _id: userId },
+     { $push: { cpdTracker: courseId } }, // Verwende $push, um den Kurs hinzuzufügen
+     { new: true } // Gibt das aktualisierte Dokument zurück
+   );
+
+   if (!updatedContact) {
+     return { msg: "Kontakt nicht gefunden" };
+   }
+
+   return { msg: "Ihr Kontaktdatensatz wurde aktualisiert", updatedContact };
+ } catch (error) {
+   return { error: error.message };
  }
 };

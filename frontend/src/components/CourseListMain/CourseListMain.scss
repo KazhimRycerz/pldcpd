@@ -435,9 +435,9 @@
        #topic p:hover {
          background-color: $first-color;
          text-shadow: $text-shadow;
-         color: $cpdred;
+         //color: $cpdred;
          width: max-content;
-         padding-right: 20px;
+         padding: 0 20px 0 5px;
          overflow: visible;
          text-overflow: unset;
          cursor: pointer;
@@ -500,6 +500,22 @@
     }
     .ant-modal-footer{
       width: 80%;
+      margin-top: 15px;
+      div{
+        //border:solid;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: flex-start;
+        align-items:flex-end;
+      }
+      p{
+        position: relative;
+        right: 0;
+        display: inline-block;
+        text-align: left;
+        width: 150px;
+        //border:solid;
+      }
     }
   
     #courseArticle {

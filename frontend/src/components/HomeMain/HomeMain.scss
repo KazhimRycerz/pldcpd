@@ -9,7 +9,7 @@ img[src*="c.png"] {
   animation: rotate 30s infinite linear;
 }
 
-#Gruß_main {
+#grussMain {
   background-image: url(../../images/Sonnenuntergang.jpg);
   background-size:cover;
   background-repeat: no-repeat;
@@ -54,12 +54,12 @@ img[src*="c.png"] {
   }
 }
 
-#Gruß_main a {
+#grussMain a {
   color: $secondary-color;
   cursor:pointer;
 }
 
-#Gruß_main i {
+#grussMain i {
   font-size: 2rem;
   cursor:pointer;
 }

@@ -6,12 +6,13 @@ import { DataListOfAuthors, DataListOfCourseTypes, ListOfLanguages, ListOfTopicF
 import axiosConfig from "../../util/axiosConfig";
 import baseUrl from "../../util/constants";
 import Moment from "moment";
+import Swal from "sweetalert2";
 import { Modal, Button } from 'antd';
 import Countdown from "../Countdown/Countdown.jsx";
 import { CloseOutlined } from "@ant-design/icons";
 
-const CourseAddMain = () => {
-  const { isAuth, setButtonPos, setAsidePos, knowledgeData, accessRights, navigate  } = useContext(SectionsContext);
+const CourseListMain = () => {
+  const { isAuth, setButtonPos, setAsidePos, knowledgeData, accessRights, location, navigate, contactData  } = useContext(SectionsContext);
   const [coursesData, setCoursesData] = useState([])
   const [authorsData, setAuthorsData] = useState([])
   const [languageData, setLanguageData] = useState([])
@@ -39,9 +40,9 @@ const CourseAddMain = () => {
   const [sortElement, setSortElement] = useState('');
   const [anzeige, setAnzeige] = useState("Karten");
   const [isCourseDetailsModalVisible, setIsCourseDetailsModalVisible] = useState(sessionStorage.getItem("modalStatus"));
-  console.log(isCourseDetailsModalVisible)
+  //console.log(isCourseDetailsModalVisible)
   const [selectedCourse, setSelectedCourse] = useState(JSON.parse(sessionStorage.getItem("selectedCourse")));
-  console.log(selectedCourse)
+  //console.log(selectedCourse)
   // const [isTopicFieldFocused, setIsTopicFieldFocused] = useState(false);
   // const [isLanguageFocused, setIsLanguageFocused] = useState(false);
   // const [isAuthorFocused, setIsAuthorFocused] = useState(false);
@@ -49,7 +50,14 @@ const CourseAddMain = () => {
   // const [isLevelFocused, setIsLevelFocused] = useState(false);
   const currentDate = new Date();
     currentDate.setHours(0, 0, 0, 0); 
-    
+
+  const filterMap = {
+    themenfeldFilter: { setState: setThemenfeldFilter, storageKey: "themenfeldFilter" },
+    autorenFilter: { setState: setAutorenFilter, storageKey: "autorenFilter" },
+    kursartFilter: { setState: setKursartFilter, storageKey: "kursartFilter" },
+    sprachFilter: { setState: setSprachFilter, storageKey: "sprachFilter" },
+    levelFilter: { setState: setLevelFilter, storageKey: "levelFilter" },
+  };
   
   const buttonPosCheck = ()=>{
     if (isAuth) {setButtonPos("showBut"); setAsidePos ("accountAside")
@@ -63,48 +71,81 @@ const CourseAddMain = () => {
     setSelectedCourse(null);
   };
 
+  const addToMyLearningList = async(courseID) =>{
+    //e.preventDefault();
+    const courseId = courseID;
+    const addingData = {
+      userId: localStorage.getItem("userId"),
+      contact: contactData._id,
+      courseId
+    }
+    console.log("courseID", courseID, contactData._id)
+
+    try {
+      const response = await axiosConfig.post("/cpdtracker/addcpdtrack", addingData
+      );
+      console.log("reponseData", response.data);
+      Swal.fire({
+        title: "Der Kurs ist nun in deiner CPDListe.",
+        icon: "success",
+        confirmButtonText: "OK"
+      });
+      } catch (error) {
+        
+        console.error(error);
+        Swal.fire({
+          title: "Es ist ein Fehler aufgetreten. Der Kurs wurde nicht auf deine Liste gesetzt.",
+          icon: "error",
+          confirmButtonText: "OK"
+        });
+      }
+
+  }
+
   const handleAufrufDetails = (course) => {
     setIsCourseDetailsModalVisible(true);
     setSelectedCourse(course);
-    sessionStorage.setItem("modalStatus", isCourseDetailsModalVisible);
+    sessionStorage.setItem("modalStatus", "true");
     sessionStorage.setItem("selectedCourse", JSON.stringify(course));
-    //console.log(JSON.parse(sessionStorage.getItem("selectedCourse")))
-  }
+};
 
   const handleViewChange = (e) => {
+
     const { value } = e.target;
     setAnzeige(value);
     sessionStorage.setItem("anzeige", value); // Speichern des View-Modus im sessionStorage
   };
 
-  const handleFilter = (e, setFilter) => {
+  const handleFilter = (e, setFilter, storageKey) => {
     const { value } = e.target;
     setFilter(value);
-    // Speichern im sessionStorage
-    switch (setFilter) {
-      case setThemenfeldFilter:
-        sessionStorage.setItem("themenfeldFilter", value);
-        break;
-      case setKursartFilter:
-        sessionStorage.setItem("kursartFilter", value);
-        break;
-      case setKursstartFilter:
-        sessionStorage.setItem("kursstartFilter", value);
-        break;
-      case setSprachFilter:
-        sessionStorage.setItem("sprachFilter", value);
-        break;
-      case setLevelFilter:
-        sessionStorage.setItem("levelFilter", value);
-        break;
-      case setAutorenFilter:
-      sessionStorage.setItem("autorenFilter", value);
-      break;
-      default:
-        break;
+  
+    if (value) {
+      sessionStorage.setItem(storageKey, value);
+    } else {
+      sessionStorage.removeItem(storageKey);
     }
   };
+  
 
+  useEffect(() => {
+    // Wenn filterType und filter aus location.state kommen
+    if (location.state?.filterType && location.state?.filter) {
+      const { filterType, filter } = location.state;
+      const filterSetter = filterMap[filterType];
+  
+      // Wenn der filterSetter vorhanden ist (z.B. setThemenfeldFilter, setAutorenFilter, etc.)
+      if (filterSetter) {
+        // Hier wird handleFilter aufgerufen, um den Filter zu setzen
+        const mockEvent = { target: { value: filter } };  // Simuliere das Event mit dem Filterwert
+        handleFilter(mockEvent, filterSetter.setState, filterSetter.storageKey);
+        
+        // Speicher den Filterwert auch im sessionStorage
+        sessionStorage.setItem(filterSetter.storageKey, filter);
+      }
+    }
+  }, [location]);
+  
   useEffect(() => {
     const savedAutorenFilter = sessionStorage.getItem("autorenFilter");
     const savedThemenFilter = sessionStorage.getItem("themenfeldFilter");
@@ -152,55 +193,54 @@ const CourseAddMain = () => {
       sessionStorage.removeItem("sortElement");
       sessionStorage.removeItem("filterElements");
       sessionStorage.removeItem("modalStatus");
-  };
-  
+    };
 
-const searchCourseListData = async () => {
-  const filterItems = {
-    autor: autorenFilter,
-    themenfeld: themenfeldFilter,
-    kursart: kursartFilter,
-    kursstart: kursstartFilter,
-    //kursende: kursendeFilter,
-    level: levelFilter,
-    sprache: sprachFilter,
-    sortierung: sortElement,
-    //active: true,
-  };
-  
-  const filterList = Object.entries(filterItems)
-    .filter(([key, value]) => value !== "")
-    .map(([key, value]) => key.charAt(0).toUpperCase() + key.slice(1));
-  setFilterElements(filterList)
-  //console.log(filterList);
-  //console.log(autorenFilter)
-    
-  try {
-    const axiosResp = await axiosConfig.get("/courses/courselist", {params: filterItems}
-    );
-    console.debug("axiosResp.filterItems:", axiosResp.filterItems);
-    const receivedData = await axiosResp.data;
-    const authorsForCourse = receivedData.map(({ author }) => author);
-    const courseLanguage = receivedData.map(({ courseLanguage }) => courseLanguage); 
-    //const themenfeldListe = receivedData.map(({topicField }) => topicField);
-    setAuthorsData(authorsForCourse)  
-    setCoursesData(receivedData)
-    setLanguageData(courseLanguage)
-    //console.log(themenfeldListe)
-  } catch (error) {
-    console.log(error);
-  }
-};
+    const searchCourseListData = async () => {
+      const filterItems = {
+        autor: autorenFilter,
+        themenfeld: themenfeldFilter,
+        kursart: kursartFilter,
+        kursstart: kursstartFilter,
+        //kursende: kursendeFilter,
+        level: levelFilter,
+        sprache: sprachFilter,
+        sortierung: sortElement,
+        //active: true,
+      };
+      
+      const filterList = Object.entries(filterItems)
+        .filter(([key, value]) => value !== "")
+        .map(([key, value]) => key.charAt(0).toUpperCase() + key.slice(1));
+      setFilterElements(filterList)
+      //console.log(filterList);
+      //console.log(autorenFilter)
+        
+      try {
+        const axiosResp = await axiosConfig.get("/courses/courselist", {params: filterItems}
+        );
+        console.debug("axiosResp.filterItems:", axiosResp.filterItems);
+        const receivedData = await axiosResp.data;
+        const authorsForCourse = receivedData.map(({ author }) => author);
+        const courseLanguage = receivedData.map(({ courseLanguage }) => courseLanguage); 
+        //const themenfeldListe = receivedData.map(({topicField }) => topicField);
+        setAuthorsData(authorsForCourse)  
+        setCoursesData(receivedData)
+        setLanguageData(courseLanguage)
+        //console.log(themenfeldListe)
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-useEffect(() => {
-  // Reagiere auf Filteränderungen
-  searchCourseListData();
-  buttonPosCheck();
-}, [sortElement, themenfeldFilter, kursartFilter, autorenFilter, kursstartFilter, levelFilter, sprachFilter]);
+    useEffect(() => {
+      // Reagiere auf Filteränderungen
+      searchCourseListData();
+      buttonPosCheck();
+    }, [sortElement, themenfeldFilter, kursartFilter, autorenFilter, kursstartFilter, levelFilter, sprachFilter]);
 
   return (
     <main id="courseListMain"> {/* MainStyling in global */}
-    < CloseOutlined className="closeX" onClick={() => {resetFilter(); navigate("/home")}}> </CloseOutlined>
+    < CloseOutlined className="closeX" onClick={() => {resetFilter(); navigate(-1)}}> </CloseOutlined>
       <div className="headBox">
         <h2 >Übersicht aller aktuellen Kursangebote</h2>
         {/* <p className="closingFunction" onClick={() => navigate("/home")}>Formular schließen</p> */}
@@ -425,11 +465,8 @@ useEffect(() => {
                 <div><p>Anbieter:</p><div><a href={course.linkToProvider} id="providerLink" target="_blank" rel="noopener noreferrer">{course.linkToProvider}</a></div></div>
                 {/* <div><p>Details...</p><div><Link to="/coursepage" state= {course._id} className="C" id="infoLink"><p>C zum Kurs</p></Link></div></div> */}
                 <div><p>Details...</p><div><p className="C" id="infoLink" onClick={() => {
-                setSelectedCourse(course);
-                sessionStorage.setItem("modalStatus", isCourseDetailsModalVisible);
-                sessionStorage.setItem("selectedCourse", JSON.stringify(course));
-                setIsCourseDetailsModalVisible(true);
-                }}>... zum Kurs</p></div></div>
+                handleAufrufDetails(course)
+              }}>... zum Kurs</p></div></div>
                 {isAuth && [5, 10, 9].some(right => accessRights.includes(right))&&<div className="linkToCourse"><p></p><div onClick={() => {
                   navigate("/courseform", { state: { courseId: course._id } }); // course._id wird im state übergeben
                 }}  
@@ -440,6 +477,7 @@ useEffect(() => {
           })}
         </section>
         }
+
         {anzeige ==="Tabelle" && 
         <table id="tableCourseList">
           <colgroup>
@@ -460,72 +498,22 @@ useEffect(() => {
             <tr>
               <th><p>Thema</p></th>
               <th>
-                {/* <input type="text" name="autorenFilter" 
-                value={autorenFilter} 
-                onChange={(e) => handleFilter(e, setAutorenFilter)} 
-                id="autorenFilter"/> */}
                 <p>Autoren</p>
               </th>
               <th>
                 <p>Themenfeld</p>
-                {/* <select 
-                name="Themenfeld" 
-                value={themenfeldFilter} 
-                onChange={(e) => handleFilter(e, setThemenfeldFilter)} id="themenfeldFilterTabelle">
-                  <option value="">ohne Filter</option>
-                  {ListOfTopicFields.map((topicField, index) => (
-                  <option key={index} value={topicField}>
-                    {topicField}
-                  </option>
-                ))}
-                </select> */}
               </th>
               <th>
                <p>Kursart</p>
-                {/* <select 
-                name="Kursart" 
-                value={kursartFilter} 
-                onChange={(e) => handleFilter(e, setKursartFilter)} id="kursartFilter">
-                  <option value="">ohne Filter</option>
-                  < DataListOfCourseTypes />
-                </select> */}
               </th>
               <th>
                 <p>Kursstart</p>
-                {/* <select 
-                name="Kursstart" 
-                value={kursstartFilter} 
-                onChange={(e) => handleFilter(e, setKursstartFilter)}
-                id="kursstartFilter">
-                  <option value="">ohne Filter</option>
-                  <option value="Art">Art</option>
-                  <option value="Datum">Datum</option>
-                  <option value="Level">Level</option>
-                </select> */}
               </th>
               <th>
               <p>Kursende</p>
-                {/* <select name="Kursende" id="Filter">
-                  <option value="">Kursende</option>
-                  <option value="Art">Art</option>
-                  <option value="Datum">Datum</option>
-                  <option value="Level">Level</option>
-                </select> */}
               </th>
               <th>
                 <p>Sprachfilter</p>
-                {/* <select 
-                name="Sprache" 
-                value={sprachFilter} 
-                onChange={(e) => handleFilter(e, setSprachFilter)} 
-                id="sprachFilter">
-                  <option value="">ohne Filter</option>
-                  {ListOfLanguages.map((language, index) => (
-                  <option key={index} value={language}>
-                    {language}
-                  </option>
-                ))}
-                </select> */}
               </th>
               <th><p>CPD</p></th>
               <th><p>CPD <br />plus</p></th>
@@ -554,17 +542,12 @@ useEffect(() => {
             {coursesData.map((course, index)=>{
               return(
                 <tr key={index} >
-                  <td >
-                    <li id="topic">
-                      {/* <Link to="/coursepage" state= {course._id} id="topicLink">
+                  <td id="topic">
+                    <p  onClick={() => handleAufrufDetails(course)}>
                       {course.courseTopic}
-                      </Link> */}
-                      <p onClick={() => {
-                // Setze den ausgewählten Kurs und öffne das Modal
-                handleAufrufDetails(course)
-              }}>{course.courseTopic}</p>
-                    </li>
+                    </p>
                   </td>
+
                   <td id="authorsColumn">
                     {authorsData[index].map((author, innerIndex) => (
                       <li key={innerIndex} id="author" onClick={() => {
@@ -618,14 +601,21 @@ useEffect(() => {
           className="courseDetailsModal"
           id="courseDetailsModal"
             footer={
-              <Button 
-                key="back" 
-                className="pFunction buttonBasics"
-                id="backButtonKursFinden"
-                onClick={handleCancel}
-              >
-                schließen
-              </Button>
+              <div> {/* geändert von Button aus ant-design nach p*/}
+                  <p
+                  className="pFunction"
+                  id="backButtonKursFinden"
+                  onClick={() => {addToMyLearningList(selectedCourse._id)}}
+                  >auf meine Lernliste</p>
+                <p 
+                  key="back" 
+                  className="pFunction "
+                  id="backButtonKursFinden"
+                  onClick={handleCancel}
+                >
+                  schließen
+                </p>
+              </div>
             }
           >
             <article id="courseArticle">
@@ -727,4 +717,4 @@ useEffect(() => {
   );
 };
 
-export default CourseAddMain;
+export default CourseListMain;

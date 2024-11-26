@@ -4,7 +4,7 @@ export const messages = {
   [LOCALES.ENGLISH]: {
     // header
     home: "home",
-    online_courses: "hnline courses",
+    online_courses: "online courses",
     logout: "logout",
     login: "login",
     about_us: "about us",

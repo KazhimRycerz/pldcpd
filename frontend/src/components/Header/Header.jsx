@@ -218,6 +218,13 @@ const Header = () => {
                   {/* <NavLink to={{pathname: "/KnowledgeAccount", state: { openSection: ["account_3"] }}} className="closebtn">Personal Data</NavLink> */}
                 </li>
                 <li >
+                  <span className="closebtn" onClick={() => {navigate("/KnowledgeAccount", { state: { openSection: ["account_7"] } });
+                  handleDropdownAccount()}}
+                    >Ihr Professional-Tracker
+                  </span>
+                  {/* <NavLink to={{pathname: "/KnowledgeAccount", state: { openSection: ["account_3"] }}} className="closebtn">Personal Data</NavLink> */}
+                </li>
+                <li >
                 <span className="closebtn" onClick={() => {navigate("/KnowledgeAccount", { state: { openSection: ["account_2"] } });
                   handleDropdownAccount()}}
                   >Ihr Career-Tracker

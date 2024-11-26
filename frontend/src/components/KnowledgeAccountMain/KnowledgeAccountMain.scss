@@ -5,7 +5,7 @@
   //height: auto;
   box-shadow: $mainshadow;
   //display: none;
-  section {
+  section, #welcomeLine {
     width: 80%;
     margin: 0 auto;
     display: block;
@@ -13,6 +13,7 @@
     border-right: 3px dotted $cpdred;
     border-left: 3px dotted $cpdred;
     border-radius: 20px;
+    overflow: hidden;
     .accountHead{
       display: flex;
       flex-flow: row nowrap;
@@ -25,6 +26,7 @@
         font-family: $primary-font-bold;
         //margin: 0 30px ;
         padding-top: 5px;
+        width: 40%;
         &:before {
           content: "C ";
           font-family: $calli;
@@ -39,6 +41,69 @@
       } 
       p{
         line-height: 30px;
+      }
+    }
+    .dropdownContainer{
+      position: relative;
+      right: 0px;
+      display: inline-block;
+      z-index: 1;
+      &.activeC{
+        box-shadow: $boxshadow;
+        border-radius: 5px 5px 0 0;
+        z-index: 1;
+        transition: box-shadow 0.5s ease;
+        //min-height: 300px;
+        //border: solid;
+      }
+      >p{
+        //border: solid;
+        cursor: pointer;
+        margin-right: 0px; 
+        width: 120px;
+        padding: 0 5px;
+        &.activeP{
+          height: 28px;
+          background: linear-gradient($first-color, $fourth-color);
+          padding: 0 5px;
+          border-radius: 5px 5px 0 0;
+          width: 120px;
+          //box-shadow: $boxshadow;
+          z-index: 1;
+        }
+      }
+      .dropdownContent {
+        position: absolute;
+        top: 95%;
+        right: -0px; // falls rechtsbasiert
+        background-color: $fourth-color;
+        color: $cpdblue;
+        box-shadow: $boxshadow;
+        border-radius: 5px;
+        z-index: 1;
+        width: 120px;
+        transform: translateX(150%);
+        opacity: 1;
+        transition: transform 0.5s ease, opacity 0.5s ease;
+        &.active {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      
+        // Inhalte
+        p {
+          height: 28px;
+          background: linear-gradient($first-color, $fourth-color);
+          padding: 0 5px;
+      
+          // &:first-of-type {
+          //   border-radius: 5px 5px 0 0;
+          // }
+      
+          &:last-of-type {
+            border-radius: 0 0 5px 5px;
+          }
+        }
       }
     }
     /* .bildLaden{
@@ -170,58 +235,52 @@
       vertical-align: middle;
       background-color: $fourth-color;
       } */
-    }
-    
-    .save-icon,
-    .edit-icon,
-    .abort-icon{
-      height: 100%;
-      vertical-align: middle;
-      //background-color: $fourth-color; 
-    color: $cpdblue;
-    text-align: start;
-    transition: font-size 1s ease-in;
-    color: $secondary-color;
-    background-color: transparent;
-    &:hover{
-      transform: scale(1.5);  // Vergrößert das Bild um 20%
-      transition: transform 0.3s ease-in-out;  // Animation für weichen Übergang
-    }
-    }
-    .save-icon:after {
-      content: "speichern";
-      color: $cpdblue-50;
-    }
-    
-    .edit-icon:after {
-      content: "ändern";
-      color: $cpdblue-50;
-    }
-    
-    .abort-icon:after {
-      content: "abbrechen";
-      color: $cpdblue-50;
-    }
-    .save-icon:after,
-    .edit-icon:after,
-    .abort-icon:after {
+      .save-icon,
+      .edit-icon,
+      .abort-icon{
+        height: 100%;
+        vertical-align: middle;
+        //background-color: $fourth-color; 
+      color: $cpdblue;
+      text-align: start;
+      transition: font-size 1s ease-in;
       color: $secondary-color;
-      text-shadow: 0 0 0.25rem $cpdblue-50;
-      font-weight: bold;
-      transform: translate(-65%, 0%);
-      position: absolute;
-      //top: 20px;
-      z-index: 1;
-      visibility: hidden;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-    }
-    
-    .save-icon:hover::after,
-    .edit-icon:hover::after,
-    .abort-icon:hover::after {
-      opacity: 1;
-      visibility: visible;
+      background-color: transparent;
+      &:hover{
+        transform: scale(1.5);  // Vergrößert das Bild um 20%
+        transition: transform 0.3s ease-in-out;  // Animation für weichen Übergang
+      }
+      }
+      .save-icon::after {
+        content: "speichern";
+      }
+      .edit-icon::after {
+        content: "ändern";
+      }
+      .abort-icon:after {
+        content: "abbrechen";
+      }
+      .save-icon::after,
+      .edit-icon::after,
+      .abort-icon::after {
+        color: $secondary-color;
+        text-shadow: 0 0 0.25rem $cpdblue-50;
+        font-weight: bold;
+        transform: translate(-65%, 0%);
+        position: absolute;
+        //top: 20px;
+        z-index: 1;
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+      }
+      
+      .save-icon:hover::after,
+      .edit-icon:hover::after,
+      .abort-icon:hover::after {
+        opacity: 1;
+        visibility: visible;
+      }
     }
     
     #listOfImages{
@@ -235,9 +294,9 @@
   }
   
   #welcomeLine {
-    display:flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
+    // display:flex;
+    // flex-flow: row nowrap;
+    // justify-content: space-between;
     border: none;
     h3{
       font-family: $primary-font-bold;
@@ -295,67 +354,80 @@
     }
   }
 
-  #account_2, #account_6 {
-    table {
-      //border: solid;
-      border-radius: 10px;
-      box-shadow: $boxshadow;
-      width: 100%;
-      margin: 10px auto 0;
-      //padding: 10px;
-      background-color: $fourth-color;
+  #account_2, #account_6, #account_7, #account_4 {
+    padding-bottom: 0.1px;
+    
+    #account_6_data, #account_2_data, #account_7_data{
+      margin: 10px auto 30px;
       padding: 0;
-      border-collapse:collapse;
-      
-      thead{
-        background-color: $cpdblue;
-        border-radius: 5px;
-        color: $fourth-color;
-        tr{
-          padding: 5px;
-          
-          th{
-            border-bottom: solid;
-            text-align: left;
-            padding: 0px 0 0 0px;
-            &:first-of-type{
-              border-radius: 10px 0 0 0 ;
-              padding: 0px 0 0 5px;
-            }
-            &:last-of-type{
-              border-radius: 0 10px 0 0 ;
+      max-height: 148px; /* Begrenzte Höhe */
+      overflow-y: auto; /* Vertikales Scrollen */
+      scroll-behavior: smooth;
+      // scrollbar-width:thin;  
+      // scrollbar-color: $first-color $cpdred;
+      box-shadow: $boxshadow;
+      border-radius: 10px;
+      // &:hover{
+      //   max-height: 300px;
+      // }
+      table {
+        //border: solid;
+        border-radius: 10px;
+        width: 100%;
+        margin: 0px auto 20px;
+        //padding: 10px;
+        background-color: $fourth-color;
+        padding: 0;
+        border-collapse:collapse;
+        
+        thead{
+          position: sticky; /* Überschriften bleiben beim Scrollen sichtbar */
+          top: 0;
+          background-color: $cpdblue;
+          border-radius: 5px;
+          color: $fourth-color;
+          tr{
+            padding: 5px;
+            th{
+              border-bottom: solid;
+              text-align: left;
+              padding: 0px 0 0 0px;
+              &:first-of-type{
+                border-radius: 10px 0 0 0 ;
+                padding: 0px 0 0 5px;
+              }
+              &:last-of-type{
+                border-radius: 0 10px 0 0 ;
+              }
             }
           }
-
+        }
+        tbody {
+          border-radius: 10px;
+          padding: 10px;
+          tr{         
+            td{
+              padding: 5px 0 5px 0px;
+              background: linear-gradient($first-color, $fourth-color );
+              &:first-child{
+                border-radius: 0 0 0  10px;
+                padding: 5px 0 5px 5px;
+              }
+              &:last-child{
+                border-radius: 0 0 10px;
+              }
+            }
+          }
         }
       }
-      tbody {
-        border-radius: 10px;
-        padding: 10px;
-        tr{         
-          td{
-            padding: 5px 0 5px 0px;
-            background: linear-gradient($first-color, $fourth-color );
-            &:first-child{
-              border-radius: 0 0 0  10px;
-              padding: 5px 0 5px 5px;
-            }
-            &:last-child{
-              border-radius: 0 0 10px;
-            }
-          }
-            }
-      }
+    }
+    #account_4_data{
+      margin: 10px auto 30px;
+      padding: 0;
     }
   }
 
   #account_3 {
-    // display: block;
-    // margin-top: 20px;
-    // border-left: 3px dotted $cpdred;
-    // border-right: 3px dotted $cpdred;
-    // border-radius: 20px;
-    // height: auto;
     #account_3_head p{
       &:hover {
         //color: $cpdred;
@@ -364,8 +436,9 @@
       }
     }
     > p {
-      margin: 0px 0px 30px 30px;
-      padding-bottom: 10px;
+      margin: 0px auto 10px;
+      
+      width: 95%;
       //border: solid
     }
     #account_3_data {
@@ -374,8 +447,7 @@
       justify-content: space-between;
       //align-content: flex-start;
       gap: 20px 0px;
-      margin-top: 10px;
-      margin: 0 auto;
+      margin: 30px auto 0;
       width: 95%;
       padding: 0 0 20px 0;
       //border: solid;
@@ -431,130 +503,106 @@
           width: 50%;
           //margin: 0 auto;
         }
+        .account_data_box {
+          display: flex;
+          flex-flow: column;
+          justify-content: space-between;
+          gap: 0px;
+          //margin: 0 auto;
+          border: solid;
+          padding: 0px;
+          .account_pers_data {
+            display: block;
+            color: $secondary-color;
+            background-color: $cpdblue;
+            font-family: $primary-font;
+            font-weight: bold;
+            box-shadow: none;
+            text-align: center;
+            line-height: 25px;
+            width: 100%;
+            min-width: 70px;
+            height: 30px;
+            border: none;
+            //border-radius: $radiusxsmall;
+            font-size: $xlarge;
+            padding: 2px;
+            margin: 0px auto;
+            //border: solid;
+          }
+          .account_market_data {
+            display: block;
+            background-color: none;
+            box-shadow: none;
+            width: 50%;
+            //min-width: 100%;
+            //border: 1px solid $third-color;
+            //border-radius: 5px;
+            font-size: $small;
+            color: $third-color;
+            padding: 0px;
+            text-align: center;
+            justify-content: center;
+            margin: 0px auto;
+            line-height: 25px;
+          }
+        }
       }
     }
   }
 
-  .account_data_box {
-    display: flex;
-    flex-flow: column;
-    justify-content: space-between;
-    gap: 0px;
-    //margin: 0 auto;
-    border: solid;
-    padding: 0px;
-    .account_pers_data {
-      display: block;
-      color: $secondary-color;
-      background-color: $cpdblue;
-      font-family: $primary-font;
-      font-weight: bold;
-      box-shadow: none;
-      text-align: center;
-      line-height: 25px;
-      width: 100%;
-      min-width: 70px;
-      height: 30px;
-      border: none;
-      //border-radius: $radiusxsmall;
-      font-size: $xlarge;
-      padding: 2px;
-      margin: 0px auto;
-      //border: solid;
-    }
-    .account_market_data {
-      display: block;
-      background-color: none;
-      box-shadow: none;
-      width: 50%;
-      //min-width: 100%;
-      //border: 1px solid $third-color;
-      //border-radius: 5px;
-      font-size: $small;
-      color: $third-color;
-      padding: 0px;
-      text-align: center;
-      justify-content: center;
-      margin: 0px auto;
-      line-height: 25px;
-    }
-  }
-
-  // .linking {
-  //   font-size: $small;
-  //   margin-top: 0px;
-  //   &::before {
-  //     content: "C ";
-  //     font-family: VIA-Verlag;
-  //     font-size: $normal;
-  //     color: $cpdred;
-  //     vertical-align: -2px;
-  //   }
-  //   &:hover {
-  //     //color: $cpdred;
-  //     text-shadow: $text-shadow;
-  //     cursor: pointer;
-  //   }
-  // }
-  
   #account_8 {    
     #account_8_data {
       display: flex;
       margin: 0 20px;
-    }
-    .account_8 {
-      display: flex;
-      flex: row nowrap;
-      justify-content: space-between;
-      flex-basis: 33%;
-      flex-grow: 1;
-      margin: 10px;
-      padding: 10px;
-      padding-top: 0px;
-      width: 33%;
-      height: 80px;
-      background-color: $fourth-color;
-      border-radius: $radiussmall;
-      box-shadow: $boxshadow;
-    }
-    p {
-      padding: 0px;
-      font-size: $small;
-      margin: 10px 0 10px 0;
-    }
-  }
-
-  #account_8_Box {
-    font-weight: bold;
-    font-size: 30px;
-    margin: auto auto;
-    margin-right: 20px;
-    width: 50%;
-    height: 50px;
-    /*border: 2px dotted black;*/
-    border-radius: 10px;
-    text-align: center;
-    align-items: center;
-    background-color: rgb(221, 155, 55, 0.2);
-    p {
-      margin: 0;
-      font-size: 2rem;
-      line-height: 50px;
+      .account_8 {
+        display: flex;
+        flex: row nowrap;
+        justify-content: space-between;
+        flex-basis: 33%;
+        flex-grow: 1;
+        margin: 10px;
+        padding: 10px;
+        padding-top: 0px;
+        width: 33%;
+        height: 80px;
+        background-color: $fourth-color;
+        border-radius: $radiussmall;
+        box-shadow: $boxshadow;
+        >p {
+          padding: 0px;
+          font-size: $small;
+          margin: 10px 0 10px 0;
+        }
+        #account_8_Box {
+          font-weight: bold;
+          font-size: 30px;
+          margin: auto auto;
+          margin-right: 20px;
+          width: 50%;
+          height: 50px;
+          /*border: 2px dotted black;*/
+          border-radius: 10px;
+          text-align: center;
+          align-items: center;
+          background-color: rgb(221, 155, 55, 0.2);
+          p {
+            margin: 0;
+            font-size: 2rem;
+            line-height: 50px;
+          }
+        }
+      }
     }
   }
 
   #account_10 {
     display: block;
     margin-top: 20px;
-    margin-bottom: 100px;
+    //margin-bottom: 100px;
     border-right: 3px dotted $cpdred;
     border-left: 3px dotted $cpdred;
     border-radius: 20px;
-    div p {
-      font-size: $small;
-      margin-top: 10px;
-    }
-    
     #account_10_data {
       display: flex;
       flex-flow: row wrap;
@@ -599,26 +647,25 @@
           gap: 10px;
         }
       }
-    }
-  }
-
-  .account_10 {
-    margin: 0px;
-    margin-top: 10px;
-    padding: 0px;
-    padding-top: 0px;
-    width: 33%;
-    height: auto;
-    background-color: $fourth-color;
-    border-radius: $radiussmall;
-    box-shadow: $boxshadow;
-    //border: solid $cpdblue-50;
-    
-    ul {
-      display: flex;
-        flex-flow: column nowrap;
-        justify-content:flex-start;
-        list-style: none;
+      .account_10 {
+        margin: 0px;
+        margin-top: 10px;
+        padding: 0px;
+        padding-top: 0px;
+        width: 33%;
+        height: auto;
+        background-color: $fourth-color;
+        border-radius: $radiussmall;
+        box-shadow: $boxshadow;
+        //border: solid $cpdblue-50;
+        
+        ul {
+          display: flex;
+            flex-flow: column nowrap;
+            justify-content:flex-start;
+            list-style: none;
+        }
+      }
     }
   }
 }

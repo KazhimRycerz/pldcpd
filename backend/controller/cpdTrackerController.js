@@ -1,6 +1,8 @@
 import CPDTrackerModel from '../models/cpdTrackerModel.js';
 import ContactModel from '../models/contactModel.js';
 import CourseModel from '../models/courseModel.js';
+import { addCPDTrackToUser } from '../middleware/addToUserData.js';
+import { addCPDTrackToContact } from '../middleware/addToContactData.js';
 
 export const getAllCPDTracks = async (req, res) => {
     try {
@@ -48,18 +50,31 @@ export const getCPDTracksOfContact = async (req, res) => {
       }
     }  
 
+  export const addCPDTrack = async (req, res) => {
+    //console.log(req.body.userId, req.body.courseId, req.body.contact)
+      try {
+        const newTrack ={
+          contact: req.body.contact,
+          courseId: req.body.courseId,
+          activityType: "LEO",
+          active: false
+        }
 
-export const addCPDTrack = async (req, res) => {
-    try {
-    const addCPDTrack = await CPDTrackerModel.create(req.body)
-    res.send(`this career-step has been added:${addCPDTrack._id}`)
-    } catch (error) {
-        console.log(error)
-        res.status(409).send(error.message)
-    }
-}
+      const addedCPDTrack = await CPDTrackerModel.create(newTrack)
+      req.addedCPDTrack = addedCPDTrack;
 
-export const updateCPDTrack = async (req, res) => {
+      console.log(addedCPDTrack)
+      //addCPDTrackToUser(addedCPDTrack)
+      addCPDTrackToContact(addedCPDTrack)
+
+      res.send(`this course has been added to the list:${addedCPDTrack.contact}`)
+      } catch (error) {
+          console.log(error)
+          res.status(409).send(error.message)
+      }
+  }
+
+  export const updateCPDTrack = async (req, res) => {
 
     const CPDTrackId = req.params.id;
     try {

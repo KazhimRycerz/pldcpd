@@ -1,8 +1,9 @@
 import mongoose from 'mongoose';
 import contactModel from "./contactModel.js";
 import courseModel from './courseModel.js';
+import pacModal from './pacModel.js';
 
-const cpdTrackerSchema = mongoose.Schema({
+const professionalTrackerSchema = mongoose.Schema({
 
    activityCounter: {
       type: Number,
@@ -19,13 +20,13 @@ const cpdTrackerSchema = mongoose.Schema({
     },
    activityType: {
       type: String,
-      enum: ["CRE", "LEO", "PAC", "PHO","XXX"],//Creating a CPD, LearningOpportunity, Professional Activity, Professional Honor
+      enum: ["PAC", "XXX"],//Creating a CPD, LearningOpportunity, Professional Activity, Professional Honor
       required: true,
-      default: "XXX",
+      default: "PAC",
    },
-   courseId: {
+   activityId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "courseOffer",
+      ref: "pacActivity",
     },
     description: {
       type: String,
@@ -89,7 +90,7 @@ const cpdTrackerSchema = mongoose.Schema({
    },
    statusOfVerification:{
       type: String,
-      enum: ["CPD listed", "CPD started", "CPD finished", "Request for verification", "CPD verified"],
+      enum: ["PAC listed", "PAC started", "PAC finished", "Request for verification", "PAC verified"],
       default: "CPD listed"
    },
    valueDate:{
@@ -101,12 +102,12 @@ const cpdTrackerSchema = mongoose.Schema({
       default: Date.now,
     },   
 });
-cpdTrackerSchema.set('strictQuery', true);
+professionalTrackerSchema.set('strictQuery', true);
 
 // MONGOOSE MIDDLEWARE
 
 // Vor jedem Speichern `totalLP` berechnen
-cpdTrackerSchema.pre('save', function(next) {
+professionalTrackerSchema.pre('save', function(next) {
    console.log('mongoose save() aufgerufen');
    this.totalLP = (this.earnedLP || 0) + (this.addedLP || 0); // Berechne totalLP
    this.lastUpdate = new Date(); // Aktualisiere lastUpdate
@@ -114,7 +115,7 @@ cpdTrackerSchema.pre('save', function(next) {
 });
 
 // Vor jedem Update `totalLP` berechnen
-cpdTrackerSchema.pre(['findOneAndUpdate', 'updateOne'], function(next) {
+professionalTrackerSchema.pre(['findOneAndUpdate', 'updateOne'], function(next) {
    console.debug('mongoose findOneAndUpdate oder updateOne aufgerufen');
    const update = this.getUpdate();
    
@@ -132,6 +133,6 @@ cpdTrackerSchema.pre(['findOneAndUpdate', 'updateOne'], function(next) {
    next();
 });
 
-const cpdTrackerModel = mongoose.model("cpdTracker", cpdTrackerSchema);
-export default cpdTrackerModel;
+const professionalTrackerModel = mongoose.model("professionalTracker", professionalTrackerSchema);
+export default professionalTrackerModel;
 

@@ -1,9 +1,10 @@
-import React, { useContext, useState, useEffect, useRef } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import { SectionsContext } from "../../context/SectionsContext.js";
 import axiosConfig from "../../util/axiosConfig";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar, A11y, EffectCube } from 'swiper/modules';
+import { CloseOutlined } from "@ant-design/icons";
 import 'swiper/swiper-bundle.css';
 import 'swiper/css/effect-cube';
 import 'swiper/css/navigation';
@@ -17,10 +18,7 @@ export const AvatarSliderModal = ({
   isOpen, 
   onRequestClose, 
   }) => {
-  const { isAuth,
-    userData, 
-    getUserData
-  } = useContext(SectionsContext);
+  const { isAuth, getUserData} = useContext(SectionsContext);
   const [currentIndex, setCurrentIndex] = useState(1);
   //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
   const [selectedImage, setSelectedImage] = useState(null);
@@ -171,8 +169,9 @@ export const AvatarSliderModal = ({
       overlayClassName="overlay"
     >
       <div>
-        <div /* id="Gruß_account"  */className= "headBox">
+        <div className= "headBox">
             <h2> select new Avatar</h2>
+            {/* < CloseOutlined className="closeX" onClick={() => onRequestClose()}> </CloseOutlined>  */}
          </div>
         <Swiper
           className="swiper"
@@ -235,16 +234,16 @@ export const CubeSlider = () => {
         id="Cube"
       >
         <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
+          <img alt="" src="https://swiperjs.com/demos/images/nature-1.jpg" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
+          <img alt="" src="https://swiperjs.com/demos/images/nature-2.jpg" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+          <img alt="" src="https://swiperjs.com/demos/images/nature-3.jpg" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
+          <img alt="" src="https://swiperjs.com/demos/images/nature-4.jpg" />
         </SwiperSlide>
       </Swiper>
     </>

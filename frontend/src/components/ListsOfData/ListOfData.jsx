@@ -235,7 +235,8 @@ const ListOfTopicFields = [
   "Lichtkunst",
   "Planungspraxis",
   "Berufspraxis",
-  "Community"
+  "Community",
+  "Standpunkte"
 ];
 
 const ListOfCompanyType = [

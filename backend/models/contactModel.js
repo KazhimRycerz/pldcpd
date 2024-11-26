@@ -3,7 +3,8 @@ import ProfessionalStatusModel from './professionalStatusModel.js';
 import CareerModel from './careerModel.js';
 import AuthorModel from './authorModel.js';
 import CompanyModel from './companyModel.js';
-import cpdTracker from './cpdTrackerModel.js';
+import cpdTrackerModal from './cpdTrackerModel.js';
+import professionalTrackerModal from './professionalTrackerModel.js';
 
 
 const contactSchema = mongoose.Schema({
@@ -60,6 +61,11 @@ const contactSchema = mongoose.Schema({
     cpdTracker: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: 'cpdTracker',
+      default: null
+    }],
+    professionalTracker: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'professionalTracker',
       default: null
     }],
     authorsData: {

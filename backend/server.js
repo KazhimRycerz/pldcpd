@@ -1,6 +1,6 @@
 import express from 'express';
-import connectMongoose from "./util/connectMogoose.js";
-import  { unkownHandler, errorHandler } from './middleware/middelware.js';
+import connectMongoose from "./util/connectMongoose.js";
+import  { unkownHandler, errorHandler } from './middleware/middleware.js';
 import indexRouter from './routes/indexRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import contactsRouter from './routes/contactsRoutes.js';
@@ -8,7 +8,9 @@ import authorsRouter from './routes/authorsRoutes.js';
 import authorsInfoRouter from './routes/authorsInfoRoutes.js';
 import careerRouter from './routes/careerRoutes.js';
 import cpdTrackerRouter from './routes/cpdTrackerRoutes.js';
+import professionalTrackerRouter from './routes/professionalTrackerRoutes.js';
 import coursesRouter from './routes/coursesRoutes.js';
+import pacRouter from './routes/pacRoutes.js';
 import courseTypesRouter from './routes/courseTypeRoutes.js';
 import countryCodeRouter from './routes/countryCodeRoutes.js';
 import emailRouter from './routes/emailRoutes.js';
@@ -44,9 +46,11 @@ server.use("/authors",  authorsRouter)
 server.use("/authorsinfo",  authorsInfoRouter)
 server.use("/careers",  careerRouter)
 server.use("/cpdtracker",  cpdTrackerRouter)
+server.use("/professionaltracker",  professionalTrackerRouter)
 server.use("/professionalStatus", professionalStatusRouter)
 server.use("/companies",  companiesRouter)
 server.use("/courses", coursesRouter)
+server.use("/pacactivities", pacRouter)
 server.use("/coursetypes", courseTypesRouter)
 server.use("/countrycodes", countryCodeRouter)
 server.use("/email", emailRouter)

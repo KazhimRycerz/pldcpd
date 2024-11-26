@@ -11,13 +11,19 @@ import BeforeAfterSlider from '../../components/BeforeAfterSlider/BeforeAfterSli
 import Bahai_day from '../../../src/images/Bahai_day.jpg';
 import Bahai_night from '../../../src/images/Bahai_night.jpg';
 
-const HomeMain = () => {
-  const { isAuth, setGotoPage, setButtonPos, setAsidePos } = useContext(SectionsContext);
+const HomeMain = ({ filterType, filter }) => {
+  const { isAuth, setGotoPage, setButtonPos, setAsidePos, navigate } = useContext(SectionsContext);
   const buttonPosCheck = ()=>{
     if (isAuth) {setButtonPos("showBut"); setAsidePos("accountAside")
     } else {setButtonPos("")
     }
   }
+  const navigationToCourses = (filterType, filter) => {
+    navigate("/courselistpage", {
+      state: { filterType, filter },
+    });
+  };
+  
   
   useEffect(() => {
   setGotoPage("/home");
@@ -27,11 +33,11 @@ const HomeMain = () => {
 
   return (
     <main id="homeMain"> {/* Styling in global */}
-      <section id="Gruß_main">
-        <h1 id="Gruß_main_h1">
+      <section id="grussMain">
+        <h1 id="grussMainH1">
           Ihre persönliche Berufsplanung im Lichtdesign
         </h1>
-        <p id="Gruß_main_p">
+        <p id="grussMainP">
           Willkommen auf der Weiterbildungplattform für professionelle
           Lichtdesigner. Hier können Sie Ihre Karriere planen und kontinuierlich
           prüfen, welchen Status Sie erreicht haben. Auch geben wir Ihnen
@@ -120,14 +126,13 @@ const HomeMain = () => {
           <h2> Aktuelle Lernangebote </h2>
           <p>
             Hier können sie über die neusten Angebote zur Weiterbildung
-            erfahren. Klicken Sie <Link to="/#">hier</Link> und schauen Sie
+            erfahren. Klicken Sie <Link to="/courselistpage">hier</Link> und schauen Sie
             im Detail, was zur weiterbildung angeboten wird.
           </p>
-          <Link to="/#">
+          <Link to="/courselistpage">
             <img src={C} alt="" className="logo_cpd" />
           </Link>
         </div>
-
 
         <div id="lb_1_angebote">
           <div>
@@ -136,11 +141,14 @@ const HomeMain = () => {
               <br />
               Lichtdesign
             </h5>
-            <p>
+            <p className="functionP" onClick={() => navigationToCourses("setThemenfeldFilter", "Lichtdesign")}>
               Für aktuelle Angebote folge hier
-              <Link to="/pldcpd_account" className="C">
-                C
-              </Link>
+              {/* <Link to={{ 
+                pathname: "/courselistpage", 
+                state: { filterType: "themenfeldFilter", filter: "Lichtdesign" }, 
+              }}>
+                <span className="C">C</span>
+              </Link> */}
             </p>
             {<img src={require('../../images/Vulkan.gif')} alt="" />} 
           </div>
@@ -150,12 +158,8 @@ const HomeMain = () => {
               Themenbereich <br />
               Lichttechnik
             </h5>
-            <p>
-              {" "}
-              Für aktuelle Angebote folge hier{" "}
-              <Link to="latestlearningoffers" className="C" >
-                C
-              </Link>
+            <p className="functionP" onClick={() => navigationToCourses("setThemenfeldFilter", "Lichttechnik")}>
+              Für aktuelle Angebote folge hier
             </p>
             {<img src={require('../../images/Egon_Zitter_7.jpg')} alt="" />} 
           </div>
@@ -166,11 +170,8 @@ const HomeMain = () => {
               Themenbereich <br />
               Berufspraxis
             </h5>
-            <p>
-              Für aktuelle Angebote folge hier{" "}
-              <Link className="C" to="/latestlearningoffers">
-                C
-              </Link>
+            <p className="functionP" onClick={() => navigationToCourses("setThemenfeldFilter", "Berufspraxis")}>
+              Für aktuelle Angebote folge hier
             </p>
             {<img src={require('../../images/Egon_Zitter_8_Libellen.jpg')} alt="" />}
           </div>
@@ -180,12 +181,8 @@ const HomeMain = () => {
               Themenbereich <br />
               Tageslicht
             </h5>
-            <p>
-              {" "}
-              Für aktuelle Angebote folge hier{" "}
-              <Link className="C" to="/latestlearningoffers">
-                C
-              </Link>
+            <p className="functionP" onClick={() => navigationToCourses("setThemenfeldFilter", "Tageslicht")}>
+              Für aktuelle Angebote folge hier
             </p>
             {<img src={require('../../images/Sonnenuntergang.jpg')} alt="" />}
           </div>
@@ -195,11 +192,8 @@ const HomeMain = () => {
               Themenbereich <br />
               Meinung
             </h5>
-            <p>
-              Für aktuelle Angebote folge hier{" "}
-              <Link className="C" to="/latestlearningoffers">
-                C
-              </Link>
+            <p className="functionP" onClick={() => navigationToCourses("setThemenfeldFilter", "Standpunkte")}>
+              Für aktuelle Angebote folge hier
             </p>
             {<img src={require('../../images/unsplash.jpg')} alt="" />}
           </div>
