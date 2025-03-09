@@ -138,7 +138,7 @@ main {
   justify-content: space-between;
   gap: 0px;
 }
-
+//Head in Main
 .headBox{
   margin: 0px auto 10px;
   width: fit-content;
@@ -280,6 +280,7 @@ background: blue;
   &::before {
     content: "C ";
     font-family: $calli;
+    font-size: inherit;
     color: $cpdred;
     //font-size: $normal;
     //position: relative;
@@ -299,6 +300,7 @@ background: blue;
   &::after {
     content: " C";
     font-family: $calli;
+    font-size: inherit;
     color: $cpdred;
     //font-size: $normal;
     //position: relative;

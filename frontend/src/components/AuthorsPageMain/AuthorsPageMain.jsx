@@ -7,37 +7,6 @@ import Moment from "moment"
 import { DoubleRightOutlined, CloseOutlined, EditOutlined, SaveOutlined, StopOutlined, StepBackwardOutlined, StepForwardOutlined  } from "@ant-design/icons";
 
 const AuthorMain = () => {
-//   const { state } = useLocation();
-//   const  aID  = state;
-//   //console.log(aID);
-//   const { isAuth, buttonPos, setButtonPos, setAsidePos, navigate } = useContext(SectionsContext);
-//   const [authorsData, setAuthorsData] = useState({})
-//   const [authorsDetails, setAuthorsDetails] = useState({})
-//   const [authorsExpertise, setAuthorsExpertise] = useState([])
-//   const [authorsCourses, setAuthorsCourses] = useState([])
-  
-//   const buttonPosCheck = ()=>{
-//     if (isAuth) {setButtonPos("showBut"); setAsidePos ("accountAside")
-//   }}
-  
-//   const getAuthorsData = async (id) => {
-//   const userID = id
-//   const axiosResp = await axiosConfig.get(`/authorsinfo/${userID}`);
-//   const authorsData = axiosResp.data;
-//   const authorsDetails = axiosResp.data.authorsData;
-//   const authorsExpertise = axiosResp.data.authorsData.fieldsOfExpertise;
-//   setAuthorsData(authorsData)
-//   setAuthorsDetails(authorsDetails)
-//   setAuthorsExpertise(authorsExpertise)
-//   //console.log(authorsDetails)
-//   //console.log(authorsExpertise)
-// };
-
-
-
-// const zurückZurListe = () => {
-//   navigate(-1)
-// }
 
 // useEffect(() => {
 //   getAuthorsData(aID);
@@ -54,7 +23,7 @@ useEffect(() => {
 const [searchParams] = useSearchParams();
   const aID = searchParams.get("aID");  // `aID` aus den URL-Parametern lesen
   
-  const { isAuth, setButtonPos, setAsidePos } = useContext(SectionsContext);
+  const { isAuth, setButtonPos, setAsidePos, contactData } = useContext(SectionsContext);
   const [authorsData, setAuthorsData] = useState({});
   const [authorsDetails, setAuthorsDetails] = useState({});
   const [authorsExpertise, setAuthorsExpertise] = useState([]);

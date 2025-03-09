@@ -112,6 +112,12 @@ export const getUserByID = async (req, res) => {
                 path: "courseId"
               }
             },
+            {
+              path: "professionalTracker",
+              populate: {
+                path: "activityId"
+              }
+            },
             "professionalStatus",
             "authorsData",
             "currentCompany",

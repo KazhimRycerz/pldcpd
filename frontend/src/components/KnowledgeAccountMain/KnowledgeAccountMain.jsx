@@ -16,7 +16,8 @@ import Countdown from "../Countdown/Countdown.jsx";
 
 const  KnowledgeAccountMain = () =>{
    const { isAuth,
-      userData, getUserData, 
+      userData, 
+      getUserData, 
       careerData, 
       cpdData, 
       authorsData, 
@@ -31,6 +32,8 @@ const  KnowledgeAccountMain = () =>{
       saveUserSettings,
       location,
       navigate } = useContext(SectionsContext);
+
+      //console.log(contactData.professionalTracker[0].active)
 
    //const [showPassword, setShowPassword] = useState(false);
    const [openSections, setOpenSections] = useState([]);
@@ -305,7 +308,6 @@ const  KnowledgeAccountMain = () =>{
                         >schließen
                         </p>
                      </div>
-                     
                </div>  	 
                }
             </div>
@@ -541,26 +543,22 @@ const  KnowledgeAccountMain = () =>{
                         <p
                         onClick={() => navigate("courselistpage")} // Navigation
                         className="pFunction"
-                        >
-                        Kursangebote
+                        > Kursangebote
                         </p>
                         <p
                         onClick={() => toggleDropdowns("dropdownCPDTracker")}
                         className="pFunction"
-                        >
-                        Eingabe
+                        > Eingabe
                         </p>
                         <p
                         onClick={() => toggleDropdowns("dropdownCPDTracker")}
                         className="pFunction"
-                        >
-                        Daten öffnen
+                        > Daten öffnen
                         </p>
                         <p
                         onClick={() => toggleDropdowns("dropdownCPDTracker")}
                         className="pFunction"
-                        >
-                        abbrechen
+                        > abbrechen
                         </p>
                         <p
                         onClick={() => {
@@ -568,8 +566,7 @@ const  KnowledgeAccountMain = () =>{
                            toggleSection("account_6");
                         }}
                         className="pFunction"
-                        >
-                        schließen
+                        > schließen
                         </p>
                      </div>
                   </div>
@@ -624,13 +621,14 @@ const  KnowledgeAccountMain = () =>{
                            <td>{item.endDate ? Moment(item.endDate).format("DD.MM.YYYY") : ''}</td>
                            <td>{item.statusOfVerification || 'N/A'}</td>
                            <td>{item.valueDate ? Moment(item.valueDate).format("DD.MM.YYYY") : ''}</td>
-                           <td><input
-                                 type="checkbox"
-                                 checked={!!item.courseId?.active} // Konvertiert undefined/null zu false
-                                 readOnly // Verhindert Interaktion (nur zur Anzeige)
-                                 style={{
-                                    cursor: 'not-allowed',
-                                 }}
+                           <td>
+                              <input
+                              type="checkbox"
+                              checked={!!item.courseId?.active} // Konvertiert undefined/null zu false
+                              readOnly // Verhindert Interaktion (nur zur Anzeige)
+                              style={{
+                                 cursor: 'not-allowed',
+                              }}
                                />
                            </td>
                         </tr>
@@ -650,7 +648,7 @@ const  KnowledgeAccountMain = () =>{
 
                {openSections.includes("account_7") && 
                <>
-                  <p>Sie haben {cpdData.length} Aktivitäten gelistet</p>
+                  <p>Sie haben {contactData.professionalTracker.length} Aktivitäten gelistet</p>
                   <div //className="dropdownContainer"
                   className={`dropdownContainer ${
                      dropdownToggleIsOpen["dropdownProfessionalTracker"] ? "activeC" : ""
@@ -671,9 +669,9 @@ const  KnowledgeAccountMain = () =>{
                            dropdownToggleIsOpen["dropdownProfessionalTracker"] ? "active" : ""
                         }`}
                         >
-                        <p onClick={() => console.log("Aktualisieren")} className="pFunction"
+                        {/* <p onClick={() => console.log("Aktualisieren")} className="pFunction"
                         >aktualisieren
-                        </p>
+                        </p> */}
                         <p
                         onClick={() => navigate("courselistpage")} // Navigation
                         className="pFunction"
@@ -719,12 +717,11 @@ const  KnowledgeAccountMain = () =>{
                         </th>
                         <th>Activity</th>
                         <th>Thema</th>
-                        <th>LPs <br/>basic</th>
-                        <th>LPs <br/>additional</th>
-                        <th>LPs total</th>
-                        <th>Start date</th>
-                        <th>End date</th>
-                        <th>status of CPD</th>
+                        <th>PAs</th>
+                        <th>start <br/>date</th>
+                        <th>end <br/>date</th>
+                        <th>duration</th>
+                        <th>status</th>
                         {/* <th>Request for evaluation</th>
                         <th>Verified</th> */}
                         <th>Value date</th>
@@ -732,7 +729,7 @@ const  KnowledgeAccountMain = () =>{
                      </tr>
                   </thead>
                   <tbody>
-                     {cpdData.map((item, index) => (
+                     {contactData.professionalTracker.map((item, index) => (
                      <tr key={item._id}>
                         {/* <td>{item.activityType || 'N/A'}</td> */}
                         <td>
@@ -740,14 +737,13 @@ const  KnowledgeAccountMain = () =>{
                               <span style={{ marginLeft: '0px', cursor: 'pointer' }}>{/* ℹ️ */}{item.activityType}</span>
                            </Tooltip>
                         </td>
-                        <td>{item.courseId?.courseType || 'N/A'}</td>
-                        <td>{item.courseId?.courseTopic || 'N/A'}</td>
-                        <td>{item.earnedLP || 'N/A'}</td>
-                        <td>{item.addedLP || 'N/A'}</td>
-                        <td>{item.totalLP || 'N/A'}</td>
+                        <td>{item.activityId?.pacType || ''}</td>
+                        <td>{item.activityId?.description || ''}</td>
+                        <td>{item.earnedPA || ''}</td>
                         <td>{item.startDate ? (Moment(item.startDate).format("DD.MM.YYYY")) : ''}</td>
                         <td>{item.endDate ? (Moment(item.endDate).format("DD.MM.YYYY")) : ''}</td>
-                        <td>{item.statusOfVerification || 'N/A'}</td>
+                        <td>{item.duration || ''}</td>
+                        <td>{item.statusOfVerification || ''}</td>
                         {/* <td><input type="checkbox" checked={item.requestToEvaluate} readOnly /></td>
                         <td><input type="checkbox" checked={item.verified} readOnly /></td> */}
                         <td>{item.valueDate ? (Moment(item.valueDate).format("DD.MM.YYYY")) : ''}</td>
@@ -763,13 +759,13 @@ const  KnowledgeAccountMain = () =>{
 
          <section id="account_2" style={!openSections.includes("account_2") ? { backgroundColor: 'rgba(221, 155, 55, 0.2)' } : {}}>
             <div className="accountHead" id="account_2_head" >
-               <h3 onClick={() => {toggleSection("account_2");dropdownToggleIsOpen["dropdownCV"] && toggleDropdowns("dropdownCV")}}>Ihr beruflicher Werdegang</h3>
+               <h3 onClick={() => {toggleSection("account_2");dropdownToggleIsOpen["dropdownCV"] && toggleDropdowns("dropdownCV")}}>Ihr CV-Tracker</h3>
                {openSections.includes("account_2") && 
                <>
                   <p>Sie haben {careerData.length} berufliche Stationen</p>
                   <div className={`dropdownContainer ${
                   dropdownToggleIsOpen["dropdownCV"] ? "activeC" : ""
-               }`}>
+                  }`}>
                      <p
                      className={`pFunction ${
                         dropdownToggleIsOpen["dropdownCV"] ? "activeP" : ""
@@ -813,8 +809,7 @@ const  KnowledgeAccountMain = () =>{
                         className="pFunction"
                         >Schließen
                         </p>
-                     </div>
-                     
+                     </div>  
                   </div>
                </>
                }
@@ -1046,14 +1041,14 @@ const  KnowledgeAccountMain = () =>{
                                     dangerMode: true,
                                     }).then((isConfirm) => {
                                     if (isConfirm) {
-                                       const data = {
-                                          userName: userData.userName,
-                                          firstName: firstName,
-                                          lastName: userData.lastName,
-                                          //gender: userData.gender,
-                                          email: userData.eMail
-                                       };
-                                       updateUser(data);
+                                    const data = {
+                                       userName: userData.userName,
+                                       firstName: firstName,
+                                       lastName: userData.lastName,
+                                       //gender: userData.gender,
+                                       email: userData.eMail
+                                    };
+                                    updateUser(data);
                                     } else {
                                        Swal.fire({ title: "Vorname ändern abgebrochen." });
                                        setEditFirstName(false);

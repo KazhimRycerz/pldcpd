@@ -6,7 +6,7 @@ const router = Router()
 router
 .get("/list", getAllProfessionalTracks )
 .get("/", getAllProfessionalTracks )
-.post("/addprofessionaltrack", addProfessionalTrack )
+.post("/", addProfessionalTrack )
 .patch("/:id", updateProfessionalTrack)
 .get("/contact/:contact", getProfessionalTracksOfContact)
 .get("/:id", getProfessionalTrack);

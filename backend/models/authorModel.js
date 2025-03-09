@@ -8,12 +8,16 @@ const authorSchema = mongoose.Schema({
    },
    careerSummary: {
       type: String,
-      default: "",
+      default: ""
    },
    createdOn:{
       type: Date,
       immutable: true,
-      default: ()=> new Date(), 
+      default: ()=> new Date() 
+   },
+   updatedBy:{
+      type: String,
+      immutable: false
    },
    updatedOn: Date
 });

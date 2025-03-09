@@ -2,6 +2,12 @@ import mongoose from "mongoose";
 //import LearningDeskModel from "./learningDeskModel.js"
 import ContactModel from './contactModel.js';
 
+const sessionSchema = new mongoose.Schema({
+  startTime: { type: Date, required: true },
+  endTime: { type: Date },
+  duration: { type: Number }, // Dauer in Sekunden
+});
+
 const userSchema = mongoose.Schema({
 
   firstName: {
@@ -57,6 +63,7 @@ const userSchema = mongoose.Schema({
     enum: ["true", "false"],
     default: true
   },
+  sessions: [sessionSchema], // Liste der Sessions
   contactData: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'contact',

@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 import contactModel from "./contactModel.js";
-import courseModel from './courseModel.js';
 import pacModal from './pacModel.js';
 
 const professionalTrackerSchema = mongoose.Schema({
@@ -12,7 +11,13 @@ const professionalTrackerSchema = mongoose.Schema({
    contact: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "contact",
-    },
+      validate: {
+          validator: async function(value) {
+              return mongoose.models.contact.findById(value);
+          },
+          message: props => `${props.value} is not a valid contact ID.`
+      }
+  },  
    active: {
       type: Boolean, 
       required: true,
@@ -30,33 +35,6 @@ const professionalTrackerSchema = mongoose.Schema({
     },
     description: {
       type: String,
-    },
-    earnedKF: {
-      type: Number
-    },
-    earnedLF: {
-      type: Number
-    }, 
-    earnedPEX:{
-      type: Number
-    },
-    earnedPED:{
-      type: Number
-    }, 
-    earnedLP:{
-      type: Number,
-      default: 0,
-      min: 0 
-    },
-    addedLP:{
-      type: Number,
-      default: 0,
-      min: 0 
-    },
-    totalLP:{
-      type:Number,
-      default: 0,
-      min: 0 
     },
     earnedPA:{
       type: Number,
@@ -76,7 +54,10 @@ const professionalTrackerSchema = mongoose.Schema({
       type: Date,
       default: null,
    },
-   statusOfCourse: {
+   duration: {
+      type: Number,
+   },
+   statusOfActivity: {
       type: Date,
       default: null,
    },
@@ -90,8 +71,8 @@ const professionalTrackerSchema = mongoose.Schema({
    },
    statusOfVerification:{
       type: String,
-      enum: ["PAC listed", "PAC started", "PAC finished", "Request for verification", "PAC verified"],
-      default: "CPD listed"
+      enum: ["activity listed", "activity started", "activity finished", "Request for verification", "activity verified"],
+      default: "activity listed"
    },
    valueDate:{
       type: Date,
@@ -108,11 +89,15 @@ professionalTrackerSchema.set('strictQuery', true);
 
 // Vor jedem Speichern `totalLP` berechnen
 professionalTrackerSchema.pre('save', function(next) {
-   console.log('mongoose save() aufgerufen');
-   this.totalLP = (this.earnedLP || 0) + (this.addedLP || 0); // Berechne totalLP
-   this.lastUpdate = new Date(); // Aktualisiere lastUpdate
-   next(); // Fortfahren
+   try {
+       this.totalLP = (this.earnedLP || 0) + (this.addedLP || 0);
+       this.lastUpdate = new Date();
+       next();
+   } catch (error) {
+       next(error); // Pass error to Mongoose's error handler
+   }
 });
+
 
 // Vor jedem Update `totalLP` berechnen
 professionalTrackerSchema.pre(['findOneAndUpdate', 'updateOne'], function(next) {
@@ -125,7 +110,7 @@ professionalTrackerSchema.pre(['findOneAndUpdate', 'updateOne'], function(next) 
       const addedLP = update.$set.addedLP ?? this.addedLP;
       update.$set.totalLP = (earnedLP || 0) + (addedLP || 0);
    }
-
+  
    update.$set = {
       ...update.$set,
       lastUpdate: new Date(), // Aktualisiere lastUpdate

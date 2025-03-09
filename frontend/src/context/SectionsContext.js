@@ -35,6 +35,7 @@ const SectionsProvider = ({ children }) => {
   const [companyData, setCompanyData] = useState({})
   const [careerData, setCareerData] = useState([0]);
   const [cpdData, setCPDData] = useState([0])
+  const [professionalData, setProfessionalData] = useState([0])
 
   const [objectSize, setObjectSize] = useState(() => {
   const savedSize = localStorage.getItem('objectSize');
@@ -96,6 +97,7 @@ const SectionsProvider = ({ children }) => {
        const companyData = axiosResp.data.contactData.currentCompany
        const careerData = axiosResp.data.contactData.careerPath
        const cpdData = axiosResp.data.contactData.cpdTracker
+       const professionalData = axiosResp.data.contactData.professionalTracker
        const objectSize = axiosResp.data.objectSizeUserImage
        const objectPosition = axiosResp.data.objectPositionUserImage
        setUserData(userData);
@@ -106,9 +108,11 @@ const SectionsProvider = ({ children }) => {
        setCompanyData(companyData)
        setCareerData(careerData)
        setCPDData(cpdData)
+       setProfessionalData(professionalData)
        setObjectSize(objectSize || 100)
        setObjectPosition(objectPosition || { x: 50, y: 50 })
-       //console.log(objectPosition)
+      //  console.log(professionalData)
+      //  console.log(cpdData)
   };
     
   const getMarketKnowledgeData = async () => {

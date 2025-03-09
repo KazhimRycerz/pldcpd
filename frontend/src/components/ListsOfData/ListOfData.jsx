@@ -175,17 +175,23 @@ const ListOfCountryCodes = ({ onSelectCountryCode, handleCountryCodeFocus }) => 
   const filteredCountryList = countryList.filter(country =>
     country.landBezeichnung.toLowerCase().includes(searchTerm.toLowerCase())
   );
+  
+  const handleSelectCountryCode = (country) => {
+    onSelectCountryCode(country.landBezeichnung, country.kurzCode);
+  };
+  
+  
 
   return (
     <>   
       <ul id="countryCodeOptions">
         
-          < CloseOutlined 
-            id="closeX" 
-            onClick={() => {
-              handleCountryCodeFocus();
-            }}
-            />
+      <CloseOutlined 
+        id="closeX" 
+        onClick={() => {
+          handleCountryCodeFocus();
+        }}
+      />
        
         <input
         id="sucheCountryCode"
@@ -196,14 +202,17 @@ const ListOfCountryCodes = ({ onSelectCountryCode, handleCountryCodeFocus }) => 
         autoFocus
         autoComplete="off"
         />
-      {filteredCountryList.slice(0, 10).map((country, index) => (
+      {filteredCountryList.slice(0, 10).map((country) => (
         <li 
-        key={index} 
+        key={country.kurzCode} 
         value={country.kurzCode} 
-        onClick={() => onSelectCountryCode(country)}>
+        onClick={() => handleSelectCountryCode(country)}
+      >
         {country.landBezeichnung}
-        </li>
+      </li>
+      
       ))}
+
       </ul>
     </>   
   )

@@ -2,28 +2,395 @@
 
 
 
-#contactMain{
-   width: 80%;
-   max-width: 1280px;
-   min-height: 70vh;
-   margin: 0px auto 50px;
-   box-shadow: $mainshadow;
-   //border: solid;
+#contactForm{
+  width: 80%;
+  max-width: 1280px;
+  min-height: 70vh;
+  margin: 0px auto 50px;
+  box-shadow: $mainshadow;
+  //border: solid;
 
-   #contactFormContainer{
+  #contactFormContainer{
+    width: 80%;
+    border-radius: 20px;
+    margin: 0px auto 50px;
+    //box-shadow: none;
+    background-color: transparent;
+    //padding: 30px 0 50px ;
+
+    #änderungsHinweis{
+      
+      font-size: $xlarge;
+      width: fit-content;
+      margin: 20px auto 0px ;
+      color: $cpdblue;
+      //border: solid;
+    }
+    #boxModusWahl{
       width: 80%;
-      border-radius: 20px;
-      margin: 0px auto 50px;
-      //box-shadow: none;
-      background-color: transparent;
-      //padding: 30px 0 50px ;
-  
-      #änderungsHinweis{
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 10px;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: flex-end;
+      align-items: flex-end;
+      gap: 20px;
+      //border: solid;
+    }
+      
+    form{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content:left;
+        align-content:flex-start;
+        gap: 10px;
+        margin: 0 auto 20px;
+        padding: 10px;
+        width: 100%;
+        min-width: 700px;
+        border-radius: $radiussmall;
+        box-shadow: $boxshadow;
+        background-color: $fourth-color;
+        //border: solid;
+        >div{
+          display: flex;
+          flex-flow: row nowrap;
+          justify-content: space-between;
+          gap: 0px;
+          border: solid;
+          flex-basis: calc(50% - 5px);
+          flex-grow: 0;
+          label {
+            //border: solid;
+            padding: 5px;
+            flex-basis: 40%;
+            line-height: 30px;
+            //margin-left: 20px;
+          }
+          input, output, textarea {
+            //border: solid 01px;
+            height: auto;
+            padding: 10px;
+            border-radius: 0px;
+            font-family: $primary-font;
+            font-size: $small;
+            //width: 25%;
+            flex-basis: 60%;
+            color: $fourth-color;
+            background-color: $cpdblue;
+            border: none;
+            &:focus {
+              color: $cpdblue;
+              background-color: $fourth-color;
+              box-shadow: inset 0px 0px 10px 0px $cpdred;
+              border: none;
+              border-radius: 0px;
+              /* scale: 130%;
+              z-index: 10;
+              position: relative;
+              right: 10%; */
+              //font-size:larger;
+              outline-color: $cpdred;
+              outline-width: 0.5px;
+            }
+          }
+          .checkboxContainer{
+            background-color: $cpdblue;
+            //border: solid white;
+            flex-basis: 60%;
+            padding: 10px;
+            input {
+              border: none;
+              //height: 35px;
+              //width: auto;
+              padding: 5px;
+              border-radius: 0px;
+              font-family: $primary-font;
+              font-size: $small;
+              flex-basis: 60% !important;
+              background-color: $cpdblue;
+              color: $secondary-color;
+              &:focus {
+                color: $cpdblue;
+                background-color: $fourth-color;
+                box-shadow: inset 0px 0px 10px 0px $cpdred;
+                border: none;
+                /* scale: 130%;
+                z-index: 10;
+                position: relative;
+                right: 10%; */
+                outline-color:  $cpdred;
+                outline-width: 0.5px;
+              }
+            }
+            input[type='checkbox'] {
+              padding: 5px;
+              transform: scale(1.5);
+              margin: 0px ;
+              display: block;
+              accent-color: $fourth-color;
+              width: auto; 
+              outline: none;
+              box-shadow: none;
+            }
+            input.nofocus{
+              outline: none;
+              box-shadow: none;
+              color: inherit;
+              background-color: inherit;
+            }
+          }
+        }
+        #werdegang {
+          flex-basis: 100%; /* Nimmt die gesamte Breite ein */
+          flex-grow: 1; /* Erlaubt das Wachstum, falls nötig */
+          display: flex; /* Sicherstellen, dass es eine eigene Zeile einnimmt */
+          flex-flow: column nowrap;
+          th{
+            text-align: left;
+          }
+          td{
+            border-right: solid $secondary-color 1px;
+            border-bottom: solid $secondary-color 1px;
+            padding: 0 3px;
+            border-collapse:collapse;
+          }
+        }
         
-        font-size: $xlarge;
-        width: fit-content;
-        margin: 20px auto 0px ;
+    } //Form 
+
+    #buttonBox {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: flex-end;
+      gap: 20px;
+      margin: 0 auto 0px;
+      width: 90%;
+      //margin: 5px auto;
+      //border: none !important;
+      background-color: transparent !important;
+      box-shadow: none !important;
+      button{
+        vertical-align: middle;
+        width: 60%;
+        height: 40px;
+        max-width: 120px;
+        margin: 0px ;
+        font-size: $xsmall;
+        padding: 10px;
+        background-color: $first-color;
         color: $cpdblue;
+        box-shadow: $btnshadow;
+        border-radius: $radiussmall;
+        text-decoration: none;
+        border: none;
+        &:hover {
+          background-color: $cpdblue-10;
+        }
+        &:active {
+          background-color: white;
+        }
       }
-   }
+    }
+
+  } //Container
+    
+} //Main
+.ant-modal {
+  width: 80% !important;
+  .ant-modal-content {
+    background-color: $first-color;
+    font-family: $primary-font;
+    width: 100%;
+    .ant-modal-header{
+      background-color: transparent;
+      //border: black solid;
+      width: 90%;
+      margin: 0 auto;
+      div.ant-modal-title{
+        //font-family: $primary-font;
+        border-left : dotted 2px $cpdred; 
+        border-right : dotted 2px $cpdred; 
+        border-radius: 10px;
+        text-align: center;
+        display: inline-block;
+        margin: 10px auto;
+        padding: 10px;
+        width: min-width;
+      }
+    }
+    div.ant-modal-footer{
+    margin: 0 auto;
+    width: 60%;
+      #backButtonContactFinden {
+        padding: 5px 0 0 10px;
+        &:hover{
+        color: $cpdblue;
+        margin:  auto;
+        }
+      }
+    }
+    
+    #contactSuche {
+      padding: 20px;
+      border-radius: 10px;
+      width: 60%;
+      margin: 10px auto;
+      background-color: $fourth-color;
+      box-shadow: $boxshadow;
+      div {
+        margin: 0 0px 10px;
+        border: solid black;
+        display: flex;
+        flex-flow: row nowrap;
+        padding:  0px;
+        background-color: $cpdblue;
+        height: 35px;
+        label {
+          padding: 5px;
+          width: 40%;
+          height: 32px;
+          background-color: $fourth-color;
+          //border: solid;
+        }
+        input {
+          //margin: 10px;
+          height: 32px;
+          width: 60%;
+          background-color: $cpdblue;
+          border: none;
+          padding: 0 0 0 5px;
+          color: $fourth-color;
+          &:focus{
+            color: $cpdblue;
+            background-color: $fourth-color;
+            box-shadow: inset 0px 0px 10px 0px $cpdred;
+            border: none;
+            /* scale: 130%;
+            z-index: 10;
+            position: relative;
+            right: 10%; */
+            outline-color:  $cpdred;
+            outline-width: 0.5px;
+          }
+        }
+      }
+      #contactListe{
+        width: 100%;  
+        //background-color: $cpdblue ;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        //height: 300px;
+        border: solid;
+        li{
+          background-color: $cpdblue;
+          color: $fourth-color;
+          border-bottom: solid $fourth-color;
+          cursor: pointer;
+          padding: 0 0 0 5px;
+          height: 25px;
+          &:hover{
+            text-shadow: 0px 0px 10px $fourth-color;
+          } 
+          &:first-child{
+            //margin-bottom: 20px;
+            padding-bottom: 10px;
+            background-color: $fourth-color;
+            color: $cpdblue;
+            //border: solid;
+            cursor: pointer;
+            border-bottom: none;
+            &:hover{
+              text-shadow: 0px 0px 10px $cpdred;
+            } 
+          }
+        }
+        div{
+          margin-top: 0px;
+          padding-top: 10px;
+          width: 100%;
+          background-color: $fourth-color;
+          border: none;
+          display: flex;
+          flex-flow: row nowrap;
+          justify-content: space-between;
+          p{
+            color: $cpdblue;
+            padding: 5px;
+            display: block;
+          
+          }
+        }
+        #listeFooter{
+          display: flex;
+          flex-flow: row nowrap;
+          justify-content: space-around;
+          border-top: solid $cpdblue;
+          padding: 0;
+          margin: 0;
+          label{
+            background-color: $fourth-color;
+            color: $cpdblue;
+            width: 35%; 
+            //height: 40px;
+            margin-right: 5px;
+            padding:  5px;
+            //border: solid $cpdblue;
+            height: auto;
+            vertical-align: middle;
+            //line-height: inherit;
+          }
+          select{
+            padding: 0 5px;
+            //height: 38px;
+            line-height: 38px;
+            width: 20%;
+            margin-left: 5px;
+            background-color: $cpdblue;
+            color: $fourth-color;
+            &:focus{
+              background-color: $cpdblue;
+            color: $fourth-color;
+            outline: none;
+            }
+            option{
+              background-color: $cpdblue;
+              color: $fourth-color;
+            }
+          }
+          #movePages{
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content:center;
+            gap: 30px;
+            font-size: $large;
+            //border: solid $cpdblue;
+            width:fit-content;
+            margin: 0 auto;
+            background-color: transparent;
+            vertical-align: middle;
+            padding: 0;
+            
+          }
+        }
+      }
+    }
+  }
+  span{
+    .contact-name {
+      color: $secondary-color;
+      font-weight:900;
+      min-width: 20%;
+    }
+    .contact-company {
+      color: $secondary-color;
+      font-weight:900;
+    }
+    .contact-email {
+      color: $secondary-color;
+      font-weight:900;
+    }
+  }
 }

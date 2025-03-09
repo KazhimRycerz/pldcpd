@@ -13,6 +13,7 @@ import CourseForm from "./pages/CourseForm/CourseForm.jsx";
 import ContactForm from "./pages/ContactForm/ContactForm.jsx";
 import CompanyPage from "./pages/CompanyPage/CompanyPage.jsx";
 import AuthorsPage from "./pages/AuthorsPage/AuthorsPage.jsx";
+import AuthorsFormPage from "./pages/AuthorsFormPage/AuthorsFormPage.jsx"
 import Login from "./pages/LoginPage/Login.jsx";
 import ContactUs from "./pages/ContactUs/ContactUs.jsx";
 import Register from "./pages/RegisterPage/Register.jsx";
@@ -46,14 +47,15 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/" element={<Home />} />
           <Route path="/knowledgeaccount" element={<KnowledgeAccount />} />
-          <Route path="/personalaccount" element={<PersonalAccount />} />
+          {/* <Route path="/personalaccount" element={<PersonalAccount />} /> */}
           <Route path="/careerplanning" element={<CareerPlanning />} />
-          <Route path="/coursepage" element={<CoursePage />} />
+          {/* <Route path="/coursepage" element={<CoursePage />} /> */}
           <Route path="/courseform" element={<CourseForm />} />
           <Route path="/courselistpage" element={<CourseListPage />} />
           <Route path="/companypage" element={<CompanyPage />} />
-          <Route path="/contactpage" element={<ContactForm />} />
+          <Route path="/contactinput" element={<ContactForm />} />
           <Route path="/cpdinput" element={<CPDInput />} />
+          <Route path="/authorsinput" element={<AuthorsFormPage />} />
           <Route path="/authorspage" element={<AuthorsPage />} />
           <Route path="/sandbox" element={<Sandbox />} />
           {/* <Route path="/community" element={<Community />} /> */}
@@ -65,7 +67,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/emailus" element={<ContactUs />} />
-          <Route path="/userprofile" element={<UserProfile />} />
+          {/* <Route path="/userprofile" element={<UserProfile />} /> */}
           <Route path="/userupdate" element={<UserUpdate />} />
           <Route path="/*" element={<Page404 />} />
           </Routes>

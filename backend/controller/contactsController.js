@@ -3,13 +3,36 @@ import ContactModel from '../models/contactModel.js'
 export const getAllContacts = async (req, res) => {
     try {
     const contact = await ContactModel.find()
-      .populate([
-        "professionalStatus",
-        "careerPath",
-        "authorsData",
-        "currentCompany",
-        "cpdTracker"
-      ])
+    .populate([
+      {
+        path: "careerPath",
+        populate: {
+          path: "company",
+        }
+      },
+      {
+        path: "currentCompany",
+        populate: {
+          path: "company",
+        }
+      },
+      {
+        path: "cpdTracker",
+        populate: {
+          path: "courseId",
+        }
+      },
+      {
+        path: "professionalTracker",
+        populate: {
+          path: "activityId"
+        }
+      },
+      "updatedBy",
+      "professionalStatus",
+      "authorsData",
+      "currentCompany"
+    ])
       //.populate("companyData");
         res.status(200).json(contact)
     } catch (error) {
@@ -23,34 +46,34 @@ export const getContact = async (req, res) => {
     const contactId = req.params.id;
     try {
       const contact = await ContactModel
-        .findById(contactId);
-        const contactPopulated = await ContactModel
-        .findById(contactId)
-        .populate([
-          {
-            path: "careerPath",
-            populate: {
-              path: "company",
-            }
-          },
-          {
-            path: "cpdTracker",
-            populate: {
-              path: "courseId",
-            }
-          },
-          {
-            path: "currentCompany",
-            populate: {
-              path:"company",
-            }
-          },
-          "professionalStatus",
-          "authorsData"
-        ]);
+      .findById(contactId)
+      .populate([
+        {
+          path: "careerPath",
+          populate: {
+            path: "company",
+          }
+        },
+        {
+          path: "cpdTracker",
+          populate: {
+            path: "courseId",
+          }
+        },
+        {
+          path: "professionalTracker",
+          populate: {
+            path: "activityId"
+          }
+        },
+        "updatedBy",
+        "professionalStatus",
+        "authorsData",
+        "currentCompany"
+        
+      ]);
       
-
-      //console.log("contact.userName", contact.userName); 
+    //console.log("Firma", currentCompany); 
     // hier kann ich auf das virtuelle Feld "firstName" zugreifen
     // obwohl dieses nicht in der Datenbank exisitert 
     // (deswegen bezeichnet man es als virtuell)
@@ -59,13 +82,23 @@ export const getContact = async (req, res) => {
       // hier wird das virtuelle Feld nicht angezeigt,
       // da ich es nicht explizit mit dem . Operator auswähle
   
-      res.json(contactPopulated);   
-     
-    } catch (error) {
-      res.send(error.message)
-    }
-  
-  }
+      // Falls kein Kontakt gefunden wurde
+      if (!contact) {
+         return res.status(404).json({ message: "Contact not found" });
+      }
+
+      // Rückgabe des gefundenen Kontakts
+      res.status(200).json(contact);
+   } catch (error) {
+      console.error("Error fetching contact:", error.message);
+
+      // Fehlerbehandlung
+      res.status(500).json({
+         message: "An error occurred while fetching the contact",
+         error: error.message, // Entferne error.message, falls du keine sensiblen Infos preisgeben möchtest
+      });
+   }
+};
 
 
 export const addContact = async (req, res) => {
@@ -84,7 +117,7 @@ export const updateContact = async (req, res) => {
 
     const contactId = req.params.id;
     try {
-        const contact = await ContactModel.findOneAndUpdate(contactId, req.body);
+        const contact = await ContactModel.findOneAndUpdate({_id: contactId}, req.body);
   
       res.json(contact)
     } catch (error) {
@@ -100,7 +133,7 @@ export const getAuthorsInfo = async (req, res) => {
     const contact = await ContactModel
       .findById(contactId);
 
-    const contactPopulated = await ContactModel
+    const authorsData = await ContactModel
       .findById(contactId)
       .populate("authorsData");
 
@@ -113,7 +146,7 @@ export const getAuthorsInfo = async (req, res) => {
     // hier wird das virtuelle Feld nicht angezeigt,
     // da ich es nicht explizit mit dem . Operator auswähle
 
-    res.json(contactPopulated);   
+    res.json(authorsData);   
     
   } catch (error) {
     res.send(error.message)

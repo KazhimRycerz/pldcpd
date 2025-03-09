@@ -1,6 +1,6 @@
 @import "../../scss/global.scss";
 
-#companyForm{
+#authorsForm{
   width: 80%;
   max-width: 1280px;
   min-height: 70vh;
@@ -9,7 +9,7 @@
   //padding: 10px;
 
     
-  #companyFormContainer{
+  #authorsFormContainer{
     width: 80%;
     //border: solid;
     border-radius: 20px;
@@ -28,16 +28,16 @@
     }
 
     #boxModusWahl{
-      width: 80%;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 10px;
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content: flex-end;
-      align-items: flex-end;
-      gap: 20px;
-      //border: solid;
+          width: 80%;
+          max-width: 800px;
+          margin: 0 auto;
+          padding: 10px;
+          display: flex;
+          flex-flow: row nowrap;
+          justify-content: flex-end;
+          align-items: flex-end;
+          gap: 20px;
+          //border: solid;
     }
 
     form{
@@ -90,55 +90,9 @@
             z-index: 10;
             position: relative;
             right: 10%; */
-            //font-size:larger;
+            font-size:larger;
             outline-color: $cpdred;
             outline-width: 0.5px;
-          }
-        }
-        .checkboxContainer{
-          background-color: $cpdblue;
-          //border: solid white;
-          flex-basis: 60%;
-          padding: 10px;
-          input {
-            border: none;
-            //height: 35px;
-            //width: auto;
-            padding: 5px;
-            border-radius: 0px;
-            font-family: $primary-font;
-            font-size: $small;
-            flex-basis: 60% !important;
-            background-color: $cpdblue;
-            color: $secondary-color;
-            &:focus {
-              color: $cpdblue;
-              background-color: $fourth-color;
-              box-shadow: inset 0px 0px 10px 0px $cpdred;
-              border: none;
-              /* scale: 130%;
-              z-index: 10;
-              position: relative;
-              right: 10%; */
-              outline-color:  $cpdred;
-              outline-width: 0.5px;
-            }
-          }
-          input[type='checkbox'] {
-             padding: 5px;
-             transform: scale(1.5);
-             margin: 0px ;
-             display: block;
-             accent-color: $fourth-color;
-             width: auto; 
-             outline: none;
-             box-shadow: none;
-           }
-          input.nofocus{
-            outline: none;
-            box-shadow: none;
-            color: inherit;
-            background-color: inherit;
           }
         }
       }
@@ -161,7 +115,7 @@
           border: none;
           padding: 0;
         }
-        #companyNature{
+        #authorsNature{
           //border: solid;
           width: 50%;
           padding: 10px;
@@ -218,7 +172,43 @@
           flex-basis: 80% !important;
         }
       }
-      
+    }
+
+   .checkboxContainer{
+      background-color: $cpdblue;
+      //border: solid white;
+      flex-basis: 60%;
+      padding: 10px;
+      input {
+        border: none;
+        //height: 35px;
+        //width: auto;
+        padding: 5px;
+        border-radius: 0px;
+        font-family: $primary-font;
+        font-size: $small;
+        flex-basis: 60% !important;
+        background-color: $cpdblue;
+        color: $secondary-color;
+        &:focus {
+          color: $cpdblue;
+          background-color: $fourth-color;
+          box-shadow: inset 0px 0px 10px 0px $cpdred;
+          border: none;
+          /* scale: 130%;
+          z-index: 10;
+          position: relative;
+          right: 10%; */
+          outline-color:  $cpdred;
+          outline-width: 0.5px;
+        }
+      }
+      input.nofocus{
+        outline: none;
+        box-shadow: none;
+        color: inherit;
+        background-color: inherit;
+      }
     }
   }
 
@@ -255,7 +245,16 @@
       }
     }
   }
-    
+  
+  input[type='checkbox'] {
+    padding: 5px;
+    transform: scale(1.5);
+    margin: 0px ;
+    display: block;
+    accent-color: $fourth-color;
+    width: auto; 
+  }
+  
   #auswahlCompanyType, #auswahlCountryCode{
     position: absolute; 
     list-style-type: none;
@@ -288,7 +287,7 @@
     justify-content: space-between;
     background-color: $cpdblue;
     width: 60%;
-    #companyType {
+    #authorsType {
       width: 100%;
     }
   }
@@ -358,10 +357,15 @@
         sup{
           
         }
-      } 
-  } */
+      }
+    
+  
+      
 
-  #companyTypeInput {
+
+      
+  } */
+#authorsTypeInput {
   position: absolute;
   top: -150px;
   #auswahlCompanyType{
@@ -381,190 +385,192 @@
 }
 #firmenanschrift{
   max-width:calc(50% - 5px);
-  #companyStreet{
+  #authorsStreet{
     //height: 40px;
   }
 }
 }
   
 .ant-modal {
-  width: 80% !important;
-  .ant-modal-content {
-    background-color: $first-color;
-    font-family: $primary-font;
-    width: 100%;
-    .ant-modal-header{
-      background-color: transparent;
-      //border: black solid;
-      width: 90%;
-      margin: 0 auto;
-      div.ant-modal-title{
-        //font-family: $primary-font;
-        border-left : dotted 2px $cpdred; 
-        border-right : dotted 2px $cpdred; 
-        border-radius: 10px;
-        text-align: center;
-        display: inline-block;
-        margin: 10px auto;
-        padding: 10px;
-        width: min-width;
+  width: 80% !important
+}
+
+
+.ant-modal-content {
+  background-color: $first-color;
+  font-family: $primary-font;
+  width: 100%;
+  .ant-modal-header{
+    background-color: transparent;
+    //border: black solid;
+    width: 90%;
+    margin: 0 auto;
+    div.ant-modal-title{
+      //font-family: $primary-font;
+      border-left : dotted 2px $cpdred; 
+      border-right : dotted 2px $cpdred; 
+      border-radius: 10px;
+      text-align: center;
+      display: inline-block;
+      margin: 10px auto;
+      padding: 10px;
+      width: min-width;
+    }
+  }
+  div.ant-modal-footer{
+  margin: 0 auto;
+  width: 60%;
+    #backButtonFirmaFinden {
+      padding: 5px 0 0 10px;
+      &:hover{
+      color: $cpdblue;
+      margin:  auto;
       }
     }
-    div.ant-modal-footer{
-    margin: 0 auto;
+  }
+  
+
+  #firmensuche {
+    padding: 20px;
+    border-radius: 10px;
     width: 60%;
-      #backButtonFirmaFinden {
-        padding: 5px 0 0 10px;
-        &:hover{
-        color: $cpdblue;
-        margin:  auto;
+    margin: 10px auto;
+    background-color: $fourth-color;
+    box-shadow: $boxshadow;
+    div {
+      margin: 0 0px 10px;
+      border: solid black;
+      display: flex;
+      flex-flow: row nowrap;
+      padding:  0px;
+      background-color: $cpdblue;
+      height: 35px;
+      label {
+        padding: 5px;
+        width: 40%;
+        height: 32px;
+        background-color: $fourth-color;
+        //border: solid;
+      }
+      input {
+        //margin: 10px;
+        height: 32px;
+        width: 60%;
+        background-color: $cpdblue;
+        border: none;
+        padding: 0 0 0 5px;
+        color: $fourth-color;
+        &:focus{
+          color: $cpdblue;
+          background-color: $fourth-color;
+          box-shadow: inset 0px 0px 10px 0px $cpdred;
+          border: none;
+          /* scale: 130%;
+          z-index: 10;
+          position: relative;
+          right: 10%; */
+         outline-color:  $cpdred;
+         outline-width: 0.5px;
         }
       }
     }
-    
-  
-    #firmenSucher {
-      padding: 20px;
-      border-radius: 10px;
-      width: 60%;
-      margin: 10px auto;
-      background-color: $fourth-color;
-      box-shadow: $boxshadow;
-      div {
-        margin: 0 0px 10px;
-        border: solid black;
+    #firmenListe{
+      width: 100%;  
+      //background-color: $cpdblue ;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      //height: 300px;
+      border: solid;
+      li{
+        background-color: $cpdblue;
+        color: $fourth-color;
+        border-bottom: solid $fourth-color;
+        cursor: pointer;
+        padding: 0 0 0 5px;
+        height: 25px;
+        &:hover{
+          text-shadow: 0px 0px 10px $fourth-color;
+        } 
+        &:first-child{
+          //margin-bottom: 20px;
+          padding-bottom: 10px;
+          background-color: $fourth-color;
+          color: $cpdblue;
+          //border: solid;
+          cursor: pointer;
+          border-bottom: none;
+          &:hover{
+            text-shadow: 0px 0px 10px $cpdred;
+          } 
+        }
+      }
+      div{
+        margin-top: 0px;
+        padding-top: 10px;
+        width: 100%;
+        background-color: $fourth-color;
+        border: none;
         display: flex;
         flex-flow: row nowrap;
-        padding:  0px;
-        background-color: $cpdblue;
-        height: 35px;
-        label {
+        justify-content: space-between;
+        p{
+          color: $cpdblue;
           padding: 5px;
-          width: 40%;
-          height: 32px;
-          background-color: $fourth-color;
-          //border: solid;
-        }
-        input {
-          //margin: 10px;
-          height: 32px;
-          width: 60%;
-          background-color: $cpdblue;
-          border: none;
-          padding: 0 0 0 5px;
-          color: $fourth-color;
-          &:focus{
-            color: $cpdblue;
-            background-color: $fourth-color;
-            box-shadow: inset 0px 0px 10px 0px $cpdred;
-            border: none;
-            /* scale: 130%;
-            z-index: 10;
-            position: relative;
-            right: 10%; */
-           outline-color:  $cpdred;
-           outline-width: 0.5px;
-          }
+          display: block;
+        
         }
       }
-      #firmenListe{
-        width: 100%;  
-        //background-color: $cpdblue ;
-        list-style-type: none;
-        margin: 0;
+      #listeFooter{
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-around;
+        border-top: solid $cpdblue;
         padding: 0;
-        //height: 300px;
-        border: solid;
-        li{
+        margin: 0;
+        label{
+          background-color: $fourth-color;
+          color: $cpdblue;
+          width: 35%; 
+          //height: 40px;
+          margin-right: 5px;
+          padding:  5px;
+          //border: solid $cpdblue;
+          height: auto;
+          vertical-align: middle;
+          //line-height: inherit;
+        }
+        select{
+          padding: 0 5px;
+          //height: 38px;
+          line-height: 38px;
+          width: 20%;
+          margin-left: 5px;
           background-color: $cpdblue;
           color: $fourth-color;
-          border-bottom: solid $fourth-color;
-          cursor: pointer;
-          padding: 0 0 0 5px;
-          height: 25px;
-          &:hover{
-            text-shadow: 0px 0px 10px $fourth-color;
-          } 
-          &:first-child{
-            //margin-bottom: 20px;
-            padding-bottom: 10px;
-            background-color: $fourth-color;
-            color: $cpdblue;
-            //border: solid;
-            cursor: pointer;
-            border-bottom: none;
-            &:hover{
-              text-shadow: 0px 0px 10px $cpdred;
-            } 
+          &:focus{
+            background-color: $cpdblue;
+          color: $fourth-color;
+          outline: none;
           }
-        }
-        div{
-          margin-top: 0px;
-          padding-top: 10px;
-          width: 100%;
-          background-color: $fourth-color;
-          border: none;
-          display: flex;
-          flex-flow: row nowrap;
-          justify-content: space-between;
-          p{
-            color: $cpdblue;
-            padding: 5px;
-            display: block;
-          
-          }
-        }
-        #listeFooter{
-          display: flex;
-          flex-flow: row nowrap;
-          justify-content: space-around;
-          border-top: solid $cpdblue;
-          padding: 0;
-          margin: 0;
-          label{
-            background-color: $fourth-color;
-            color: $cpdblue;
-            width: 35%; 
-            //height: 40px;
-            margin-right: 5px;
-            padding:  5px;
-            //border: solid $cpdblue;
-            height: auto;
-            vertical-align: middle;
-            //line-height: inherit;
-          }
-          select{
-            padding: 0 5px;
-            //height: 38px;
-            line-height: 38px;
-            width: 20%;
-            margin-left: 5px;
+          option{
             background-color: $cpdblue;
             color: $fourth-color;
-            &:focus{
-              background-color: $cpdblue;
-            color: $fourth-color;
-            outline: none;
-            }
-            option{
-              background-color: $cpdblue;
-              color: $fourth-color;
-            }
           }
-          #movePages{
-            display: flex;
-            flex-flow: row nowrap;
-            justify-content:center;
-            gap: 30px;
-            font-size: $large;
-            //border: solid $cpdblue;
-            width:fit-content;
-            margin: 0 auto;
-            background-color: transparent;
-            vertical-align: middle;
-            padding: 0;
-            
-          }
+        }
+        #movePages{
+          display: flex;
+          flex-flow: row nowrap;
+          justify-content:center;
+          gap: 30px;
+          font-size: $large;
+          //border: solid $cpdblue;
+          width:fit-content;
+          margin: 0 auto;
+          background-color: transparent;
+          vertical-align: middle;
+          padding: 0;
+          
         }
       }
     }

@@ -6,7 +6,7 @@ const router = Router()
 router
 .get("/list", getAllCPDTracks )
 .get("/", getAllCPDTracks )
-.post("/addcpdtrack", addCPDTrack )
+.post("/", addCPDTrack )
 .patch("/:id", updateCPDTrack)
 .get("/contact/:contact", getCPDTracksOfContact)
 .get("/:id", getCPDTrack);

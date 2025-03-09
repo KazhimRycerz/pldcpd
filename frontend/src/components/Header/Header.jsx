@@ -174,79 +174,7 @@ const Header = () => {
             
           </div >      
         </div>
-      </header>
-      
-      {isAuth && (
-        <div id="dropDownAccountBackground" className={accountListShow} onMouseLeave={()=> { setAccountListShow("hideAccountList");setOverlayStatus("noMenueOverlay")}}>
-          <div id="dropdownContent">
-            <p>rufen sie hier Ihre persönliche Daten auf!</p>
-            <div>
-              <ul id="dropDownAccount" >
-          <p onClick={() => {navigate("/KnowledgeAccount");
-                  handleDropdownAccount()
-                }}>Daten im Überblick</p>
-                <br/>
-                <li>
-                  <span className="closebtn" onClick={() => {navigate("/KnowledgeAccount", { state: { openSection: ["account_4"] } });
-                  handleDropdownAccount()
-                }}
-                    >Ihre Userdaten
-                  </span>
-                  
-                  {/* <NavLink 
-                    to={{ pathname: "/KnowledgeAccount", state: { openSection: ["account_2"] } }} className="closebtn"> Knowledge Status
-                  </NavLink> */}
-                </li>
-                <li >
-                <span className="closebtn" onClick={() => {navigate("/KnowledgeAccount", { state: { openSection: ["account_1"] } });
-                handleDropdownAccount()}}
-                  >Ihr Berufsstatus
-                </span>
-                </li>
-                <li >
-                  <span className="closebtn" onClick={() => {navigate("/KnowledgeAccount", { state: { openSection: ["account_3"] } });
-                  handleDropdownAccount()}}
-                    >Ihr CPD-Status
-                  </span>
-                  {/* <NavLink to={{pathname: "/KnowledgeAccount", state: { openSection: ["account_3"] }}} className="closebtn">Personal Data</NavLink> */}
-                </li>
-                <li >
-                  <span className="closebtn" onClick={() => {navigate("/KnowledgeAccount", { state: { openSection: ["account_6"] } });
-                  handleDropdownAccount()}}
-                    >Ihr CPD-Tracker
-                  </span>
-                  {/* <NavLink to={{pathname: "/KnowledgeAccount", state: { openSection: ["account_3"] }}} className="closebtn">Personal Data</NavLink> */}
-                </li>
-                <li >
-                  <span className="closebtn" onClick={() => {navigate("/KnowledgeAccount", { state: { openSection: ["account_7"] } });
-                  handleDropdownAccount()}}
-                    >Ihr Professional-Tracker
-                  </span>
-                  {/* <NavLink to={{pathname: "/KnowledgeAccount", state: { openSection: ["account_3"] }}} className="closebtn">Personal Data</NavLink> */}
-                </li>
-                <li >
-                <span className="closebtn" onClick={() => {navigate("/KnowledgeAccount", { state: { openSection: ["account_2"] } });
-                  handleDropdownAccount()}}
-                  >Ihr Career-Tracker
-                </span>
-                </li>
-                {contactData.authorsData && (<li >
-                  <span
-                      className="closebtn" onClick={() => {navigate("/KnowledgeAccount", { state: { openSection: ["account_10"] } });
-                      handleDropdownAccount()}}
-                  >  Autorendaten
-                  </span>
-                  </li>)}
-              </ul>
-            </div>
-          </div>
-          <div className="logPromo">
-            <NavLink to="/KnowledgeAccount" id="llPromo">
-              <p>zum Kontenüberblick</p>
-            </NavLink>
-          </div> 
-        </div>
-      )}    
+      </header>  
 
       <nav id="navmain" onMouseLeave={(event)=>{setShowMenue(!showMenue);setOverlayStatus("noMenueOverlay")}}   className={showMenue ? "showNav" : " hideNav"}>
         <div id="listOfFields">
@@ -256,30 +184,30 @@ const Header = () => {
                 main <br /> items
               </p>
               <li>
-                <NavLink to="/home" className="closebtn active">
-                <span className="pFunction"></span> home
+                <NavLink to="/home" className="closebtn active pFunction">
+                 home
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/abouttheprofession" className="closebtn active">
-                <span className="pFunction"></span> the profession
+                <NavLink to="/abouttheprofession" className="closebtn active pFunction">
+                 the profession
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/404" className="closebtn">
-                <span className="pFunction"></span> services
+                <NavLink to="/404" className="closebtn pFunction">
+                 services
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/404" className="closebtn">
-                <span className="pFunction"></span> clients
+                <NavLink to="/404" className="closebtn pFunction">
+                 clients
                 </NavLink>
               </li>
               
               
               <li>
-                <NavLink to="/companypage" className="closebtn active">
-                <span className="pFunction"></span> 
+                <NavLink to="/companypage" className="closebtn active pFunction">
+                 
                   {isAuth && Array.isArray(accessRights) && accessRights.some(item => item > 1) ? 'work on companies' : 'register company'}
               </NavLink>
   
@@ -292,14 +220,14 @@ const Header = () => {
               </p>
               <li>
                 {isAuth ? (
-                  <NavLink to="/KnowledgeAccount" className="closebtn active">
-                <span className="pFunction"></span> your CPD account
+                  <NavLink to="/KnowledgeAccount" className="closebtn active pFunction">
+                 your CPD account
                 </NavLink>
 
                 //("/KnowledgeAccount", { state: { openSection: ["account_4"] } })
                 ) : (
                   <NavLink
-                  className="closebtn active"
+                  className="closebtn active pFunction"
                   onClick={(e) => {
                     e.preventDefault(); // Prevent the default navigation behavior
   
@@ -326,7 +254,7 @@ const Header = () => {
                   to="#"
                   >
                   {/* < RegistriertenRechte /> */}
-                  <span className="pFunction"></span> your CPD account
+                   your CPD account
                   </NavLink> 
                 )}
               </li>
@@ -337,15 +265,15 @@ const Header = () => {
                     pathname: "/KnowledgeAccount", 
                     state: { openSection: ["account_4"] } 
                   }} 
-                  //className="closebtn active"
+                  className="closebtn active pFunction"
                 >
-                  <span className="pFunction"></span> Nutzer-Daten ändern
+                   Nutzer-Daten ändern
                 </NavLink>
                 
                   
                   ) : (
                   <NavLink
-                  className="closebtn active"
+                  className="closebtn active pFunction"
                   onClick={(e) => {
                   e.preventDefault(); // Prevent the default navigation behavior
                     Swal.fire({
@@ -372,7 +300,7 @@ const Header = () => {
                     }}
                     to="#"
                   >
-                    <span className="pFunction"></span> change your Userdata
+                     change your Userdata
                   </NavLink>
                 )}
               </li>
@@ -383,23 +311,23 @@ const Header = () => {
                 by topics{" "}
               </p>
               <li>
-              <NavLink to="/courselistpage" className="closebtn active">
-                  <span className="pFunction"></span> courses on offer
+              <NavLink to="/courselistpage" className="closebtn active pFunction">
+                   courses on offer
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/home" className="closebtn">
-                <span className="pFunction"></span> services
+                <NavLink to="/home" className="closebtn active pFunction">
+                 services
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/home" className="closebtn">
-                <span className="pFunction"></span> clients
+                <NavLink to="/home" className="closebtn active pFunction">
+                 clients
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/home" className="closebtn">
-                <span className="pFunction"></span> contact
+                <NavLink to="/home" className="closebtn active pFunction">
+                 contact
                 </NavLink>
               </li>
             </ul>
@@ -409,33 +337,33 @@ const Header = () => {
                 by topic areas{" "}
               </p>
               <li>
-                <NavLink to="/home" className="closebtn">
-                <span className="pFunction"></span> home
+                <NavLink to="/home" className="closebtn active pFunction">
+                 home
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/home" className="closebtn">
-                <span className="pFunction"></span> learning
+                <NavLink to="/home" className="closebtn active pFunction">
+                 learning
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/home" className="closebtn">
-                <span className="pFunction"></span> services
+                <NavLink to="/home" className="closebtn active pFunction">
+                 services
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/home" className="closebtn">
-                <span className="pFunction"></span> clients
+                <NavLink to="/home" className="closebtn active pFunction">
+                 clients
                 </NavLink>
               </li>
               <li>
-              {isAuth && <NavLink to="/KnowledgeAccount" className="closebtn, active">
-                <span className="pFunction"></span> your CPD account
+              {isAuth && <NavLink to="/KnowledgeAccount" className="closebtn active pFunction">
+                 your CPD account
                 </NavLink>}
               </li>
               <li>
-                <NavLink to="/home" className="closebtn">
-                <span className="pFunction"></span> contact
+                <NavLink to="/home" className="closebtn active pFunction">
+                 contact
                 </NavLink>
               </li>
             </ul>
@@ -445,33 +373,33 @@ const Header = () => {
                 by course Type
               </p>
               <li>
-                <NavLink to="/home" className="closebtn">
-                <span className="pFunction"></span> home
+                <NavLink to="/home" className="closebtn pFunction">
+                 home
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/home" className="closebtn">
-                <span className="pFunction"></span> learning
+                <NavLink to="/home" className="closebtn pFunction">
+                 learning
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/home" className="closebtn">
-                <span className="pFunction"></span> services
+                <NavLink to="/home" className="closebtn pFunction">
+                 services
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/home" className="closebtn">
-                <span className="pFunction"></span> clients
+                <NavLink to="/home" className="closebtn pFunction">
+                 clients
                 </NavLink>
               </li>
               <li>
-              {isAuth && <NavLink to="/KnowledgeAccount" className="closebtn active">
-                <span className="pFunction"></span> your CPD account
+              {isAuth && <NavLink to="/KnowledgeAccount" className="closebtn  pFunction">
+                 your CPD account
                 </NavLink>}
               </li>
               <li>
-                <NavLink to="/home" className="closebtn">
-                <span className="pFunction"></span> contact
+                <NavLink to="/home" className="closebtn  pFunction">
+                 contact
                 </NavLink>
               </li>
             </ul>
@@ -481,23 +409,23 @@ const Header = () => {
                 items
               </p>
               <li>
-                <NavLink to="/emailus" className="closebtn active">
-                <span className="pFunction"></span> e-mail us 
+                <NavLink to="/emailus" className="closebtn active pFunction">
+                 e-mail us 
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/emailus" className="closebtn active">
-                <span className="pFunction"></span> contact us 
+                <NavLink to="/emailus" className="closebtn active pFunction">
+                 contact us 
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/404" className="closebtn">
-                <span className="pFunction"></span> dataprotection 
+                <NavLink to="/404" className="closebtn active pFunction">
+                 dataprotection 
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/impressum" className="closebtn active">
-                <span className="pFunction"></span> impressum 
+                <NavLink to="/impressum" className="closebtn active pFunction">
+                 impressum 
                 </NavLink>
               </li>
               
@@ -508,15 +436,18 @@ const Header = () => {
                 items
               </p>
               {accessRights.includes(5) || accessRights.includes(10) || accessRights.includes(9) ? (<li>
-                <NavLink to="/companypage" className="closebtn active" >
-                <span className="pFunction"></span> add/work on company
+                <NavLink to="/companypage" className="closebtn active pFunction" >
+                add/work on company
                 </NavLink>
-                <NavLink to="/courseform" className="closebtn active" >
-                <span className="pFunction"></span> add/work on courses
+                <NavLink to="/contactinput" className="closebtn active pFunction" >
+                 add/work on contact
                 </NavLink>
-                {/* <NavLink to="/courseform" className="closebtn active" >
-                  <span className="C">C</span> change courses
-                </NavLink> */}
+                <NavLink to="/authorinput" className="closebtn active pFunction" >
+                 add/work on author
+                </NavLink>
+                <NavLink to="/courseform" className="closebtn active pFunction" >
+                 add/work on courses
+                </NavLink>
               </li> ) : (<li><NavLink onClick={ FehlendeZugangsrechte } className="closebtn"><span className="C">C</span> add courses</NavLink></li>)}           
             </ul>) : null}
          {/* </div> */}
@@ -529,10 +460,85 @@ const Header = () => {
         </div>
       </nav>
 
-      {(showMenue || accountListShow ==="showAccountList") ? <div className={overlayStatus} onClick={() => {
+      {isAuth && (
+              <div id="dropDownAccountBackground" className={accountListShow} onMouseLeave={()=> { setAccountListShow("hideAccountList");setOverlayStatus("noMenueOverlay")}}>
+                <div id="dropdownContent">
+                  <p>rufen sie hier Ihre persönliche Daten auf!</p>
+                  <div>
+                    <ul id="dropDownAccount" >
+                <p onClick={() => {navigate("/KnowledgeAccount");
+                        handleDropdownAccount()
+                      }}>Daten im Überblick</p>
+                      <br/>
+                      <li>
+                        <span className="closebtn" onClick={() => {navigate("/KnowledgeAccount", { state: { openSection: ["account_4"] } });
+                        handleDropdownAccount()
+                      }}
+                          >Ihre Userdaten
+                        </span>
+                        
+                        {/* <NavLink 
+                          to={{ pathname: "/KnowledgeAccount", state: { openSection: ["account_2"] } }} className="closebtn"> Knowledge Status
+                        </NavLink> */}
+                      </li>
+                      <li >
+                      <span className="closebtn" onClick={() => {navigate("/KnowledgeAccount", { state: { openSection: ["account_1"] } });
+                      handleDropdownAccount()}}
+                        >Ihr Berufsstatus
+                      </span>
+                      </li>
+                      <li >
+                        <span className="closebtn" onClick={() => {navigate("/KnowledgeAccount", { state: { openSection: ["account_3"] } });
+                        handleDropdownAccount()}}
+                          >Ihr CPD-Status
+                        </span>
+                        {/* <NavLink to={{pathname: "/KnowledgeAccount", state: { openSection: ["account_3"] }}} className="closebtn">Personal Data</NavLink> */}
+                      </li>
+                      <li >
+                        <span className="closebtn" onClick={() => {navigate("/KnowledgeAccount", { state: { openSection: ["account_6"] } });
+                        handleDropdownAccount()}}
+                          >Ihr CPD-Tracker
+                        </span>
+                        {/* <NavLink to={{pathname: "/KnowledgeAccount", state: { openSection: ["account_3"] }}} className="closebtn">Personal Data</NavLink> */}
+                      </li>
+                      <li >
+                        <span className="closebtn" onClick={() => {navigate("/KnowledgeAccount", { state: { openSection: ["account_7"] } });
+                        handleDropdownAccount()}}
+                          >Ihr Professional-Tracker
+                        </span>
+                        {/* <NavLink to={{pathname: "/KnowledgeAccount", state: { openSection: ["account_3"] }}} className="closebtn">Personal Data</NavLink> */}
+                      </li>
+                      <li >
+                      <span className="closebtn" onClick={() => {navigate("/KnowledgeAccount", { state: { openSection: ["account_2"] } });
+                        handleDropdownAccount()}}
+                        >Ihr Career-Tracker
+                      </span>
+                      </li>
+                      {contactData.authorsData && (<li >
+                        <span
+                            className="closebtn" onClick={() => {navigate("/KnowledgeAccount", { state: { openSection: ["account_10"] } });
+                            handleDropdownAccount()}}
+                        >  Autorendaten
+                        </span>
+                        </li>)}
+                    </ul>
+                  </div>
+                </div>
+                <div className="logPromo">
+                  <NavLink to="/KnowledgeAccount" id="llPromo">
+                    <p>zum Kontenüberblick</p>
+                  </NavLink>
+                </div> 
+              </div>
+      )} 
+
+      {(showMenue || accountListShow ==="showAccountList") ? 
+        <div className={overlayStatus} onClick={() => {
         setShowMenue(false); 
         setAccountListShow("hideAccountList");
-        setOverlayStatus("noMenueOverlay")}}> </div> : <div className={overlayStatus}></div>}
+        setOverlayStatus("noMenueOverlay")}}> </div> : 
+        <div className={overlayStatus}></div>
+      }
  
     </>
   );

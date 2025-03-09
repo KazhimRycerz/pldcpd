@@ -82,7 +82,7 @@ const CourseListMain = () => {
     console.log("courseID", courseID, contactData._id)
 
     try {
-      const response = await axiosConfig.post("/cpdtracker/addcpdtrack", addingData
+      const response = await axiosConfig.post("/cpdtracker", addingData
       );
       console.log("reponseData", response.data);
       Swal.fire({

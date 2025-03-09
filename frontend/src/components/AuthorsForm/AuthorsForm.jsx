@@ -1,23 +1,23 @@
 import React, { useState, useRef, useContext, useEffect, useCallback } from "react";
 import axiosConfig from "../../util/axiosConfig.js";
 import { SectionsContext } from "../../context/SectionsContext.js";
-import "./CompanyForm.scss";
+import "./AuthorsForm.scss";
 import { DoubleRightOutlined, CloseOutlined, EditOutlined, SaveOutlined, StopOutlined, StepBackwardOutlined, StepForwardOutlined  } from "@ant-design/icons";
 import { Modal, Button } from 'antd';
 import Moment from "moment"
 import Swal from "sweetalert2";
-import { IndustryField, ListOfCompanyType, ListOfCountryCodes } from "../ListsOfData/ListOfData.jsx";
+import { ListOfCompanyType, ListOfCountryCodes } from "../ListsOfData/ListOfData.jsx";
 import { FehlendeZugangsrechte } from "../FehlermeldungenSwal/FehlermeldungenSwal.jsx"
 
 const CompanyPage = () => {
-  const { isAuth, setGotoPage, accessRights, navigate, userMode, setUserMode} = useContext(SectionsContext);
+  const { isAuth, accessRights, navigate, userMode, setUserMode} = useContext(SectionsContext);
   //console.log(accessRights)
   
   const [workingMode, setWorkingMode] = useState("inputMode")
   const [formErrors, setFormErrors] = useState({})
   const [data, setData] = useState([null])
   const [firmenFilter, setFirmenFilter] = useState('')
-  const [companyTypeSearcher, setCompanyTypeSearcher] = useState('')
+  const [authorsTypeSearcher, setCompanyTypeSearcher] = useState('')
   const [firmenListe, setFirmenListe] = useState([])
   const [statusSicherung, setStatusSicherung] = useState("gesichert")
   const today = new Date();
@@ -26,26 +26,26 @@ const CompanyPage = () => {
   const [isCompanyTypeFocused, setIsCompanyTypeFocused] = useState(false);
   const [isCountryCodeFocused, setIsCountryCodeFocused] = useState(false);
   
-  const [companyId, setCompanyId] = useState("")
-  const [companyName, setCompanyName] = useState("")
+  const [authorsId, setCompanyId] = useState("")
+  const [authorsName, setCompanyName] = useState("")
   const [addressNature, setAddressNature] = useState("")
-  const [companyType, setCompanyType] = useState("")
-  const [companyBranch, setCompanyBranch] = useState("")
-  const [companyCountryCode, setCompanyCountryCode] = useState("")
-  const [companyCountryName, setCompanyCountryName] = useState('');
-  const [companyZip, setCompanyZip] = useState("")
-  const [companyCity, setCompanyCity] = useState("")
-  const [companyStreet, setCompanyStreet] = useState("")
-  const [companyClientID, setCompanyClientID] = useState("")
-  const [companyUstID, setCompanyUstID] = useState("")
-  const [companyHomepage, setCompanyHomepage] = useState("https://")
-  const [companyEmail, setCompanyEmail] = useState("")
+  const [authorsType, setCompanyType] = useState("")
+  const [authorsBranch, setCompanyBranch] = useState("")
+  const [authorsCountryCode, setCompanyCountryCode] = useState("")
+  const [authorsCountryName, setCompanyCountryName] = useState('');
+  const [authorsZip, setCompanyZip] = useState("")
+  const [authorsCity, setCompanyCity] = useState("")
+  const [authorsStreet, setCompanyStreet] = useState("")
+  const [authorsClientID, setCompanyClientID] = useState("")
+  const [authorsUstID, setCompanyUstID] = useState("")
+  const [authorsHomepage, setCompanyHomepage] = useState("https://")
+  const [authorsEmail, setCompanyEmail] = useState("")
   const [cpdProvider, setCPDProvider] = useState(false)
-  const [companyActive, setCompanyActive] = useState(true)
+  const [authorsActive, setCompanyActive] = useState(true)
   const [updatedBy, setUpdatedBy] = useState("")
   const [updatedOn, setUpdatedOn] = useState("")
   const [createdOn, setCreatedOn] = useState("")
-  const [countryList, setCountryList] = useState([])
+  //const [selectedCountryCode, setSelectedCountryCode] = useState('');
 
 // managing die Seiten der Firmenliste: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 const [currentPage, setCurrentPage] = useState(1);
@@ -67,8 +67,9 @@ const startIndex = (currentPage - 1) * itemsPerPageValue;
 const currentItems = firmenListe.slice(startIndex, endIndex);
 // Erzeuge Platzhalter für leere Zeilen, falls weniger als itemsPerPage Elemente vorhanden sind
 const placeholders = Array(itemsPerPageValue - currentItems.length).fill(null);
-const textareaRef = useRef(null);
-const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const textareaRef = useRef(null);
+  const [isModalVisible, setIsModalVisible] = useState(false);
  
 
   const adjustHeight = () => {
@@ -80,14 +81,7 @@ const [isModalVisible, setIsModalVisible] = useState(false);
 
   useEffect(() => {
     adjustHeight(); // Adjust height on initial render
-  }, [companyStreet]); // Also adjust height whenever the content changes
-
-  /* const showModal = () => {
-    setIsModalVisible(true);
-  };
-  const handleOk = () => {
-    setIsModalVisible(false);
-  }; */
+  }, [authorsStreet]); // Also adjust height whenever the content changes
   
   const handleCancel = () => {
     setIsModalVisible(false);
@@ -119,14 +113,13 @@ const [isModalVisible, setIsModalVisible] = useState(false);
     setCompanyActive(true);
     setCPDProvider(false)
     setUpdatedBy("");
-    setUpdatedOn("");
+    setUpdatedOn(Moment(today).format("YYYY-MM-DD"));
     setStatusSicherung("gesichert");
     setData([null])
   }
 
   const isFormEmpty = () => {
-    //clearForm()
-    return !companyName && !companyStreet && !companyZip && !companyCity && !companyCountryCode && !companyHomepage;
+    return !authorsName && !authorsStreet && !authorsZip && !authorsCity && !authorsCountryCode && !authorsHomepage;
   };
 
   const clearSelectionOfCompany = () => {
@@ -145,53 +138,34 @@ const [isModalVisible, setIsModalVisible] = useState(false);
     setStatusSicherung("ungesichert")
   };
 
-  const handleSelectCountryCode = (countryName, countryCode) => {
-    setCompanyCountryName(countryName); // Setzt die Landbezeichnung
-    setCompanyCountryCode(countryCode); // Setzt den Kurzcode
-    setStatusSicherung("ungesichert"); // Status auf "ungesichert" setzen
-    setIsCountryCodeFocused(false); // Schließt die Länderliste
-  };
-
+  const handleSelectCountryCode = (country) => {
+    setCompanyCountryCode(country.kurzCode);
+    setCompanyCountryName(country.landBezeichnung);
+    setStatusSicherung(false)
+    setIsCountryCodeFocused(false)
+    //console.log("Ausgewählter Ländercode:", country);
+  }
   const handleCountryCodeFocus = () => {
     setIsCountryCodeFocused(false);
   };
 
-  const companyTypeFilter = (input) => {
+  const authorsTypeFilter = (input) => {
     //console.log(input)
     return ListOfCompanyType.filter((type) =>
       type.discription.toLowerCase().includes(input.toLowerCase())
     );
   };
 
-  // const getListOfCountryCodes = async () => {
-  //   try {
-  //     const response = await axiosConfig.get("/countrycodes");
-  //     const receivedData = response.data;
-  //     setCountryList(receivedData);
-  //     //console.log(receivedData);
-  //   } catch (error) {
-  //     Swal.fire({
-  //       title: "Keine Liste gefunden",
-  //       icon: "error",
-  //       confirmButtonText: "OK"
-  //     });
-  //   }
-  // }
-
   const firmenFilteredList = useCallback(async (e) => {
     try {
       const response = await axiosConfig.get("/companies");
       const receivedData = response.data;
       // Filtere die Daten basierend auf dem aktuellen Wert von filter
-      const filteredData = receivedData.filter(entry => entry.companyName.toLowerCase().includes(firmenFilter.toLowerCase()));
+      const filteredData = receivedData.filter(entry => entry.authorsName.toLowerCase().includes(firmenFilter.toLowerCase()));
       // Erstelle ein Array von Objekten mit _id und Thema aus den gefilterten Daten
       const firmenArray = filteredData.map(entry => ({
         _id: entry._id,
-        Firma: (
-          <>
-            {entry.companyName} in {entry.companyCity} in {entry.companyCountryCode}
-          </>
-        )
+        Firma: entry.authorsName
       }));
       // Aktualisiere den Zustand mit den gefilterten Themen
       setFirmenListe(firmenArray);
@@ -214,11 +188,13 @@ const [isModalVisible, setIsModalVisible] = useState(false);
       return // Abbrechen, wenn "bitte auswählen" gewählt wird
     }
     try {
-      const companyId = e.target.value
-      const response = await axiosConfig.get(`/companies/${companyId}`);
+      const authorsId = e.target.value
+     //console.log(authorsId);
+      const response = await axiosConfig.get(`/companies/${authorsId}`);
       const receivedData = await response.data;
       receivedData && displayCompany(receivedData)
       setCompanyId(receivedData._id)
+      //console.log(data.updatedBy.firstName)
     } catch (error) {
       Swal.fire({
         title: "Fehler beim Aufrufen der Firma",
@@ -232,24 +208,23 @@ const [isModalVisible, setIsModalVisible] = useState(false);
     if (data)  
     { setData(data)
       setAddressNature(data.addressNature);
-      setCompanyType(data.companyType);
-      setCompanyBranch(data.companyBranch);
-      setCompanyName(data.companyName);
-      setCompanyStreet(data.companyStreet);
-      setCompanyZip(data.companyZip);
-      setCompanyCity(data.companyCity);
-      setCompanyCountryCode(data.companyCountryCode);
-      setCompanyEmail(data.companyEmail);
-      setCompanyHomepage(data.companyHomepage);
-      setCompanyActive(data.companyActive);
+      setCompanyType(data.authorsType);
+      setCompanyBranch(data.authorsBranch);
+      setCompanyName(data.authorsName);
+      setCompanyStreet(data.authorsStreet);
+      setCompanyZip(data.authorsZip);
+      setCompanyCity(data.authorsCity);
+      setCompanyCountryCode(data.authorsCountryCode);
+      setCompanyEmail(data.authorsEmail);
+      setCompanyHomepage(data.authorsHomepage);
+      setCompanyActive(data.authorsActive);
       setCPDProvider(data.cpdProvider);
       setUpdatedBy(data.updatedBy);
       setUpdatedOn(data.updatedOn);
       setCreatedOn(data.createdOn);
-      setCompanyClientID(data.companyClientID)
-      //console.log(companyId)
+      setCompanyClientID(data.authorsClientID)
+      //console.log(authorsId)
     } 
-
   }, []);
 
   const validateForm = () => {
@@ -258,19 +233,19 @@ const [isModalVisible, setIsModalVisible] = useState(false);
     if (addressNature === "") {
       errors.push("Addressart muss definiert werden");
     }
-    if (companyType.trim() === "") {
+    if (authorsType.trim() === "") {
       errors.push("Firmentyp muss definiert sein");
     }
-    if (companyName.trim() === "") {
+    if (authorsName.trim() === "") {
       errors.push("Firmenname darf nicht leer sein");
     }
-    if (companyStreet.trim() === "") {
+    if (authorsStreet.trim() === "") {
       errors.push(" Die Anschrift darf nicht leer sein darf nicht leer sein");
     }
-    if (companyCity.trim() === "") {
+    if (authorsCity.trim() === "") {
       errors.push("Der Ort darf nicht leer sein");
     }
-    if (companyCountryCode === "") {
+    if (authorsCountryCode === "") {
       errors.push("Das Feld Ländercode darf nicht leer sein");
     }
      if (errors.length > 5) {
@@ -300,25 +275,25 @@ const [isModalVisible, setIsModalVisible] = useState(false);
     e.preventDefault();
     const isValid = validateForm();
     if (isValid) {
-      const companyData = {
+      const authorsData = {
         addressNature,
-        companyType,
-        companyName,
-        companyBranch,
-        companyCountryCode,
-        companyZip,
-        companyCity,
-        companyStreet,
-        companyClientID,
-        companyUstID,
-        companyHomepage,
-        companyEmail,
+        authorsType,
+        authorsName,
+        authorsBranch,
+        authorsCountryCode,
+        authorsZip,
+        authorsCity,
+        authorsStreet,
+        authorsClientID,
+        authorsUstID,
+        authorsHomepage,
+        authorsEmail,
         cpdProvider,
-        companyActive,
+        authorsActive,
         updatedBy: localStorage.getItem("userId"),
       };     
       try {
-        const response = await axiosConfig.post("/companies", companyData,
+        const response = await axiosConfig.post("/companies", authorsData,
         );
         setStatusSicherung("gesichert")
         //console.log("reponsData", response.data);
@@ -357,31 +332,31 @@ const [isModalVisible, setIsModalVisible] = useState(false);
 
   //UpdateFunktion
   const updateCompany = async (e) => {
-    //const companyId = {companyId}
+    //const authorsId = {authorsId}
     //console.log(e.target.value)
     e.preventDefault();
     const isValid = validateForm();
     if (isValid) {
-      const companyData = {
+      const authorsData = {
         addressNature,
-        companyName,
-        companyType,
-        companyBranch,
-        companyCountryCode,
-        companyZip,
-        companyCity,
-        companyStreet,
-        companyClientID,
-        companyUstID,
-        companyHomepage,
-        companyEmail,
+        authorsName,
+        authorsType,
+        authorsBranch,
+        authorsCountryCode,
+        authorsZip,
+        authorsCity,
+        authorsStreet,
+        authorsClientID,
+        authorsUstID,
+        authorsHomepage,
+        authorsEmail,
         cpdProvider,
-        companyActive,
+        authorsActive,
         updatedBy: localStorage.getItem("userId")
       };
-      //console.log(companyId)
+      //console.log(authorsId)
       try {
-        const response = await axiosConfig.patch(`/companies/${companyId}`, companyData); 
+        const response = await axiosConfig.patch(`/companies/${authorsId}`, authorsData); 
         setStatusSicherung("gesichert")
         Swal.fire({
           icon: "success",
@@ -425,11 +400,11 @@ const [isModalVisible, setIsModalVisible] = useState(false);
   // Löschfunktion
   const deleteCompany = async (data) => {
     //e.preventDefault(); // Verhindert das Neuladen der Seite
-    const company = companyName; // Stellen Sie sicher, dass companyName korrekt deklariert ist
+    const authors = authorsName; // Stellen Sie sicher, dass authorsName korrekt deklariert ist
   
     const result = await Swal.fire({
         icon: "warning",
-        title: `Soll das Unternehmen ${company} wirklich gelöscht werden?`,
+        title: `Soll das Unternehmen ${authors} wirklich gelöscht werden?`,
         showConfirmButton: true,
         showDenyButton: true,
         confirmButtonText: 'Ja, löschen',
@@ -438,15 +413,15 @@ const [isModalVisible, setIsModalVisible] = useState(false);
 
     if (result.isConfirmed) {
         try {
-            const response = await axiosConfig.delete(`/companies/${companyId}`, {
-                data: { companyName: company }
+            const response = await axiosConfig.delete(`/companies/${authorsId}`, {
+                data: { authorsName: authors }
             });
             setData([null])
             clearSelectionOfCompany(); // Auswahl des Unternehmens nur nach erfolgreicher Löschung löschen
 
             Swal.fire({
                 icon: "success",
-                title: response.data.message || `Das Unternehmen ${company} wurde gelöscht.`,
+                title: response.data.message || `Das Unternehmen ${authors} wurde gelöscht.`,
                 confirmButtonText: "OK",
                 timer: 3000, // Display for 3 seconds
             });
@@ -468,6 +443,7 @@ const [isModalVisible, setIsModalVisible] = useState(false);
 };
 
   useEffect(() => {
+    navigate(-1);
     firmenFilteredList();
     displayCompany()
     const interval = setInterval(() => {
@@ -486,33 +462,18 @@ const [isModalVisible, setIsModalVisible] = useState(false);
     //console.log(userMode, typeof accessRights, (accessRights) )
   }, [accessRights, userMode, isAuth]);
 
-  // useEffect(() => {
-  //   //getListOfCountryCodes()
-  //   if (companyCountryCode && countryList.countries && countryList.countries.length > 0) {
-  //     // Suche das passende Land anhand des Codes
-  //     const selectedCountry = countryList.countries.find(
-  //       (country) => country.kurzCode === companyCountryCode
-  //     );
-  
-  //     if (selectedCountry) {
-  //       setCompanyCountryName(selectedCountry.landBezeichnung); // Setze die Landbezeichnung
-  //     } else {
-  //       setCompanyCountryName(""); // Falls kein Land gefunden wurde
-  //     }
-  //   }
-  // }, [companyCountryCode, countryList]); // Verwende `countryList` als Abhängigkeit
-  
+
 
   return (
     <>
-      <main id="companyForm" /* className = {userMode} */>
+      <main id="authorsForm">
       < CloseOutlined className="closeX" onClick={() => navigate("/home")} /> 
         <div className="headBox"> 
-          <h2 id="companyHead">Eingabe / Bearbeiten von Unternehmen</h2>
+          <h2 id="authorsHead">Eingabe / Bearbeiten von Unternehmen</h2>
           {/* <p className="closingFunction" onClick={() => navigate("/home")}>Formular schließen</p> */}
         </div>
 
-        <div id="companyFormContainer" className={statusSicherung}>
+        <div id="authorsFormContainer" className={statusSicherung}>
 
           <p id="änderungsHinweis">
             {isFormEmpty() ? "Bitte Daten eingeben" :
@@ -559,9 +520,10 @@ const [isModalVisible, setIsModalVisible] = useState(false);
 
           </div> }
 
-          <Modal id="firmenSucherModal"
+          <Modal id="firmensucherModal"
             title="Firma finden"
             open={isModalVisible}
+            //onOk={handleOk}
             onCancel={handleCancel}
             footer={
               <Button 
@@ -573,7 +535,7 @@ const [isModalVisible, setIsModalVisible] = useState(false);
               </Button>
             }
             >
-            <div id="firmenSucher">
+            <div id="firmensuche">
               <div id="boxFirmensuche">
                 <label 
                 htmlFor="sucheFirma" 
@@ -674,12 +636,12 @@ const [isModalVisible, setIsModalVisible] = useState(false);
             </div> 
           </Modal> 
 
-          <form id="companyDisplayForm" 
+          <form id="authorsDisplayForm" 
           onSubmit={submitCompany}
           encType="multipart/form-data"
           >
             <div id="addressart">
-              <label id="companyNature">Adressart<sup id="addressNatureSup">*</sup></label>
+              <label id="authorsNature">Adressart<sup id="addressNatureSup">*</sup></label>
               <div id="eingabeCompanyNature">
                 <div>
                   <input
@@ -721,46 +683,46 @@ const [isModalVisible, setIsModalVisible] = useState(false);
             </div>
           {addressNature ==="business" ? 
             <div id="firmennameneingabe">
-            <label htmlFor="companyName">Firmenname<sup id="courseTopicSup">*</sup></label>
+            <label htmlFor="authorsName">Firmenname<sup id="courseTopicSup">*</sup></label>
             <input
             type="text"
-            id="companyName"
-            name="companyName"
-            value={companyName}
+            id="authorsName"
+            name="authorsName"
+            value={authorsName}
             placeholder="Firma / Adressname eingeben"
             autoComplete="off"
             onChange={(e) => {
-              setFormErrors({ ...formErrors, companyName: "" }); // Fehlermeldung zurücksetzen
+              setFormErrors({ ...formErrors, authorsName: "" }); // Fehlermeldung zurücksetzen
             handleChangeOfData(e);
             setCompanyName(e.target.value);
             }}
             />
-            {formErrors.companyName && <p className="error">
-            {formErrors.companyName}</p>}
+            {formErrors.authorsName && <p className="error">
+            {formErrors.authorsName}</p>}
             </div> : 
             <div id="firmennameneingabe">
-              <label htmlFor="companyName">Vor und Nachname<sup id="courseTopicSup">*</sup></label>
+              <label htmlFor="authorsName">Vor und Nachname<sup id="courseTopicSup">*</sup></label>
               <input
               disabled
                 type="text"
-                id="companyName"
-                name="companyName"
-                value={companyName}
+                id="authorsName"
+                name="authorsName"
+                value={authorsName}
                 placeholder="Vor- und Nachname Privatadresse"
                 autoComplete="off"
                 autoFocus
                 onChange={(e) => {
-                  setFormErrors({ ...formErrors, companyName: "" }); // Fehlermeldung zurücksetzen
+                  setFormErrors({ ...formErrors, authorsName: "" }); // Fehlermeldung zurücksetzen
                 handleChangeOfData(e);
                 setCompanyName(e.target.value);
               }}
                 />
-                {formErrors.companyName && <p className="error">{formErrors.companyName}</p>}
+                {formErrors.authorsName && <p className="error">{formErrors.authorsName}</p>}
             </div>
           } 
             <div id="firmentypauswahl"
             style={{ position: 'relative', maxHeight: "45px" }}>
-              <label htmlFor="companyType">Unternehmensart<sup id="companyTypeSup">*</sup>
+              <label htmlFor="authorsType">Unternehmensart<sup id="authorsTypeSup">*</sup>
               </label>
               
               <div 
@@ -768,15 +730,15 @@ const [isModalVisible, setIsModalVisible] = useState(false);
               >
                 <input
                 type="text"
-                id="companyType"
-                name="companyType"
+                id="authorsType"
+                name="authorsType"
                 readOnly
                 tabIndex="-1"
-                value={ListOfCompanyType.find(type => type.kürzel === companyType)?.discription || companyType}
+                value={ListOfCompanyType.find(type => type.kürzel === authorsType)?.discription || authorsType}
                 placeholder="Unternehmenstyp"
                 autoComplete="off"
                 onChange={(e) => {
-                  setFormErrors({ ...formErrors, companyType: "" }); // Fehlermeldung zurücksetzen
+                  setFormErrors({ ...formErrors, authorsType: "" }); // Fehlermeldung zurücksetzen
                   handleChangeOfData(e);
                   setCompanyType(e.target.value);
                 }}
@@ -785,7 +747,7 @@ const [isModalVisible, setIsModalVisible] = useState(false);
 
                 {isCompanyTypeFocused && 
                     <div
-                    id="companyTypeInput"
+                    id="authorsTypeInput"
                     style={{ position: 'absolute' }}
                       /* onMouseLeave={() => setIsCompanyTypeFocused(false)} */
                       >
@@ -802,14 +764,14 @@ const [isModalVisible, setIsModalVisible] = useState(false);
                         type="text" 
                         id="sucheCompanyType" 
                         name="sucheCompanyType" 
-                        value={companyTypeSearcher}
+                        value={authorsTypeSearcher}
                         placeholder="Suchfilter" 
                         autoComplete="off"
                         autoFocus
                         onChange={(e) => {setCompanyTypeSearcher(e.target.value)}}
                         />
                       
-                      {companyTypeFilter(companyTypeSearcher)
+                      {authorsTypeFilter(authorsTypeSearcher)
                       /* .slice(0,10) */
                       .map((type, index) => (
                         <li 
@@ -820,7 +782,7 @@ const [isModalVisible, setIsModalVisible] = useState(false);
                           {type.discription}
                         </li>
                       ))}
-                      {companyTypeFilter(companyTypeSearcher).length < 1 && (
+                      {authorsTypeFilter(authorsTypeSearcher).length < 1 && (
                         <li>Bitte Filter erweitern</li>
                       )}
                       </ul>
@@ -845,97 +807,99 @@ const [isModalVisible, setIsModalVisible] = useState(false);
             </div>
 
             <div id="firmenanschrift">
-              <label htmlFor="companyStreet">Anschrift</label>
+              <label htmlFor="authorsStreet">Anschrift</label>
               <textarea
               ref={textareaRef}
               rows="1"
               cols="50"
               type="text"
-              id="companyStreet"
-              name="companyStreet"
-              value={companyStreet}
+              id="authorsStreet"
+              name="authorsStreet"
+              value={authorsStreet}
               placeholder="Anschrift"
               autoComplete="off"
               onChange={(e) => {
-                setFormErrors({ ...formErrors, companyStreet: "" }); // Fehlermeldung zurücksetzen
+                setFormErrors({ ...formErrors, authorsStreet: "" }); // Fehlermeldung zurücksetzen
               handleChangeOfData(e);
               setCompanyStreet(e.target.value);
               adjustHeight(); // Adjust height on every change
               }}
               />
-              {formErrors.companyStreet && <p className="error">
-              {formErrors.companyStreet}</p>}
+              {formErrors.authorsStreet && <p className="error">
+              {formErrors.authorsStreet}</p>}
             </div>
 
             <div id="firmenplz">
-              <label htmlFor="companyZip">PLZ / zip code</label>
+              <label htmlFor="authorsZip">PLZ / zip code</label>
               <input
                 type="text"
-                id="companyZip"
-                name="companyZip"
-                value={companyZip}
+                id="authorsZip"
+                name="authorsZip"
+                value={authorsZip}
                 placeholder="PLZ / ZIPcode"
                 autoComplete="off"
                 onChange={(e) => {
-                  setFormErrors({ ...formErrors, companyZip: "" }); // Fehlermeldung zurücksetzen
+                  setFormErrors({ ...formErrors, authorsZip: "" }); // Fehlermeldung zurücksetzen
                 handleChangeOfData(e);
                 setCompanyZip(e.target.value);
               }}
                 />
-                {formErrors.companyZip && <p className="error">{formErrors.companyZip}</p>}
+                {formErrors.authorsZip && <p className="error">{formErrors.authorsZip}</p>}
             </div>
             <div id="firmenort">
-              <label htmlFor="companyCity">Ort</label>
+              <label htmlFor="authorsCity">Ort</label>
               <input
                 type="text"
-                id="companyCity"
-                name="companyCity"
-                value={companyCity}
+                id="authorsCity"
+                name="authorsCity"
+                value={authorsCity}
                 placeholder="Firmenstandort"
                 autoComplete="off"
                 onChange={(e) => {
-                  setFormErrors({ ...formErrors, companyCity: "" }); // Fehlermeldung zurücksetzen
+                  setFormErrors({ ...formErrors, authorsCity: "" }); // Fehlermeldung zurücksetzen
                 handleChangeOfData(e);
                 setCompanyCity(e.target.value);
               }}
                 />
-                {formErrors.companyCity && <p className="error">{formErrors.companyCity}</p>}
+                {formErrors.authorsCity && <p className="error">{formErrors.authorsCity}</p>}
             </div>
 
             <div id="ländercodeauswahl"
             style={{ position: 'relative' }}>
-              <label htmlFor="companyCountryCode">Country:<sup>*</sup>
+              <label htmlFor="authorsCountryCode">Country:<sup>*</sup>
               </label>
               <div 
               id="countryCodeInput"
               >
                 <input
                   type="text"
-                  id="companyCountryCode"
+                  id="authorsCountryCode"
                   className="no-focus"
-                  name="companyCountryCode"
+                  name="authorsCountryCode"
                   readOnly
-                  value={companyCountryName} // Landbezeichnung anzeigen
+                  tabIndex="-1"
+                  value={authorsCountryName} // Anzeigen der landBezeichnung
                   placeholder="Land"
                   autoComplete="off"
-                //   onChange=
-                //   {(e) => {
-                //     setFormErrors({ ...formErrors, companyCountryCode: "" }); // Fehlermeldung zurücksetzen
-                //   handleChangeOfData(e);
-                //   setCompanyCountryCode(e.target.value);
-                // }} 
+                  onChange=
+                  {(e) => {
+                    setFormErrors({ ...formErrors, authorsCountryName: "" }); // Fehlermeldung zurücksetzen
+                  handleChangeOfData(e);
+                  setCompanyCountryCode(e.target.value);
+                }} // Aktualisieren des angezeigten Namens
+                  //onFocus={() => setIsCountryCodeFocused(true)} // Anzeigen der Liste bei Fokussierung
                 />
                 <input
                   type="hidden"
                   readOnly
                   tabIndex="-1"
-                  name="companyCountryCode"
-                  value={companyCountryCode} // Speichern des kurzCodes
+                  name="authorsCountryCode"
+                  value={authorsCountryCode} // Speichern des kurzCodes
                 />
 
                 {isCountryCodeFocused &&
                   <ListOfCountryCodes
-                  id="companyCountryCodeInput"
+                  id="authorsCountryCodeInput"
                   onSelectCountryCode={handleSelectCountryCode}
                   handleCountryCodeFocus={handleCountryCodeFocus}
                   />  
@@ -959,9 +923,9 @@ const [isModalVisible, setIsModalVisible] = useState(false);
             <div id="homepageeingabe">
               <label htmlFor="linkProvider">Homepage:</label>
               <input type= "url"
-              id="companyHomepage"
-              name="companyHomepage"
-              value={companyHomepage}
+              id="authorsHomepage"
+              name="authorsHomepage"
+              value={authorsHomepage}
               //placeholder="Themenfeld"
               autoComplete="off"
               onDoubleClickCapture={(e) => 
@@ -973,40 +937,40 @@ const [isModalVisible, setIsModalVisible] = useState(false);
               }} />
             </div>
             <div id="email">
-              <label htmlFor="companyEmail">Firmen-EMail</label>
+              <label htmlFor="authorsEmail">Firmen-EMail</label>
               <input
                 type="email"
-                id="companyEmail"
-                name="companyEmail"
-                value={companyEmail}
+                id="authorsEmail"
+                name="authorsEmail"
+                value={authorsEmail}
                 placeholder="Firmenemail"
                 autoComplete="off"
                 onChange={(e) => {
-                  setFormErrors({ ...formErrors, companyEmail: "" }); // Fehlermeldung zurücksetzen
+                  setFormErrors({ ...formErrors, authorsEmail: "" }); // Fehlermeldung zurücksetzen
                 handleChangeOfData(e);
                 setCompanyEmail(e.target.value);
               }}
                 />
-                {formErrors.companyEmail && <p className="error">{formErrors.companyEmail}</p>}
+                {formErrors.authorsEmail && <p className="error">{formErrors.authorsEmail}</p>}
             </div>
             {(accessRights.includes(5) || accessRights.includes(10) || accessRights.includes(9)) ??
             <div id="clientid">
-              <label htmlFor="companyClientID">interne ClientID</label>
+              <label htmlFor="authorsClientID">interne ClientID</label>
               <input
                 type="text"
-                id="companyClientID"
-                name="companyClientID"
-                value={companyClientID}
-                placeholder="companyClientID"
+                id="authorsClientID"
+                name="authorsClientID"
+                value={authorsClientID}
+                placeholder="authorsClientID"
                 autoComplete="off"
                 onChange={(e) => {
-                  setFormErrors({ ...formErrors, companyCity: "" }); // Fehlermeldung zurücksetzen
+                  setFormErrors({ ...formErrors, authorsCity: "" }); // Fehlermeldung zurücksetzen
                 handleChangeOfData(e);
                 setCompanyClientID(e.target.value);
               }}
               />
-              {formErrors.companyClientID && <p className="error">
-              {formErrors.companyClientID}</p>}
+              {formErrors.authorsClientID && <p className="error">
+              {formErrors.authorsClientID}</p>}
             </div>
             }
             {(accessRights.includes(5) || accessRights.includes(10) || accessRights.includes(9)) &&
@@ -1027,15 +991,15 @@ const [isModalVisible, setIsModalVisible] = useState(false);
             </div>}
             {(isAuth && Array.isArray(accessRights) && accessRights.some(item => item > 1)) &&
             <div id="firmenaktivierung">
-              <label htmlFor="companyActive">Adresse aktiv:</label>
+              <label htmlFor="authorsActive">Adresse aktiv:</label>
               {/* <p id="kursActivated">{data[0].active === true ? "aktiviert" : "nicht aktiv"}</p> */}
               <div className="checkboxContainer">
                 <input 
                 type= "checkbox"
-                id="companyActive"
-                name="companyActive"
-                checked={companyActive}
-                value={companyActive}
+                id="authorsActive"
+                name="authorsActive"
+                checked={authorsActive}
+                value={authorsActive}
                 onChange={(e) => {
                 handleChangeOfData(e);
                 setCompanyActive(e.target.checked);
@@ -1050,7 +1014,7 @@ const [isModalVisible, setIsModalVisible] = useState(false);
               <output         
               id="createdOn"
               name="createdOn"
-              >{Moment(createdOn).format("DD.MM.YYYY")}
+              >{Moment(createdOn).format("DD.MMMM.YYYY")}
               </output>
             </div>
           }
@@ -1060,7 +1024,7 @@ const [isModalVisible, setIsModalVisible] = useState(false);
               <output         
               id="updatedOn"
               name="updatedOn"
-              >{Moment(updatedOn).format("DD.MM.YYYY")}
+              >{Moment(updatedOn).format("DD.MMMM.YYYY")}
               </output>
             </div>
           }
@@ -1116,7 +1080,7 @@ const [isModalVisible, setIsModalVisible] = useState(false);
                 className="buttonBasics pFunction" 
                 onClick={() => {
                   clearForm();
-                  //setIsCompanyTypeFocused(false);
+                  setIsCompanyTypeFocused(false);
                   }} 
               >
                 abbrechen
