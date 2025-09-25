@@ -150,13 +150,13 @@
         padding: 0px;
         //border-radius: 10px;
         //width: 100%;
-        flex-basis: 100% !important;
-        flex-grow: 1;
-        flex-shrink: 1;
+        //flex-basis: 100% !important;
+        //flex-grow: 1;
+        //flex-shrink: 1;
         gap: 20px;
         background-color: $fourth-color;
         border: solid;
-        margin: 0 0 10px 0;
+        margin: 0 ;
         label{
           border: none;
           padding: 0;
@@ -164,7 +164,7 @@
         #companyNature{
           //border: solid;
           width: 50%;
-          padding: 10px;
+          padding: 5px;
           color: $cpdblue;
         }
         #eingabeCompanyNature{
@@ -172,9 +172,9 @@
           flex-flow: row nowrap;
           justify-content: space-around;
           gap: 50px;
-          padding: 10px ;
+          padding: 0 10px ;
           //border: solid;
-          width: 50%;
+          width: 60%;
           background-color: transparent;
           div {
             display: flex;

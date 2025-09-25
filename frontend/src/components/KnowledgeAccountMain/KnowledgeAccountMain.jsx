@@ -9,10 +9,8 @@ import Swal from "sweetalert2";
 import UserAvatar from "../UserAvatar/UserAvatar.jsx"
 import { Tooltip, getTooltipText } from "../../components/Tooltips/Tooltips.js"
 import { AvatarSliderModal } from "../../modals/Slider/SliderModal.jsx"
+import  AddCareerItemModal from "../../modals/AddCareerItem/AddCareerItemModal.jsx"
 import Countdown from "../Countdown/Countdown.jsx";
-
-//import UpdateUserModal from "../../modals/UserUpdate/UserUpdateModal.jsx"
-//import ImageUpload from '../ImageUpload/ImageUpload.jsx';
 
 const  KnowledgeAccountMain = () =>{
    const { isAuth,
@@ -39,6 +37,7 @@ const  KnowledgeAccountMain = () =>{
    const [openSections, setOpenSections] = useState([]);
    //const [selectedImage, setSelectedImage] = useState(null);
    const [isSliderModalOpen, setIsSliderModalOpen] = useState(false);
+   const [isAddCareerItemModalOpen, setIsAddCareerItemModalOpen] = useState(false);
    //const [updateUserModalIsOpen, setUpdateUserModalIsOpen] = useState(false);
    const [refreshData, setRefreshData] = useState({});
 
@@ -787,10 +786,17 @@ const  KnowledgeAccountMain = () =>{
                         >aktualisieren
                         </p>
                         <p
-                           //onClick={() => navigate("courselistpage")}  Navigation
+                           onClick={() => setIsAddCareerItemModalOpen(true)}
                            className="pFunction"
                         >neue Station
                         </p>
+                        <AddCareerItemModal
+                           isOpen={isAddCareerItemModalOpen} 
+                           onRequestClose={() => {
+                              setIsAddCareerItemModalOpen(false);
+                              toggleDropdowns("dropdownCV");
+                              }} 
+                        />
                         <p
                            onClick={() => toggleDropdowns("dropdownCV")} // Öffnen
                            className="pFunction"
@@ -811,6 +817,7 @@ const  KnowledgeAccountMain = () =>{
                         </p>
                      </div>  
                   </div>
+                  
                </>
                }
             </div>

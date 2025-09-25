@@ -14,16 +14,13 @@
   }
 
   #r1 {
-    //left: 22vw;
-    left: 25%;
     left: calc(33vw - (15vw / 2));
     top: 50px;
     animation-duration: 20.5s;
     //border: solid white;
   } 
   #r2 {
-    //left: 66vw;
-    left: calc(50% + 10%);
+    right:calc(33vw - (15vw / 2));
     top: 50px;
     animation-duration: 22.5s;
   }
@@ -141,22 +138,20 @@
 
  @media (min-width: 1600px){
   #r1 {
-    //left: calc((100% - 1280px) / 2);
-    left: 33vw;
+    left: calc((100% - 1280px) / 2 + (1480px/3/2)) !important;
+    //left: 33vw;
     top: 50px;
     animation-duration: 20.5s;
   } 
   #r2 {
-    left: 66vw;
+    //left: 66vw;
+    right: calc((100% - 1280px) / 2 + (1480px/3/2)) !important;
     top: 50px;
     animation-duration: 22.5s;
   }
   #r3 {
-    //left: -2.5vw;
-    left: -3.0vw;
-    left: calc((100vw - 1280px) / 2);
+    left: calc((100% - 1280px) / 2 - 200px) !important;
     top: 200px;
-    //background-color: white;;
   }
   #r4 {
     left:43.5vw;
@@ -164,23 +159,26 @@
     animation-duration: 26s;
   }
   #r5 {
-    left: 89.5vw;
+    right: calc((100% - 1280px) / 2 - 200px) !important ;
     top: 200px;
     animation-duration: 22s;
   }
   #r6 {
     left: 22vw;
     top: 350px;
+    
   } 
   #r7 {
     left: 66vw;
     top: 350px;
     animation-duration: 22.5s;
+    
   }
   #r8 {
     left: -2.5vw;
     top: 500px;
     animation-duration: 25.6s;
+    left: calc((100% - 1280px) / 2 - 200px) !important;
   }
   #r9 {
     left:43.5vw;
@@ -188,7 +186,7 @@
     animation-duration: 25.6s;
   }
   #r10 {
-    left: 89.5vw;
+    right: calc((100% - 1280px) / 2 - 200px) !important ;
     top: 500px;
     animation-duration: 24.5s;
   }
@@ -205,6 +203,7 @@
     left: -2.5vw;
     top: 800px;
     animation-duration: 25.6s;
+    left: calc((100% - 1280px) / 2 - 200px) !important;
   }
   #r14 {
     left:43.5vw;
@@ -212,7 +211,8 @@
     animation-duration: 25.6s;
   }
   #r15 {
-    left: 89.5vw;
+    //left: 89.5vw;
+    right: calc((100% - 1280px) / 2 - 200px) !important ;
     top: 800px;
     animation-duration: 24.5s;
   }
@@ -226,9 +226,9 @@
     animation-duration: 22.5s;
   }
   #r18 {
-    left: -2.5vw;
     top: 1100px;
     animation-duration: 25.6s;
+    left: calc((100% - 1280px) / 2 - 200px) !important;
   }
    #r19 {
     left:43.5vw;
@@ -236,7 +236,8 @@
     animation-duration: 25.6s;
   }
   #r20 {
-    left: 89.5vw;
+    //left: 89.5vw;
+    right: calc((100% - 1280px) / 2 - 200px) !important ;
     top: 1100px;
     animation-duration: 24.5s;
   }

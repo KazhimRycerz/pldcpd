@@ -18,7 +18,6 @@ const buttonMove3 = "showBut moveButtonBack"
 const accountPos2 = "accountAside showAccount"
 const accountPos3 = "accountAside hideAccount" 
 
-
 const handleButton=(buttonPos) => {
 
   if ( buttonPos === buttonMove1 ) {

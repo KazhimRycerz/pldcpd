@@ -6,16 +6,17 @@ import { SectionsContext } from '../../context/SectionsContext.js'
 import baseURL from "../../util/constants.js"
 
 const AccountAside = () => {
+  
   const { isAuth, userData, contactData, marketData, knowledgeData, asidePos, setAsidePos, buttonPos, setButtonPos, navigate } = useContext(SectionsContext);
   const [buttonText, setButtonText] = useState("hide  account");
 
-const initialButtonPos = "buttonZeroPosition" 
-const buttonMove1 = "showBut" 
-const buttonMove2 = "showBut moveButton" 
-const buttonMove3 = "showBut moveButtonBack" 
-//const buttonMove4 = "hideBut"
-//const buttonMove5 = "moveButtonBackToStart"
-//isAuth ? setButtonPos("showBut") : setButtonPos("");
+  const initialButtonPos = "buttonZeroPosition" 
+  const buttonMove1 = "showBut" 
+  const buttonMove2 = "showBut moveButton" 
+  const buttonMove3 = "showBut moveButtonBack" 
+  //const buttonMove4 = "hideBut"
+  //const buttonMove5 = "moveButtonBackToStart"
+  //isAuth ? setButtonPos("showBut") : setButtonPos("");
 
 const accountPos1 = "accountAside"
 const accountPos2 = "accountAside showAccount"

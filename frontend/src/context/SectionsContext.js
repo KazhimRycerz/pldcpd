@@ -10,7 +10,7 @@ const SectionsContext = createContext();
 
 const SectionsProvider = ({ children }) => {
   const [isAuth, setIsAuth] = useState(() => {
-    const isLoggedCookie = Cookies.get("isLogged");
+    const isLoggedCookie = parseInt(Cookies.get("isLogged"), 10);
     if (!isLoggedCookie) return false;
     const newDate = parseInt(new Date().getTime());
     if (isLoggedCookie < newDate) {
@@ -72,11 +72,16 @@ const SectionsProvider = ({ children }) => {
     setIsAuth(false);
     axiosConfig.post("/user/logout").then((res) => {
     });
-    localStorage.clear();
+    //localStorage.clear();
+    localStorage.removeItem("userId");
+    localStorage.removeItem("firstName");
+    localStorage.removeItem("userName");
     setAccessRights([0]); 
     setUserMode("user");
     //console.log(localStorage)
-    !localStorage.length && navigate(gotoPage || "/home")
+    if (!localStorage.length) {
+      navigate(gotoPage || "/home");
+    }
     Swal.fire({
       title: `Sie haben sich erfolgreich abgemeldet, ${logoutName}, alias ${logoutUser}. Besuchen sie uns bald wieder!`,
       icon: "success",
@@ -86,6 +91,7 @@ const SectionsProvider = ({ children }) => {
 
   const getUserData = async () => {
     const userId = localStorage.getItem("userId");
+    if (!userId) return;
     const axiosResp = await axiosConfig.get(
        `/user/${userId}`
        );
@@ -124,9 +130,12 @@ const SectionsProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    isAuth && getMarketKnowledgeData();
-    isAuth && getUserData();
+    if (isAuth) {
+      getMarketKnowledgeData();
+      getUserData();
+    }
   }, [isAuth]);
+  
 
   return (
     <SectionsContext.Provider
@@ -165,7 +174,8 @@ const SectionsProvider = ({ children }) => {
         setObjectPosition,
         saveUserSettings,
         userMode,
-        setUserMode
+        setUserMode,
+        professionalData
       }}
     >
       {children}

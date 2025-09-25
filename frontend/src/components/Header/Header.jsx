@@ -102,6 +102,7 @@ const Header = () => {
                  about
                 </p>
               </button>
+              
               <ul id="dropdown-content">
                 <li>
                   <NavLink to="/home">

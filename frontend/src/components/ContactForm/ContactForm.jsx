@@ -7,7 +7,8 @@ import { Modal, Button } from 'antd';
 //import Moment from "moment"
 import Swal from "sweetalert2";
 import { ListOfCountryCodes } from "../ListsOfData/ListOfData.jsx";
-import { FehlendeZugangsrechte } from "../FehlermeldungenSwal/FehlermeldungenSwal.jsx"
+import { FehlendeZugangsrechte } from "../FehlermeldungenSwal/FehlermeldungenSwal.jsx";
+import { AddCareerItemModal} from "../../modals/AddCareerItem/AddCareerItemModal.jsx"
 
 
 const ContactPage =() => {
@@ -64,13 +65,12 @@ const ContactPage =() => {
     return date ? new Date(date).toISOString().split("T")[0] : ""; // Ensures a valid "YYYY-MM-DD" format
   };
 
-  const workingModeSelect = (e) => {
+  /*const workingModeSelect = (e) => {
     const { value } = e.target;
     e.target.value === "editMode" && setData([null]); clearForm()
     e.target.value === "inputMode" && clearForm()
     setWorkingMode(value);
-    //console.log(workingMode)
-  };
+  };*/
 
   const handleCancel = () => {
     setIsContactSucherModalVisible(false);
@@ -537,24 +537,30 @@ const ContactPage =() => {
           <h2 id="contactHead">Eingabe / Bearbeiten von Kontakten</h2>
       </div>
 
-      <div id="contactFormContainer"  className={statusSicherung}>
-        <p id="änderungsHinweis" >Änderungshinweis</p>
+      <div id="contactFormContainer"  /* className={statusSicherung} */>
+        <p id="änderungsHinweis" >
+          {!data 
+            ? "Daten eingeben oder Kontakt suchen"
+            : ((statusSicherung === "ungesichert") 
+              ? "ACHTUNG: Daten / Änderungen wurden noch nicht gesichert" 
+              : "Daten jetzt ändern oder löschen")
+          }
+        </p>
         
         {(accessRights.includes(5) || accessRights.includes(10) || accessRights.includes(9)) &&
         <div id="boxModusWahl">
           {(isAuth && Array.isArray(accessRights) && accessRights.some(item => item > 1)) &&
-          <label>
+          /*<label>
           <input
           type="radio"
           name="editMode"
           value="editMode"
           checked={workingMode === 'editMode'}
           //onChange={workingModeSelect}
-          /* onChange={() => {
+          onChange={() => {
             //clearForm();
             setIsModalVisible(true);
-            
-          }} */
+          }} 
           readOnly
           onClick={() => {
             //clearForm();
@@ -563,10 +569,14 @@ const ContactPage =() => {
           }}
           style={{ display: "none" }}
           /> 
-          <span className="pFunction">suchen und bearbeiten</span>
-          </label>
+           <span className="pFunction">Kontakt finden</span>
+          </label>*/
+          <div className="pFunction"
+          onClick={() => {
+            setIsContactSucherModalVisible(true);
+            
+          }}>Kontakt finden</div>     
           }
-
         </div> }
 
         <Modal
@@ -676,7 +686,7 @@ const ContactPage =() => {
           </div>
         </Modal>
 
-        <form id="contactDisplayForm" 
+        <form id="contactDisplayForm" className={statusSicherung}
           onSubmit={submitContact}
           encType="multipart/form-data"
           >
@@ -705,9 +715,9 @@ const ContactPage =() => {
             value={lastName}
             placeholder="Nachname"
             autoComplete="off"
-            onDoubleClickCapture={(e) => 
-              {setLastName("");
-              setStatusSicherung("ungesichert")}}
+            // onDoubleClickCapture={(e) => 
+            //   {setLastName("");
+            //   setStatusSicherung("ungesichert")}}
             onChange={(e) => {
               setFormErrors({ ...formErrors, lastName: "" }); // Fehlermeldung zurücksetzen
               handleChangeOfData(e);
@@ -723,9 +733,9 @@ const ContactPage =() => {
             value={gender}
             placeholder="Geschlecht"
             autoComplete="off"
-            onDoubleClickCapture={(e) => 
+            /* onDoubleClickCapture={(e) => 
               {setGender("");
-              setStatusSicherung("ungesichert")}}
+              setStatusSicherung("ungesichert")}}*/
             onChange={(e) => {
               setFormErrors({ ...formErrors, gender: "" }); // Fehlermeldung zurücksetzen
               handleChangeOfData(e);
@@ -741,13 +751,13 @@ const ContactPage =() => {
             value={professionalTitle}
             placeholder="Titel"
             autoComplete="off"
-            onDoubleClickCapture={(e) => 
+            /*onDoubleClickCapture={(e) => 
               {setLastName("");
-              setStatusSicherung("ungesichert")}}
+              setStatusSicherung("ungesichert")}}*/
             onChange={(e) => {
               setFormErrors({ ...formErrors, professionalTitle: "" }); // Fehlermeldung zurücksetzen
             handleChangeOfData(e);
-            setLastName(e.target.value);
+            setProfessionalTitle(e.target.value);
             }} />
             {formErrors.professionalTitle && <p className="error">{formErrors.professionalTitle}</p>}
           </div>
@@ -814,9 +824,9 @@ const ContactPage =() => {
             value={appendix}
             placeholder="Appendix"
             autoComplete="off"
-            onDoubleClickCapture={(e) => 
+            /*onDoubleClickCapture={(e) => 
               {setAppendix("");
-              setStatusSicherung("ungesichert")}}
+              setStatusSicherung("ungesichert")}}*/
             onChange={(e) => {
               setFormErrors({ ...formErrors, appendix: "" }); // Fehlermeldung zurücksetzen
             handleChangeOfData(e);
@@ -865,9 +875,9 @@ const ContactPage =() => {
           value={nationality}
           placeholder="nationality"
           autoComplete="off"
-          onDoubleClickCapture={(e) => 
+          /*onDoubleClickCapture={(e) => 
             {setNationality("");
-            setStatusSicherung("ungesichert")}}
+            setStatusSicherung("ungesichert")}}*/
           onChange={(e) => {
             setFormErrors({ ...formErrors, nationality: "" }); // Fehlermeldung zurücksetzen
           handleChangeOfData(e);
@@ -883,9 +893,9 @@ const ContactPage =() => {
             value={currentCompany.companyName}
             placeholder="currentCompany"
             autoComplete="off"
-            onDoubleClickCapture={(e) => 
-              {setCurrentCompany("");
-              setStatusSicherung("ungesichert")}}
+            /*onDoubleClickCapture={(e) => 
+               {setCurrentCompany("");
+              setStatusSicherung("ungesichert")}}*/
             onChange={(e) => {
               setFormErrors({ ...formErrors, currentCompany: "" }); // Fehlermeldung zurücksetzen
             handleChangeOfData(e);
@@ -1074,6 +1084,19 @@ const ContactPage =() => {
           </button>
           }
 
+          { (data._id && statusSicherung === "ungesichert") &&
+            <button 
+              className="buttonBasics pFunction" 
+              onClick={() => {
+                setStatusSicherung("gesichert");
+                displayContact(data);
+                //setIsCompanyTypeFocused(false);
+                }} 
+            >
+              abbrechen
+            </button>
+          }
+
           { (statusSicherung === "ungesichert" || data._id) &&
             <button 
               type="reset" 
@@ -1084,17 +1107,6 @@ const ContactPage =() => {
                 }} 
             >
               leeren
-            </button>
-          }
-          { (statusSicherung === "ungesichert") &&
-            <button 
-              className="buttonBasics pFunction" 
-              onClick={() => {
-                setStatusSicherung("gesichert");
-                //setIsCompanyTypeFocused(false);
-                }} 
-            >
-              abbrechen
             </button>
           }
 

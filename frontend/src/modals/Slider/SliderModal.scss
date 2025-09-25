@@ -2,8 +2,8 @@
 
 .modal {
   position: fixed;
-  top: 450px;
-  left: 50%;
+  top: 250px;
+  //left: 50%;
   right: auto;
   bottom: auto;
   transform: translate(-50%, -50%);
@@ -22,6 +22,11 @@
   outline: none;
   //box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   z-index: 1000;
+
+  opacity: 0;
+  transform: translateY(-20px) scale(0.98);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: none;
 }
 
 .overlay {
@@ -30,7 +35,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  //background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px) brightness(0.4);
   //background-color: $fourth-color;
   display: flex;
   justify-content: center;
@@ -38,7 +44,33 @@
   //box-shadow: $boxshadow;
   //border-radius: 20px;
   z-index: 999;
-  .swiper{
+  
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  }
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+  pointer-events: none;
+}
+.ReactModal__Content--after-open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+.ReactModal__Content--before-close {
+  opacity: 0;
+  transform: translateY(-20px) scale(0.98);
+  pointer-events: none;
+}
+
+// nur für das Avatar-Modul
+.swiper{
     width: 75%;
     max-width: 600px;
     //border: solid;
@@ -52,8 +84,8 @@
       max-width: 100px;
       overflow: hidden;
       }
-    }
-    #avatarHandling{
+}
+#avatarHandling{
       display: flex;
       flex-flow: row nowrap;
       justify-content:center;
@@ -78,9 +110,7 @@
         }
   
       }
-    }
 }
-
 .swiper-button-next, .swiper-button-prev {
   color: white; /* Change the color of the navigation buttons */
   background-color: rgba(0, 0, 0, 0.5); /* Add a background color to the buttons */
@@ -92,38 +122,26 @@
   top: 50%; /* Verschieben Sie die nächste Taste um 50% nach unten */
   /*transform: translate(-50%, -50%);*/
 }
-
 .swiper-button-next:hover, .swiper-button-prev:hover {
   background-color: rgba(0, 0, 0, 0.8); /* Darken the background on hover */
 
 }
-
 .swiper-button-next:after, .swiper-button-prev:after {
   font-size: 20px; /* Change the size of the arrow icons */
 }
-
 .active-slide img {
   transform: scale(1.2);  // Vergrößert das Bild um 20%
   transition: transform 0.3s ease-in-out;  // Animation für weichen Übergang
   border: solid 3px grey;
 }
-
 .swiper .swiper-slide {
   transition: transform 0.3s ease-in-out;
 }
-
 .active-slide {
   transform: scale(1.2);  // Vergrößert das Bild um 20%
   transition: transform 0.3s ease-in-out;  // Animation für weichen Übergang
   cursor: pointer;
 }
-
-/* Stellen Sie sicher, dass die aktive Folie in der Mitte zentriert ist */
-/* .custom-swiper .swiper-wrapper {
-  display: flex;
-  justify-content: center;
-} */
-
 .swiper .swiper-slide-active {
   transform: scale(1.2);  // Vergrößert
 }
@@ -166,7 +184,6 @@
 
   }
 }
-
 #Cube{
   width: 50%;
   margin: 100px auto;

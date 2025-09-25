@@ -7,7 +7,7 @@ import { Modal, Button } from 'antd';
 import Moment from "moment"
 import Swal from "sweetalert2";
 import { IndustryField, ListOfCompanyType, ListOfCountryCodes } from "../ListsOfData/ListOfData.jsx";
-import { FehlendeZugangsrechte } from "../FehlermeldungenSwal/FehlermeldungenSwal.jsx"
+//import { FehlendeZugangsrechte } from "../FehlermeldungenSwal/FehlermeldungenSwal.jsx"
 
 const CompanyPage = () => {
   const { isAuth, setGotoPage, accessRights, navigate, userMode, setUserMode} = useContext(SectionsContext);
@@ -50,11 +50,7 @@ const CompanyPage = () => {
 // managing die Seiten der Firmenliste: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 const [currentPage, setCurrentPage] = useState(1);
 const [itemsPerPage, setItemsPerPage] = useState(10)
-/* const handleThemenclick = (item) => {
-    getCourseToReview({ target: { value: item._id } });
-    setStatusSicherung("gesichert");
-    setIsModalVisible(false);
-}; */
+
 const handleItemsPerPageChange = (event) => {
   setItemsPerPage(parseInt(event.target.value, 10));
   setCurrentPage(1); // Zurücksetzen auf die erste Seite bei Änderung der Items pro Seite
@@ -89,18 +85,18 @@ const [isModalVisible, setIsModalVisible] = useState(false);
     setIsModalVisible(false);
   }; */
   
-  const handleCancel = () => {
+  const handleCancelFirmensucher = () => {
     setIsModalVisible(false);
     setFirmenFilter("")
   };
   
-  const workingModeSelect = (e) => {
+  /* const workingModeSelect = (e) => {
     const { value } = e.target;
     e.target.value === "editMode" && setData([null]); clearForm()
     e.target.value === "inputMode" && clearForm()
     setWorkingMode(value);
     //console.log(workingMode)
-  };
+  };*/
 
   const clearForm = () => {
     setAddressNature("");
@@ -126,7 +122,7 @@ const [isModalVisible, setIsModalVisible] = useState(false);
 
   const isFormEmpty = () => {
     //clearForm()
-    return !companyName && !companyStreet && !companyZip && !companyCity && !companyCountryCode && !companyHomepage;
+    return !addressNature && !companyName && !companyStreet && !companyZip && !companyCity && !companyCountryCode && !companyHomepage;
   };
 
   const clearSelectionOfCompany = () => {
@@ -134,8 +130,8 @@ const [isModalVisible, setIsModalVisible] = useState(false);
     //document.getElementById('firmenListe').value = "";
   };
   
-  const handleChangeOfData = (event) => {
-    const { name, value, checked, type } = event.target;
+  const handleChangeOfData = (e) => {
+    const { name, value, checked, type } = e.target;
     setStatusSicherung("ungesichert")
   };
 
@@ -246,7 +242,9 @@ const [isModalVisible, setIsModalVisible] = useState(false);
       setUpdatedBy(data.updatedBy);
       setUpdatedOn(data.updatedOn);
       setCreatedOn(data.createdOn);
-      setCompanyClientID(data.companyClientID)
+      setCompanyClientID(data.companyClientID);
+      setStatusSicherung("gesichert")
+      setIsCompanyTypeFocused(false);
       //console.log(companyId)
     } 
 
@@ -409,7 +407,7 @@ const [isModalVisible, setIsModalVisible] = useState(false);
             navigate("/home")
           }
         })
-        console.log('Datensatz aktualisiert:', response.data);
+        //console.log('Datensatz aktualisiert:', response.data);
       } catch (error) {
           
         console.error(error);
@@ -429,7 +427,7 @@ const [isModalVisible, setIsModalVisible] = useState(false);
   
     const result = await Swal.fire({
         icon: "warning",
-        title: `Soll das Unternehmen ${company} wirklich gelöscht werden?`,
+        title: `Soll die Adresse ${company} wirklich gelöscht werden?`,
         showConfirmButton: true,
         showDenyButton: true,
         confirmButtonText: 'Ja, löschen',
@@ -468,7 +466,7 @@ const [isModalVisible, setIsModalVisible] = useState(false);
 };
 
   useEffect(() => {
-    firmenFilteredList();
+    //firmenFilteredList();
     displayCompany()
     const interval = setInterval(() => {
       setCurrentDate(new Date());
@@ -512,11 +510,14 @@ const [isModalVisible, setIsModalVisible] = useState(false);
           {/* <p className="closingFunction" onClick={() => navigate("/home")}>Formular schließen</p> */}
         </div>
 
-        <div id="companyFormContainer" className={statusSicherung}>
+        <div id="companyFormContainer" /*className={statusSicherung}*/>
 
           <p id="änderungsHinweis">
-            {isFormEmpty() ? "Bitte Daten eingeben" :
-            ((!isFormEmpty && statusSicherung === "ungesichert") ? "ACHTUNG: Änderungen wurden noch nicht gesichert" : "Daten jetzt ändern oder löschen")}
+            {isFormEmpty() 
+            ? "Daten eingeben oder Firma suchen" 
+            :((statusSicherung === "ungesichert") 
+              ? "ACHTUNG: Daten / Änderungen wurden noch nicht gesichert" 
+              : "Daten jetzt ändern oder löschen")}
           </p>
             
           {(accessRights.includes(5) || accessRights.includes(10) || accessRights.includes(9)) &&
@@ -548,6 +549,7 @@ const [isModalVisible, setIsModalVisible] = useState(false);
             readOnly
             onClick={() => {
               //clearForm();
+              firmenFilteredList()
               setIsModalVisible(true);
               
             }}
@@ -562,13 +564,13 @@ const [isModalVisible, setIsModalVisible] = useState(false);
           <Modal id="firmenSucherModal"
             title="Firma finden"
             open={isModalVisible}
-            onCancel={handleCancel}
+            onCancel={handleCancelFirmensucher}
             footer={
               <Button 
               key="back" 
               className="buttonBasics pFunction "
               id="backButtonFirmaFinden"
-              onClick={handleCancel}>
+              onClick={handleCancelFirmensucher}>
                 abbrechen
               </Button>
             }
@@ -674,7 +676,7 @@ const [isModalVisible, setIsModalVisible] = useState(false);
             </div> 
           </Modal> 
 
-          <form id="companyDisplayForm" 
+          <form id="companyDisplayForm" className={statusSicherung}
           onSubmit={submitCompany}
           encType="multipart/form-data"
           >
@@ -694,7 +696,8 @@ const [isModalVisible, setIsModalVisible] = useState(false);
                     setFormErrors({ ...formErrors, addressNature: "" }); 
                     handleChangeOfData(e);
                     setAddressNature("business");
-                    setCompanyType("")
+                    setIsCompanyTypeFocused(true);
+                    setCompanyType("");
                   }}
                   />
                   <label htmlFor="business">business</label>
@@ -715,54 +718,14 @@ const [isModalVisible, setIsModalVisible] = useState(false);
                     setCompanyType("PA")
                   }}
                   />
-                  <label htmlFor="private">private / personal</label>
+                  <label htmlFor="private">personal</label>
                 </div>
               </div>
             </div>
-          {addressNature ==="business" ? 
-            <div id="firmennameneingabe">
-            <label htmlFor="companyName">Firmenname<sup id="courseTopicSup">*</sup></label>
-            <input
-            type="text"
-            id="companyName"
-            name="companyName"
-            value={companyName}
-            placeholder="Firma / Adressname eingeben"
-            autoComplete="off"
-            onChange={(e) => {
-              setFormErrors({ ...formErrors, companyName: "" }); // Fehlermeldung zurücksetzen
-            handleChangeOfData(e);
-            setCompanyName(e.target.value);
-            }}
-            />
-            {formErrors.companyName && <p className="error">
-            {formErrors.companyName}</p>}
-            </div> : 
-            <div id="firmennameneingabe">
-              <label htmlFor="companyName">Vor und Nachname<sup id="courseTopicSup">*</sup></label>
-              <input
-              disabled
-                type="text"
-                id="companyName"
-                name="companyName"
-                value={companyName}
-                placeholder="Vor- und Nachname Privatadresse"
-                autoComplete="off"
-                autoFocus
-                onChange={(e) => {
-                  setFormErrors({ ...formErrors, companyName: "" }); // Fehlermeldung zurücksetzen
-                handleChangeOfData(e);
-                setCompanyName(e.target.value);
-              }}
-                />
-                {formErrors.companyName && <p className="error">{formErrors.companyName}</p>}
-            </div>
-          } 
             <div id="firmentypauswahl"
             style={{ position: 'relative', maxHeight: "45px" }}>
               <label htmlFor="companyType">Unternehmensart<sup id="companyTypeSup">*</sup>
               </label>
-              
               <div 
               id="firmenTypInput"
               >
@@ -827,22 +790,66 @@ const [isModalVisible, setIsModalVisible] = useState(false);
                     </div>
                 }
                 {isCompanyTypeFocused ? (
-                  <StopOutlined
-                    className="edit-icon"
-                    onClick={() => {
-                      setIsCompanyTypeFocused(false)
-                    }}
-                    
-                  />
-                ) : (
-                  <EditOutlined
-                    className="edit-icon"
-                    onClick={() => {setIsCompanyTypeFocused(true);
-                      setCompanyTypeSearcher('')}}
-                  />)
-                }
+  <StopOutlined
+    className="edit-icon"
+    onClick={() => {
+      setIsCompanyTypeFocused(false);
+    }}
+  />
+) : (
+    addressNature !== "private" && (
+      <EditOutlined
+        className="edit-icon"
+        onClick={() => {
+          setIsCompanyTypeFocused(true);
+          setCompanyTypeSearcher('');
+        }}
+      />
+    )
+  )}
+
               </div>
+
             </div>
+          {addressNature ==="business" ? 
+            <div id="firmennameneingabe">
+            <label htmlFor="companyName">Firmenname<sup id="courseTopicSup">*</sup></label>
+            <input
+            type="text"
+            id="companyName"
+            name="companyName"
+            value={companyName}
+            placeholder="Firma / Adressname eingeben"
+            autoComplete="off"
+            onChange={(e) => {
+              setFormErrors({ ...formErrors, companyName: "" }); // Fehlermeldung zurücksetzen
+            handleChangeOfData(e);
+            setCompanyName(e.target.value);
+            }}
+            />
+            {formErrors.companyName && <p className="error">
+            {formErrors.companyName}</p>}
+            </div> : 
+            <div id="firmennameneingabe">
+              <label htmlFor="companyName">Vor und Nachname<sup id="courseTopicSup">*</sup></label>
+              <input
+              // disabled
+                type="text"
+                id="companyName"
+                name="companyName"
+                value={companyName}
+                placeholder="Vor- und Nachname"
+                autoComplete="off"
+                autoFocus
+                onChange={(e) => {
+                  setFormErrors({ ...formErrors, companyName: "" }); // Fehlermeldung zurücksetzen
+                handleChangeOfData(e);
+                setCompanyName(e.target.value);
+              }}
+                />
+                {formErrors.companyName && <p className="error">{formErrors.companyName}</p>}
+            </div>
+          } 
 
             <div id="firmenanschrift">
               <label htmlFor="companyStreet">Anschrift</label>
@@ -915,7 +922,7 @@ const [isModalVisible, setIsModalVisible] = useState(false);
                   className="no-focus"
                   name="companyCountryCode"
                   readOnly
-                  value={companyCountryName} // Landbezeichnung anzeigen
+                  value={companyCountryCode} // Landbezeichnung anzeigen
                   placeholder="Land"
                   autoComplete="off"
                 //   onChange=
@@ -1073,12 +1080,20 @@ const [isModalVisible, setIsModalVisible] = useState(false);
               >{updatedBy.firstName} {updatedBy.lastName}
               </output>
             </div>}
-                
-              
-            
+
           </form>
 
           <div id="buttonBox">
+            {(accessRights.includes(9) && data._id) && (
+              <button 
+                className="buttonBasics pFunction" 
+                onClick={() => deleteCompany(data)} 
+                disabled={(data.length < 1)}
+              >
+                Firma löschen
+              </button>
+            )}
+
             {(data._id && statusSicherung === "ungesichert" ) && 
               <button 
                 className="buttonBasics pFunction" 
@@ -1088,16 +1103,6 @@ const [isModalVisible, setIsModalVisible] = useState(false);
                 Änder. sichern
               </button>
             }
-
-            {(userMode === "manager" && data._id) && (
-              <button 
-                className="buttonBasics pFunction" 
-                onClick={() => deleteCompany(data)} 
-                disabled={(data.length < 1)}
-              >
-                Firma löschen
-              </button>
-            )}
 
             {(!data._id && statusSicherung === "ungesichert") &&
             <button 
@@ -1110,17 +1115,29 @@ const [isModalVisible, setIsModalVisible] = useState(false);
             </button>
             }
 
-            { data &&
+            { (data._id && statusSicherung === "ungesichert") ?
               <button 
-                type="reset" 
+                type="button" 
                 className="buttonBasics pFunction" 
                 onClick={() => {
-                  clearForm();
-                  //setIsCompanyTypeFocused(false);
+                  displayCompany(data);
                   }} 
               >
                 abbrechen
-              </button>
+              </button> :
+              <></>
+            }
+            { !isFormEmpty() ?
+              <button 
+                type="button" 
+                className="buttonBasics pFunction" 
+                onClick={() => {
+                  clearForm();
+                  }} 
+              >
+                leeren
+              </button> :
+              <></>
             }
           </div>
         

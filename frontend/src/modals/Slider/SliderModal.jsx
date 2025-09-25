@@ -16,7 +16,7 @@ Modal.setAppElement('#root');
 
 export const AvatarSliderModal = ({ 
   isOpen, 
-  onRequestClose, 
+  onRequestClose 
   }) => {
   const { isAuth, getUserData} = useContext(SectionsContext);
   const [currentIndex, setCurrentIndex] = useState(1);
@@ -167,12 +167,13 @@ export const AvatarSliderModal = ({
       onRequestClose={onRequestClose} 
       className="modal" 
       overlayClassName="overlay"
+      closeTimeoutMS={400} // <- Wichtig für Animation!
     >
       <div>
         <div className= "headBox">
-            <h2> select new Avatar</h2>
-            {/* < CloseOutlined className="closeX" onClick={() => onRequestClose()}> </CloseOutlined>  */}
-         </div>
+          <h2> select new Avatar</h2>
+          {/* < CloseOutlined className="closeX" onClick={() => onRequestClose()}> </CloseOutlined>  */}
+        </div>
         <Swiper
           className="swiper"
           modules={[Navigation, Pagination, Scrollbar, A11y]}
